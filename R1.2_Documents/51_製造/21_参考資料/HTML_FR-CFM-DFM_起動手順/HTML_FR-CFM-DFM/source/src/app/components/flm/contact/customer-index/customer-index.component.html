@@ -1,0 +1,272 @@
+<section id="KBA-contact-customer-index" *ngIf="isReady">
+  <div class="container-fluid">
+    <h2 class="KBA-user-index__title KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content">
+      <app-kba-file-upload
+        [apiId]="uploadPath"
+        [layout]="'index'"
+        [labels]="labels"
+        [uploadOnChange]="false"
+        [collapsed]="true"
+        [isLoading]="isLoading"
+        [json]="uploadJSON"
+        [conditionsContent]="uploadConditionsContent"
+        [screenCode]="editScreenCode"
+        (uploadStart)="_showLoadingSpinner()"
+        (uploadEnd)="onUploadEnd($event)"
+        (uploadFail)="onUploadFail($event)"
+      ></app-kba-file-upload>
+
+      <app-kba-accordion
+        [collapsed]="collapsed"
+        [useCustomHeader]="false"
+        [title]="labels.search_condition"
+        [isLoading]="isLoading"
+        [labels]="labels"
+        (onChangeState)="changePanelState($event)"
+      >
+        <div data-kba-accordion-body class="panel-body">
+          <div class="container KBA-search">
+            <ng-container *ngIf="resource">
+              <div class="row">
+                <app-kba-selected
+                  *ngIf="resource.support_distributor_id"
+                  class="col-sm-3"
+                  [kbaName]="'support_distributor_id'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                  [emitInitialRefresh]="false"
+                  (onChangeSelectItem)="handleSupportDistributorChange($event)"
+                ></app-kba-selected>
+                <app-kba-text
+                  *ngIf="resource.search_keyword"
+                  class="col-sm-3"
+                  [kbaName]="'search_keyword'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                  [maxlength]="80"
+                ></app-kba-text>
+              </div>
+              <div class="row">
+                <app-kba-select-type
+                  *ngIf="exists('customer_ids', true)"
+                  class="col-sm-8"
+                  [labels]="labels"
+                  [targets]="resource.customer_ids"
+                >
+                </app-kba-select-type>
+              </div>
+            </ng-container>
+          </div>
+          <div class="KBA-panel-footer">
+            <button
+              (click)="onClickSearch()"
+              type="button"
+              class="btn btn-primary search"
+            >
+              {{ labels.search }}
+            </button>
+            <button
+              class="btn btn-warning download-template btn-download"
+              type="button"
+              (click)="onClickDownloadTemplate()"
+            >
+              {{ labels.download_template }}
+              <i class="kba-icon kba-icon-download"></i>
+            </button>
+          </div>
+        </div>
+      </app-kba-accordion>
+
+      <div class="KBA-table-options" [hidden]="count <= 0">
+        <app-kba-pagination
+          [count]="count"
+          [params]="pageParams"
+          [labels]="labels"
+          [element]="pageCountEl"
+          (changeState)="onPaginationChange()"
+        ></app-kba-pagination>
+      </div>
+
+      <div class="KBA-table-wrapper">
+        <app-kba-table
+          [customTableThContent]="customTableThContent"
+          [customTableThBtnContent]="customTableThBtnContent"
+          [customTableBtnContent]="customTableBtnContent"
+          [lists]="lists"
+          [pageParams]="pageParams"
+          [params]="params"
+          [thList]="thList"
+          [sortableThList]="sortableThList"
+          [labels]="labels"
+          [collapsed]="collapsed"
+          [detailedly]="false"
+          [updatable]="updatable"
+          [deletable]="deletable"
+          [isFetching]="isFetching"
+          (edit)="onClickEdit($event)"
+          (delete)="onClickDelete($event)"
+        >
+        </app-kba-table>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #unlinkModalContent>
+    <app-kba-tandem-confirm [desc]="unlinkModalValues.listDesc" [val]="valItem">
+    </app-kba-tandem-confirm>
+  </ng-template>
+</section>
+
+<ng-template #customTableThContent>
+  <ng-container *ngFor="let th of thList">
+    <th
+      *ngIf="th.displayable"
+      class="KBA-index-th th-{{ th.shortName }}"
+      appKbaSortingLabel
+      [ngClass]="{ 'disable-sort': !th.sortable }"
+      [(sortingParams)]="sortingParams"
+      [labelName]="th.sortKey || th.name"
+      [sortableThList]="sortableThList"
+      (sort)="onChangeSort($event)"
+    >
+      <i
+        *ngIf="th.iconNo != null"
+        class="kba-icon"
+        [ngClass]="'kba-contact-icon_' + th.iconNo"
+      ></i>
+      <span>{{ th.label || labels[th.shortName] }}</span>
+    </th>
+  </ng-container>
+</ng-template>
+
+<ng-template #customTableThBtnContent>
+  <th *ngIf="updatable" class="fixed">{{ labels.header_edit }}</th>
+  <th *ngIf="deletable" class="fixed">{{ labels.header_unlink }}</th>
+</ng-template>
+
+<ng-template #customTableBtnContent let-data="data">
+  <td
+    *ngIf="updatable"
+    class="KBA-index-td KBA-table__small kba-sm-link text-center fixed d-flex align-items-center justify-content-center"
+    (click)="onClickEdit(data)"
+  >
+    <i class="kba-icon kba-icon-edit"></i>
+  </td>
+  <td
+    *ngIf="deletable"
+    class="KBA-table__small kba-sm-link KBA-index-td fixed td-unlink"
+    (click)="onClickDelete(data)"
+  >
+    <i class="kba-icon kba-extra-icon-release"></i>
+  </td>
+</ng-template>
+
+<ng-template #uploadResultModal>
+  <section class="KBA-modal">
+    <header class="KBA-modal-header modal-header">
+      <h1>{{ labels.result_modal_title }}</h1>
+    </header>
+
+    <div class="KBA-modal-body modal-body">
+      <app-kba-table
+        [customTableThContent]="modalTableThContent"
+        [customTableRowContent]="modalTableRowContent"
+        [lists]="resultModalData.lists"
+        [pageParams]="resultModalData.pageParams"
+        [thList]="thList"
+        [labels]="labels"
+      ></app-kba-table>
+      <p class="upload-summary">
+        <span>
+          {{ resultModalData.lists.originList.length }} {{ labels.of }}
+        </span>
+        <span *ngIf="+resultModalData.summary.unmodified_count > 0">
+          {{ labels.not_modified }}
+          {{ resultModalData.summary.unmodified_count }} {{ labels.count }}
+        </span>
+        <span *ngIf="+resultModalData.summary.added_count > 0">
+          {{ labels.added }} {{ resultModalData.summary.added_count }}
+          {{ labels.count }}
+        </span>
+        <span *ngIf="+resultModalData.summary.modified_count > 0">
+          {{ labels.modified }} {{ resultModalData.summary.modified_count }}
+          {{ labels.count }}
+        </span>
+        <span *ngIf="+resultModalData.summary.error_count > 0">
+          {{ labels.errors }} {{ resultModalData.summary.error_count }}
+          {{ labels.count }}
+        </span>
+      </p>
+    </div>
+
+    <footer class="KBA-modal-footer modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="onClickModalOk()"
+      >
+        {{ labels.ok_btn }}
+      </button>
+      <button
+        *ngIf="resultModalData.fileId != null"
+        type="button"
+        class="btn btn-secondary"
+        (click)="onClickModalDownload()"
+      >
+        {{ labels.download }}
+      </button>
+    </footer>
+  </section>
+
+  <ng-template #modalTableThContent>
+    <th class="th-result fixed">{{ labels.result }}</th>
+    <ng-container *ngFor="let th of thList">
+      <th *ngIf="th.displayable" class="th-{{ th.sortKey }}">
+        <i
+          *ngIf="th.iconNo != null"
+          class="kba-icon"
+          [ngClass]="'kba-contact-icon_' + th.iconNo"
+        ></i>
+        <span>{{ labels[th.sortKey] || th.label }}</span>
+      </th>
+    </ng-container>
+    <th class="th-detail">{{ labels.result_detail }}</th>
+  </ng-template>
+
+  <ng-template #modalTableRowContent let-data="data">
+    <td
+      class="KBA-index-td td-condition fixed"
+      [ngClass]="{ 'has-error': data.errors }"
+    >
+      <i class="fa fa-check" *ngIf="!data.errors"></i>
+      <i class="fa fa-times" *ngIf="data.errors"></i>
+    </td>
+    <ng-container *ngFor="let th of thList">
+      <td
+        *ngIf="th.displayable"
+        class="td-{{ th.dataKey }} KBA-index-td"
+        [ngClass]="{ 'has-error': data.errors }"
+      >
+        {{ data[th.dataKey || th.name] }}
+      </td>
+    </ng-container>
+    <td class="td-detail" [ngClass]="{ 'has-error': data.errors }">
+      <ng-container *ngFor="let error of data.errors">
+        <p>{{ error }}</p>
+      </ng-container>
+    </td>
+  </ng-template>
+</ng-template>
+
+<ng-template #uploadConditionsContent>
+  <app-kba-selected
+    *ngIf="resource.support_distributor_id"
+    class="col-sm-3 upload_select"
+    [kbaName]="'support_distributor_id'"
+    [kbaParams]="uploadJSON"
+    [kbaResource]="resource"
+  ></app-kba-selected>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

@@ -1,0 +1,101 @@
+.map-route {
+  position: relative;
+  width: 324px;
+  height: 100%;
+  background-color: #fff;
+}
+
+.route-body {
+  height: calc(100% - 45px);
+  overflow-y: auto;
+}
+
+.route-header {
+  width: 324px;
+  height: 45px;
+  background-color: #f6f6f6;
+
+  &-btn {
+    position: absolute;
+    height: 45px;
+    padding: 0 12px;
+    font-size: 16px;
+    background-color: transparent;
+
+    &:not(:disabled):hover {
+      background-color: #ededed;
+    }
+
+    &.btn-back {
+      left: 0;
+    }
+
+    &.btn-close {
+      right: 0;
+    }
+
+    .fa-angle-left {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+}
+
+.search-route {
+  padding: 20px 0;
+
+  .search-route-content {
+    padding: 0 30px;
+
+    &:not(:last-child) {
+      padding-bottom: 20px;
+      border-bottom: 1px solid #efefef;
+    }
+
+    &:not(:first-child) {
+      padding-top: 20px;
+    }
+  }
+
+  .btn-search-route {
+    width: 100%;
+    padding: 8px 0 5px;
+    font-size: 16px;
+    background-image: linear-gradient(#fff, #f2f2f2);
+    border: solid 1px #e6e6e6;
+    border-radius: 3px;
+
+    &:not(:disabled):hover {
+      background-image: linear-gradient(#f2f2f2, #e4e4e4);
+    }
+  }
+
+  .present-location {
+    margin: 5px 0;
+    font-size: 13px;
+    color: #999;
+  }
+
+  .input-present-location {
+    label {
+      margin-bottom: 0;
+      font-size: 13px;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      padding: 5px;
+      margin: 5px 0;
+      font-weight: 300;
+      line-height: 1;
+      background-color: #f6f6f6;
+      border: 1px solid #e6e6e6;
+      border-radius: 3px;
+    }
+  }
+}
+
+#route-guide {
+  padding: 0 10px 10px;
+}

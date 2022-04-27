@@ -1,0 +1,21 @@
+@import "../../../../../assets/styles/opa/_variable.scss";
+
+@mixin publish_kind() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .fa-check {
+    color: $kba-main-color;
+  }
+}
+
+.KBA-content {
+  .td-groups_attribute_publish_kind {
+    @include publish_kind();
+  }
+}
+
+.group-attribute-publish_kind {
+  @include publish_kind();
+}

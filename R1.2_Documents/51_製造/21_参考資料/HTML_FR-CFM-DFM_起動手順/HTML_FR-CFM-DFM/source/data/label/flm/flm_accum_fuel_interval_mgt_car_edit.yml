@@ -1,0 +1,144 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 累積燃料消費量インターバル管理　車両毎設定変更
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 累積燃料消費量インターバル管理　車両毎設定変更
+    en:
+
+  - id: 3
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 4
+    description: 変更
+    name: submit
+    ja: 変更
+    en:
+
+  - id: 5
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: 入力内容をリセット
+    en:
+
+  - id: 6
+    description: リセットモーダル文言
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか？
+    en:
+
+  - id: 7
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 8
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 9
+    description: 登録確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容に変更します。よろしいですか？
+    en:
+
+  - id: 10
+    description: 最新累積燃料消費量
+    name: latest_fuel
+    ja: 最新累積燃料消費量
+    en:
+
+  - id: 11
+    description: 機種
+    name: model
+    ja: 機種
+    en:
+
+  - id: 12
+    description: 型式
+    name: type_rev
+    ja: 型式
+    en:
+
+  - id: 13
+    description: 機番
+    name: serial
+    ja: 機番
+    en:
+
+  - id: 14
+    description: 選択
+    name: select
+    ja: 選択
+    en:
+
+  - id: 15
+    description: 管理項目名称
+    name: fuel_label
+    ja: 管理項目名称
+    en:
+
+  - id: 16
+    description: 前回点検時累積燃料消費量
+    name: last_inspection_accumulate_fuel
+    ja: 前回点検時累積燃料消費量
+    en:
+
+  - id: 17
+    description: 結果
+    name: result
+    ja: 結果
+    en:
+
+  - id: 18
+    description: 内容
+    name: result_detail
+    ja: 内容
+    en:
+
+  - id: 19
+    description: 結果モーダルタイトル
+    name: result_modal_title
+    ja: 累積燃料消費量インターバルの変更処理が完了しました。
+    en:
+
+  - id: 20
+    description: サービス管理対象外車両アラート
+    name: svm_non_target_alert_message
+    ja: この車両は変更できません。
+    en:
+
+  - id: 21
+    description: 結果件数
+    name: result_count_message
+    ja: '${total} 件中 成功${success}件 失敗${fail}件'
+    en:
+
+  - id: 22
+    description: リットル
+    name: liter
+    ja: L
+    en:
+
+  - id: 23
+    description: ガロン
+    name: gallon
+    ja: gal
+    en:
+
+  - id: 24
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

@@ -1,0 +1,147 @@
+%jobsite-gradient {
+  background-image: linear-gradient(#fff, #e4e4e4);
+
+  &:not(.disable-hover):not(:disabled):hover {
+    background-image: linear-gradient(#f2f2f2, #b9b9b9);
+  }
+}
+
+// html,
+body.jobsite {
+  height: auto;
+  min-height: 100%;
+  font-weight: 300;
+  color: #333;
+  background-color: #fff;
+
+  .container {
+    width: 1024px;
+    margin: 10px auto 0;
+  }
+
+  .content {
+    padding: 0 20px;
+  }
+
+  .btn-jobsite-common {
+    @extend %jobsite-gradient;
+
+    padding: 4px 40px;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  }
+
+  .KBA-pills {
+    > .nav-item {
+      height: 30px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+
+      &:not(:first-child):not(:last-child) {
+        border-radius: 0;
+      }
+
+      &:first-child {
+        border-radius: 4px 0 0 4px;
+      }
+
+      &:last-child {
+        border-radius: 0 4px 4px 0;
+      }
+
+      .nav-link {
+        @extend %jobsite-gradient;
+
+        padding: 3px 12px;
+        font-size: 16px;
+        border: 0;
+        border-radius: 0;
+
+        &.active {
+          color: #fff;
+          background-color: #08f;
+          background-image: none !important;
+        }
+      }
+    }
+  }
+
+  button {
+    font-weight: 300;
+    line-height: 1.25;
+    border: 0;
+    outline: none !important;
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
+
+  .map-popup {
+    width: 200px;
+
+    .car-name {
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: #005aa7;
+    }
+
+    .popup-list-item {
+      &:nth-child(-n + 1) {
+        margin-bottom: 8px;
+      }
+    }
+
+    .popup-link {
+      font-size: 12px;
+      line-height: 1;
+      color: #08f;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  .map-wrapper {
+    &.show-landmark-caption {
+      .KBA-landmarkIcon__label {
+        display: block !important;
+      }
+    }
+
+    .KBA-landmarkIcon__label {
+      display: none !important;
+      width: 64px;
+      overflow: hidden;
+      color: #000;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .car-caption {
+      padding: 0 3px;
+      margin: 4px auto 0;
+      font-size: 11px;
+      color: #fff;
+      white-space: nowrap;
+      background-color: #284cae;
+      border-radius: 2px;
+
+      &-label {
+        display: inline-block;
+
+        &:not(:last-child) {
+          margin-right: 4px;
+
+          &::after {
+            display: inline-block;
+            padding-left: 4px;
+            content: "/";
+          }
+        }
+      }
+    }
+  }
+}

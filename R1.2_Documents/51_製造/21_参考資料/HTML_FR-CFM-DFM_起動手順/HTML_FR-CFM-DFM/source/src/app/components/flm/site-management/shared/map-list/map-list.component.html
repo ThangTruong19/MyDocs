@@ -1,0 +1,55 @@
+<div class="site-management-map-list" *ngIf="hasList; else noListTemplate">
+  <div class="map-list-container">
+    <ng-container *ngFor="let map of visibleList">
+      <ng-container
+        *ngTemplateOutlet="mapContent; context: { item: map }"
+      ></ng-container>
+    </ng-container>
+  </div>
+  <footer class="map-list-footer">
+    <span class="count"> {{ visibleList.length }} / {{ list.length }} </span>
+
+    <button
+      type="button"
+      class="btn-see-more btn-jobsite-common"
+      [disabled]="
+        visibleList.length >= list.length || filteredList.length === 0
+      "
+      (click)="handleClickSeeMore()"
+    >
+      {{ labels.see_more }}
+    </button>
+  </footer>
+</div>
+
+<ng-template #mapContent let-item="item">
+  <div
+    class="map-content"
+    *ngIf="item.loaded || filteredList.includes(item)"
+    [hidden]="item.loaded && !filteredList.includes(item)"
+  >
+    <a [routerLink]="link + item.id">
+      <div class="map-wrapper">
+        <app-kba-area-map
+          [id]="item.id"
+          [initMap]="{}"
+          [labels]="labels"
+          [menuWidth]="0"
+          [menuOpen]="false"
+          [isModal]="true"
+          [editable]="false"
+          [hasMenu]="false"
+          [simpleMap]="true"
+          (onLoad)="handleMapLoad(item)"
+        >
+        </app-kba-area-map>
+        <div class="map-overlay"></div>
+      </div>
+      <p class="name">{{ item.label }}</p>
+    </a>
+    <p class="description" *ngIf="item.description">{{ item.description }}</p>
+  </div>
+</ng-template>
+<ng-template #noListTemplate
+  ><app-no-list [labels]="labels"></app-no-list
+></ng-template>

@@ -1,0 +1,18 @@
+<div class="KBA-menu-wrapper">
+  <ul
+    dnd-sortable-container
+    [sortableData]="navigationsMenu"
+    *ngIf="navigationsMenu"
+    [ngStyle]="wrapperWidth"
+  >
+    <li
+      class="KBA-menu-list"
+      *ngFor="let item of navigationsMenu; let i = index"
+      dnd-sortable
+      [sortableIndex]="i"
+      (dragend)="onDragEnd($event)"
+    >
+      <app-kba-menu-item [item]="item"></app-kba-menu-item>
+    </li>
+  </ul>
+</div>

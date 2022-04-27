@@ -1,0 +1,329 @@
+<section id="KBA-operator-key-car-index" *ngIf="labels && resource">
+  <div class="container-fluid">
+    <h2 class="KBA-user-index__title KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content">
+      <app-kba-accordion
+        [collapsed]="collapsed"
+        [useCustomHeader]="false"
+        [title]="labels.search_condition"
+        [isLoading]="isLoading"
+        [labels]="labels"
+        (onChangeState)="changePanelState($event)"
+      >
+        <div data-kba-accordion-body class="panel-body">
+          <div class="container KBA-search">
+            <ng-container
+              *ngIf="
+                resource && resource.common && resource.car_operator_id_key
+              "
+            >
+              <div class="row">
+                <!-- 注目車両グループ -->
+                <app-kba-selected
+                  *ngIf="exists('common.target_car_group_id')"
+                  class="col-sm-3"
+                  [kbaName]="'target_car_group_id'"
+                  [kbaParams]="params.common"
+                  [kbaResource]="resource.common"
+                >
+                </app-kba-selected>
+                <!-- 顧客 -->
+                <app-kba-selected
+                  *ngIf="exists('common.customer.ids')"
+                  class="col-sm-3"
+                  [kbaName]="'ids'"
+                  [kbaParams]="params.common.customer"
+                  [kbaResource]="resource.common.customer"
+                >
+                </app-kba-selected>
+              </div>
+              <div class="row">
+                <!-- 車両種類 -->
+                <app-kba-selected
+                  *ngIf="exists('common.car_identification.division_codes')"
+                  class="col-sm-3"
+                  [kbaName]="'division_codes'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                >
+                </app-kba-selected>
+                <!-- 機種 -->
+                <app-kba-text
+                  *ngIf="exists('common.car_identification.models')"
+                  class="col-sm-3"
+                  [kbaName]="'models'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                  [maxlength]="20"
+                >
+                </app-kba-text>
+                <!-- 型式 -->
+                <app-kba-text
+                  *ngIf="exists('common.car_identification.type_revs')"
+                  class="col-sm-3"
+                  [kbaName]="'type_revs'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                  [maxlength]="20"
+                >
+                </app-kba-text>
+                <!-- 機番 -->
+                <app-kba-text
+                  *ngIf="exists('common.car_identification.serials')"
+                  class="col-sm-3"
+                  [kbaName]="'serials'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                >
+                </app-kba-text>
+              </div>
+              <div class="row">
+                <!-- 顧客管理番号 -->
+                <app-kba-text
+                  *ngIf="
+                    exists('common.customer_attribute.customer_management_no')
+                  "
+                  class="col-sm-3"
+                  [kbaName]="'customer_management_no'"
+                  [kbaParams]="params.common.customer_attribute"
+                  [kbaResource]="resource.common.customer_attribute"
+                  [maxlength]="26"
+                >
+                </app-kba-text>
+                <!-- 顧客車両番号 -->
+                <app-kba-text
+                  *ngIf="exists('common.customer_attribute.customer_car_no')"
+                  class="col-sm-3"
+                  [kbaName]="'customer_car_no'"
+                  [kbaParams]="params.common.customer_attribute"
+                  [kbaResource]="resource.common.customer_attribute"
+                  [maxlength]="26"
+                >
+                </app-kba-text>
+                <!-- IDキー設定 -->
+                <app-kba-selected
+                  *ngIf="
+                    exists('car_operator_id_key.operator_identification_kind')
+                  "
+                  class="col-sm-3"
+                  [kbaName]="'operator_identification_kind'"
+                  [kbaParams]="params.car_operator_id_key"
+                  [kbaResource]="resource.car_operator_id_key"
+                >
+                </app-kba-selected>
+                <!-- 登録ステータス -->
+                <app-kba-selected
+                  *ngIf="exists('car_operator_id_key.registration_status_kind')"
+                  class="col-sm-3"
+                  [kbaName]="'registration_status_kind'"
+                  [kbaParams]="params.car_operator_id_key"
+                  [kbaResource]="resource.car_operator_id_key"
+                >
+                </app-kba-selected>
+              </div>
+            </ng-container>
+          </div>
+          <div class="KBA-panel-footer">
+            <a
+              href="javascript:void(0)"
+              (click)="onClickReset(resetModalContent)"
+              class="btn btn-link"
+            >
+              {{ labels.reset }}
+            </a>
+            <button
+              (click)="onClickSearch()"
+              type="button"
+              class="btn btn-primary"
+            >
+              {{ labels.search }}
+            </button>
+          </div>
+        </div>
+      </app-kba-accordion>
+
+      <!-- ページネーション -->
+      <div class="KBA-table-options" [hidden]="count <= 0">
+        <app-kba-pagination
+          [count]="count"
+          [params]="pageParams"
+          [labels]="labels"
+          [element]="pageCountEl"
+          (changeState)="onPaginationChange()"
+        >
+        </app-kba-pagination>
+        <div class="table-option-buttons">
+          <button
+            type="button"
+            class="KBA-popover-text KBA-selectable-columns btn btn-secondary id-key-off-all"
+            (click)="onClickAllIdKeyOff()"
+            [disabled]="!(selectedList | isNotEmpty)"
+          >
+            {{ labels.id_key_off_all }}
+          </button>
+          <button
+            type="button"
+            class="KBA-popover-text KBA-selectable-columns btn btn-secondary setting-on id-key-on-all"
+            (click)="onClickAllIdKeyOn()"
+            [disabled]="!(selectedList | isNotEmpty)"
+          >
+            {{ labels.id_key_on_all }}
+          </button>
+        </div>
+      </div>
+
+      <div class="KBA-table-wrapper">
+        <app-kba-table
+          [customTableRowContent]="customTableRowContent"
+          [customTableThContent]="customTableThContent"
+          [lists]="lists"
+          [pageParams]="pageParams"
+          [params]="params"
+          [thList]="thList"
+          [sortableThList]="sortableThList"
+          [sortingParams]="sortingParams"
+          [labels]="labels"
+          [collapsed]="collapsed"
+          [detailedly]="false"
+          [updatable]="false"
+          [deletable]="false"
+          [isFetching]="isFetching"
+          [selectable]="selectable"
+          [checkedItems]="checkedItems"
+          [checkIdName]="checkIdName"
+          (sort)="onChangeSort($event)"
+        >
+        </app-kba-table>
+        <ng-template #customTableThContent>
+          <ng-container *ngFor="let th of thList">
+            <th
+              *ngIf="th.displayable"
+              [ngClass]="{
+                'text-center':
+                  th.shortName ===
+                  'cars_car_operator_operator_identification_kind',
+                'disable-sort': !th.sortable
+              }"
+              class="KBA-index-th th-{{ th.shortName }}"
+              appKbaSortingLabel
+              [(sortingParams)]="sortingParams"
+              [labelName]="th.name"
+              [sortableThList]="sortableThList"
+              (sort)="onChangeSort($event)"
+            >
+              <span>{{ th.label || labels[th.shortName] }}</span>
+            </th>
+          </ng-container>
+        </ng-template>
+        <ng-template #customTableRowContent let-data="data" let-idx="idx">
+          <ng-container *ngFor="let title of thList">
+            <ng-container *ngIf="title.displayable">
+              <!-- 車両IDの場合 -->
+              <input
+                *ngIf="title.name === 'cars.car_identification.id'"
+                type="hidden"
+                name="update-datetime-{{ idx }}"
+                value="{{ data[title.name] }}"
+              />
+
+              <!-- IDキー設定の場合 -->
+              <td
+                *ngIf="
+                  title.shortName ===
+                  'cars_car_operator_operator_identification_kind'
+                "
+                [ngClass]="{
+                  disable: isIdKeySettingKindDisabled(
+                    data['cars.car_operator.registration_status_kind']
+                  )
+                }"
+                class="KBA-table__small kba-sm-link td-{{
+                  title.shortName
+                }} KBA-index-td d-flex align-items-center justify-content-center"
+                (click)="
+                  onClickIdKey(
+                    data['cars.car_operator.operator_identification_kind'],
+                    data
+                  )
+                "
+              >
+                <span
+                  *ngIf="
+                    isIdKeySettingKindOn(
+                      data['cars.car_operator.operator_identification_kind']
+                    )
+                  "
+                  class="on setting-on"
+                >
+                  {{ labels.id_key_on }}
+                </span>
+                <span
+                  *ngIf="
+                    !isIdKeySettingKindOn(
+                      data['cars.car_operator.operator_identification_kind']
+                    )
+                  "
+                  class="off"
+                >
+                  {{ labels.id_key_off }}
+                </span>
+              </td>
+
+              <!-- 上記以外の td の場合 -->
+              <td
+                *ngIf="
+                  title.name !== 'cars.car_identification.id' &&
+                  title.name !==
+                    'cars.car_operator.operator_identification_kind'
+                "
+                class="KBA-index-td d-flex align-items-center"
+              >
+                {{ data[title.dataKey || title.name] }}
+              </td>
+            </ng-container>
+          </ng-container>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #idKeySettingOnModalContent>
+  <div class="subtitle">
+    <p class="text-attention" *ngIf="isOperatorAttentionVisible">{{ subtitle }}</p>
+  </div>
+
+  <app-kba-simple-list-confirm
+    [desc]="settingOnModalValues.listDesc"
+    [val]="settingOnModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #idKeySettingOffModalContent>
+  <div class="subtitle">
+    <p class="text-attention" *ngIf="isOperatorAttentionVisible">{{ subtitle }}</p>
+  </div>
+
+  <app-kba-simple-list-confirm
+    [desc]="settingOffModalValues.listDesc"
+    [val]="settingOffModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #resultModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="resultDesc"
+    [val]="resultVal"
+    [warningColumns]="'all'"
+  >
+  </app-kba-simple-list-confirm>
+  <p class="result-count-message">{{ resultCountMessage }}</p>
+</ng-template>
+
+<ng-template #resetModalContent>
+  <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

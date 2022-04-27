@@ -1,0 +1,174 @@
+<section id="KBA-model-setting" *ngIf="labels && resource">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+
+    <div class="KBA-content">
+      <div class="annotation">
+        <p class="caption">{{ labels.caption }}</p>
+      </div>
+      <div class="KBA-form" *ngIf="!loading">
+        <ng-container
+          *ngTemplateOutlet="mainContent; context: { isConfirm: false }"
+        ></ng-container>
+
+        <footer class="KBA-form-footer-fixed">
+          <a
+            href="javascript:void(0)"
+            (click)="onClickReset()"
+            class="btn btn-link"
+          >
+            {{ labels.reset }}
+          </a>
+          <button
+            class="btn btn-success"
+            type="button"
+            *ngIf="!isUpdate"
+            (click)="onClickContinue()"
+            [disabled]="
+              !(params && params.model_type_setting.model_types.length > 0)
+            "
+          >
+            {{ labels.continue }}
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickSubmit()"
+            [disabled]="
+              !(params && params.model_type_setting.model_types.length > 0)
+            "
+          >
+            {{ labels.submit }}
+          </button>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #mainContent let-isConfirm="isConfirm">
+    <table class="KBA-form-table table table-bordered">
+      <tbody class="KBA-form-table-tbody">
+        <!-- 設定グループ -->
+        <ng-container *ngIf="exists('model_type_setting.group_id')">
+          <tr
+            app-kba-form-table-select
+            #groupIDSelection
+            *ngIf="!isConfirm"
+            class="KBA-form-row"
+            [kbaName]="'group_id'"
+            [kbaParams]="searchParams"
+            [kbaResource]="resource.model_type_setting"
+            (onChange)="onGroupIdChange($event)"
+          ></tr>
+          <tr
+            app-kba-form-table-custom
+            *ngIf="isConfirm"
+            class="KBA-form-row"
+            [kbaName]="'group_id'"
+            [kbaResource]="resource.model_type_setting"
+            [content]="groupIDContent"
+          ></tr>
+          <ng-template #groupIDContent>
+            {{
+              _getResourceValueName(
+                'model_type_setting.group_id',
+                params.model_type_setting.group_id
+              )
+            }}
+          </ng-template>
+        </ng-container>
+
+        <!-- 設定機種 -->
+        <tr
+          app-kba-form-table-custom
+          class="KBA-form-row"
+          [kbaName]="'model_types'"
+          [kbaResource]="resource.model_type_setting"
+          [colspan]="3"
+          [content]="modelTypeSettingContent"
+        >
+          <ng-template #modelTypeSettingContent>
+            <div class="model-type-setting-content">
+              <div class="model-type-setting-content_header" *ngIf="!isConfirm">
+                <div class="search-conditions">
+                  <app-kba-selected
+                    #makerCodeSelect
+                    class="col-sm-3"
+                    [kbaName]="'maker_code'"
+                    [kbaParams]="searchParams"
+                    [kbaResource]="resource"
+                    (onChangeSelectItem)="handleChangeMakerCode($event)"
+                  >
+                  </app-kba-selected>
+                  <app-kba-selected
+                    #divisionCodeSelect
+                    class="col-sm-3"
+                    [kbaName]="'division_code'"
+                    [kbaParams]="searchParams"
+                    [kbaResource]="resource"
+                  >
+                  </app-kba-selected>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-select"
+                  (click)="onClickModelTypeSettingSelectBtn()"
+                >
+                  {{ labels.select }}
+                </button>
+              </div>
+              <div class="model-type-setting-content_body" *ngIf="originalData">
+                <app-models
+                  *ngIf="!isConfirm"
+                  [models]="
+                    filterModel(
+                      (visibleData || originalData).model_type_setting.models,
+                      searchParams.maker_code,
+                      searchParams.division_code
+                    )
+                  "
+                  [clickable]="false"
+                  [labels]="labels"
+                  [resource]="resource"
+                  [getCellClasses]="getCellClasses"
+                  [emptyMessage]="labels.empty_list"
+                >
+                </app-models>
+                <app-models
+                  *ngIf="isConfirm"
+                  [models]="confirmData.model_type_setting.models"
+                  [clickable]="false"
+                  [labels]="labels"
+                  [resource]="resource"
+                  [getCellClasses]="getCellClasses"
+                >
+                </app-models>
+              </div>
+            </div>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+
+  <ng-template #settingModalContent>
+    <app-model-type-select-modal
+      [resource]="resource"
+      [labels]="labels"
+      [params]="searchParams"
+      [screenCode]="screenCode"
+      [updatedData]="srcData"
+    >
+    </app-model-type-select-modal>
+  </ng-template>
+
+  <ng-template #submitModalContent>
+    <p class="KBA-modal-message">{{ labels.confirm_modal_body }}</p>
+  </ng-template>
+
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+</section>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

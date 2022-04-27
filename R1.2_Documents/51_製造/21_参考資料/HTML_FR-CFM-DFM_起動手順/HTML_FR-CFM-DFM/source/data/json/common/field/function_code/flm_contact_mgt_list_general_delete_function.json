@@ -1,0 +1,44 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "ID",
+    "path": "contact.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "更新日時",
+    "path": "contact.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "氏名",
+    "path": "contact.general_contact.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "電子メール",
+    "path": "contact.general_contact.email",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "勤務先電話番号",
+    "path": "contact.general_contact.office_phone_no",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "携帯電話番号",
+    "path": "contact.general_contact.cell_phone_no",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

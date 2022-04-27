@@ -1,0 +1,51 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "グループ名称",
+    "path": "group.identification.label",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "グループ種別",
+    "path": "group.identification.kind_id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "グループ種別",
+    "path": "group.identification.kind_name",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "ID",
+    "path": "group.scope_groups.customer.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "更新日時",
+    "path": "group.scope_groups.customer.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "リージョン",
+    "path": "group.scope_groups.region",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "顧客",
+    "path": "group.scope_groups.customer",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

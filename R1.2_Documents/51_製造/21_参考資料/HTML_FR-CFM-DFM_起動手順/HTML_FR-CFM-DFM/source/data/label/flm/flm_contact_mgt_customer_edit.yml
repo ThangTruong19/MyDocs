@@ -1,0 +1,71 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 連絡先管理　紐付け変更
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 連絡先管理　紐付け変更
+    en:
+
+  - id: 3
+    description: テーブルタイトル
+    name: table_title
+    ja: 連絡先紐付け情報
+    en:
+
+  - id: 4
+    description: 変更
+    name: submit
+    ja: 変更
+    en:
+
+  - id: 5
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 7
+    description: 変更確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容で変更します。よろしいですか？
+    en:
+
+  - id: 8
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 9
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか？
+    en:
+
+  - id: 10
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+
+  - id: 11
+    description: 顧客
+    name: customer
+    ja: 顧客
+    en:
+
+  - id: 12
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 13
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:

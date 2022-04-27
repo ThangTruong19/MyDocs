@@ -1,0 +1,135 @@
+@import "../../../../../assets/styles/_variable.scss";
+
+.disabled {
+  background-color: #eee;
+}
+
+.table-header {
+  margin-bottom: 10px;
+
+  p {
+    margin-bottom: 5px;
+  }
+}
+
+td {
+  display: flex !important;
+  align-items: center;
+  overflow: hidden;
+  white-space: normal !important;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.flex {
+  display: flex;
+}
+
+.fuel-input-group {
+  display: flex;
+  flex-wrap: wrap;
+
+  .fuel-input-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    input {
+      width: 75%;
+      margin: 0 5px;
+    }
+
+    .label {
+      display: block;
+    }
+  }
+}
+
+.radio-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-shrink: 0;
+  width: 32%;
+
+  margin-right: -5px;
+  margin-bottom: -10px;
+
+  label {
+    margin-right: 5px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+  }
+}
+
+.inspection_start_accumulate_fuel-container {
+  margin-left: -5px;
+}
+
+.main-content {
+  .th-management_kind,
+  .td-management_kind,
+  .th-fuel_label,
+  .td-fuel_label {
+    width: 50% !important;
+  }
+
+  .th-inspection_start_accumulate_fuel,
+  .td-inspection_start_accumulate_fuel,
+  .th-last_inspection_accumulate_fuel,
+  .td-last_inspection_accumulate_fuel {
+    width: 70% !important;
+  }
+}
+
+.td-result {
+  justify-content: center;
+
+  .kba-icon-check {
+    color: $kba-green-color;
+  }
+
+  .kba-icon-close {
+    color: $fontRed;
+  }
+}
+
+.has-error {
+  color: #ed2222;
+  background-color: $kba-danger-color;
+}
+
+.confirm-table {
+  thead {
+    border-top-width: 0;
+    border-bottom-width: 0;
+  }
+
+  tr:not(:last-child) {
+    th,
+    td {
+      border-bottom-width: 0;
+    }
+  }
+
+  .th-condition,
+  .td-condition {
+    width: 200% !important;
+    flex-wrap: wrap;
+  }
+}
+
+.KBA-form {
+  .KBA-valid-errors {
+    > p {
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+  }
+}
+
+.result-count-message {
+  margin-top: 12px;
+}

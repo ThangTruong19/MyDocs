@@ -1,0 +1,10 @@
+[
+  {
+    "path": "common.car_identification.models",
+    "value": ["CP-100", "JE-200"]
+  },
+  {
+    "path": "common.support_distributor.ids",
+    "value": ["AA0017"]
+  }
+]

@@ -1,0 +1,172 @@
+<section id="KBA-system-notification-index" *ngIf="labels && resource && datePickerParams">
+  <div class="container-fluid">
+    <h2 class="KBA-operator-index__title KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content">
+      <!-- 検索 -->
+      <app-kba-accordion
+        [collapsed]="collapsed"
+        [useCustomHeader]="false"
+        [title]="labels.search_condition"
+        [labels]="labels"
+        (onChangeState)="changePanelState($event)"
+      >
+        <div data-kba-accordion-body>
+          <div class="container KBA-search">
+            <div class="row">
+              <ng-container>
+                <app-kba-selected
+                  *ngIf="resource.block_id"
+                  class="col-sm-3"
+                  [kbaName]="'block_id'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                >
+                </app-kba-selected>
+                <app-kba-selected
+                  *ngIf="resource.publish_application_code"
+                  class="col-sm-3"
+                  [kbaName]="'publish_application_code'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                >
+                </app-kba-selected>
+                <app-kba-from-to-date-picker
+                  class="col-sm-6"
+                  [from]="'date_from'"
+                  [fromDisplay]="'date_from_formatted'"
+                  [to]="'date_to'"
+                  [toDisplay]="'date_to_formatted'"
+                  [params]="params"
+                  [resource]="resource"
+                  [labels]="labels"
+                  [beginningWday]="beginningWday"
+                  [enableDateRange]="enableDateRange"
+                  [dateFormat]="_dateFormat"
+                  [futureDateSelectable]="true"
+                  [timeZone]="timeZone"
+                >
+                </app-kba-from-to-date-picker>
+              </ng-container>
+            </div>
+          </div>
+          <div class="KBA-panel-footer">
+            <button
+              (click)="onClickSearch()"
+              type="button"
+              class="btn btn-primary search"
+            >
+              {{ labels.search }}
+            </button>
+          </div>
+        </div>
+      </app-kba-accordion>
+
+      <div class="KBA-table-options" [hidden]="count <= 0">
+        <app-kba-pagination
+          [count]="count"
+          [params]="pageParams"
+          [labels]="labels"
+          [element]="pageCountEl"
+          (changeState)="onPaginationChange()"
+        >
+        </app-kba-pagination>
+        <div class="table-option-buttons">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="onClickFieldSelect($event)"
+          >
+            {{ labels.display_columns }}
+          </button>
+          <app-kba-popover
+            [labels]="labels"
+            [resource]="fieldResources"
+            [fields]="fields"
+            [title]="labels.field_select_title"
+            [(isVisible)]="fieldSelectPopoverVisible"
+            [promise]="fieldResourcesPromise"
+            (ok)="onFieldSelectOk($event)"
+          >
+          </app-kba-popover>
+        </div>
+      </div>
+
+      <div class="KBA-table-wrapper">
+        <app-kba-table
+          [customTableThContent]="customTableThContent"
+          [customTableRowContent]="customTableRowContent"
+          [lists]="lists"
+          [pageParams]="pageParams"
+          [sortingParams]="sortingParams"
+          [params]="params"
+          [thList]="thList"
+          [sortableThList]="sortableThList"
+          [labels]="labels"
+          [collapsed]="collapsed"
+          [detailedly]="detailedly"
+          [updatable]="updatable"
+          [deletable]="deletable"
+          [isFetching]="isFetching"
+          (detail)="onClickDetail($event)"
+          (edit)="onClickEdit($event)"
+          (delete)="onClickDelete($event)"
+        >
+          <ng-template #customTableThContent>
+            <ng-container *ngFor="let th of thList">
+              <th
+                *ngIf="th.displayable"
+                [ngClass]="{ 'disable-sort': !th.sortable }"
+                class="KBA-index-th th-{{ th.shortName }}"
+                appKbaSortingLabel
+                [(sortingParams)]="sortingParams"
+                [labelName]="th.name"
+                [sortableThList]="sortableThList"
+                (sort)="onChangeSort($event)"
+              >
+                <span>{{ th.label }}</span>
+              </th>
+            </ng-container>
+          </ng-template>
+          <ng-template #customTableRowContent let-data="data" let-idx="idx">
+            <ng-container *ngFor="let title of thList">
+              <td
+                *ngIf="title.displayable"
+                class="td-{{
+                  title.shortName
+                }} KBA-index-td d-flex align-items-center"
+              >
+                <span>{{ data[title.dataKey] }}</span>
+              </td>
+            </ng-container>
+          </ng-template>
+        </app-kba-table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-kba-alert></app-kba-alert>
+
+<ng-template #detailModalContent>
+  <app-custom-system-notification-form-modal
+    class="confirm-modal-content"
+    [desc]="detailModalValues.listDesc"
+    [val]="detailModalValues.listVal"
+    [rowspan]="isBlockKind ? 2 : 1"
+    [isBlockKind]="isBlockKind"
+  >
+  </app-custom-system-notification-form-modal>
+</ng-template>
+
+<ng-template #deleteModalContent>
+  <app-custom-system-notification-form-modal
+    class="confirm-modal-content"
+    [desc]="deleteModalValues.listDesc"
+    [val]="deleteModalValues.listVal"
+    [rowspan]="isBlockKind ? 2 : 1"
+    [isBlockKind]="isBlockKind"
+  >
+  </app-custom-system-notification-form-modal>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

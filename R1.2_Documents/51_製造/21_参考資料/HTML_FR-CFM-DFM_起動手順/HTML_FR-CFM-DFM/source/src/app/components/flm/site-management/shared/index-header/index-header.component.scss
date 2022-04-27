@@ -1,0 +1,44 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin: 10px 0 15px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-left: 20px;
+
+  .kba-icon {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    color: #ccc;
+  }
+
+  input {
+    width: 400px;
+    height: 30px;
+    color: inherit;
+    text-indent: 30px;
+    background-color: #fafafa;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+  }
+}
+
+.nav-link {
+  .kba-icon {
+    position: relative;
+    top: 2px;
+    padding: 0 8px;
+  }
+}
+
+.pulldown {
+  margin-left: 20px;
+}

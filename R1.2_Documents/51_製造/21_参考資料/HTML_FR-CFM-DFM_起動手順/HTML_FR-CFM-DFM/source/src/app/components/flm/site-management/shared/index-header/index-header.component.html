@@ -1,0 +1,57 @@
+<div class="header-container">
+  <!-- 現場/エリア 切り替えタブ -->
+  <ul class="nav nav-pills KBA-pills" *ngIf="resource && resource.mode">
+    <li
+      class="nav-item KBA-pill-item"
+      *ngFor="let mode of resource.mode.values"
+    >
+      <a
+        class="nav-link"
+        (click)="setMode(mode.value)"
+        [ngClass]="{ active: isModeActive(mode.value) }"
+      >
+        {{ getModeLabel(mode.value) }}
+      </a>
+    </li>
+  </ul>
+
+  <app-pulldown
+    *ngIf="resource && resource.customer_ids"
+    class="pulldown"
+    [resourceItem]="resource.customer_ids"
+    (select)="onSelectCustomerId($event)"
+  >
+  </app-pulldown>
+
+  <div class="input-wrapper">
+    <i class="kba-icon kba-icon-search"></i>
+    <input
+      type="text" autocomplete="off"
+      [ngModel]="query"
+      (ngModelChange)="onQueryChange($event)"
+      [maxLength]="queryMaxLength"
+    />
+  </div>
+
+  <!-- リスト/タイル 切り替えタブ -->
+  <ul class="nav nav-pills KBA-pills">
+    <li class="nav-item KBA-pill-item" *ngFor="let layout of ['list', 'tile']">
+      <a
+        class="nav-link"
+        (click)="setLayout(layout)"
+        [ngClass]="{ active: isLayoutActive(layout) }"
+      >
+        <div class="icon-wrapper">
+          <i
+            class="kba-icon kba-extra-icon-th-list"
+            *ngIf="layout === 'list'"
+          ></i>
+          <i
+            class="kba-icon kba-extra-icon-th-large"
+            *ngIf="layout === 'tile'"
+          ></i>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>

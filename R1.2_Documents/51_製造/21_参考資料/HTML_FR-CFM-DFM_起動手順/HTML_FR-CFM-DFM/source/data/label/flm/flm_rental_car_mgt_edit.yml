@@ -1,0 +1,108 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: レンタル車両管理　変更
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: レンタル車両管理　変更
+    en:
+
+  - id: 2
+    description: 選択車両情報
+    name: selected_car_information
+    ja: 選択車両情報
+    en:
+
+  - id: 2
+    description: 第1貸出先
+    name: reservation1
+    ja: 第1貸出先
+    en:
+
+  - id: 2
+    description: 第2貸出先
+    name: reservation2
+    ja: 第2貸出先
+    en:
+
+  - id: 2
+    description: フォームのクリア
+    name: clear_form
+    ja: フォームのクリア
+    en:
+
+  - id: 3
+    description: 変更
+    name: submit
+    ja: 変更
+    en:
+
+  - id: 5
+    description: 変更確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容に変更します。よろしいですか？
+    en:
+
+  - id: 12
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 6
+    description: 完了メッセージ
+    name: finish_message
+    ja: レンタル車両の変更処理が完了しました。
+    en:
+
+  - id: 9
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 10
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 6
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: 入力内容をリセット
+    en:
+
+  - id: 7
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 7
+    description: 貸出終了日
+    name: rental_end_date
+    ja: 貸出終了日
+    en:
+
+  - id: 7
+    description: 顧客名
+    name: customer_name
+    ja: 顧客名称
+    en:
+
+  - id: 7
+    description: 顧客ID検索結果なし時のメッセージ
+    name: customer_not_found
+    ja: 該当する顧客が見つかりませんでした。
+    en:
+
+  - id: 7
+    description: 空項目
+    name: empty
+    ja: なし
+    en:

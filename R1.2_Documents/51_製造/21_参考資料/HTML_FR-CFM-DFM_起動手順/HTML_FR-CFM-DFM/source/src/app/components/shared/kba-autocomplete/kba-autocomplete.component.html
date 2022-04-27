@@ -1,0 +1,41 @@
+<div class="KBA-autocomplete">
+  <input
+    type="text" autocomplete="off"
+    class="KBA-input-text form-control"
+    [name]="name"
+    [ngClass]="isEdited() ? 'edit' : ''"
+    [disabled]="disabled"
+    [ngModel]="searchStr"
+    [maxLength]="maxLength"
+    (ngModelChange)="handleTyped($event)"
+    (focus)="handleFocus()"
+    (blur)="handleBlur()"
+    (keydown)="handleKeyDown($event)"
+  />
+  <ul
+    class="autocomplete-dropdown"
+    [hidden]="!dropdownVisible"
+    [ngStyle]="dropdownStyle"
+  >
+    <li
+      *ngFor="let option of filteredData; let index = index"
+      class="autocomplete-option"
+      [ngClass]="{ selected: selectedIndex === index }"
+      (mouseover)="handleHoverOption(option, index)"
+      (click)="handleSelectOption(option, index)"
+    >
+      {{ option }}
+    </li>
+    <li
+      class="autocomplete-option not-found"
+      [hidden]="
+        !(
+          dropdownVisible &&
+          (searchStr.length > 0 && filteredData.length === 0)
+        )
+      "
+    >
+      {{ textNoResult }}
+    </li>
+  </ul>
+</div>

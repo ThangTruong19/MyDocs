@@ -1,0 +1,32 @@
+.date-range {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+
+  .separator {
+    margin: 0 10px 10px 40px;
+  }
+
+  .date-content {
+    padding-left: 0;
+  }
+}
+
+.KBA-content {
+  .th-operation_histories_datetime,
+  .td-operation_histories_datetime {
+    width: 150%;
+  }
+
+  .th-operation_histories_content,
+  .td-operation_histories_content {
+    width: 200%;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+  }
+
+  td {
+    align-items: initial;
+  }
+}

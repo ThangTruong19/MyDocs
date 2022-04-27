@@ -1,0 +1,78 @@
+@import "../../../../../../assets/styles/_variable.scss";
+@import "../../../../../../assets/styles/_util.scss";
+
+.annotation {
+  display: flex;
+  align-items: center;
+
+  .caption {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 22px;
+  }
+
+  .KBA-form-table__required {
+    margin-left: 10px;
+  }
+}
+
+.primary-block,
+.others-block {
+  position: relative;
+}
+
+.primary-block {
+  z-index: 1;
+  width: 48%;
+  flex-shrink: 0;
+}
+
+.others-block {
+  z-index: 0;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.business-type-name-primary {
+  padding-right: 48px;
+}
+
+.business-type-name-container {
+  position: relative;
+  display: flex;
+}
+
+.detail-table {
+  table-layout: fixed;
+
+  td:first-child {
+    border-left: 0;
+  }
+
+  td:last-child {
+    border-right: 0;
+  }
+
+  tr {
+    &:first-child td {
+      border-top: 0;
+    }
+
+    &:last-child td {
+      border-bottom: 0;
+    }
+  }
+}
+
+.KBA-form-table {
+  .half-height {
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+}
+
+.edited {
+  @include input-edited;
+}

@@ -1,0 +1,110 @@
+<section class="KBA-modal" *ngIf="labels && resource">
+  <header class="KBA-modal-header modal-header">
+    <h1>{{ labels.company_search_modal_title }}</h1>
+  </header>
+
+  <div class="KBA-modal-body modal-body" [ngStyle]="overflowStyle">
+    <div class="user-search-content company-search-content">
+      <form name="companySearchForm">
+        <div class="form-group search-condition-area row">
+          <app-kba-text
+            *ngIf="resource.organization_code"
+            class="search-item"
+            [kbaName]="'organization_code'"
+            [kbaParams]="params"
+            [kbaResource]="resource"
+            [maxlength]="32"
+          >
+          </app-kba-text>
+          <app-kba-text
+            *ngIf="resource.company_label"
+            class="search-item"
+            [kbaName]="'company_label'"
+            [kbaParams]="params"
+            [kbaResource]="resource"
+            [maxlength]="255"
+          >
+          </app-kba-text>
+          <app-kba-selected
+            *ngIf="resource.nation_code"
+            class="search-item"
+            [kbaName]="'nation_code'"
+            [kbaParams]="params"
+            [kbaResource]="resource"
+          >
+          </app-kba-selected>
+        </div>
+        <div class="search-condition-footer">
+          <button
+            (click)="onClickSearch()"
+            type="button"
+            class="btn btn-primary search"
+          >
+            {{ labels.search }}
+          </button>
+        </div>
+      </form>
+      <div class="result_search">
+        <table class="KBA-table-modal KBA-table table table-bordered">
+          <thead class="KBA-table-thead-modal KBA-table-thead">
+            <tr class="KBA-table-flex-cell-modal">
+              <ng-container *ngFor="let field of fields">
+                <th
+                  class="KBA-form-table__head"
+                  *ngIf="field.display_code === DisplayCode.display"
+                >
+                  {{ field.name }}
+                </th>
+              </ng-container>
+            </tr>
+          </thead>
+          <tbody class="KBA-table-tbody-modal KBA-table-tbody">
+            <ng-container *ngIf="list.length > 0">
+              <tr
+                *ngFor="let company of list"
+                class="KBA-table-flex-cell-modal"
+                [ngClass]="{
+                  selected:
+                    selectedItem &&
+                    company.identification.id === selectedItem.identification.id
+                }"
+                (click)="onClickItem(company)"
+              >
+                <td class="KBA-form-table__value">
+                  <p>{{ company.identification.organization_code }}</p>
+                </td>
+                <td class="KBA-form-table__value">
+                  <p>{{ company.identification.label }}</p>
+                </td>
+                <td class="KBA-form-table__value center">
+                  <p>{{ company.identification.nation_name }}</p>
+                </td>
+              </tr>
+            </ng-container>
+            <ng-container *ngIf="list.length === 0 && isSearching">
+              <tr class="KBA-table-flex-cell-modal empty-list">
+                <td class="KBA-form-table__value center" colspan="3">
+                  <p>{{ labels.empty_list_message }}</p>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer class="KBA-modal-footer modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="onClickClose()">
+      {{ labels.close }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="!enableOk"
+      (click)="onClickOk()"
+    >
+      {{ labels.reflect_btn }}
+    </button>
+  </footer>
+</section>

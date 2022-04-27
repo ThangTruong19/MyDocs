@@ -1,0 +1,15 @@
+.KBA-button-rev {
+  min-width: 66px;
+  margin: 5px;
+  border-radius: 53px;
+
+  &.btn-active {
+    background-color: $kba-active-btn-color;
+    border: 1px solid $kba-active-btn-color;
+    color: $kba-active-btn-font-color;
+
+    &:hover {
+      background-color: $kba-active-btn-color--hover;
+    }
+  }
+}

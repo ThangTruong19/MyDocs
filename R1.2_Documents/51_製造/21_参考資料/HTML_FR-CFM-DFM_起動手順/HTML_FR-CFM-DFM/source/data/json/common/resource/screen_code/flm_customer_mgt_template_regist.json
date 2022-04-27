@@ -1,0 +1,37 @@
+[
+  {
+    "path": "support_distributor_id",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "担当DB1",
+        "value": "A0001",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2",
+        "value": "A0002",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB3",
+        "value": "A0003",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB4",
+        "value": "A0004",
+        "kind": "D"
+      }
+    ]
+  }
+]

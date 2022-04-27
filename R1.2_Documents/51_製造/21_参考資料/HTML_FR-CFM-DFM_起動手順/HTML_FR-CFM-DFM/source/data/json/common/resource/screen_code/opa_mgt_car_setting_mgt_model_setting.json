@@ -1,0 +1,158 @@
+[
+  {
+    "path": "model_setting.group_id",
+    "name": "設定グループ",
+    "help": "設定グループのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "リージョン1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "リージョン2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック1",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック2",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "model_setting.models",
+    "name": "設定機種",
+    "help": "設定機種のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "maker_code",
+    "name": "メーカ",
+    "help": "メーカのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0001",
+        "value": "0001",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0002",
+        "value": "0002",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0003",
+        "value": "0003",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0004",
+        "value": "0004",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0005",
+        "value": "0005",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0006",
+        "value": "0006",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0007",
+        "value": "0007",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0008",
+        "value": "0008",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0009",
+        "value": "0009",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0010",
+        "value": "0010",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "division_code",
+    "name": "車両種類",
+    "help": "車両種類のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "油圧ショベル",
+        "value": "0001",
+        "kind": "D"
+      },
+      {
+        "key": "ホイールローダ",
+        "value": "0002",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "models",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "model_setting.models.maker_code",
+    "name": "メーカ",
+    "help": "機種のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "model_setting.models.model",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "グループID",
+    "path": "group.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "顧客",
+    "path": "group.identification.label",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "グループ種別名称",
+    "path": "group.identification.kind_name",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "グループ種別ID",
+    "path": "group.identification.kind_id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "更新日時",
+    "path": "group.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "公開設定区分",
+    "path": "group.scope_groups.kind",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "リージョン",
+    "path": "group.scope_groups.region",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "ブロック",
+    "path": "group.scope_groups.block",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "代理店",
+    "path": "group.scope_groups.distributor",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "顧客",
+    "path": "group.scope_groups.customer",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

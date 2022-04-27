@@ -1,0 +1,251 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: グループ管理　登録
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: グループ管理　登録
+    en:
+
+  - id: 3
+    description: リセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 4
+    description: 続けて登録
+    name: continue
+    ja: 続けて登録
+    en:
+
+  - id: 5
+    description: 登録
+    name: submit
+    ja: 登録
+    en:
+
+  - id: 6
+    description: 選択
+    name: select
+    ja: 選択
+    en:
+
+  - id: 7
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 8
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 9
+    description: 反映する
+    name: reflect_btn
+    ja: 反映する
+    en:
+
+  - id: 10
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 11
+    description: 公開先リージョン選択モーダルタイトル
+    name: pub_target_modal_title
+    ja: 対象リージョンを選択してください
+    en:
+
+  - id: 12
+    description: チャイルド工場選択モーダルタイトル
+    name: child_plant_modal_title
+    ja: 対象チャイルド工場を選択してください
+    en:
+
+  - id: 13
+    description: 権限名
+    name: authority_name
+    ja: 権限名
+    en:
+
+  - id: 14
+    description: 権限選択モーダルタイトル
+    name: authority_select_modal_title
+    ja: 権限を選択してください
+    en:
+
+  - id: 15
+    description: 必須説明
+    name: description_for_required
+    ja: '*の項目は、必須項目です'
+    en:
+
+  - id: 16
+    description: グループ情報
+    name: group_information
+    ja: グループ情報
+    en:
+
+  - id: 17
+    description: 会社名
+    name: company_name
+    ja: 会社名
+    en:
+
+  - id: 18
+    description: 会社検索
+    name: search_company
+    ja: 会社検索
+    en:
+
+  - id: 19
+    description: 次へ
+    name: next
+    ja: 次へ
+    en:
+
+  - id: 20
+    description: 戻る
+    name: back
+    ja: 戻る
+    en:
+
+  - id: 21
+    description: KeyPerson情報
+    name: key_person_information
+    ja: KeyPerson情報
+    en:
+
+  - id: 22
+    description: ユーザ検索
+    name: search_user
+    ja: ユーザ検索
+    en:
+
+  - id: 23
+    description: 名前
+    name: name
+    ja: 名前
+    en:
+
+  - id: 24
+    description: 会社名
+    name: company_name
+    ja: 会社名
+    en:
+
+  - id: 25
+    description: nation_name
+    name: nation_name
+    ja: 所属国
+    en:
+
+  - id: 27
+    description: KeyPerson名
+    name: key_person_name
+    ja: KeyPerson名
+    en:
+
+  - id: 28
+    description: デフォルト設定
+    name: default_setting
+    ja: デフォルト設定
+
+  - id: 29
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認
+    en:
+
+  - id: 30
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 31
+    description: 登録確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容を登録します。よろしいですか？
+    en:
+
+  - id: 32
+    description: バリデーションエラー（必須）
+    name: valid_required
+    ja: 正しく入力してください
+    en:
+
+  - id: 33
+    description: バリデーションエラー（最大文字数）
+    name: valid_maxlength
+    ja: 正しく入力してください
+    en:
+
+  - id: 34
+    description: 完了メッセージ
+    name: complete_message
+    ja: 処理が完了しました
+    en:
+
+  - id: 35
+    description: バリデーションエラー（パターン）
+    name: valid_pattern
+    ja: 正しく入力してください
+    en:
+
+  - id: 36
+    description: 初期位置を設定
+    name: select_initial_position
+    ja: 初期位置を設定
+    en:
+
+  - id: 37
+    description: マップモーダルタイトル
+    name: map_modal_title
+    ja: マップの初期位置を設定してください。
+    en:
+
+  - id: 38
+    description: このエリアで設定
+    name: map_modal_ok
+    ja: このエリアで設定
+    en:
+
+  - id: 39
+    description: 言語選択モーダルタイトル
+    name: lang_codes_modal_title
+    ja: 対象言語を選択してください。
+    en:
+
+  - id: 40
+    description: 該当ユーザなし時のアラート
+    name: user_not_found
+    ja: 該当するユーザが見つかりませんでした。
+    en:
+
+  - id: 41
+    description: 時間
+    name: hour
+    ja: H
+    en:
+
+  - id: 42
+    description: 分
+    name: minute
+    ja: M
+    en:
+
+  - id: 19
+    description: ワイルドカードチェックエラー
+    name: wild_card_error
+    ja: ワイルドカード「*」「?」の使用はできません。
+    en:

@@ -1,0 +1,163 @@
+.KBA-panel {
+  width: 100%;
+  margin-top: 0;
+  border: 1px solid $kba-darkgray-color;
+
+  &.collapsed {
+    .panel-heading {
+      border-radius: 3px;
+    }
+  }
+
+  .panel-heading {
+    background: $kba-main-color;
+    border-radius: 3px 3px 0 0;
+
+    .panel-title {
+      font-size: 14px;
+      color: #fff;
+
+      .kba-panel-close,
+      .kba-panel-open {
+        position: relative;
+        font-size: 13px;
+        margin-right: 15px;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          width: 10px;
+          height: 10px;
+        }
+      }
+
+      .kba-panel-close::after {
+        right: -15px;
+        margin-top: -8px;
+        border-right: 3px solid $kba-lightgray-color;
+        border-bottom: 3px solid $kba-lightgray-color;
+        transform: rotate(45deg);
+      }
+
+      .kba-panel-open::after {
+        top: 50%;
+        right: -15px;
+        margin-top: -3px;
+        border-left: 3px solid $kba-lightgray-color;
+        border-top: 3px solid $kba-lightgray-color;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  .nav-pills {
+    float: left;
+    width: 18%;
+
+    > li {
+      > a {
+        border: 1px solid $kba-darkgray-color;
+        border-radius: 0;
+      }
+    }
+  }
+
+  .KBA-search,
+  .KBA-register {
+    padding: 10px;
+  }
+
+  .tab-content {
+    float: left;
+    width: 82%;
+  }
+
+  .panel-body {
+    padding: 0;
+
+    .KBA-panel-body {
+      margin: 0;
+      padding: 10px;
+      background: #fff;
+
+      .row {
+        margin: 0 0 10px;
+      }
+      .model-carType-check {
+        display: block;
+        margin-left: 15px;
+      }
+    }
+  }
+}
+.KBA-panel-footer {
+  position: relative;
+  margin-top: 15px;
+  padding: 10px;
+  background: $kba-sub-color;
+  text-align: center;
+  border-radius: 0 0 3px 3px;
+
+  .btn-primary {
+    min-width: 200px;
+  }
+
+  .btn-link {
+    position: relative;
+    color: #000;
+    font-size: 13px;
+
+    &:before {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      margin-top: -5px;
+      content: "";
+      height: 0px;
+      width: 0px;
+      border: 5px solid transparent;
+      border-left-color: #000;
+    }
+  }
+
+  .btn-download {
+    position: absolute;
+    right: 60px;
+    min-width: 200px;
+  }
+
+  @media screen and (max-width: 1100px) {
+    .btn-download {
+      position: static;
+      display: block;
+      margin: 10px auto 0;
+    }
+  }
+}
+.cell-wrapper {
+  padding: 5px 10px;
+  .cell {
+    min-width: 70px;
+    background: #fff;
+    border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin: 5px 0;
+
+    .cell-title {
+      border-bottom: 1px solid #ddd;
+      background-color: $kba-sub-color;
+      color: $kba-main-color;
+      max-width: 100%;
+      height: auto;
+      padding: 5px;
+    }
+    .cell-content {
+      min-height: 30px;
+      padding: 5px;
+      word-wrap: break-word;
+    }
+  }
+}

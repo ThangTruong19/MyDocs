@@ -1,0 +1,27 @@
+[
+  {
+    "path": "business_type.item_names",
+    "name": "新規業種名称",
+    "help": "新規業種名称のヘルプ文言",
+    "type": -19,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "日本語",
+        "value": "ja-JP",
+        "kind": "D"
+      },
+      {
+        "key": "英語",
+        "value": "en-US",
+        "kind": "D"
+      },
+      {
+        "key": "フランス語",
+        "value": "fr-FR",
+        "kind": "D"
+      }
+    ]
+  }
+]

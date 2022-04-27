@@ -1,0 +1,102 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 業種管理　一覧
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 業種管理　一覧
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 10
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当する業種が見つかりませんでした。
+    en:
+
+  - id: 11
+    description: 更新用テンプレート一括DL
+    name: download_all
+    ja: 一括変更用テンプレートDL
+    en:
+
+  - id: 12
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 13
+    description: 削除確認モーダルボタン
+    name: delete
+    ja: 削除
+    en:
+
+  - id: 16
+    description: 削除
+    name: header_delete
+    ja: 削除
+    en:
+
+  - id: 17
+    description: 変更
+    name: header_edit
+    ja: 変更
+    en:
+
+  - id: 18
+    description: 削除確認モーダルタイトル
+    name: delete_modal_title
+    ja: 以下の業種を削除します。よろしいですか？
+    en:
+
+  - id: 19
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:

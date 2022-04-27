@@ -1,0 +1,18 @@
+<ng-container *ngIf="!isConfirm">
+  <div
+    class="publish-btn"
+    [ngClass]="{ disable: !editable }"
+    (click)="onClickPublish()"
+  >
+    <span [ngClass]="publishClass">
+      {{ publishLabel }}
+    </span>
+  </div>
+</ng-container>
+<ng-container *ngIf="isConfirm">
+  <div class="publish-label">
+    <span [ngClass]="publishClass">
+      {{ publishLabel }}
+    </span>
+  </div>
+</ng-container>

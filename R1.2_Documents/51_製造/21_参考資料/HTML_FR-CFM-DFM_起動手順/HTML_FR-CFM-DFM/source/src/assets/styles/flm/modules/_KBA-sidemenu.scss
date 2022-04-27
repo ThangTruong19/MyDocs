@@ -1,0 +1,56 @@
+#kba-sidemenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  border-left: 5px solid $kba-header-color;
+  z-index: 200;
+
+  > a {
+    display: block;
+    position: absolute;
+    top: 54px;
+    right: 0;
+    background: $kba-header-color;
+    border-radius: 5px;
+    padding: 10px;
+
+    .kba-icon {
+      font-size: 24px;
+      color: #fff;
+    }
+  }
+
+  [data-role="sidemenu"] {
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    padding: 60px 10px 10px;
+    background: $kba-gray-color;
+
+    .KBA-admin-menuList {
+      width: 100%;
+      margin-right: 0;
+    }
+
+    .KBA-panel {
+      border: none;
+      border-radius: 4px 4px 0 0;
+      margin: 0;
+
+      .panel-heading {
+        padding: 0;
+
+        .accordion-toggle {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          padding: 10px 15px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: ランドマーク管理　一覧
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: ランドマーク管理　一覧
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 5
+    description: 閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 9
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 10
+    description: MAP
+    name: header_map
+    ja: MAP
+    en:
+
+  - id: 11
+    description: 編集
+    name: header_edit
+    ja: 編集
+    en:
+
+  - id: 12
+    description: 削除
+    name: header_delete
+    ja: 削除
+    en:
+
+  - id: 13
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 14
+    description: 削除
+    name: delete
+    ja: 削除
+    en:
+
+  - id: 15
+    description: 削除モーダルタイトル
+    name: delete_modal_title
+    ja: 以下のランドマーク管理項目を削除します。よろしいですか？
+    en:
+
+  - id: 16
+    description: 削除完了アラート
+    name: complete_message
+    ja: ランドマーク管理項目の削除処理が完了しました。
+    en:
+
+  - id: 31
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

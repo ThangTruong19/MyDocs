@@ -1,0 +1,128 @@
+<section id="KBA-maker-setting" *ngIf="labels && resource">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+
+    <div class="KBA-content">
+      <div class="annotation">
+        <p class="caption">{{ labels.caption }}</p>
+      </div>
+      <div class="KBA-form" *ngIf="!loading">
+        <ng-container
+          *ngTemplateOutlet="mainContent; context: { isConfirm: false }"
+        ></ng-container>
+
+        <footer class="KBA-form-footer-fixed">
+          <a
+            href="javascript:void(0)"
+            (click)="onClickReset()"
+            class="btn btn-link"
+          >
+            {{ labels.reset }}
+          </a>
+          <button
+            class="btn btn-success"
+            type="button"
+            *ngIf="!isUpdate"
+            (click)="onClickContinue()"
+            [disabled]="isSubmitButtonDisabled()"
+          >
+            {{ labels.continue }}
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickSubmit()"
+            [disabled]="isSubmitButtonDisabled()"
+          >
+            {{ labels.submit }}
+          </button>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #mainContent let-isConfirm="isConfirm">
+    <table class="KBA-form-table table table-bordered">
+      <tbody class="KBA-form-table-tbody">
+        <!-- 設定グループ -->
+        <ng-container *ngIf="exists('maker_setting.group_id')">
+          <tr
+            app-kba-form-table-select
+            #groupIDSelection
+            *ngIf="!isConfirm"
+            class="KBA-form-row"
+            [kbaName]="'group_id'"
+            [kbaParams]="searchParams"
+            [kbaResource]="resource.maker_setting"
+            (onChange)="onGroupIdChange()"
+          ></tr>
+          <tr
+            app-kba-form-table-custom
+            *ngIf="isConfirm"
+            class="KBA-form-row"
+            [kbaName]="'group_id'"
+            [kbaResource]="resource.maker_setting"
+            [content]="groupIDContent"
+          ></tr>
+          <ng-template #groupIDContent>
+            {{
+              _getResourceValueName(
+                'maker_setting.group_id',
+                params.maker_setting.group_id
+              )
+            }}
+          </ng-template>
+        </ng-container>
+
+        <!-- 設定メーカ -->
+        <tr
+          app-kba-form-table-custom
+          class="KBA-form-row"
+          [kbaName]="'makers'"
+          [kbaResource]="resource.maker_setting"
+          [colspan]="3"
+          [content]="makerSettingContent"
+        >
+          <ng-template #makerSettingContent>
+            <div class="maker-setting-content" *ngIf="!isConfirm && data">
+              <app-check-list
+                *ngIf="data.maker_setting.makers.length > 0"
+                [labels]="labels"
+                [data]="data.maker_setting.makers"
+              >
+              </app-check-list>
+              <p
+                class="empty-message"
+                *ngIf="data.maker_setting.makers.length === 0"
+              >
+                {{ labels.empty_search_result }}
+              </p>
+            </div>
+            <div class="maker-setting-content" *ngIf="isConfirm && confirmData">
+              <ng-container *ngIf="confirmData.length > 0">
+                <div class="cell cell-green" *ngFor="let maker of confirmData">
+                  {{ maker.name }}
+                </div>
+              </ng-container>
+              <p class="empty-message" *ngIf="confirmData.length === 0">
+                {{ labels.empty_confirm }}
+              </p>
+            </div>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+
+  <ng-template #submitModalContent>
+    <ng-container
+      *ngTemplateOutlet="mainContent; context: { isConfirm: true }"
+    ></ng-container>
+  </ng-template>
+
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+</section>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

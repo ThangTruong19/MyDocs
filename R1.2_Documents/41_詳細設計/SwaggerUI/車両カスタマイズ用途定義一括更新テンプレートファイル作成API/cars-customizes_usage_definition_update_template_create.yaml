@@ -1,0 +1,200 @@
+swagger: '2.0'
+info:
+  title: 次世代KOMTRAX API
+  description: |
+    # 変更履歴
+    <table>
+      <tr>
+        <th>日付</th><th>変更内容</th></tr>
+      <tr>
+        <td>-</td>
+        <td>新規作成</td>
+      </tr>
+
+    </table>
+  version: ""
+paths:
+  #パス名（パスパラメータを用いる場合{xxx_id}を入れる）
+  /customize/template_create:
+  #path_start
+    #get|put|post|delete
+    post:
+      # API名
+      summary: 車両カスタマイズ用途定義一括更新テンプレートファイル作成API
+      produces:
+        - application/json
+      # API説明文
+      description: |
+        車両カスタマイズ用途定義一括更新テンプレートファイル作成する。
+        
+        <h3>ファイル形式</h3>
+        API入出力ファイルの仕様は<a href="#" target="_blank">API入出力ファイル仕様書</a>に示す。<br>
+        作成可能なファイル形式を下記に示す。<br>
+        <table>
+          <tr><th align="left">ファイル形式</th><th align="left">File-Content-Type</th></tr>
+          <tr><td><a href="#">excel</a></td><td>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</td></tr>
+        </table>
+        <hr>
+      # リクエスト
+      parameters:
+        #共通のヘッダ
+        #common_header
+        # ビルドが行われる事で「common_header」が反映される。 
+        #リクエストボディ
+        - name: リクエストボディ
+          in: body
+          #
+          description: |
+            カスタマイズ用途定義の検索条件
+          required: true 
+          #bodyの中身
+          schema:
+            type: object
+            title: REQUEST_BODY
+            properties:
+              car_identification:
+                type: object
+                description: "車両"
+                properties:
+                  models:
+                    type: array
+                    items:
+                      type: string
+                      description: |
+                        機種
+                        *ワイルドカード使用可能
+                      minLength: 1
+                      maxLength: 20
+                      pattern: "半角英数字,ワイルドカード"
+                      example: "D85PX"
+                  type_revs:
+                    type: array
+                    items:
+                      type: string
+                      description: |
+                        型式(小変形含む)
+                        *ワイルドカード使用可能
+                      minLength: 1
+                      maxLength: 15
+                      pattern: "半角英数字,ワイルドカード"
+                      example: "15E0"
+                  serials:
+                    type: array
+                    items:
+                      type: string
+                      description: |
+                        機番
+                        *ワイルドカード使用可能
+                        大なり記号(">")区切りにて入力時は前後の値にてFrom-To検索を行う
+                      minLength: 1
+                      maxLength: 41
+                      pattern: "半角英数記号(\"、'、#、%、&、<以外),ワイルドカード"
+                      example: "A12345"
+              customer_ids:
+                type: array
+                items:
+                  type: string
+                  description: |
+                    顧客ID
+                    *-2:値が設定されていない/-99:未指定と同等
+                  minLength: 1
+                  maxLength: 19
+                  pattern: '半角数字,ハイフンマイナス'
+                  example: '601'
+              support_distributor_ids:
+                type: array
+                items:
+                  type: string
+                  description: |
+                    担当代理店ID
+                    *-99:未指定と同等
+                  minLength: 1
+                  maxLength: 19
+                  pattern: '半角数字,ハイフンマイナス'
+                  example: '401'
+              customize_usage_definition_ids:
+                type: array
+                items: 
+                  type: string
+                  description: カスタマイズ用途定義ID
+                  minLength: 1
+                  maxLength: 19
+                  pattern: 半角数字
+                  example: '1'
+              setting_change_status:
+                type: string
+                description: |
+                 カスタマイズ用途定義設定変更状態
+                 （未指定時は、-99:全てとする）
+                minLength: 1
+                maxLength: 3
+                pattern: "半角数字,ハイフンマイナス"
+                example: "1"
+                enum:
+                  - 0:完了
+                  - 1:失敗
+                  - 2:設定中
+                  - -99:全て
+              file_create_condition:
+                type: object
+                description: ファイル作成条件
+                title: FILE_CREATE_CONDITION
+                required:
+                  - file_content_type
+                  - processing_type
+
+                properties:
+                  file_label:
+                    type: string
+                    description: |
+                      ファイル名
+                      デフォルトのファイル名は「car-customizes-usage-definition-template＋年月日時分秒（グループのローカル）＋拡張子」（X-Langに従う）となる
+                    minLength: 1
+                    maxLength: 128
+                    pattern: "ALL(ハイフンマイナス、半角アンダーバー、半角ピリオド以外の記号を除く)、記号で終わらないこと"
+                    example: "car-customizes-usage-definition-template20171113125036.xlsx"
+                  file_content_type:
+                    type: string
+                    description: |
+                      ファイル形式
+                      ファイル形式.File-Content-Typeで定義されている文字列を指定する。
+                    minLength: 1
+                    maxLength: 65
+                    # 使用可能文字は各APIで使用できるファイル形式に修正すること
+                    pattern: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=EXCELファイル"
+                    example: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                  file_request_label:
+                    type: string
+                    description: |
+                      ファイル要求名
+                      省略時はリクエスト時のX-Lang指定に従ったデフォルト名を補填する
+                    minLength: 1
+                    maxLength: 255
+                    pattern: "ALL"
+                    example: "車両カスタマイズ用途定義一括更新テンプレート"
+      # タグはnamespaceとする
+      tags:
+        - customize
+      # レスポンス
+      responses:
+        '200':
+          description: 作成したファイルのファイルIDを返却する。
+          schema:
+            type: object
+            properties:
+              result_data:
+                $ref: '#/definitions/FILE_CREATE'
+        #common_error
+  #path_end
+definitions:
+  FILE_CREATE:
+    type: object
+    properties:
+      file_id:
+        type: string
+# definitions:
+#   FILE_CREATE:
+#     type: object
+#     properties:
+#       file_id:
+#         type: string

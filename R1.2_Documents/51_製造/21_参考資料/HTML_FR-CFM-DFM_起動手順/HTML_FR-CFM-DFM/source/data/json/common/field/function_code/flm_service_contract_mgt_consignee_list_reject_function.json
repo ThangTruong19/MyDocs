@@ -1,0 +1,72 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "サービス委託申請ID",
+    "path": "service_contract_requests.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "サービス委託申請状態",
+    "path": "service_contract_requests.status",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "申請者名",
+    "path": "service_contract_requests.applicant_label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "14",
+    "name": "車両ID",
+    "path": "service_contract_requests.car.car_identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "15",
+    "name": "機種",
+    "path": "service_contract_requests.car.car_identification.model",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "16",
+    "name": "型式",
+    "path": "service_contract_requests.car.car_identification.type_rev",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "17",
+    "name": "機番",
+    "path": "service_contract_requests.car.car_identification.serial",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "18",
+    "name": "担当DB",
+    "path": "service_contract_requests.car.support_distributor.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "コメント",
+    "path": "service_contract_requests.free_memo",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "更新日時",
+    "path": "service_contract_requests.car.car_identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

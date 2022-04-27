@@ -1,0 +1,32 @@
+<div class="check-list-container" *ngIf="data">
+  <div class="header">
+    <input
+      type="checkbox"
+      id="check-all"
+      class="KBA-input-checkbox checkbox-with-label"
+      [(ngModel)]="checkAll"
+    />
+    <label for="check-all" class="KBA-input-checkbox__label">
+      {{ labels.select_all }}
+    </label>
+  </div>
+  <div class="scrollable-container">
+    <label
+      class="content"
+      for="check-{{ item.id }}"
+      [ngClass]="{ checked: item.active_kind === CommonState.on }"
+      *ngFor="let item of data"
+    >
+      <input
+        type="checkbox"
+        id="check-{{ item.id }}"
+        class="KBA-input-checkbox checkbox-with-label"
+        [ngModel]="item.active_kind === CommonState.on"
+        (ngModelChange)="handleChangeActiveKind(item)"
+      />
+      <label for="check-{{ item.id }}" class="KBA-input-checkbox__label">
+        {{ item.name }}
+      </label>
+    </label>
+  </div>
+</div>

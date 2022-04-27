@@ -1,0 +1,113 @@
+[
+  {
+    "path": "group_area.label",
+    "name": "グループ毎エリア名称",
+    "help": "グループ毎エリア名称のヘルプ文言",
+    "type": "-10",
+    "placeholder_text": "",
+    "memo": ""
+  },
+  {
+    "path": "group_area.feature.geometry.type",
+    "name": "エリア設定方式",
+    "help": "エリア設定方式のヘルプ文言",
+    "type": "20",
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "多角形",
+        "value": "Polygon",
+        "kind": "D"
+      },
+      {
+        "key": "中心点＋幅",
+        "value": "Point",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "group_area.feature.geometry.coordinates[0]",
+    "name": "経度",
+    "help": "経度のヘルプ文言",
+    "type": "-10",
+    "placeholder_text": "",
+    "memo": ""
+  },
+  {
+    "path": "group_area.feature.geometry.coordinates[1]",
+    "name": "緯度",
+    "help": "緯度のヘルプ文言",
+    "type": "-10",
+    "placeholder_text": "",
+    "memo": ""
+  },
+  {
+    "path": "group_area.feature.properties.east_west_distance",
+    "name": "東西",
+    "help": "東西のヘルプ文言",
+    "type": "-10",
+    "placeholder_text": "",
+    "memo": ""
+  },
+  {
+    "path": "group_area.feature.properties.north_south_distance",
+    "name": "南北",
+    "help": "南北のヘルプ文言",
+    "type": "-10",
+    "placeholder_text": "",
+    "memo": ""
+  },
+  {
+    "path": "group_area.active_status_kind",
+    "name": "設定を有効にする",
+    "help": "有効ステータス区分のヘルプ文言",
+    "type": "30",
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "group_area.notification_kind",
+    "name": "お知らせする",
+    "help": "お知らせ対象区分のヘルプ文言",
+    "type": "30",
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "group_area.description",
+    "name": "説明",
+    "help": "説明のヘルプ文言",
+    "type": "-10",
+    "placeholder_text": "",
+    "memo": ""
+  },
+  {
+    "path": "group_area.no",
+    "name": "グループエリアNo",
+    "help": "グループエリアNoのヘルプ文言",
+    "type": "10",
+    "placeholder_text": "",
+    "memo": "d",
+    "items": [
+      {
+        "key": "18",
+        "value": "18",
+        "kind": "D"
+      },
+      {
+        "key": "19",
+        "value": "19",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      }
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+[
+  {
+    "path": "common.car_identification.type_revs",
+    "name": "型式",
+    "help": "型式のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

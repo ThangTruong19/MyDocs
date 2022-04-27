@@ -1,0 +1,17 @@
+@import "../../../../../assets/styles/flm/_variable.scss";
+
+.select-authority-cell {
+  position: relative;
+}
+
+.select-authority {
+  padding-bottom: 2px;
+  color: $kba-main-color;
+  text-decoration: none;
+  border-bottom: 1px solid $kba-main-color;
+  outline: none;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}

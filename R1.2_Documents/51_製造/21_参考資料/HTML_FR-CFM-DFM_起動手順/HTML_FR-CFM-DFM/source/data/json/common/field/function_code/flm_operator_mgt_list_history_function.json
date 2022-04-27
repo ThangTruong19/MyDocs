@@ -1,0 +1,37 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "オペレータID",
+    "path": "operators.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "オペレータID",
+    "path": "operators.code",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "オペレータ名",
+    "path": "operators.label_histories.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "期間",
+    "path": "operators.label_histories.start_datetime",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "期間（終了日時）",
+    "path": "operators.label_histories.end_datetime",
+    "control_code": "1",
+    "display_code": "0"
+  }
+]

@@ -1,0 +1,70 @@
+[
+  {
+    "path": "landmark_label",
+    "name": "ランドマーク名称",
+    "help": "ランドマーク名称のヘルプ文言",
+    "type": "-10",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "group_id",
+    "name": "グループ",
+    "help": "グループのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "担当代理店1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "担当代理店2",
+        "value": "2",
+        "kind": "M"
+      },
+      {
+        "key": "担当代理店3",
+        "value": "3",
+        "kind": "M"
+      }
+    ]
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+]

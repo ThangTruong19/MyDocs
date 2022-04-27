@@ -1,0 +1,9 @@
+@import "../../../../../assets/styles/variable";
+
+.confirm-message {
+  margin-bottom: 10px;
+
+  > p {
+    color: $kba-error-color;
+  }
+}

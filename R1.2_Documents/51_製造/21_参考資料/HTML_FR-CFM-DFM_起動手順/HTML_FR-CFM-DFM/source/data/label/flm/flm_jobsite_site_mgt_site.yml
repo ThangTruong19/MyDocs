@@ -1,0 +1,30 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: ジョブサイト
+    en:
+
+  - id: 1
+    description: もっと見る
+    name: see_more
+    ja: もっと見る
+    en:
+
+  - id: 1
+    description: 注意文言1
+    name: no_data_alert_message1
+    ja: 現場名の登録がありません。
+    en:
+
+  - id: 1
+    description: 注意文言2
+    name: no_data_alert_message2
+    ja: 現場単位での表示をするためには、車両への現場名登録が必要です。
+    en:
+
+  - id: 1
+    description: 全車両対象表示
+    name: detail_all_cars
+    ja: 全車両を対象にして表示する
+    en:

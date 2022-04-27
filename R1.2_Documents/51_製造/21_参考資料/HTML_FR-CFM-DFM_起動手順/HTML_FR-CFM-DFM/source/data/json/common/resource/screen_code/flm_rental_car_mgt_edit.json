@@ -1,0 +1,133 @@
+[
+  {
+    "path": "not_use_customer_id",
+    "name": "顧客IDを使用しない",
+    "help": "顧客IDを使用しないのヘルプ文言",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.rental.reservation1.customer_id_search",
+    "name": "顧客ID",
+    "help": "顧客IDのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "car.rental.reservation1.customer_id_select",
+    "name": "顧客名",
+    "help": "顧客名のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "顧客1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "顧客2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "顧客3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.rental.reservation1.start_date",
+    "name": "貸出期間",
+    "help": "貸出期間のヘルプ文言",
+    "type": -42,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.rental.reservation1.end_date",
+    "name": "貸出期間",
+    "help": "貸出期間のヘルプ文言",
+    "type": -41,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.rental.reservation1.viewable_end_date",
+    "name": "データ閲覧期間",
+    "help": "データ閲覧期間のヘルプ文言",
+    "type": -41,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.rental.reservation2.customer_id_search",
+    "name": "顧客ID",
+    "help": "顧客IDのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "car.rental.reservation2.customer_id_select",
+    "name": "顧客名",
+    "help": "顧客名のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "顧客1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "顧客2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "顧客3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.rental.reservation2.start_date",
+    "name": "貸出期間",
+    "help": "貸出期間のヘルプ文言",
+    "type": -42,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.rental.reservation2.end_date",
+    "name": "貸出期間",
+    "help": "貸出期間のヘルプ文言",
+    "type": -41,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.rental.reservation2.viewable_end_date",
+    "name": "データ閲覧期間",
+    "help": "データ閲覧期間のヘルプ文言",
+    "type": -41,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

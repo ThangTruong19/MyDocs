@@ -1,0 +1,30 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ID",
+    "path": "cars.car_identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "アイコンフォント番号",
+    "path": "cars.car_identification.icon_font_no",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "現在位置座標",
+    "path": "cars.latest_status.point.coordinates",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "更新日時",
+    "path": "cars.car_identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

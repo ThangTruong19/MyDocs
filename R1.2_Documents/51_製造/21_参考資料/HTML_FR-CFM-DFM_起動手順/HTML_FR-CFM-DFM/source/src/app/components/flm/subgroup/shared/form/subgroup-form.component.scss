@@ -1,0 +1,171 @@
+@import "../../../../../../assets/styles/flm/_variable.scss";
+
+%accordion-header {
+  padding: 6px 15px;
+  color: $kba-main-color;
+  background-color: #cae5df;
+}
+
+.KBA-form-header {
+  position: relative;
+  height: 40px;
+
+  .btn-search-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 150px;
+    line-height: 16px;
+
+    button {
+      width: 100%;
+    }
+
+    .kba-icon-search {
+      margin-left: 8px;
+      font-size: 17px;
+    }
+  }
+
+  .annotation {
+    position: relative;
+    top: 15px;
+  }
+}
+
+.KBA-form-table {
+  .KBA-form-table-tbody {
+    .time-difference {
+      display: flex;
+
+      .time-difference_block {
+        display: flex;
+        width: 140px;
+        align-items: center;
+
+        .time-difference_select {
+          width: 100px;
+          margin-right: 6px;
+        }
+      }
+    }
+
+    .authorities-container {
+      padding: 0;
+
+      .row-subgroup-select-buttons {
+        margin: 15px;
+
+        .btn-primary {
+          min-width: 100px;
+        }
+      }
+
+      .authorities-table {
+        margin: 0;
+        table-layout: fixed;
+        border: none;
+
+        tr:last-child {
+          td {
+            border-bottom: none;
+          }
+        }
+
+        td:first-child {
+          border-left: none;
+        }
+
+        td:last-child {
+          border-right: none;
+        }
+
+        .authorities-header-cell {
+          padding: 6px;
+          color: $kba-main-color;
+          text-align: center;
+          background-color: $kba-sub-color;
+        }
+
+        .authorities-radio-group {
+          display: flex;
+
+          .authorities-radio {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+          }
+        }
+      }
+
+      .authoritiy-accordion {
+        position: relative;
+
+        .accordion-item:nth-child(n + 2) {
+          .accordion-header {
+            border-top: 1px solid #ddd;
+          }
+        }
+
+        .accordion-header {
+          @extend %accordion-header;
+
+          display: flex;
+          justify-content: space-between;
+
+          .accordion-icon {
+            position: relative;
+            margin-right: 10px;
+            font-size: 13px;
+
+            &::after {
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              content: "";
+              transform: rotate(45deg);
+            }
+
+            & .icon-close::after {
+              top: 25%;
+              border-right: 3px solid $kba-main-color;
+              border-bottom: 3px solid $kba-main-color;
+            }
+
+            & .icon-open::after {
+              top: 40%;
+              border-top: 3px solid $kba-main-color;
+              border-left: 3px solid $kba-main-color;
+            }
+          }
+        }
+
+        .accordion-body {
+          overflow: hidden;
+          transition: height 0.3s ease;
+        }
+      }
+    }
+  }
+
+  &.detail-modal-table {
+    table-layout: fixed;
+
+    td {
+      border-top: 0;
+      border-bottom: 0;
+
+      &:first-child {
+        border-left: 0;
+      }
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: エリア管理 車両毎エリア変更
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: エリア管理 車両毎エリア変更
+    en:
+
+  - id: 12
+    description: 変更
+    name: submit
+    ja: 変更
+    en:
+
+  - id: 13
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 14
+    description: 変更確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容で変更します。よろしいですか？
+    en:
+
+  - id: 15
+    description: 変更処理完了メッセージ
+    name: submit_finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 15
+    description: 削除処理完了メッセージ
+    name: delete_finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 16
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 17
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 18
+    description: 領域をフィット
+    name: fit_bounds
+    ja: 領域をフィット
+    en:
+
+  - id: 24
+    description: 頂点
+    name: vertex
+    ja: 頂点
+    en:
+
+  - id: 25
+    description: 中心
+    name: center
+    ja: 中心
+    en:
+
+  - id: 26
+    description: 距離
+    name: distance
+    ja: 距離
+    en:
+
+  - id: 31
+    description: 削除
+    name: delete_link
+    ja: この車両範囲を削除
+    en:
+
+  - id: 31
+    description: 削除
+    name: delete
+    ja: 削除
+    en:
+
+  - id: 32
+    description: 削除確認モーダルタイトル
+    name: delete_modal_title
+    ja: 車両範囲削除します。よろしいですか？
+    en:
+
+  - id: 33
+    description: No
+    name: no
+    ja: No
+    en:
+
+  - id: 34
+    description: キロメートル
+    name: kilometer
+    ja: km
+    en:
+
+  - id: 35
+    description: マイル
+    name: mile
+    ja: mile
+    en:

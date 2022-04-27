@@ -1,0 +1,30 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "グループ名",
+    "path": "group.identification.label",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "ID",
+    "path": "group.scope_groups.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "更新日時",
+    "path": "group.scope_groups.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "グループ名",
+    "path": "group.scope_groups.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

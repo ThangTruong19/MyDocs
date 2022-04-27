@@ -1,0 +1,99 @@
+#KBA-car-complete {
+  .KBA-car-complete__title {
+    position: relative;
+    padding-left: 52px;
+    margin-bottom: 10px;
+
+    .kba-icon-success {
+      position: absolute;
+      left: 0;
+      font-size: 43px;
+      color: $kba-main-color;
+    }
+
+    > h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: $kba-main-color;
+    }
+  }
+
+  .KBA-customize-links {
+    margin-bottom: 10px;
+
+    > li {
+      float: left;
+      padding: 10px;
+      background: $kba-sub-color;
+      border: 1px solid $kba-lightgray-color;
+      border-radius: 4px;
+      margin-left: 2%;
+      width: 49%;
+
+      > p {
+        margin-bottom: 10px;
+      }
+
+      > a {
+        position: relative;
+        font-size: 13px;
+        padding-left: 10px;
+        color: #337ab7;
+
+        &::before {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          margin-top: -5px;
+          content: "";
+          height: 0px;
+          width: 0px;
+          border: 5px solid transparent;
+          border-left-color: #337ab7;
+
+          &:hover {
+            color: $kba-dragover-color--hover;
+          }
+        }
+
+        &:hover {
+          color: $kba-dragover-color--hover;
+        }
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .KBA-orbcomm-apply {
+    border: 1px solid $kba-darkgray-color;
+    padding: 10px;
+
+    > h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: $kba-main-color;
+    }
+
+    > p {
+      margin-bottom: 10px;
+    }
+  }
+
+  .KBA-car-complete__continually {
+    text-align: center;
+    margin-top: 20px;
+
+    .btn {
+      min-width: 200px;
+    }
+  }
+}
+
+#KBA-car-edit {
+  .container-fluid {
+    padding-bottom: 54px;
+  }
+}

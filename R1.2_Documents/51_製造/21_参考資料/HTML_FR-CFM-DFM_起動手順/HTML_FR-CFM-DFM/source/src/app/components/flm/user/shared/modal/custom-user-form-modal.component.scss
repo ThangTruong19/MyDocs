@@ -1,0 +1,21 @@
+.KBA-form-table-tbody {
+  .KBA-form-table__head {
+    .KBA-form-table__label {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+  }
+
+  .KBA-form-table__value {
+    p {
+      word-break: break-word;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+  }
+}
+
+.belonging-name {
+  margin-left: 0;
+  margin-right: 10px;
+}

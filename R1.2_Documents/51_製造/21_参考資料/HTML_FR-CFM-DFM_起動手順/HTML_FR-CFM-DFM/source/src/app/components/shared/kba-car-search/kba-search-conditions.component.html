@@ -1,0 +1,15 @@
+<div class="cell-wrapper" *ngIf="params && resource">
+  <ng-container *ngFor="let path of searchConditionPaths">
+    <section
+      class="cell"
+      *ngIf="paramsValue(path) != null && paramsValue(path).length > 0"
+    >
+      <div class="cell-title">{{ resourceName(path) }}</div>
+      <div class="cell-content">{{ paramsValue(path) }}</div>
+    </section>
+  </ng-container>
+  <section class="cell">
+    <div class="cell-title">{{ resourceName('X-Count') }}</div>
+    <div class="cell-content">{{ pageCount }}</div>
+  </section>
+</div>

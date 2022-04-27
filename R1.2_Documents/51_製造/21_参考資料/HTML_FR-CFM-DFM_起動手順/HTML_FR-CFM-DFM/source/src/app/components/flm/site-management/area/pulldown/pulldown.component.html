@@ -1,0 +1,27 @@
+<div class="pulldown-container" *ngIf="resource">
+  <button
+    type="button"
+    class="btn-pulldown-trigger"
+    (click)="handleClickTrigger($event)"
+  >
+    <div class="btn-pulldown-content-wrapper">
+      <span class="pulldown-label">{{ resource.name }}</span>
+      <span class="pulldown-selected-item" *ngIf="selectedItem">{{
+        selectedItem.name
+      }}</span>
+      <i class="fa fa-caret-down"></i>
+    </div>
+  </button>
+  <ul class="pulldown-list" [ngClass]="{ visible: pulldownVisible }">
+    <li class="pulldown-list-item" *ngFor="let selection of resource.values">
+      <a
+        href="javascript:void(0)"
+        class="pulldown-selection"
+        [ngClass]="{ active: selection === selectedItem }"
+        (click)="onSelectItem($event, selection)"
+      >
+        {{ selection.name }}
+      </a>
+    </li>
+  </ul>
+</div>

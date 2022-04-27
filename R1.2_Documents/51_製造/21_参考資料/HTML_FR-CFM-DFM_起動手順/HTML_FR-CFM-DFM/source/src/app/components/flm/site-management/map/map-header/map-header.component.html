@@ -1,0 +1,82 @@
+<div class="map-header" *ngIf="userSettingParams">
+  <div class="pulldown">
+    <button
+      type="button"
+      class="pulldown-trigger"
+      (click)="toggleDisplayPulldown($event)"
+    >
+      <span>
+        {{ labels.display }}
+      </span>
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <ul class="pulldown-list" [ngClass]="{ visible: displayPulldownVisible }">
+      <li class="pulldown-list-item" *ngIf="resource.display_landmarks">
+        <button type="button" (click)="onClickDisplayLandmarks()">
+          <i class="fa fa-minus" *ngIf="!displayLandmarks"></i>
+          <i class="fa fa-check" *ngIf="displayLandmarks"></i>
+          {{ resource.display_landmarks.name }}
+        </button>
+      </li>
+      <li class="pulldown-list-item" *ngIf="resource.display_bond_areas">
+        <button type="button" (click)="onClickDisplayBondAreas()">
+          <i class="fa fa-minus" *ngIf="!displayBondAreas"></i>
+          <i class="fa fa-check" *ngIf="displayBondAreas"></i>
+          {{ resource.display_bond_areas.name }}
+        </button>
+      </li>
+      <li class="pulldown-list-item" *ngIf="carCaptionResourcePaths.length > 0">
+        <div class="pulldown-list-item-header">
+          {{ labels.car_captions }}
+        </div>
+        <ng-container *ngFor="let path of carCaptionResourcePaths">
+          <button
+            type="button"
+            (click)="onClickDisplayUserSettingBoundParams(path)"
+          >
+            <i class="fa fa-minus" *ngIf="!userSettingParams[path]"></i>
+            <i class="fa fa-check" *ngIf="userSettingParams[path]"></i>
+            {{ resource[path].name }}
+          </button>
+        </ng-container>
+      </li>
+      <li
+        class="pulldown-list-item"
+        *ngIf="landmarkCaptionResourcePaths.length > 0"
+      >
+        <div class="pulldown-list-item-header">
+          {{ labels.landmark_captions }}
+        </div>
+        <ng-container *ngFor="let path of landmarkCaptionResourcePaths">
+          <button
+            type="button"
+            (click)="onClickDisplayUserSettingBoundParams(path)"
+          >
+            <i class="fa fa-minus" *ngIf="!userSettingParams[path]"></i>
+            <i class="fa fa-check" *ngIf="userSettingParams[path]"></i>
+            {{ resource[path].name }}
+          </button>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+  <div class="pulldown">
+    <button
+      type="button"
+      class="pulldown-trigger"
+      (click)="toggleOptionPulldown($event)"
+    >
+      <span>
+        <i class="fa fa-cog"></i>
+      </span>
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <ul class="pulldown-list" [ngClass]="{ visible: optionPulldownVisible }">
+      <li class="pulldown-list-item">
+        <button type="button" (click)="onClickSaveMapOptions()">
+          {{ labels.save_options }}
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

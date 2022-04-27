@@ -1,0 +1,58 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "車両ID",
+    "path": "cars.car_identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "メーカ",
+    "path": "cars.car_identification.maker_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "機種",
+    "path": "cars.car_identification.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "型式",
+    "path": "cars.car_identification.type_rev",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "機番",
+    "path": "cars.car_identification.serial",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "13",
+    "name": "登録ID件数",
+    "path": "cars.registration_id_count",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "14",
+    "name": "オペ識別設定",
+    "path": "cars.car_operator.operator_identification_kind",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "15",
+    "name": "キーオフ時オペレータID保持時間",
+    "path": "cars.car_operator.id_hold_time",
+    "control_code": "0",
+    "display_code": "1"
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "path": "common.car_identification.models",
+    "value": ["CP-100", "JE-200"]
+  },
+  {
+    "path": "car_operator_id_key.operator_identification_kind",
+    "value": ["0"]
+  }
+]

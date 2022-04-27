@@ -1,0 +1,40 @@
+<table class="KBA-form-table table table-bordered">
+  <tbody class="KBA-form-table-tbody">
+    <ng-container *ngFor="let d of desc">
+      <ng-container [ngSwitch]="d.dataKey">
+        <ng-container
+          *ngIf="
+            d.dataKey === 'publish_group' ||
+              d.dataKey === 'publish_group.kind_name';
+            else defaultContent
+          "
+        >
+          <tr *ngIf="d.displayable">
+            <td class="KBA-form-table__head" [attr.rowspan]="rowspan">
+              <label class="KBA-form-table__label">{{ d.label }}</label>
+            </td>
+            <td class="KBA-form-table__value half-height" colspan="2">
+              <p>{{ val | at: 'publish_group.kind_name' }}</p>
+            </td>
+          </tr>
+          <tr *ngIf="isBlockKind">
+            <td class="KBA-form-table__value half-height" colspan="2">
+              <p>{{ val | at: 'publish_group.blocks.label' }}</p>
+            </td>
+          </tr>
+        </ng-container>
+
+        <ng-template #defaultContent>
+          <tr *ngIf="d.displayable">
+            <td class="KBA-form-table__head">
+              <label class="KBA-form-table__label">{{ d.label }}</label>
+            </td>
+            <td class="KBA-form-table__value" colspan="2">
+              <p>{{ val | at: d.dataKey }}</p>
+            </td>
+          </tr>
+        </ng-template>
+      </ng-container>
+    </ng-container>
+  </tbody>
+</table>

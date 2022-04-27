@@ -1,0 +1,46 @@
+[
+  {
+    "path": "flag_condition.flag_code",
+    "name": "フラグ",
+    "help": "フラグのヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "赤旗",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "黄旗",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "flag_condition.event_condition.time_identification.remaining_time_threshold",
+    "name": "残り時間しきい値",
+    "help": "残り時間しきい値のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "flag_condition.event_condition.detection_condition_code",
+    "name": "条件種別",
+    "help": "条件種別のヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "残り時間閾値",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  }
+]

@@ -1,0 +1,134 @@
+@import "../../../../../assets/styles/_variable";
+
+.KBA-table-wrapper {
+  margin-bottom: 15px;
+}
+
+.btn {
+  transition-property: background-color, border-color, color, opacity;
+}
+
+.search-condition-label {
+  margin-top: 0.25rem;
+
+  p {
+    margin-top: 6px;
+  }
+}
+
+.src-header-table {
+  margin-bottom: 15px;
+}
+
+.confirm-modal-header {
+  padding: 0 80px;
+
+  .message {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .message-danger,
+  .message-error {
+    color: $kba-error-color;
+  }
+
+  .message-warning {
+    color: $kba-warning-color;
+  }
+
+  .integration-error-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .fa,
+  .integration-error {
+    display: block;
+  }
+
+  .fa {
+    margin-right: 6px;
+  }
+}
+
+.modal-table-container {
+  margin-top: 15px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.KBA-table-modal {
+  border-width: 0;
+
+  .KBA-table-thead-modal {
+    border-top-width: 0;
+    border-bottom-width: 1px;
+  }
+
+  .KBA-form-table-tbody {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .KBA-table-flex-cell-modal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    &.not-checked {
+      background-color: $kba-danger-color;
+    }
+
+    &:first-child {
+      td {
+        border-top-width: 0;
+      }
+    }
+
+    th,
+    td {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      border-bottom-width: 0;
+    }
+
+    th {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    td {
+      justify-content: flex-start;
+    }
+
+    .fixed {
+      width: 80px;
+      flex-shrink: 0;
+      justify-content: center;
+    }
+  }
+}
+
+.group-integration-notice {
+  margin: -10px 0 6px;
+  color: $kba-error-color;
+}
+
+.th-groups_integration_status_name,
+.td-groups_integration_status_name {
+  width: 200px !important;
+  flex-shrink: 0;
+  text-align: center;
+}

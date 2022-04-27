@@ -1,0 +1,148 @@
+<section id="KBA-class-form" *ngIf="labels && resource">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels && labels.title }}</h2>
+    <div class="KBA-content" *ngIf="params">
+      <form class="KBA-form" name="classForm" [formGroup]="classForm">
+        <div class="annotation">
+          <p class="KBA-form-table__required">
+            {{ labels && labels.description_for_required }}
+          </p>
+          <div class="KBA-valid-errors">
+            <p></p>
+          </div>
+        </div>
+        <table class="KBA-form-table table table-bordered">
+          <tbody class="KBA-form-table-tbody">
+            <!-- 分類登録時 -->
+            <ng-container *ngIf="!isUpdate">
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [formGroup]="classForm"
+                [kbaName]="'support_distributor_id'"
+                [kbaParams]="params"
+                [kbaResource]="resource.class"
+                [colspan]="3"
+                [notEditable]="isUpdate"
+              ></tr>
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [formGroup]="classForm"
+                [kbaName]="'kind_id'"
+                [kbaParams]="params"
+                [kbaResource]="resource.class"
+                [colspan]="3"
+                [notEditable]="isUpdate"
+              ></tr>
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="classForm"
+                [kbaName]="'label'"
+                [kbaParams]="params"
+                [kbaResource]="resource.class"
+                [kbaLabel]="labels"
+                [colspan]="3"
+                [required]="!isUpdate"
+                [maxLength]="16"
+                [notEditable]="isUpdate"
+                [path]="'class.label'"
+                [errorData]="errorData"
+              ></tr>
+            </ng-container>
+
+            <!-- 分類変更 -->
+            <ng-container *ngIf="isUpdate">
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="classForm"
+                [kbaName]="'support_distributor_id'"
+                [kbaParams]="params"
+                [kbaResource]="resource.class"
+                [kbaLabel]="labels"
+                [colspan]="3"
+                [display]="'support_distributor_label'"
+                [notEditable]="isUpdate"
+              ></tr>
+              <tr>
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label">
+                    {{ labels.kind_name }}
+                  </label>
+                </td>
+                <td>
+                  {{ params.kind_name }}
+                </td>
+              </tr>
+              <tr>
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label">
+                    {{ labels.current_label }}
+                  </label>
+                </td>
+                <td>
+                  {{ params.current_label }}
+                </td>
+              </tr>
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="classForm"
+                [kbaName]="'label'"
+                [kbaParams]="params"
+                [kbaResource]="resource.class"
+                [kbaLabel]="labels"
+                [colspan]="3"
+                [required]="isUpdate"
+                [maxLength]="16"
+                [path]="'class.label'"
+                [errorData]="errorData"
+              ></tr>
+            </ng-container>
+          </tbody>
+        </table>
+
+        <footer class="KBA-form-footer-fixed">
+          <ng-container *ngIf="!isUpdate">
+            <a
+              href="javascript:void(0)"
+              (click)="onClickReset()"
+              class="btn btn-link"
+            >
+              {{ labels && labels.reset }}
+            </a>
+            <button
+              class="btn btn-success"
+              type="button"
+              (click)="onClickContinue()"
+              [disabled]="classForm.invalid"
+            >
+              {{ labels && labels.continue }}
+            </button>
+          </ng-container>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickSubmit()"
+            [disabled]="classForm.invalid"
+          >
+            {{ labels.submit }}
+          </button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #submitModalContent>
+    <app-kba-tandem-confirm [desc]="descItem" [val]="valItem">
+    </app-kba-tandem-confirm>
+  </ng-template>
+
+  <ng-template #resetModalContent *ngIf="!isUpdate">
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+</section>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

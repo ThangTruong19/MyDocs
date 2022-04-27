@@ -1,0 +1,366 @@
+<section id="KBA-flag-condition-index" *ngIf="labels && resource">
+  <div class="container-fluid">
+    <h2 class="KBA-flag-condition-index__title KBA-page-title">
+      {{ labels.title }}
+    </h2>
+    <div class="KBA-content">
+      <!-- コーション/交換時期 切り替えタブ -->
+      <ul class="nav nav-pills KBA-pills">
+        <li class="nav-item KBA-pill-item">
+          <a
+            class="nav-link"
+            (click)="setVisibleFlagKind(kind.caution)"
+            [ngClass]="{ active: params.flag_kind_code === '' + kind.caution }"
+          >
+            {{ _getResourceValueName('flag_kind_code', kind.caution) }}
+          </a>
+        </li>
+        <li class="nav-item KBA-pill-item">
+          <a
+            class="nav-link"
+            (click)="setVisibleFlagKind(kind.replacementTime)"
+            [ngClass]="{
+              active: params.flag_kind_code === '' + kind.replacementTime
+            }"
+          >
+            {{ _getResourceValueName('flag_kind_code', kind.replacementTime) }}
+          </a>
+        </li>
+      </ul>
+
+      <!-- 検索 -->
+      <app-kba-accordion
+        [hidden]="!isRegionUser"
+        [collapsed]="collapsed"
+        [useCustomHeader]="false"
+        [title]="labels.search_condition"
+        [labels]="labels"
+        (onChangeState)="changePanelState($event)"
+      >
+        <div data-kba-accordion-body>
+          <div class="container KBA-search">
+            <div class="row">
+              <ng-container>
+                <app-kba-selected
+                  *ngIf="resource.group_id"
+                  class="col-sm-3"
+                  [kbaName]="'group_id'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                >
+                </app-kba-selected>
+              </ng-container>
+            </div>
+          </div>
+          <div class="KBA-panel-footer">
+            <button
+              (click)="onClickSearch()"
+              type="button"
+              class="btn btn-primary search"
+            >
+              {{ labels.search }}
+            </button>
+          </div>
+        </div>
+      </app-kba-accordion>
+
+      <div class="KBA-table-options" [hidden]="count <= 0">
+        <app-kba-pagination
+          [count]="count"
+          [params]="pageParams"
+          [labels]="labels"
+          [element]="pageCountEl"
+          (changeState)="onPaginationChange()"
+        >
+        </app-kba-pagination>
+        <div class="table-option-buttons">
+          <div
+            class="popover-wrapper"
+            *ngIf="params.flag_kind_code === '' + kind.caution"
+          >
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="onClickFieldSelect($event)"
+            >
+              {{ labels.field_select }}
+            </button>
+            <app-kba-popover
+              [labels]="labels"
+              [resource]="fieldResources"
+              [fields]="fields"
+              [title]="labels.field_select_title"
+              [(isVisible)]="fieldSelectPopoverVisible"
+              (ok)="onFieldSelectOk($event)"
+            ></app-kba-popover>
+          </div>
+          <div
+            class="popover-wrapper"
+            *ngIf="params.flag_kind_code === '' + kind.replacementTime"
+          >
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="onClickFieldSelect($event)"
+            >
+              {{ labels.field_select }}
+            </button>
+            <app-kba-popover
+              [labels]="labels"
+              [resource]="repFieldResources"
+              [fields]="repFields"
+              [title]="labels.field_select_title"
+              [(isVisible)]="fieldSelectPopoverVisible"
+              (ok)="onFieldSelectOk($event)"
+            ></app-kba-popover>
+          </div>
+          <div
+            class="popover-wrapper"
+            *ngIf="params.flag_kind_code === '' + kind.caution"
+          >
+            <button
+              type="button"
+              class="btn btn-warning"
+              (click)="onClickAllDownload($event)"
+            >
+              {{ labels.download_all }}
+              <i class="kba-icon kba-icon-download"></i>
+            </button>
+            <app-kba-popover
+              [labels]="labels"
+              [resource]="downloadFieldResources"
+              [fields]="downloadFields"
+              [title]="labels.download_field_select"
+              [(isVisible)]="downloadPopoverVisible"
+              [downloadType]="resource.file_content_type"
+              [download]="true"
+              (ok)="onDownloadOk($event)"
+            >
+            </app-kba-popover>
+          </div>
+          <div
+            class="popover-wrapper"
+            *ngIf="params.flag_kind_code === '' + kind.replacementTime"
+          >
+            <button
+              type="button"
+              class="btn btn-warning"
+              (click)="onClickAllDownload($event)"
+            >
+              {{ labels.download_all }}
+              <i class="kba-icon kba-icon-download"></i>
+            </button>
+            <app-kba-popover
+              [labels]="labels"
+              [resource]="repDownloadFieldResources"
+              [fields]="repDownloadFields"
+              [title]="labels.download_field_select"
+              [(isVisible)]="downloadPopoverVisible"
+              [downloadType]="resource.file_content_type"
+              [download]="true"
+              (ok)="onDownloadOk($event)"
+            >
+            </app-kba-popover>
+          </div>
+        </div>
+      </div>
+
+      <div class="KBA-table-wrapper">
+        <!-- テーブル（コーション） -->
+        <app-kba-table
+          *ngIf="params.flag_kind_code === '' + kind.caution"
+          [customTableThContent]="customTableThContent"
+          [customTableRowContent]="customTableRowContent"
+          customTableRowContent
+          [lists]="lists"
+          [pageParams]="pageParams"
+          [sortingParams]="sortingParams"
+          [params]="params"
+          [thList]="thList"
+          [sortableThList]="sortableThList"
+          [labels]="labels"
+          [collapsed]="collapsed"
+          [updatable]="updatable"
+          [deletable]="deletable"
+          [isFetching]="isFetching"
+          (edit)="onClickEdit($event)"
+          (delete)="onClickDelete($event)"
+        >
+          <ng-template #customTableThContent>
+            <ng-container *ngFor="let th of thList">
+              <th
+                *ngIf="th.displayable"
+                class="KBA-index-th th-{{ th.shortName }}"
+                [ngClass]="{ fixed: th.dataKey === 'flag_code' }"
+                appKbaSortingLabel
+                [(sortingParams)]="sortingParams"
+                [labelName]="th.sortKey"
+                [sortableThList]="sortableThList"
+                (sort)="onChangeSort($event)"
+              >
+                <span>{{ th.label }}</span>
+              </th>
+            </ng-container>
+          </ng-template>
+          <ng-template #customTableRowContent let-data="data" let-idx="idx">
+            <ng-container *ngFor="let title of thList">
+              <ng-container
+                [ngSwitch]="title.dataKey"
+                *ngIf="title.displayable"
+              >
+                <!-- フラグの場合 -->
+                <td
+                  *ngSwitchCase="'flag_code'"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td fixed d-flex align-items-center justify-content-center"
+                >
+                  <i
+                    class="fa fa-flag kba-flag"
+                    [ngClass]="'flag-type-' + data[title.dataKey || title.name]"
+                  ></i>
+                </td>
+                <!-- コーションの場合 -->
+                <td
+                  *ngSwitchCase="'event_condition.event_name'"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <div class="flag-caution ">
+                    <i
+                      class="kba-caution-icon kba-caution-icon_{{
+                        iconFont(data | at: 'event_condition.icon_font.no')
+                      }}"
+                    ></i>
+                    <span>{{ data | at: title.dataKey }}</span>
+                  </div>
+                </td>
+                <!-- 最小継続時間[分]の場合 -->
+                <td
+                  *ngSwitchCase="
+                    'event_condition.occurrence_identification.min_alerm_time'
+                  "
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ (data | at: title.dataKey) || '-' }}</span>
+                </td>
+                <!-- それ以外の場合 -->
+                <td
+                  *ngSwitchDefault
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ data | at: title.dataKey }}</span>
+                </td>
+              </ng-container>
+            </ng-container>
+          </ng-template>
+        </app-kba-table>
+
+        <!-- テーブル（交換時期） -->
+        <app-kba-table
+          *ngIf="params.flag_kind_code === '' + kind.replacementTime"
+          [customTableThContent]="customTableThContent"
+          [customTableRowContent]="customTableRowContent"
+          [lists]="repLists"
+          [pageParams]="pageParams"
+          [params]="params"
+          [sortingParams]="repSortingParams"
+          [thList]="repThList"
+          [sortableThList]="repSortableThList"
+          [labels]="labels"
+          [collapsed]="collapsed"
+          [updatable]="updatable"
+          [deletable]="deletable"
+          [isFetching]="isFetching"
+          (edit)="onClickEdit($event)"
+          (delete)="onClickDelete($event)"
+        >
+          <ng-template #customTableThContent>
+            <ng-container *ngFor="let th of repThList">
+              <th
+                *ngIf="th.displayable"
+                class="KBA-index-th th-{{ th.shortName }}"
+                [ngClass]="{ fixed: th.dataKey === 'flag_code' }"
+                appKbaSortingLabel
+                [(sortingParams)]="repSortingParams"
+                [labelName]="th.sortKey"
+                [sortableThList]="repSortableThList"
+                (sort)="onChangeSort($event)"
+              >
+                <span>{{ th.label }}</span>
+              </th>
+            </ng-container>
+          </ng-template>
+          <ng-template #customTableRowContent let-data="data" let-idx="idx">
+            <ng-container *ngFor="let title of repThList">
+              <ng-container
+                [ngSwitch]="title.dataKey"
+                *ngIf="title.displayable"
+              >
+                <!-- フラグの場合 -->
+                <td
+                  *ngSwitchCase="'flag_code'"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td fixed d-flex align-items-center justify-content-center"
+                >
+                  <i
+                    class="fa fa-flag kba-flag"
+                    [ngClass]="'flag-type-' + data[title.dataKey || title.name]"
+                  ></i>
+                </td>
+                <!-- それ以外の場合 -->
+                <td
+                  *ngSwitchDefault
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ data | at: title.dataKey }}</span>
+                </td>
+              </ng-container>
+            </ng-container>
+          </ng-template>
+        </app-kba-table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-kba-alert></app-kba-alert>
+
+<ng-template #deleteModalContent>
+  <app-kba-tandem-confirm
+    [desc]="deleteModalValues.listDesc"
+    [val]="deleteModalValues.listVal"
+    [valuesAtKey]="valuesAtKey"
+    [customContent]="customDelConfirmContent"
+  >
+  </app-kba-tandem-confirm>
+</ng-template>
+
+<ng-template #customDelConfirmContent let-d="d" let-value="value">
+  <ng-container [ngSwitch]="d.dataKey">
+    <p *ngSwitchCase="'flag_code'" [hidden]="value == null">
+      <i class="fa fa-flag kba-flag" [ngClass]="'flag-type-' + value"></i>
+    </p>
+    <ng-container *ngSwitchCase="'free_memo'">
+      <p class="free_memo">{{ value }}</p>
+    </ng-container>
+    <ng-container
+      *ngSwitchCase="'event_condition.occurrence_identification.min_alerm_time'"
+    >
+      <p class="min_alerm_time">
+        {{ value === undefined ? '' : value || '-' }}
+      </p>
+    </ng-container>
+    <p *ngSwitchDefault>{{ value }}</p>
+  </ng-container>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

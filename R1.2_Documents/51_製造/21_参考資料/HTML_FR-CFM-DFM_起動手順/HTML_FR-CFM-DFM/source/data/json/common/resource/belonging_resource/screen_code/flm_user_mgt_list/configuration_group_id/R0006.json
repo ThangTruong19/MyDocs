@@ -1,0 +1,27 @@
+[
+  {
+    "path": "belonging_group_id",
+    "name": "所属",
+    "help": "所属のヘルプ文言（FLM側）",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "グループ2の代理店",
+        "value": "R0003",
+        "kind": "DD"
+      },
+      {
+        "key": "グループ2の顧客",
+        "value": "R0004",
+        "kind": "DC"
+      },
+      {
+        "key": "グループ2のサブグループ",
+        "value": "R0005",
+        "kind": "DS"
+      }
+    ]
+  }
+]

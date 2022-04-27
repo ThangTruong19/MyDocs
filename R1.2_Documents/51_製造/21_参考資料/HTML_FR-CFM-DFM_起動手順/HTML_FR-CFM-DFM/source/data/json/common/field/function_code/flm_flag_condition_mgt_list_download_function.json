@@ -1,0 +1,23 @@
+[
+  {
+    "display_sequence_no": "3",
+    "name": "エラーコード",
+    "path": "flag_conditions.event_condition.event_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "条件種別",
+    "path": "flag_conditions.event_condition.detection_condition_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "条件",
+    "path": "flag_conditions.event_condition.occurrence_identification.condition",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

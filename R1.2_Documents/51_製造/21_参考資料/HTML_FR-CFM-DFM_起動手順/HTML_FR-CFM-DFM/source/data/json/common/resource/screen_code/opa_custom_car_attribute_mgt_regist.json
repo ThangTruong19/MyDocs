@@ -1,0 +1,73 @@
+[
+  {
+    "path": "custom_car_attribute.block_id",
+    "name": "ブロック",
+    "help": "ブロックのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "公開先グループ1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ4",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ5",
+        "value": "5",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "custom_car_attribute.field_no",
+    "name": "車両属性NO",
+    "help": "車両属性NOのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "custom_car_attribute.use_same_name",
+    "name": "すべての言語で同じ名称を使用",
+    "help": "すべての言語で同じ名称を使用のヘルプ文言",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "custom_car_attribute.names",
+    "name": "属性名称",
+    "help": "属性名称のヘルプ文言",
+    "type": -19,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "custom_car_attribute.details",
+    "name": "表示項目リスト",
+    "help": "表示項目リストのヘルプ文言",
+    "type": -19,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

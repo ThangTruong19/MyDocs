@@ -1,0 +1,47 @@
+<div *ngIf="displayable" class="date-range">
+  <div class="date-picker-wrapper">
+    <app-kba-search-date-picker
+      #dateFrom
+      class="date-content"
+      [id]="fromId"
+      [kbaName]="from"
+      [kbaParams]="params"
+      [kbaResource]="resource"
+      [kbaLabel]="labels"
+      [showLabel]="true"
+      [beginningWday]="beginningWday"
+      [enableDateRange]="fromDateRange"
+      [dateFormat]="dateFormat"
+      [futureDateSelectable]="futureDateSelectable"
+      [timeZone]="timeZone"
+      [initialBaseDay]="fromBaseDay"
+      [display]="fromDisplay"
+      [required]="required"
+      (selectDate)="handleSelectFromDate($event)"
+    >
+    </app-kba-search-date-picker>
+  </div>
+  <p class="separator">－</p>
+  <div class="date-picker-wrapper">
+    <app-kba-search-date-picker
+      #dateTo
+      class="date-content"
+      [id]="toId"
+      [kbaName]="to"
+      [kbaParams]="params"
+      [kbaResource]="resource"
+      [kbaLabel]="labels"
+      [enableDateRange]="toDateRange"
+      [showLabel]="false"
+      [dateFormat]="dateFormat"
+      [beginningWday]="beginningWday"
+      [futureDateSelectable]="futureDateSelectable"
+      [timeZone]="timeZone"
+      [initialBaseDay]="toBaseDay"
+      [display]="toDisplay"
+      [required]="required"
+      (selectDate)="handleSelectToDate($event)"
+    >
+    </app-kba-search-date-picker>
+  </div>
+</div>

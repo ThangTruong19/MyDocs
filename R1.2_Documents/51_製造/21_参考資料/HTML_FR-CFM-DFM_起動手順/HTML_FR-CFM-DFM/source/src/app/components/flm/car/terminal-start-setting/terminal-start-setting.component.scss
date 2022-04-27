@@ -1,0 +1,94 @@
+.KBA-content {
+  .th-cars_car_management_attribute_terminal_use_start_name,
+  .td-cars_car_management_attribute_terminal_use_start_name {
+    width: 130px !important;
+    flex-shrink: 0;
+  }
+
+  .td-cars_car_management_attribute_terminal_use_start_name,
+  .td-cars_car_management_attribute_orbcomm_request_status_name,
+  .td-cars_car_management_attribute_orbcomm_request_datetime {
+    text-align: center;
+  }
+
+  .td-cars_car_management_attribute_terminal_use_start_name {
+    div {
+      width: 100%;
+    }
+  }
+
+  .td-cars_car_management_attribute_orbcomm_request_datetime {
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+  }
+}
+
+.result-count-message {
+  margin-top: 12px;
+}
+
+.orbcomm-apply-modal {
+  .KBA-table-modal {
+    max-height: none;
+
+    thead {
+      border-top-width: 0;
+      border-bottom-width: 0;
+      overflow: hidden;
+    }
+
+    tr:not(:last-child) {
+      th,
+      td {
+        border-bottom-width: 0;
+      }
+    }
+
+    tbody.KBA-form-table-tbody {
+      height: 100%;
+      max-height: 400px;
+      overflow: visible;
+    }
+
+    .KBA-table-flex-cell-modal {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      th {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      td {
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
+
+        p {
+          word-break: break-all;
+        }
+      }
+    }
+  }
+
+  .nation-id-select {
+    position: relative;
+    width: 260px !important;
+    flex-shrink: 0;
+    overflow: visible !important;
+
+    app-kba-selected {
+      width: 100%;
+    }
+  }
+}
+
+app-kba-select-type {
+  margin-top: 0.25rem;
+}

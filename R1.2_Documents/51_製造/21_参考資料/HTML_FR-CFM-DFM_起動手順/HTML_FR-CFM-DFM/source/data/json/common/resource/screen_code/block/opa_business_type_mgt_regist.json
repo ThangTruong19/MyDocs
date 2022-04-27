@@ -1,0 +1,46 @@
+[
+  {
+    "path": "business_type.use_same_name",
+    "name": "すべての言語で同じ名称を使用",
+    "help": "すべての言語で同じ名称を使用のヘルプ文言",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "business_type.item_names",
+    "name": "新規業種名",
+    "help": "新規業種名のヘルプ文言",
+    "type": -19,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "日本語",
+        "value": "ja-JP",
+        "kind": "D"
+      },
+      {
+        "key": "英語",
+        "value": "en-US",
+        "kind": "D"
+      },
+      {
+        "key": "フランス語",
+        "value": "fr-FR",
+        "kind": "D"
+      },
+      {
+        "key": "xxxx語",
+        "value": "xx-XX",
+        "kind": "D"
+      },
+      {
+        "key": "yyyy語",
+        "value": "yy-YY",
+        "kind": "D"
+      }
+    ]
+  }
+]

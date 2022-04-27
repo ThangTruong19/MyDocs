@@ -1,0 +1,46 @@
+@import "../../../../../assets/styles/variable";
+
+.customer-select {
+  margin-bottom: 15px;
+}
+
+.register-table {
+  width: 80%;
+  margin: 0 auto;
+
+  th {
+    font-weight: normal;
+
+    &.required {
+      color: $kba-error-color;
+
+      &::after {
+        margin-left: 5px;
+        content: "*";
+      }
+    }
+  }
+
+  .add-operator-row {
+    .add-operator {
+      padding: 4px;
+      margin-top: 10px;
+      font-size: 20px;
+      text-align: center;
+      cursor: pointer;
+      background-color: $kba-lightgray-color;
+
+      &:hover {
+        background-color: $kba-lightgray-color--hover;
+      }
+    }
+  }
+
+  .no-operator-label {
+    width: 100%;
+  }
+}
+
+.result-count-message {
+  margin-top: 12px;
+}

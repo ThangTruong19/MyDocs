@@ -1,0 +1,119 @@
+[
+  {
+    "path": "smr_interval_item.support_distributor_id",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "担当DB1",
+        "value": "A0001",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2",
+        "value": "A0002",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "smr_interval_item.label",
+    "name": "SMRインターバル管理項目名称",
+    "help": "SMRインターバル管理項目名称のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "smr_interval_item.inspection_start_smr",
+    "name": "点検開始SMR",
+    "help": "点検開始SMRのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "smr_interval_item.smr_interval_kind",
+    "name": "SMRインターバル区分",
+    "help": "SMRインターバル区分のヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "あり",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "smr_interval_item.smr_interval",
+    "name": "SMRインターバル",
+    "help": "SMRインターバルのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "smr_interval_item.threshold_kind",
+    "name": "オレンジフラグ閾値区分",
+    "help": "オレンジフラグ閾値区分のヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "あり",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "smr_interval_item.threshold",
+    "name": "オレンジフラグ閾値",
+    "help": "オレンジフラグ閾値のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "smr_interval_item.target_model_kind",
+    "name": "対象機種区分",
+    "help": "対象機種区分のヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "全機種型式",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "機種型式を選択",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "smr_interval_item.car_conditions",
+    "name": "機種型式",
+    "help": "機種型式のヘルプ文言",
+    "type": -19,
+    "placeholder_text": "",
+    "items": []
+  }
+]

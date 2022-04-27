@@ -1,0 +1,11 @@
+<section id="KBA-admin-menu">
+  <div class="container-fluid">
+    <h2 class="KBA-page-title">{{ labels && labels.title }}</h2>
+    <app-kba-menu (orderChanged)="refresh()"></app-kba-menu>
+  </div>
+</section>
+
+<app-kba-sidemenu
+  [isLoading]="isLoading"
+  (orderChanged)="refresh()"
+></app-kba-sidemenu>

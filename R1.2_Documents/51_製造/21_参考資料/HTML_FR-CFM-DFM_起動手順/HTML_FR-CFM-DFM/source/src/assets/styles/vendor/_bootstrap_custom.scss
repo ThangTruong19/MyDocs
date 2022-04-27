@@ -1,0 +1,154 @@
+.container-fluid {
+  margin: 0 auto;
+  max-width: 1280px;
+  position: relative;
+  padding: 44px 0 50px;
+}
+
+.form-group {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  width: 100%;
+}
+
+.form-control {
+  display: inline-block;
+}
+
+.modal-dialog {
+  max-width: 500px;
+  margin-top: 60px;
+}
+
+.btn {
+  &.btn-primary {
+    background-color: $kba-primary-btn-color;
+    @include btnBorder($kba-primary-btn-color);
+    &:enabled {
+      &:hover {
+        background-color: $kba-primary-btn-color--hover;
+        @include btnBorder($kba-primary-btn-color--hover);
+      }
+    }
+  }
+  &.btn-warning {
+    @include btnBorder(#f0ad4e);
+    &:enabled {
+      &:hover {
+        @include btnBorder(#ec971f);
+      }
+    }
+  }
+  &.btn-success {
+    @include btnBorder(#5cb85c);
+    &:enabled {
+      &:hover {
+        @include btnBorder(#449d44);
+      }
+    }
+  }
+}
+
+@media (min-width: 676px) {
+  .modal-dialog {
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-lg {
+    max-width: 900px;
+  }
+}
+
+.modal-xl {
+  max-width: 1258px;
+}
+
+.modal-content,
+kba-modal-content {
+  height: 100%;
+  @media (max-height: 740px) {
+    max-height: calc(100vh - 90px);
+  }
+  @media (min-height: 741px) {
+    max-height: 650px;
+  }
+}
+
+.modal-xl {
+  .modal-dialog {
+    max-width: 85%;
+  }
+}
+
+.radio-inline:first-of-type,
+.checkbox-inline:first-of-type {
+  padding-left: 0;
+}
+
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-xs-15 {
+  width: 20%;
+  float: left;
+}
+
+.table-bordered th {
+  border: 1px solid #ddd;
+}
+
+@media (min-width: 768px) {
+  .col-sm-15 {
+    width: 20%;
+    max-width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-15 {
+    width: 20%;
+    max-width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: 1200px) {
+  .col-lg-15 {
+    width: 20%;
+    max-width: 20%;
+    float: left;
+  }
+}
+
+body > [uib-modal-window]:not([modal-render]) {
+  display: none;
+}
+
+label {
+  font-weight: normal;
+}
+
+.dropdown-toggle::after {
+  position: absolute;
+  right: 0.7em;
+  top: 1em;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+}
+
+.alert-warning {
+  border-color: #8a6d3b;
+}

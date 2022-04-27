@@ -1,0 +1,30 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "累積燃料消費量管理項目インターバル項目ID",
+    "path": "accumulate_fuel_interval_items.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "担当代理店",
+    "path": "accumulate_fuel_interval_items.support_distributor_id",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "累積燃料消費量管理項目インターバル項目名称",
+    "path": "accumulate_fuel_interval_items.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "更新日時",
+    "path": "accumulate_fuel_interval_items.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

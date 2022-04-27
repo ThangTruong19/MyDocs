@@ -1,0 +1,64 @@
+.reference-title {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.no-profile {
+  margin: 10px 0 15px;
+}
+
+.KBA-rev-cell {
+  padding: 10px !important;
+
+  .KBA-rev-cell_value {
+    display: inline-block;
+    min-width: 54px;
+    margin: 2px 4px;
+    text-align: center;
+  }
+}
+
+.KBA-model-table {
+  width: calc(100% + 30px);
+  margin: -15px;
+
+  tr {
+    &:first-of-type {
+      td {
+        border-top: solid 0;
+      }
+    }
+
+    &:last-of-type {
+      td {
+        border-bottom: solid 0;
+      }
+    }
+
+    td {
+      &:first-child {
+        border-left: solid 0;
+      }
+
+      &:last-child {
+        border-right: solid 0;
+      }
+    }
+  }
+}
+
+.rev-modal-wrapper {
+  overflow-x: scroll;
+}
+
+.KBA-input-radio__label {
+  margin-right: 5px;
+
+  &:first-of-type {
+    margin-right: 12px;
+  }
+}
+
+.KBA-model-cell {
+  white-space: nowrap !important;
+}

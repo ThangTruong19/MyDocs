@@ -1,0 +1,14 @@
+[
+  {
+    "path": "common.customer_attribute.customer_car_no",
+    "value": ["5589221"]
+  },
+  {
+    "path": "common.car_identification.model_type_revs",
+    "value": ["PC100-A12345M0"]
+  },
+  {
+    "path": "common.distributor_attribute.class_1_ids",
+    "value": ["0"]
+  }
+]

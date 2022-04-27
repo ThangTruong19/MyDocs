@@ -1,0 +1,23 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "組織コード",
+    "path": "companies.identification.organization_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "会社名",
+    "path": "companies.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "所属国",
+    "path": "companies.identification.nation_name",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

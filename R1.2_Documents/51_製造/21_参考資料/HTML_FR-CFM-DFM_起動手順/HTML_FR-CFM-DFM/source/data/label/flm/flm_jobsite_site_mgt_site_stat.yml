@@ -1,0 +1,108 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: ジョブサイト
+    en:
+
+  - id: 1
+    description: 戻る
+    name: back
+    ja: 戻る
+    en:
+
+  - id: 1
+    description: 稼働状況
+    name: tab_stat
+    ja: 稼働状況
+    en:
+
+  - id: 1
+    description: 地図
+    name: tab_map
+    ja: 地図
+    en:
+
+  - id: 1
+    description: グラフ
+    name: graph_mode
+    ja: グラフ
+    en:
+
+  - id: 1
+    description: 月次
+    name: monthly
+    ja: 月次
+    en:
+
+  - id: 1
+    description: 日次
+    name: daily
+    ja: 日次
+    en:
+
+  - id: 1
+    description: 先月まで
+    name: since_last_month
+    ja: 先月まで
+    en:
+
+  - id: 1
+    description: 昨日まで
+    name: since_yesterday
+    ja: 昨日まで
+    en:
+
+  - id: 1
+    description: 稼働時間
+    name: stat
+    ja: 稼働時間
+    en:
+
+  - id: 1
+    description: 時間表示
+    name: by_hours
+    ja: 時間表示
+    en:
+
+  - id: 1
+    description: 比率表示
+    name: by_rate
+    ja: 比率表示
+    en:
+
+  - id: 1
+    description: もっと見る
+    name: see_more
+    ja: もっと見る
+    en:
+
+  - id: 1
+    description: 顧客車両番号
+    name: customer_car_no
+    ja: 顧客車両番号
+    en:
+
+  - id: 1
+    description: 稼働時間
+    name: footer_stat
+    ja: 稼働時間
+    en:
+
+  - id: 1
+    description: 燃料消費量
+    name: fuel_consumption
+    ja: 燃料消費量
+    en:
+
+  - id: 1
+    description: 消費電力量
+    name: consumed_electric_power
+    ja: 消費電力量
+    en:
+
+  - id: 1
+    description: 全ての車両
+    name: all_cars
+    ja: 全ての車両
+    en:

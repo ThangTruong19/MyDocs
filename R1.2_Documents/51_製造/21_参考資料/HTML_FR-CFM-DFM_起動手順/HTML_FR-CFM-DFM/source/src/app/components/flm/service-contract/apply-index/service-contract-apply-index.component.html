@@ -1,0 +1,242 @@
+<section id="KBA-service-contract-apply-index" *ngIf="labels && resource">
+  <form class="KBA-form" #f="ngForm">
+    <div class="container-fluid" *ngIf="!isOpenApplyEdit">
+      <h2 class="KBA-service-contract-apply-index__title KBA-page-title">
+        {{ labels.title }}
+      </h2>
+
+      <div class="KBA-content">
+        <!-- 検索 -->
+        <app-kba-accordion
+          [collapsed]="collapsed"
+          [useCustomHeader]="false"
+          [title]="labels.search_condition"
+          [isLoading]="isLoading"
+          [labels]="labels"
+          (onChangeState)="changePanelState($event)"
+        >
+          <div data-kba-accordion-body>
+            <div class="container KBA-search">
+              <div class="row">
+                <app-kba-selected
+                  #supportDistributorSelect
+                  *ngIf="exists('common.support_distributor.ids')"
+                  class="col-sm-3"
+                  [kbaName]="'ids'"
+                  [kbaParams]="params.common.support_distributor"
+                  [kbaResource]="resource.common.support_distributor"
+                  (onChangeSelectItem)="onSupportDistributorChange($event)"
+                >
+                </app-kba-selected>
+                <app-kba-selected
+                  class="col-sm-3"
+                  [kbaName]="'ids'"
+                  [kbaParams]="params.common.service_distributor"
+                  [kbaResource]="resource.common.service_distributor"
+                >
+                </app-kba-selected>
+                <app-kba-selected
+                  class="col-sm-3"
+                  [kbaName]="'service_distributor_id'"
+                  [kbaParams]="params.service_contract_request"
+                  [kbaResource]="resource.service_contract_request"
+                >
+                </app-kba-selected>
+                <app-kba-selected
+                  #customerSelect
+                  *ngIf="
+                    exists('common.customer.ids') &&
+                    resource.common.customer.ids.values.length > 0
+                  "
+                  class="col-sm-3"
+                  [kbaName]="'ids'"
+                  [kbaParams]="params.common.customer"
+                  [kbaResource]="resource.common.customer"
+                >
+                </app-kba-selected>
+              </div>
+              <div class="row">
+                <app-kba-selected
+                  class="col-sm-3"
+                  [kbaName]="'service_contract_status'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                >
+                </app-kba-selected>
+                <app-kba-selected
+                  class="col-sm-3"
+                  [kbaName]="'division_codes'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                >
+                </app-kba-selected>
+                <app-kba-selected
+                  class="col-sm-3"
+                  [kbaName]="'maker_codes'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                >
+                </app-kba-selected>
+              </div>
+              <div class="row">
+                <app-kba-text
+                  *ngIf="exists('common.car_identification.models')"
+                  class="col-sm-3"
+                  [kbaName]="'models'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                  [maxlength]="20"
+                >
+                </app-kba-text>
+                <app-kba-text
+                  *ngIf="exists('common.car_identification.type_revs')"
+                  class="col-sm-3"
+                  [kbaName]="'type_revs'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                  [maxlength]="15"
+                >
+                </app-kba-text>
+                <app-kba-text
+                  *ngIf="exists('common.car_identification.serials')"
+                  class="col-sm-3"
+                  [kbaName]="'serials'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                >
+                </app-kba-text>
+              </div>
+            </div>
+            <div class="KBA-panel-footer">
+              <button
+                (click)="onClickSearch()"
+                type="button"
+                class="btn btn-primary search"
+              >
+                {{ labels.search }}
+              </button>
+            </div>
+          </div>
+        </app-kba-accordion>
+
+        <!-- ページネーション -->
+        <div class="KBA-table-options" [hidden]="count <= 0">
+          <app-kba-pagination
+            [count]="count"
+            [params]="pageParams"
+            [labels]="labels"
+            [element]="pageCountEl"
+            (changeState)="onPaginationChange()"
+          >
+          </app-kba-pagination>
+          <div class="table-option-buttons">
+            <div class="popover-wrapper">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="onClickFieldSelect($event)"
+              >
+                {{ labels.field_select }}
+              </button>
+              <app-kba-popover
+                [labels]="labels"
+                [resource]="fieldResources"
+                [fields]="fields"
+                [title]="labels.field_select_title"
+                [(isVisible)]="fieldSelectPopoverVisible"
+                [promise]="fieldResourcesPromise"
+                (ok)="onFieldSelectOk($event)"
+              >
+              </app-kba-popover>
+            </div>
+            <button
+              type="button"
+              class="KBA-selectable-columns btn btn-secondary"
+              (click)="onClickUnlinkContract()"
+              [disabled]="!(selectedList | isNotEmpty)"
+            >
+              {{ labels.unlink_contract }}
+            </button>
+            <button
+              type="button"
+              class="KBA-selectable-columns btn btn-secondary"
+              (click)="onClickApplyEdit()"
+              [disabled]="!(selectedList | isNotEmpty)"
+            >
+              {{ labels.apply_edit }}
+            </button>
+          </div>
+        </div>
+
+        <!-- 一覧 -->
+        <app-kba-table
+          [customTableRowContent]="customTableRowContent"
+          [labels]="labels"
+          [collapsed]="collapsed"
+          [lists]="lists"
+          [pageParams]="pageParams"
+          [fixedThList]="fixedThList"
+          [scrollableThList]="scrollableThList"
+          [(sortingParams)]="sortingParams"
+          [sortableThList]="sortableThList"
+          [selectable]="true"
+          [updatable]="updatable"
+          [deletable]="deletable"
+          [isFetching]="isFetching"
+          [checkedItems]="checkedItems"
+          [checkIdName]="checkIdName"
+          (edit)="onClickEdit($event)"
+          (delete)="onClickDelete($event)"
+          (sort)="onChangeSort($event)"
+        >
+          <ng-template #customTableRowContent let-data="data">
+            <ng-container *ngFor="let title of scrollableThList">
+              <td
+                *ngIf="title.displayable"
+                class="td-{{ title.shortName }} KBA-index-td"
+              >
+                {{ data[title.dataKey || title.name] }}
+              </td>
+            </ng-container>
+          </ng-template>
+        </app-kba-table>
+      </div>
+    </div>
+  </form>
+</section>
+
+<app-kba-alert></app-kba-alert>
+
+<ng-template #unlinkModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="unlinkModalValues.listDesc"
+    [val]="unlinkModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<app-change-service-distributor
+  *ngIf="isOpenApplyEdit"
+  [selectedCarIds]="selectedList"
+  [labels]="labels"
+  [resource]="resource"
+  [functions]="functions"
+  [applyFields]="applyFields"
+  [applyConfirmFields]="applyConfirmFields"
+  [sortKey]="requestHeaderParams['X-Sort']"
+  (return)="returnFromChangeServiceDistributor()"
+  (submit)="onSubmit()"
+>
+</app-change-service-distributor>
+
+<ng-template #resultModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="resultDesc"
+    [val]="resultVal"
+    [warningColumns]="'all'"
+  >
+  </app-kba-simple-list-confirm>
+  <p class="result-count-message">{{ resultCountMessage }}</p>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

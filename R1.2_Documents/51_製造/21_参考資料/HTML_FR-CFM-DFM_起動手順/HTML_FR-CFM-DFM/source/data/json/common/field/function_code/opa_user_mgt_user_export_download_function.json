@@ -1,0 +1,163 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "Eメールアドレス",
+    "path": "users.identification.email",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "ユーザ名",
+    "path": "users.identification.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "ユーザ名（英語）",
+    "path": "users.identification.label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "プライマリグループ名",
+    "path": "users.identification.primary_group.id",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "ユーザ作成日時",
+    "path": "users.identification.create_datetime",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "最終ログイン日時",
+    "path": "users.identification.login_datetime",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "会社",
+    "path": "users.attribute.company_label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "会社（英語）",
+    "path": "users.attribute.company_label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "国",
+    "path": "users.attribute.nation_code",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "電話番号",
+    "path": "users.attribute.phone_no",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "11",
+    "name": "所在地",
+    "path": "users.attribute.create_place",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "12",
+    "name": "グループ代表管理者区分",
+    "path": "users.group.represent_administrator_kind_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "17",
+    "name": "所属グループ",
+    "path": "users.group.identification.belonging_group.identification.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "18",
+    "name": "所属グループ（英語）",
+    "path": "users.group.identification.belonging_group.identification.label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "19",
+    "name": "所属グループ組織コード",
+    "path": "users.group.identification.belonging_group.identification.organization_code",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "20",
+    "name": "所属グループ種別",
+    "path": "users.group.identification.belonging_group.identification.kind_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "21",
+    "name": "構成グループ種別名称",
+    "path": "users.group.configuration_groups.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "22",
+    "name": "構成グループ種別名称（英語）",
+    "path": "users.group.configuration_groups.label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "23",
+    "name": "構成グループ種別",
+    "path": "users.group.configuration_groups.kind_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "24",
+    "name": "ユーザに付与されたロール",
+    "path": "users.group.granted_role.name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "25",
+    "name": "ユーザに付与された権限",
+    "path": "users.group.granted_authorities.name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "26",
+    "name": "利用規約の同意状況",
+    "path": "users.group.agreement_status.name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "27",
+    "name": "利用規約の同意状況承認日",
+    "path": "users.group.agreement.date",
+    "control_code": "0",
+    "display_code": "1"
+  }
+]

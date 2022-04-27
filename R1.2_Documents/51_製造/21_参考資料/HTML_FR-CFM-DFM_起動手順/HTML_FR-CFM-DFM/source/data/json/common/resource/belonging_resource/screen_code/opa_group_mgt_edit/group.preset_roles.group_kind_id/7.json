@@ -1,0 +1,320 @@
+[
+  {
+    "path": "group.preset_roles.authorities.id",
+    "name": "配下グループ権限",
+    "type": "30",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "32",
+    "items": [
+      {
+        "key": "作業履歴",
+        "value": "94",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "コンテンツ鍵暗号化済み車両配信ファイル取得権限",
+        "value": "269",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "コンポ交換鍵暗号化済みソフトウェア取得権限",
+        "value": "288",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "ソフトウェア配信権限",
+        "value": "267",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "操作履歴閲覧権限",
+        "value": "271",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "ユーザ管理権限（登録／削除／変更／権限付与）",
+        "value": "95",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "複数車両ロック権限",
+        "value": "113",
+        "kind": "D",
+        "data_order": "7"
+      },
+      {
+        "key": "SMS送信権限",
+        "value": "120",
+        "kind": "D",
+        "data_order": "8"
+      },
+      {
+        "key": "お知らせ転送権限",
+        "value": "119",
+        "kind": "D",
+        "data_order": "9"
+      },
+      {
+        "key": "オペレータ識別設定管理権限",
+        "value": "133",
+        "kind": "D",
+        "data_order": "10"
+      },
+      {
+        "key": "カレンダ予約ロック権限",
+        "value": "116",
+        "kind": "D",
+        "data_order": "11"
+      },
+      {
+        "key": "パスワードクリア権限",
+        "value": "117",
+        "kind": "D",
+        "data_order": "12"
+      },
+      {
+        "key": "メッセージ送受信権限",
+        "value": "112",
+        "kind": "D",
+        "data_order": "13"
+      },
+      {
+        "key": "レンタル車両管理権限",
+        "value": "97",
+        "kind": "D",
+        "data_order": "14"
+      },
+      {
+        "key": "強制ロック権限/パスワードロック権限",
+        "value": "114",
+        "kind": "D",
+        "data_order": "15"
+      },
+      {
+        "key": "車両管理権限(削除)",
+        "value": "286",
+        "kind": "D",
+        "data_order": "16"
+      },
+      {
+        "key": "車両管理権限（登録／変更）",
+        "value": "96",
+        "kind": "D",
+        "data_order": "17"
+      },
+      {
+        "key": "夜間予約ロック権限",
+        "value": "115",
+        "kind": "D",
+        "data_order": "18"
+      },
+      {
+        "key": "範囲外管理権限",
+        "value": "109",
+        "kind": "D",
+        "data_order": "19"
+      },
+      {
+        "key": "SMR間隔管理項目設定権限",
+        "value": "126",
+        "kind": "D",
+        "data_order": "20"
+      },
+      {
+        "key": "オペレータ識別管理権限",
+        "value": "127",
+        "kind": "D",
+        "data_order": "21"
+      },
+      {
+        "key": "サービス委託管理権限",
+        "value": "135",
+        "kind": "D",
+        "data_order": "22"
+      },
+      {
+        "key": "サブグループ管理権限",
+        "value": "118",
+        "kind": "D",
+        "data_order": "23"
+      },
+      {
+        "key": "サブグループ参照権限",
+        "value": "102",
+        "kind": "D",
+        "data_order": "24"
+      },
+      {
+        "key": "フラグ条件設定権限",
+        "value": "136",
+        "kind": "D",
+        "data_order": "25"
+      },
+      {
+        "key": "顧客管理権限",
+        "value": "99",
+        "kind": "D",
+        "data_order": "26"
+      },
+      {
+        "key": "顧客権限情報一括更新権限",
+        "value": "100",
+        "kind": "D",
+        "data_order": "27"
+      },
+      {
+        "key": "注目車両管理権限",
+        "value": "101",
+        "kind": "D",
+        "data_order": "28"
+      },
+      {
+        "key": "分類管理権限（登録／削除／変更）",
+        "value": "98",
+        "kind": "D",
+        "data_order": "29"
+      },
+      {
+        "key": "累積燃料消費量管理権限",
+        "value": "131",
+        "kind": "D",
+        "data_order": "30"
+      },
+      {
+        "key": "エラー情報の参照権限",
+        "value": "107",
+        "kind": "D",
+        "data_order": "31"
+      },
+      {
+        "key": "ランドマーク管理権限",
+        "value": "104",
+        "kind": "D",
+        "data_order": "32"
+      },
+      {
+        "key": "交換時期情報の参照権限",
+        "value": "108",
+        "kind": "D",
+        "data_order": "33"
+      },
+      {
+        "key": "KDPF要求権限",
+        "value": "125",
+        "kind": "D",
+        "data_order": "34"
+      },
+      {
+        "key": "要求（IDリスト情報）権限",
+        "value": "129",
+        "kind": "D",
+        "data_order": "35"
+      },
+      {
+        "key": "要求（エラー情報）権限",
+        "value": "106",
+        "kind": "D",
+        "data_order": "36"
+      },
+      {
+        "key": "要求（オペ識別情報）権限",
+        "value": "128",
+        "kind": "D",
+        "data_order": "37"
+      },
+      {
+        "key": "要求（交換時期）権限",
+        "value": "111",
+        "kind": "D",
+        "data_order": "38"
+      },
+      {
+        "key": "連絡先管理権限",
+        "value": "130",
+        "kind": "D",
+        "data_order": "39"
+      },
+      {
+        "key": "KOMTRAX端末状態対応編集権限",
+        "value": "123",
+        "kind": "D",
+        "data_order": "40"
+      },
+      {
+        "key": "オペレータ稼動情報参照権限",
+        "value": "103",
+        "kind": "D",
+        "data_order": "41"
+      },
+      {
+        "key": "オペレータ名称参照権限",
+        "value": "226",
+        "kind": "D",
+        "data_order": "42"
+      },
+      {
+        "key": "サービス対応編集権限",
+        "value": "122",
+        "kind": "D",
+        "data_order": "43"
+      },
+      {
+        "key": "セキュリティ対応編集権限",
+        "value": "124",
+        "kind": "D",
+        "data_order": "44"
+      },
+      {
+        "key": "通信不良記録閲覧権限",
+        "value": "110",
+        "kind": "D",
+        "data_order": "45"
+      },
+      {
+        "key": "非工場リージョン権限",
+        "value": "285",
+        "kind": "D",
+        "data_order": "46"
+      },
+      {
+        "key": "要求（基本情報）権限",
+        "value": "105",
+        "kind": "D",
+        "data_order": "47"
+      }
+    ]
+  },
+  {
+    "path": "group.preset_roles.authorities.default_kind",
+    "name": "配下グループ権限（デフォルト区分）",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "34",
+    "items": [
+      {
+        "key": "ON",
+        "value": "1",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "OFF",
+        "value": "0",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  }
+]

@@ -1,0 +1,138 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 管理車両設定管理 カスタム車種変更
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 管理車両設定管理 カスタム車種変更
+    en:
+
+  - id: 3
+    description: フォームタイトル
+    name: caption
+    ja: カスタム車種情報
+    en:
+
+  - id: 4
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 4
+    description: 設定
+    name: setting
+    ja: 設定
+    en:
+
+  - id: 4
+    description: 選択
+    name: select
+    ja: 選択
+    en:
+
+  - id: 12
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 18
+    description: 登録
+    name: submit
+    ja: 変更
+    en:
+
+  - id: 27
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 28
+    description: 反映する
+    name: reflect_btn
+    ja: 反映する
+    en:
+
+  - id: 29
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 30
+    description: 型式選択モーダルタイトル
+    name: model_type_select_modal_title
+    ja: 型式を選択してください。
+    en:
+
+  - id: 31
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 32
+    description: リセットモーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 17
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 33
+    description: 確認モーダルタイトル
+    name: confirm_modal_title
+    ja: 確認メッセージ
+    en:
+
+  - id: 33
+    description: 確認モーダル本文
+    name: confirm_modal_body
+    ja: 選択した内容で設定します。よろしいですか？
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 8
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 8
+    description: 型式
+    name: type
+    ja: 型式
+    en:
+
+  - id: 8
+    description: 機種
+    name: model
+    ja: 機種
+    en:
+
+  - id: 8
+    description: 検索結果なし
+    name: empty_search_result
+    ja: 該当する型式が見つかりませんでした。
+    en:
+
+  - id: 8
+    description: 未設定
+    name: not_set
+    ja: 未設定
+    en:

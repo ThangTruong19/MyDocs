@@ -1,0 +1,128 @@
+<form class="KBA-form" #f="ngForm">
+  <div class="container KBA-register">
+    <div class="customer-select row">
+      <app-kba-selected
+        *ngIf="resource.customer_id"
+        class="col-sm-3"
+        [kbaName]="'customer_id'"
+        [kbaParams]="params"
+        [kbaResource]="resource"
+      >
+      </app-kba-selected>
+    </div>
+    <p class="KBA-form-table__required">
+      {{ labels.description_for_required }}
+    </p>
+    <table class="register-table">
+      <thead>
+        <tr class="row">
+          <th
+            *ngIf="resource.operator_id"
+            class="required d-inline-block col-sm-3"
+          >
+            {{ operatorIdName }}
+          </th>
+          <th *ngIf="resource.operator_label" class="d-inline-block col-sm-9">
+            {{ operatorLabelName }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row" *ngFor="let operator of operators; let idx = index">
+          <td
+            *ngIf="resource.operator_id"
+            class="d-inline-block"
+            [ngClass]="{
+              'col-sm-3': resource.operator_label,
+              'no-operator-label': !resource.operator_label
+            }"
+          >
+            <input
+              type="text" autocomplete="off"
+              name="operator-id-{{ idx }}"
+              class="KBA-input-text form-control"
+              [(ngModel)]="operator.operator_id"
+              (ngModelChange)="onChangeId(f, idx)"
+              [required]="operator.operator_label | isNotEmpty"
+              maxlength="7"
+            />
+          </td>
+          <td class="d-inline-block col-sm-9" *ngIf="resource.operator_label">
+            <input
+              type="text" autocomplete="off"
+              name="operator-name-{{ idx }}"
+              class="KBA-input-text form-control"
+              [(ngModel)]="operator.operator_label"
+              (ngModelChange)="onChangeName(f, idx)"
+              maxlength="255"
+            />
+          </td>
+        </tr>
+        <tr
+          *ngIf="operators.length < 10"
+          class="add-operator-row"
+          [ngClass]="{ row: !resource.operator_label }"
+        >
+          <td
+            class="add-operator form-control"
+            colspan="2"
+            (click)="onClickAddOperator()"
+          >
+            +
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="KBA-panel-footer">
+    <a href="javascript:void(0)" (click)="onClickReset(f)" class="btn btn-link">
+      {{ labels.reset }}
+    </a>
+    <button
+      (click)="onClickSubmit(f)"
+      type="button"
+      class="btn btn-primary"
+      [disabled]="!f.dirty || !f.valid || isNotInputOperators()"
+    >
+      {{ labels.submit }}
+    </button>
+  </div>
+</form>
+
+<ng-template #submitModalContent>
+  <app-kba-tandem-confirm
+    [desc]="customerDesc"
+    [val]="customerVal"
+    *ngIf="isDisplayCustomer"
+  >
+  </app-kba-tandem-confirm>
+
+  <div class="subtitle" *ngIf="isOperatorLabelDuplicate">
+    <p class="text-attention">
+      {{ labels.operator_label_duplication_attention }}
+    </p>
+    <p></p>
+  </div>
+
+  <app-kba-simple-list-confirm
+    [desc]="listDesc"
+    [val]="listVal"
+    [warningColumns]="warningColumns"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #resetModalContent>
+  <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+</ng-template>
+
+<ng-template #resultModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="resultDesc"
+    [val]="resultVal"
+    [warningColumns]="'all'"
+  >
+  </app-kba-simple-list-confirm>
+  <p class="result-count-message">{{ resultCountMessage }}</p>
+</ng-template>

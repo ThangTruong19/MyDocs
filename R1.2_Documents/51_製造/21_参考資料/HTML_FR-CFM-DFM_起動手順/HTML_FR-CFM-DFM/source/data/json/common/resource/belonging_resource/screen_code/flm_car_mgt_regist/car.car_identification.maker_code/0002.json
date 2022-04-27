@@ -1,0 +1,184 @@
+[
+  {
+    "path": "car.car_identification.model",
+    "name": "機種",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "機種",
+    "placeholder_text": null,
+    "data_order": "2",
+    "items": [
+      {
+        "key": "BA200",
+        "value": "BA100",
+        "kind": "D",
+        "data_order": "1"
+      }
+    ]
+  },
+  {
+    "path": "car.car_management_attribute.time_difference",
+    "name": "時差",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "時差",
+    "placeholder_text": null,
+    "data_order": "9",
+    "items": [
+      {
+        "key": "-12",
+        "value": "-12",
+        "kind": "D"
+      },
+      {
+        "key": "-11",
+        "value": "-11",
+        "kind": "D"
+      },
+      {
+        "key": "-10",
+        "value": "-10",
+        "kind": "D"
+      },
+      {
+        "key": "-09",
+        "value": "-09",
+        "kind": "D"
+      },
+      {
+        "key": "-08",
+        "value": "-08",
+        "kind": "D"
+      },
+      {
+        "key": "-07",
+        "value": "-07",
+        "kind": "D"
+      },
+      {
+        "key": "-06",
+        "value": "-06",
+        "kind": "D"
+      },
+      {
+        "key": "-05",
+        "value": "-05",
+        "kind": "D"
+      },
+      {
+        "key": "-04",
+        "value": "-04",
+        "kind": "D"
+      },
+      {
+        "key": "-03",
+        "value": "-03",
+        "kind": "D"
+      },
+      {
+        "key": "-02",
+        "value": "-02",
+        "kind": "D"
+      },
+      {
+        "key": "-01",
+        "value": "-01",
+        "kind": "D"
+      },
+      {
+        "key": "-00",
+        "value": "-00",
+        "kind": "D"
+      },
+      {
+        "key": "+00",
+        "value": "+00",
+        "kind": "D"
+      },
+      {
+        "key": "+01",
+        "value": "+01",
+        "kind": "D"
+      },
+      {
+        "key": "+02",
+        "value": "+02",
+        "kind": "D"
+      },
+      {
+        "key": "+03",
+        "value": "+03",
+        "kind": "D"
+      },
+      {
+        "key": "+04",
+        "value": "+04",
+        "kind": "D"
+      },
+      {
+        "key": "+05",
+        "value": "+05",
+        "kind": "D"
+      },
+      {
+        "key": "+06",
+        "value": "+06",
+        "kind": "D"
+      },
+      {
+        "key": "+07",
+        "value": "+07",
+        "kind": "D"
+      },
+      {
+        "key": "+08",
+        "value": "+08",
+        "kind": "D"
+      },
+      {
+        "key": "+09",
+        "value": "+09",
+        "kind": "D"
+      },
+      {
+        "key": "+10",
+        "value": "+10",
+        "kind": "D"
+      },
+      {
+        "key": "+11",
+        "value": "+11",
+        "kind": "D"
+      },
+      {
+        "key": "+12",
+        "value": "+12",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.car_management_attribute.time_difference_minute",
+    "name": "時差",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": "1",
+    "memo": "時差",
+    "placeholder_text": null,
+    "data_order": "10",
+    "items": [
+      {
+        "key": "00",
+        "value": "00",
+        "kind": "D"
+      },
+      {
+        "key": "30",
+        "value": "30",
+        "kind": "D"
+      }
+    ]
+  }
+]

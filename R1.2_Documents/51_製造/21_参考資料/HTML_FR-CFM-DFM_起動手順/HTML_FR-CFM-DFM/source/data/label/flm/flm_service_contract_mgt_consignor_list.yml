@@ -1,0 +1,192 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: サービス委託管理　申請一覧
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: サービス委託管理
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 10
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 11
+    description: 表示項目設定
+    name: field_select
+    ja: 表示項目設定
+    en:
+
+  - id: 12
+    description: 表示項目選択
+    name: field_select_title
+    ja: 表示項目設定
+    en:
+
+  - id: 13
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 14
+    description: サービスDB変更申請
+    name: apply_edit
+    ja: サービスDB変更申請
+    en:
+
+  - id: 15
+    description: サービスDB委託解除
+    name: unlink_contract
+    ja: サービスDB委託解除
+    en:
+
+  - id: 16
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 17
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当するサービス委託が見つかりませんでした。
+    en:
+
+  - id: 20
+    description: サービスDB委託解除確認モーダル本文
+    name: unlink_modal_body
+    ja: 以下のサービスDB委託情報を解除します。よろしいですか?
+    en:
+
+  - id: 21
+    description: サービスDB委託解除処理完了メッセージ
+    name: unlink_result_label
+    ja:  サービスDB委託解除が完了しました
+    en:
+
+  - id: 22
+    description: 結果
+    name: result
+    ja: 結果
+    en:
+
+  - id: 23
+    description: 内容
+    name: result_detail
+    ja: 内容
+    en:
+
+  - id: 24
+    description: 結果件数
+    name: result_count_message
+    ja: '${total} 件中 成功${success}件 失敗${fail}件'
+    en:
+
+  - id: 25
+    description: 解除
+    name: unlink
+    ja: 解除
+    en:
+
+  - id: 26
+    description: サービスDB変更申請
+    name: service_db_edit
+    ja:  サービスDB変更申請
+    en:
+
+  - id: 6
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 6
+    description: サービスDB一括設定
+    name: service_db_all_edit
+    ja: サービスDB一括設定
+    en:
+
+  - id: 27
+    description: 申請
+    name: apply
+    ja: 申請
+    en:
+
+  - id: 28
+    description: 戻る
+    name: back
+    ja: 戻る
+    en:
+
+  - id: 29
+    description: 以下の内容で変更します。よろしいですか?
+    name: apply_modal_title
+    ja: 以下の内容で変更します。よろしいですか
+    en:
+
+  - id: 30
+    description: 結果モーダルタイトル
+    name: apply_result_label
+    ja: サービス代理店の変更申請処理が完了しました
+    en:
+
+  - id: 30
+    description: サービス代理店変更申請
+    name: service_db_edit_title
+    ja: サービス代理店変更申請
+    en:
+
+  - id: 24
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

@@ -1,0 +1,44 @@
+@import "../../../../../../assets/styles/flm/variable";
+@import "../../../../../../assets/styles/util";
+
+.container-fluid {
+  padding-bottom: 54px;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+
+  .annotation {
+    display: flex;
+    align-items: center;
+
+    .caption {
+      margin-bottom: 5px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 22px;
+    }
+
+    .KBA-form-table__required {
+      margin-left: 10px;
+    }
+  }
+
+  .search {
+    min-width: 200px;
+    cursor: pointer;
+
+    .btn-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .kba-icon-search {
+        margin-left: 8px;
+        font-size: 17px;
+      }
+    }
+  }
+}

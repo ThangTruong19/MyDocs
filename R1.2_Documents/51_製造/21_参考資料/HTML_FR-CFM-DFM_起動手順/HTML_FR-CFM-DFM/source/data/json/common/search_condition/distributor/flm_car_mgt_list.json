@@ -1,0 +1,18 @@
+[
+  {
+    "path": "common.customer_attribute.customer_car_no",
+    "value": ["5589221"]
+  },
+  {
+    "path": "common.car_identification.model_type_revs",
+    "value": [""]
+  },
+  {
+    "path": "common.car_identification.serials",
+    "value": ["AB100", "TT1230"]
+  },
+  {
+    "path": "common.distributor_attribute.class_1_ids",
+    "value": ["0"]
+  }
+]

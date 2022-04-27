@@ -1,0 +1,78 @@
+th {
+  &.th-area {
+    width: 148px;
+    flex-shrink: 0;
+    padding: 0 !important;
+
+    span {
+      display: flex;
+      height: 50%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ul {
+      display: flex;
+      height: 50%;
+      justify-content: center;
+      align-items: center;
+
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+      }
+    }
+  }
+
+  &.th-group_areas_no {
+    width: 48px;
+    flex-shrink: 0;
+  }
+
+  &.th-group_areas_edit_feature_properties_type_name {
+    width: 85px;
+    flex-shrink: 0;
+  }
+}
+
+td {
+  &.td-group_areas_edit_feature_properties_east_west_distance,
+  &.td-group_areas_edit_feature_properties_north_south_distance {
+    width: 74px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  &.td-group_areas_no {
+    width: 48px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  &.td-group_areas_edit_feature_properties_type_name {
+    width: 85px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  &.icon-image {
+    > img {
+      height: 64px;
+      width: 64px;
+    }
+  }
+}
+
+.th-landmarks_free_memo,
+.td-landmarks_free_memo {
+  width: 150% !important;
+}
+
+.td-landmarks_free_memo span {
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}

@@ -1,0 +1,75 @@
+@import "../../../../../assets/styles/variable";
+@import "../../../../../assets/styles/util";
+
+.publish-btn {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 57px;
+  justify-content: center;
+  align-items: center;
+
+  > span {
+    display: block;
+    min-width: 65px;
+    height: 30px;
+    line-height: 27px;
+    text-align: center;
+    cursor: pointer;
+    border: 1.5px solid;
+    border-radius: 4px;
+
+    &.off {
+      color: #858585;
+      border-color: #858585;
+
+      &:hover {
+        background-color: #e6e6e6;
+      }
+    }
+
+    &.on {
+      color: #fff;
+      background-color: $kba-green-color;
+      @include btnBorder($kba-green-color);
+
+      &:hover {
+        background-color: $kba-darkgreen-color;
+        @include btnBorder($kba-darkgreen-color);
+      }
+    }
+  }
+
+  &.disable {
+    background-color: #f5f5f5 !important;
+
+    span {
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.3;
+    }
+  }
+}
+
+.publish-label {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+
+  > span {
+    width: 100%;
+    height: 100%;
+    line-height: 33px;
+    vertical-align: middle;
+
+    &.off {
+      color: #858585;
+    }
+
+    &.on {
+      color: $kba-green-color;
+    }
+  }
+}

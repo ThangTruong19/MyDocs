@@ -1,0 +1,47 @@
+[
+  {
+    "path": "display_landmarks",
+    "name": "ランドマークの表示",
+    "help": "ランドマークの表示のヘルプ文言",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "display_bond_areas",
+    "name": "保税エリアの表示",
+    "help": "保税エリアの表示のヘルプ文言",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "model_type_serial_caption_display_kind",
+    "name": "機種-型式-機番",
+    "help": "機種-型式-機番のヘルプ文言",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "customer_car_no_caption_display_kind",
+    "name": "顧客車両番号",
+    "help": "顧客車両番号のヘルプ文言",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "landmark_label_caption_display_kind",
+    "name": "ランドマーク名",
+    "help": "ランドマーク名のヘルプ文言",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

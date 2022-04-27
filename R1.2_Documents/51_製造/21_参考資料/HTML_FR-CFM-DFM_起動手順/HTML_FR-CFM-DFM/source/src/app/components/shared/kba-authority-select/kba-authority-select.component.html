@@ -1,0 +1,48 @@
+<ng-container *ngIf="authorities">
+  <ng-container *ngIf="!customSelectButtons">
+    <div class="row-authority-select-buttons">
+      <button
+        (click)="onClickSelect()"
+        type="button"
+        class="btn btn-primary select"
+      >
+        {{ labels.select }}
+      </button>
+    </div>
+  </ng-container>
+  <ng-container
+    *ngTemplateOutlet="
+      customSelectButtons;
+      context: { selectedUser: selectedUser }
+    "
+  ></ng-container>
+  <ng-container *ngIf="!customSelectedAuthorities">
+    <div
+      class="row-selected-authorities"
+      *ngIf="selectedAuthorities | isNotEmpty"
+    >
+      <div
+        class="KBA-list-select-tag"
+        *ngFor="let listItem of getAuthorities(selectedAuthorities)"
+      >
+        <span>
+          {{ listItem.name }}
+        </span>
+        <button type="button" (click)="onClickRemoveTag(listItem.value)">
+          <i class="kba-icon-close"></i>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngTemplateOutlet="customSelectedAuthorities"></ng-container>
+</ng-container>
+
+<ng-template #authoritySelectModalContent>
+  <app-kba-authority-select-modal
+    [labels]="labels"
+    [authorities]="authorities"
+    [selectedAuthorities]="evacuateSelectedAuthorities"
+    (check)="authorityChecked($event)"
+    (checkedAll)="toggleCheckAll($event)"
+  ></app-kba-authority-select-modal>
+</ng-template>

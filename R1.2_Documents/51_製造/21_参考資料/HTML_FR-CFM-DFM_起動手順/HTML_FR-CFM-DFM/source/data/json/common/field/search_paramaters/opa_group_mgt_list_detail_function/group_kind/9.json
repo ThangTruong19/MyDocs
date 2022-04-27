@@ -1,0 +1,198 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "グループID",
+    "path": "group.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "最終更新日時",
+    "path": "group.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "公開中",
+    "path": "group.attribute.publish_kind",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "グループ分類",
+    "path": "group.identification.kind_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "グループ名称",
+    "path": "group.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "グループ名称（英語）",
+    "path": "group.identification.label_english",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "組織コード",
+    "path": "group.identification.organization_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "顧客向け公開名称",
+    "path": "group.attribute.customer_publish_group_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "電話番号",
+    "path": "group.attribute.phone_no",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "電子メール",
+    "path": "group.attribute.email",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "住所",
+    "path": "group.attribute.address",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "所属国",
+    "path": "group.attribute.nation_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "11",
+    "name": "時差",
+    "path": "group.attribute.time_difference",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "12",
+    "name": "所属ブロック",
+    "path": "group.configuration_groups.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "13",
+    "name": "言語",
+    "path": "group.langs.name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "14",
+    "name": "デフォルト言語",
+    "path": "group.default_lang",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "15",
+    "name": "地図ソフト",
+    "path": "group.map_application.name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "16",
+    "name": "逆引き地名言語",
+    "path": "group.map_application.lang_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "17",
+    "name": "マップ初期位置",
+    "path": "group.map",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "18",
+    "name": "公開先区分",
+    "path": "group.publish_target",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "19",
+    "name": "チャイルド工場",
+    "path": "group.child_plants.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "20",
+    "name": "権限（管理者）",
+    "path": "group.administrator_role",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "22",
+    "name": "権限（一般）",
+    "path": "group.general_role",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "25",
+    "name": "権限（配下グループ）",
+    "path": "group.preset_roles",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "27",
+    "name": "KeyPersonID",
+    "path": "group.represent_administrator.user_account",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "28",
+    "name": "KeyPerson名",
+    "path": "group.represent_administrator.user_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "29",
+    "name": "会社名",
+    "path": "group.represent_administrator.company_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "30",
+    "name": "所属国",
+    "path": "group.represent_administrator.nation_name",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

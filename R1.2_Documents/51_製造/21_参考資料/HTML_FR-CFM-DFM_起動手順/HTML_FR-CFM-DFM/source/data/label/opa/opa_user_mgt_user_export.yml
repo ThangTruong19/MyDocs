@@ -1,0 +1,42 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 運用ユーザ管理　ユーザ一覧出力
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 運用ユーザ管理　ユーザ一覧出力
+    en:
+
+  - id: 12
+    description: 出力対象グループ
+    name: caption
+    ja: 出力対象グループ
+    en:
+
+  - id: 13
+    description: Excel出力
+    name: export_btn
+    ja: Excel出力
+    en:
+
+  - id: 14
+    description: 合計
+    name: total
+    ja: 合計
+    en:
+
+  - id: 15
+    description: ユーザ分類
+    name: user_class
+    ja: ユーザ分類
+    en:
+
+  - id: 16
+    description: ユーザ数
+    name: user_count
+    ja: ユーザ数
+    en:

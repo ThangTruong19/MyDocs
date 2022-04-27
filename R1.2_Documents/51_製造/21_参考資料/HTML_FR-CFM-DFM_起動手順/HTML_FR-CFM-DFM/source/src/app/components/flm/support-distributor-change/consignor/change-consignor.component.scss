@@ -1,0 +1,42 @@
+@import "../../../../../assets/styles/flm/_variable.scss";
+
+.block-header {
+  color: $kba-main-color;
+}
+
+.support_db-all-edit-container {
+  display: flex;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  flex-direction: row-reverse;
+
+  .support_db-all-edit {
+    display: flex;
+
+    .support_db-all-edit-label {
+      margin: 0 10px 0 0;
+      font-weight: normal;
+      line-height: 40px;
+    }
+
+    app-kba-selected {
+      width: 200px;
+    }
+  }
+}
+
+.edit-table {
+  .th-cars_support_distributor_label,
+  .td-cars_support_distributor_label {
+    flex-shrink: 0;
+    width: 200px !important;
+  }
+
+  .td-cars_support_distributor_label {
+    overflow: visible;
+  }
+}
+
+.result-count-message {
+  margin-top: 12px;
+}

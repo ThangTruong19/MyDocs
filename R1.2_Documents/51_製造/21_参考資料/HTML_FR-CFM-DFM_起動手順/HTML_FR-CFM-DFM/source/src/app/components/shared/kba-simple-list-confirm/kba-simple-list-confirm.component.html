@@ -1,0 +1,66 @@
+<div class="table-auto-height">
+  <table class="KBA-table-modal KBA-table table table-bordered">
+    <thead class="KBA-table-thead-modal KBA-table-thead">
+      <tr class="KBA-table-flex-cell-modal">
+        <ng-container *ngFor="let d of desc; let idx = index">
+          <th
+            *ngIf="d.displayable"
+            class="KBA-form-table__head"
+            [ngClass]="{
+              'fixed-column':
+                isfixedColumn(d[identifier]) || d.name === 'result',
+              'wide-column': isWideColumn(d[identifier])
+            }"
+          >
+            {{ d.label }}
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody class="KBA-form-table-tbody KBA-table-tbody">
+      <tr
+        class="KBA-table-flex-cell-modal"
+        [ngClass]="row.css_class"
+        *ngFor="let row of val"
+      >
+        <ng-container *ngFor="let d of desc; let idx = index">
+          <td
+            *ngIf="d.displayable"
+            class="KBA-form-table__value"
+            [ngClass]="{
+              'warning-column': isWarningColumn(d[identifier]),
+              'fixed-column':
+                isfixedColumn(d[identifier]) || d.name === 'result',
+              'wide-column': isWideColumn(d[identifier])
+            }"
+          >
+            <ng-container [ngSwitch]="displayType(row[d[identifier]])">
+              <ng-container *ngSwitchCase="'null'"></ng-container>
+              <p *ngSwitchCase="'string'">{{ row[d[identifier]] }}</p>
+              <div *ngSwitchCase="'array'">
+                <p *ngFor="let vItem of row[d[identifier]]">{{ vItem }}</p>
+              </div>
+              <div *ngSwitchCase="'result'" class="result">
+                <i
+                  *ngIf="row[d[identifier]].success && !row[d[identifier]].warning"
+                  class="kba-icon-check"
+                ></i>
+                <i
+                  *ngIf="row[d[identifier]].success && row[d[identifier]].warning"
+                  class="fa fa-warning"
+                ></i>
+                <i
+                  *ngIf="!row[d[identifier]].success"
+                  class="kba-icon-close"
+                ></i>
+              </div>
+              <div *ngSwitchDefault>
+                {{ row[d[identifier]] | json }}
+              </div>
+            </ng-container>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,61 @@
+<div class="MonthPickerFlyout">
+  <div class="MonthPickerFlyout_Body">
+    <div class="Calendar">
+      <div class="Calendar_Head">
+        <button
+          (click)="onClickPrev($event)"
+          [attr.disabled]="disabledPrevYearButton ? true : null"
+          type="button"
+          class="Calendar_HeadButton"
+        >
+          <span class="Icon-nav-arrow-left"></span>
+        </button>
+        <span class="Calendar_HeadTitle">{{labels.title}}</span>
+        <button
+          (click)="onClickNext($event)"
+          [attr.disabled]="disabledNextYearButton ? true : null"
+          type="button"
+          class="Calendar_HeadButton"
+        >
+          <span class="Icon-nav-arrow-right"></span>
+        </button>
+      </div>
+      <div class="Calendar_Body">
+        <div class="Calendar_Items" *ngFor="let monthObj of monthList">
+          <button
+            (click)="onClickMonth($event, monthObj)"
+            [attr.disabled]      ="monthObj.disabled ? true : null"
+            [class.is-this-month]="monthObj.isThisMonth"
+            [class.is-selected]  ="monthObj.isSelected"
+            type="button"
+            class="Calendar_Item"
+          >
+            {{getLabel(monthObj)}}
+          </button>
+        </div>
+      </div>
+      <div class="Calendar_Foot">
+        <button
+          *ngIf="isVisibleClearButton"
+          type="button"
+          class="Calendar_Clear"
+          (click)="onClickClear($event)"
+        >
+          <span class="Icon-minus"></span>
+          <span>{{labels.clearButton}}</span>
+        </button>
+        <button
+          class="Calendar_Close"
+          (click)="onClickClose($event)"
+        >
+          <span class="Icon-cancel"></span>
+          <span>{{labels.closeButton}}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="MonthPickerFlyout_Backdrop" (click)="onClickClose($event)"></div>
+
+  </div>
+
+</div>

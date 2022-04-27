@@ -1,0 +1,258 @@
+<section id="KBA-history" *ngIf="labels && resource && datePickerParams">
+  <div class="container-fluid">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content">
+      <!-- 一覧画面 -->
+      <ng-container>
+        <!-- 検索アコーディオン -->
+        <app-kba-accordion
+          [collapsed]="collapsed"
+          [useCustomHeader]="false"
+          [title]="labels.search_condition"
+          [labels]="labels"
+          (onChangeState)="changePanelState($event)"
+        >
+          <div data-kba-accordion-body>
+            <div class="container KBA-search">
+              <div class="row">
+                <app-kba-selected
+                  class="col-sm-3"
+                  *ngIf="resource.operation_history.app_code"
+                  [kbaName]="'app_code'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource.operation_history"
+                  (onChangeSelectItem)="handleAppCodeChange($event)"
+                >
+                </app-kba-selected>
+
+                <app-kba-selected
+                  #categoryCodeSelect
+                  class="col-sm-3"
+                  *ngIf="resource.operation_history.category_code"
+                  [kbaName]="'category_code'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource.operation_history"
+                  [emitInitialRefresh]="false"
+                  (onChangeSelectItem)="onCategoryCodeChange($event)"
+                >
+                </app-kba-selected>
+
+                <app-kba-selected
+                  #belongingCategoryCode
+                  class="col-sm-3"
+                  *ngIf="resource.operation_history.code"
+                  [kbaName]="'code'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource.operation_history"
+                >
+                </app-kba-selected>
+
+                <app-kba-selected
+                  class="col-sm-3"
+                  *ngIf="resource.operation_history.group_kind_id"
+                  [kbaName]="'group_kind_id'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource.operation_history"
+                  [emitInitialRefresh]="false"
+                  (onChangeSelectItem)="onGroupKindChange($event)"
+                >
+                </app-kba-selected>
+
+                <app-kba-selected
+                  #belongingGroupKindId
+                  class="col-sm-3"
+                  *ngIf="resource.operation_history.group_id"
+                  [kbaName]="'group_id'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource.operation_history"
+                >
+                </app-kba-selected>
+
+                <app-kba-selected
+                  class="col-sm-3"
+                  *ngIf="resource.operation_history.division_code"
+                  [kbaName]="'division_code'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource.operation_history"
+                >
+                </app-kba-selected>
+
+                <app-kba-selected
+                  class="col-sm-3"
+                  *ngIf="resource.operation_history.maker_code"
+                  [kbaName]="'maker_code'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource.operation_history"
+                >
+                </app-kba-selected>
+
+                <app-kba-text
+                  class="col-sm-3"
+                  [kbaName]="'model'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource.operation_history"
+                  [maxlength]="20"
+                >
+                </app-kba-text>
+
+                <app-kba-text
+                  class="col-sm-3"
+                  [kbaName]="'type_rev'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource.operation_history"
+                  [maxlength]="15"
+                >
+                </app-kba-text>
+
+                <app-kba-text
+                  class="col-sm-3"
+                  [kbaName]="'serials'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource.operation_history"
+                >
+                </app-kba-text>
+
+                <app-kba-text
+                  class="col-sm-3"
+                  [kbaName]="'search_keyword'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource.operation_history"
+                  [maxlength]="2048"
+                >
+                </app-kba-text>
+
+                <app-kba-from-to-date-picker
+                  class="col-sm-6"
+                  [from]="'date_from'"
+                  [to]="'date_to'"
+                  [params]="params"
+                  [resource]="resource.operation_history"
+                  [labels]="labels"
+                  [beginningWday]="beginningWday"
+                  [enableDateRange]="enableDateRange"
+                  [dateFormat]="_dateFormat"
+                  [timeZone]="timeZone"
+                  [fromDisplay]="'date_from_formatted'"
+                  [toDisplay]="'date_to_formatted'"
+                  [required]="true"
+                >
+                </app-kba-from-to-date-picker>
+              </div>
+            </div>
+            <div class="KBA-panel-footer">
+              <button
+                (click)="onClickSearch()"
+                type="button"
+                class="btn btn-primary search"
+              >
+                {{ labels.search }}
+              </button>
+            </div>
+          </div>
+        </app-kba-accordion>
+
+        <!-- 一覧テーブル上部検索オプション欄 -->
+        <div class="KBA-table-options" [hidden]="count <= 0">
+          <app-kba-pagination
+            [count]="count"
+            [params]="pageParams"
+            [labels]="labels"
+            [element]="pageCountEl"
+            (changeState)="onPaginationChange()"
+          >
+          </app-kba-pagination>
+
+          <div class="table-option-buttons">
+            <div class="popover-wrapper">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="onClickFieldSelect($event)"
+              >
+                {{ labels.field_select }}
+              </button>
+              <app-kba-popover
+                [labels]="labels"
+                [resource]="fieldResources"
+                [fields]="fields"
+                [title]="labels.field_select_title"
+                [(isVisible)]="fieldSelectPopoverVisible"
+                (ok)="onFieldSelectOk($event)"
+              >
+              </app-kba-popover>
+            </div>
+            <div class="popover-wrapper">
+              <button
+                type="button"
+                class="btn btn-warning"
+                (click)="onClickDownloadAll($event)"
+              >
+                {{ labels.download_all }}
+                <i class="kba-icon kba-icon-download"></i>
+              </button>
+              <app-kba-popover
+                [labels]="labels"
+                [resource]="downloadFieldResources"
+                [fields]="downloadFields"
+                [title]="labels.download_select_title"
+                [(isVisible)]="downloadPopoverVisible"
+                [download]="true"
+                [downloadType]="resource.file_content_type"
+                (ok)="onDownloadOk($event)"
+              ></app-kba-popover>
+            </div>
+          </div>
+        </div>
+
+        <!-- 一覧テーブル -->
+        <div class="KBA-table-wrapper">
+          <app-kba-table
+            [customTableThContent]="customTableThContent"
+            [customTableRowContent]="customTableRowContent"
+            [lists]="lists"
+            [pageParams]="pageParams"
+            [thList]="thList"
+            [sortableThList]="sortableThList"
+            [(sortingParams)]="sortingParams"
+            [labels]="labels"
+            [collapsed]="collapsed"
+            [isFetching]="isFetching"
+            (sort)="onChangeSort($event)"
+          >
+          </app-kba-table>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>
+
+<ng-template #customTableThContent>
+  <ng-container *ngFor="let th of thList">
+    <th
+      *ngIf="th.displayable"
+      class="KBA-index-th th-{{ th.shortName }}"
+      appKbaSortingLabel
+      [ngClass]="{ 'disable-sort': !th.sortable }"
+      [(sortingParams)]="sortingParams"
+      [labelName]="th.sortKey || th.name"
+      [sortableThList]="sortableThList"
+      (sort)="onChangeSort($event)"
+    >
+      <span>{{ th.label || labels[th.shortName] }}</span>
+    </th>
+  </ng-container>
+</ng-template>
+
+<ng-template #customTableRowContent let-data="data" let-title="title">
+  <ng-container *ngFor="let title of thList">
+    <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
+      <td
+        class="td-{{ title.shortName }} KBA-index-td d-flex align-items-center"
+      >
+        <span>{{ data[title.name] }}</span>
+      </td>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

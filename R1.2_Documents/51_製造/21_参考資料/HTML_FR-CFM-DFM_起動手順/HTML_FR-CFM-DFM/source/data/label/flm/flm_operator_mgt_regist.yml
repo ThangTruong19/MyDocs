@@ -1,0 +1,84 @@
+labels:
+  - id: 14
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 16
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 20
+    description: IDを登録する
+    name: submit
+    ja: IDを登録する
+    en:
+
+  - id: 21
+    description: 登録確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容を登録します。よろしいですか？
+    en:
+
+  - id: 22
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 23
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか？
+    en:
+
+  - id: 25
+    description: 必須説明
+    name: description_for_required
+    ja: '(*)…必須項目'
+    en:
+
+  - id: 33
+    description: オペレータ名重複注意文
+    name: operator_label_duplication_attention
+    ja: 同一の姓名で登録済みのオペレータがいます
+    en:
+
+  - id: 35
+    description: オペレータ登録処理完了メッセージ
+    name: operator_id_register_result_label
+    ja: オペレータの登録処理が完了しました
+    en:
+
+  - id: 38
+    description: 結果
+    name: result
+    ja: 結果
+    en:
+
+  - id: 39
+    description: 内容
+    name: result_detail
+    ja: 内容
+    en:
+
+  - id: 40
+    description: 結果件数
+    name: result_count_message
+    ja: '${total} 件中 成功${success}件 失敗${fail}件'
+    en:
+
+  - id: 1001
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 24
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

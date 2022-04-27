@@ -1,0 +1,23 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ランドマークID",
+    "path": "landmarks.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "ランドマーク名称",
+    "path": "landmarks.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "更新日時",
+    "path": "landmarks.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

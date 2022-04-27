@@ -1,0 +1,12 @@
+{
+  "extends": "stylelint-config-primer",
+  "rules": {
+    "selector-max-compound-selectors": 6,
+    "selector-max-type": 3,
+    "selector-max-id": 1,
+    "selector-max-specificity": "1,2,0",
+    "max-nesting-depth": 10,
+    "selector-no-qualifying-type": null,
+    "at-rule-blacklist": []
+  }
+}

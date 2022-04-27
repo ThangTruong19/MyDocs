@@ -1,0 +1,196 @@
+<!-- 変更 -->
+<div class="container-fluid">
+  <h2 class="KBA-page-title">{{ labels.title }}</h2>
+
+  <div class="KBA-content">
+    <form class="KBA-form">
+      <h3 class="block-header">{{ labels.time_difference_edit }}</h3>
+      <div>
+        <p>
+          {{ labels.time_difference_car_number }}{{ selectedCarIds.length }}
+        </p>
+      </div>
+
+      <div class="time_difference-all-edit-container">
+        <div class="time_difference-all-edit">
+          <label class="time_difference-all-edit-label">
+            {{ labels.time_difference_all_edit }}
+          </label>
+          <div class="time-difference">
+            <div class="time-difference_block">
+              <app-kba-selected
+                #allEditSelect
+                class="time-difference_select"
+                [kbaName]="'time_difference'"
+                [kbaParams]="timeDifference"
+                [kbaResource]="hourResource.full"
+                [showLabel]="false"
+                [hasEmpty]="true"
+                (onChangeSelectItem)="onAllTimeDiffrenceChange($event)"
+              ></app-kba-selected>
+              <span>{{ labels.hour }}</span>
+            </div>
+            <div class="time-difference_block">
+              <app-kba-selected
+                #allMinuteEditSelect
+                class="time-difference_select"
+                [kbaName]="'time_difference_minute'"
+                [kbaParams]="timeDifference"
+                [kbaResource]="minuteResource.full"
+                [showLabel]="false"
+                [hasEmpty]="true"
+                (onChangeSelectItem)="onAllTimeDiffrenceMinuteChange($event)"
+              ></app-kba-selected>
+              <span>{{ labels.minute }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-kba-table
+        class="edit-table"
+        [customTableThContent]="customTableThContent"
+        [customTableRowContent]="customTableRowContent"
+        [lists]="lists"
+        [params]="params"
+        [thList]="thList"
+        [labels]="labels"
+        [collapsed]="collapsed"
+        [sortingParams]="sortingParams"
+        [isFetching]="isFetching"
+        [sortableThList]="[]"
+        [emptyListMessage]="labels.delete_empty_list_message"
+        (scroll)="handleScroll()"
+      >
+        <ng-template #customTableThContent>
+          <ng-container *ngFor="let title of thList">
+            <th
+              *ngIf="title.displayable"
+              class="th-{{ title.shortName }} KBA-index-th"
+            >
+              {{ title.label }}
+            </th>
+          </ng-container>
+        </ng-template>
+
+        <ng-template #customTableRowContent let-data="data" let-idx="idx">
+          <ng-container *ngFor="let title of thList" [ngSwitch]="title.name">
+            <ng-container *ngIf="title.displayable">
+              <td
+                *ngSwitchCase="
+                  'cars.car_management_attribute.change_after_time_difference'
+                "
+                class="td-{{ title.shortName }} KBA-index-td select-{{
+                  idx
+                }} KBA-index-td d-flex align-items-center"
+                [ngClass]="{
+                  'select-invalid':
+                    editParams.cars[idx].time_difference ===
+                    originalEditParams.cars[idx].time_difference
+                }"
+              >
+                <div class="time-difference">
+                  <div
+                    class="time-difference_block"
+                    [ngClass]="{
+                      'select-invalid': !isValidHourSelect(data, idx)
+                    }"
+                  >
+                    <app-kba-selected
+                      #timeDifferenceSelects
+                      class="time-difference_select"
+                      [kbaName]="'time_difference'"
+                      [kbaParams]="timeDifferences[idx]"
+                      [kbaResource]="
+                        isFifteenMinutes(data)
+                          ? hourResource.full
+                          : hourResource.omitted
+                      "
+                      [showLabel]="false"
+                      [appendTo]="'body'"
+                      (onChangeSelectItem)="onTimeDiffrenceChange(idx)"
+                    >
+                    </app-kba-selected>
+                    <span>{{ labels.hour }}</span>
+                  </div>
+                  <div
+                    class="time-difference_block"
+                    [ngClass]="{
+                      'select-invalid': !isValidMinuteSelect(data, idx)
+                    }"
+                  >
+                    <app-kba-selected
+                      #timeDifferenceSelects
+                      class="time-difference_select"
+                      [kbaName]="'time_difference_minute'"
+                      [kbaParams]="timeDifferences[idx]"
+                      [kbaResource]="
+                        isFifteenMinutes(data)
+                          ? minuteResource.full
+                          : minuteResource.omitted
+                      "
+                      [showLabel]="false"
+                      [appendTo]="'body'"
+                      (onChangeSelectItem)="onTimeDiffrenceChange(idx)"
+                    >
+                    </app-kba-selected>
+                    <span>{{ labels.minute }}</span>
+                  </div>
+                </div>
+              </td>
+              <!-- 時差 -->
+              <td
+                class="d-flex align-items-center"
+                *ngSwitchCase="'cars.car_management_attribute.time_difference'"
+              >
+                <span>{{ formatTimeDifference(data[title.name]) }}</span>
+              </td>
+              <td
+                *ngSwitchDefault
+                class="td-{{
+                  title.shortName
+                }} KBA-index-td d-flex align-items-center"
+              >
+                <span>{{ data[title.name] }}</span>
+              </td>
+            </ng-container>
+          </ng-container>
+        </ng-template>
+      </app-kba-table>
+
+      <footer class="KBA-form-footer-fixed">
+        <button class="btn btn-secondary" type="button" (click)="onClickBack()">
+          {{ labels.back }}
+        </button>
+        <button
+          class="btn btn-primary"
+          type="button"
+          (click)="onClickSubmit()"
+          [disabled]="!isEditValid"
+        >
+          {{ labels.submit }}
+        </button>
+      </footer>
+    </form>
+  </div>
+</div>
+
+<!-- 変更モーダル -->
+<ng-template #editModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="editModalValues.listDesc"
+    [val]="editModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<!-- 結果モーダル -->
+<ng-template #resultModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="resultDesc"
+    [val]="resultVal"
+    [warningColumns]="'all'"
+  >
+  </app-kba-simple-list-confirm>
+  <p class="result-count-message">{{ resultCountMessage }}</p>
+</ng-template>

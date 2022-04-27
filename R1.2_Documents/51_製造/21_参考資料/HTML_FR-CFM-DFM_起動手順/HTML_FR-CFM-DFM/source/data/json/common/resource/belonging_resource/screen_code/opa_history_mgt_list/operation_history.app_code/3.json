@@ -1,0 +1,17 @@
+[
+  {
+    "path": "operation_history.category_code",
+    "name": "大分類",
+    "help": "大分類のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "大分類2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  }
+]

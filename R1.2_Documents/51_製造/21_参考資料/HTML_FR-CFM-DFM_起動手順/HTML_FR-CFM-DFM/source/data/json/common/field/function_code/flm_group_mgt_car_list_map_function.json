@@ -1,0 +1,72 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "車両エリアID",
+    "path": "car.car_areas.id",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "車両エリアNo",
+    "path": "car.car_areas.no",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "車両エリア名称",
+    "path": "car.car_areas.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "説明",
+    "path": "car.car_areas.description",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "登録形式 ",
+    "path": "car.car_areas.edit_feature.geometry.type",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "登録形式名称",
+    "path": "car.car_areas.edit_feature.properties.type_name",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "座標",
+    "path": "car.car_areas.feature.geometry.coordinates",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "座標（編集用）",
+    "path": "car.car_areas.edit_feature.geometry.coordinates",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "東西距離",
+    "path": "car.car_areas.edit_feature.properties.east_west_distance",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "南北距離",
+    "path": "car.car_areas.edit_feature.properties.north_south_distance",
+    "control_code": "0",
+    "display_code": "1"
+  }
+]

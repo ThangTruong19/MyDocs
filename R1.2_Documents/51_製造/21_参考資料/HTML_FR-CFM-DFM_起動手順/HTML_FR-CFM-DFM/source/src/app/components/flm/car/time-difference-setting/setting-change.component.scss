@@ -1,0 +1,58 @@
+@import "../../../../../assets/styles/flm/_variable.scss";
+
+.block-header {
+  color: $kba-main-color;
+}
+
+.time_difference-all-edit-container {
+  display: flex;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  flex-direction: row-reverse;
+
+  .time_difference-all-edit {
+    display: flex;
+    margin-right: 8px;
+
+    .time_difference-all-edit-label {
+      margin: 0 10px 0 0;
+      font-weight: normal;
+      line-height: 40px;
+    }
+
+    app-kba-selected {
+      width: 200px;
+    }
+  }
+}
+
+.time-difference {
+  display: flex;
+
+  .time-difference_block {
+    display: flex;
+    width: 130px;
+    align-items: center;
+
+    .time-difference_select {
+      width: 100px;
+      margin-right: 6px;
+    }
+  }
+}
+
+.edit-table {
+  .th-cars_car_management_attribute_change_after_time_difference,
+  .td-cars_car_management_attribute_change_after_time_difference {
+    flex-shrink: 0;
+    width: 274px !important;
+  }
+
+  .td-cars_car_management_attribute_change_after_time_difference {
+    overflow: visible;
+  }
+}
+
+.result-count-message {
+  margin-top: 12px;
+}

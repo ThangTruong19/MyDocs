@@ -1,0 +1,56 @@
+<td class="KBA-form-table__head" *ngIf="isVisible">
+  <label
+    class="KBA-form-table__label"
+    [ngClass]="{ 'KBA-form-table__required': required }"
+  >
+    {{ kbaResource[kbaName] && kbaResource[kbaName].name }}
+  </label>
+</td>
+<td [attr.colspan]="colspan" *ngIf="isVisible">
+  <p [hidden]="!notEditable">{{ viewData }}</p>
+  <div
+    [formGroup]="formGroup"
+    *ngIf="!notEditable"
+    class="form-group calendar"
+    [ngClass]="sizeClass"
+  >
+    <input
+      type="hidden"
+      name="{{ name }}"
+      formControlName="{{ name }}"
+    >
+    <input
+      commonFlyoutTrigger
+      [attr.aria-controls]="id"
+      [(ngModel)]="kbaParams[display]"
+      (ngModelChange)="changeValue()"
+      [ngModelOptions]="{ standalone: true }"
+      [disabled]="isDisabled"
+      [type]="'text'"
+      class="KBA-input-date-picker form-control"
+      [ngClass]="{ 'KBA-form-error': hasError }"
+      readonly
+    />
+    <button
+      type="button"
+      class="KBA-datepicker"
+      commonFlyoutTrigger
+      [attr.aria-controls]="id"
+      [disabled]="isDisabled"
+    >
+      <i class="kba-icon kba-icon-calendar"></i>
+    </button>
+
+    <app-kba-month-picker
+      [id]="id"
+      [labels]="kbaLabel"
+      [dateFormat]="dateFormat"
+      [timeZone]="timeZone"
+      [enableDateRange]="enableDateRange"
+      [initialBaseYearMonth]="kbaParams[kbaName]"
+      [futureDateSelectable]="futureDateSelectable"
+      (selectMonth)="onSelectMonth($event)"
+    >
+    </app-kba-month-picker>
+  </div>
+</td>

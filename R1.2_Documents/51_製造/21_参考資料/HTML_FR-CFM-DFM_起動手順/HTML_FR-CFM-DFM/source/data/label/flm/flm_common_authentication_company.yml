@@ -1,0 +1,30 @@
+labels:
+  - id: 24
+    description: 検索
+    name: search
+    ja: 検索
+    en:
+
+  - id: 26
+    description: 会社検索
+    name: company_search_modal_title
+    ja: 会社検索
+    en:
+
+  - id: 27
+    description: 該当件数0件時の表示
+    name: empty_list_message
+    ja: 該当する会社が見つかりませんでした。
+    en:
+
+  - id: 28
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 29
+    description: 反映する
+    name: reflect_btn
+    ja: 反映する
+    en:

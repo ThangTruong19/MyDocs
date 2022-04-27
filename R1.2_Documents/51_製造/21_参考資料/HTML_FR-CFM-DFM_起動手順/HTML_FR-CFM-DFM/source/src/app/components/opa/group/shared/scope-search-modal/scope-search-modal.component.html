@@ -1,0 +1,148 @@
+<div class="scope-search-content user-search-content">
+  <form name="scopeSearchForm" *ngIf="labels && resource">
+    <div class="form-group search-condition-area row">
+      <app-kba-selected
+        *ngIf="
+          (resource | at: 'block_id') &&
+          groupKindId !== PublishGroupKind.blockUnion
+        "
+        class="search-item"
+        [kbaName]="'block_id'"
+        [kbaParams]="params"
+        [kbaResource]="resource"
+        (onChangeSelectItem)="handleBlockIdChange($event)"
+      >
+      </app-kba-selected>
+      <app-kba-text
+        *ngIf="resource | at: 'group_label'"
+        class="search-item"
+        [kbaName]="'group_label'"
+        [kbaParams]="params"
+        [kbaResource]="resource"
+        [maxlength]="255"
+      >
+      </app-kba-text>
+      <app-kba-selected
+        #distributorSelect
+        *ngIf="resource | at: 'distributor_id'"
+        class="search-item"
+        [kbaName]="'distributor_id'"
+        [kbaParams]="params"
+        [kbaResource]="resource"
+      >
+      </app-kba-selected>
+      <app-kba-text
+        *ngIf="resource | at: 'customer_label'"
+        class="search-item"
+        [kbaName]="'customer_label'"
+        [kbaParams]="params"
+        [kbaResource]="resource"
+        [maxlength]="255"
+      >
+      </app-kba-text>
+      <app-kba-selected
+        *ngIf="resource | at: 'scope_group_kind'"
+        class="search-item"
+        [kbaName]="'scope_group_kind'"
+        [kbaParams]="params"
+        [kbaResource]="resource"
+      >
+      </app-kba-selected>
+    </div>
+    <div class="search-condition-footer">
+      <button
+        (click)="onClickSearch()"
+        type="button"
+        class="btn btn-primary search"
+      >
+        {{ labels.search }}
+      </button>
+    </div>
+  </form>
+  <div class="KBA-table-options" [hidden]="count <= 0">
+    <app-kba-pagination
+      [count]="count"
+      [params]="pageParams"
+      [labels]="labels"
+      [element]="pageCountEl"
+      [showNumberOfDisplay]="false"
+      (changeState)="onPaginationChange()"
+    >
+    </app-kba-pagination>
+  </div>
+  <div class="result_search pagination">
+    <table class="KBA-table-modal KBA-table table table-bordered">
+      <thead class="KBA-table-thead-modal KBA-table-thead">
+        <tr class="KBA-table-flex-cell-modal">
+          <th class="KBA-form-table__head fixed">
+            <ng-container *ngIf="list.length > 0">
+              <input
+                [(ngModel)]="checkAll"
+                id="check-all"
+                type="checkbox"
+                class="KBA-input-checkbox"
+              />
+              <label class="KBA-input-checkbox__label" for="check-all">
+                <i class="fa"></i>
+              </label>
+            </ng-container>
+          </th>
+          <ng-container *ngFor="let th of modalValues.listDesc">
+            <th
+              class="th-{{ th.shortName }} KBA-form-table__head"
+              *ngIf="th.displayable"
+            >
+              {{ th.label }}
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody class="KBA-table-tbody-modal KBA-table-tbody">
+        <ng-container *ngIf="isSearching">
+          <tr>
+            <td>
+              <div class="loading-wrapper">
+                <i class="loading-indicator"></i>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="list.length > 0">
+          <tr
+            *ngFor="let item of list; let i = index"
+            class="KBA-table-flex-cell-modal"
+            [ngClass]="getRowClass(item)"
+          >
+            <td class="fixed text-center td-check kba-sm-link">
+              <input
+                [(ngModel)]="checkStates[getItemId(item)]"
+                (change)="updateState()"
+                id="check-icon-{{ i }}"
+                type="checkbox"
+                class="KBA-input-checkbox"
+              />
+              <label class="KBA-input-checkbox__label" for="check-icon-{{ i }}">
+                <i class="fa"></i>
+              </label>
+            </td>
+            <ng-container *ngFor="let th of modalValues.listDesc">
+              <td
+                class="td-{{ th.shortName }} KBA-form-table__value"
+                *ngIf="th.displayable"
+              >
+                {{ item | at: th.dataKey }}
+              </td>
+            </ng-container>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="isAcquired && list.length === 0 && !isSearching">
+          <tr class="KBA-table-flex-cell-modal empty-list">
+            <td class="KBA-form-table__value center">
+              <p>{{ labels.empty_list_message }}</p>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

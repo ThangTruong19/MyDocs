@@ -1,0 +1,37 @@
+[
+  {
+    "path": "common.support_distributor.ids",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB3",
+        "value": "A0003",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.service_distributor.ids",
+    "name": "サービスDB",
+    "help": "サービスDBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "サービスDB3",
+        "value": "A0003",
+        "kind": "D"
+      }
+    ]
+  }
+]

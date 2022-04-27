@@ -1,0 +1,77 @@
+[
+  {
+    "path": "block_id",
+    "name": "ブロック",
+    "help": "ブロックのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ4",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ5",
+        "value": "5",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+]

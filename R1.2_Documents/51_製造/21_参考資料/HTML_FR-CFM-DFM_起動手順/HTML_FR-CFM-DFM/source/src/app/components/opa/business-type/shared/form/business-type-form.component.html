@@ -1,0 +1,222 @@
+<section id="KBA-business-type-form" *ngIf="labels && resource">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content">
+      <form
+        class="KBA-form"
+        name="businessTypeForm"
+        novalidate
+        [formGroup]="businessTypeForm"
+      >
+        <div class="annotation">
+          <h3 class="caption">{{ labels.business_type_information }}</h3>
+          <p class="KBA-form-table__required">
+            {{ labels.description_for_required }}
+          </p>
+        </div>
+        <table class="KBA-form-table table table-bordered" *ngIf="!loading">
+          <tbody class="KBA-form-table-tbody">
+            <tr
+              app-kba-form-table-select
+              #blockIdSelection
+              *ngIf="exists('business_type.block_id')"
+              class="KBA-form-row"
+              [formGroup]="businessTypeForm"
+              [kbaName]="'block_id'"
+              [kbaParams]="params.business_type"
+              [kbaResource]="resource.business_type"
+              [colspan]="3"
+              [notEditable]="isUpdate"
+              [display]="'block_label'"
+              [emitInitialRefresh]="false"
+              (onChange)="handleBlockChange($event)"
+            ></tr>
+
+            <ng-container *ngIf="isReady">
+              <tr
+                app-kba-form-table-custom
+                class="KBA-form-row"
+                [colspan]="3"
+                [customHeader]="settingHeader"
+                [content]="settingContent"
+                [formGroup]="businessTypeForm"
+              >
+                <ng-template #settingHeader>
+                  <label class="KBA-form-table__label">
+                    {{ labels.name_setting }}
+                  </label>
+                </ng-template>
+                <ng-template #settingContent>
+                  <input
+                    type="checkbox"
+                    name="setting"
+                    id="business-type-name_setting"
+                    class="KBA-input-checkbox checkbox-with-label"
+                    formControlName="setting"
+                    (ngModelChange)="useSameName = $event"
+                  />
+                  <label
+                    for="business-type-name_setting"
+                    class="KBA-input-checkbox__label"
+                  >
+                    {{ resource.business_type.use_same_name.name }}
+                  </label>
+                </ng-template>
+              </tr>
+
+              <tr
+                app-kba-form-table-custom
+                class="KBA-form-row"
+                [colspan]="3"
+                [customHeader]="businessTypeNamesHeader"
+                [content]="businessTypeNamesContent"
+                [formGroup]="businessTypeNameGroup"
+              >
+                <ng-template #businessTypeNamesHeader>
+                  <label class="KBA-form-table__label KBA-form-table__required">
+                    {{ getPrimaryLangLabel('business_type.item_names') }}
+                  </label>
+                </ng-template>
+                <ng-template #businessTypeNamesContent>
+                  <div
+                    class="business-type-name-container"
+                    *ngIf="originalParams"
+                  >
+                    <div class="business-type-name-primary primary-block">
+                      <input
+                        id="KBA-text-business-type-name-primary"
+                        name="business-type-name-primary"
+                        class="KBA-input-text form-control"
+                        type="text" autocomplete="off"
+                        maxlength="1024"
+                        [ngClass]="{
+                          edited: isEdited(
+                            originalParams.business_type.item_names[0].label,
+                            params.business_type.item_names[0].label
+                          ),
+                          'KBA-form-error':
+                            errorData
+                            | hasError: 'business_type.item_names[0].label'
+                        }"
+                        [formControlName]="
+                          getPrimaryBusinessTypeName(params.business_type)
+                            .lang_code
+                        "
+                        (ngModelChange)="
+                          getPrimaryBusinessTypeName(params.business_type)
+                            .label = $event
+                        "
+                      />
+                    </div>
+                    <div class="business-type-name-others others-block">
+                      <app-kba-child-text
+                        [hidden]="useSameName"
+                        [parent]="businessTypeNameParent"
+                        [params]="
+                          getOtherBusinessTypeNames(params.business_type)
+                        "
+                        [labels]="labels"
+                        [formGroup]="businessTypeNameGroup"
+                        [name]="'businessTypeName'"
+                        [modelPath]="'label'"
+                        [labelPath]="'lang_code'"
+                        [root]="businessTypeNameRoot"
+                        [originalParams]="
+                          getOtherBusinessTypeNames(
+                            originalParams.business_type
+                          )
+                        "
+                        [path]="'business_type.item_names'"
+                        [errorData]="errorData"
+                        [checkIsEdited]="checkIsEdited"
+                      ></app-kba-child-text>
+                    </div>
+                  </div>
+                </ng-template>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+
+        <footer class="KBA-form-footer-fixed">
+          <a
+            href="javascript:void(0)"
+            (click)="onClickReset()"
+            class="btn btn-link"
+          >
+            {{ labels.reset }}
+          </a>
+          <button
+            class="btn btn-success"
+            type="button"
+            *ngIf="!isUpdate"
+            (click)="onClickContinue()"
+            [disabled]="isFormInvalid()"
+          >
+            {{ labels && labels.continue }}
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickSubmit()"
+            [disabled]="isFormInvalid()"
+          >
+            {{ labels && labels.submit }}
+          </button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+
+  <ng-template #submitModalContent>
+    <app-kba-tandem-confirm
+      class="submit-modal-content"
+      [desc]="confirmModalHeader"
+      [val]="confirmModalParams.business_type"
+      [customContent]="customModalContent"
+    >
+    </app-kba-tandem-confirm>
+  </ng-template>
+  <ng-template #customModalContent let-d="d" let-value="value">
+    <ng-container [ngSwitch]="d.name">
+      <ng-container *ngSwitchCase="'item_names'">
+        <p *ngIf="useSameName || value.length <= 1; else elseContent">
+          {{ value[0].label }}
+        </p>
+        <ng-template #elseContent>
+          <div class="KBA-form-inner-table-container">
+            <table class="table KBA-form-table detail-table">
+              <tr *ngFor="let item of value; let i = index">
+                <td class="KBA-form-table__value half-height">
+                  <p>{{ item.lang_name }}</p>
+                </td>
+                <td class="KBA-form-table__value half-height">
+                  <p>{{ item.label }}</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'use_same_name'">
+        <p *ngIf="useSameName; else notUseSameName">
+          {{ resource.business_type.use_same_name.name }}
+        </p>
+        <ng-template #notUseSameName>
+          <p>{{ labels.not_set }}</p>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngSwitchDefault>
+        <p>{{ value }}</p>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+</section>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

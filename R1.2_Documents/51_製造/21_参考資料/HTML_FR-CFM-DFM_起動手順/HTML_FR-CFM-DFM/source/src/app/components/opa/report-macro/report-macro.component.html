@@ -1,0 +1,344 @@
+<section id="KBA-report-macro" *ngIf="resource && labels">
+  <div class="container-fluid">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+
+    <div class="KBA-form">
+      <div class="KBA-content" *ngIf="resource.group_id">
+        <h3 class="block-header">{{ labels.select_group }}</h3>
+        <table class="KBA-form-table table table-bordered">
+          <tbody class="KBA-form-table-tbody">
+            <tr
+              app-kba-form-table-select
+              class="KBA-form-row"
+              [kbaName]="'group_id'"
+              [kbaParams]="params"
+              [kbaResource]="resource"
+              [colspan]="3"
+              [emitInitialRefresh]="false"
+              (onChange)="onGroupChange()"
+            ></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="KBA-content table-auto-height">
+        <h3 class="block-header">{{ labels.select_macro }}</h3>
+        <app-kba-table
+          [customTableThContent]="customTableThContent"
+          [customTableRowContent]="customTableRowContent"
+          [lists]="lists"
+          [pageParams]="pageParams"
+          [thList]="thList"
+          [sortableThList]="sortableThList"
+          [labels]="labels"
+          [collapsed]="collapsed"
+          [isFetching]="isFetching"
+        >
+        </app-kba-table>
+
+        <footer class="KBA-form-footer-fixed">
+          <a
+            href="javascript:void(0)"
+            (click)="onClickReset()"
+            class="btn btn-link"
+          >
+            {{ labels.reset }}
+          </a>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickSubmit()"
+            [disabled]="isSubmitButtonDisabled"
+          >
+            {{ labels.submit }}
+          </button>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #customTableThContent>
+    <ng-container *ngFor="let th of thList">
+      <th
+        *ngIf="th.displayable"
+        class="KBA-index-th th-{{ th.shortName }}"
+        [ngClass]="{
+          fixed: ['publish_kind', 'file.size_label'].indexOf(th.dataKey) > -1
+        }"
+        appKbaSortingLabel
+        [sortingParams]="sortingParams"
+        [labelName]="th.sortKey"
+        [sortableThList]="sortableThList"
+        (sort)="onChangeSort($event)"
+      >
+        <span>{{ th.label }}</span>
+      </th>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #customTableRowContent let-data="data" let-i="idx">
+    <ng-container *ngFor="let title of thList" [ngSwitch]="title.dataKey">
+      <ng-container *ngIf="title.displayable">
+        <td
+          *ngSwitchCase="'publish_kind'"
+          class="td-{{
+            title.shortName
+          }} KBA-index-td kba-sm-link fixed d-flex justify-content-center td-check"
+        >
+          <input
+            id="check-icon-{{ i }}"
+            type="checkbox"
+            class="KBA-input-checkbox"
+            [(ngModel)]="currentStates[data.macro_report_code].publishKind"
+            (change)="onCheck($event, data.macro_report_code)"
+          />
+          <label class="KBA-input-checkbox__label" for="check-icon-{{ i }}">
+            <i class="fa"></i>
+          </label>
+        </td>
+        <td
+          *ngSwitchCase="'file.version_label'"
+          class="td-{{
+            title.shortName
+          }} KBA-index-td select-version-cell d-flex align-items-center justify-content-center"
+        >
+          <a
+            class="select-version"
+            href="javascript:void(0)"
+            (click)="openVersionModal(data)"
+          >
+            {{ data | at: title.dataKey }}
+          </a>
+        </td>
+        <td
+          *ngSwitchCase="'file.size_label'"
+          class="td-{{
+            title.shortName
+          }} KBA-index-td fixed d-flex align-items-center justify-content-center"
+        >
+          {{ data | at: title.dataKey }}
+        </td>
+        <td
+          *ngSwitchCase="'latest_update_datetime'"
+          class="td-{{
+            title.shortName
+          }} KBA-index-td d-flex align-items-center justify-content-center"
+        >
+          {{ data | at: title.dataKey }}
+        </td>
+        <td
+          *ngSwitchDefault
+          class="td-{{
+            title.shortName
+          }} KBA-index-td d-flex align-items-center"
+        >
+          {{ data | at: title.dataKey }}
+        </td>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #submitModalContent>
+    <div class="KBA-content table-auto-height">
+      <table
+        class="KBA-form-table table table-bordered version-header"
+        *ngIf="resource.group_id"
+      >
+        <tbody class="KBA-form-table-tbody">
+          <tr
+            app-kba-form-table-custom
+            class="KBA-form-row"
+            [colspan]="3"
+            [customHeader]="submitModalHeaderLabel"
+            [content]="submitModalHeaderContent"
+          ></tr>
+        </tbody>
+      </table>
+
+      <table class="KBA-table table table-bordered version-table">
+        <thead class="KBA-table-thead">
+          <tr class="KBA-table-flex-cell">
+            <ng-container *ngFor="let title of resultModalThList">
+              <th
+                *ngIf="title.displayable"
+                class="th-{{ title.shortName }}"
+                [ngClass]="{
+                  fixed:
+                    [
+                      'publish_kind',
+                      'file.version_label',
+                      'file.size_label'
+                    ].indexOf(title.dataKey) > -1
+                }"
+              >
+                {{ title.label }}
+              </th>
+            </ng-container>
+          </tr>
+        </thead>
+        <tbody class="KBA-table-tbody">
+          <tr
+            *ngFor="let data of resultModalValue.macro_settings"
+            class="KBA-table-flex-cell"
+          >
+            <ng-container
+              *ngFor="let title of resultModalThList"
+              [ngSwitch]="title.dataKey"
+            >
+              <ng-container *ngIf="title.displayable">
+                <td
+                  *ngSwitchCase="'publish_kind'"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td fixed d-flex align-items-center justify-content-center"
+                >
+                  <i
+                    class="kba-icon kba-icon-check confirm-check"
+                    *ngIf="currentStates[data.macro_report_code].publishKind"
+                  ></i>
+                </td>
+                <td
+                  *ngSwitchCase="'file.version_label'"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td fixed d-flex align-items-center justify-content-center"
+                >
+                  <span>{{ data | at: title.dataKey }}</span>
+                </td>
+                <td
+                  *ngSwitchCase="'file.size_label'"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td fixed d-flex align-items-center justify-content-center"
+                >
+                  <span>{{ data | at: title.dataKey }}</span>
+                </td>
+                <td
+                  *ngSwitchCase="'latest_update_datetime'"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center justify-content-center"
+                >
+                  <span>{{ data | at: title.dataKey }}</span>
+                </td>
+                <td
+                  *ngSwitchDefault
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ data | at: title.dataKey }}</span>
+                </td>
+              </ng-container>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+
+  <ng-template #versionModalContent>
+    <div class="KBA-content table-auto-height">
+      <table class="KBA-form-table table table-bordered version-header">
+        <tbody class="KBA-form-table-tbody">
+          <tr
+            app-kba-form-table-custom
+            class="KBA-form-row"
+            [colspan]="3"
+            [customHeader]="versionModalFileHeader"
+            [content]="versionModalFileContent"
+          ></tr>
+        </tbody>
+      </table>
+
+      <table class="KBA-table table table-bordered version-table">
+        <thead class="KBA-table-thead">
+          <tr class="KBA-table-flex-cell">
+            <th class="th-radio fixed"></th>
+            <ng-container *ngFor="let title of versionThList">
+              <th
+                *ngIf="title.displayable"
+                class="th-{{ title.shortName }}"
+                [ngClass]="{
+                  fixed:
+                    ['publish_kind', 'version_label', 'size_label'].indexOf(
+                      title.dataKey
+                    ) > -1
+                }"
+              >
+                {{ title.label }}
+              </th>
+            </ng-container>
+          </tr>
+        </thead>
+        <tbody class="KBA-table-tbody">
+          <tr
+            *ngFor="let data of versionData.macro_files"
+            class="KBA-table-flex-cell"
+          >
+            <td
+              class="td-radio fixed d-flex align-items-center justify-content-center"
+            >
+              <input
+                name="evaluation_code"
+                id="report-macro-version-{{ data.id }}"
+                type="radio"
+                class="KBA-input-radio"
+                [value]="data.id"
+                [(ngModel)]="currentStates[currentReportMacroCode].fileId"
+              />
+              <label
+                class="KBA-input-radio__label"
+                for="report-macro-version-{{ data.id }}"
+              ></label>
+            </td>
+
+            <ng-container
+              *ngFor="let title of versionThList"
+              [ngSwitch]="title.dataKey"
+            >
+              <td
+                *ngIf="title.displayable"
+                class="td-{{
+                  title.shortName
+                }} KBA-index-td d-flex align-items-center"
+                [ngClass]="{
+                  'fixed justify-content-center':
+                    [
+                      'publish_kind',
+                      'version_label',
+                      'size_label',
+                      'latest_update_datetime'
+                    ].indexOf(title.dataKey) > -1
+                }"
+              >
+                <span>{{ data | at: title.dataKey }}</span>
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+
+  <ng-template #versionModalFileHeader>
+    <span class="KBA-form-table__label">{{ labels.file_name }}</span>
+  </ng-template>
+
+  <ng-template #submitModalHeaderContent>
+    <p class="KBA-modal-message">{{ groupSelection.viewVal[0].name }}</p>
+  </ng-template>
+
+  <ng-template #submitModalHeaderLabel>
+    <span class="KBA-form-table__label">{{ resource.group_id.name }}</span>
+  </ng-template>
+
+  <ng-template #versionModalFileContent>
+    {{ versionData.macro_report_name }}
+  </ng-template>
+</section>
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

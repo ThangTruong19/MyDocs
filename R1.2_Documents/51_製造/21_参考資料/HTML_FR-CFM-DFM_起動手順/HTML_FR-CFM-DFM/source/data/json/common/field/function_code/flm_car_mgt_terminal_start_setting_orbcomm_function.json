@@ -1,0 +1,58 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "更新日時",
+    "path": "cars.car_identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "国ID",
+    "path": "cars.car_management_attribute.nation_id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "車両ID",
+    "path": "cars.car_identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "メーカ",
+    "path": "cars.car_identification.maker_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "機種",
+    "path": "cars.car_identification.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "型式",
+    "path": "cars.car_identification.type",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "機番",
+    "path": "cars.car_identification.serial",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "通信種別",
+    "path": "cars.komtrax_unit.sim_attributes_1.communication_kind_name",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

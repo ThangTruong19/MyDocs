@@ -1,0 +1,158 @@
+<div class="KBA-area-menu" [@menuState]="menuState">
+  <div class="KBA-area-type">
+    <p *ngIf="!editable">{{ selectTypeLabel }}</p>
+    <ng-container *ngIf="editable">
+      <div
+        class="form-check-inline"
+        *ngFor="let o of typeResourceValues; let idx = index"
+      >
+        <input
+          id="area-type-{{ idx }}{{ number }}"
+          class="KBA-input-radio"
+          type="radio"
+          name="area_type{{ number }}"
+          [(ngModel)]="selectType"
+          (ngModelChange)="onChangeMenuType($event)"
+          [value]="o.value"
+        />
+        <label
+          class="KBA-input-radio__label"
+          for="area-type-{{ idx }}{{ number }}"
+        >
+          {{ o.name }}
+        </label>
+      </div>
+    </ng-container>
+  </div>
+
+  <ng-container *ngIf="editable">
+    <div
+      [formGroup]="formGroup"
+      [hidden]="o.value != selectType"
+      class="KBA-area-position"
+      *ngFor="let o of typeResourceValues"
+    >
+      <ul *ngIf="isPolygon">
+        <input
+          *ngIf="editable"
+          [formControlName]="pointNumName"
+          type="hidden"
+          name="{{ pointNumName }}"
+        />
+
+        <li *ngFor="let point of polyPoints; let idx = index">
+          <h3>
+            {{ labels.vertex }}{{ idx + 1 }}
+            <a (click)="onClickDelPoint(idx)" class="kba-icon-close"></a>
+          </h3>
+          <app-kba-input-point
+            [formGroup]="formGroup.controls.coordinates"
+            [type]="'polygon'"
+            [index]="idx"
+            [number]="number"
+            [point]="point"
+            [labels]="labels"
+            [resource]="resource"
+            [resourceType]="resourceType"
+            [step]="0.00000001"
+            [required]="true"
+            [editable]="editable"
+            [errorData]="errorData"
+            (changePointInput)="onChangePolyPointInput($event)"
+          >
+          </app-kba-input-point>
+        </li>
+      </ul>
+
+      <ul *ngIf="isPoint && rectData">
+        <li>
+          <h3>{{ labels.center }}</h3>
+          <app-kba-input-point
+            [formGroup]="formGroup.controls.coordinates"
+            [type]="'rect'"
+            [number]="number"
+            [point]="rectData.centerPoint"
+            [labels]="labels"
+            [resource]="resource"
+            [resourceType]="resourceType"
+            [step]="0.00000001"
+            [required]="true"
+            [editable]="editable"
+            [errorData]="errorData"
+            (changePointInput)="onChangeCenterPointInput($event)"
+          >
+          </app-kba-input-point>
+        </li>
+        <li class="KBA-area-distance">
+          <h3>{{ labels.distance }}</h3>
+          <app-kba-input-distance
+            [formGroup]="formGroup"
+            [distance]="rectData.distance"
+            [labels]="labels"
+            [resource]="resource"
+            [resourceType]="resourceType"
+            [step]="0.01"
+            [number]="number"
+            [required]="true"
+            [inputSuffix]="unit"
+            [editable]="editable"
+            [errorData]="errorData"
+            (changeDistanceInput)="onChangeDistanceInput($event)"
+          >
+          </app-kba-input-distance>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!editable">
+    <div class="KBA-area-position">
+      <ul *ngIf="isPolygon">
+        <li *ngFor="let point of polyPoints; let idx = index">
+          <h3>{{ labels.vertex }}{{ idx + 1 }}</h3>
+          <p>
+            <label>{{ latitudeNmae }}</label>
+            {{ point[coordinateType.LAT] }}
+          </p>
+          <p>
+            <label>{{ longitudeName }}</label>
+            {{ point[coordinateType.LNG] }}
+          </p>
+        </li>
+      </ul>
+
+      <ul *ngIf="isPoint">
+        <li>
+          <h3>{{ labels.center }}</h3>
+          <p>
+            <label>{{ latitudeNmae }}</label>
+            {{ rectData.centerPoint[coordinateType.LAT] }}
+          </p>
+          <p>
+            <label>{{ longitudeName }}</label>
+            {{ rectData.centerPoint[coordinateType.LNG] }}
+          </p>
+        </li>
+        <li class="KBA-area-distance">
+          <h3>{{ labels.distance }}</h3>
+          <p>
+            <label>{{ ewName }}</label>
+            {{ rectData.distance[distanceType.EW] }}{{ unit }}
+          </p>
+          <p>
+            <label>{{ nsName }}</label>
+            {{ rectData.distance[distanceType.NS] }}{{ unit }}
+          </p>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+
+  <a
+    class="toggle-menu"
+    (click)="onClickToggle()"
+    [ngClass]="{ 'KBA-menu-open': menuOpen, 'KBA-menu-close': !menuOpen }"
+    href="javascript:void(0)"
+  >
+  </a>
+</div>

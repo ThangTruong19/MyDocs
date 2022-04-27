@@ -1,0 +1,23 @@
+/*
+  フラグ管理
+*/
+.KBA-flag-table__kind {
+  width: 20%;
+}
+
+#KBA-flag-form,
+#KBA-flag-index,
+#KBA-flag-show-modal {
+  .KBA-icon-flag {
+    font-size: 18px;
+  }
+  .flag-type-5 {
+    color: orange;
+  }
+}
+
+#KBA-flag-form {
+  .container-fluid {
+    padding-bottom: 54px;
+  }
+}

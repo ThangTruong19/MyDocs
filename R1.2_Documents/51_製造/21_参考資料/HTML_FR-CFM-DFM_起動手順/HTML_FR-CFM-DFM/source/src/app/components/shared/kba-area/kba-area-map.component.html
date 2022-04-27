@@ -1,0 +1,12 @@
+<div class="KBA-area-map">
+  <div
+    #areaCanvas
+    class="KBA-area-canvas"
+    [style.marginLeft.px]="canvasMarginLeft"
+  ></div>
+  <div class="KBA-map-buttons" *ngIf="hasMenu" [style.zIndex]="fitBoundsZIndex">
+    <button class="btn btn-warning" (click)="onClickFitBounds()">
+      {{ labels.fit_bounds }}
+    </button>
+  </div>
+</div>

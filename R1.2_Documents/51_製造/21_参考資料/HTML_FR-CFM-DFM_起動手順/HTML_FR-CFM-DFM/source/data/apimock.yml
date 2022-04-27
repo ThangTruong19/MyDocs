@@ -1,0 +1,1710 @@
+#### 共通
+
+#
+# x. リソース取得API
+#
+# 指定した画面コードと条件、言語に応じた画面要素の情報を取得する。
+# プルダウンメニューの内容作成等に利用する。
+#
+- request:
+    url: /v1/applications/views/resources/search
+    method: POST
+  response:
+    type: js
+    file: json/common/getResources.js
+
+#
+# x. アプリケーション機能取得API
+#
+# アプリケーション機能に関わる情報を取得する。
+# サイドメニュー / ダッシュボードの項目作成に使用する。
+#
+# @param screen_id
+- request:
+    url: /v1/applications/functions/search
+    method: POST
+  response:
+    type: js
+    file: json/common/flm/getFunctions.js
+
+#
+# x. ラベル取得API
+#
+# 指定したファイルIdと言語に応じたリソース言語情報を取得する。
+# 画面内の文言表示等に利用する。
+#
+# @param screen_code 半角英数字,半角アンダーバーで構成される画面名
+#
+- request:
+    url: /v1/applications/views/labels
+    method: GET
+  response:
+    type: js
+    file: json/common/flm/getLabels.js
+
+#
+# x. 実行可能API一覧取得API
+#
+# ユーザーが利用可能なAPI一覧を取得する。
+#
+- request:
+    url: /catalog
+    method: GET
+  response:
+    type: js
+    file: json/common/getCatalog.js
+
+#
+# x. 指定項目リソース取得API
+#
+# 指定項目リソースを取得する。
+#
+# @param function_code 半角英数字,半角アンダーバーで構成される機能名
+#
+- request:
+    url: /v1/applications/fields/resources
+    method: GET
+  response:
+    type: js
+    file: json/common/getFieldResources.js
+
+#
+# x. 指定項目取得API
+#
+# 設定済みの指定項目と外部アプリケーションの表示制御設定を取得する。
+# 取得した指定項目は一覧画面のテーブルヘッダなどに利用する。
+#
+# @param function_code 半角英数字、半角記号で構成される機能コード
+#
+- request:
+    url: /v1/applications/fields
+    method: GET
+  response:
+    type: js
+    file: json/common/getFields.js
+
+#
+# x. 指定項目更新API
+#
+# 指定項目を更新する。
+#
+- request:
+    url: /v1/applications/fields
+    method: PUT
+  response:
+    type: js
+    file: json/common/updateFields.js
+
+#
+# x. 検索条件取得API
+#
+# 指定した画面の検索条件を取得する。
+#
+- request:
+    url: /v1/applications/search_condition
+    method: GET
+  response:
+    type: js
+    file: json/common/getSearchCondition.js
+
+#
+# x. 検索条件更新API
+#
+# 指定した画面の検索条件を更新する。
+#
+- request:
+    url: /v1/applications/search_condition
+    method: PUT
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 検索条件初期化API
+#
+# 指定した画面の検索条件を初期化する。
+#
+- request:
+    url: /v1/applications/search_condition
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 外部アプリ連携ログ出力 API (POST)
+#
+# 次世代KOMTRAXの業務APIを使用する外部アプリのログを格納する。
+#
+- request:
+    url: /v1/applications/extapplog
+    method: POST
+  response:
+    type: js
+    file: json/common/asyncNoContent.js
+
+#
+# x. ファイルダウンロード API
+#
+# ID で指定されたファイルをダウンロードする。
+#
+- request:
+    url: /v1/applications/files/:id
+    method: GET
+  response:
+    status: 200
+    header:
+      'Content-Type': 'application/octet-stream'
+      'Content-Disposition': 'attachment;filename="ã°ã«ã¼ãä¸è¦§20190201173045.xlsx";filename*=utf-8''''%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E4%B8%80%E8%A6%A720190201173045.xlsx'
+    file: json/common/downloads/sample.xlsx
+
+
+#
+# x. 非同期処理結果取得 API
+#
+# 非同期処理の作成結果ファイル、または処理状態を取得する。
+#
+- request:
+    url: /v1/applications/asyncs/:id
+    method: GET
+  response:
+    type: js
+    file: json/common/getAsyncResult.js
+
+#
+# x. 車両種別情報取得 API (GET)
+#
+# 機種型式マスタから機種型式の一覧情報を取得する
+#
+- request:
+    url: /v1/applications/model_types
+    method: GET
+  response:
+    type: js
+    file: json/common/getDivisionList.js
+
+#
+# x. 車両最新情報取得 API (GET)
+#
+# 指定された車両の最新情報を取得する。
+#
+- request:
+    url: /v1/cars/:id/latest
+    method: GET
+  response:
+    status: 200
+    file: json/common/getLatestCarCondition.json
+
+#
+# x. ユーザ設定取得 API (GET)
+#
+# ユーザ設定を取得する
+#
+- request:
+    url: /v1/user_settings
+    method: GET
+  response:
+    status: 200
+    file: json/common/flm/getUserSetting.json
+
+#
+# x. ユーザ設定更新 API (PUT)
+#
+# ユーザ設定を取得する
+#
+- request:
+    url: /v1/user_settings
+    method: PUT
+  response:
+    status: 200
+    file: json/common/flm/putUserSetting.json
+
+### FLM
+
+#### 連絡先管理
+
+#
+# x. 連絡先情報取得API（GET）
+#
+# 連絡先情報リストを取得する。
+#
+- request:
+    url: /v1/contacts
+    method: GET
+  response:
+    type: js
+    file: json/flm/contact/getContacts.js
+
+#
+# x. 連絡先情報削除API
+#
+# 連絡先情報を削除する。
+#
+- request:
+    url: /v1/contacts/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 連絡先紐付け一覧取得API（POST）
+#
+# 連絡先紐付け情報のリストを取得する。
+#
+- request:
+    url: /v1/contacts/customers/search
+    method: POST
+  response:
+    type: js
+    file: json/flm/contact/getContactLinks.js
+
+#
+# x. 連絡先紐付けファイル作成API（POST）
+#
+# 連絡先紐付け情報のリストを取得する。
+#
+- request:
+    url: /v1/contacts/customers/search/file_create
+    method: POST
+  response:
+    type: js
+    file: json/flm/contact/createFile.js
+
+#
+# x. 連絡先紐付け見出し取得API（GET）
+#
+# 顧客連絡先紐付け種別の一覧情報を返却する。
+#
+- request:
+    url: /v1/contacts/customers/response_items
+    method: GET
+  response:
+    status: 200
+    file: json/flm/contact/getContactLinkKinds.json
+
+#
+# x. 連絡先情報登録API（POST）
+#
+# 連絡先情報を登録する。
+#
+- request:
+    url: /v1/contacts
+    method: POST
+  response:
+    type: js
+    file: json/flm/contact/postContact.js
+
+#
+# x. 連絡先紐付け情報更新API（PUT）
+#
+# 連絡先紐付け情報を更新する。
+#
+- request:
+    url: /v1/contacts/customers/:customer_id
+    method: PUT
+  response:
+    type: js
+    file: json/flm/contact/putContactCustomer.js
+
+#
+# x. 連絡先画像チェックAPI（POST）
+#
+# 連絡先画像のトリミング、チェック処理を行う。
+#
+- request:
+    url: /v1/contacts/image/check
+    method: POST
+  response:
+    type: js
+    file: json/flm/contact/postContactsImageCheck.js
+
+#
+# x. 連絡先詳細取得API
+#
+# 連絡先の詳細な情報を取得する。
+#
+- request:
+    url: /v1/contacts/:id
+    method: GET
+  response:
+    type: js
+    file: json/flm/contact/getContactDetail.js
+
+#
+# x. 連絡先情報更新API
+#
+# 連絡先情報を更新する。
+#
+- request:
+    url: /v1/contacts/:id
+    method: PUT
+  response:
+    type: js
+    file: json/flm/contact/putContact.js
+
+#
+# x. 連絡先紐付けアップロード API
+#
+# 連絡先紐付けのアップロードを行う。
+#
+- request:
+    url: /v1/contacts/customers/upload
+    method: POST
+  response:
+    type: js
+    file: json/flm/contact/getCustomerUpload.js
+
+#### オペレータ識別管理
+
+#
+# x. 車両オペレータ識別設定(ID入力)一覧/詳細取得API(POST)
+#
+# 車両オペレータ識別設定(ID入力)の一覧/詳細情報を取得する。
+#
+- request:
+    url: /v1/cars/operator_identification/id_input/search
+    method: POST
+  response:
+    type: js
+    file: json/flm/operator/postOperatorInputIds.js
+
+#
+# x. 車両オペレータ識別設定(IDキー)一覧/詳細取得API(POST)
+#
+# 車両オペレータ識別設定(IDキー)の一覧/詳細情報を取得する。
+#
+- request:
+    url: /v1/cars/operator_identification/id_key/search
+    method: POST
+  response:
+    type: js
+    file: json/flm/operator/postOperatorIdKey.js
+
+#
+# x. オペレータテンプレートダウンロードAPI
+#
+# 車両オペレータ識別設定（IDキー）有効化を要求する。
+#
+- request:
+    url: /v1/operators/template_create
+    method: GET
+  response:
+    status: 200
+    file: json/flm/operator/getTemplateCreate.json
+
+#
+# x. オペレータIDファイルアップロード
+#
+# オペレータIDファイルをアップロードする。
+#
+- request:
+    url: /v1/operators/upload
+    method: POST
+  response:
+    type: js
+    file: json/flm/operator/upload.js
+
+#
+# x. IDキー番号リスト取得API
+#
+# IDキー番号リストを取得する。
+#
+- request:
+    url: /v1/operators/id_keys
+    method: GET
+  response:
+    type: js
+    file: json/flm/operator/getIdKeys.js
+
+#
+# x. IDキー変更API
+#
+# IDキーのオペレータ連結情報を変更する。
+#
+- request:
+    url: /v1/operators/id_keys
+    method: PUT
+  response:
+    type: js
+    file: json/flm/operator/putIdKeys.js
+
+#
+# x. IDキーとオペレータの連結情報一覧ファイル作成API
+#
+# オペレータ情報登録用テンプレートファイルを作成する。
+#
+- request:
+    url: /v1/operators/id_keys/file_create
+    method: GET
+  response:
+    status: 200
+    file: json/flm/operator/createFile.json
+
+#
+# x. オペレータ変更API
+#
+# オペレータ情報を変更する。
+#
+- request:
+    url: /v1/operators
+    method: PUT
+  response:
+    type: js
+    file: json/flm/operator/putOperators.js
+
+#
+# x. オペレータ削除API
+#
+# オペレータ情報を削除する。
+#
+- request:
+    url: /v1/operators
+    method: DELETE
+  response:
+    type: js
+    file: json/flm/operator/deleteOperators.js
+
+#
+# x. 顧客オペレータ一覧取得API（GET）
+#
+# 顧客オペレータの一覧情報を取得する。
+#
+- request:
+    url: /v1/operators
+    method: GET
+  response:
+    type: js
+    file: json/flm/operator/getOperators.js
+
+#
+# x. オペレータID登録API（POST）
+#
+# 顧客オペレータ情報を登録する。
+#
+- request:
+    url: /v1/operators
+    method: POST
+  response:
+    type: js
+    file: json/flm/operator/postOperators.js
+
+#
+# x. オペレータ一覧ファイル作成API
+#
+# オペレータ情報の一覧を取得し、ファイル作成する。
+#
+- request:
+    url: /v1/operators/file_create
+    method: GET
+  response:
+    status: 200
+    file: json/flm/operator/createFile.json
+
+#
+# x. 車両オペレータ識別設定（ID入力）オペレータ削除要求API
+#
+# オペレータ識別設定がID入力（スキップあり）状態の車両に対し、車両とオペレータコードの紐付け解除要求コマンドを送信する。
+#
+- request:
+    url: /v1/cars/requests/operator_identification/id_input/operators/delete/s2m
+    method: DELETE
+  response:
+    type: js
+    file: json/flm/operator/deleteOperatorsIdInput.js
+
+#
+# x. 車両オペレータ識別設定（ID入力）有効化要求API
+#
+# 車両オペレータ識別設定（ID入力）有効化要求を実行する。
+#
+- request:
+    url: /v1/cars/requests/operator_identification/id_input/on/s2m
+    method: PUT
+  response:
+    type: js
+    file: json/flm/operator/putOperatorsIdInput.js
+
+#
+# x. 車両オペレータ識別設定無効化要求API
+#
+# 車両オペレータ識別設定無効化を要求する。
+#
+- request:
+    url: /v1/cars/requests/operator_identification/off/s2m
+    method: DELETE
+  response:
+    type: js
+    file: json/flm/operator/deleteCarIdKey.js
+
+#
+# x. 車両オペレータ識別設定（IDキー）有効化要求API
+#
+# 車両オペレータ識別設定（IDキー）有効化を要求する。
+#
+- request:
+    url: /v1/cars/requests/operator_identification/id_key/on/s2m
+    method: PUT
+  response:
+    type: js
+    file: json/flm/operator/putCarIdKey.js
+
+#### フラグ管理
+
+#
+# x. フラグ登録API（POST）
+#
+# エラーフラグ条件を登録する。
+#
+- request:
+    url: /v1/flag_conditions/abnormalities
+    method: POST
+  response:
+    type: js
+    file: json/flm/flag/postFlags.js
+
+#
+# x. フラグ条件リスト取得 API (GET)
+#
+# 機種型式毎に設定済のフラグ条件の一覧を取得する。
+#
+- request:
+    url: /v1/flag_conditions/model_types/abnormalities
+    method: GET
+  response:
+    type: js
+    file: json/flm/flag/getProfileList.js
+
+#
+# x. エラーフラグ条件更新 API (PUT)
+#
+# エラーフラグ条件を更新する。
+#
+- request:
+    url: /v1/flag_conditions/abnormalities/:id
+    method: PUT
+  response:
+    type: js
+    file: json/flm/flag/putFlag.js
+
+#
+# x. エラーフラグ条件削除 API (DELETE)
+#
+# エラーフラグ条件を削除する。
+#
+- request:
+    url: /v1/flag_conditions/abnormalities/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. エラーフラグ条件毎機種型式一覧取得 API (GET)
+#
+# エラーフラグ条件毎の機種型式一覧を取得する。
+#
+- request:
+    url: /v1/flag_conditions/abnormalities/model_types
+    method: GET
+  response:
+    type: js
+    file: json/flm/flag/getFlags.js
+
+#
+# x. フラグ条件一覧ファイル作成 API (GET)
+#
+# フラグ条件一覧ファイルを作成する
+#
+- request:
+    url: /v1/flag_conditions/abnormalities/model_types/file_create
+    method: GET
+  response:
+    type: js
+    file: json/flm/flag/createFile.js
+
+#### 分類管理
+
+#
+# x. 分類登録API（POST）
+#
+# 対象代理店の指定分類区分の選択項目(分類名称)を登録する。
+#
+- request:
+    url: /v1/classes
+    method: POST
+  response:
+    type: js
+    file: json/flm/class/postClass.js
+
+# x. 分類一覧取得API（GET）
+#
+# 対象代理店の分類一覧を取得する。
+#
+- request:
+    url: /v1/classes
+    method: GET
+  response:
+    type: js
+    file: json/flm/class/getClass.js
+
+# x. 分類削除API
+#
+# 対象代理店の指定分類区分の選択項目(分類名称)を削除する。
+#
+- request:
+    url: /v1/classes/:class_id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+
+# x. 分類更新API
+#
+# 対象代理店の指定分類区分の選択項目(分類名称)を更新する。
+#
+- request:
+    url: /v1/classes/:class_id
+    method: PUT
+  response:
+    type: js
+    file: json/flm/class/putClass.js
+
+
+### エリア管理
+
+#
+# x. グループ毎エリア取得API（GET）
+#
+# グループ毎のエリアの一覧情報を取得する。
+#
+- request:
+    url: /v1/areas
+    method: GET
+  response:
+    type: js
+    file: json/flm/group_area/getGroupAreas.js
+
+#
+# x. グループ毎エリア登録API（POST）
+#
+# グループ毎エリアを登録する。
+#
+- request:
+    url: /v1/areas
+    method: POST
+  response:
+    type: js
+    file: json/flm/group_area/postGroupAreas.js
+
+#
+# x. グループ毎エリア更新API（PUT）
+#
+# グループ毎エリアを更新する。
+#
+- request:
+    url: /v1/areas/:id
+    method: PUT
+  response:
+    type: js
+    file: json/flm/group_area/putGroupAreas.js
+
+#
+# x. グループエリア削除API（DELETE）
+#
+# グループエリアを削除する。
+#
+- request:
+    url: /v1/areas/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 車両毎エリア一覧取得API（POST）
+#
+# 車両毎エリア一覧を取得する。
+#
+- request:
+    url: /v1/cars/areas/search
+    method: POST
+  response:
+    type: js
+    file: json/flm/group_area/postGroupAreaCars.js
+
+#
+# x. 車両毎エリア取得API（GET）
+#
+# 車両毎エリア情報を取得する。
+#
+- request:
+    url: /v1/cars/:id/areas
+    method: GET
+  response:
+    type: js
+    file: json/flm/group_area/getGroupAreaCar.js
+
+#
+# x. 車両毎エリア登録API（POST）
+#
+# 車両毎エリアを登録する。
+#
+- request:
+    url: /v1/cars/:car_id/areas
+    method: POST
+  response:
+    type: js
+    file: json/flm/group_area/postGroupAreaCar.js
+
+#
+# x. 車両毎エリア更新API（PUT）
+#
+# 車両毎エリアを更新する。
+#
+- request:
+    url: /v1/cars/:id/areas/:car_area_id
+    method: PUT
+  response:
+    type: js
+    file: json/flm/group_area/putGroupAreaCar.js
+
+#
+# x. 車両毎エリア削除API（DELETE）
+#
+# 車両毎エリアを削除する。
+#
+- request:
+    url: /v1/cars/:id/areas/:car_area_id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. SMRインターバル管理項目登録API (POST)
+#
+# SMRインターバル管理項目を登録する
+#
+- request:
+    url: /v1/smr_interval_items
+    method: POST
+  response:
+    type: js
+    file: json/flm/smr-interval/postSmrIntervalItems.js
+
+#
+# x. 機種型式別SMRインターバル管理項目管理項目一覧取得API（GET）
+#
+# 機種型式別SMRインターバル管理項目一覧を取得する
+#
+- request:
+    url: /v1/model_types/smr_interval_items
+    method: GET
+  response:
+    type: 200
+    file: json/flm/smr-interval/getModelTypesSmrIntervalItems.json
+
+#
+# x. SMRインターバル管理項目一覧取得API（GET）
+#
+# SMRインターバル管理項目一覧を取得する
+#
+- request:
+    url: /v1/smr_interval_items
+    method: GET
+  response:
+    type: js
+    file: json/flm/smr-interval/getSmrIntervalItems.js
+
+#
+# x. SMRインターバル管理項目削除API
+#
+# SMRインターバル管理項目を削除する
+#
+- request:
+    url: /v1/smr_interval_items/:smr_interval_item_id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 車両毎SMRインターバル管理項目一覧取得API
+#
+# 車両毎のSMRインターバル管理項目一覧を取得する
+#
+- request:
+    url: /v1/cars/smr_interval_items/search
+    method: POST
+  response:
+    type: js
+    file: json/flm/smr-interval/getCarsSmrIntervalItems.js
+
+#
+# x. SMRインターバル管理項目更新API
+#
+# SMRインターバル管理項目を更新する
+#
+- request:
+    url: /v1/smr_interval_items/:smr_interval_item_id
+    method: PUT
+  response:
+    type: js
+    file: json/flm/smr-interval/putSmrIntervalItem.js
+
+#
+# x. 車両毎SMRインターバル管理項目更新API
+#
+# 車両毎のSMRインターバル管理項目を更新する
+#
+- request:
+    url: /v1/cars/:car_id/smr_interval_items
+    method: PUT
+  response:
+    type: js
+    file: json/flm/smr-interval/putCarSmrIntervalItem.js
+
+#
+# x. SMRインターバル管理項目一覧ファイル作成API (GET)
+#
+# SMRインターバル管理項目一覧ファイルを作成する
+#
+- request:
+    url: /v1/smr_interval_items/file_create
+    method: GET
+  response:
+    type: js
+    file: json/flm/smr-interval/createFile.js
+
+#
+# x. 車両毎SMRインターバル管理項目一覧ファイル作成API (POST)
+#
+# 車両毎のSMRインターバル管理項目一覧ファイルを作成する
+#
+- request:
+    url: /v1/cars/smr_interval_items/search/file_create
+    method: POST
+  response:
+    type: js
+    file: json/flm/smr-interval/createFile.js
+
+# x. 車両管理一覧取得API
+#
+# 車両管理一覧を取得する
+#
+- request:
+    url: /v1/cars/management/search
+    method: POST
+  response:
+    type: js
+    file: json/flm/car/postCars.js
+
+#
+# x. 車両管理削除API
+#
+# 指定した車両を削除する
+#
+- request:
+    url: /v1/cars
+    method: DELETE
+  response:
+    type: js
+    file: json/flm/car/deleteCars.js
+
+#
+# x. 車両管理一覧ファイル作成API (POST)
+#
+# 車両管理一覧のファイルを作成する
+#
+- request:
+    url: /v1/cars/management/search/file_create
+    method: POST
+  response:
+    type: js
+    file: json/flm/car/createFile.js
+
+#
+# x. 車両管理一覧テンプレートダウンロードAPI
+#
+# 車両登録/変更用のテンプレートを作成する。
+#
+- request:
+    url: /v1/cars/management/template_create
+    method: GET
+  response:
+    status: 200
+    file: json/flm/car/getTemplateCreate.json
+
+#
+# x. 車両管理一覧アップロードAPI
+#
+# テンプレートのアップロードにて車両を登録/更新する
+#
+- request:
+    url: /v1/cars/management/upload
+    method: POST
+  response:
+    type: js
+    file: json/flm/car/upload.js
+
+#
+# x. 車両登録画面表示制御API
+#
+# 指定された車両が標準搭載車両,レトロフィット車両のいずれであるかを判定する
+# ユーザにレトロ装着／KOMTRAX無しの選択を促す場合は確認メッセージのみを返却する
+#
+- request:
+    url: /v1/applications/car_management/registration_control
+    method: POST
+  response:
+    type: js
+    file: json/flm/car/postCarDispControl.js
+
+#
+# x. 車両管理登録API
+#
+# 指定した内容で車両を登録する。
+#
+- request:
+    url: /v1/cars
+    method: POST
+  response:
+    type: js
+    file: json/flm/car/postCar.js
+
+#
+# x. 端末開始設定API
+#
+# 指定した複数の車両に対して端末開始設定を行う。
+#
+- request:
+    url: /v1/cars/request_sets/terminal/start_setting/s2m
+    method: PUT
+  response:
+    type: js
+    file: json/flm/car/putTerminalStartSetting.js
+
+#
+# x. 時差設定更新要求API
+#
+# 指定された車両の時差設定の更新を要求する。
+#
+- request:
+    url: /v1/cars/request_sets/time_difference_setting/s2m
+    method: PUT
+  response:
+    type: js
+    file: json/flm/car/putTimeDifferenceSetting.js
+
+#
+# x. ORBCOMM申請API
+#
+# 対象車両のOrbcomm申請を行う
+#
+- request:
+    url: /v1/cars/:id/orbcomm
+    method: POST
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 車両引き当て一覧取得API
+#
+# 車両引き当て一覧を取得する。
+#
+- request:
+    url: /v1/cars/assigns
+    method: GET
+  response:
+    type: js
+    file: json/flm/car/getCarAssigns.js
+
+#
+# x. 車両引き当てAPI
+#
+# 車両引き当てを実施する。
+#
+- request:
+    url: /v1/cars/assigns
+    method: PUT
+  response:
+    type: js
+    file: json/flm/car/putCarAssigns.js
+
+#
+# x. 車両管理更新API
+#
+# 指定した内容で車両を更新する。
+#
+- request:
+    url: /v1/cars/:id
+    method: PUT
+  response:
+    type: js
+    file: json/flm/car/putCar.js
+
+#
+# x. 端末載せ替え実施API
+#
+# 指定した車両１台の端末載せ替えの設定を行う。
+#
+- request:
+    url: /v1/cars/:id/terminal/change
+    method: PUT
+  response:
+    type: js
+    file: json/flm/car/putCarTerminal.js
+
+#
+# x. 担当代理店変更申請登録API
+#
+# 担当代理店の変更申請を登録する。
+#
+- request:
+    url: /v1/cars/support_distributor_change/consignor
+    method: POST
+  response:
+    type: js
+    file: json/flm/car/postSupportDistributorChangeConsignor.js
+
+# x. ユーザ管理登録 API (POST)
+#
+# ユーザを登録する。
+#
+- request:
+    url: /v1/users/:id
+    method: POST
+  response:
+    status: 200
+    file: json/flm/users/postUser.json
+
+#
+# x. ユーザ一覧取得(共通認証) API (GET)
+#
+# 共通認証のユーザ一覧を取得する。
+#
+- request:
+    url: /v1/common_authentication/users
+    method: GET
+  response:
+    type: js
+    file: json/common/getUsers.js
+
+#
+# x. 会社一覧取得(共通認証) API (GET)
+#
+# 共通認証の会社一覧を取得する。
+#
+- request:
+    url: /v1/common_authentication/companies
+    method: GET
+  response:
+    type: js
+    file: json/common/getCompanies.js
+
+# x. ユーザ一覧取得 API (GET)
+#
+# ユーザ一覧を取得する。
+#
+- request:
+    url: /v1/users
+    method: GET
+  response:
+    type: js
+    file: json/flm/users/getUser.js
+
+#
+# x. ユーザ更新 API (POST)
+#
+# ユーザを更新する。
+#
+- request:
+    url: /v1/users/:id
+    method: PUT
+  response:
+    status: 200
+    file: json/flm/users/putUser.json
+
+#
+# x. ユーザ権限更新 API (PUT)
+#
+# ユーザ権限を更新する。
+#
+- request:
+    url: /v1/users/:id/authorities
+    method: PUT
+  response:
+    status: 200
+    file: json/flm/users/putAuthorities.json
+
+#
+# x. ユーザ管理削除 API (DELETE)
+#
+# ユーザを削除する。
+#
+- request:
+    url: /v1/users/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. ユーザ詳細取得 API (GET)
+#
+# ユーザ詳細を取得する。
+#
+- request:
+    url: /v1/users/:id/detail
+    method: GET
+  response:
+    type: js
+    file: json/flm/users/getUserDetail.js
+
+#
+# x. 顧客登録 API (POST)
+#
+# 顧客を登録する。
+#
+- request:
+    url: /v1/customers
+    method: POST
+  response:
+    type: js
+    file: json/flm/customer/postCustomer.js
+
+# x. 顧客一覧取得 API (GET)
+#
+# 顧客情報の一覧を取得する。
+#
+- request:
+    url: /v1/customers
+    method: GET
+  response:
+    type: js
+    file: json/flm/customer/getCustomers.js
+
+#
+# x. 顧客詳細取得 API (GET)
+#
+# 顧客詳細を取得する。
+#
+- request:
+    url: /v1/customers/:id/detail
+    method: GET
+  response:
+    type: js
+    file: json/flm/customer/getCustomerDetail.js
+
+#
+# x. 顧客更新 API (POST)
+#
+# 顧客を更新する。
+#
+- request:
+    url: /v1/customers/:id
+    method: PUT
+  response:
+    type: js
+    file: json/flm/customer/putCustomer.js
+
+#
+# x. 顧客管理削除 API (DELETE)
+#
+# 顧客を削除する。
+#
+- request:
+    url: /v1/customers/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 顧客一覧ファイル作成 API (GET)
+#
+# 顧客の一覧ファイルを作成する
+#
+- request:
+    url: /v1/customers/file_create
+    method: GET
+  response:
+    type: js
+    file: json/flm/customer/createFile.js
+
+#
+# x. 顧客一括登録テンプレートファイル作成 API (GET)
+#
+# 顧客一括登録用のテンプレートを作成する。
+#
+- request:
+    url: /v1/customers/template_create
+    method: GET
+  response:
+    type: js
+    file: json/flm/customer/createFile.js
+
+#
+# x. 顧客アップロード API
+#
+# ファイルをアップロードすることにより、一括で顧客情報の登録・更新を実行する。
+#
+- request:
+    url: /v1/customers/upload
+    method: POST
+  response:
+    type: js
+    file: json/flm/customer/upload.js
+
+#
+# x. サブグループ登録 API (POST)
+#
+# サブグループを登録する。
+#
+- request:
+    url: /v1/groups/sub_groups
+    method: POST
+  response:
+    type: js
+    file: json/flm/subgroup/postSubgroup.js
+
+#
+# x. サブグループ一覧取得 API (GET)
+#
+# サブグループの一覧を取得する。
+#
+- request:
+    url: /v1/groups/sub_groups
+    method: GET
+  response:
+    type: js
+    file: json/flm/subgroup/getSubgroups.js
+
+#
+# x. サブグループ詳細取得 API (GET)
+#
+# サブグループの詳細を取得する。
+#
+- request:
+    url: /v1/groups/sub_groups/:id/detail
+    method: GET
+  response:
+    type: js
+    file: json/flm/subgroup/getSubgroupDetail.js
+
+#
+# x. サブグループ更新 API
+#
+# サブグループを更新する。
+#
+- request:
+    url: /v1/groups/sub_groups/:id
+    method: PUT
+  response:
+    type: js
+    file: json/flm/subgroup/putSubgroup.js
+
+#
+# x. サブグループ削除 API
+#
+# サブグループを削除する。
+#
+- request:
+    url: /v1/groups/sub_groups/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 操作履歴一覧取得 API (POST)
+#
+# 操作履歴の一覧を取得する
+#
+- request:
+    url: /v1/applications/histories/search
+    method: POST
+  response:
+    type: js
+    file: json/flm/histories/postHistories.js
+
+#
+# x. 操作履歴ファイル作成 API (POST)
+#
+# 操作履歴ファイルを作成する
+#
+- request:
+    url: /v1/applications/histories/search/file_create
+    method: POST
+  response:
+    type: js
+    file: json/flm/histories/createFile.js
+
+#### サービス委託管理
+
+#
+# x. サービス委託一覧取得（申請）API（POST）
+#
+# 車両のサービス委託申請状態の一覧を取得する。(未申請含む)
+#
+- request:
+    url: /v1/cars/service_contract/consignor/search
+    method: POST
+  response:
+    type: js
+    file: json/flm/service_contract/postConsignors.js
+
+#
+# x. サービス委託申請登録API（POST）
+#
+# 車両のサービス委託申請を一括登録する
+#
+- request:
+    url: /v1/cars/service_contract/consignor
+    method: POST
+  response:
+    type: js
+    file: json/flm/service_contract/postApplyConsignors.js
+
+#
+# x. サービス委託解除API（DELETE）
+#
+# 車両のサービス委託を解除する
+#
+- request:
+    url: /v1/cars/service_contract
+    method: DELETE
+  response:
+    type: js
+    file: json/flm/service_contract/deleteConsignors.js
+
+#
+# x. サービス受託予定一覧取得（GET）
+#
+# サービス委託先として指定されたサービス委託申請の一覧を取得する
+#
+- request:
+    url: /v1/cars/service_contract/consignee
+    method: GET
+  response:
+    type: js
+    file: json/flm/service_contract/getConsignees.js
+
+#
+# x. サービス受託承認・却下 API（PUT）
+#
+# 車両のサービス委託申請の状態を一括更新（承認または却下）する
+#
+- request:
+    url: /v1/cars/service_contract/consignee
+    method: PUT
+  response:
+    type: js
+    file: json/flm/service_contract/putConsignees.js
+
+#### 累積燃料消費量インターバル管理
+
+#
+# x. 累積燃料消費量インターバル管理項目登録API (POST)
+#
+# 累積燃料消費量インターバル管理項目を登録する
+#
+- request:
+    url: /v1/accumulate_fuel_interval_items
+    method: POST
+  response:
+    type: js
+    file: json/flm/fuel/postFuel.js
+
+#
+# x. 累積燃料消費量インターバル管理項目一覧取得API (GET)
+#
+# 累積燃料消費量インターバル管理項目の一覧を取得する
+#
+- request:
+    url: /v1/accumulate_fuel_interval_items
+    method: GET
+  response:
+    type: js
+    file: json/flm/fuel/getFuel.js
+
+#
+# x. 累積燃料消費量インターバル管理項目更新API (PUT)
+#
+# 累積燃料消費量インターバル管理項目を更新する
+#
+- request:
+    url: /v1/accumulate_fuel_interval_items/:id
+    method: PUT
+  response:
+    type: js
+    file: json/flm/fuel/putFuel.js
+
+#
+# x. 機種型式別累積燃料消費量インターバル管理項目管理項目一覧取得API（GET）
+#
+# 機種型式別累積燃料消費量インターバル管理項目一覧を取得する
+#
+- request:
+    url: /v1/model_types/accumulate_fuel_interval_items
+    method: GET
+  response:
+    type: js
+    file: json/flm/fuel/getModelTypesFuel.js
+
+#
+# x. 累積燃料消費量インターバル管理項目管理項目削除API（DELETE）
+#
+# 機種型式別累積燃料消費量インターバル管理項目一覧を取得する
+#
+- request:
+    url: /v1/accumulate_fuel_interval_items/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 累積燃料消費量インターバル管理項目一覧ファイル作成API (GET)
+#
+# 累積燃料消費量インターバル管理項目一覧ファイルを作成する
+#
+- request:
+    url: /v1/accumulate_fuel_interval_items/file_create
+    method: GET
+  response:
+    type: js
+    file: json/flm/fuel/createFile.js
+
+#
+# x. 車両毎累積燃料消費量インターバル管理項目一覧取得API (GET)
+#
+# 車両毎の累積燃料消費量インターバル管理項目一覧を取得する
+#
+- request:
+    url: /v1/cars/accumulate_fuel_interval_items/search
+    method: POST
+  response:
+    type: js
+    file: json/flm/fuel/getCarsFuelItems.js
+
+#
+# x. 車両毎累積燃料消費量インターバル管理項目一覧ファイル作成API (POST)
+#
+# 車両毎累積燃料消費量インターバル管理項目一覧ファイルを作成する
+#
+- request:
+    url: /v1/cars/accumulate_fuel_interval_items/search/file_create
+    method: POST
+  response:
+    type: js
+    file: json/flm/fuel/createFile.js
+
+#
+# x. 車両毎累積燃料消費量インターバル管理項目更新API (PUT)
+#
+# 車両毎の累積燃料消費量インターバル管理項目を更新する
+#
+- request:
+    url: /v1/cars/:id/accumulate_fuel_interval_items
+    method: PUT
+  response:
+    type: js
+    file: json/flm/fuel/putCarFuelItem.js
+
+#### レンタル車両管理
+
+#
+# x. レンタル車両一覧取得API（POST）
+#
+# レンタル車両一覧を取得する。
+#
+- request:
+    url: /v1/cars/rental/search
+    method: POST
+  response:
+    type: js
+    file: json/flm/rental_car/postRentalCars.js
+
+#
+# x. レンタル車両履歴取得API（GET）
+#
+# 指定した車両の貸出履歴を取得する。
+#
+- request:
+    url: /v1/cars/:id/rental_histories
+    method: GET
+  response:
+    type: js
+    file: json/flm/rental_car/getRentalHistories.js
+
+#
+# x. レンタル車両一覧ファイル作成API（POST）
+#
+# レンタル車両一覧のファイルを作成する。
+#
+- request:
+    url: /v1/cars/rental/search/file_create
+    method: POST
+  response:
+    type: js
+    file: json/flm/rental_car/createFile.js
+
+#
+# x. レンタル車両アップロードAPI（POST）
+#
+# アップロードされたExcelファイル内に設定したレンタル車両情報を登録・更新・削除する。
+#
+- request:
+    url: /v1/cars/rental/upload
+    method: POST
+  response:
+    type: js
+    file: json/flm/rental_car/upload.js
+
+#
+# x. レンタル車更新API（PUT）
+#
+# レンタル車両情報を更新する。
+#
+- request:
+    url: /v1/cars/:id/rental
+    method: PUT
+  response:
+    type: js
+    file: json/flm/rental_car/putRentalCar.js
+
+# x. ランドマーク取得API（GET）
+#
+# ランドマークの一覧情報を取得する。
+#
+- request:
+    url: /v1/landmarks
+    method: GET
+  response:
+    type: js
+    file: json/flm/landmark/getLandmarks.js
+
+#
+# x. ランドマーク登録API（POST）
+#
+# ランドマークを登録する。
+#
+- request:
+    url: /v1/landmarks
+    method: POST
+  response:
+    type: js
+    file: json/flm/landmark/postLandmark.js
+
+#
+# x. ランドマークアイコン一覧取得 API (GET)
+#
+# ランドマークアイコンの一覧を取得する。
+#
+- request:
+    url: /v1/applications/landmark_icons
+    method: GET
+  response:
+    type: js
+    file: json/flm/landmark/getLandmarkIcons.js
+
+#
+# x. ランドマーク更新API（PUT）
+#
+# ランドマークを更新する。
+#
+- request:
+    url: /v1/landmarks/:id
+    method: PUT
+  response:
+    type: js
+    file: json/flm/landmark/putLandmark.js
+
+#
+# x. ランドマーク削除API（DELETE）
+#
+# ランドマークを削除する。
+#
+- request:
+    url: /v1/landmarks/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+
+#
+# x. ジョブサイト地図一覧取得 API (GET)
+#
+# 現場 又は エリアの地図一覧を取得する。
+#
+- request:
+    url: /v1/sites/maps
+    method: GET
+  response:
+    type: js
+    file: json/flm/site-management/getSiteMaps.js
+
+#
+# x. ジョブサイト月次稼働状況取得 API (GET)
+#
+# 現場 又は エリア内の車両の月次稼動状況を取得する。
+#
+- request:
+    url: /v1/sites/cars/operations/monthly
+    method: GET
+  response:
+    type: js
+    file: json/flm/site-management/getMonthlyOperations.js
+
+#
+# x. ジョブサイト日次稼働状況取得 API (GET)
+#
+# 現場 又は エリア内の車両の日次稼動状況を取得する。
+#
+- request:
+    url: /v1/sites/cars/operations/daily
+    method: GET
+  response:
+    type: js
+    file: json/flm/site-management/getDailyOperations.js
+
+#
+# x. 保税エリア一覧取得 API (GET)
+#
+# 保税エリアの情報一覧を取得する。
+#
+- request:
+    url: /v1/areas/bond
+    method: GET
+  response:
+    type: js
+    file: json/flm/site-management/getBondAreas.js
+
+#
+# x. 車両一覧取得 (POST)
+#
+# 車両一覧を取得する。
+#
+- request:
+    url: /v1/cars/search
+    method: POST
+  response:
+    type: js
+    file: json/flm/site-management/postCars.js
+
+
+# x. Not Found
+#
+# 上記以外のリクエストはNot Found。
+#
+- request:
+    url: /v1/*
+    method: GET
+  response:
+    status: 404
+    file: json/common/notFound.json

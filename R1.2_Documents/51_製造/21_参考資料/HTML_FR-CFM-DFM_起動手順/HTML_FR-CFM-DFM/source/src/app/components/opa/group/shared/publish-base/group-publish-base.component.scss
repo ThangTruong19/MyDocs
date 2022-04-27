@@ -1,0 +1,124 @@
+@import "../../../../../../assets/styles/opa/_variable.scss";
+@import "../../../../../../assets/styles/_variable.scss";
+
+.td-radio {
+  display: flex !important;
+  justify-content: center;
+
+  .KBA-input-radio__label {
+    padding-left: 21px;
+  }
+}
+
+.KBA-form-header {
+  margin-bottom: 10px;
+
+  .KBA-content-title {
+    margin-bottom: 5px;
+  }
+}
+
+.scope-items-cell {
+  padding: 0 !important;
+
+  .KBA-table {
+    border: 0;
+  }
+}
+
+.row-scope-item {
+  &.add-items {
+    .scope-item-label {
+      color: $kba-add-font-color;
+    }
+
+    tbody {
+      tr {
+        background-color: $kba-selected-color;
+      }
+    }
+  }
+
+  &.remove-items {
+    .scope-item-label {
+      color: $kba-error-color;
+    }
+
+    tbody {
+      tr {
+        background-color: $kba-row-removed-color;
+      }
+    }
+  }
+
+  .btn-select {
+    min-width: 100px;
+    margin: 15px 15px 0;
+  }
+
+  .scope-item-label {
+    margin: 15px 0 10px 15px;
+  }
+
+  .no-scope-items {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+.table-scope {
+  tbody {
+    max-height: 226px !important;
+  }
+}
+
+.submit-modal-scope-items {
+  width: calc(100% + 30px);
+  margin: -15px 0 -15px -15px;
+
+  .row-scope-item:last-child {
+    .submit-modal-table {
+      tr:last-child {
+        td {
+          border-bottom-width: 0;
+        }
+      }
+    }
+  }
+
+  .submit-modal-table {
+    margin-bottom: 0;
+
+    tr {
+      th:first-child,
+      td:first-child {
+        border-left-width: 0;
+      }
+
+      th:last-child,
+      td:last-child {
+        border-right-width: 0;
+      }
+    }
+
+    th,
+    td {
+      padding: 6px !important;
+    }
+
+    th {
+      font-weight: normal;
+      color: $kba-main-color;
+      text-align: center;
+      vertical-align: middle;
+      background-color: $kba-sub-color;
+      border-bottom-width: 0;
+    }
+  }
+}
+
+.th-groups_identification_kind_name,
+.td-groups_identification_kind_name {
+  width: 28% !important;
+  text-align: center;
+}

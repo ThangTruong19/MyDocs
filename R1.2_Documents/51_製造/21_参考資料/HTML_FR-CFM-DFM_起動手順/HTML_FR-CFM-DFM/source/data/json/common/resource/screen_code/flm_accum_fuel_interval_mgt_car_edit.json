@@ -1,0 +1,89 @@
+[
+  {
+    "path": "car.accumulate_fuel_interval_items.management_kind",
+    "name": "管理状態",
+    "help": "管理状態のヘルプ文言",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "管理しない",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "管理する",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.accumulate_fuel_interval_items.inspection_start_accumulate_fuel",
+    "name": "点検開始累積燃料消費量",
+    "help": "点検開始累積燃料消費量のヘルプ文言",
+    "type": -13,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.accumulate_fuel_interval_items.accumulate_fuel_interval_kind",
+    "name": "累積燃料消費量インターバル",
+    "help": "累積燃料消費量インターバルのヘルプ文言",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "あり",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.accumulate_fuel_interval_items.accumulate_fuel_interval",
+    "name": "累積燃料消費量インターバル",
+    "help": "累積燃料消費量インターバルのヘルプ文言",
+    "type": -13,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.accumulate_fuel_interval_items.threshold_kind",
+    "name": "オレンジフラグ閾値",
+    "help": "オレンジフラグ閾値のヘルプ文言",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "あり",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.accumulate_fuel_interval_items.threshold",
+    "name": "オレンジフラグ閾値",
+    "help": "オレンジフラグ閾値のヘルプ文言",
+    "type": -13,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

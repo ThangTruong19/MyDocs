@@ -1,0 +1,41 @@
+{
+  "result_data": {
+    "car": {
+      "car_identification": {
+        "id": "1",
+        "maker_id": "1",
+        "maker_name": "コマツ",
+        "division_id": "1",
+        "division_code": "0001",
+        "division_name": "スキッドステアローダ",
+        "model_id": "1",
+        "model": "SK714",
+        "model_type_id": "1",
+        "type": "A12345",
+        "rev": "M0",
+        "type_rev": "A12345M0",
+        "icon_font_no": "65",
+        "serial": "A12345",
+        "pin": "12345",
+        "production_date": "2017/05/23",
+        "update_datetime": "2017-05-23T23:59:59.999Z"
+      },
+      "latest_status": {
+        "smr": 100,
+        "smr_date": "2017/06/05 23:59:59",
+        "communication_datetime": "2017/05/23 23:59:59",
+        "place": "神奈川県",
+        "place_get_datetime": "2017/05/23 23:59:59",
+        "point": {
+          "type": "Point",
+          "coordinates": [139.752938, 35.684681]
+        },
+        "altitude": 333,
+        "altitude_measure_datetime": "2017/05/23 23:59:59",
+        "event_datetime": "2017/05/23 23:59:59",
+        "measure_datetime": "2017/05/23 23:59:59",
+        "accumulate_fuel_interval": 30010.2
+      }
+    }
+  }
+}

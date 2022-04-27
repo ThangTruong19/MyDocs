@@ -1,0 +1,47 @@
+[
+  {
+    "path": "group.granted_role_id",
+    "name": "権限",
+    "help": "権限のヘルプ文言（OPA側）",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "所属1の運用ユーザ権限1",
+        "value": "R1G0001",
+        "kind": "D"
+      },
+      {
+        "key": "所属1の運用ユーザ権限2",
+        "value": "R1G0002",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "role_id",
+    "name": "権限",
+    "help": "権限のヘルプ文言（OPA側）",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "所属1の運用ユーザ権限1",
+        "value": "R1G0001",
+        "kind": "D"
+      },
+      {
+        "key": "所属1の運用ユーザ権限2",
+        "value": "R1G0002",
+        "kind": "D"
+      }
+    ]
+  }
+]

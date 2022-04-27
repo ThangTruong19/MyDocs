@@ -1,0 +1,18 @@
+[
+  {
+    "path": "car.komtrax_unit.terminal_component.part",
+    "name": "モニタ品番",
+    "help": "モニタ品番のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.komtrax_unit.terminal_component.serial",
+    "name": "モニタシリアル",
+    "help": "モニタシリアルのヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  }
+]

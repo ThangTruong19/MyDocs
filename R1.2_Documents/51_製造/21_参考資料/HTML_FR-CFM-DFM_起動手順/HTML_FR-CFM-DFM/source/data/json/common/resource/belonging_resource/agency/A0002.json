@@ -1,0 +1,36 @@
+[
+  {
+    "path": "customer_ids",
+    "name": "顧客",
+    "help": "顧客のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2の顧客011",
+        "value": "11",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2の顧客012",
+        "value": "12",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2の顧客013",
+        "value": "13",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2の顧客014",
+        "value": "14",
+        "kind": "D"
+      }
+    ]
+  }
+]

@@ -1,0 +1,68 @@
+@import "../../../../../assets/styles/_variable";
+
+.KBA-search {
+  width: 100%;
+  margin: 0;
+}
+
+th {
+  &.th-area {
+    flex-shrink: 0;
+    padding: 0 !important;
+
+    li {
+      &.th-cars_areas_no_1,
+      &.th-cars_areas_no_2,
+      &.th-cars_areas_no_3 {
+        width: 35px;
+        min-width: 35px;
+        flex-shrink: 0;
+      }
+
+      &.th-cars_areas_label_1,
+      &.th-cars_areas_label_2,
+      &.th-cars_areas_label_3 {
+        width: 112px;
+        min-width: 112px;
+        flex-shrink: 0;
+        word-wrap: break-word;
+        white-space: normal;
+        flex-grow: 1;
+      }
+    }
+  }
+  height: 78px;
+}
+
+td {
+  &.td-cars_areas_no_1,
+  &.td-cars_areas_no_2,
+  &.td-cars_areas_no_3 {
+    width: 35px;
+    min-width: 35px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  &.td-cars_areas_label_1,
+  &.td-cars_areas_label_2,
+  &.td-cars_areas_label_3 {
+    width: 112px;
+    min-width: 112px;
+    flex-shrink: 0;
+    text-align: left;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+}
+
+.KBA-toggle-buttons {
+  padding: 10px;
+  margin: 0;
+  border-bottom: 1px solid $kba-lightgray-color;
+}
+
+.area-map {
+  position: relative;
+  height: 445px;
+}

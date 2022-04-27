@@ -1,0 +1,14 @@
+@import "../../../../../../assets/styles/_variable";
+
+.KBA-form-table {
+  .half-height {
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+}
+
+.delete-alert {
+  color: $fontRed;
+  text-align: center;
+  margin-bottom: 10px;
+}

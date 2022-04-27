@@ -1,0 +1,30 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "顧客車両番号",
+    "path": "cars.customer_attribute.customer_car_no",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "機種",
+    "path": "cars.car_identification.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "型式",
+    "path": "cars.car_identification.type",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "機番",
+    "path": "cars.car_identification.serial",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

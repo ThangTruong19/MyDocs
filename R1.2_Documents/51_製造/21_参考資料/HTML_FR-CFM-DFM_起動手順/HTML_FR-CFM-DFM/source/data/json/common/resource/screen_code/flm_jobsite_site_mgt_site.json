@@ -1,0 +1,22 @@
+[
+  {
+    "path": "mode",
+    "name": "モード",
+    "help": "モードのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "エリア",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "現場",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  }
+]

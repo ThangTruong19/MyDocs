@@ -1,0 +1,27 @@
+.th-check,
+.td-check {
+  width: 50px;
+  min-width: 50px;
+}
+
+.KBA-input-checkbox__label {
+  margin-right: 3px;
+  margin-left: -3px;
+}
+
+.KBA-table .KBA-table-tbody .hidden-columns {
+  display: inline-block !important;
+  width: 0 !important;
+  padding: 6px 0 7px !important;
+  overflow: hidden;
+  white-space: pre !important;
+  border: 0 !important;
+
+  .hidden-columns-container {
+    display: flex;
+  }
+}
+
+.before-init {
+  visibility: hidden;
+}

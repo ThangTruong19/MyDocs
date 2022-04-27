@@ -1,0 +1,180 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 累積燃料消費量インターバル管理　車両毎設定一覧
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 累積燃料消費量インターバル管理　車両毎設定一覧
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 10
+    description: 編集
+    name: header_edit
+    ja: 編集
+    en:
+
+  - id: 11
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 12
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: 入力内容をリセット
+    en:
+
+  - id: 13
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか？
+    en:
+
+  - id: 14
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 15
+    description: 表示項目設定
+    name: field_select
+    ja: 表示項目設定
+    en:
+
+  - id: 16
+    description: 表示項目選択
+    name: field_select_title
+    ja: 表示項目設定
+    en:
+
+  - id: 17
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 18
+    description: 機種-型式で設定する
+    name: input_model_type_revs
+    ja: 機種-型式で設定する
+    en:
+
+  - id: 19
+    description: 注目車両
+    name: target_car
+    ja: 注目車両
+    en:
+
+  - id: 20
+    description: 車両識別情報
+    name: identifier
+    ja: 車両識別情報
+    en:
+
+  - id: 21
+    description: 車両所属
+    name: belongs
+    ja: 車両所属
+    en:
+
+  - id: 22
+    description: 車両属性
+    name: attributes
+    ja: 車両属性
+    en:
+
+  - id: 23
+    description: 検索条件一覧
+    name: search_condition_list
+    ja: 検索条件一覧
+    en:
+
+  - id: 24
+    description: 一括ダウンロード
+    name: download_all
+    ja: 一括ダウンロード
+    en:
+
+  - id: 25
+    description: 一括ダウンロード選択リストタイトル
+    name: download_select_title
+    ja: 項目選択
+    en:
+
+  - id: 26
+    description: 車両管理項目
+    name: fuel_settings
+    ja: 車両管理項目
+    en:
+
+  - id: 27
+    description: リストドロップダウン
+    name: prompt_to_select
+    ja: 選択してください
+    en:
+
+  - id: 28
+    description: リストから選択
+    name: choose_from_list
+    ja: リストから選択
+    en:
+
+  - id: 29
+    description: 検索結果0件時の表示
+    name: empty_list_message
+    ja: 該当する車両が見つかりませんでした。
+    en:
+
+  - id: 30
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:

@@ -1,0 +1,126 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: ジョブサイト
+    en:
+
+  - id: 1
+    description: 戻る
+    name: back
+    ja: 戻る
+    en:
+
+  - id: 1
+    description: 稼働状況
+    name: tab_stat
+    ja: 稼働状況
+    en:
+
+  - id: 1
+    description: 地図
+    name: tab_map
+    ja: 地図
+    en:
+
+  - id: 1
+    description: 表示プルダウンタイトル
+    name: display
+    ja: 表示
+    en:
+
+  - id: 1
+    description: 地図の設定を保存する
+    name: save_options
+    ja: 現在の位置と倍率を初期設定にする
+    en:
+
+  - id: 1
+    description: 保存完了ダイアログ
+    name: saved
+    ja: 保存しました
+    en:
+
+  - id: 1
+    description: 車両のキャプション
+    name: car_captions
+    ja: 車両のキャプション
+    en:
+
+  - id: 1
+    description: ランドマークのキャプション
+    name: landmark_captions
+    ja: ランドマークのキャプション
+    en:
+
+  - id: 1
+    description: 車両詳細リンク文言
+    name: car_detail_link
+    ja: 車両詳細を見る
+    en:
+
+  - id: 1
+    description: ルート表示リンク文言
+    name: search_route_link
+    ja: 車両へのルートを見る
+    en:
+
+  - id: 1
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 1
+    description: 現在地からのルートを表示
+    name: route_from_present_location
+    ja: 現在地からのルートを表示
+    en:
+
+  - id: 1
+    description: 現在地：
+    name: present_location
+    ja: 現在地：
+    en:
+
+  - id: 1
+    description: 現在地を入力して表示
+    name: input_present_location
+    ja: 現在地を入力して表示
+    en:
+
+  - id: 1
+    description: 確定
+    name: confirm
+    ja: 確定
+    en:
+
+  - id: 1
+    description: クリック地点からのルートを表示
+    name: route_from_clicked_point
+    ja: クリック地点からのルートを表示
+    en:
+
+  - id: 1
+    description: ルート検索結果なし時のアラート
+    name: route_not_found
+    ja: ルートがみつかりませんでした
+    en:
+
+  - id: 1
+    description: スタート地点不正時のアラート
+    name: invalid_start_point
+    ja: 無効なスタート地点です
+    en:
+
+  - id: 1
+    description: 位置情報が有効でない場合のアラート
+    name: geolocation_disabled
+    ja: お使いのブラウザで位置情報の機能を有効にしてください
+    en:
+
+  - id: 1
+    description: 全ての車両
+    name: all_cars
+    ja: 全ての車両
+    en:

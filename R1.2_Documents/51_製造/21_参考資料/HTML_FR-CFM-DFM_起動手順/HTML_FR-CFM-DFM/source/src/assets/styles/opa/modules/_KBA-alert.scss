@@ -1,0 +1,64 @@
+.KBA-alert-messages {
+  position: fixed;
+  top: 64px;
+  width: 85%;
+  transition: 0.5s opacity $easeOutQuad;
+  z-index: 10000;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  .alert {
+    position: relative;
+    width: 100%;
+    max-width: 1088px;
+    max-height: 500px;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+
+    &.alert-danger {
+      background: $kba-danger-color;
+      border-color: #f87272;
+      color: #f87272;
+    }
+
+    &.alert-success {
+      background: #ebf3fe;
+      border-color: #2f54a8;
+      color: $kba-main-color;
+    }
+
+    .close {
+      position: absolute;
+      top: 0;
+      right: 5px;
+      color: #333;
+    }
+
+    p {
+      width: 95%;
+    }
+
+    span {
+      word-break: break-all;
+      white-space: pre-line;
+    }
+  }
+
+  &.ng-enter {
+    opacity: 0;
+
+    &.ng-enter-active {
+      opacity: 1;
+    }
+  }
+
+  &.ng-leave {
+    opacity: 1;
+
+    &.ng-leave-active {
+      opacity: 0;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.KBA-map {
+  position: relative;
+}
+
+.popover {
+  left: 64px;
+  margin-left: 10px;
+
+  .popover-arrow {
+    position: absolute;
+    top: 44px;
+    left: -10px;
+    border: solid 10px transparent;
+    border-right-color: rgba(0, 0, 0, 2);
+    border-left-width: 0;
+
+    &::after {
+      position: absolute;
+      top: -10px;
+      display: block;
+      width: 0;
+      height: 0;
+      content: "";
+      border: solid 10px transparent;
+      border-right-color: #fff;
+      border-left-width: 0;
+    }
+  }
+}

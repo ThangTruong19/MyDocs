@@ -1,0 +1,31 @@
+<section id="KBA-smrinterval-show-modal" class="KBA-modal">
+  <header class="KBA-modal-header modal-header">
+    <h1>{{ labels.trimming_modal_title }}</h1>
+  </header>
+
+  <div class="KBA-modal-body modal-body">
+    <p class="image-header">
+      {{ fileName }}
+    </p>
+    <div class="photo-crop-area">
+      <img #imageContainer [src]="url | sanitizeUrl" />
+    </div>
+  </div>
+
+  <footer class="KBA-modal-footer modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary cancel"
+      (click)="onClickClose()"
+    >
+      {{ labels.cancel }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary submit"
+      (click)="onClickSubmit()"
+    >
+      {{ labels.submit }}
+    </button>
+  </footer>
+</section>

@@ -1,0 +1,73 @@
+[
+  {
+    "path": "common.car_identification.maker_codes",
+    "name": "メーカ",
+    "help": "メーカのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "コマツ0001",
+        "value": "0001",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0002",
+        "value": "0002",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.models",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.type_revs",
+    "name": "型式",
+    "help": "型式のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.serials",
+    "name": "機番",
+    "help": "機番のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.komtrax_unit.main_component.part",
+    "name": "端末品番",
+    "help": "端末品番のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.komtrax_unit.main_component.serial",
+    "name": "端末シリアル",
+    "help": "端末シリアルのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.car_identification.initial_smr",
+    "name": "初期SMR(H)",
+    "help": "初期SMR(H)のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  }
+]

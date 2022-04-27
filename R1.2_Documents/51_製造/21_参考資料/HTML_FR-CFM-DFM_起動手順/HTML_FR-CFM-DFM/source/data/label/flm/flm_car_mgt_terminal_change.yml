@@ -1,0 +1,96 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 車両管理 端末載せ替え
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 車両管理 端末載せ替え
+    en:
+
+  - id: 12
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 13
+    description: 端末載せ替え
+    name: caption
+    ja: 端末載せ替え
+    en:
+
+  - id: 14
+    description: 複合存在注意メッセージ
+    name: composite_presence
+    ja: 端末品番、端末シリアル、初期SMR(H)はすべて空欄とするか、すべて入力してください
+    en:
+
+  - id: 15
+    description: 端末載せ替えへ
+    name: to_terminal_change
+    ja: 端末載せ替えへ
+    en:
+
+  - id: 16
+    description: 変更
+    name: change_submit
+    ja: 変更
+    en:
+
+  - id: 17
+    description: 車両変更の注意書き
+    name: main_caption
+    ja: 車両を選択して下さい
+    en:
+
+  - id: 18
+    description: 変更確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容で変更します。よろしいですか？
+    en:
+
+  - id: 19
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 20
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 21
+    description: 変更完了メッセージ
+    name: complete_change
+    ja: 車両の端末情報が変更されました
+    en:
+
+  - id: 22
+    description: 設定反映についての注意書き
+    name: set_reflect_notes
+    ja: 設定が反映されるのはしばらく時間がかかります（10分程度）。設定確認は少し時間をおいてからおこなってください。
+    en:
+
+  - id: 23
+    description: 続けて変更
+    name: continue
+    ja: 続けて変更
+    en:
+
+  - id: 24
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当する車両が見つかりませんでした。
+    en:
+
+  - id: 24
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

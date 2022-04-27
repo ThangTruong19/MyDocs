@@ -1,0 +1,144 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: SMRインターバル管理項目管理　変更
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: SMRインターバル管理項目管理　変更
+    en:
+
+  - id: 3
+    description: 必須項目文言
+    name: description_for_required
+    ja: (*)…必須項目
+    en:
+
+  - id: 4
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 5
+    description: 続けて登録
+    name: continue
+    ja: 続けて登録
+    en:
+
+  - id: 6
+    description: 変更
+    name: submit
+    ja: 変更
+    en:
+
+  - id: 7
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: 入力内容をリセット
+    en:
+
+  - id: 8
+    description: リセットモーダル文言
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか？
+    en:
+
+  - id: 9
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 10
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 11
+    description: 登録確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容に変更します。よろしいですか？
+    en:
+
+  - id: 12
+    description: 処理完了アラート
+    name: finish_message
+    ja: 処理が完了しました
+    en:
+
+  - id: 13
+    description: 機種型式選択
+    name: model_rev_modal_title
+    ja: 機種-型式選択
+    en:
+
+  - id: 14
+    description: 選択
+    name: select
+    ja: 選択
+    en:
+
+  - id: 15
+    description: 機種型式リスト
+    name: model_type_list
+    ja: 機種-型式リスト
+    en:
+
+  - id: 16
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 17
+    description: 機種
+    name: model
+    ja: 機種
+    en:
+
+  - id: 18
+    description: 型式
+    name: type_rev
+    ja: 型式
+    en:
+
+  - id: 19
+    description: 参照
+    name: refer
+    ja: 参照
+    en:
+
+  - id: 20
+    description: 参照モーダルタイトル
+    name: ref_modal_title
+    ja: SMRインターバル管理項目設定内容
+    en:
+
+  - id: 21
+    description: 参照先なし
+    name: no_reference
+    ja: 参照先がありません。
+    en:
+
+  - id: 22
+    description: 全機種型式
+    name: all_models
+    ja: 全機種-型式
+    en:
+
+  - id: 23
+    description: 時間
+    name: hour
+    ja: H
+    en:
+
+  - id: 31
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

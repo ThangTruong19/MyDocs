@@ -1,0 +1,484 @@
+swagger: '2.0'
+info:
+  title: 次世代KOMTRAX API
+  description: |
+    # 変更履歴
+    <table>
+      <tr><th>日付</th><th>変更内容</th></tr>
+    </table>
+  version: ""
+paths:
+  #パス名（パスパラメータを用いる場合{xxx_id}を入れる）
+  /cars/customize_usage_definition_details:
+  #path_start
+  #get|put|post|delete
+    get:
+      # API名
+      summary: 車両カスタマイズ用途定義詳細取得API [API_ID：KOM-00110181]
+      produces:
+      - application/json
+      # API説明文
+      description: |
+        車両に紐づくカスタマイズ用途定義と詳細情報（カスタマイズ定義、開始日終了日、設定ステータスなど）を取得するAPI。
+        <h1>エラーコード一覧</h1>
+        <!-- ない、もしくは未定の場合は見出し、表を削除 -->
+        <ul>
+          <li>API共通で返却されるエラーメッセージは<a href="https://miot-msd.jp.fujitsu.com/komtrax/resources/api/komtrax_docs/messages.html" target="_blank">KOMTRAX共通メッセージ</a>を参照</li>
+          <style type="text/css">
+            .kom_error_messages{
+                background-color: #0001;
+                height: auto;
+                padding: 0;
+              }
+              .kom_error_messages table {
+                width:100%;
+                table-layout: fixed;
+                word-wrap: break-word;
+              }
+              .kom_error_messages .kom_status {width: 7%}
+              .kom_error_messages .kom_name {width: 20%}
+              .kom_error_messages .kom_code {width: 10%}
+              .kom_error_messages .kom_message {width: 30%}
+              .kom_error_messages .kom_cause {width: 23%}
+              .kom_error_messages .kom_remarks {width: 10%}
+              .kom_error_bg{
+                padding: 5px;
+                border-radius: 2px;
+              }
+          </style>
+          <li class="kom_error_bg"> エラー一覧
+            <details>
+              <div class="kom_error_messages">
+                <table border=1>
+                  <tr>
+                    <th class="kom_status">HTTP<br>ステータス</th>
+                    <th class="kom_name">項目名</th>
+                    <th class="kom_code">エラーコード</th>
+                    <th class="kom_message">出力メッセージ</th>
+                    <th class="kom_cause">要因</th>
+                    <th class="kom_remarks">備考</th>
+                  </tr>
+                  <tr>
+                    <td>400</td>
+                    <td>car_ids</td>
+                    <td>ACOM0153E</td>
+                    <td>{{car_ids}}は1～19桁の半角数字で入力してください。</td>
+                    <td>ID項目に1～19桁の半角数字以外が入力された場合に返却されます。</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>400</td>
+                    <td>car_ids</td>
+                    <td>ACAR0186E</td>
+                    <td>指定された{{car_ids}}は存在しません。</td>
+                    <td>入力パラメタの車両IDに紐付く車両情報の取得レコードが0件であった場合に返却されます。</td>
+                    <td></td>
+                  </tr> 
+                   <tr>
+                    <td>400</td>
+                    <td>car_ids</td>
+                    <td>ACAR0402E</td>
+                    <td>指定された車両は存在しません。</td>
+                    <td>指定された車両IDまたは機種型式小変形機番の組み合わせが存在しない、または参照する権限が無い場合に返却されます。</td>
+                    <td></td>
+                </table>
+              </div>
+            </details>
+          </li>
+        </ul>
+        <h1>特記事項</h1>
+        X-Sortヘッダに指定可能なソートキーを以下に列挙する。<br>
+        <ul>
+          <li>customize_usage_definitions.customize_usage_definition.customize_usage_definition_id</li>
+          <li>customize_usage_definitions.customize_usage_definition.customize_usage_definition_name</li>
+          <li>customize_usage_definitions.customize_usage_definition.customize_usage_definition_version</li>
+          <li>customize_usage_definitions.customize_usage_definition.start_date</li>
+          <li>customize_usage_definitions.customize_usage_definition.end_date</li>
+          <li>customize_usage_definitions.customize_usage_definition.priority_name</li>
+          <li>customize_usage_definitions.customize_usage_definition.use_name</li>
+          <li>customize_usage_definitions.customize_definition.customize_definition_id</li>
+          <li>customize_usage_definitions.customize_definition.customize_definition_name</li>
+          <li>customize_usage_definitions.customize_definition.priority_name</li>
+          <li>customize_usage_definitions.customize_definition.active_name</li>
+          <li>customize_usage_definitions.customize_definition.latest_operation_code_name</li>
+          <li>customize_usage_definitions.customize_definition.status_name</li>
+          <li>customize_usage_definitions.customize_definition.assumption_data_value</li>
+          <li>customize_usage_definitions.customize_definition.start_date</li>
+          <li>customize_usage_definitions.customize_definition.end_date</li>
+          <li>customize_usage_definitions.customize_definition.first_receive_datetime</li>
+          <li>customize_usage_definitions.customize_definition.latest_receive_datetime</li>
+          <li>customize_usage_definitions.customize_definition.aggregation_condition_name</li>
+          <li>customize_usage_definitions.customize_definition.send_condition_name</li>
+          <li>customize_usage_definitions.customize_definition.customize_access_level_name</li>
+        </ul>
+        未指定時のデフォルトソートは"customize_usage_definitions"内は第一ソートを"customize_usage_definitions.customize_usage_definition..customize_usage_definition_name"の昇順、第二ソートを"customize_usage_definitions.customize_definition..customize_definition_name"の昇順でソートする<br>
+      # リクエスト
+      parameters:
+        #共通のヘッダ
+        - name: X-Lang
+          in: header
+          description: |
+            論理名　　　：言語タグ<br>
+            使用可能文字：半角英数字,ハイフンマイナス<br>
+            桁／文字数　：2～35<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        - name: X-AppCode
+          in: header
+          description: |
+            論理名　　　：アプリコード<br>
+            使用可能文字：半角英数記号<br>
+            桁／文字数　：36<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        - name: X-GroupId
+          in: header
+          description: |
+            論理名　　　：グループID<br>
+            使用可能文字：半角数字<br>
+            桁／文字数　：1～19<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        - name: X-DateFormat
+          in: header
+          description: |
+            論理名　　　：日付形式<br>
+            使用可能文字：半角数字<br>
+            桁／文字数　：1<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        - name: X-ScreenCode
+          in: header
+          description: |
+            論理名　　　：画面コード<br>
+            使用可能文字：半角英数字,半角アンダーバー<br>
+            桁／文字数　：1～64<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        - name: X-WebApiKey
+          in: header
+          description: |
+            論理名　　　：WebAPIキー<br>
+            使用可能文字：半角英数記号<br>
+            桁／文字数　：1～36<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        - name: X-From
+          in: header
+          description: |
+            論理名　　　：取得開始位置<br>
+            使用可能文字：半角数字<br>
+            桁／文字数　：1～<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: number
+        - name: X-Count
+          in: header
+          description: |
+            論理名　　　：取得件数<br>
+            使用可能文字：半角数字<br>
+            桁／文字数　：1～<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: number
+        - name: X-Sort
+          in: header
+          description: |
+            論理名　　　：ソート<br>
+            使用可能文字：半角英数字,ハイフンマイナス,半角アンダーバー,半角ピリオド,半角カンマ,半角コロン<br>
+            桁／文字数　：1～<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        #車両ID
+        - name: car_id
+          in: query
+          description: |
+            論理名　　　：車両ID<br>
+            example: 1
+          minLength: 1
+          maxLength: 19
+          pattern: 半角数字
+          required: true
+          type: string
+      # タグはnamespaceとする
+      tags:
+        - cars
+     # レスポンス
+      responses:
+        '200':
+          description: カスタマイズ用途定義情報
+          schema:
+            type: object
+            properties:
+              result_data:
+                type: object
+                properties:
+                  customize_usage_definitions:
+                    type: array
+                    items:
+                      properties:
+                        customize_usage_definition:
+                          type: object
+                          properties:
+                            customize_usage_definition_id:
+                              type: string
+                              description: "カスタマイズ用途定義ID"
+                              minLength: 1
+                              maxLength: 19
+                              pattern: 半角数字
+                              example: 1
+                            customize_usage_definition_name:
+                              type: string
+                              description: "カスタマイズ用途定義名称"
+                              minLength: 1
+                              maxLength: 1024
+                              pattern: "ALL（X-Langの設定に従う）"
+                              example: "KOMTRAX標準"
+                            customize_usage_definition_version:
+                              type: number
+                              description: "カスタマイズ用途定義バージョン"
+                              minLength: 1
+                              maxLength: 19
+                              pattern: 半角数字
+                              example: 1.0
+                            start_date:
+                              type: string
+                              description: "開始日"
+                              pattern: "日付（X-DateFormatの設定に従う）"
+                              example: "2017/12/30"
+                            end_date:
+                              type: string
+                              description: "終了日"
+                              pattern: "日付（X-DateFormatの設定に従う）"
+                              example: "2017/12/30"
+                            priority:
+                              type: string
+                              description: "優先度"
+                              minLength: 1
+                              maxLength: 1
+                              pattern: "半角数字"
+                              example: "1"
+                              enum:
+                                - 1:low
+                                - 2:middle
+                                - 3:high
+                            priority_name:
+                              type: string
+                              description: "優先度名称"
+                              minLength: 1
+                              maxLength: 1024
+                              pattern: "ALL（X-Langの設定に従う）"
+                              example: "low"
+                            use_kind:
+                              type: string
+                              description: "利用区分"
+                              minLength: 1
+                              maxLength: 1
+                              pattern: "半角数字"
+                              example: "0"
+                              enum:
+                                - 0:利用中
+                                - 1:利用停止
+                            use_name:
+                              type: string
+                              description: "利用区分名称"
+                              minLength: 1
+                              maxLength: 1024
+                              pattern: "ALL（X-Langの設定に従う）"
+                              example: "利用中"
+                            customize_definitions:
+                              type: array
+                              items:
+                                properties:
+                                  customize_definition_id:
+                                    type: string
+                                    description: "カスタマイズ定義ID"
+                                    minLength: 1
+                                    maxLength: 19
+                                    pattern: 半角数字
+                                    example: 1
+                                  customize_definition_name:
+                                    type: string
+                                    description: "カスタマイズ定義名称"
+                                    minLength: 1
+                                    maxLength: 1024
+                                    pattern: "ALL(X-Langの設定に従う)"
+                                    example: "KOMTRAXデータ v1.0"
+                                  priority:
+                                    type: string
+                                    description: "優先度"
+                                    minLength: 1
+                                    maxLength: 1
+                                    pattern: "半角数字"
+                                    example: "1"
+                                    enum:
+                                      - 1:low
+                                      - 2:middle
+                                      - 3:high
+                                  priority_name:
+                                    type: string
+                                    description: "優先度名称"
+                                    minLength: 1
+                                    maxLength: 1024
+                                    pattern: "ALL（X-Langの設定に従う）"
+                                    example: "low"
+                                  active_kind:
+                                    type: string
+                                    description: "有効区分"
+                                    minLength: 1
+                                    maxLength: 1
+                                    pattern: "半角数字"
+                                    example: "1"
+                                    enum:
+                                      - 0:無効
+                                      - 1:有効
+                                  active_name:
+                                    type: string
+                                    description: "有効区分名称"
+                                    minLength: 1
+                                    maxLength: 1024
+                                    pattern: "ALL（X-Langの設定に従う）"
+                                    example: "有効"
+                                  latest_operation_code:
+                                    type: string
+                                    description: "最新操作コード"
+                                    minLength: 2
+                                    maxLength: 2
+                                    pattern: "半角数字"
+                                    example: "1"
+                                    enum:
+                                      - 1:追加
+                                      - 2:更新
+                                      - 3:削除
+                                      - 11:即時追加
+                                      - 12:即時更新
+                                  latest_operation_code_name:
+                                    type: string
+                                    description: "最新操作コード名称"
+                                    minLength: 1
+                                    maxLength: 1024
+                                    pattern: "ALL（X-Langの設定に従う）"
+                                    example: "追加"
+                                  status:
+                                    type: string
+                                    description: "ステータス"
+                                    minLength: 2
+                                    maxLength: 2
+                                    pattern: "半角数字"
+                                    example: "10"
+                                    enum:
+                                      - 10:送信中
+                                      - 20:送信済
+                                      - 30:車両反映中
+                                      - 40:送信失敗
+                                      - 90:削除済
+                                  status_name:
+                                    type: string
+                                    description: "ステータス名称"
+                                    minLength: 1
+                                    maxLength: 1024
+                                    pattern: "ALL（X-Langの設定に従う）"
+                                    example: "送信中"
+                                  assumption_data_value:
+                                    type: number
+                                    description: "想定データ量（単位：byte）"
+                                    minLength: 1
+                                    maxLength: 10
+                                    pattern: 半角数字
+                                    example: 2022000
+                                  start_date:
+                                    type: string
+                                    description: "開始日"
+                                    pattern: "日付（X-DateFormatの設定に従う）"
+                                    example: "2017/12/30"
+                                  end_date:
+                                    type: string
+                                    description: "終了日"
+                                    pattern: "日付（X-DateFormatの設定に従う）"
+                                    example: "2017/12/30"
+                                  first_receive_datetime:
+                                    type: string
+                                    description: "初回受信日時"
+                                    pattern: "日時（X-DateFormatの設定に従う）"
+                                    example: "2017/02/01 23:59:59"
+                                  latest_receive_datetime:
+                                    type: string
+                                    description: "最新受信日時"
+                                    pattern: "日時（X-DateFormatの設定に従う）"
+                                    example: "2017/05/23 23:59:59"
+                                  aggregation_condition_id:
+                                    type: string
+                                    description: "カスタマイズ集計条件ID"
+                                    minLength: 1
+                                    maxLength: 19
+                                    pattern: 半角数字
+                                    example: 1
+                                  aggregation_condition_name:
+                                    type: string
+                                    description: "カスタマイズ集計条件名称"
+                                    minLength: 1
+                                    maxLength: 1024
+                                    pattern: "ALL(X-Langの設定に従う)"
+                                    example: "10分毎"
+                                  send_condition_id:
+                                    type: string
+                                    description: "カスタマイズ送信条件ID"
+                                    minLength: 1
+                                    maxLength: 19
+                                    pattern: 半角数字
+                                    example: 1
+                                  send_condition_name:
+                                    type: string
+                                    description: "カスタマイズ送信条件名称"
+                                    minLength: 1
+                                    maxLength: 1024
+                                    pattern: "ALL(X-Langの設定に従う)"
+                                    example: "1時間毎"
+                                  customize_access_level:
+                                    type: string
+                                    description: "カスタマイズアクセスレベル"
+                                    minLength: 1
+                                    maxLength: 2
+                                    pattern: 半角数字
+                                    example: "1"
+                                    enum:
+                                      - 1:開発者
+                                      - 2:KLTD一般
+                                      - 3:現法
+                                      - 4:代理店（全ユーザ）
+                                      - 5:代理店（制限付き）
+                                      - 6:顧客
+                                      - 7:ISO API
+                                  customize_access_level_name:
+                                    type: string
+                                    description: "カスタマイズアクセスレベル名称"
+                                    minLength: 1
+                                    maxLength: 1024
+                                    pattern: "ALL（X-Langの設定に従う）"
+                                    example: "開発者"
+          headers:
+            X-From:
+              description:
+                リクエスト未指定時も含め取得開始位置を返却する
+              type: number
+            X-Count:
+              description:
+                リクエスト未指定時も含め取得件数を返却する
+              type: number
+            X-TotalCount:
+              description:
+                ページング範囲外も含めた総件数を返却する
+              type: number
+            X-Sort:
+              description:
+                リクエスト未指定時も含めソート内容を返却する
+              type: string
+        #common_error
+      #path_end

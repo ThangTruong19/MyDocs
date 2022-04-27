@@ -1,0 +1,114 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 車両管理　変更
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 車両管理　変更
+    en:
+
+  - id: 3
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 4
+    description: 変更
+    name: submit
+    ja: 変更
+    en:
+
+  - id: 5
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 6
+    description: 変更確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容に変更します。よろしいですか？
+    en:
+
+  - id: 7
+    description: 完了メッセージ
+    name: complete_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 8
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 9
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 10
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 11
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか？
+    en:
+
+  - id: 12
+    description: エラーモーダルタイトル
+    name: error_modal_title
+    ja: エラーメッセージ
+    en:
+
+  - id: 13
+    description: エラーモーダル本文
+    name: error_modal_body
+    ja: この車両は変更できません。
+    en:
+
+  - id: 15
+    description: EQPcare車両納入日
+    name: eqp_delivery_date
+    ja: EQPcare車両納入日
+    en:
+
+  - id: 16
+    description: EQPcare中古車両納入日
+    name: eqp_used_delivery_date
+    ja: EQPcare中古車両納入日
+    en:
+
+  - id: 17
+    description: 時間
+    name: hour
+    ja: H
+    en:
+
+  - id: 18
+    description: 分
+    name: minute
+    ja: M
+    en:
+
+  - id: 18
+    description: 資産状態
+    name: asset_status_kind
+    ja: 資産状態
+    en:
+
+  - id: 18
+    description: 資産所有者
+    name: asset_owner_id
+    ja: 資産所有者
+    en:

@@ -1,0 +1,94 @@
+[
+  {
+    "path": "landmark.group_id",
+    "name": "グループ",
+    "help": "グループのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "担当代理店1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "担当代理店2",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "担当代理店3",
+        "value": "2",
+        "kind": "M"
+      }
+    ]
+  },
+  {
+    "path": "landmark.label",
+    "name": "ランドマーク名称",
+    "help": "ランドマーク名称のヘルプ文言",
+    "type": "-10",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "landmark.icon_id",
+    "name": "アイコン",
+    "help": "アイコンのヘルプ文言",
+    "type": "10",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "landmark.point.coordinates[0]",
+    "name": "経度",
+    "help": "経度のヘルプ文言",
+    "type": "-10",
+    "placeholder_text": "",
+    "memo": ""
+  },
+  {
+    "path": "landmark.point.coordinates[1]",
+    "name": "緯度",
+    "help": "緯度のヘルプ文言",
+    "type": "-10",
+    "placeholder_text": "",
+    "memo": ""
+  },
+  {
+    "path": "landmark.point.coordinates",
+    "name": "座標",
+    "help": "座標のヘルプ文言",
+    "type": "-10",
+    "placeholder_text": "",
+    "memo": ""
+  },
+  {
+    "path": "landmark.free_memo",
+    "name": "説明",
+    "help": "説明のヘルプ文言",
+    "type": "-10",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "landmark.publish_kind",
+    "name": "公開種別",
+    "help": "公開種別のヘルプ文言",
+    "type": "20",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "共有しない",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "共有する",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  }
+]

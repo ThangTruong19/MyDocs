@@ -1,0 +1,37 @@
+[
+  {
+    "path": "contact_link.customer_contact_links.contact_kind_code",
+    "name": "セールス",
+    "help": "セールスのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "セールス1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "セールス2",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "セールス3",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "セールス4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "セールス5",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  }
+]

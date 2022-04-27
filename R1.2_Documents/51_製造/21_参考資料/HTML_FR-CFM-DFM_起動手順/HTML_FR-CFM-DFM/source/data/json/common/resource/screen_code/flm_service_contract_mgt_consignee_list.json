@@ -1,0 +1,120 @@
+[
+  {
+    "path": "support_distributor_id",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "担当DB1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB4",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "service_contract_request_status",
+    "name": "承認状態",
+    "help": "承認状態のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "全て",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "未承認",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "承認",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "却下",
+        "value": "9",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "receive_date_from",
+    "name": "受信期間",
+    "help": "受信期間のヘルプ文言",
+    "type": -42,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "receive_date_to",
+    "name": "受信期間",
+    "help": "受信期間のヘルプ文言",
+    "type": -41,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+]

@@ -1,0 +1,69 @@
+@import "../../../../../assets/styles/variable";
+@import "../../../../../assets/styles/flm/_variable.scss";
+
+.to-submit,
+.change-submit {
+  display: flex;
+  justify-content: center;
+
+  .btn {
+    &.btn-primary {
+      min-width: 200px;
+    }
+  }
+}
+
+.KBA-content {
+  margin-bottom: 30px;
+}
+
+.caption {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: baseline;
+  font-size: 16px;
+}
+
+.change-input {
+  display: flex;
+  align-items: center;
+
+  .before-val {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  input {
+    width: auto;
+  }
+}
+
+.complete-submit {
+  .complete-title {
+    position: relative;
+    padding-left: 52px;
+    margin-bottom: 10px;
+
+    .kba-icon-success {
+      position: absolute;
+      left: 0;
+      font-size: 43px;
+      color: $kba-main-color;
+    }
+
+    > h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: $kba-main-color;
+    }
+  }
+
+  .continue-submit {
+    margin-top: 20px;
+    text-align: center;
+
+    .btn {
+      min-width: 200px;
+    }
+  }
+}

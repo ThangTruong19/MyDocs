@@ -1,0 +1,26 @@
+[
+  {
+    "path": "group.map_application.lang_code",
+    "name": "逆引き地名言語",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "日本語",
+        "value": "ja-JP",
+        "kind": "D"
+      },
+      {
+        "key": "アメリカ語",
+        "value": "en-US",
+        "kind": "D"
+      },
+      {
+        "key": "フランス語",
+        "value": "fr-FR",
+        "kind": "D"
+      }
+    ]
+  }
+]

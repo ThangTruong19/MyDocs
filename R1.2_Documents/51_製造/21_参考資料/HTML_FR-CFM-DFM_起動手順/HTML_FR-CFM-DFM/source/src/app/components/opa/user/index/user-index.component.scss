@@ -1,0 +1,17 @@
+@import "../../../../../assets/styles/opa/_variable.scss";
+
+.select-authority-cell {
+  position: relative;
+}
+
+.select-authority {
+  color: $kba-main-color;
+  text-decoration: none;
+  outline: none;
+  border-bottom: 1px solid $kba-main-color;
+  padding-bottom: 2px;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}

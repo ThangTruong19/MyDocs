@@ -1,0 +1,26 @@
+[
+  {
+    "path": "division_code",
+    "name": "車両種類",
+    "help": "車両種類のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "油圧ショベル",
+        "value": "0001",
+        "kind": "D"
+      },
+      {
+        "key": "ホイールローダ",
+        "value": "0002",
+        "kind": "D"
+      },
+      {
+        "key": "クレーン",
+        "value": "0003",
+        "kind": "D"
+      }
+    ]
+  }
+]

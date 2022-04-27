@@ -1,0 +1,41 @@
+<div class="kba-search-date-picker" *ngIf="isVisible">
+  <label for="KBA-search-date-picker-{{ kbaName }}" *ngIf="showLabel">{{
+    kbaResource[kbaName] && kbaResource[kbaName].name
+  }}</label>
+  <input
+    commonFlyoutTrigger
+    [attr.aria-controls]="id"
+    name="kbaName"
+    class="KBA-input-date-picker form-control"
+    [type]="'text'"
+    [ngModel]="displayLabel"
+    [disabled]="isDisabled"
+    readonly
+  />
+
+  <button
+    type="button"
+    class="KBA-datepicker"
+    commonFlyoutTrigger
+    [attr.aria-controls]="id"
+    [disabled]="isDisabled"
+    [ngClass]="{ 'no-label': !showLabel }"
+  >
+    <i class="kba-icon kba-icon-calendar"></i>
+  </button>
+
+  <app-kba-date-picker
+    #datePicker
+    [id]="id"
+    [labels]="kbaLabel"
+    [dateFormat]="dateFormat"
+    [timeZone]="timeZone"
+    [enableDateRange]="enableDateRange"
+    [initialBaseDay]="initialBaseDay || kbaParams[kbaName]"
+    [beginningWday]="beginningWday"
+    [futureDateSelectable]="futureDateSelectable"
+    [isVisibleClearButton]="!required"
+    (selectDate)="onSelectDate($event)"
+  >
+  </app-kba-date-picker>
+</div>

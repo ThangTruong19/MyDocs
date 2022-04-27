@@ -1,0 +1,96 @@
+<section id="KBA-smrinterval-show-modal" class="KBA-modal">
+  <header class="KBA-modal-header modal-header">
+    <h1>{{ labels.submit_modal_title }}</h1>
+  </header>
+
+  <div class="KBA-modal-body modal-body">
+    <div class="KBA-page-title">
+      <span class="KBA-car-identifier">{{ carIdentifierLabel }}</span>
+    </div>
+    <table class="KBA-form-table table table-bordered">
+      <tbody class="KBA-form-table-tbody">
+        <tr>
+          <td class="KBA-form-table__head">
+            <label class="KBA-form-table__label">{{ labels.no }}</label>
+          </td>
+          <td class="KBA-form-table__value">
+            <p>{{ params.no }}</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="KBA-form-table__head">
+            <label class="KBA-form-table__label">{{
+              resource.car_area.label.name
+            }}</label>
+          </td>
+          <td class="KBA-form-table__value">
+            <p>{{ params.label }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="KBA-map">
+      <app-kba-area-menu
+        [initMap]="{}"
+        [menuOpen]="menuOpen"
+        [isCurrent]="true"
+        [labels]="labels"
+        [resource]="resource"
+        [resourceType]="'car_area'"
+        [editable]="false"
+        [polyPoints]="polyPoints"
+        [rectData]="rectData"
+        [selectType]="selectType"
+        [selectTypeLabel]="selectTypeLabel"
+        (changeMenuOpen)="menuOpen = $event"
+      >
+      </app-kba-area-menu>
+      <app-kba-area-map
+        [initMap]="{}"
+        [no]="params.no"
+        [labels]="labels"
+        [others]="others"
+        [menuWidth]="312"
+        [menuOpen]="menuOpen"
+        [isModal]="true"
+        [selectType]="selectType"
+        [polyPoints]="polyPoints"
+        [rectData]="rectData"
+        [others]="others"
+        [editable]="false"
+      >
+      </app-kba-area-map>
+    </div>
+    <table class="KBA-form-table table table-bordered">
+      <tbody class="KBA-form-table-tbody">
+        <tr>
+          <td class="KBA-form-table__head">
+            <label class="KBA-form-table__label">{{
+              resource.car_area.description.name
+            }}</label>
+          </td>
+          <td class="KBA-form-table__value">
+            <p>{{ params.description }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer class="KBA-modal-footer modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary cancel"
+      (click)="onClickClose()"
+    >
+      {{ labels.close }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary submit"
+      (click)="onClickSubmit()"
+    >
+      {{ labels.ok_btn }}
+    </button>
+  </footer>
+</section>

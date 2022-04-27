@@ -1,0 +1,21 @@
+@import "../variable";
+
+.nav-pills {
+  .nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: $kba-main-color;
+
+    &.active {
+      background-color: $kba-main-color;
+    }
+
+    &:not(.active) {
+      &:hover {
+        background-color: $kba-active-btn-color;
+      }
+    }
+  }
+}

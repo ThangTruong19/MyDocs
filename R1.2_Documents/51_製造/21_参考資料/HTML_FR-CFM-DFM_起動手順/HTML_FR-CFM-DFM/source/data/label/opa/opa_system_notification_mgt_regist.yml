@@ -1,0 +1,102 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: システム通知管理　登録
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: システム通知管理　登録
+    en:
+
+  - id: 3
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 4
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 5
+    description: 登録確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容を登録します。よろしいですか？
+    en:
+
+  - id: 6
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 7
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 8
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 9
+    description: 登録
+    name: submit
+    ja: 登録
+    en:
+
+  - id: 10
+    description: 続けて登録
+    name: continue
+    ja: 続けて登録
+    en:
+
+  - id: 13
+    description: 通知情報
+    name: caption
+    ja: 通知情報
+    en:
+
+  - id: 14
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 15
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 16
+    description: 選択
+    name: select
+    ja: 選択
+    en:
+
+  - id: 17
+    description: 選択モーダルタイトル
+    name: select_modal_title
+    ja: 対象を選択してください
+    en:
+
+  - id: 18
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 19
+    description: 反映するボタン
+    name: reflect_btn
+    ja: 反映する
+    en:

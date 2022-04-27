@@ -1,0 +1,79 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ランドマークID",
+    "path": "landmarks.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "ランドマーク名称",
+    "path": "landmarks.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "アイコンID",
+    "path": "landmarks.icon.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "アイコン",
+    "path": "landmarks.icon.image",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "情報",
+    "path": "landmarks.free_memo",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "グループID",
+    "path": "landmarks.group.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "グループ名称",
+    "path": "landmarks.group.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "グループ名称（英語）",
+    "path": "landmarks.group.label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "公開方法",
+    "path": "landmarks.publish_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "更新日時",
+    "path": "landmarks.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "11",
+    "name": "座標",
+    "path": "landmarks.point.coordinates",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ID",
+    "path": "flag_conditions.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "フラグ",
+    "path": "flag_conditions.flag_code",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "エラーコード",
+    "path": "flag_conditions.event_condition.event_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "条件種別",
+    "path": "flag_conditions.event_condition.detection_condition_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "条件",
+    "path": "flag_conditions.event_condition.occurrence_identification.condition",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "0分エラー",
+    "path": "flag_conditions.event_condition.occurrence_identification.ignore_0minute_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "最終更新日",
+    "path": "flag_conditions.latest_update_datetime",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "メモ",
+    "path": "flag_conditions.free_memo",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

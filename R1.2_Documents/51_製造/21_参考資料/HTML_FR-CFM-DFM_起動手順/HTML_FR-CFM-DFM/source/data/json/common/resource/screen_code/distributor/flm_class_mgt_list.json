@@ -1,0 +1,37 @@
+[
+  {
+    "path": "class_kind_id",
+    "name": "分類区分",
+    "help": "分類区分のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "分類1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "分類2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "分類3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "分類4",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "分類5",
+        "value": "5",
+        "kind": "D"
+      }
+    ]
+  }
+]

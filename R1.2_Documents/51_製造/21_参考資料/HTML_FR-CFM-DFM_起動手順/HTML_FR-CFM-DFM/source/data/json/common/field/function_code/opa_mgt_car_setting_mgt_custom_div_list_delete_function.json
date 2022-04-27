@@ -1,0 +1,30 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "最終更新日時",
+    "path": "custom_divisions.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "カスタム車種ID",
+    "path": "custom_divisions.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "設定グループ",
+    "path": "custom_divisions.group_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "カスタム車種名称",
+    "path": "custom_divisions.names.label",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "path": "contact_link.customer_contact_links",
+    "name": "連絡先役割一覧",
+    "help": "ヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "代表電話",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "セールス",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "PSSR",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "サービス",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "パーツ",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "ICT",
+        "value": "5",
+        "kind": "D"
+      }
+    ]
+  }
+]

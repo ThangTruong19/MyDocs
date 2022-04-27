@@ -1,0 +1,84 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: Reportマクロ管理 表示制御
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: Reportマクロ管理 表示制御
+    en:
+
+  - id: 12
+    description: 設定グループ選択
+    name: select_group
+    ja: 設定グループ選択
+    en:
+
+  - id: 13
+    description: マクロ選択のタイトル
+    name: select_macro
+    ja: WEB画面に表示するReportマクロを選択してください
+    en:
+
+  - id: 14
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 15
+    description: 設定
+    name: submit
+    ja: 設定
+    en:
+
+  - id: 16
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認
+    en:
+
+  - id: 17
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 18
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 19
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 20
+    description: バージョン選択モーダルタイトル
+    name: version_modal_title
+    ja: バージョン選択
+    en:
+
+  - id: 21
+    description: 反映する
+    name: reflect_btn
+    ja: 反映する
+    en:
+
+  - id: 25
+    description: 設定モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容で設定します。よろしいですか？
+    en:
+
+  - id: 26
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:

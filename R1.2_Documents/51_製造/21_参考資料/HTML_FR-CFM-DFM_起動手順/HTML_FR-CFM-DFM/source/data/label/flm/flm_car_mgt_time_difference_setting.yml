@@ -1,0 +1,238 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 車両管理　時差設定変更
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 車両管理　時差設定変更
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 10
+    description: 削除
+    name: delete
+    ja: 削除
+    en:
+
+  - id: 11
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 12
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当する対象車両が見つかりませんでした。
+    en:
+
+  - id: 13
+    description: 結果
+    name: result
+    ja: 結果
+    en:
+
+  - id: 14
+    description: 内容
+    name: result_detail
+    ja: 内容
+    en:
+
+  - id: 15
+    description: 結果件数
+    name: result_count_message
+    ja: '${total} 件中 成功${success}件 失敗${fail}件'
+    en:
+
+  - id: 16
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 17
+    description: 一括リトライ
+    name: batch_retry
+    ja: 一括リトライ
+    en:
+
+  - id: 18
+    description: 時差設定変更
+    name: setting_change
+    ja: 時差設定変更
+    en:
+
+  - id: 19
+    description: 一括削除
+    name: delete_all
+    ja: 一括削除
+    en:
+
+  - id: 20
+    description: リトライ再送
+    name: retry
+    ja: リトライ再送
+    en:
+
+  - id: 21
+    description: 時差設定リトライ確認モーダルタイトル
+    name: time_difference_setting_retry_modal_title
+    ja: 以下の車両に時差設定変更を再設定をします。よろしいですか？
+    en:
+
+  - id: 22
+    description: 時差設定リトライ完了メッセージ
+    name: time_difference_setting_retry_result_label
+    ja: 時差設定変更処理が完了しました
+    en:
+
+  - id: 23
+    description: 車両削除確認モーダル本文
+    name: delete_modal_body
+    ja: 以下の車両情報を削除します。よろしいですか?
+    en:
+
+  - id: 24
+    description: 車両削除処理完了メッセージ
+    name: delete_result_label
+    ja:  車両削除が完了しました
+    en:
+
+  - id: 25
+    description: 時差一括設定変更説明文
+    name: time_difference_edit
+    ja: 車両の時差設定を変更します。
+    en:
+
+  - id: 26
+    description: 時差一括設定
+    name: time_difference_all_edit
+    ja: 時差一括設定
+    en:
+
+  - id: 27
+    description: 車両台数
+    name: time_difference_car_number
+    ja: "車両台数: "
+    en:
+
+  - id: 28
+    description: 戻る
+    name: back
+    ja: 戻る
+    en:
+
+  - id: 29
+    description: 変更
+    name: submit
+    ja: 変更
+    en:
+
+  - id: 30
+    description: 時差設定変更確認モーダルタイトル
+    name: edit_modal_title
+    ja: 以下の内容で変更します。よろしいですか？
+    en:
+
+  - id: 31
+    description: 結果モーダルタイトル
+    name: result_modal_title
+    ja: 処理が完了しました。
+
+  - id: 32
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 33
+    description: 時間
+    name: hour
+    ja: H
+    en:
+
+  - id: 34
+    description: 分
+    name: minute
+    ja: M
+    en:
+
+  - id: 15
+    description: 表示項目設定
+    name: field_select
+    ja: 表示項目設定
+    en:
+
+  - id: 17
+    description: 表示項目選択
+    name: field_select_title
+    ja: 表示項目設定
+    en:
+
+  - id: 17
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+
+  - id: 40
+    description: 一括削除の最大件数の警告
+    name: alert_over_upper_limit
+    ja: 51件以上は削除できません
+    en:
+
+  - id: 40
+    description: 削除件数
+    name: delete_count
+    ja: 件
+    en:
+
+  - id: 24
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

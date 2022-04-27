@@ -1,0 +1,79 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "設定グループID",
+    "path": "group_id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "公開中",
+    "path": "macro_settings.publish_kind",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "レポートマクロコード",
+    "path": "macro_settings.macro_report_code",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "一覧表示メニュー",
+    "path": "macro_settings.macro_report_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "マクロバージョン",
+    "path": "macro_settings.file.version",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "バージョン",
+    "path": "macro_settings.file.version_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "ファイルID",
+    "path": "macro_settings.file.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "サイズ",
+    "path": "macro_settings.file.size_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "コメント",
+    "path": "macro_settings.file.free_memo",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "11",
+    "name": "更新日時",
+    "path": "macro_settings.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "12",
+    "name": "更新日時",
+    "path": "macro_settings.latest_update_datetime",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

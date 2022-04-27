@@ -1,0 +1,123 @@
+[
+  {
+    "path": "flag_condition.flag_code",
+    "name": "フラグ",
+    "help": "フラグのヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "オレンジ",
+        "value": "5",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "flag_condition.event_condition.event_code",
+    "name": "エラーコード",
+    "help": "エラーコードのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "flag_condition.car_conditions",
+    "name": "機種型式",
+    "help": "機種型式のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "flag_condition.event_condition.detection_condition_code",
+    "name": "条件種別",
+    "help": "条件種別のヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "連続発生",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "指定期間発生日数",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "累積発生回数",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "flag_condition.event_condition.occurrence_identification.consecutive_occurrence_days",
+    "name": "連続発生日",
+    "help": "連続発生日のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "flag_condition.event_condition.occurrence_identification.decision_period",
+    "name": "期間",
+    "help": "期間のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "flag_condition.event_condition.occurrence_identification.occurrence_days",
+    "name": "発生日数",
+    "help": "発生日数のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "flag_condition.event_condition.occurrence_identification.accumulate_occurrence_count",
+    "name": "回数",
+    "help": "回数のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "flag_condition.event_condition.occurrence_identification.ignore_0minute_code",
+    "name": "エンジン開始後0分のエラーは無視する",
+    "help": "オプションのヘルプ文言",
+    "type": 30,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "flag_condition.free_memo",
+    "name": "メモ",
+    "help": "メモのヘルプ文言",
+    "type": -11,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "model_select_type",
+    "name": "機種型式選択",
+    "help": "機種型式選択のヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "全機種型式",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "機種型式を選択",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  }
+]

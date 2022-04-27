@@ -1,0 +1,108 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: ユーザ画面設定管理　閲覧画面設定
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: ユーザ画面設定管理　閲覧画面設定
+    en:
+
+  - id: 3
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 4
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 5
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 6
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 7
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 12
+    description: リセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 13
+    description: 続けて設定
+    name: continue
+    ja: 続けて設定
+    en:
+
+  - id: 14
+    description: 設定
+    name: submit
+    ja: 設定
+    en:
+
+  - id: 15
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 16
+    description: 閲覧画面情報
+    name: menu_information
+    ja: 閲覧画面情報
+    en:
+
+  - id: 17
+    description: 設定画面
+    name: setting_menu
+    ja: 設定画面
+    en:
+
+  - id: 18
+    description: 公開・非公開切り替えボタン名（非公開状態時）
+    name: off_btn
+    ja: OFF
+    en:
+
+  - id: 19
+    description: 公開・非公開切り替えボタン名（公開状態時）
+    name: on_btn
+    ja: ON
+    en:
+
+  - id: 20
+    description: DFM
+    name: dfm
+    ja: DFM
+    en:
+
+  - id: 21
+    description: CFM
+    name: cfm
+    ja: CFM
+    en:
+
+  - id: 33
+    description: 確認モーダルタイトル
+    name: confirm_modal_title
+    ja: 以下の内容で設定します。よろしいですか？
+    en:

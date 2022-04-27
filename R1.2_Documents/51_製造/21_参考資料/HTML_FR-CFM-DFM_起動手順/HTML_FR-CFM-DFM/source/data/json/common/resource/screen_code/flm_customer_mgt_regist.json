@@ -1,0 +1,325 @@
+[
+  {
+    "path": "customer.support_distributor_id",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "担当DB1",
+        "value": "N0001",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2",
+        "value": "N0002",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "customer.identification.label",
+    "name": "顧客名称",
+    "help": "顧客名称のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "customer.identification.label_english",
+    "name": "顧客名称（英語）",
+    "help": "顧客名称（英語）のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "customer.identification.organization_code",
+    "name": "組織コード",
+    "help": "組織コードのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "customer.attribute.business_type_id",
+    "name": "業種",
+    "help": "業種のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "customer.attribute.nation_code",
+    "name": "所属国",
+    "help": "所属国のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "日本",
+        "value": "JP",
+        "kind": "D"
+      },
+      {
+        "key": "アメリカ",
+        "value": "US",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "customer.attribute.time_difference",
+    "name": "時差",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "-12",
+        "value": "-12",
+        "kind": "D"
+      },
+      {
+        "key": "-11",
+        "value": "-11",
+        "kind": "D"
+      },
+      {
+        "key": "-10",
+        "value": "-10",
+        "kind": "D"
+      },
+      {
+        "key": "-9",
+        "value": "-09",
+        "kind": "D"
+      },
+      {
+        "key": "-8",
+        "value": "-08",
+        "kind": "D"
+      },
+      {
+        "key": "-7",
+        "value": "-07",
+        "kind": "D"
+      },
+      {
+        "key": "-6",
+        "value": "-06",
+        "kind": "D"
+      },
+      {
+        "key": "-5",
+        "value": "-05",
+        "kind": "D"
+      },
+      {
+        "key": "-4",
+        "value": "-04",
+        "kind": "D"
+      },
+      {
+        "key": "-3",
+        "value": "-03",
+        "kind": "D"
+      },
+      {
+        "key": "-2",
+        "value": "-02",
+        "kind": "D"
+      },
+      {
+        "key": "-1",
+        "value": "-01",
+        "kind": "D"
+      },
+      {
+        "key": "0",
+        "value": "+00",
+        "kind": "D"
+      },
+      {
+        "key": "1",
+        "value": "+01",
+        "kind": "D"
+      },
+      {
+        "key": "2",
+        "value": "+02",
+        "kind": "D"
+      },
+      {
+        "key": "3",
+        "value": "+03",
+        "kind": "D"
+      },
+      {
+        "key": "4",
+        "value": "+04",
+        "kind": "D"
+      },
+      {
+        "key": "5",
+        "value": "+05",
+        "kind": "D"
+      },
+      {
+        "key": "6",
+        "value": "+06",
+        "kind": "D"
+      },
+      {
+        "key": "7",
+        "value": "+07",
+        "kind": "D"
+      },
+      {
+        "key": "8",
+        "value": "+08",
+        "kind": "D"
+      },
+      {
+        "key": "9",
+        "value": "+09",
+        "kind": "D"
+      },
+      {
+        "key": "10",
+        "value": "+10",
+        "kind": "D"
+      },
+      {
+        "key": "11",
+        "value": "+11",
+        "kind": "D"
+      },
+      {
+        "key": "12",
+        "value": "+12",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "customer.attribute.time_difference_minute",
+    "name": "時差（分）",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "0",
+        "value": "00",
+        "kind": "D"
+      },
+      {
+        "key": "15",
+        "value": "15",
+        "kind": "D"
+      },
+      {
+        "key": "30",
+        "value": "30",
+        "kind": "D"
+      },
+      {
+        "key": "45",
+        "value": "45",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "customer.attribute.phone_no",
+    "name": "電話番号",
+    "help": "電話番号のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "customer.attribute.email",
+    "name": "メールアドレス",
+    "help": "メールアドレスのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "customer.attribute.address",
+    "name": "所在地",
+    "help": "所在地のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "customer.attribute.report_display_label",
+    "name": "顧客名称（レポート用）",
+    "help": "顧客名称（レポート用）のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "customer.administrator_role.authorities.id",
+    "name": "権限（管理者）",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "customer.administrator_role.authorities.checked_items",
+    "name": "権限（管理者）",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "customer.administrator_role.authorities.default_kind",
+    "name": "権限1",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "customer.general_role.authorities.id",
+    "name": "権限（一般）",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "customer.general_role.authorities.checked_items",
+    "name": "権限（一般）",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "customer.general_role.authorities.default_kind",
+    "name": "権限1",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

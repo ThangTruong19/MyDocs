@@ -1,0 +1,26 @@
+[
+  {
+    "path": "car.car_identification.type_rev",
+    "name": "型式",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "型式",
+    "placeholder_text": null,
+    "data_order": "3",
+    "items": [
+      {
+        "key": "Test",
+        "value": "Test",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "3221M0",
+        "value": "3221M0",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  }
+]

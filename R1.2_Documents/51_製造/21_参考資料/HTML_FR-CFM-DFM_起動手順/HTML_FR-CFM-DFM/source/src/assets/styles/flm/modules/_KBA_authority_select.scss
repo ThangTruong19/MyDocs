@@ -1,0 +1,11 @@
+.select-authority {
+  color: $kba-main-color;
+  text-decoration: none;
+  border-bottom: 1px solid $kba-main-color;
+  padding-bottom: 2px;
+
+  &:hover {
+    color: $kba-main-color;
+    opacity: 0.6;
+  }
+}

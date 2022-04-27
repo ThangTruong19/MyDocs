@@ -1,0 +1,23 @@
+.kba-extra-icon-history {
+  position: relative;
+  top: 3px;
+  font-size: 20px !important;
+}
+
+.rental-histories-table {
+  margin-top: 20px;
+}
+
+.date-range {
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+
+  .separator {
+    margin: 0 0 10px 40px;
+  }
+}
+
+.result-count-message {
+  margin-top: 12px;
+}

@@ -1,0 +1,217 @@
+<section id="KBA-user-index" *ngIf="labels && resource">
+  <div class="container-fluid">
+    <h2 class="KBA-operator-index__title KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content">
+      <!-- 検索 -->
+      <app-kba-accordion
+        [collapsed]="collapsed"
+        [useCustomHeader]="false"
+        [title]="labels.search_condition"
+        [labels]="labels"
+        (onChangeState)="changePanelState($event)"
+      >
+        <div data-kba-accordion-body>
+          <div class="container KBA-search">
+            <div class="row">
+              <ng-container>
+                <app-kba-selected
+                  *ngIf="resource.configuration_group_id"
+                  class="col-sm-3"
+                  [kbaName]="'configuration_group_id'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                  [emitInitialRefresh]="false"
+                  (onChangeSelectItem)="onGroupIdChange($event)"
+                >
+                </app-kba-selected>
+                <app-kba-selected
+                  #belongingGroupId
+                  *ngIf="
+                    resource.belonging_group_id &&
+                    resource.belonging_group_id.values.length > 0
+                  "
+                  class="col-sm-3"
+                  [kbaName]="'belonging_group_id'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                >
+                </app-kba-selected>
+                <app-kba-text
+                  *ngIf="resource.user_account"
+                  class="col-sm-3"
+                  [kbaName]="'user_account'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                  [maxlength]="255"
+                >
+                </app-kba-text>
+                <app-kba-text
+                  *ngIf="resource.user_label"
+                  class="col-sm-3"
+                  [kbaName]="'user_label'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                  [maxlength]="255"
+                >
+                </app-kba-text>
+                <app-kba-text
+                  *ngIf="resource.phone_no"
+                  class="col-sm-3"
+                  [kbaName]="'phone_no'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                  [maxlength]="30"
+                >
+                </app-kba-text>
+              </ng-container>
+            </div>
+          </div>
+          <div class="KBA-panel-footer">
+            <button
+              (click)="onClickSearch()"
+              type="button"
+              class="btn btn-primary search"
+            >
+              {{ labels.search }}
+            </button>
+          </div>
+        </div>
+      </app-kba-accordion>
+
+      <div class="KBA-table-options" [hidden]="count <= 0">
+        <app-kba-pagination
+          [count]="count"
+          [params]="pageParams"
+          [labels]="labels"
+          [element]="pageCountEl"
+          (changeState)="onPaginationChange()"
+        >
+        </app-kba-pagination>
+        <div class="table-option-buttons">
+          <div class="popover-wrapper">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="onClickFieldSelect($event)"
+            >
+              {{ labels.field_select }}
+            </button>
+            <app-kba-popover
+              [labels]="labels"
+              [resource]="fieldResources"
+              [fields]="fields"
+              [title]="labels.field_select_title"
+              [(isVisible)]="fieldSelectPopoverVisible"
+              (ok)="onFieldSelectOk($event)"
+            ></app-kba-popover>
+          </div>
+        </div>
+      </div>
+
+      <div class="KBA-table-wrapper">
+        <app-kba-table
+          [customTableThContent]="customTableThContent"
+          [customTableRowContent]="customTableRowContent"
+          [lists]="lists"
+          [pageParams]="pageParams"
+          [sortingParams]="sortingParams"
+          [params]="params"
+          [thList]="thList"
+          [sortableThList]="sortableThList"
+          [labels]="labels"
+          [collapsed]="collapsed"
+          [updatable]="updatable"
+          [deletable]="deletable"
+          [isFetching]="isFetching"
+          (edit)="onClickEdit($event)"
+          (delete)="onClickDelete($event)"
+        >
+          <ng-template #customTableThContent>
+            <ng-container *ngFor="let th of thList">
+              <th
+                *ngIf="th.displayable"
+                [ngClass]="{ 'disable-sort': !th.sortable }"
+                class="KBA-index-th th-{{ th.shortName }}"
+                appKbaSortingLabel
+                [(sortingParams)]="sortingParams"
+                [labelName]="th.name"
+                [sortableThList]="sortableThList"
+                (sort)="onChangeSort($event)"
+              >
+                <span>{{ th.label }}</span>
+              </th>
+            </ng-container>
+          </ng-template>
+          <ng-template #customTableRowContent let-data="data" let-idx="idx">
+            <ng-container
+              *ngFor="let title of thList"
+              [ngSwitch]="title.dataKey"
+            >
+              <ng-container *ngIf="title.displayable">
+                <td
+                  *ngSwitchCase="'group.granted_role.name'"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td select-authority-cell text-center d-flex align-items-center"
+                >
+                  <app-kba-authority-select
+                    [authorities]="authorities"
+                    [labels]="labels"
+                    [selectedUser]="data"
+                    [selectedAuthorities]="selectedAuthorities"
+                    [customSelectButtons]="customSelectButtons"
+                    [customSelectedAuthorities]="customSelectedAuthorities"
+                    [allowUnselectedAuthorities]="true"
+                    (select)="onCloseAuthoritySelectModal($event, data)"
+                  ></app-kba-authority-select>
+                  <span>
+                    <a
+                      class="select-authority"
+                      href="javascript:void(0)"
+                      (click)="onClickSelect(data, idx)"
+                    >
+                      {{ data | at: 'group.granted_role.name' }}
+                    </a>
+                  </span>
+                </td>
+                <td
+                  *ngSwitchCase="'group.configuration_groups.label'"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  {{ data | at: 'group.configuration_groups[0].label' }}
+                </td>
+                <td
+                  *ngSwitchDefault
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <p>{{ data | at: title.dataKey }}</p>
+                </td>
+              </ng-container>
+            </ng-container>
+          </ng-template>
+        </app-kba-table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-kba-alert></app-kba-alert>
+
+<ng-template #customSelectButtons> </ng-template>
+
+<ng-template #customSelectedAuthorities> </ng-template>
+
+<ng-template #deleteModalContent>
+  <app-custom-user-form-modal
+    class="confirm-modal-content"
+    [desc]="deleteModalValues.listDesc"
+    [val]="deleteModalValues.listVal"
+  >
+  </app-custom-user-form-modal>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

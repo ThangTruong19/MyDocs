@@ -1,0 +1,36 @@
+<nav id="kba-sidemenu" [ngClass]="{ visible: isVisible }">
+  <a (click)="toggleMenuVisible($event)">
+    <i
+      class="kba-icon"
+      [ngClass]="{
+        'kba-icon-close': isVisible,
+        'kba-icon-humberger': !isVisible
+      }"
+    ></i>
+  </a>
+
+  <ul
+    data-role="sidemenu"
+    dnd-sortable-container
+    [sortableData]="navigationsSideMenu"
+    *ngIf="navigationsSideMenu"
+  >
+    <li
+      *ngFor="let item of navigationsSideMenu; let i = index"
+      dnd-sortable
+      [sortableIndex]="i"
+      (dragstart)="onDragStart($event)"
+      (dragend)="onDragEnd($event)"
+    >
+      <app-kba-sidemenu-item
+        [isLoading]="isLoading"
+        [item]="item"
+      ></app-kba-sidemenu-item>
+    </li>
+  </ul>
+</nav>
+<div
+  class="kba-sidemenu-backdrop"
+  *ngIf="isVisible"
+  (click)="toggleMenuVisible($event)"
+></div>

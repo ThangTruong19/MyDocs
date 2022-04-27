@@ -1,0 +1,23 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "サブグループID",
+    "path": "sub_group.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "サブグループ名称",
+    "path": "sub_group.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "更新日時",
+    "path": "sub_group.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

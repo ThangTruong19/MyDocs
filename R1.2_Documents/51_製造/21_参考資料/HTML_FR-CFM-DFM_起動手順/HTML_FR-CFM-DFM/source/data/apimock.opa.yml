@@ -1,0 +1,1124 @@
+#### 共通
+
+#
+# x. リソース取得API
+#
+# 指定した画面コードと条件、言語に応じた画面要素の情報を取得する。
+# プルダウンメニューの内容作成等に利用する。
+#
+- request:
+    url: /v1/applications/views/resources/search
+    method: POST
+  response:
+    type: js
+    file: json/common/getResources.js
+
+#
+# x. アプリケーション機能取得API
+#
+# アプリケーション機能に関わる情報を取得する。
+# サイドメニュー / ダッシュボードの項目作成に使用する。
+#
+# @param screen_id
+- request:
+    url: /v1/applications/functions/search
+    method: POST
+  response:
+    type: js
+    file: json/common/opa/getFunctions.js
+
+#
+# x. ラベル取得API
+#
+# 指定したファイルIdと言語に応じたリソース言語情報を取得する。
+# 画面内の文言表示等に利用する。
+#
+# @param screen_code 半角英数字,半角アンダーバーで構成される画面名
+#
+- request:
+    url: /v1/applications/views/labels
+    method: GET
+  response:
+    type: js
+    file: json/common/opa/getLabels.js
+
+#
+# x. 実行可能API一覧取得API
+#
+# ユーザーが利用可能なAPI一覧を取得する。
+#
+- request:
+    url: /catalog
+    method: GET
+  response:
+    type: js
+    file: json/common/getCatalog.js
+
+#
+# x. 指定項目リソース取得API
+#
+# 指定項目リソースを取得する。
+#
+# @param function_code 半角英数字,半角アンダーバーで構成される機能名
+#
+- request:
+    url: /v1/applications/fields/resources
+    method: GET
+  response:
+    type: js
+    file: json/common/getFieldResources.js
+
+#
+# x. 指定項目取得API
+#
+# 設定済みの指定項目と外部アプリケーションの表示制御設定を取得する。
+# 取得した指定項目は一覧画面のテーブルヘッダなどに利用する。
+#
+# @param function_code 半角英数字、半角記号で構成される機能コード
+#
+- request:
+    url: /v1/applications/fields
+    method: GET
+  response:
+    type: js
+    file: json/common/getFields.js
+
+#
+# x. 指定項目更新API
+#
+# 指定項目を更新する。
+#
+- request:
+    url: /v1/applications/fields
+    method: PUT
+  response:
+    type: js
+    file: json/common/updateFields.js
+
+#
+# x. 検索条件取得API
+#
+# 指定した画面の検索条件を取得する。
+#
+- request:
+    url: /v1/applications/search_condition
+    method: GET
+  response:
+    type: js
+    file: json/common/getSearchCondition.js
+
+#
+# x. 検索条件更新API
+#
+# 指定した画面の検索条件を更新する。
+#
+- request:
+    url: /v1/applications/search_condition
+    method: PUT
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 検索条件初期化API
+#
+# 指定した画面の検索条件を初期化する。
+#
+- request:
+    url: /v1/applications/search_condition
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 外部アプリ連携ログ出力 API (POST)
+#
+# 次世代KOMTRAXの業務APIを使用する外部アプリのログを格納する。
+#
+- request:
+    url: /v1/applications/extapplog
+    method: POST
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. ファイルダウンロード API
+#
+# ID で指定されたファイルをダウンロードする。
+#
+- request:
+    url: /v1/applications/files/:id
+    method: GET
+  response:
+    status: 200
+    header:
+      'Content-Type': 'application/octet-stream'
+      'Content-Disposition': 'attachment;filename="ã°ã«ã¼ãä¸è¦§20190201173045.xlsx";filename*=utf-8''''%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E4%B8%80%E8%A6%A720190201173045.xlsx'
+    file: json/common/downloads/sample.xlsx
+
+#
+# x. 非同期処理結果取得 API
+#
+# 非同期処理の作成結果ファイル、または処理状態を取得する。
+#
+- request:
+    url: /v1/applications/asyncs/:id
+    method: GET
+  response:
+    type: js
+    file: json/common/getAsyncResult.js
+
+#
+# x. 車両最新情報取得 API (GET)
+#
+# 機種型式マスタから機種型式の一覧情報を取得する
+#
+- request:
+    url: /v1/cars/:id/latest
+    method: GET
+  response:
+    status: 200
+    file: json/common/getLatestCarCondition.json
+
+#
+# x. ユーザ一覧取得(共通認証) API (GET)
+#
+# 共通認証のユーザ一覧を取得する。
+#
+- request:
+    url: /v1/common_authentication/users
+    method: GET
+  response:
+    type: js
+    file: json/common/getUsers.js
+
+#
+# x. 会社一覧取得(共通認証) API (GET)
+#
+# 共通認証の会社一覧を取得する。
+#
+- request:
+    url: /v1/common_authentication/companies
+    method: GET
+  response:
+    type: js
+    file: json/common/getCompanies.js
+
+#
+# x. ユーザ設定取得 API (GET)
+#
+# ユーザ設定を取得する
+#
+- request:
+    url: /v1/user_settings
+    method: GET
+  response:
+    status: 200
+    file: json/common/opa/getUserSetting.json
+
+#
+# x. ユーザ設定更新 API (PUT)
+#
+# ユーザ設定を更新する
+#
+- request:
+    url: /v1/user_settings
+    method: PUT
+  response:
+    status: 200
+    file: json/common/opa/putUserSetting.json
+
+#### 運用アプリ
+
+#### システム通知管理
+
+#
+# x. システム通知一覧取得 API (GET)
+#
+# システム通知を取得する。
+#
+- request:
+    url: /v1/applications/system_notifications
+    method: GET
+  response:
+    type: js
+    file: json/opa/system-notification/getSystemNotification.js
+
+#
+# x. システム通知登録 API (POST)
+#
+# システム通知を登録する。
+#
+- request:
+    url: /v1/applications/system_notifications
+    method: POST
+  response:
+    type: js
+    file: json/opa/system-notification/postSystemNotification.js
+
+#
+# x. システム通知更新 API (PUT)
+#
+# システム通知を更新する。
+#
+- request:
+    url: /v1/applications/system_notifications/:id
+    method: PUT
+  response:
+    type: js
+    file: json/opa/system-notification/putSystemNotification.js
+
+#
+# x. システム通知削除 API (DELETE)
+#
+# システム通知を削除する。
+#
+- request:
+    url: /v1/applications/system_notifications/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#### カスタム車両属性管理
+
+#
+# x. カスタム車両属性登録 API (POST)
+#
+# カスタム車両属性を登録する。
+#
+- request:
+    url: /v1/custom_car_attributes
+    method: POST
+  response:
+    type: js
+    file: json/opa/custom-car-attributes/postCustomCarAttribute.js
+
+#
+# x. カスタム車両属性一覧取得 API (GET)
+#
+# カスタム車両属性を一覧で取得する。
+#
+- request:
+    url: /v1/custom_car_attributes
+    method: GET
+  response:
+    type: js
+    file: json/opa/custom-car-attributes/getCustomCarAttributes.js
+
+#
+# x. カスタム車両属性詳細取得 API (GET)
+#
+# カスタム車両属性の詳細を取得する。
+#
+- request:
+    url: /v1/custom_car_attributes/:custom_car_attribute_id
+    method: GET
+  response:
+    type: js
+    file: json/opa/custom-car-attributes/getCustomCarAttributeDetail.js
+
+#
+# x. カスタム車両属性更新 API (PUT)
+#
+# カスタム車両属性を更新する。
+#
+- request:
+    url: /v1/custom_car_attributes/:custom_car_attribute_id
+    method: PUT
+  response:
+    type: js
+    file: json/opa/custom-car-attributes/putCustomCarAttribute.js
+
+#
+# x. カスタム車両属性削除 API (DELETE)
+#
+# カスタム車両属性を削除する。
+#
+- request:
+    url: /v1/custom_car_attributes/:custom_car_attribute_id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#### Reportマクロ設定
+
+#
+# x. Reportマクロ設定一覧取得 API (GET)
+#
+# レポートマクロの設定の一覧を取得する。
+#
+- request:
+    url: /v1/macro_reports/macro_settings
+    method: GET
+  response:
+    type: js
+    file: json/opa/report-macro/getMacroSettings.js
+
+#
+# x. Reportマクロファイル一覧取得 API (GET)
+#
+# レポートマクロファイルのレポートマクロ種別毎の一覧を取得する。
+#
+- request:
+    url: /v1/macro_reports/:macro_report_code/macro_files
+    method: GET
+  response:
+    type: js
+    file: json/opa/report-macro/getMacroFiles.js
+
+#
+# x. Reportマクロ設定更新 API (PUT)
+#
+# レポートマクロの公開設定を更新する。
+#
+- request:
+    url: /v1/macro_reports/macro_settings
+    method: PUT
+  response:
+    status: 200
+    file: json/opa/report-macro/putMacroSettings.json
+
+#### フラグ条件設定管理
+
+#
+# x. フラグ条件登録 API (POST)
+#
+# フラグ条件を登録する。
+#
+- request:
+    url: /v1/flag_conditions
+    method: POST
+  response:
+    type: js
+    file: json/opa/flag-condition/postFlagCondition.js
+
+#
+# x. フラグ条件一覧取得 API (GET)
+#
+# フラグ条件の一覧を取得する。
+#
+- request:
+    url: /v1/flag_conditions
+    method: GET
+  response:
+    type: js
+    file: json/opa/flag-condition/getFlagCondition.js
+
+#
+# x. フラグ条件一覧ファイル作成 API (GET)
+#
+# フラグ条件一覧ファイルを作成する
+#
+- request:
+    url: /v1/flag_conditions/file_create
+    method: GET
+  response:
+    type: js
+    file: json/opa/flag-condition/createFile.js
+
+#
+# x. フラグ条件削除 API (GET)
+#
+# フラグ条件を削除する。
+#
+- request:
+    url: /v1/flag_conditions/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. フラグ条件更新 API (PUT)
+#
+# フラグ条件を更新する。
+#
+- request:
+    url: /v1/flag_conditions/:id
+    method: PUT
+  response:
+    type: js
+    file: json/opa/flag-condition/putFlagCondition.js
+
+#### サービス委託管理
+
+#
+# x. サービス委託一覧取得 API (POST)
+#
+# サービス委託中の車両、契約担当代理店、契約サービス代理店を一覧で取得する
+#
+- request:
+    url: /v1/cars/service_contract/search
+    method: POST
+  response:
+    type: js
+    file: json/opa/service-contract/postServiceContract.js
+
+#
+# x. サービス委託アップロード API (POST)
+#
+# ファイルのアップロードにてサービス代理店を更新する。
+#
+- request:
+    url: /v1/cars/service_contract/upload
+    method: POST
+  response:
+    type: js
+    file: json/opa/service-contract/upload.js
+
+#
+# x. サービス委託一括更新 API (PUT)
+#
+# 車両のサービス委託先代理店を一括更新する。
+#
+- request:
+    url: /v1/cars/service_contract
+    method: PUT
+  response:
+    type: js
+    file: json/opa/service-contract/putServiceContract.js
+
+#
+# x. サービス委託車両一覧ファイル作成API (POST)
+#
+# サービス委託車両一覧のファイルを作成する
+#
+- request:
+    url: /v1/cars/service_contract/search/file_create
+    method: POST
+  response:
+    type: js
+    file: json/opa/service-contract/createFile.js
+
+#### 運用ユーザ管理
+
+#
+# x. 運用ユーザ管理登録 API (POST)
+#
+# 運用ユーザを登録する。
+#
+- request:
+    url: /v1/users/:id
+    method: POST
+  response:
+    status: 200
+    file: json/opa/users/postUser.json
+
+#
+# x. 運用ユーザ管理取得 API (GET)
+#
+# 運用ユーザを取得する。
+#
+- request:
+    url: /v1/users
+    method: GET
+  response:
+    type: js
+    file: json/opa/users/getUser.js
+
+#
+# x. 運用ユーザ管理更新 API (POST)
+#
+# 運用ユーザを更新する。
+#
+- request:
+    url: /v1/users/:id
+    method: PUT
+  response:
+    status: 200
+    file: json/opa/users/putUser.json
+
+#
+# x. ユーザ権限更新 API (PUT)
+#
+# ユーザ権限を更新する。
+#
+- request:
+    url: /v1/users/:id/authorities
+    method: PUT
+  response:
+    status: 200
+    file: json/opa/users/putAuthorities.json
+
+#
+# x. 運用ユーザ管理削除 API (DELETE)
+#
+# 運用ユーザを削除する。
+#
+- request:
+    url: /v1/users/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 運用ユーザ詳細取得 API (GET)
+#
+# 運用ユーザ詳細を取得する。
+#
+- request:
+    url: /v1/users/:id/detail
+    method: GET
+  response:
+    type: js
+    file: json/opa/users/getUserDetail.js
+
+#
+# x. ユーザ件数取得 API (GET)
+#
+# 指定したグループに関連する、複数のグループに紐づいたユーザ件数を取得する。
+#
+- request:
+    url: /v1/groups/user_counts
+    method: GET
+  response:
+    type: js
+    file: json/opa/users/getUserCount.js
+
+#
+# x. ユーザー一覧ファイル作成 API (GET)
+#
+# ユーザーの一覧ファイルを作成する
+#
+- request:
+    url: /v1/users/file_create
+    method: GET
+  response:
+    type: js
+    file: json/opa/users/createFile.js
+
+#### グループ管理
+
+# x. グループ管理登録 API (POST)
+#
+# グループを登録する。
+#
+- request:
+    url: /v1/groups
+    method: POST
+  response:
+    type: js
+    file: json/opa/groups/postGroups.js
+
+# x. グループ一覧取得 API (GET)
+#
+# グループの一覧を取得する。
+#
+- request:
+    url: /v1/groups
+    method: GET
+  response:
+    type: js
+    file: json/opa/groups/getGroups.js
+
+#
+# x. グループ詳細取得 API (GET)
+#
+# グループの詳細を取得する。
+#
+- request:
+    url: /v1/groups/:id/detail
+    method: GET
+  response:
+    type: js
+    file: json/opa/groups/getGroupDetail.js
+
+#
+# x. グループ更新 API (PUT)
+#
+# グループ情報を変更する。
+#
+- request:
+    url: /v1/groups/:id
+    method: PUT
+  response:
+    type: js
+    file: json/opa/groups/putGroups.js
+
+#
+# x. 代表管理者更新 API (PUT)
+#
+# 代表管理者情報を変更する。
+#
+- request:
+    url: /v1/groups/:id/represent_administrator
+    method: PUT
+  response:
+    status: 200
+    file: json/opa/groups/putRepresentAdministrator.json
+
+#
+# x. グループ削除 API (DELETE)
+#
+# グループ情報を削除する。
+#
+- request:
+    url: /v1/groups/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. グループ規模取得 API (GET)
+#
+# グループの規模を取得する。
+#
+- request:
+    url: /v1/groups/scale
+    method: GET
+  response:
+    type: js
+    file: json/opa/groups/getGroupScale.js
+
+#
+# x. グループ一括統合 API (PUT)
+#
+# グループの一括統合を行う。
+#
+- request:
+    url: /v1/groups/:id/integration
+    method: PUT
+  response:
+    type: js
+    file: json/opa/groups/putGroupIntegration.js
+
+# x. 公開設定グループ一覧取得API  (GET)
+#
+# 指定されたグループに紐づく公開設定されたグループ一覧を取得する。
+#
+- request:
+    url: /v1/groups/publish_setting_groups
+    method: GET
+  response:
+    type: js
+    file: json/opa/groups/getPublishSettingGroups.js
+
+# x. 公開設定グループ一覧ファイル作成API  (GET)
+#
+# 公開設定グループの一覧ファイルを作成する。
+#
+- request:
+    url: /v1/groups/publish_setting_groups/file_create
+    method: GET
+  response:
+    type: js
+    file: json/opa/groups/createFile.js
+
+# x. グループ一覧ファイル作成API  (GET)
+#
+# 公開設定グループの一覧ファイルを作成する。
+#
+- request:
+    url: /v1/groups/file_create
+    method: GET
+  response:
+    type: js
+    file: json/opa/groups/createFile.js
+
+
+# x. 公開グループ一覧取得API (GET)
+#
+# 指定されたグループに紐づく公開グループおよび公開可能なグループ一覧を取得する。
+#
+- request:
+    url: /v1/groups/:id/scope_groups
+    method: GET
+  response:
+    type: js
+    file: json/opa/groups/getScopeGroups.js
+
+#
+# x. 公開グループ更新API  (PUT)
+#
+# グループ公開設定の登録及び更新をする。
+#
+- request:
+    url: /v1/groups/:id/scope_groups
+    method: PUT
+  response:
+    status: 200
+    file: json/opa/groups/putScopeGroups.json
+
+#
+# x. 公開顧客一覧取得API (GET)
+#
+# 指定されたグループに紐づく公開顧客グループおよび公開可能な顧客グループ一覧を取得する。
+#
+- request:
+    url: /v1/groups/:id/scope_customers
+    method: GET
+  response:
+    type: js
+    file: json/opa/groups/getScopeCustomers.js
+
+#
+# x. 公開顧客更新API  (PUT)
+#
+# 顧客公開設定の登録及び更新をする。
+#
+- request:
+    url: /v1/groups/:id/scope_customers
+    method: PUT
+  response:
+    status: 200
+    file: json/opa/groups/putScopeCustomers.json
+
+#### 作業履歴管理
+
+#
+# x. 操作履歴一覧取得 API (POST)
+#
+# 操作履歴の一覧を取得する
+#
+- request:
+    url: /v1/applications/histories/search
+    method: POST
+  response:
+    type: js
+    file: json/opa/histories/postHistories.js
+
+#
+# x. 操作履歴ファイル作成 API (POST)
+#
+# 操作履歴ファイルを作成する
+#
+- request:
+    url: /v1/applications/histories/search/file_create
+    method: POST
+  response:
+    type: js
+    file: json/opa/histories/createFile.js
+
+#### 車両管理設定管理
+
+#
+# x. 機種設定取得API  (GET)
+#
+# グループ毎の機種の設定を取得する。
+#
+- request:
+    url: /v1/management_car_settings/model_settings
+    method: GET
+  response:
+    type: js
+    file: json/opa/management-car-setting/getModelSettings.js
+
+#
+# x. 機種設定更新API  (PUT)
+#
+# グループ毎に機種の設定を更新する。
+#
+- request:
+    url: /v1/management_car_settings/model_settings
+    method: PUT
+  response:
+    type: js
+    file: json/opa/management-car-setting/putModelSettings.js
+
+#
+# x. 型式設定取得API  (GET)
+#
+# グループ毎の型式の設定を取得する。
+#
+- request:
+    url: /v1/management_car_settings/model_type_settings
+    method: GET
+  response:
+    type: js
+    file: json/opa/management-car-setting/getModelTypeSettings.js
+
+#
+# x. 型式設定更新API  (PUT)
+#
+# グループ毎に型式の設定を更新する。
+#
+- request:
+    url: /v1/management_car_settings/model_type_settings
+    method: PUT
+  response:
+    type: js
+    file: json/opa/management-car-setting/putModelTypeSettings.js
+
+#
+# x. メーカ設定取得API  (GET)
+#
+# グループ毎のメーカの設定を取得する。
+#
+- request:
+    url: /v1/management_car_settings/maker_settings
+    method: GET
+  response:
+    type: js
+    file: json/opa/management-car-setting/getMakerSettings.js
+
+#
+# x. メーカ設定更新API  (PUT)
+#
+# グループ毎にメーカの設定を更新する。
+#
+- request:
+    url: /v1/management_car_settings/maker_settings
+    method: PUT
+  response:
+    status: 200
+    file: json/opa/management-car-setting/putMakerSettings.json
+
+#
+# x. 車種設定取得API  (GET)
+#
+# グループ毎の車種の設定を取得する。
+#
+- request:
+    url: /v1/management_car_settings/division_settings
+    method: GET
+  response:
+    type: js
+    file: json/opa/management-car-setting/getDivisionSettings.js
+
+#
+# x. 車種設定更新API  (PUT)
+#
+# グループ毎に車種の設定を更新する。
+#
+- request:
+    url: /v1/management_car_settings/division_settings
+    method: PUT
+  response:
+    status: 200
+    file: json/opa/management-car-setting/putDivisionSettings.json
+
+#
+# x. カスタム車種登録API  (POST)
+#
+# カスタム車種を登録する。
+#
+- request:
+    url: /v1/management_car_settings/custom_divisions
+    method: POST
+  response:
+    type: js
+    file: json/opa/management-car-setting/postCustomDivision.js
+
+#
+# x. カスタム車種一覧取得API  (GET)
+#
+# カスタム車種の一覧を取得する。
+#
+- request:
+    url: /v1/management_car_settings/custom_divisions
+    method: GET
+  response:
+    type: js
+    file: json/opa/management-car-setting/getCustomDivisions.js
+
+#
+# x. カスタム車種更新API  (PUT)
+#
+# カスタム車種を更新する。
+#
+- request:
+    url: /v1/management_car_settings/custom_divisions/:id
+    method: PUT
+  response:
+    type: js
+    file: json/opa/management-car-setting/putCustomDivision.js
+
+#
+# x. カスタム車種削除 API (DELETE)
+#
+# カスタム車種を削除する
+#
+- request:
+    url: /v1/management_car_settings/custom_divisions/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. カスタム車種一覧ファイル作成API  (GET)
+#
+# カスタム車種一覧ファイルを作成する。
+#
+- request:
+    url: /v1/management_car_settings/custom_divisions/file_create
+    method: GET
+  response:
+    type: js
+    file: json/opa/management-car-setting/createFile.js
+
+#### 業種管理
+
+#
+# x. 業種登録 API (POST)
+#
+# 業種を登録する
+#
+- request:
+    url: /v1/business_types
+    method: POST
+  response:
+    type: js
+    file: json/opa/business-types/postBusinessTypes.js
+
+#
+# x. 業種一覧取得 API (GET)
+#
+# 業種の一覧を取得する
+#
+- request:
+    url: /v1/business_types
+    method: GET
+  response:
+    type: js
+    file: json/opa/business-types/getBusinessTypes.js
+
+#
+# x. 業種一覧ファイル作成 API (GET)
+#
+# 業種の一覧ファイルを作成する
+#
+- request:
+    url: /v1/business_types/file_create
+    method: GET
+  response:
+    type: js
+    file: json/opa/business-types/createFile.js
+
+#
+# x. 業種一括登録テンプレート作成 API (GET)
+#
+# 業種テンプレートファイルを作成する
+#
+- request:
+    url: /v1/business_types/template_create
+    method: GET
+  response:
+    type: js
+    file: json/opa/business-types/createFile.js
+
+#
+# x. 業種詳細取得 API (GET)
+#
+# 業種の詳細情報を取得する
+#
+- request:
+    url: /v1/business_types/:id
+    method: GET
+  response:
+    type: js
+    file: json/opa/business-types/getBusinessDetailType.js
+
+#
+# x. 業種更新 API (PUT)
+#
+# 業種を更新する
+#
+- request:
+    url: /v1/business_types/:id
+    method: PUT
+  response:
+    type: js
+    file: json/opa/business-types/putBusinessType.js
+
+#
+# x. 業種削除 API (DELETE)
+#
+# 業種を削除する
+#
+- request:
+    url: /v1/business_types/:id
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#### General
+
+#### ユーザ画面設定管理
+
+# x. 機能公開設定取得API  (GET)
+#
+# グループ単位で公開する機能の設定を取得する。
+#
+- request:
+    url: /v1/applications/function_publish_settings
+    method: GET
+  response:
+    type: js
+    file: json/opa/user-screen/getFunctionPublishSettings.js
+
+# x. 機能公開設定更新API  (PUT)
+#
+# グループ単位で公開する機能の設定を更新する。
+#
+- request:
+    url: /v1/applications/function_publish_settings
+    method: PUT
+  response:
+    status: 200
+    file: json/opa/user-screen/putFunctionPublishSettings.json
+
+# x. 項目公開設定取得API  (GET)
+#
+# グループ単位で公開する項目の設定を取得する。
+#
+- request:
+    url: /v1/applications/item_publish_settings
+    method: GET
+  response:
+    type: js
+    file: json/opa/user-screen/getItemPublishSettings.js
+
+# x. 項目公開設定更新API  (PUT)
+#
+# グループ単位で公開する項目の設定を更新する。
+#
+- request:
+    url: /v1/applications/item_publish_settings
+    method: PUT
+  response:
+    status: 200
+    file: json/opa/user-screen/putItemPublishSettings.json
+
+#
+# x. 業種アップロード API (POST)
+#
+# ファイルのアップロードにより一括で業種の登録・更新をする
+#
+- request:
+    url: /v1/business_types/upload
+    method: POST
+  response:
+    type: js
+    file: json/opa/business-types/upload.js
+
+#
+# x. システムNEWS一覧取得API (GET)
+#
+# KOMATSUからのお知らせの一覧を取得する。
+#
+- request:
+    url: /v1/applications/news
+    method: GET
+  response:
+    type: js
+    file: json/opa/homes/getApplicationsNews.js
+
+#
+# x. Not Found
+#
+# 上記以外のリクエストはNot Found。
+#
+- request:
+    url: /v1/*
+    method: GET
+  response:
+    status: 404
+    file: json/common/notFound.json

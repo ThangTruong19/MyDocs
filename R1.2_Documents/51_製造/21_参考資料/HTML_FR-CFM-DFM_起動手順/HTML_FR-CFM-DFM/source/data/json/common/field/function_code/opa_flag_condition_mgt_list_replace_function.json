@@ -1,0 +1,72 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ID",
+    "path": "flag_conditions.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "最終更新日",
+    "path": "flag_conditions.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "フラグ種別コード",
+    "path": "flag_conditions.flag_kind_code",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "フラグ",
+    "path": "flag_conditions.flag_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "残り時間しきい値[H]",
+    "path": "flag_conditions.event_condition.time_identification.remaining_time_threshold",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "メモ",
+    "path": "flag_conditions.free_memo",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "登録グループ",
+    "path": "flag_conditions.group_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "登録グループ種別",
+    "path": "flag_conditions.group_kind_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "最終更新日",
+    "path": "flag_conditions.latest_update_datetime",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "グループID",
+    "path": "flag_conditions.group_id",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

@@ -1,0 +1,275 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ID",
+    "path": "cars.car_identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "機種",
+    "path": "cars.car_identification.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "型式",
+    "path": "cars.car_identification.type",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "機番",
+    "path": "cars.car_identification.serial",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "顧客車両番号",
+    "path": "cars.customer_attribute.customer_car_no",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "管理項目",
+    "path": "cars.smr_interval_items.management_item_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "車両種類",
+    "path": "cars.car_identification.division_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "メーカ",
+    "path": "cars.car_identification.maker_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "顧客管理番号",
+    "path": "cars.customer_attribute.customer_management_no",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "備考1",
+    "path": "cars.distributor_attribute.note_1",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "11",
+    "name": "備考2",
+    "path": "cars.distributor_attribute.note_2",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "12",
+    "name": "備考3",
+    "path": "cars.distributor_attribute.note_3",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "13",
+    "name": "備考4",
+    "path": "cars.distributor_attribute.note_4",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "14",
+    "name": "備考5",
+    "path": "cars.distributor_attribute.note_5",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "15",
+    "name": "分類1",
+    "path": "cars.distributor_attribute.class_1.kind_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "16",
+    "name": "分類2",
+    "path": "cars.distributor_attribute.class_2.kind_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "17",
+    "name": "分類3",
+    "path": "cars.distributor_attribute.class_3.kind_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "18",
+    "name": "分類4",
+    "path": "cars.distributor_attribute.class_4.kind_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "19",
+    "name": "分類5",
+    "path": "cars.distributor_attribute.class_5.kind_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "20",
+    "name": "使用目的",
+    "path": "cars.distributor_attribute.intended_use_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "21",
+    "name": "債権",
+    "path": "cars.distributor_attribute.debit_kind",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "22",
+    "name": "サービスDB",
+    "path": "cars.service_distributor.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "23",
+    "name": "サービスDB(英語)",
+    "path": "cars.service_distributor.label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "24",
+    "name": "サービスDB組織コード",
+    "path": "cars.service_distributor.organization_code",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "25",
+    "name": "顧客名称",
+    "path": "cars.customer.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "26",
+    "name": "顧客名称(英語)",
+    "path": "cars.customer.label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "27",
+    "name": "顧客組織コード",
+    "path": "cars.customer.organization_code",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "28",
+    "name": "サブグループ名称",
+    "path": "cars.user_permission.sub_groups_label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "29",
+    "name": "サブグループ名称(英語)",
+    "path": "cars.user_permission.sub_groups_label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "30",
+    "name": "銀行",
+    "path": "cars.bank.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "31",
+    "name": "銀行(英語)",
+    "path": "cars.bank.label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "32",
+    "name": "保険",
+    "path": "cars.insurance.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "33",
+    "name": "保険(英語)",
+    "path": "cars.insurance.label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "34",
+    "name": "ファイナンス",
+    "path": "cars.finance.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "35",
+    "name": "ファイナンス(英語)",
+    "path": "cars.finance.label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "36",
+    "name": "資産状態名称",
+    "path": "cars.distributor_attribute.asset_status_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "49",
+    "name": "新車中古車名称",
+    "path": "cars.distributor_attribute.new_used_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "37",
+    "name": "サービス対象区分",
+    "path": "cars.interval_management.service_target_kind",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "38",
+    "name": "更新日時",
+    "path": "cars.car_identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

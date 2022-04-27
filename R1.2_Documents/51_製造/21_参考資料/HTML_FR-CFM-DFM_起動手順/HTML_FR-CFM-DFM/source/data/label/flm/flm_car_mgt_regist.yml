@@ -1,0 +1,233 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 車両管理　登録
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 車両管理　登録
+    en:
+
+  - id: 3
+    description: 詳細登録へ
+    name: main_submit
+    ja: 詳細登録へ
+    en:
+
+  - id: 4
+    description: 登録完了
+    name: complete_submit
+    ja: 登録完了
+    en:
+
+  - id: 5
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 6
+    description: 登録確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容を登録します。よろしいですか？
+    en:
+
+  - id: 7
+    description: 完了メッセージ
+    name: complete_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 8
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 9
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 10
+    description: 詳細登録確認モーダルタイトル
+    name: main_submit_modal_title
+    ja: 詳細登録
+    en:
+
+  - id: 11
+    description: はい
+    name: ok_btn_label
+    ja: はい
+    en:
+
+  - id: 12
+    description: いいえ
+    name: close_btn_label
+    ja: いいえ
+    en:
+
+  - id: 13
+    description: 主要情報
+    name: main_caption
+    ja: 主要情報
+
+  - id: 14
+    description: キャプション(共通)
+    name: caption
+    ja: 詳細情報登録
+    en:
+
+  - id: 15
+    description: キャプション(レトロフィット車両)
+    name: retrofit_caption
+    ja: 【レトロフィット登録】
+    en:
+
+  - id: 16
+    description: 続けて登録
+    name: continue
+    ja: 続けて登録
+    en:
+
+  - id: 19
+    description: 主要情報
+    name: main_information
+    ja: 主要情報
+    en:
+
+  - id: 20
+    description: 詳細情報
+    name: detail_information
+    ja: 詳細情報
+    en:
+
+  - id: 21
+    description: 【レトロフィット】
+    name: detail_information_retrofit
+    ja: 【レトロフィット】
+    en:
+
+  - id: 22
+    description: 申請
+    name: apply
+    ja: 申請
+    en:
+
+  - id: 23
+    description: 使用国についての注意書き
+    name: orbcomm_notes
+    ja: 設定国以外での使用は禁止されています
+    en:
+
+  - id: 24
+    description: ORBCOMM申請タイトル
+    name: orbcomm_title
+    ja: ORBCOMMアドレスの申請
+    en:
+
+  - id: 25
+    description: ORBCOMM申請手順
+    name: orbcomm_procedure
+    ja: 車両の主な使用地域を選択して「申請」をクリックしてください。後で申請することもできます。
+    en:
+
+  - id: 26
+    description: 設定反映についての注意書き
+    name: set_reflect_notes_1
+    ja: 設定が反映されるのはしばらく時間がかかります（10分程度）。設定確認は少し時間をおいてからおこなってください。
+    en:
+
+  - id: 27
+    description: 申請完了メッセージ
+    name: complete_register
+    ja: 車両の登録情報が送信されました
+    en:
+
+  - id: 27
+    description: 申請完了メッセージ
+    name: complete_apply
+    ja: ORBCOMMアドレスの申請を開始しました。
+    en:
+
+  - id: 28
+    description: 設定反映についての注意書き（数時間〜数日）
+    name: set_reflect_notes_2
+    ja: 設定が反映されるにはしばらく時間がかかります（数時間から数日）。設定確認は少し時間を置いてからおこなってください。
+    en:
+
+  - id: 29
+    description: SMR間隔管理項目紐付けメッセージ
+    name: set_default_smr_interval
+    ja: デフォルトのSMR間隔管理項目がこの車両に紐づけられました
+    en:
+
+  - id: 30
+    description: SMR間隔管理項目カスタマイズのリンク
+    name: customize_smr_interval
+    ja: この車両のSMR間隔管理項目のカスタマイズを実施
+    en:
+
+  - id: 31
+    description: SMR間隔管理項目カスタマイズのリンク（ORBCOMM申請実施なし）
+    name: customize_smr_interval_no_apply
+    ja: ORBCOMMアドレス申請を実施せず、この車両のSMR間隔管理項目のカスタマイズを実施
+    en:
+
+  - id: 32
+    description: 累積燃料消費量管理項目紐付けメッセージ
+    name: set_default_fuel
+    ja: デフォルトの累積燃料消費量管理項目がこの車両に紐づけられました
+    en:
+
+  - id: 33
+    description: 累積燃料消費量管理項目カスタマイズのリンク
+    name: customize_fuel
+    ja: この車両の累積燃料消費量管理項目のカスタマイズを実施
+    en:
+
+  - id: 34
+    description: 累積燃料消費量管理項目カスタマイズのリンク（ORBCOMM申請実施なし）
+    name: customize_fuel_no_apply
+    ja: ORBCOMMアドレス申請を実施せず、この車両の累積燃料消費量管理項目のカスタマイズを実施
+    en:
+
+  - id: 35
+    description: 続けてSMR間隔管理項目カスタマイズのリンク（ORBCOMM申請後）
+    name: customize_smr_interval_continually
+    ja: 引き続きSMR間隔管理項目のカスタマイズを実施
+    en:
+
+  - id: 36
+    description: 続けて累積燃料消費量管理項目カスタマイズのリンク（ORBCOMM申請後）
+    name: customize_fuel_continually
+    ja: 引き続き累積燃料消費量管理項目のカスタマイズを実施
+    en:
+
+  - id: 38
+    description: EQPcare車両納入日
+    name: eqp_delivery_date
+    ja: EQPcare車両納入日
+    en:
+
+  - id: 39
+    description: EQPcare中古車両納入日
+    name: eqp_used_delivery_date
+    ja: EQPcare中古車両納入日
+    en:
+
+  - id: 40
+    description: 時間
+    name: hour
+    ja: H
+    en:
+
+  - id: 41
+    description: 分
+    name: minute
+    ja: M
+    en:

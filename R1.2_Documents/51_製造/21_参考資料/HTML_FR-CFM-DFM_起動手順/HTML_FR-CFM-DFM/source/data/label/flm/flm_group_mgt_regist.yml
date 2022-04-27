@@ -1,0 +1,114 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: エリア管理 グループエリア登録
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: エリア管理 グループエリア登録
+    en:
+
+  - id: 3
+    description: 登録
+    name: submit
+    ja: 登録
+    en:
+
+  - id: 4
+    description: 続けて登録
+    name: continue
+    ja: 続けて登録
+    en:
+
+  - id: 5
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 6
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 7
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 8
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 9
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 10
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 11
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 12
+    description: 領域をフィット
+    name: fit_bounds
+    ja: 領域をフィット
+    en:
+
+  - id: 13
+    description: 登録確認モーダルタイトル
+    name: confirm_modal_title
+    ja: 以下の内容で登録します。よろしいですか？
+    en:
+
+  - id: 14
+    description: 頂点
+    name: vertex
+    ja: 頂点
+    en:
+
+  - id: 15
+    description: 中心
+    name: center
+    ja: 中心
+    en:
+
+  - id: 16
+    description: 距離
+    name: distance
+    ja: 距離
+    en:
+
+  - id: 17
+    description: オプション
+    name: option
+    ja: オプション
+    en:
+
+  - id: 18
+    description: キロメートル
+    name: kilometer
+    ja: km
+    en:
+
+  - id: 19
+    description: マイル
+    name: mile
+    ja: mile
+    en:

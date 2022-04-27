@@ -1,0 +1,210 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: グループ管理　公開設定
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: グループ管理　公開設定
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 10
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 20
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当するグループが見つかりませんでした。
+    en:
+
+  - id: 21
+    description: リストDL
+    name: list_download
+    ja: グループリストDL
+    en:
+
+  - id: 22
+    description: 公開対象登録
+    name: pub_target_edit
+    ja: 公開グループ登録
+    en:
+
+  - id: 23
+    description: 選択
+    name: select
+    ja: 選択
+    en:
+
+  - id: 24
+    description: 設定中件数
+    name: set_count
+    ja: 件設定済
+    en:
+
+  - id: 25
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 26
+    description: 登録確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容を登録します。よろしいですか？
+    en:
+
+  - id: 28
+    description: 反映する
+    name: reflect_btn
+    ja: 反映する
+    en:
+
+  - id: 29
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 30
+    description: リセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 31
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 32
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか？
+    en:
+
+  - id: 33
+    description: 登録
+    name: submit
+    ja: 登録
+    en:
+
+  - id: 34
+    description: 戻る
+    name: back
+    ja: 戻る
+    en:
+
+  - id: 35
+    description: 公開グループ選択タイトル
+    name: scope_title
+    ja: 公開グループ選択
+    en:
+
+  - id: 36
+    description: 閲覧グループ
+    name: target_item_label
+    ja: 閲覧グループ
+    en:
+
+  - id: 37
+    description: 設定グループ
+    name: scope_items
+    ja: 設定グループ
+    en:
+
+  - id: 38
+    description: 設定済みグループなしテキスト
+    name: no_scope_items
+    ja: 設定済みグループがありません。
+    en:
+
+  - id: 39
+    description: 公開対象選択モーダルタイトル
+    name: scope_search_modal_title
+    ja: グループを選択してください
+    en:
+
+  - id: 40
+    description: 反映
+    name: reflect_btn
+    ja: 反映
+    en:
+
+  - id: 41
+    description: 追加件数
+    name: add_count
+    ja: 件追加
+    en:
+
+  - id: 42
+    description: 削除件数
+    name: remove_count
+    ja: 件削除
+    en:
+
+  - id: 1001
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 26
+    description: DL項目選択
+    name: download_select_title
+    ja: 項目選択
+    en:
+
+  - id: 28
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:

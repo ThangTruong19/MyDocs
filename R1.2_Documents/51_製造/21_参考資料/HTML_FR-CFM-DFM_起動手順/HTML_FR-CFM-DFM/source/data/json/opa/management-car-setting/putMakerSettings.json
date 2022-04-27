@@ -1,0 +1,14 @@
+{
+  "result_data": {
+    "maker_setting": {
+      "update_datetime": "2017-11-14T19:12:38.466Z",
+      "group_id": "17929",
+      "makers": [
+        {
+          "code": "0302",
+          "active_kind": "1"
+        }
+      ]
+    }
+  }
+}

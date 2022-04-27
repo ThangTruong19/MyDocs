@@ -1,0 +1,332 @@
+[
+  {
+    "path": "common.support_distributor.ids",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "担当DB1",
+        "value": "AA0017",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2",
+        "value": "AA1998",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB3",
+        "value": "AA2210",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB4",
+        "value": "AA2211",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.customer.ids",
+    "name": "顧客",
+    "help": "顧客のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "D"
+      },
+      {
+        "key": "顧客1",
+        "value": "1",
+        "kind": "B"
+      },
+      {
+        "key": "顧客2",
+        "value": "2",
+        "kind": "C"
+      },
+      {
+        "key": "顧客3",
+        "value": "3",
+        "kind": "E"
+      },
+      {
+        "key": "顧客4",
+        "value": "4",
+        "kind": "F"
+      }
+    ]
+  },
+  {
+    "path": "common.bank.ids",
+    "name": "銀行",
+    "help": "銀行のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "銀行1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "銀行2",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.insurance.ids",
+    "name": "保険",
+    "help": "保険のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "保険1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "保険2",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.finance.ids",
+    "name": "ファイナンス",
+    "help": "ファイナンスのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "ファイナンス1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "ファイナンス2",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car_management.communication_setting_group_id",
+    "name": "通信設定グループ",
+    "help": "通信設定グループのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "日本（時差+9H）",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "Crハワイ（時差-10H）",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.distributor_attribute.class_1_ids",
+    "name": "分類1",
+    "help": "分類1のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "分類1-1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "分類1-2",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.distributor_attribute.class_2_ids",
+    "name": "分類2",
+    "help": "分類2のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "分類2-1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "分類2-2",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.distributor_attribute.class_3_ids",
+    "name": "分類3",
+    "help": "分類3のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "分類3-1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "分類3-2",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.distributor_attribute.class_4_ids",
+    "name": "分類4",
+    "help": "分類4のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "分類4-1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "分類4-2",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.distributor_attribute.class_5_ids",
+    "name": "分類5",
+    "help": "分類5のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "分類5-1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "分類5-2",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  }
+]

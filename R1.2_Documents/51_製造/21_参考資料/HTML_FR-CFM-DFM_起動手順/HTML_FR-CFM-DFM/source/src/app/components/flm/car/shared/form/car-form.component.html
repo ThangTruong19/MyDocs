@@ -1,0 +1,1471 @@
+<section id="KBA-car-form" *ngIf="labels && resource && isFormBuildUp && datePickerParams">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels && labels.title }}</h2>
+    <div class="KBA-content" [hidden]="isVisibleCompleteSubmit" *ngIf="params">
+      <form class="KBA-form" name="carForm" [formGroup]="carForm">
+        <div class="annotation">
+          <p class="caption">{{ labels && labels.main_caption }}</p>
+          <p class="KBA-form-table__required" *ngIf="!isUpdate">
+            {{ labels && labels.description_for_required }}
+          </p>
+        </div>
+        <table class="KBA-form-table table table-bordered">
+          <tbody class="KBA-form-table-tbody">
+            <tr
+              app-kba-form-table-select
+              *ngIf="exists('car.car_identification.maker_code', true)"
+              #makerSelect
+              class="KBA-form-row"
+              [kbaName]="'maker_code'"
+              [kbaParams]="registControlParams.car.car_identification"
+              [kbaResource]="resource.car.car_identification"
+              [colspan]="3"
+              [notEditable]="isUpdate"
+              [display]="'maker_label'"
+              (onChange)="onMakerCodeChange($event)"
+              [emitInitialRefresh]="!isUpdate"
+            ></tr>
+            <tr
+              app-kba-form-table-select
+              *ngIf="exists('car.car_identification.model', true)"
+              #modelSelect
+              class="KBA-form-row"
+              [kbaName]="'model'"
+              [kbaParams]="registControlParams.car.car_identification"
+              [kbaResource]="resource.car.car_identification"
+              [colspan]="3"
+              [notEditable]="isUpdate"
+              [display]="'model_label'"
+              (onChange)="onModelChange($event)"
+              [emitInitialRefresh]="!isUpdate"
+            ></tr>
+            <tr
+              app-kba-form-table-select
+              *ngIf="exists('car.car_identification.type_rev', true)"
+              #typeSelect
+              class="KBA-form-row"
+              [kbaName]="'type_rev'"
+              [kbaParams]="registControlParams.car.car_identification"
+              [kbaResource]="resource.car.car_identification"
+              [colspan]="3"
+              [display]="'type_label'"
+              [notEditable]="isUpdate"
+            ></tr>
+            <tr
+              app-kba-form-table-text
+              class="KBA-form-row"
+              [formGroup]="getFormGroup(carForm, 'car_identification')"
+              [kbaName]="'serial'"
+              [kbaParams]="registControlParams.car.car_identification"
+              [kbaResource]="resource.car.car_identification"
+              [kbaLabel]="labels"
+              [colspan]="3"
+              [required]="true"
+              [maxLength]="20"
+              [notEditable]="isUpdate"
+              [path]="'car.car_identification.serial'"
+              [errorData]="errorData"
+            ></tr>
+            <tr
+              app-kba-form-table-select
+              *ngIf="exists('car.support_distributor_id')"
+              class="KBA-form-row"
+              [kbaName]="'support_distributor_id'"
+              [kbaParams]="registControlParams.car"
+              [kbaResource]="resource.car"
+              [colspan]="3"
+              [display]="'support_distributor_label'"
+              (onChange)="onSupportDistributorChange($event)"
+              [notEditable]="isUpdate"
+              [emitInitialRefresh]="!isUpdate"
+            ></tr>
+            <tr class="KBA-form-row" *ngIf="isUpdate">
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label">
+                  {{ resource.update_target_kind.name }}
+                </label>
+              </td>
+              <td class="KBA-has-error" colspan="3">
+                <div class="KBA-form-select-kind" [formGroup]="carForm">
+                  <div class="kind kind-attribute">
+                    <input
+                      name="update_target_kind"
+                      id="KBA-form-select-kind__kind-attribute"
+                      type="radio"
+                      class="KBA-input-radio"
+                      [ngModelOptions]="{ standalone: true }"
+                      [value]="updateTargetKind.attribute"
+                      [(ngModel)]="registControlParams.update_target_kind"
+                      (ngModelChange)="onSelectUpdateTargetKind($event)"
+                    />
+                    <label
+                      for="KBA-form-select-kind__kind-attribute"
+                      class="KBA-input-radio__label kind-attribute"
+                    >
+                      {{
+                        _getResourceValueName(
+                          'update_target_kind',
+                          updateTargetKind.attribute
+                        )
+                      }}
+                    </label>
+                  </div>
+                  <div
+                    class="kind kind-main-info"
+                    [formGroup]="carForm"
+                    *ngIf="!isManagementTargetSubgroup"
+                  >
+                    <input
+                      name="update_target_kind"
+                      id="KBA-form-select-kind__kind-main-info"
+                      type="radio"
+                      class="KBA-input-radio"
+                      [ngModelOptions]="{ standalone: true }"
+                      [value]="updateTargetKind.mainInfo"
+                      [(ngModel)]="registControlParams.update_target_kind"
+                      (ngModelChange)="onSelectUpdateTargetKind($event)"
+                    />
+                    <label
+                      for="KBA-form-select-kind__kind-main-info"
+                      class="KBA-input-radio__label kind-main-info"
+                    >
+                      {{
+                        _getResourceValueName(
+                          'update_target_kind',
+                          updateTargetKind.mainInfo
+                        )
+                      }}
+                    </label>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="main-submit" *ngIf="!isUpdate">
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickMainSubmit()"
+            [disabled]="carForm.invalid"
+          >
+            {{ labels.main_submit }}
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <ng-container
+      *ngIf="(isVisibleDetailSubmit && !isVisibleCompleteSubmit) || isUpdate"
+    >
+      <div
+        class="KBA-content"
+        *ngIf="params"
+        appKbaScrollTo
+        [offset]="commonHeaderOffset"
+      >
+        <form class="KBA-form" name="carDetailForm" [formGroup]="carDetailForm">
+          <div class="annotation">
+            <div class="caption">
+              <p *ngIf="!isUpdate">{{ labels && labels.caption }}</p>
+              <p *ngIf="isUpdate">
+                {{
+                  _getResourceValueName(
+                    'update_target_kind',
+                    registControlParams.update_target_kind
+                  )
+                }}
+              </p>
+              <p *ngIf="isRetrofit" class="retrofit-caption">
+                {{ labels && labels.retrofit_caption }}
+              </p>
+            </div>
+            <p class="KBA-form-table__required">
+              {{ labels && labels.description_for_required }}
+            </p>
+          </div>
+          <table class="KBA-form-table table table-bordered">
+            <tbody class="KBA-form-table-tbody">
+              <!-- メーカ -->
+              <tr
+                app-kba-form-table-select
+                #makerSelectDetail
+                class="KBA-form-row"
+                [kbaName]="'maker_code'"
+                [kbaParams]="params.car.car_identification"
+                [kbaResource]="resource.car.car_identification"
+                [colspan]="3"
+                [notEditable]="
+                  !isMainInfoEditable('car.car_identification.maker_code')
+                "
+                [display]="'maker_label'"
+                [emitInitialRefresh]="false"
+                (onChange)="onMakerCodeDetailChange($event)"
+              ></tr>
+              <!-- 機種 -->
+              <tr
+                app-kba-form-table-select
+                *ngIf="exists('car.car_identification.model', true)"
+                #modelSelectDetail
+                class="KBA-form-row"
+                [kbaName]="'model'"
+                [kbaParams]="params.car.car_identification"
+                [kbaResource]="resource.car.car_identification"
+                [colspan]="3"
+                [notEditable]="
+                  !isMainInfoEditable('car.car_identification.model')
+                "
+                [display]="'model_label'"
+                [emitInitialRefresh]="false"
+                (onChange)="onModelDetailChange($event)"
+              ></tr>
+              <!-- 型式 -->
+              <tr
+                app-kba-form-table-select
+                *ngIf="exists('car.car_identification.type_rev', true)"
+                #typeSelectDetail
+                class="KBA-form-row"
+                [kbaName]="'type_rev'"
+                [kbaParams]="params.car.car_identification"
+                [kbaResource]="resource.car.car_identification"
+                [colspan]="3"
+                [notEditable]="
+                  !isMainInfoEditable('car.car_identification.type_rev')
+                "
+                [emitInitialRefresh]="false"
+                [display]="'type_label'"
+              ></tr>
+              <!-- 機番 -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="getFormGroup(carDetailForm, 'car_identification')"
+                [kbaName]="'serial'"
+                [kbaParams]="params.car.car_identification"
+                [kbaResource]="resource.car.car_identification"
+                [kbaLabel]="labels"
+                [colspan]="3"
+                [required]="true"
+                [maxLength]="20"
+                [notEditable]="
+                  !isMainInfoEditable('car.car_identification.serial')
+                "
+                [path]="'car.car_identification.serial'"
+                [errorData]="errorData"
+              >
+                <!-- 端末品番 -->
+              </tr>
+
+              <tr
+                app-kba-form-table-text
+                *ngIf="exists('car.komtrax_unit.terminal_component')"
+                class="KBA-form-row"
+                [formGroup]="getFormGroup(carDetailForm, 'komtrax_unit')"
+                [kbaName]="'part'"
+                [kbaParams]="params.car.komtrax_unit.terminal_component"
+                [kbaResource]="resource.car.komtrax_unit.terminal_component"
+                [kbaLabel]="labels"
+                [colspan]="3"
+                [required]="isRetrofit"
+                [maxLength]="20"
+                [notEditable]="!isRetrofit"
+                [path]="'car.komtrax_unit.terminal_component.part'"
+                [errorData]="errorData"
+              >
+                <!-- 端末シリアル -->
+              </tr>
+
+              <tr
+                app-kba-form-table-text
+                *ngIf="exists('car.komtrax_unit.terminal_component')"
+                class="KBA-form-row"
+                [formGroup]="getFormGroup(carDetailForm, 'komtrax_unit')"
+                [kbaName]="'serial'"
+                [kbaParams]="params.car.komtrax_unit.terminal_component"
+                [kbaResource]="resource.car.komtrax_unit.terminal_component"
+                [kbaLabel]="labels"
+                [colspan]="3"
+                [required]="isRetrofit"
+                [maxLength]="20"
+                [notEditable]="!isRetrofit"
+                [path]="'car.komtrax_unit.terminal_component.serial'"
+                [errorData]="errorData"
+              >
+                <!-- 初期SMR(H) -->
+              </tr>
+
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="getFormGroup(carDetailForm, 'car_identification')"
+                [kbaName]="'initial_smr'"
+                [kbaParams]="params.car.car_identification"
+                [kbaResource]="resource.car.car_identification"
+                [kbaLabel]="labels"
+                [colspan]="3"
+                [required]="
+                  isMainInfoEditable('car.car_identification.initial_smr')
+                "
+                [maxLength]="8"
+                [notEditable]="
+                  !isMainInfoEditable('car.car_identification.initial_smr')
+                "
+                [path]="'car.car_identification.initial_smr'"
+                [errorData]="errorData"
+              >
+                <!-- 担当DB -->
+              </tr>
+
+              <tr
+                app-kba-form-table-select
+                *ngIf="exists('car.support_distributor_id')"
+                class="KBA-form-row"
+                [kbaName]="'support_distributor_id'"
+                [kbaParams]="params.car"
+                [kbaResource]="resource.car"
+                [colspan]="3"
+                [display]="'support_distributor_label'"
+                [notEditable]="true"
+              ></tr>
+              <!-- 時差 -->
+              <tr
+                app-kba-form-table-custom
+                *ngIf="exists('car.car_management_attribute.time_difference')"
+                class="KBA-form-row"
+                [kbaResource]="resource.car.car_management_attribute"
+                [kbaName]="'time_difference'"
+                [colspan]="3"
+                [required]="true"
+                [content]="timeDifferenceContent"
+              ></tr>
+              <!-- レンタル機 -->
+              <tr
+                class="KBA-form-row"
+                *ngIf="exists('car.car_management_attribute.rental_car_kind')"
+              >
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label KBA-form-table__required">
+                    {{
+                      resource.car.car_management_attribute.rental_car_kind.name
+                    }}
+                  </label>
+                </td>
+                <td class="KBA-has-error" colspan="3">
+                  <ng-container
+                    *ngIf="isAttributeEditable && !isManagementTargetSubgroup"
+                  >
+                    <div
+                      class="KBA-form-select-kind"
+                      [formGroup]="
+                        getFormGroup(carDetailForm, 'car_management_attribute')
+                      "
+                    >
+                      <div class="kind kind-support">
+                        <input
+                          name="rental_car_kind"
+                          id="KBA-form-select-kind__kind-support"
+                          type="radio"
+                          class="KBA-input-radio"
+                          [ngModelOptions]="{ standalone: true }"
+                          [value]="rentalCarKind.support"
+                          [(ngModel)]="
+                            params.car.car_management_attribute.rental_car_kind
+                          "
+                        />
+                        <label
+                          for="KBA-form-select-kind__kind-support"
+                          class="KBA-input-radio__label"
+                        >
+                          {{
+                            _getResourceValueName(
+                              'car.car_management_attribute.rental_car_kind',
+                              rentalCarKind.support
+                            )
+                          }}
+                        </label>
+                      </div>
+                      <div class="kind kind-not-support">
+                        <input
+                          name="rental_car_kind"
+                          id="KBA-form-select-kind__kind-not-support"
+                          type="radio"
+                          class="KBA-input-radio"
+                          [ngModelOptions]="{ standalone: true }"
+                          [value]="rentalCarKind.notSupport"
+                          [(ngModel)]="
+                            params.car.car_management_attribute.rental_car_kind
+                          "
+                        />
+                        <label
+                          for="KBA-form-select-kind__kind-not-support"
+                          class="KBA-input-radio__label"
+                        >
+                          {{
+                            _getResourceValueName(
+                              'car.car_management_attribute.rental_car_kind',
+                              rentalCarKind.notSupport
+                            )
+                          }}
+                        </label>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-container
+                    *ngIf="!isAttributeEditable || isManagementTargetSubgroup"
+                  >
+                    <div class="KBA-form-select-kind">
+                      <div class="kind">
+                        <label>
+                          {{
+                            this.params.car.car_management_attribute
+                              .rental_car_kind_name
+                          }}
+                        </label>
+                      </div>
+                    </div>
+                  </ng-container>
+                </td>
+              </tr>
+              <!-- 資産状態 -->
+              <ng-container
+                *ngIf="exists('car.distributor_attribute.asset_status_kind')"
+              >
+                <tr
+                  app-kba-form-table-select
+                  class="KBA-form-row"
+                  [kbaName]="'asset_status_kind'"
+                  [kbaParams]="params.car.distributor_attribute"
+                  [kbaResource]="resource.car.distributor_attribute"
+                  [colspan]="3"
+                  [display]="'asset_status_name'"
+                  [notEditable]="
+                    !isAttributeEditable || isManagementTargetSubgroup
+                  "
+                ></tr>
+              </ng-container>
+              <!-- 資産所有者 -->
+              <ng-container
+                *ngIf="exists('car.distributor_attribute.asset_owner_id')"
+              >
+                <tr
+                  app-kba-form-table-select
+                  class="KBA-form-row"
+                  [kbaName]="'asset_owner_id'"
+                  [kbaParams]="params.car.distributor_attribute"
+                  [kbaResource]="resource.car.distributor_attribute"
+                  [colspan]="3"
+                  [display]="'asset_owner_name'"
+                  [notEditable]="
+                    !isAttributeEditable || isManagementTargetSubgroup
+                  "
+                ></tr>
+              </ng-container>
+              <!-- 在庫状況更新日 -->
+              <tr
+                app-kba-form-table-date-picker
+                class="KBA-form-row"
+                [formGroup]="
+                  getFormGroup(carDetailForm, 'distributor_attribute')
+                "
+                [kbaName]="'stock_status_update_date'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaLabel]="labels"
+                [display]="'stock_status_update_date_formatted'"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [required]="true"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+                [id]="'stock_status_update_date'"
+                [enableDateRange]="enableDateRange"
+                [dateFormat]="dateFormat"
+                [beginningWday]="beginningWday"
+                [timeZone]="timeZone"
+                [path]="'car.distributor_attribute.stock_status_update_date'"
+                [errorData]="errorData"
+              >
+                <!-- カスタム属性１ -->
+              </tr>
+
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'custom_car_attribute_1_detail_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'custom_car_attribute_1_detail_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- カスタム属性２ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'custom_car_attribute_2_detail_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'custom_car_attribute_2_detail_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- カスタム属性３ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'custom_car_attribute_3_detail_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'custom_car_attribute_3_detail_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- カスタム属性４ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'custom_car_attribute_4_detail_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'custom_car_attribute_4_detail_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- カスタム属性５ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'custom_car_attribute_5_detail_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'custom_car_attribute_5_detail_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- カスタム属性６ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'custom_car_attribute_6_detail_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'custom_car_attribute_6_detail_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- カスタム属性７ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'custom_car_attribute_7_detail_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'custom_car_attribute_7_detail_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- カスタム属性８ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'custom_car_attribute_8_detail_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'custom_car_attribute_8_detail_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- カスタム属性９ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'custom_car_attribute_9_detail_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'custom_car_attribute_9_detail_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- カスタム属性１０ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'custom_car_attribute_10_detail_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'custom_car_attribute_10_detail_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- メモ -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="
+                  getFormGroup(carDetailForm, 'distributor_attribute')
+                "
+                [kbaName]="'free_memo'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [kbaLabel]="labels"
+                [colspan]="3"
+                [maxLength]="2048"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+                [path]="'car.distributor_attribute.free_memo'"
+                [errorData]="errorData"
+              ></tr>
+              <!-- 備考１ -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="
+                  getFormGroup(carDetailForm, 'distributor_attribute')
+                "
+                [kbaName]="'note_1'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [maxLength]="80"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+                [path]="'car.distributor_attribute.note_1'"
+                [errorData]="errorData"
+              ></tr>
+              <!-- 備考２ -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="
+                  getFormGroup(carDetailForm, 'distributor_attribute')
+                "
+                [kbaName]="'note_2'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [maxLength]="80"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+                [path]="'car.distributor_attribute.note_2'"
+                [errorData]="errorData"
+              ></tr>
+              <!-- 備考３ -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="
+                  getFormGroup(carDetailForm, 'distributor_attribute')
+                "
+                [kbaName]="'note_3'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [maxLength]="80"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+                [path]="'car.distributor_attribute.note_3'"
+                [errorData]="errorData"
+              ></tr>
+              <!-- 備考４ -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="
+                  getFormGroup(carDetailForm, 'distributor_attribute')
+                "
+                [kbaName]="'note_4'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [maxLength]="80"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+                [path]="'car.distributor_attribute.note_4'"
+                [errorData]="errorData"
+              ></tr>
+              <!-- 備考５ -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="
+                  getFormGroup(carDetailForm, 'distributor_attribute')
+                "
+                [kbaName]="'note_5'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [maxLength]="80"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+                [path]="'car.distributor_attribute.note_5'"
+                [errorData]="errorData"
+              ></tr>
+              <!-- 分類１ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'class_1_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'class_1_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- 分類２ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'class_2_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'class_2_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- 分類３ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'class_3_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'class_3_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- 分類４ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'class_4_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'class_4_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- 分類５ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'class_5_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'class_5_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- 使用目的 -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'intended_use_code'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'intended_use_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- 債権 -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'debit_kind'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'debit_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- 顧客 -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'customer_id'"
+                [kbaParams]="params.car"
+                [kbaResource]="resource.car"
+                [colspan]="3"
+                [display]="'customer_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              >
+                <!-- サブグループ -->
+              </tr>
+
+              <tr
+                class="KBA-form-row"
+                *ngIf="exists('car.user_permission_sub_group_ids')"
+              >
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label">
+                    {{ resource.car.user_permission_sub_group_ids.name }}
+                  </label>
+                </td>
+                <td colspan="3">
+                  <ng-container *ngIf="isAttributeEditable">
+                    <div class="form-group KBA-form-select-sub-group">
+                      <ng-container
+                        *ngFor="
+                          let sub_group_id of resource.car
+                            .user_permission_sub_group_ids.values;
+                          let i = index
+                        "
+                      >
+                        <div class="sub-group">
+                          <input
+                            type="checkbox"
+                            name="sub_group_id_{{ i }}"
+                            id="KBA-form__sub-group-id-{{ i }}"
+                            class="KBA-input-checkbox checkbox-with-label"
+                            [checked]="isChecked(sub_group_id.value)"
+                            (change)="
+                              onChangeSubGroupId($event, sub_group_id.value)
+                            "
+                            value="{{ sub_group_id.value }}"
+                          />
+                          <label
+                            for="KBA-form__sub-group-id-{{ i }}"
+                            class="KBA-input-checkbox__label"
+                          >
+                            {{
+                              _getResourceValueName(
+                                'car.user_permission_sub_group_ids',
+                                sub_group_id.value
+                              )
+                            }}
+                          </label>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="!isAttributeEditable">
+                    <div class="form-group KBA-form-select-sub-group label">
+                      <ng-container
+                        *ngFor="
+                          let sub_group_id of initialParams.car
+                            .user_permission_sub_group_ids
+                        "
+                      >
+                        <p class="sub-group-label">
+                          {{
+                            _getResourceValueName(
+                              'car.user_permission_sub_group_ids',
+                              sub_group_id
+                            )
+                          }}
+                        </p>
+                      </ng-container>
+                    </div>
+                  </ng-container>
+                </td>
+              </tr>
+              <!-- 銀行 -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'bank_id'"
+                [kbaParams]="params.car"
+                [kbaResource]="resource.car"
+                [colspan]="3"
+                [display]="'bank_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              >
+                <!-- 保険 -->
+              </tr>
+
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'insurance_id'"
+                [kbaParams]="params.car"
+                [kbaResource]="resource.car"
+                [colspan]="3"
+                [display]="'insurance_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              >
+                <!-- ファイナンス -->
+              </tr>
+
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'finance_id'"
+                [kbaParams]="params.car"
+                [kbaResource]="resource.car"
+                [colspan]="3"
+                [display]="'finance_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+              <!-- 車両納入日 -->
+              <tr
+                app-kba-form-table-date-picker
+                class="KBA-form-row"
+                [customContent]="customDeliveryDateContent"
+                [formGroup]="
+                  getFormGroup(carDetailForm, 'distributor_attribute')
+                "
+                [kbaName]="'delivery_date'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaLabel]="labels"
+                [display]="'delivery_date_formatted'"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [required]="!isUsedKind"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+                [id]="'delivery_date'"
+                [isDisabled]="isUsedKind"
+                [enableDateRange]="enableDateRange"
+                [dateFormat]="dateFormat"
+                [beginningWday]="beginningWday"
+                [timeZone]="timeZone"
+                [path]="'car.distributor_attribute.delivery_date'"
+                [errorData]="errorData"
+              >
+                <!-- 新車中古車区分 -->
+              </tr>
+
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'new_used_kind'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [required]="true"
+                [colspan]="3"
+                [display]="'new_used_kind_label'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+                (onChange)="onNewUsedKindChange($event)"
+              >
+              </tr>
+
+              <!-- 中古車納入日 -->
+              <tr
+                app-kba-form-table-date-picker
+                class="KBA-form-row"
+                [formGroup]="
+                  getFormGroup(carDetailForm, 'distributor_attribute')
+                "
+                [kbaName]="'used_delivery_date'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaLabel]="labels"
+                [display]="'used_delivery_date_formatted'"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [required]="isUsedKind"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+                [id]="'used_delivery_date'"
+                [isDisabled]="!isUsedKind"
+                [enableDateRange]="enableDateRange"
+                [dateFormat]="dateFormat"
+                [beginningWday]="beginningWday"
+                [timeZone]="timeZone"
+                [path]="'car.distributor_attribute.used_delivery_date'"
+                [errorData]="errorData"
+              ></tr>
+              <!-- 中古車納入時SMR -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="
+                  getFormGroup(carDetailForm, 'distributor_attribute')
+                "
+                [kbaName]="'used_delivery_smr'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaLabel]="labels"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [maxLength]="8"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+                [path]="'car.distributor_attribute.used_delivery_smr'"
+                [errorData]="errorData"
+              >
+                <!-- 製造年月 -->
+              </tr>
+
+              <tr
+                app-kba-form-table-month-picker
+                class="KBA-form-row"
+                [formGroup]="
+                  getFormGroup(carDetailForm, 'distributor_attribute')
+                "
+                [kbaName]="'production_year_month'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaLabel]="labels"
+                [display]="'production_year_month_formatted'"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+                [id]="'production_year_month'"
+                [enableDateRange]="enableDateRange"
+                [dateFormat]="dateFormat"
+                [timeZone]="timeZone"
+              ></tr>
+              <!-- 顧客へのデータ公開 -->
+              <tr class="KBA-form-row">
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label KBA-form-table__required">
+                    {{
+                      resource.car.distributor_attribute.data_publish_kind.name
+                    }}
+                  </label>
+                </td>
+                <td class="KBA-has-error" colspan="3">
+                  <ng-container
+                    *ngIf="isAttributeEditable && !isManagementTargetSubgroup"
+                  >
+                    <div
+                      class="KBA-form-select-kind"
+                      [formGroup]="
+                        getFormGroup(carDetailForm, 'distributor_attribute')
+                      "
+                    >
+                      <div class="kind kind-all">
+                        <input
+                          name="data_publish_kind"
+                          id="KBA-form-select-kind__kind-all"
+                          type="radio"
+                          class="KBA-input-radio"
+                          [ngModelOptions]="{ standalone: true }"
+                          [value]="kind.all"
+                          [(ngModel)]="
+                            params.car.distributor_attribute.data_publish_kind
+                          "
+                        />
+                        <label
+                          for="KBA-form-select-kind__kind-all"
+                          class="KBA-input-radio__label"
+                        >
+                          {{
+                            _getResourceValueName(
+                              'car.distributor_attribute.data_publish_kind',
+                              kind.all
+                            )
+                          }}
+                        </label>
+                      </div>
+                      <div class="kind kind-after-delivery-date">
+                        <input
+                          name="data_publish_kind"
+                          id="KBA-form-select-kind__kind-after-delivery-date"
+                          type="radio"
+                          class="KBA-input-radio"
+                          [ngModelOptions]="{ standalone: true }"
+                          [value]="kind.afterDeliveryDate"
+                          [(ngModel)]="
+                            params.car.distributor_attribute.data_publish_kind
+                          "
+                        />
+                        <label
+                          for="KBA-form-select-kind__kind-after-delivery-date"
+                          class="KBA-input-radio__label"
+                        >
+                          {{
+                            _getResourceValueName(
+                              'car.distributor_attribute.data_publish_kind',
+                              kind.afterDeliveryDate
+                            )
+                          }}
+                        </label>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-container
+                    *ngIf="!isAttributeEditable || isManagementTargetSubgroup"
+                  >
+                    <div class="KBA-form-select-kind">
+                      <div class="kind">
+                        <label>
+                          {{
+                            this.params.car.distributor_attribute
+                              .data_publish_kind_name
+                          }}
+                        </label>
+                      </div>
+                    </div>
+                  </ng-container>
+                </td>
+              </tr>
+              <!-- 仕様パターン -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'spec_pattern_id'"
+                [kbaParams]="params.car.distributor_attribute"
+                [kbaResource]="resource.car.distributor_attribute"
+                [colspan]="3"
+                [display]="'spec_pattern_name'"
+                [notEditable]="
+                  !isAttributeEditable || isManagementTargetSubgroup
+                "
+              ></tr>
+            </tbody>
+          </table>
+
+          <footer class="KBA-form-footer-fixed" *ngIf="isUpdate">
+            <a
+              href="javascript:void(0)"
+              (click)="onClickReset()"
+              class="btn btn-link"
+            >
+              {{ labels && labels.reset }}
+            </a>
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="onClickSubmit()"
+              [disabled]="carDetailForm.invalid"
+            >
+              {{ labels.submit }}
+            </button>
+          </footer>
+
+          <div class="detail-submit" *ngIf="!isUpdate">
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="onClickSubmit()"
+              [disabled]="carDetailForm.invalid"
+            >
+              {{ labels.complete_submit }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="isVisibleCompleteSubmit">
+      <div class="KBA-content complete-submit">
+        <div class="complete-title">
+          <i *ngIf="!warningLabel" class="kba-icon kba-icon-success"></i>
+          <i *ngIf="warningLabel" class="kba-icon fa fa-warning"></i>
+          <h2>
+            <span *ngIf="warningLabel" class="warning-label">{{
+              warningLabel
+            }}</span>
+            <span *ngIf="warningLabel == null && !isOrbcommApplyExecute">{{
+              labels.complete_register
+            }}</span>
+            <span *ngIf="warningLabel == null && isOrbcommApplyExecute">{{
+              labels.complete_apply
+            }}</span>
+          </h2>
+          <p>
+            <span *ngIf="!isOrbcommApplyExecute">{{
+              labels.set_reflect_notes_1
+            }}</span>
+            <span *ngIf="isOrbcommApplyExecute">{{
+              labels.set_reflect_notes_2
+            }}</span>
+          </p>
+        </div>
+
+        <ul class="KBA-customize-links clearfix">
+          <li *ngIf="isSmrIntervalItemCustom()">
+            <p *ngIf="!isOrbcommApplyExecute">
+              {{ labels.set_default_smr_interval }}
+            </p>
+            <a href="javascript:void(0)" (click)="onClickLinkSmr()">
+              {{ customizeSmrIntervalName }}
+            </a>
+          </li>
+          <li *ngIf="isAccumulateFuelIntervalItemCustom()">
+            <p *ngIf="!isOrbcommApplyExecute">{{ labels.set_default_fuel }}</p>
+            <a href="javascript:void(0)" (click)="onClickLinkFuel()">
+              {{ customizeFuelName }}
+            </a>
+          </li>
+        </ul>
+
+        <div
+          class="KBA-orbcomm-apply"
+          appKbaScrollTo
+          [offset]="orbcommApplyOffset"
+          *ngIf="isOrbcommRequestTarget() && !isOrbcommApplyExecute"
+        >
+          <h3>{{ labels.orbcomm_title }}</h3>
+          <p>{{ labels.orbcomm_procedure }}</p>
+          <table class="KBA-form-table table table-bordered">
+            <tbody class="KBA-form-table-tbody">
+              <!-- メーカ -->
+              <tr class="KBA-form-row">
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label">
+                    {{ resource.car.car_identification.maker_code.name }}
+                  </label>
+                </td>
+                <td colspan="3">
+                  {{ orbcommApplyLabels.maker_name }}
+                </td>
+              </tr>
+              <!-- 機種 -->
+              <tr class="KBA-form-row">
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label">
+                    {{ resource.car.car_identification.model.name }}
+                  </label>
+                </td>
+                <td colspan="3">
+                  {{ orbcommApplyLabels.model }}
+                </td>
+              </tr>
+              <!-- 型式 -->
+              <tr class="KBA-form-row">
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label">
+                    {{ resource.car.car_identification.type_rev.name }}
+                  </label>
+                </td>
+                <td colspan="3">
+                  {{ orbcommApplyLabels.type }}
+                </td>
+              </tr>
+              <!-- 機番 -->
+              <tr class="KBA-form-row">
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label KBA-form-table__required">
+                    {{ resource.car.car_identification.serial.name }}
+                  </label>
+                </td>
+                <td colspan="3">
+                  {{ orbcommApplyLabels.serial }}
+                </td>
+              </tr>
+              <!-- 端末品番 -->
+              <tr class="KBA-form-row">
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label">
+                    {{ resource.car.komtrax_unit.terminal_component.part.name }}
+                  </label>
+                </td>
+                <td colspan="3">
+                  {{ orbcommApplyLabels.komtrax_unit_part }}
+                </td>
+              </tr>
+              <!-- 端末シリアル -->
+              <tr class="KBA-form-row">
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label">
+                    {{
+                      resource.car.komtrax_unit.terminal_component.serial.name
+                    }}
+                  </label>
+                </td>
+                <td colspan="3">
+                  {{ orbcommApplyLabels.komtrax_unit_serial }}
+                </td>
+              </tr>
+              <!-- 使用国 -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'nation_id'"
+                [kbaParams]="orbcommApplyParams.orbcomm_request"
+                [kbaResource]="resource.orbcomm_request"
+                [colspan]="3"
+              ></tr>
+            </tbody>
+          </table>
+          <p class="orbcomm-notes">{{ labels.orbcomm_notes }}</p>
+          <div class="apply-submit">
+            <button
+              type="button"
+              (click)="onClickApply()"
+              class="btn btn-primary"
+              [disabled]="
+                !exists('orbcomm_request.nation_id', true) ||
+                orbcommApplyParams.orbcomm_request.nation_id ===
+                  FilterReservedWord.isNull
+              "
+            >
+              {{ labels.apply }}
+            </button>
+          </div>
+        </div>
+
+        <div class="continue-submit">
+          <button
+            type="button"
+            (click)="onClickContinue()"
+            class="btn btn-success"
+            [disabled]="carCompleteForm.invalid"
+          >
+            {{ labels.continue }}
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <ng-template #timeDifferenceContent>
+    <div
+      class="time-difference KBA-input__small"
+      [hidden]="!isTimeDifferenceEditable || isManagementTargetSubgroup"
+    >
+      <div class="time-difference_block">
+        <app-kba-selected
+          #time_difference
+          class="time-difference_select"
+          [kbaName]="'time_difference'"
+          [kbaParams]="timeDifference"
+          [kbaResource]="resource.car.car_management_attribute"
+          [showLabel]="false"
+          [emitInitialRefresh]="false"
+          (onChangeSelectItem)="onTimeDiffrenceChange()"
+        ></app-kba-selected>
+        <span>{{ labels.hour }}</span>
+      </div>
+      <div class="time-difference_block">
+        <app-kba-selected
+          #time_difference_minute
+          class="time-difference_select"
+          [kbaName]="'time_difference_minute'"
+          [kbaParams]="timeDifference"
+          [kbaResource]="resource.car.car_management_attribute"
+          [showLabel]="false"
+          [emitInitialRefresh]="false"
+          (onChangeSelectItem)="onTimeDiffrenceChange()"
+        ></app-kba-selected>
+        <span>{{ labels.minute }}</span>
+      </div>
+    </div>
+    <div
+      class="time-difference KBA-input__small"
+      [hidden]="isTimeDifferenceEditable && !isManagementTargetSubgroup"
+    >
+      <p>{{ formatTimeDifference(timeDifferenceLabel) }}</p>
+    </div>
+  </ng-template>
+
+  <ng-template #mainSubmitModalContent>
+    <p class="KBA-modal-message">{{ confirmMessage }}</p>
+  </ng-template>
+
+  <!-- リセット -->
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+
+  <ng-template #detailSubmitModalContent>
+    <div class="submit-modal-group-container">
+      <ng-container *ngIf="!isUpdate">
+        <div class="submit-modal-group">
+          <h3 class="content-title">{{ labels.main_information }}</h3>
+          <app-kba-tandem-confirm
+            class="submit-modal-content"
+            [desc]="mainInfoHeader"
+            [val]="mainInfoParams"
+          >
+          </app-kba-tandem-confirm>
+        </div>
+        <div class="submit-modal-group">
+          <div class="content-title">
+            <p>{{ labels.detail_information }}</p>
+            <p *ngIf="isRetrofit" class="retrofit-content-title">
+              {{ labels.detail_information_retrofit }}
+            </p>
+          </div>
+          <app-kba-tandem-confirm
+            class="submit-modal-content"
+            [desc]="detailInfoHeader"
+            [val]="detailInfoParams"
+          >
+          </app-kba-tandem-confirm>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="isUpdate">
+        <h3 class="content-title update-target-kind">
+          {{
+            _getResourceValueName(
+              'update_target_kind',
+              registControlParams.update_target_kind
+            )
+          }}
+        </h3>
+        <div class="submit-modal-group">
+          <app-kba-tandem-confirm
+            class="submit-modal-content"
+            [desc]="updateContentHeader"
+            [val]="updateContentParams"
+          >
+          </app-kba-tandem-confirm>
+        </div>
+      </ng-container>
+    </div>
+  </ng-template>
+</section>
+
+<ng-template #errorModalContent>
+  <p class="KBA-modal-message">{{ labels.error_modal_body }}</p>
+</ng-template>
+
+<ng-template #customDeliveryDateContent>
+  <div class="eqp_delivery_date">
+    <p *ngIf="eqp_delivery_date | isNotEmpty">
+      [ {{ eqp_delivery_date }}（{{ labels.eqp_delivery_date }}）]
+    </p>
+    <p *ngIf="eqp_used_delivery_date | isNotEmpty">
+      [ {{ eqp_used_delivery_date }}（{{ labels.eqp_used_delivery_date }}）]
+    </p>
+  </div>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

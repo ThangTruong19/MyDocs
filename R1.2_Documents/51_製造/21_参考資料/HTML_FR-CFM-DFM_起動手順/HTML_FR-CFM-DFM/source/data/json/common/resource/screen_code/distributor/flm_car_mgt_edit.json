@@ -1,0 +1,1185 @@
+[
+  {
+    "path": "maker_code",
+    "name": "メーカ",
+    "help": "メーカのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "コマツ0001",
+        "value": "0001",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0002",
+        "value": "0002",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0003",
+        "value": "0003",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.car_identification.model_id",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.car_identification.type_rev",
+    "name": "型式",
+    "help": "型式のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.car_identification.serial",
+    "name": "機番",
+    "help": "機番のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.komtrax_unit.main_component.part",
+    "name": "端末品番",
+    "help": "端末品番のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.komtrax_unit.main_component.serial",
+    "name": "端末シリアル",
+    "help": "端末シリアルのヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.komtrax_unit.main_component.part",
+    "name": "モニタ品番",
+    "help": "モニタ品番のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.komtrax_unit.main_component.serial",
+    "name": "モニタシリアル",
+    "help": "モニタシリアルのヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.car_identification.initial_smr",
+    "name": "初期SMR(H)",
+    "help": "初期SMR(H)のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.car_management_attribute.time_difference",
+    "name": "時差",
+    "help": "時差のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "-12",
+        "value": "-12",
+        "kind": "D"
+      },
+      {
+        "key": "-11",
+        "value": "-11",
+        "kind": "D"
+      },
+      {
+        "key": "-10",
+        "value": "-10",
+        "kind": "D"
+      },
+      {
+        "key": "-9",
+        "value": "-09",
+        "kind": "D"
+      },
+      {
+        "key": "-8",
+        "value": "-08",
+        "kind": "D"
+      },
+      {
+        "key": "-7",
+        "value": "-07",
+        "kind": "D"
+      },
+      {
+        "key": "-6",
+        "value": "-06",
+        "kind": "D"
+      },
+      {
+        "key": "-5",
+        "value": "-05",
+        "kind": "D"
+      },
+      {
+        "key": "-4",
+        "value": "-04",
+        "kind": "D"
+      },
+      {
+        "key": "-3",
+        "value": "-03",
+        "kind": "D"
+      },
+      {
+        "key": "-2",
+        "value": "-02",
+        "kind": "D"
+      },
+      {
+        "key": "-1",
+        "value": "-01",
+        "kind": "D"
+      },
+      {
+        "key": "+0",
+        "value": "+00",
+        "kind": "D"
+      },
+      {
+        "key": "+1",
+        "value": "+01",
+        "kind": "D"
+      },
+      {
+        "key": "+2",
+        "value": "+02",
+        "kind": "D"
+      },
+      {
+        "key": "+3",
+        "value": "+03",
+        "kind": "D"
+      },
+      {
+        "key": "+4",
+        "value": "+04",
+        "kind": "D"
+      },
+      {
+        "key": "+5",
+        "value": "+05",
+        "kind": "D"
+      },
+      {
+        "key": "+6",
+        "value": "+06",
+        "kind": "D"
+      },
+      {
+        "key": "+7",
+        "value": "+07",
+        "kind": "D"
+      },
+      {
+        "key": "+8",
+        "value": "+08",
+        "kind": "D"
+      },
+      {
+        "key": "+9",
+        "value": "+09",
+        "kind": "D"
+      },
+      {
+        "key": "+10",
+        "value": "+10",
+        "kind": "D"
+      },
+      {
+        "key": "+11",
+        "value": "+11",
+        "kind": "D"
+      },
+      {
+        "key": "+12",
+        "value": "+12",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.car_management_attribute.time_difference_minute",
+    "name": "時差",
+    "help": "時差のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "0",
+        "value": "00",
+        "kind": "D"
+      },
+      {
+        "key": "15",
+        "value": "15",
+        "kind": "D"
+      },
+      {
+        "key": "30",
+        "value": "30",
+        "kind": "D"
+      },
+      {
+        "key": "45",
+        "value": "45",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.asset_status_kind",
+    "name": "資産状態",
+    "help": "資産状態のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "資産状態１",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "資産状態２",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "資産状態３",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.asset_owner_id",
+    "name": "資産所有者",
+    "help": "資産所有者のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "資産所有者１",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "資産所有者２",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "資産所有者３",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.stock_status_update_date",
+    "name": "在庫状況更新日",
+    "help": "在庫状況更新日のヘルプ文言",
+    "type": "-16",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.custom_car_attribute_1_detail_id",
+    "name": "カスタム属性１",
+    "help": "カスタム属性１のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "カスタム属性１１",
+        "value": "11",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性１２",
+        "value": "12",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性１３",
+        "value": "13",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.custom_car_attribute_2_detail_id",
+    "name": "カスタム属性２",
+    "help": "カスタム属性２のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "カスタム属性２１",
+        "value": "21",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性２２",
+        "value": "22",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性２３",
+        "value": "23",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.custom_car_attribute_3_detail_id",
+    "name": "カスタム属性３",
+    "help": "カスタム属性３のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "カスタム属性３１",
+        "value": "31",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性３２",
+        "value": "32",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性３３",
+        "value": "33",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.custom_car_attribute_4_detail_id",
+    "name": "カスタム属性４",
+    "help": "カスタム属性４のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "カスタム属性４１",
+        "value": "41",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性４２",
+        "value": "42",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性４３",
+        "value": "43",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.custom_car_attribute_5_detail_id",
+    "name": "カスタム属性５",
+    "help": "カスタム属性５のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "カスタム属性５１",
+        "value": "51",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性５２",
+        "value": "52",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性５３",
+        "value": "53",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.custom_car_attribute_6_detail_id",
+    "name": "カスタム属性６",
+    "help": "カスタム属性６のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "カスタム属性６１",
+        "value": "61",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性６２",
+        "value": "62",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性６３",
+        "value": "63",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.custom_car_attribute_7_detail_id",
+    "name": "カスタム属性７",
+    "help": "カスタム属性７のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "カスタム属性７１",
+        "value": "71",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性７２",
+        "value": "72",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性７３",
+        "value": "73",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.custom_car_attribute_8_detail_id",
+    "name": "カスタム属性８",
+    "help": "カスタム属性８のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "カスタム属性８１",
+        "value": "81",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性８２",
+        "value": "82",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性８３",
+        "value": "83",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.custom_car_attribute_9_detail_id",
+    "name": "カスタム属性９",
+    "help": "カスタム属性９のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "カスタム属性９１",
+        "value": "91",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性９２",
+        "value": "92",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性９３",
+        "value": "93",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.custom_car_attribute_10_detail_id",
+    "name": "カスタム属性１０",
+    "help": "カスタム属性１０のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "カスタム属性１０１",
+        "value": "101",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性１０２",
+        "value": "102",
+        "kind": "D"
+      },
+      {
+        "key": "カスタム属性１０３",
+        "value": "103",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.free_memo",
+    "name": "メモ",
+    "help": "メモのヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.distributor_attribute.note_1",
+    "name": "備考１",
+    "help": "備考１のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.distributor_attribute.note_2",
+    "name": "備考２",
+    "help": "備考２のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.distributor_attribute.note_3",
+    "name": "備考３",
+    "help": "備考３のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.distributor_attribute.note_4",
+    "name": "備考４",
+    "help": "備考４のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.distributor_attribute.note_5",
+    "name": "備考５",
+    "help": "備考５のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.distributor_attribute.class_1_id",
+    "name": "分類１",
+    "help": "分類１のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "分類１１",
+        "value": "11",
+        "kind": "D"
+      },
+      {
+        "key": "分類１２",
+        "value": "12",
+        "kind": "D"
+      },
+      {
+        "key": "分類１３",
+        "value": "13",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.class_2_id",
+    "name": "分類２",
+    "help": "分類２のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "分類２１",
+        "value": "21",
+        "kind": "D"
+      },
+      {
+        "key": "分類２２",
+        "value": "22",
+        "kind": "D"
+      },
+      {
+        "key": "分類２３",
+        "value": "23",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.class_3_id",
+    "name": "分類３",
+    "help": "分類３のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "分類３１",
+        "value": "31",
+        "kind": "D"
+      },
+      {
+        "key": "分類３２",
+        "value": "32",
+        "kind": "D"
+      },
+      {
+        "key": "分類３３",
+        "value": "33",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.class_4_id",
+    "name": "分類４",
+    "help": "分類４のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "分類４１",
+        "value": "41",
+        "kind": "D"
+      },
+      {
+        "key": "分類４２",
+        "value": "42",
+        "kind": "D"
+      },
+      {
+        "key": "分類４３",
+        "value": "43",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.class_5_id",
+    "name": "分類５",
+    "help": "分類５のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "分類５１",
+        "value": "51",
+        "kind": "D"
+      },
+      {
+        "key": "分類５２",
+        "value": "52",
+        "kind": "D"
+      },
+      {
+        "key": "分類５３",
+        "value": "53",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.intended_purpose_code",
+    "name": "使用目的",
+    "help": "使用目的のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "土木・建築",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "鉄・スクラップ",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "鉱山・採石",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "解体・産廃",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "レンタル",
+        "value": "5",
+        "kind": "D"
+      },
+      {
+        "key": "その他",
+        "value": "90",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.debit_kind",
+    "name": "債権",
+    "help": "債権のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "無",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "有",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.customer_id",
+    "name": "顧客",
+    "help": "顧客のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "顧客１",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "顧客２",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.user_permission_sub_group_ids",
+    "name": "サブグループ",
+    "help": "サブグループのヘルプ文言",
+    "type": "30",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "サブグループ１",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ２",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ３",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ４",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ５",
+        "value": "5",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ６",
+        "value": "6",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ７",
+        "value": "7",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ８",
+        "value": "8",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ９",
+        "value": "9",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ１０",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ１１",
+        "value": "11",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ１２",
+        "value": "12",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ１３",
+        "value": "13",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.bank_id",
+    "name": "銀行",
+    "help": "銀行のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "銀行１",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "銀行２",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "銀行３",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.insurance_id",
+    "name": "保険",
+    "help": "保険のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "保険１",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "保険２",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "保険３",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.finance_id",
+    "name": "ファイナンス",
+    "help": "ファイナンスのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "ファイナンス１",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "ファイナンス２",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "ファイナンス３",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.delivery_date",
+    "name": "車両納入日",
+    "help": "車両納入日のヘルプ文言",
+    "type": "-16",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.new_used_kind",
+    "name": "新車中古車区分",
+    "help": "新車中古車区分のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "新車",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "中古車",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.used_delivery_date",
+    "name": "中古車両納入日",
+    "help": "中古車両納入日のヘルプ文言",
+    "type": "-16",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.used_delivery_smr",
+    "name": "中古車納入時SMR",
+    "help": "中古車納入時SMRのヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.distributor_attribute.production_year_month",
+    "name": "製造年月",
+    "help": "製造年月のヘルプ文言",
+    "type": "-17",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.data_publish_kind",
+    "name": "顧客へのデータ公開",
+    "help": "顧客へのデータ公開のヘルプ文言",
+    "type": "20",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "過去データすべて公開",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "納入日以降のみ公開",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.spec_pattern_id",
+    "name": "仕様パターン",
+    "help": "仕様パターンのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "仕様パターン１",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "仕様パターン２",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "仕様パターン３",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "update_target_kind",
+    "name": "更新対象",
+    "help": "更新対象のヘルプ文言",
+    "type": "20",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "属性変更",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "主要情報変更",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  }
+]

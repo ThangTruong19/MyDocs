@@ -1,0 +1,258 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 車両管理 一覧
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 車両管理 一覧
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 10
+    description: 変更
+    name: header_edit
+    ja: 変更
+    en:
+
+  - id: 11
+    description: 削除
+    name: delete
+    ja: 削除
+    en:
+
+  - id: 12
+    description: リストドロップダウン
+    name: prompt_to_select
+    ja: 選択してください
+    en:
+
+  - id: 13
+    description: リストから選択
+    name: choose_from_list
+    ja: リストから選択
+    en:
+
+  - id: 14
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 15
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 16
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか？
+    en:
+
+  - id: 17
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 18
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 19
+    description: 機種-型式で入力する
+    name: input_model_type_revs
+    ja: 機種-型式で入力する
+    en:
+
+  - id: 20
+    description: 注目車両
+    name: target_car
+    ja: 注目車両
+    en:
+
+  - id: 21
+    description: 識別情報
+    name: identifier
+    ja: 識別情報
+    en:
+
+  - id: 22
+    description: 車両所属
+    name: belongs
+    ja: 車両所属
+    en:
+
+  - id: 23
+    description: 車両属性
+    name: attributes
+    ja: 車両属性
+    en:
+
+  - id: 24
+    description: 車両設定
+    name: settings
+    ja: 車両設定
+    en:
+
+  - id: 25
+    description: 検索条件一覧
+    name: search_condition_list
+    ja: 検索条件一覧
+    en:
+
+  - id: 26
+    description: 一括削除
+    name: delete_all
+    ja: 一括削除
+    en:
+
+  - id: 27
+    description: 車両削除確認モーダル本文
+    name: delete_modal_body
+    ja: 以下の車両情報を削除します。よろしいですか?
+    en:
+
+  - id: 28
+    description: 車両削除処理完了メッセージ
+    name: delete_result_label
+    ja:  車両削除が完了しました
+    en:
+
+  - id: 29
+    description: 結果
+    name: result
+    ja: 結果
+    en:
+
+  - id: 30
+    description: 内容
+    name: result_detail
+    ja: 内容
+    en:
+
+  - id: 31
+    description: 結果件数
+    name: result_count_message
+    ja: '${total} 件中 成功${success}件 失敗${fail}件'
+    en:
+
+  - id: 32
+    description: テンプレートDL
+    name: download_template
+    ja: 更新用テンプレート一括DL
+    en:
+
+  - id: 33
+    description: 表示項目設定
+    name: field_select
+    ja: 表示項目設定
+    en:
+
+  - id: 34
+    description: 表示項目選択
+    name: field_select_title
+    ja: 表示項目設定
+    en:
+
+  - id: 35
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 36
+    description: 検索結果0件時の表示
+    name: empty_list_message
+    ja: 該当する車両が見つかりませんでした。
+    en:
+
+  - id: 37
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 38
+    description: テーブルヘッダの削除
+    name: header_delete
+    ja: 削除
+    en:
+
+  - id: 39
+    description: 時間
+    name: hour
+    ja: H
+    en:
+
+  - id: 40
+    description: 分
+    name: minute
+    ja: M
+    en:
+
+  - id: 40
+    description: 一括削除の最大件数の警告
+    name: alert_over_upper_limit
+    ja: 51件以上は削除できません
+    en:
+
+  - id: 40
+    description: 削除件数
+    name: delete_count
+    ja: 件
+    en:
+
+  - id: 31
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

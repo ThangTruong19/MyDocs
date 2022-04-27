@@ -1,0 +1,279 @@
+[
+  {
+    "path": "block_id",
+    "name": "ブロック",
+    "help": "ブロックのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.support_distributor.ids",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB1",
+        "value": "A0001",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2",
+        "value": "A0002",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB3",
+        "value": "A0003",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.service_distributor.ids",
+    "name": "サービスDB",
+    "help": "サービスDBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "サービスDB1",
+        "value": "A0001",
+        "kind": "D"
+      },
+      {
+        "key": "サービスDB2",
+        "value": "A0002",
+        "kind": "D"
+      },
+      {
+        "key": "サービスDB3",
+        "value": "A0003",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.customer.ids",
+    "name": "顧客",
+    "help": "顧客のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "顧客1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "顧客2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "顧客3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.division_codes",
+    "name": "車両種類",
+    "help": "車両種類のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "油圧ショベル",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "ホイールローダ",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "クレーン",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.maker_codes",
+    "name": "メーカ",
+    "help": "メーカのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.models",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.type_revs",
+    "name": "型式",
+    "help": "型式のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.serials",
+    "name": "機番",
+    "help": "機番のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "cars.service_distributor_id",
+    "name": "サービスDB",
+    "help": "サービスDB（変更）のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "サービスDB1",
+        "value": "A0001",
+        "kind": "D"
+      },
+      {
+        "key": "サービスDB2",
+        "value": "A0002",
+        "kind": "D"
+      },
+      {
+        "key": "サービスDB3",
+        "value": "A0003",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "cars.service_distributor_id_english",
+    "name": "サービスDB（英語）",
+    "help": "サービスDB（英語）のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "SDB1",
+        "value": "A0001",
+        "kind": "D"
+      },
+      {
+        "key": "SDB2",
+        "value": "A0002",
+        "kind": "D"
+      },
+      {
+        "key": "SDB3",
+        "value": "A0003",
+        "kind": "D"
+      }
+    ]
+  }
+]

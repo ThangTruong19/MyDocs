@@ -1,0 +1,385 @@
+<section id="KBA-group-area-car-index" *ngIf="labels && resource && datePickerParams">
+  <div class="container-fluid" *ngIf="!isOpenSettingChange">
+    <h2 class="KBA-group-area-index__title KBA-page-title">
+      {{ labels.title }}
+    </h2>
+
+    <div class="KBA-content">
+      <app-kba-accordion
+        [collapsed]="collapsed"
+        [title]="labels.search_condition"
+        [isLoading]="isLoading"
+        [labels]="labels"
+        (onChangeState)="changePanelState($event)"
+      >
+        <div data-kba-accordion-body>
+          <div class="container KBA-search">
+            <ng-container *ngIf="resource">
+              <div class="row">
+                <app-kba-selected
+                  *ngIf="exists('common.support_distributor.ids')"
+                  class="col-sm-3"
+                  [kbaName]="'ids'"
+                  [kbaParams]="params.common.support_distributor"
+                  [kbaResource]="resource.common.support_distributor"
+                >
+                </app-kba-selected>
+
+                <app-kba-selected
+                  *ngIf="exists('common.car_identification.maker_codes')"
+                  class="col-sm-3"
+                  [kbaName]="'maker_codes'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                >
+                </app-kba-selected>
+
+                <app-kba-text
+                  *ngIf="exists('common.car_identification.models')"
+                  class="col-sm-3"
+                  [kbaName]="'models'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                  [maxlength]="20"
+                >
+                </app-kba-text>
+
+                <app-kba-text
+                  *ngIf="exists('common.car_identification.type_revs')"
+                  class="col-sm-3"
+                  [kbaName]="'type_revs'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                  [maxlength]="10"
+                >
+                </app-kba-text>
+              </div>
+
+              <div class="row">
+                <app-kba-text
+                  *ngIf="exists('common.car_identification.serials')"
+                  class="col-sm-3"
+                  [kbaName]="'serials'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                >
+                </app-kba-text>
+
+                <app-kba-selected
+                  *ngIf="exists('car_management.time_difference')"
+                  class="col-sm-3"
+                  [kbaName]="'time_difference'"
+                  [kbaParams]="params.car_management"
+                  [kbaResource]="resource.car_management"
+                >
+                </app-kba-selected>
+
+                <app-kba-selected
+                  *ngIf="exists('car_management.change_after_time_difference')"
+                  class="col-sm-3"
+                  [kbaName]="'change_after_time_difference'"
+                  [kbaParams]="params.car_management"
+                  [kbaResource]="resource.car_management"
+                >
+                </app-kba-selected>
+
+                <app-kba-selected
+                  *ngIf="exists('car_management.time_difference_setting_kind')"
+                  class="col-sm-3"
+                  [kbaName]="'time_difference_setting_kind'"
+                  [kbaParams]="params.car_management"
+                  [kbaResource]="resource.car_management"
+                >
+                </app-kba-selected>
+              </div>
+
+              <div class="row">
+                <app-kba-selected
+                  *ngIf="
+                    exists(
+                      'car_management.time_difference_setting_change_status'
+                    )
+                  "
+                  class="col-sm-3"
+                  [kbaName]="'time_difference_setting_change_status'"
+                  [kbaParams]="params.car_management"
+                  [kbaResource]="resource.car_management"
+                >
+                </app-kba-selected>
+
+                <app-kba-from-to-date-picker
+                  class="col-sm-6"
+                  [from]="'time_difference_setting_change_start_date_from'"
+                  [to]="'time_difference_setting_change_start_date_to'"
+                  [params]="params.car_management"
+                  [resource]="resource.car_management"
+                  [labels]="labels"
+                  [beginningWday]="beginningWday"
+                  [enableDateRange]="enableDateRange"
+                  [dateFormat]="_dateFormat"
+                  [fromDisplay]="'date_from_formatted'"
+                  [toDisplay]="'date_to_formatted'"
+                  [timeZone]="timeZone"
+                >
+                </app-kba-from-to-date-picker>
+
+                <div
+                  class="col-sm-3 check-wrapper"
+                  *ngIf="exists('car_management.time_difference_setting_change_start_none_kind')">
+                  <input
+                    type="checkbox"
+                    id="check-time_difference_setting_change_start_none_kind"
+                    class="KBA-input-checkbox checkbox-with-label"
+                    [ngModel]="false"
+                    (ngModelChange)="handleChangeChangeStartNoneKind($event)"
+                  />
+                  <label
+                    for="check-time_difference_setting_change_start_none_kind"
+                    class="KBA-input-checkbox__label">
+                    {{resource.car_management.time_difference_setting_change_start_none_kind.name}}
+                  </label>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <div class="KBA-panel-footer">
+            <button
+              (click)="onClickSearch()"
+              type="button"
+              class="btn btn-primary search"
+            >
+              {{ labels.search }}
+            </button>
+          </div>
+        </div>
+      </app-kba-accordion>
+
+      <!-- ページネーション -->
+      <div class="KBA-table-options" [hidden]="count <= 0">
+        <app-kba-pagination
+          [count]="count"
+          [params]="pageParams"
+          [labels]="labels"
+          [element]="pageCountEl"
+          (changeState)="onPaginationChange()"
+        >
+        </app-kba-pagination>
+        <div class="table-option-buttons">
+          <div class="popover-wrapper">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="onClickFieldSelect($event)"
+            >
+              {{ labels.field_select }}
+            </button>
+            <app-kba-popover
+              [labels]="labels"
+              [resource]="fieldResources"
+              [fields]="fields"
+              [title]="labels.field_select_title"
+              [(isVisible)]="fieldSelectPopoverVisible"
+              (ok)="onFieldSelectOk($event)"
+            ></app-kba-popover>
+          </div>
+          <button
+            type="button"
+            class="btn btn-warning"
+            (click)="onClickBatchRetry()"
+            [disabled]="
+              !(retryOverCars | isNotEmpty) || !enableTimeDifferenceSetting
+            "
+          >
+            {{ labels.batch_retry }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning"
+            (click)="onClickSettingChange()"
+            [disabled]="
+              !(selectedList | isNotEmpty) || !enableTimeDifferenceSetting
+            "
+          >
+            {{ labels.setting_change }}
+          </button>
+          <div class="delete-wrapper" *ngIf="deletable">
+            <span
+              class="delete-warning-message"
+              *ngIf="selectedList.length > batchDeleteLimit"
+            >
+              {{ labels.alert_over_upper_limit }}</span
+            >
+            <button
+              type="button"
+              class="KBA-selectable-columns btn btn-secondary delete-all"
+              (click)="onClickDeleteAll()"
+              [disabled]="
+                !(selectedList | isNotEmpty) ||
+                !deletable ||
+                selectedList.length > batchDeleteLimit
+              "
+            >
+              {{ labels.delete_all }}
+              <i class="kba-icon kba-icon-dustbox"></i>
+              <span
+                class="delete-count"
+                [ngClass]="
+                  selectedList.length > batchDeleteLimit ? 'warning' : ''
+                "
+              >
+                {{ selectedList.length }}/{{ batchDeleteLimit
+                }}{{ labels.delete_count }}
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <app-kba-table
+        [customTableThContent]="customTableThContent"
+        [customTableRowContent]="customTableRowContent"
+        [lists]="lists"
+        [pageParams]="pageParams"
+        [params]="params"
+        [sortingParams]="sortingParams"
+        [thList]="thList"
+        [sortableThList]="sortableThList"
+        [labels]="labels"
+        [collapsed]="collapsed"
+        [selectable]="selectable"
+        [checkIdName]="checkIdName"
+        [checkedItems]="checkedItems"
+        [isFetching]="isFetching"
+        (sort)="onChangeSort($event)"
+      >
+        <ng-template #customTableThContent>
+          <ng-container *ngFor="let title of thList">
+            <th
+              *ngIf="title.displayable"
+              class="th-{{ title.shortName }} KBA-index-th"
+              [ngClass]="{ 'disable-sort': !title.sortable }"
+              appKbaSortingLabel
+              [(sortingParams)]="sortingParams"
+              [labelName]="title.name"
+              [sortableThList]="sortableThList"
+              (sort)="onChangeSort($event)"
+            >
+              <span>{{ title.label }}</span>
+            </th>
+          </ng-container>
+        </ng-template>
+
+        <ng-template #customTableRowContent let-data="data" let-title="title">
+          <ng-container *ngFor="let title of thList">
+            <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
+              <!-- 変更状態 -->
+              <ng-container
+                *ngSwitchCase="
+                  'cars.car_management_attribute.time_difference_setting_change_status_name'
+                "
+              >
+                <td
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center justify-content-center"
+                >
+                  <div>
+                    {{ data[title.name] }}<br />
+                    <button
+                      *ngIf="isRetryOver(data)"
+                      type="button"
+                      (click)="onClickRetry(data)"
+                      class="btn btn-success"
+                      [disabled]="!enableTimeDifferenceSetting"
+                    >
+                      {{ labels.retry }}
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+              <!-- 時差 -->
+              <ng-container
+                *ngSwitchCase="'cars.car_management_attribute.time_difference'"
+              >
+                <td
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ formatTimeDifference(data[title.name]) }}</span>
+                </td>
+              </ng-container>
+              <!-- 変更中時差 -->
+              <ng-container
+                *ngSwitchCase="
+                  'cars.car_management_attribute.change_after_time_difference'
+                "
+              >
+                <td
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ formatTimeDifference(data[title.name]) }}</span>
+                </td>
+              </ng-container>
+              <!-- それ以外 -->
+              <ng-container *ngSwitchDefault>
+                <td
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ data[title.name] }}</span>
+                </td>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-template>
+      </app-kba-table>
+    </div>
+  </div>
+
+  <!-- 変更申請画面 -->
+  <app-setting-change
+    *ngIf="isOpenSettingChange"
+    [selectedCarIds]="selectedList"
+    [labels]="labels"
+    [resource]="resource"
+    [functions]="functions"
+    [editFields]="editFields"
+    [editConfirmFields]="editConfirmFields"
+    [sortKey]="requestHeaderParams['X-Sort']"
+    (return)="returnFromSettingChange()"
+    (submit)="onSubmit()"
+  >
+  </app-setting-change>
+</section>
+
+<ng-template #retryModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="retryModalValues.listDesc"
+    [val]="retryModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #resultModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="resultDesc"
+    [val]="resultVal"
+    [warningColumns]="'all'"
+  >
+  </app-kba-simple-list-confirm>
+  <p class="result-count-message">{{ resultCountMessage }}</p>
+</ng-template>
+
+<ng-template #deleteModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="deleteModalValues.listDesc"
+    [val]="deleteModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

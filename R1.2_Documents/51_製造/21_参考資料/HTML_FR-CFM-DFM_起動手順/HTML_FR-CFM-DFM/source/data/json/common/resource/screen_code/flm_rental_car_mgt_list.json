@@ -1,0 +1,160 @@
+[
+  {
+    "path": "common.car_identification.division_codes",
+    "name": "車両種類",
+    "help": "",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "ブルドーザ",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "ホイールローダ",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.maker_codes",
+    "name": "メーカ",
+    "help": null,
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "コマツ",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.models",
+    "name": "機種",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.type_revs",
+    "name": "型式",
+    "help": "型式のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.serials",
+    "name": "機番",
+    "help": "機番のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.customer_attribute.customer_car_no",
+    "name": "顧客車両番号",
+    "help": "顧客車両番号のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "rental.customer_id",
+    "name": "貸出先",
+    "help": "貸出先のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "コマツ1",
+        "value": "1",
+        "kind": "A"
+      },
+      {
+        "key": "コマツ2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "rental.date_from",
+    "name": "貸出期間",
+    "help": "貸出期間のヘルプ文言",
+    "type": -42,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "rental.date_to",
+    "name": "貸出期間",
+    "help": "貸出期間のヘルプ文言",
+    "type": -41,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+]

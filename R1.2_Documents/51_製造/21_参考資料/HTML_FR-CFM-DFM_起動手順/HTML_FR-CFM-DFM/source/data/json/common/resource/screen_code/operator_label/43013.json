@@ -1,0 +1,271 @@
+[
+  {
+    "path": "common.target_car_group_ids",
+    "name": "注目車両グループ",
+    "help": "注目車両グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "車両001",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "車両002",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "車両003",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "車両004",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.customer.ids",
+    "name": "顧客",
+    "help": "顧客のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "顧客001",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "顧客002",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "顧客003",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "顧客004",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.division_ids",
+    "name": "車両種類",
+    "help": "車両種類のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "ショベル",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "油圧ショベル",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.models",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.type_revs",
+    "name": "型式",
+    "help": "型式のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.serials",
+    "name": "機番",
+    "help": "機番のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.customer_attribute.customer_management_no",
+    "name": "顧客管理番号",
+    "help": "顧客管理番号のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.customer_attribute.customer_car_no",
+    "name": "顧客車両番号",
+    "help": "顧客車両番号のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car_operator_id_input.operator_identification_kind",
+    "name": "オペ識別設定",
+    "help": "オペ識別設定のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "OFF",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "ID入力（スキップあり）",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "設定不可",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car_operator_id_input.registration_status_kind",
+    "name": "登録ステータス",
+    "help": "登録ステータスのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "設定可能",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "設定準備中",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "設定不可",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car_operator_id_input.operator_code",
+    "name": "オペレータID",
+    "help": "オペレータIDのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "id_hold_time",
+    "name": "ID保持時間一括設定",
+    "help": "ID保持時間一括設定のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10分",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20分",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "30分",
+        "value": "30",
+        "kind": "D"
+      },
+      {
+        "key": "40分",
+        "value": "40",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+]

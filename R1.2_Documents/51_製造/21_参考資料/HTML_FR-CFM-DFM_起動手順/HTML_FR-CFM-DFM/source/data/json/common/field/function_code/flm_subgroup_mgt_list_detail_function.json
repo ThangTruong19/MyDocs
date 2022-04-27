@@ -1,0 +1,93 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "サブグループID",
+    "path": "sub_group.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "サブグループ名称",
+    "path": "sub_group.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "サブグループ名称（英語）",
+    "path": "sub_group.identification.label_english",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "組織コード",
+    "path": "sub_group.identification.organization_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "所属国コード",
+    "path": "sub_group.attribute.nation_code",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "所属国",
+    "path": "sub_group.attribute.nation_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "時差",
+    "path": "sub_group.attribute.time_difference",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "電話番号",
+    "path": "sub_group.attribute.phone_no",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "メールアドレス",
+    "path": "sub_group.attribute.email",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "所在地",
+    "path": "sub_group.attribute.address",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "11",
+    "name": "権限（管理者）",
+    "path": "sub_group.administrator_role",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "12",
+    "name": "権限（一般）",
+    "path": "sub_group.general_role",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "13",
+    "name": "更新日時",
+    "path": "sub_group.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

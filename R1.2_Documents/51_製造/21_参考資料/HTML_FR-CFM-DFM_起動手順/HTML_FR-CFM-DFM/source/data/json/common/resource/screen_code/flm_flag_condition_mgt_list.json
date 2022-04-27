@@ -1,0 +1,82 @@
+[
+  {
+    "path": "support_distributor_id",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "担当DB1",
+        "value": "A0001",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2",
+        "value": "A0002",
+        "kind": "D"
+      },
+      {
+        "key": "エラー確認用",
+        "value": "ERROR",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "file_content_type",
+    "name": "出力形式",
+    "help": "ダウンロード表示形式のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "XLSX",
+        "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "kind": "D"
+      },
+      {
+        "key": "CSV",
+        "value": "text/comma-separated-values",
+        "kind": "D"
+      }
+    ]
+  }
+]

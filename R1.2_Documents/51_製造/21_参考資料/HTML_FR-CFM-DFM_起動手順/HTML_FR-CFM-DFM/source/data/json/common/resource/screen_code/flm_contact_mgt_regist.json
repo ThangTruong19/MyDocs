@@ -1,0 +1,139 @@
+[
+  {
+    "path": "contact.support_distributor_id",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "担当DB1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB4",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB5",
+        "value": "5",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB6",
+        "value": "6",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB7",
+        "value": "7",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB8",
+        "value": "8",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB9",
+        "value": "A",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "contact.kind",
+    "name": "連絡先種別",
+    "help": "連絡先種別のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "一般",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "代表",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "contact.represent_contact.label",
+    "name": "会社名",
+    "help": "会社名のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "contact.represent_contact.phone_no",
+    "name": "代表電話番号",
+    "help": "代表電話番号のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "contact.general_contact.label",
+    "name": "氏名",
+    "help": "氏名のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "contact.general_contact.email",
+    "name": "電子メール",
+    "help": "電子メールのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "contact.general_contact.office_phone_no",
+    "name": "勤務先電話番号",
+    "help": "勤務先電話番号のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "contact.general_contact.cell_phone_no",
+    "name": "携帯電話番号",
+    "help": "携帯電話番号のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "contact.general_contact.photo.image",
+    "name": "画像",
+    "help": "画像のヘルプ文言",
+    "type": 11,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

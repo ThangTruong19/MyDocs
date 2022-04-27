@@ -1,0 +1,89 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 業種管理　登録
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 業種管理　登録
+    en:
+
+  - id: 3
+    description: リセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 4
+    description: 登録
+    name: submit
+    ja: 登録
+    en:
+
+  - id: 5
+    description: 続けて登録
+    name: continue
+    ja: 続けて登録
+    en:
+
+  - id: 6
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 7
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 8
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか？
+    en:
+
+  - id: 9
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 10
+    description: 登録確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容で登録します。よろしいですか？
+    en:
+
+  - id: 11
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 12
+    description: 必須説明
+    name: description_for_required
+    ja: (*)…必須項目
+    en:
+
+  - id: 13
+    description: 業種情報
+    name: business_type_information
+    ja: 業種情報
+    en:
+
+  - id: 14
+    description: 言語選択
+    name: name_setting
+    ja: 言語選択
+
+  - id: 15
+    description: 未設定
+    name: not_set
+    ja: 未設定
+    en:

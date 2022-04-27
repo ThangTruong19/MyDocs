@@ -1,0 +1,158 @@
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
+import { chain, includes, cloneDeep, isEmpty, uniq } from 'lodash';
+import { KbaModalService } from '../../../services/shared/kba-modal.service';
+
+@Component({
+  selector: 'app-kba-authority-select',
+  templateUrl: './kba-authority-select.component.html',
+  styleUrls: ['./kba-authority-select.component.scss'],
+})
+export class KbaAuthoritySelectComponent {
+  @ViewChild('authoritySelectModalContent', { static: false })
+  authoritySelectModalContent: TemplateRef<null>;
+
+  @Input() customHeader: TemplateRef<any>;
+  @Input() customContent: TemplateRef<any>;
+  @Input() authorities: any[];
+  @Input() labels: any;
+  @Input() defaultAuthorities: any[] = [];
+  @Input() selectedAuthorities: any[] = [];
+  @Input() selectedUser = {};
+  @Input() customSelectButtons;
+  @Input() customSelectedAuthorities;
+  @Input() allowUnselectedAuthorities = false;
+  @Output() select: EventEmitter<any> = new EventEmitter<any>();
+  @Output() open: EventEmitter<any> = new EventEmitter<any>();
+  @Output() close: EventEmitter<any> = new EventEmitter<any>();
+
+  evacuateSelectedAuthorities: any[] = [];
+
+  constructor(private modalService: KbaModalService) {}
+
+  authorityChecked(value) {
+    if (includes(this.evacuateSelectedAuthorities, value)) {
+      this.evacuateSelectedAuthorities.splice(
+        this.evacuateSelectedAuthorities.indexOf(value),
+        1
+      );
+    } else {
+      this.evacuateSelectedAuthorities.push(value);
+    }
+    this.modalService.enableOk = this.isValid();
+  }
+
+  toggleCheckAll(selectedAuthorities) {
+    this.evacuateSelectedAuthorities = cloneDeep(selectedAuthorities);
+    this.modalService.enableOk = this.isValid();
+  }
+
+  /**
+   * 選択ボタン押下時のコールバック
+   */
+  onClickSelect() {
+    if (isEmpty(this.defaultAuthorities)) {
+      this.evacuateSelectedAuthorities = cloneDeep(this.selectedAuthorities);
+    } else {
+      this.evacuateSelectedAuthorities = uniq(
+        this.selectedAuthorities.concat(this.defaultAuthorities)
+      );
+    }
+
+    this.open.emit();
+    this.modalService.open({
+      title: this.labels.select_modal_title,
+      labels: this.labels,
+      content: this.authoritySelectModalContent,
+      okBtnLabel: this.labels.reflect_btn,
+      enableOk: this.isValid(),
+      closeBtnLabel: this.labels.cancel || this.labels.close,
+      ok: () => {
+        this.selectedAuthorities = this.getAuthorities(
+          this.evacuateSelectedAuthorities
+        ).map(item => item.value);
+        this.select.emit(this.selectedAuthorities);
+      },
+      close: () => this.close.emit(),
+    }, {
+      size: 'lg',
+    });
+  }
+
+  isValid(): boolean {
+    return (
+      this.allowUnselectedAuthorities ||
+      !isEmpty(this.evacuateSelectedAuthorities)
+    );
+  }
+
+  isAuthoritySelectOk(): boolean {
+    return (
+      this.allowUnselectedAuthorities || !isEmpty(this.selectedAuthorities)
+    );
+  }
+
+  /**
+   * 選択済みタグの x ボタン押下時の処理
+   * @param value 選択済みタグに紐づけられた 値
+   */
+  onClickRemoveTag(value) {
+    this.selectedAuthorities = this.selectedAuthorities.filter(
+      item => item !== value
+    );
+    this.evacuateSelectedAuthorities = cloneDeep(this.selectedAuthorities);
+  }
+
+  getItem(items: any[], value: string): any {
+    const index = items.findIndex(i => i.value === value);
+    const item = items[index];
+
+    return {
+      ...item,
+      index,
+    };
+  }
+
+  /**
+   * セレクトボックスのリセット
+   */
+  reset() {
+    this.selectedAuthorities.length = 0;
+    this.evacuateSelectedAuthorities.length = 0;
+  }
+
+  /**
+   * 権限の名称取得
+   *
+   * 値に対応する名前を取得する。
+   *
+   * @param value 値
+   */
+  getAuthorities(values: string[]): any[] {
+    return chain(values)
+      .reduce((array, val) => {
+        const { name, value, index } = this.getItem(this.authorities, val);
+        array.push({
+          name,
+          value,
+          index,
+        });
+        return array;
+      }, [])
+      .orderBy('index')
+      .value();
+  }
+
+  /**
+   * 選択内容を params 用に整形して返します。
+   */
+  getSelectedParam(): string[] {
+    return this.selectedAuthorities;
+  }
+}

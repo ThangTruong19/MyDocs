@@ -1,0 +1,62 @@
+[
+  {
+    "path": "custom_car_attribute.field_no",
+    "name": "車両属性NO",
+    "help": "車両属性NOのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "11",
+        "value": "11",
+        "kind": "D"
+      },
+      {
+        "key": "21",
+        "value": "21",
+        "kind": "D"
+      },
+      {
+        "key": "31",
+        "value": "31",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "custom_car_attribute.names",
+    "name": "属性名称",
+    "help": "属性名称のヘルプ文言",
+    "type": -19,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "日本語",
+        "value": "ja-JP",
+        "kind": "D"
+      },
+      {
+        "key": "英語",
+        "value": "en-US",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "custom_car_attribute.details",
+    "name": "表示項目リスト",
+    "help": "表示項目リストのヘルプ文言",
+    "type": -19,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "日本語",
+        "value": "ja-JP",
+        "kind": "D"
+      }
+    ]
+  }
+]

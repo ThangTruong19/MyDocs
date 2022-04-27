@@ -1,0 +1,8 @@
+@import "../../../../../assets/styles/opa/variable";
+
+[class^="kba-caution-icon"],
+[class*=" kba-caution-icon"] {
+  margin-right: 1px;
+  font-size: 20px;
+  color: $kba-main-color;
+}

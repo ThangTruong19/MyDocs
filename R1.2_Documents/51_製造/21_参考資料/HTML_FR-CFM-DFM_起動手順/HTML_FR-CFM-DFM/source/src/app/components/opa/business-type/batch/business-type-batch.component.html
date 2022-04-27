@@ -1,0 +1,156 @@
+<div id="KBA-business-type-batch" *ngIf="labels && resource">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+
+    <div class="flex-container">
+      <div class="KBA-file-upload_component">
+        <app-kba-file-upload
+          [apiId]="uploadPath"
+          [layout]="'batch'"
+          [labels]="labels"
+          [json]="uploadJSON"
+          (uploadStart)="_showLoadingSpinner()"
+          (uploadEnd)="onUploadEnd($event)"
+          (uploadFail)="onUploadFail($event)"
+        ></app-kba-file-upload>
+      </div>
+
+      <div class="KBA-file-upload_component download">
+        <div class="KBA-panel panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              {{ labels.download_title }}
+            </h4>
+          </div>
+          <div class="panel-body">
+            <div class="container">
+              <div class="row" *ngIf="resource.block_id">
+                <app-kba-selected
+                  class="col-sm-5"
+                  [kbaName]="'block_id'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                >
+                </app-kba-selected>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <button
+                    class="btn btn-secondary"
+                    type="button"
+                    (click)="onClickDownload()"
+                  >
+                    <i class="kba-icon kba-icon-download"></i>
+                    {{ labels.download_excel }}
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div
+                    class="download-description"
+                    *ngFor="let i of [1, 2, 3, 4, 5]"
+                  >
+                    <div class="box-index">
+                      <span class="index">{{ i }}</span>
+                    </div>
+                    <div class="box-text">
+                      <p class="text">
+                        {{ labels['download_description_' + i] }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="download-notice">{{ labels.download_notice }}</p>
+      </div>
+    </div>
+  </div>
+  <ng-template #uploadResultModalContent>
+    <div class="table-auto-height">
+      <table class="KBA-table-modal KBA-table table table-bordered">
+        <thead class="KBA-table-thead-modal KBA-table-thead">
+          <tr class="KBA-table-flex-cell-modal">
+            <ng-container *ngFor="let d of thList; let idx = index">
+              <ng-container *ngIf="d.displayable">
+                <ng-container [ngSwitch]="d.name">
+                  <th *ngSwitchCase="'business_type.item_names'" class="KBA-form-table__head business-type-item-names-cell">
+                    <ul class="business-type-item-names-header">
+                      <li>
+                        {{ labels.business_type_label }}
+                      </li>
+                      <li>
+                        {{ labels.lang_name }}
+                      </li>
+                    </ul>
+                  </th>
+                  <th *ngSwitchDefault class="KBA-form-table__head">
+                    {{ d.label }}
+                  </th>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </tr>
+        </thead>
+        <tbody class="KBA-form-table-tbody KBA-table-tbody">
+          <tr
+            class="KBA-table-flex-cell-modal"
+            [ngClass]="row.css_class"
+            *ngFor="let row of listVal"
+          >
+            <ng-container *ngFor="let d of thList; let idx = index">
+              <ng-container *ngIf="d.displayable">
+                <ng-container [ngSwitch]="d.name">
+                  <td
+                    class="KBA-form-table__value business-type-item-names-cell"
+                    [ngClass]="{ 'warning-column': !row.result.success }"
+                    *ngSwitchCase="'business_type.item_names'"
+                  >
+                    <ul class="business-type-item-names-list">
+                      <li class="business-type-item-names-value" *ngFor="let item of row['business_type.item_names']">
+                        <p>{{ item.label }}</p>
+                        <p>{{ item.lang_name }}</p>
+                      </li>
+                    </ul>
+                  </td>
+                  <td
+                    class="KBA-form-table__value"
+                    [ngClass]="{ 'warning-column': !row.result.success }"
+                    *ngSwitchCase="'result'"
+                  >
+                    <div class="result">
+                      <i *ngIf="row[d.name].success" class="kba-icon-check"></i>
+                      <i *ngIf="!row[d.name].success" class="kba-icon-close"></i>
+                    </div>
+                  </td>
+                  <td
+                    class="KBA-form-table__value"
+                    [ngClass]="{ 'warning-column': !row.result.success }"
+                    *ngSwitchCase="'message'"
+                  >
+                    <ul>
+                      <li *ngFor="let item of row[d.name]">{{ item }}</li>
+                    </ul>
+                  </td>
+                  <td
+                    class="KBA-form-table__value"
+                    [ngClass]="{ 'warning-column': !row.result.success }"
+                    *ngSwitchDefault
+                  >
+                    <p>{{ row[d.name] }}</p>
+                  </td>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="result-count-message">{{ resultCountMessage }}</p>
+  </ng-template>
+</div>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

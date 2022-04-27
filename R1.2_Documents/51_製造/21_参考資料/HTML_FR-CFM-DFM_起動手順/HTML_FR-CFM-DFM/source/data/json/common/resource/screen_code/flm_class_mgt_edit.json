@@ -1,0 +1,20 @@
+[
+  {
+    "path": "class.support_distributor_id",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "class.label",
+    "name": "新しい分類名称",
+    "help": "新しい分類名称のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

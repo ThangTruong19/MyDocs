@@ -1,0 +1,522 @@
+[
+  {
+    "path": "car.car_identification.maker_code",
+    "name": "メーカ",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "メーカ",
+    "placeholder_text": null,
+    "data_order": "1",
+    "items": []
+  },
+  {
+    "path": "car.car_identification.model",
+    "name": "機種",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "機種",
+    "placeholder_text": null,
+    "data_order": "2",
+    "items": []
+  },
+  {
+    "path": "car.car_identification.type_rev",
+    "name": "型式",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "型式",
+    "placeholder_text": null,
+    "data_order": "3",
+    "items": []
+  },
+  {
+    "path": "car.car_identification.serial",
+    "name": "機番",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "機番",
+    "placeholder_text": null,
+    "data_order": "4",
+    "items": []
+  },
+  {
+    "path": "car.support_distributor_id",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "担当DB1",
+        "value": "N0001",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2",
+        "value": "N0002",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.komtrax_unit.terminal_component.part",
+    "name": "端末品番",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "端末品番",
+    "placeholder_text": null,
+    "data_order": "6",
+    "items": []
+  },
+  {
+    "path": "car.komtrax_unit.terminal_component.serial",
+    "name": "端末シリアル",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "端末シリアル",
+    "placeholder_text": null,
+    "data_order": "7",
+    "items": []
+  },
+  {
+    "path": "car.car_identification.initial_smr",
+    "name": "初期SMR(H)",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "初期SMR(H)",
+    "placeholder_text": null,
+    "data_order": "8",
+    "items": []
+  },
+  {
+    "path": "car.car_management_attribute.time_difference",
+    "name": "時差",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "時差",
+    "placeholder_text": null,
+    "data_order": "9",
+    "items": []
+  },
+  {
+    "path": "car.car_management_attribute.time_difference_minute",
+    "name": "時差",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": "1",
+    "memo": "時差",
+    "placeholder_text": null,
+    "data_order": "10",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.stock_status_update_date",
+    "name": "在庫状況更新日",
+    "type": "-40",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "在庫状況更新日",
+    "placeholder_text": null,
+    "data_order": "14",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.free_memo",
+    "name": "メモ",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "メモ",
+    "placeholder_text": null,
+    "data_order": "25",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.note_1",
+    "name": "備考1",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "備考1",
+    "placeholder_text": null,
+    "data_order": "26",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.note_2",
+    "name": "備考2",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "備考2",
+    "placeholder_text": null,
+    "data_order": "27",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.note_3",
+    "name": "備考3",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "備考3",
+    "placeholder_text": null,
+    "data_order": "28",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.note_4",
+    "name": "備考4",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "備考4",
+    "placeholder_text": null,
+    "data_order": "29",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.note_5",
+    "name": "備考5",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "備考5",
+    "placeholder_text": null,
+    "data_order": "30",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.intended_use_code",
+    "name": "使用目的",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "使用目的",
+    "placeholder_text": null,
+    "data_order": "36",
+    "items": [
+      {
+        "key": "土木・建築",
+        "value": "1",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "鉄・スクラップ",
+        "value": "2",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "鉱山・採石",
+        "value": "3",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "解体・産廃",
+        "value": "4",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "レンタル",
+        "value": "5",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "その他",
+        "value": "90",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "未選択",
+        "value": "99",
+        "kind": "D",
+        "data_order": "7"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.debit_kind",
+    "name": "債権",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "債権",
+    "placeholder_text": null,
+    "data_order": "37",
+    "items": [
+      {
+        "key": "有",
+        "value": "1",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "無",
+        "value": "0",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  },
+  {
+    "path": "car.customer_id",
+    "name": "顧客",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "顧客",
+    "placeholder_text": null,
+    "data_order": "38",
+    "items": [
+      {
+        "key": "データなし",
+        "value": "-2",
+        "kind": "N",
+        "data_order": "1"
+      }
+    ]
+  },
+  {
+    "path": "car.user_permission_sub_group_ids",
+    "name": "サブグループ",
+    "type": "30",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "サブグループ",
+    "placeholder_text": null,
+    "data_order": "39",
+    "items": [
+      {
+        "key": "データなし",
+        "value": "-2",
+        "kind": "N",
+        "data_order": "1"
+      },
+      {
+        "key": "サブグループ1",
+        "value": "114093",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "サブグループA002",
+        "value": "113896",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "サブグループ_日本リージョン_IT2追加データ",
+        "value": "113875",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "サブグループ管理２３",
+        "value": "113853",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "サブ宮崎",
+        "value": "113894",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "テストサブグループ１",
+        "value": "113840",
+        "kind": "D",
+        "data_order": "7"
+      },
+      {
+        "key": "日本リージョン_サブ01",
+        "value": "113689",
+        "kind": "D",
+        "data_order": "8"
+      }
+    ]
+  },
+  {
+    "path": "car.bank_id",
+    "name": "銀行",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "銀行",
+    "placeholder_text": null,
+    "data_order": "40",
+    "items": [
+      {
+        "key": "データなし",
+        "value": "-2",
+        "kind": "N",
+        "data_order": "1"
+      }
+    ]
+  },
+  {
+    "path": "car.insurance_id",
+    "name": "保険",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "保険",
+    "placeholder_text": null,
+    "data_order": "41",
+    "items": [
+      {
+        "key": "データなし",
+        "value": "-2",
+        "kind": "N",
+        "data_order": "1"
+      }
+    ]
+  },
+  {
+    "path": "car.finance_id",
+    "name": "ファイナンス",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "ファイナンス",
+    "placeholder_text": null,
+    "data_order": "42",
+    "items": [
+      {
+        "key": "データなし",
+        "value": "-2",
+        "kind": "N",
+        "data_order": "1"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.delivery_date",
+    "name": "車両納入日",
+    "type": "-40",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "車両納入日",
+    "placeholder_text": null,
+    "data_order": "43",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.new_used_kind",
+    "name": "新車中古車区分",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "新車中古車区分",
+    "placeholder_text": null,
+    "data_order": "44",
+    "items": [
+      {
+        "key": "新車",
+        "value": "0",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "中古車",
+        "value": "1",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.used_delivery_date",
+    "name": "中古車納入日",
+    "type": "-40",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "中古車納入日",
+    "placeholder_text": null,
+    "data_order": "45",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.used_delivery_smr",
+    "name": "中古車納入時SMR",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "中古車納入時SMR",
+    "placeholder_text": null,
+    "data_order": "46",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.production_year_month",
+    "name": "製造年月",
+    "type": "-30",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "製造年月",
+    "placeholder_text": null,
+    "data_order": "47",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.data_publish_kind",
+    "name": "顧客へのデータ公開",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "顧客へのデータ公開",
+    "placeholder_text": null,
+    "data_order": "48",
+    "items": [
+      {
+        "key": "過去データすべて公開",
+        "value": "0",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "納入日以降のみ公開",
+        "value": "1",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.spec_pattern_id",
+    "name": "仕様パターン",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "仕様パターン",
+    "placeholder_text": null,
+    "data_order": "49",
+    "items": []
+  },
+  {
+    "path": "orbcomm_request.nation_id",
+    "name": "使用国",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "使用国",
+    "placeholder_text": null,
+    "data_order": "50",
+    "items": []
+  }
+]

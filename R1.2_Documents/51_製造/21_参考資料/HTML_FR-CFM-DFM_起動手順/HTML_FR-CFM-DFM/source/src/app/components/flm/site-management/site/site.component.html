@@ -1,0 +1,31 @@
+<section id="KBA-site-management-site" *ngIf="labels && resource">
+  <div class="container container-fluid">
+    <div class="content">
+      <app-index-header
+        [resource]="resource"
+        [layout]="layout"
+        [queryMaxLength]="256"
+        (queryChanged)="handleQueryChange($event)"
+        (layoutChanged)="handleLayoutChange($event)"
+      >
+      </app-index-header>
+      <app-list
+        *ngIf="list && layout === 'list'"
+        [thList]="thList"
+        [hasList]="hasList"
+        [list]="filteredList"
+        [labels]="labels"
+      >
+      </app-list>
+      <app-map-list
+        *ngIf="list && layout === 'tile'"
+        [labels]="labels"
+        [hasList]="hasList"
+        [list]="list"
+        [filteredList]="filteredList"
+        [link]="detailLink"
+      >
+      </app-map-list>
+    </div>
+  </div>
+</section>

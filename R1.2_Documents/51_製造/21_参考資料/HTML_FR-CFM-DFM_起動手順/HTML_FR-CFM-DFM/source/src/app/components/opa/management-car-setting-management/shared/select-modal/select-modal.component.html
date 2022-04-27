@@ -1,0 +1,84 @@
+<div class="select-modal-content" *ngIf="labels && resource">
+  <div class="header">
+    <div class="search-block search-conditions row">
+      <app-kba-text
+        class="col-sm-3"
+        [kbaName]="'models'"
+        [kbaParams]="searchParams"
+        [kbaResource]="resource"
+        [maxlength]="20"
+      >
+      </app-kba-text>
+    </div>
+    <div class="search-block">
+      <button
+        (click)="onClickSearch()"
+        type="button"
+        class="btn btn-primary search"
+      >
+        {{ labels.search }}
+      </button>
+    </div>
+  </div>
+  <div class="body" *ngIf="data">
+    <ng-container [ngSwitch]="identifier">
+      <ng-container *ngSwitchCase="'ModelSelectModalComponent'">
+        <div *ngIf="data.model_setting.maker_divisions.length > 0">
+          <input
+            type="checkbox"
+            id="check-all"
+            class="KBA-input-checkbox checkbox-with-label"
+            [(ngModel)]="checkAll"
+          />
+          <label for="check-all" class="KBA-input-checkbox__label">
+            {{ labels.select_all }}
+          </label>
+        </div>
+        <div
+          class="content-wrapper"
+          [ngClass]="{
+            'no-content': data.model_setting.maker_divisions.length === 0
+          }"
+        >
+          <app-maker-divisions
+            [makerDivisions]="data.model_setting.maker_divisions"
+            [clickable]="true"
+            [getCellClasses]="getCellClasses"
+            [emptyMessage]="labels.empty_search_result"
+          >
+          </app-maker-divisions>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="'ModelTypeSelectModalComponent'">
+        <div *ngIf="data.model_type_setting.models.length > 0">
+          <input
+            type="checkbox"
+            id="check-all"
+            class="KBA-input-checkbox checkbox-with-label"
+            [(ngModel)]="checkAll"
+          />
+          <label for="check-all" class="KBA-input-checkbox__label">
+            {{ labels.select_all }}
+          </label>
+        </div>
+        <div
+          class="content-wrapper"
+          [ngClass]="{
+            'no-content': data.model_type_setting.models.length === 0
+          }"
+        >
+          <app-models
+            [labels]="labels"
+            [resource]="resource"
+            [models]="data.model_type_setting.models"
+            [clickable]="true"
+            [getCellClasses]="getCellClasses"
+            [emptyMessage]="labels.empty_search_result"
+            (change)="onChange($event)"
+          >
+          </app-models>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

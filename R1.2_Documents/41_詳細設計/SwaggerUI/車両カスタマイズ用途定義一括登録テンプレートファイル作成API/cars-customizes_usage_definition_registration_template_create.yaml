@@ -1,0 +1,107 @@
+swagger: '2.0'
+info:
+  title: 次世代KOMTRAX API
+  description: |
+    # 変更履歴
+    <table>
+      <tr>
+        <th>日付</th><th>変更内容</th></tr>
+      <tr>
+        <td>-</td>
+        <td>新規作成</td>
+      </tr>
+
+    </table>
+  version: ""
+paths:
+  #パス名（パスパラメータを用いる場合{xxx_id}を入れる）
+  /car/customizes/usage/definition/registration/template/create:
+  #path_start
+    #get|put|post|delete
+    post:
+      # API名
+      summary: 車両カスタマイズ用途定義一括登録テンプレートファイル作成API
+      produces:
+        - application/json
+      # API説明文
+      description: |
+        車両カスタマイズ用途定義一括登録テンプレートファイル作成する。
+        
+        <h3>ファイル形式</h3>
+        API入出力ファイルの仕様は<a href="#" target="_blank">API入出力ファイル仕様書</a>に示す。<br>
+        作成可能なファイル形式を下記に示す。<br>
+        <table>
+          <tr><th align="left">ファイル形式</th><th align="left">File-Content-Type</th></tr>
+          <tr><td><a href="#">excel</a></td><td>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</td></tr>
+        </table>
+        <hr>
+      # リクエスト
+      parameters:
+        #共通のヘッダ
+        #common_header
+        #リクエストボディ
+        - name: リクエストボディ
+          in: body
+          #
+          description: |
+            カスタマイズ用途定義
+          required: true 
+          #bodyの中身
+          schema:
+            type: object
+            title: REQUEST_BODY
+            properties:
+              file_label:
+                type: string
+                description: |
+                  ファイル名
+                  デフォルトのファイル名は「car-customizes-usage-definition-template＋年月日時分秒（グループのローカル）＋拡張子」（X-Langに従う）となる
+                minLength: 1
+                maxLength: 128
+                pattern: "ALL(ハイフンマイナス、半角アンダーバー、半角ピリオド以外の記号を除く)、記号で終わらないこと"
+                example: "car-customizes-usage-definition-template20171113125036.xlsx"
+              file_content_type:
+                type: string
+                description: |
+                  ファイル形式
+                  ファイル形式.File-Content-Typeで定義されている文字列を指定する。
+                minLength: 1
+                maxLength: 65
+                # 使用可能文字は各APIで使用できるファイル形式に修正すること
+                pattern: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=EXCELファイル"
+                example: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              file_request_label:
+                type: string
+                description: |
+                  ファイル要求名
+                  省略時はリクエスト時のX-Lang指定に従ったデフォルト名を補填する
+                minLength: 1
+                maxLength: 255
+                pattern: "ALL"
+                example: "車両カスタマイズ用途定義一括登録テンプレート"
+    # タグはnamespaceとする
+      tags:
+        - customize
+      # レスポンス
+      responses:
+        '200':
+          description: 作成したファイルのファイルIDを返却する。
+          schema:
+            type: object
+            properties:
+              result_data:
+                $ref: '#/definitions/FILE_CREATE'
+        #common_error
+  #path_end
+definitions:
+  FILE_CREATE:
+    type: object
+    properties:
+      file_id:
+        type: string
+# definitions:
+#   FILE_CREATE:
+#     type: object
+#     properties:
+#       file_id:
+#         type: string

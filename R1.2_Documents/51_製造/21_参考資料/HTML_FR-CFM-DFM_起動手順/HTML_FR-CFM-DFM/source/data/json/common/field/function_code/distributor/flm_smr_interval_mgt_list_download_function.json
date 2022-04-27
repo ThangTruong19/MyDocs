@@ -1,0 +1,58 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "SMRインターバル管理項目名称",
+    "path": "smr_interval_items.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "点検開始SMR",
+    "path": "smr_interval_items.inspection_start_smr",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "SMRインターバル",
+    "path": "smr_interval_items.smr_interval",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "オレンジフラグ閾値",
+    "path": "smr_interval_items.threshold",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "車両種類",
+    "path": "smr_interval_items.car_conditions.division_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "メーカ",
+    "path": "smr_interval_items.car_conditions.maker_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "機種",
+    "path": "smr_interval_items.car_conditions.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "型式",
+    "path": "smr_interval_items.car_conditions.type_rev",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

@@ -1,0 +1,65 @@
+@import "../../../../../../assets/styles/variable";
+
+.container-fluid {
+  padding-bottom: 54px;
+}
+
+.KBA-form-select-kind {
+  display: flex;
+  > .kind {
+    display: flex;
+    align-items: center;
+    > input {
+      margin-right: 10px;
+    }
+    &:not(:last-child) {
+      margin-right: 40px;
+    }
+  }
+
+  label {
+    margin-bottom: 1px;
+    font-weight: normal;
+  }
+}
+
+.annotation {
+  .KBA-valid-errors {
+    p {
+      margin: 0 0 5px 0;
+    }
+  }
+}
+
+td.photo {
+  label {
+    margin-bottom: 0;
+  }
+  input {
+    display: none;
+  }
+  .image-area {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-end;
+    .delete-area {
+      color: $fontRed;
+      display: flex;
+      align-items: center;
+      cursor: default;
+      > p {
+        margin-left: 5px;
+      }
+    }
+  }
+  .image-notices {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+    margin-top: 12px;
+    font-size: 12px;
+    p {
+      margin: 0;
+    }
+  }
+}

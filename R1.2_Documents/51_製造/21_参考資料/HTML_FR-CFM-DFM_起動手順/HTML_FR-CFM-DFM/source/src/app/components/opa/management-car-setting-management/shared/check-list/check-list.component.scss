@@ -1,0 +1,49 @@
+@import "../../../../../../assets/styles/opa/_variable.scss";
+
+.header,
+.content {
+  margin: -1px;
+  border: 1px solid #ddd;
+}
+
+.header {
+  padding: 10px 15px;
+  margin-bottom: 0;
+}
+
+.content {
+  display: block;
+  padding: 15px;
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: darken(#fff, 9%);
+  }
+
+  @media (hover: none) {
+    &:hover {
+      background-color: #fff;
+    }
+  }
+
+  &.checked {
+    background-color: $kba-selected-color;
+
+    &:hover {
+      background-color: darken($kba-selected-color, 6%);
+    }
+
+    @media (hover: none) {
+      &:hover {
+        background-color: $kba-selected-color;
+      }
+    }
+  }
+}
+
+.scrollable-container {
+  height: 50vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}

@@ -1,0 +1,31 @@
+.th-custom_divisions_group_label,
+.td-custom_divisions_group_label {
+  width: 30% !important;
+}
+
+.names-container {
+  margin: -15px -15px -16px -16px;
+  word-break: break-all;
+
+  .names-row {
+    display: flex;
+
+    .names-cell {
+      padding: 7px 15px;
+      margin: -1px -1px 0 0;
+      border: 1px solid #ddd;
+
+      &.lang-name {
+        width: 50%;
+      }
+
+      &.label {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.model-type-container {
+  margin: -16px -15px;
+}

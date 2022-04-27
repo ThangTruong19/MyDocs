@@ -1,0 +1,11 @@
+[
+  {
+    "path": "common.car_identification.models",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

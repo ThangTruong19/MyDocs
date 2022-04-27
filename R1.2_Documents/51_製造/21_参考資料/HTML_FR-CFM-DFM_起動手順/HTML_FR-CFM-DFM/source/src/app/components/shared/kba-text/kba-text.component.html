@@ -1,0 +1,21 @@
+<div class="kba-text" *ngIf="isVisible">
+  <label for="KBA-text-{{ kbaName }}" *ngIf="customLabel != null">{{
+    customLabel
+  }}</label>
+  <label
+    for="KBA-text-{{ kbaName }}"
+    *ngIf="customLabel == null && showLabel"
+    >{{ kbaResource[kbaName] && kbaResource[kbaName].name }}</label
+  >
+  <input
+    id="KBA-text-{{ kbaName }}"
+    name="kbaName"
+    class="KBA-input-text form-control"
+    [placeholder]="kbaResource[kbaName].placeholder_text || ''"
+    [type]="type"
+    autocomplete="off"
+    [maxlength]="maxlength"
+    [(ngModel)]="kbaParams[kbaName]"
+    [disabled]="disabled"
+  />
+</div>

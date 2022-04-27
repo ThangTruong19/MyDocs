@@ -1,0 +1,34 @@
+<common-header
+  [labels]="header.labels"
+  [isLoggedIn]="header.isLoggedIn"
+  [headerItems]="header.managementItems"
+  [configValues]="header.configValues"
+  [configItems]="header.configItems"
+  [configLabels]="header.configLabels"
+  [userIconPath]=""
+  [userItems]="header.userItems"
+  [isHome]="header.homeIconLink == null"
+  [signOutIsPermitted]="
+    header.signOutLink != null && header.signOutLink.length > 0
+  "
+  (signOut)="header.handleClickSignout()"
+  (clickHome)="header.onClickHome()"
+  (clickManagementUser)="header.onClickManagementUser()"
+  (submitConfig)="header.onSubmitConfig($event)"
+  (clickHeaderItem)="header.handleClickLink($event)"
+  (clickUserItem)="header.handleClickLink($event)"
+></common-header>
+<div class="KBA-spinner" [hidden]="!isLoading">
+  <i class="KBA-spinner__icon fa fa-refresh fa-spin"></i>
+</div>
+<div
+  class="container-global"
+  [hidden]="isLoading"
+  [ngClass]="{ loaded: !isLoading, 'container-jobsite': isJobsite }"
+>
+  <router-outlet
+    (activate)="componentAdded($event)"
+    (deactivate)="componentRemoved($event)"
+  ></router-outlet>
+</div>
+<app-kba-alert></app-kba-alert>

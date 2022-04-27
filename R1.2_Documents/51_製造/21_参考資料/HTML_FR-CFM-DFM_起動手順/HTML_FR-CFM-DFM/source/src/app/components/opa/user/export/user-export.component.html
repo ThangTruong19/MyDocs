@@ -1,0 +1,128 @@
+<section id="KBA-user-export" *ngIf="labels && resource">
+  <div class="container-fluid">
+    <h2 class="KBA-user-export__title KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content target-export" *ngIf="exists('group_id')">
+      <div class="KBA-accordion KBA-panel">
+        <div class="KBA-accordion-header-container">
+          <div class="panel-heading">
+            <div class="panel-title KBA-accordion-header">
+              <span>{{ labels.caption }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="KBA-panel-body">
+          <div class="KBA-content KBA-search">
+            <table class="KBA-form-table table table-bordered" *ngIf="!loading">
+              <tbody class="KBA-form-table-tbody" [formGroup]="userForm">
+                <tr
+                  app-kba-form-table-select
+                  *ngIf="exists('group_id')"
+                  class="KBA-form-row"
+                  [kbaName]="'group_id'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                  [colspan]="3"
+                  [emitInitialRefresh]="false"
+                  (onChange)="onGroupIdChange($event)"
+                ></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="KBA-content">
+      <div class="group-links" *ngIf="blockLinks.length > 1">
+        <ng-container *ngFor="let link of blockLinks">
+          <div class="group-link">
+            <a
+              href="javascript:void(0)"
+              class="block-link"
+              appKbaScrollTo
+              [scrollTarget]="'.group-name-' + link.id"
+              [scrollArea]="'.group-counts'"
+            >
+              {{ link.label }}
+            </a>
+          </div>
+        </ng-container>
+      </div>
+      <div class="group-counts">
+        <ng-container *ngFor="let data of resultData">
+          <p class="group-name-{{ data.id }}">{{ data.label }}</p>
+          <table class="KBA-table table table-bordered">
+            <thead class="KBA-table-thead">
+              <tr class="KBA-table-flex-cell">
+                <th class="KBA-index-th th-user-class">
+                  {{ labels.user_class }}
+                </th>
+                <th class="KBA-index-th th-user-count fixed">
+                  {{ labels.user_count }}
+                </th>
+              </tr>
+            </thead>
+            <tbody class="KBA-table-tbody">
+              <tr class="KBA-table-flex-cell administrator-role">
+                <td
+                  class="KBA-index-td td-user-class d-flex align-items-center"
+                >
+                  <span>{{ data | at: 'administrator_role.name' }}</span>
+                </td>
+                <td
+                  class="KBA-index-td td-user-count fixed d-flex align-items-center"
+                >
+                  <span>{{ data | at: 'administrator_role.count' }}</span>
+                </td>
+              </tr>
+              <tr class="KBA-table-flex-cell general-role">
+                <td
+                  class="KBA-index-td td-user-class d-flex align-items-center"
+                >
+                  <span>{{ data | at: 'general_role.name' }}</span>
+                </td>
+                <td
+                  class="KBA-index-td td-user-count fixed d-flex align-items-center"
+                >
+                  <span>{{ data | at: 'general_role.count' }}</span>
+                </td>
+              </tr>
+              <tr class="KBA-table-flex-cell other">
+                <td
+                  class="KBA-index-td td-user-class d-flex align-items-center"
+                >
+                  <span>{{ data | at: 'other.name' }}</span>
+                </td>
+                <td
+                  class="KBA-index-td td-user-count fixed d-flex align-items-center"
+                >
+                  <span>{{ data | at: 'other.count' }}</span>
+                </td>
+              </tr>
+              <tr class="KBA-table-flex-cell total">
+                <td
+                  class="KBA-index-td td-user-class d-flex align-items-center"
+                >
+                  <span>{{ data | at: 'total.name' }}</span>
+                </td>
+                <td
+                  class="KBA-index-td td-user-count fixed d-flex align-items-center"
+                >
+                  <span>{{ data | at: 'total.count' }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+      </div>
+      <div class="footer-button">
+        <button class="btn btn-success" type="button" (click)="onClickExport()">
+          {{ labels && labels.export_btn }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-kba-alert></app-kba-alert>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

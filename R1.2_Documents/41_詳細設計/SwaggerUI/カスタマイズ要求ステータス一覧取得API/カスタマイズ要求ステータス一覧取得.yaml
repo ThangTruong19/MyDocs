@@ -1,0 +1,516 @@
+swagger: '2.0'
+info:
+  title: 次世代KOMTRAX API
+  description: |
+    # 変更履歴
+    <table>
+      <tr><th>日付</th><th>変更内容</th></tr>
+    </table>
+  version: ''
+paths:
+  #パス名（パスパラメータを用いる場合{xxx_id}を入れる）
+  /cars/customize_requests/status/search:
+  #path_start
+    #get|put|post|delete
+    post:
+      # API名
+      summary: カスタマイズ要求ステータス一覧取得API [API_ID：KOM-00110170]
+      # API説明文
+      description: |
+        カスタマイズ関連の各種要求（送信番号単位でのデータ送信要求を除く）について、車両からの返信コマンドを受信するまでのステータスを取得する。
+
+        <h1>エラーコード一覧</h1>
+        <!-- ない、もしくは未定の場合は見出し、表を削除 -->
+        <ul>
+          <li>API共通で返却されるエラーメッセージは<a href="https://miot-msd.jp.fujitsu.com/komtrax/resources/api/komtrax_docs/messages.html" target="_blank">KOMTRAX共通メッセージ</a>を参照</li>
+          <style type="text/css">
+            .kom_error_messages{
+                background-color: #0001;
+                height: auto;
+                padding: 0;
+              }
+              .kom_error_messages table {
+                width:100%;
+                table-layout: fixed;
+                word-wrap: break-word;
+              }
+              .kom_error_messages .kom_status {width: 7%}
+              .kom_error_messages .kom_name {width: 20%}
+              .kom_error_messages .kom_code {width: 10%}
+              .kom_error_messages .kom_message {width: 30%}
+              .kom_error_messages .kom_cause {width: 23%}
+              .kom_error_messages .kom_remarks {width: 10%}
+              .kom_error_bg{
+                padding: 5px;
+                border-radius: 2px;
+              }
+          </style>
+          <li class="kom_error_bg"> エラー一覧
+            <details>
+              <div class="kom_error_messages">
+                <table border=1>
+                  <tr>
+                    <th class="kom_status">HTTP<br>ステータス</th>
+                    <th class="kom_name">項目名</th>
+                    <th class="kom_code">エラーコード</th>
+                    <th class="kom_message">出力メッセージ</th>
+                    <th class="kom_cause">要因</th>
+                    <th class="kom_remarks">備考</th>
+                  </tr>
+                    <td>400</td>
+                    <td>customize_usage_definition_id</td>
+                    <td>ACOM0153E</td>
+                    <td>{{customize_usage_definition_id}}は1～19桁の半角数字で入力してください。</td>
+                    <td>ID項目に1～19桁の半角数字以外が入力された場合に返却されます。</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>400</td>
+                    <td>customize_definition_id</td>
+                    <td>ACOM0153E</td>
+                    <td>{{customize_definition_id}}は1～19桁の半角数字で入力してください。</td>
+                    <td>ID項目に1～19桁の半角数字以外が入力された場合に返却されます。</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>400</td>
+                    <td>division_codes</td>
+                    <td>ACOM0234E</td>
+                    <td>{{division_codes}}は"C" + 1～19桁の半角数字、もしくは4桁の半角数字のいずれかで入力してください。</td>
+                    <td>車種コードに次の形式以外が入力された場合(次のいずれにも該当しない場合)に返却されます。 - カスタム車種ID形式("C" + 半角数字1桁から19桁)。 - 車種コード形式(半角数字4桁固定)。 - 未指定(-99)。</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>400</td>
+                    <td>models</td>
+                    <td>ACOM0136E</td>
+                    <td>{{models}}は1～20桁の半角英数字、ワイルドカード(?、*)で入力してください。?は任意の一文字、*は任意の文字列として扱われます。</td>
+                    <td>機種に1～20桁の半角英数字、ワイルドカード以外が入力された場合に返却されます。</td>
+                  </tr>
+                  <tr>
+                    <td>400</td>
+                    <td>serials</td>
+                    <td>ACOM0132E</td>
+                    <td>{{serials}}は1～41桁の半角英数字、半角記号、ワイルドカード(?、*)で入力してください。ただし"、'、#、%、&、<は使用できません。?は任意の一文字、*は任意の文字列として扱われます</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>400</td>
+                    <td>type_revs</td>
+                    <td>ACOM0132E</td>
+                    <td>{{type_revs}}型式(小変形含む)に1～15桁の半角英数字、ワイルドカード以外が入力された場合に返却されます。</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>400</td>
+                    <td>status_request_date_to</td>
+                    <td>ACOM0123E</td>
+                    <td>{{status_request_datetime_to}}はYYYY-MM-DDの形式で有効な日付を入力してください。</td>
+                    <td>不正な日付が入力された場合に返却されます。</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>400</td>
+                    <td>status_request_date_from</td>
+                    <td>ACOM0123E</td>
+                    <td>{{status_request_datet_from}}はYYYY-MM-DDの形式で有効な日付を入力してください。</td>
+                    <td>不正な日付が入力された場合に返却されます。</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>400</td>
+                    <td>
+                    status_request_date_from<br>
+                    status_request_date_to
+                    </td>
+                    <td>ACOM0169E</td>
+                    <td>{{status_request_datetime_to}}は{{status_request_datetime_from}}以降の日付で入力してください。</td>
+                    <td>期間指定の終了日付が開始日付以降ではない場合に返却されます。</td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </details>
+          </li>
+        </ul>
+        <h1>特記事項</h1>
+        X-Sortヘッダに指定可能なソートキーを以下に列挙する。<br>
+        <ul>
+          <li>request_status.request_status_information.request_datetime</li>
+          <li>request_status.request_status_information.request_kind_name</li>
+          <li>request_status.request_status_information.status</li>
+          <li>request_status.customize_usage_definitions.name</li>
+          <li>request_status.customize_definitions.name</li>
+          <li>request_status.car_identification.division_name</li>
+          <li>request_status.car_identification.serial</li>
+          <li>request_status.car_identification.type_rev</li>
+          <li>request_status.car_identification.model</li>
+        </ul>
+        未指定時のデフォルトソートは"request_status.request_status_information.request_datetime"の降順とする。
+      # リクエスト
+      parameters:
+        #共通のヘッダ
+        - name: X-Lang
+          in: header
+          description: |
+            論理名　　　：言語タグ<br>
+            使用可能文字：半角英数字,ハイフンマイナス<br>
+            桁／文字数　：2～35<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        - name: X-AppCode
+          in: header
+          description: |
+            論理名　　　：アプリコード<br>
+            使用可能文字：半角英数記号<br>
+            桁／文字数　：36<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        - name: X-GroupId
+          in: header
+          description: |
+            論理名　　　：グループID<br>
+            使用可能文字：半角数字<br>
+            桁／文字数　：1～19<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        - name: X-DateFormat
+          in: header
+          description: |
+            論理名　　　：日付形式<br>
+            使用可能文字：半角数字<br>
+            桁／文字数　：1<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        - name: X-ScreenCode
+          in: header
+          description: |
+            論理名　　　：画面コード<br>
+            使用可能文字：半角英数字,半角アンダーバー<br>
+            桁／文字数　：1～64<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        - name: X-WebApiKey
+          in: header
+          description: |
+            論理名　　　：WebAPIキー<br>
+            使用可能文字：半角英数記号<br>
+            桁／文字数　：1～36<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        - name: X-From
+          in: header
+          description: |
+            論理名　　　：取得開始位置<br>
+            使用可能文字：半角数字<br>
+            桁／文字数　：1～<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: number
+        - name: X-Count
+          in: header
+          description: |
+            論理名　　　：取得件数<br>
+            使用可能文字：半角数字<br>
+            桁／文字数　：1～<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: number
+        - name: X-Sort
+          in: header
+          description: |
+            論理名　　　：ソート<br>
+            使用可能文字：半角英数字,ハイフンマイナス,半角アンダーバー,半角ピリオド,半角カンマ,半角コロン<br>
+            桁／文字数　：1～<br>
+            備考　　　　：詳細はAPI設計ポリシーを参照
+          required: false
+          type: string
+        #リクエストボディ
+        - name: リクエストボディ
+          in: body
+          #ボディに何の情報が入るかを書く 例：登録情報
+          description: |
+            カスタマイズ要求ステータス検索条件。
+          #必須項目かどうか true|false
+          required: false
+          #bodyの中身
+          schema:
+            #以下にオブジェクトを参照、もしくは記入
+            type: object
+            properties:
+              customize_usage_definition_id:
+                type: string
+                description: カスタマイズ用途定義ID
+                minLength: 1
+                maxLength: 19
+                pattern: 半角数字
+                example: '1'
+              customize_definition_id:
+                type: string
+                description: カスタマイズ定義ID
+                minLength: 1
+                maxLength: 19
+                pattern: 半角数字
+                example: '1'
+              car_identification:
+                properties:
+                  division_codes:
+                    type: array
+                    items:
+                      type: string
+                      description: |
+                        車種コード。
+                        *通常の車種コードまたはカスタム車種IDを指定可能。
+                        カスタム車種IDを指定する際はprefixに"C"を付与する。
+                        車種コード: 半角数字4桁固定。
+                        カスタム車種ID: 半角'C' + 半角数字1-19桁。
+                        -99:未指定と同等。
+                      minLength: 2
+                      maxLength: 20
+                      pattern: '半角"C",半角数字,ハイフンマイナス'
+                      example: ['0001', 'C123']
+                  models:
+                      type: array
+                      items:
+                        type: string
+                        description: |
+                          機種
+                          *ワイルドカード使用可能
+                        minLength: 1
+                        maxLength: 20
+                        pattern: "半角英数字,ワイルドカード"
+                        example: "D85PX"
+                  type_revs:
+                    type: array
+                    items:
+                      type: string
+                      description: |
+                        型式(小変形含む)
+                        *ワイルドカード使用可能
+                      minLength: 1
+                      maxLength: 15
+                      pattern: "半角英数字,ワイルドカード"
+                      example: "15E0"
+                  serials:
+                    type: array
+                    items:
+                      type: string
+                      description: |
+                        機番
+                        *ワイルドカード使用可能
+                        大なり記号(">")区切りにて入力時は前後の値にてFrom-To検索を行う
+                      minLength: 1
+                      maxLength: 41
+                      pattern: '半角英数記号("、''、#、%、&、<以外)、ワイルドカード'
+                      example: 'A12345'
+                    example: ['A12345', 'A00001>A00005']
+              request_status:
+                properties:
+                  api_code:
+                    type: string
+                    description: "APIコード"
+                    minLength: 1
+                    maxLength: 17
+                    pattern: "半角英数記号(\"、'、#、%、&、<、> 、*以外)"
+                    example: "A12345"
+                  status:
+                    type: string
+                    description: "ステータス"
+                    minLength: 2
+                    maxLength: 2
+                    pattern: "半角数字"
+                    example: "10"
+                    enum:
+                      - 10:送信中
+                      - 20:送信済
+                      - 30:車両反映中
+                      - 40:送信失敗
+                      - 90:削除済
+                      - 99:未指定と同等
+                  request_registration_date_from:
+                    type: string
+                    description: 対象期間FROM(履歴日付)
+                    example: 2017-12-31
+                    pattern: 日付(YYYY-MM-DD固定)
+                    maxLength: 10
+                    minLength: 10
+                  request_registration_date_to:
+                    type: string
+                    description: 対象期間TO(履歴日付)
+                    example: 2017-12-31
+                    pattern: 日付(YYYY-MM-DD固定)
+                    maxLength: 10
+                    minLength: 10
+      # タグはnamespaceとする
+      tags:
+        - cars
+      # レスポンス
+      responses:
+        '200':
+          #レスポンスについて簡単な説明（例：どんな情報を返すか）
+          description: |
+            車両から返信コマンドを受信するまでのステータスを返却する。
+          schema:
+            type: object
+            properties:
+              result_data:
+                type: object
+                properties:
+                  request_status:
+                    type: array
+                    items:
+                      properties:
+                        request_status_information:
+                            type: object
+                            description: "要求ステータス情報"
+                            properties:
+                              request_kind_api_id:
+                                type: string
+                                description: カスタマイズ定義ID
+                                minLength: 1
+                                maxLength: 19
+                                pattern: 半角数字
+                                example: '1'
+                              api_code:
+                                type: string
+                                description: "APIコード"
+                                minLength: 1
+                                maxLength: 17
+                                pattern: "半角英数記号(\"、'、#、%、&、<、> 、*以外)"
+                                example: "A12345"
+                              api_name:
+                                type: string
+                                description: "API名称"
+                                minLength: 1
+                                maxLength: 1024
+                                pattern: "ALL（X-Langの設定に従う）"
+                                example: "送信番号送信要求"
+                              request_datetime:
+                                type: string
+                                description: "要求日時"
+                                pattern: "日時（X-DateFormatの設定に従う）"
+                                example: "2017/02/01 23:59:59"
+                              status:
+                                type: string
+                                description: "ステータス"
+                                minLength: 2
+                                maxLength: 2
+                                pattern: "半角数字"
+                                example: "10"
+                                enum:
+                                  - 10:送信中
+                                  - 20:送信済
+                                  - 30:車両反映中
+                                  - 40:送信失敗
+                                  - 90:削除済
+                              status_name:
+                                type: string
+                                description: "ステータス名称"
+                                minLength: 1
+                                maxLength: 1024
+                                pattern: "ALL（X-Langの設定に従う）"
+                                example: "送信中"
+                        car_identification:
+                            type: object
+                            description: 車両情報
+                            properties:
+                              id:
+                                type: string
+                                description: "車両ID"
+                                minLength: 1
+                                maxLength: 19
+                                pattern: "半角数字"
+                                example: "1"
+                              model:
+                                type: string
+                                description: "機種"
+                                minLength: 1
+                                maxLength: 20
+                                pattern: "半角英字(大).半角数字"
+                                example: "D85PX"
+                              type_rev:
+                                type: string
+                                description: "型式(小変形含む)※小変形の存在しない型式の場合、型式と同値にて返却"
+                                minLength: 1
+                                maxLength: 15
+                                pattern: "半角英数字"
+                                example: "15E0"
+                              serial:
+                                type: string
+                                description: "機番"
+                                minLength: 1
+                                maxLength: 20
+                                pattern: "半角英数記号(\"、'、#、%、&、<、> 、*以外)"
+                                example: "A12345"
+                              division_name:
+                                type: string
+                                description: "車種名称"
+                                minLength: 1
+                                maxLength: 255
+                                pattern: "ALL"
+                                example: "油圧シャベル"
+                        customize_usage_definitions:
+                          type: array
+                          items:
+                            type: object
+                            description: "カスタマイズ用途定義"
+                            properties:
+                              id:
+                                type: string
+                                description: "カスタマイズ用途定義ID"
+                                minLength: 1
+                                maxLength: 19
+                                pattern: "半角数字"
+                                example: "1"
+                              name:
+                                type: string
+                                description: "カスタマイズ用途定義名称"
+                                minLength: 1
+                                maxLength: 1024
+                                pattern: "ALL"
+                                example: "カスタマイズ用途定義A"
+                        customize_definitions:
+                          type: array
+                          items:
+                            type: object
+                            description: "カスタマイズ定義"
+                            properties:
+                              id:
+                                type: string
+                                description: "カスタマイズ定義ID"
+                                minLength: 1
+                                maxLength: 19
+                                pattern: "半角数字"
+                                example: "1234567"
+                              name:
+                                type: string
+                                description: "カスタマイズ定義名称"
+                                minLength: 1
+                                maxLength: 1024
+                                pattern: "ALL"
+                                example: "カスタマイズ定義A"
+          headers:
+            X-From:
+              description:
+                リクエスト未指定時も含め取得開始位置を返却する
+              type: number
+            X-Count:
+              description:
+                リクエスト未指定時も含め取得件数を返却する
+              type: number
+            X-TotalCount:
+              description:
+                ページング範囲外も含めた総件数を返却する
+              type: number
+            X-Sort:
+              description:
+                リクエスト未指定時も含めソート内容を返却する
+              type: string
+        #common_error
+  #path_end

@@ -1,0 +1,150 @@
+[
+  {
+    "path": "custom_division.group_id",
+    "name": "設定グループ",
+    "help": "設定グループのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "リージョン1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "リージョン2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック1",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック2",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "custom_division.use_same_name",
+    "name": "すべての言語で同じ名称を使用",
+    "help": "すべての言語で同じ名称を使用のヘルプ文言",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "custom_division.names.label",
+    "name": "カスタム車種名",
+    "help": "カスタム車種名のヘルプ文言",
+    "type": -19,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "custom_division.car_conditions",
+    "name": "機種型式",
+    "help": "機種型式のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "maker_code",
+    "name": "メーカ",
+    "help": "メーカのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0001",
+        "value": "0001",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0002",
+        "value": "0002",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0003",
+        "value": "0003",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "division_code",
+    "name": "車両種類",
+    "help": "車両種類のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "油圧ショベル",
+        "value": "0001",
+        "kind": "D"
+      },
+      {
+        "key": "ホイールローダ",
+        "value": "0002",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "models",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "custom_division.car_conditions.maker_code",
+    "name": "メーカー",
+    "help": "エラーメッセージ置換用",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "custom_division.car_conditions.model",
+    "name": "機種",
+    "help": "エラーメッセージ置換用",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "custom_division.car_conditions.type_rev",
+    "name": "型式(小変形含む)",
+    "help": "エラーメッセージ置換用",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

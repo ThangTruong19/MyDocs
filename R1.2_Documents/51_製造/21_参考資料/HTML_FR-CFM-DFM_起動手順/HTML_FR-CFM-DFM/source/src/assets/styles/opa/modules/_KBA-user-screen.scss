@@ -1,0 +1,23 @@
+#KBA-user-screen,
+#KBA-function-publish-setting-confirm-modal {
+  .nav-pills {
+    min-width: 15%;
+    max-width: 20%;
+
+    .nav-item {
+      margin-bottom: 5px;
+    }
+  }
+
+  .tab-content {
+    margin-left: 20px;
+    flex-grow: 1;
+  }
+
+  .KBA-pills {
+    &.nav-pills {
+      width: auto;
+      width: fit-content;
+    }
+  }
+}

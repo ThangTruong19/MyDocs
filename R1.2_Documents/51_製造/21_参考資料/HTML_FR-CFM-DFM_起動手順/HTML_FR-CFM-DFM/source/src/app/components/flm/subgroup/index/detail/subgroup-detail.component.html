@@ -1,0 +1,95 @@
+<table class="KBA-form-table table table-bordered">
+  <tbody class="KBA-form-table-tbody">
+    <ng-container *ngFor="let th of detailHeaders">
+      <tr
+        app-kba-form-table-custom
+        *ngIf="th.displayable"
+        class="KBA-form-row"
+        [customHeader]="detailHeader"
+        [content]="detailContent"
+      >
+        <ng-template #detailHeader>
+          <label class="KBA-form-table__label">
+            {{ th.label }}
+          </label>
+        </ng-template>
+        <ng-template #detailContent>
+          <ng-container [ngSwitch]="th.name">
+            <!-- 時差 -->
+            <ng-container *ngSwitchCase="'sub_group.attribute.time_difference'">
+              <p>{{ formatTimeDifference(detailData[th.name]) }}</p>
+            </ng-container>
+            <!-- 権限 -->
+            <ng-container *ngSwitchCase="'sub_group.administrator_role'">
+              <ng-container *ngTemplateOutlet="roleContent"></ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="'sub_group.general_role'">
+              <ng-container *ngTemplateOutlet="roleContent"></ng-container>
+            </ng-container>
+            <!-- その他 -->
+            <ng-container *ngSwitchDefault>
+              <p>{{ detailData[th.name] }}</p>
+            </ng-container>
+          </ng-container>
+          <ng-template #roleContent>
+            <div class="KBA-form-inner-table-container">
+              <table class="table KBA-form-table detail-table">
+                <tr *ngFor="let row of detailData[th.name].authorities">
+                  <td>
+                    <p>{{ row.name }}</p>
+                  </td>
+                  <td>
+                    <p>{{ row.default_kind_name }}</p>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </ng-template>
+        </ng-template>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+
+<!-- 車両 -->
+<div class="KBA-table-options" [hidden]="count <= 0">
+  <app-kba-pagination
+    [count]="count"
+    [params]="pageParams"
+    [labels]="labels"
+    [element]="pageCountEl"
+    (changeState)="onPaginationChange()"
+  >
+  </app-kba-pagination>
+</div>
+
+<app-kba-table
+  [customTableRowContent]="customTableRowContent"
+  [labels]="labels"
+  [collapsed]="collapsed"
+  [lists]="lists"
+  [pageParams]="pageParams"
+  [fixedThList]="fixedThList"
+  [scrollableThList]="scrollableThList"
+  [(sortingParams)]="sortingParams"
+  [sortableThList]="sortableThList"
+  [isFetching]="isFetching"
+  [emptyListMessage]="labels.details_empty_list_message"
+  (sort)="onChangeSort($event)"
+>
+  <ng-template #customTableRowContent let-data="data">
+    <ng-container *ngFor="let title of scrollableThList">
+      <td
+        *ngIf="title.displayable"
+        class="td-{{ title.shortName }} KBA-index-td"
+      >
+        {{ data[title.dataKey || title.name] }}
+      </td>
+    </ng-container>
+  </ng-template>
+</app-kba-table>
+<footer class="KBA-form-footer-fixed">
+  <button class="btn btn-secondary" (click)="onClickBack()">
+    {{ labels.back }}
+  </button>
+</footer>

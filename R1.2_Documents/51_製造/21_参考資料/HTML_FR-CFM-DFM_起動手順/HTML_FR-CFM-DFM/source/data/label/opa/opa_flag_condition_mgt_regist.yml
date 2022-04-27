@@ -1,0 +1,102 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: フラグ条件設定管理　登録
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: フラグ条件設定管理　登録
+    en:
+
+  - id: 3
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 4
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 5
+    description: 登録確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容を登録します。よろしいですか？
+    en:
+
+  - id: 6
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 7
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 8
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 9
+    description: 登録
+    name: submit
+    ja: 登録
+    en:
+
+  - id: 10
+    description: 続けて登録
+    name: continue
+    ja: 続けて登録
+    en:
+
+  - id: 11
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 12
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 13
+    description: 残り時間が指定の値以下になるとフラグをセットします
+    name: remaining_time_threshold_attention
+    ja: ※残り時間が指定の値以下になるとフラグをセットします
+    en:
+
+  - id: 14
+    description: 条件
+    name: flag_condition
+    ja: 条件
+    en:
+
+  - id: 15
+    description: 日
+    name: day_unit
+    ja: 日
+    en:
+
+  - id: 16
+    description: 分
+    name: minute
+    ja: M
+    en:
+
+  - id: 16
+    description: 時間
+    name: hour
+    ja: H
+    en:

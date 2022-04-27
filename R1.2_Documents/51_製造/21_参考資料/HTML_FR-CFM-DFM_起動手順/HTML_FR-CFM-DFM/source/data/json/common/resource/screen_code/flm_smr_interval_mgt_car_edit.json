@@ -1,0 +1,89 @@
+[
+  {
+    "path": "car.smr_interval_items.management_kind",
+    "name": "管理状態",
+    "help": "管理状態のヘルプ文言",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "管理しない",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "管理する",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.smr_interval_items.inspection_start_smr",
+    "name": "点検開始SMR",
+    "help": "点検開始SMRのヘルプ文言",
+    "type": -13,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.smr_interval_items.smr_interval_kind",
+    "name": "SMRインターバル",
+    "help": "SMRインターバルのヘルプ文言",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "あり",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.smr_interval_items.smr_interval",
+    "name": "SMRインターバル",
+    "help": "SMRインターバルのヘルプ文言",
+    "type": -13,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.smr_interval_items.threshold_kind",
+    "name": "オレンジフラグ閾値",
+    "help": "オレンジフラグ閾値のヘルプ文言",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "あり",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.smr_interval_items.threshold",
+    "name": "オレンジフラグ閾値",
+    "help": "オレンジフラグ閾値のヘルプ文言",
+    "type": -13,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

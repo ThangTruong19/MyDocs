@@ -1,0 +1,303 @@
+<section id="KBA-car-form" *ngIf="labels && resource">
+  <div class="container-fluid" [hidden]="loading" [hidden]="isChangeComplete">
+    <h2 class="KBA-page-title">{{ labels && labels.title }}</h2>
+    <div class="KBA-content">
+      <form class="KBA-form" name="carForm" [formGroup]="carForm">
+        <div class="annotation">
+          <p class="caption">{{ labels && labels.main_caption }}</p>
+          <p class="KBA-form-table__required" *ngIf="!isUpdate">
+            {{ labels && labels.description_for_required }}
+          </p>
+        </div>
+        <table class="KBA-form-table table table-bordered">
+          <tbody class="KBA-form-table-tbody">
+            <tr
+              app-kba-form-table-select
+              #makerSelect
+              class="KBA-form-row"
+              [kbaName]="'maker_codes'"
+              [kbaParams]="carSearchParams.common.car_identification"
+              [kbaResource]="resource.common.car_identification"
+              [colspan]="3"
+              [notEditable]="isUpdate"
+              [required]="true"
+              [display]="'maker_label'"
+              (onChange)="onMakerCodeChange($event)"
+            ></tr>
+            <tr
+              app-kba-form-table-select
+              [hidden]="!exists('common.car_identification.models')"
+              #modelSelect
+              class="KBA-form-row"
+              [kbaName]="'models'"
+              [kbaParams]="carSearchParams.common.car_identification"
+              [kbaResource]="resource.common.car_identification"
+              [colspan]="3"
+              [notEditable]="isUpdate"
+              [required]="true"
+              [display]="'model_label'"
+              [emitInitialRefresh]="false"
+              (onChange)="onModelChange($event)"
+            ></tr>
+            <tr
+              app-kba-form-table-select
+              [hidden]="!exists('common.car_identification.type_revs', true)"
+              #typeSelect
+              class="KBA-form-row"
+              [kbaName]="'type_revs'"
+              [kbaParams]="carSearchParams.common.car_identification"
+              [kbaResource]="resource.common.car_identification"
+              [colspan]="3"
+              [required]="true"
+              [display]="'type_label'"
+              [emitInitialRefresh]="false"
+              [notEditable]="isUpdate"
+            ></tr>
+            <tr
+              app-kba-form-table-text
+              class="KBA-form-row"
+              [formGroup]="carForm"
+              [kbaName]="'serials'"
+              [kbaParams]="carSearchParams.common.car_identification"
+              [kbaResource]="resource.common.car_identification"
+              [kbaLabel]="labels"
+              [colspan]="3"
+              [required]="true"
+              [maxLength]="20"
+              [notEditable]="isUpdate"
+            ></tr>
+          </tbody>
+        </table>
+
+        <div class="to-submit">
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickToTerminalChange()"
+            [disabled]="isCarInfoInvalid() || carForm.invalid"
+          >
+            {{ labels.to_terminal_change }}
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <ng-container *ngIf="isVisibleTerminalChange">
+      <div class="KBA-content" appKbaScrollTo [offset]="commonHeaderOffset">
+        <form
+          class="KBA-form"
+          name="carTerminalChangeForm"
+          [formGroup]="carTerminalChangeForm"
+        >
+          <div class="annotation">
+            <div class="caption">
+              <p>{{ labels && labels.caption }}</p>
+            </div>
+            <p class="KBA-form-table__required">
+              {{ labels && labels.description_for_required }}
+            </p>
+          </div>
+          <table class="KBA-form-table table table-bordered">
+            <tbody class="KBA-form-table-tbody">
+              <!-- メーカ -->
+              <tr
+                app-kba-form-table-select
+                class="KBA-form-row"
+                [kbaName]="'maker_codes'"
+                [display]="'maker_name'"
+                [kbaParams]="displayData.common.car_identification"
+                [kbaResource]="resource.common.car_identification"
+                [colspan]="3"
+                [notEditable]="true"
+              ></tr>
+
+              <!-- 機種 -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [kbaName]="'models'"
+                [kbaParams]="displayData.common.car_identification"
+                [kbaResource]="resource.common.car_identification"
+                [colspan]="3"
+                [notEditable]="true"
+              ></tr>
+
+              <!-- 型式 -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [kbaName]="'type_revs'"
+                [kbaParams]="displayData.common.car_identification"
+                [kbaResource]="resource.common.car_identification"
+                [colspan]="3"
+                [notEditable]="true"
+              ></tr>
+
+              <!-- 機番 -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [kbaName]="'serials'"
+                [kbaParams]="displayData.common.car_identification"
+                [kbaResource]="resource.common.car_identification"
+                [colspan]="3"
+                [notEditable]="true"
+              ></tr>
+
+              <!-- 担当DB -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [kbaName]="'label'"
+                [kbaParams]="displayData.car.support_distributor"
+                [kbaResource]="resource.car.support_distributor"
+                [colspan]="3"
+                [notEditable]="true"
+              ></tr>
+
+              <!-- 端末品番 -->
+              <tr
+                app-kba-form-table-custom
+                class="KBA-form-row"
+                [kbaName]="'part'"
+                [kbaResource]="resource.car.komtrax_unit.terminal_component"
+                [colspan]="3"
+                [content]="partContent"
+                [required]="true"
+              >
+                <ng-template #partContent>
+                  <div class="change-input">
+                    <span class="before-val"
+                      >{{ displayData.modem.part }} -></span
+                    >
+                    <input
+                      name="modem_part"
+                      formControlName="modem_part"
+                      [ngClass]="{
+                        'KBA-form-error': hasError(
+                          'car.komtrax_unit.terminal_component.part'
+                        )
+                      }"
+                      [(ngModel)]="
+                        params.car.komtrax_unit.terminal_component.part
+                      "
+                      [placeholder]="
+                        resource.car.komtrax_unit.terminal_component.part
+                          .placeholder_text || ''
+                      "
+                      [required]="true"
+                      type="text" autocomplete="off"
+                      maxlength="20"
+                      class="KBA-input-text form-control"
+                    />
+                  </div>
+                </ng-template>
+              </tr>
+
+              <!-- 端末シリアル -->
+              <tr
+                app-kba-form-table-custom
+                class="KBA-form-row"
+                [kbaName]="'serial'"
+                [kbaResource]="resource.car.komtrax_unit.terminal_component"
+                [colspan]="3"
+                [content]="serialContent"
+                [required]="true"
+              >
+                <ng-template #serialContent>
+                  <div class="change-input">
+                    <span class="before-val"
+                      >{{ displayData.modem.serial }} -></span
+                    >
+                    <input
+                      name="modem_serial"
+                      formControlName="modem_serial"
+                      [ngClass]="{
+                        'KBA-form-error': hasError(
+                          'car.komtrax_unit.terminal_component.serial'
+                        )
+                      }"
+                      [(ngModel)]="
+                        params.car.komtrax_unit.terminal_component.serial
+                      "
+                      [placeholder]="
+                        resource.car.komtrax_unit.terminal_component.serial
+                          .placeholder_text || ''
+                      "
+                      [required]="true"
+                      type="text" autocomplete="off"
+                      maxlength="20"
+                      class="KBA-input-text form-control"
+                    />
+                  </div>
+                </ng-template>
+              </tr>
+
+              <!-- 初期SMR(H) -->
+              <tr
+                app-kba-form-table-text
+                class="KBA-form-row"
+                [formGroup]="carTerminalChangeForm"
+                [kbaName]="'initial_smr'"
+                [kbaParams]="params.car.car_identification"
+                [kbaResource]="resource.car.car_identification"
+                [path]="'car.car_identification.initial_smr'"
+                [errorData]="errorData"
+                [maxLength]="8"
+                [colspan]="3"
+                [required]="true"
+              ></tr>
+            </tbody>
+          </table>
+
+          <div class="change-submit">
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="onClickSubmit()"
+              [disabled]="carTerminalChangeForm.invalid"
+            >
+              {{ labels.change_submit }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="container-fluid" [hidden]="loading" *ngIf="isChangeComplete">
+    <h2 class="KBA-page-title">{{ labels && labels.title }}</h2>
+    <div class="KBA-content complete-submit">
+      <div class="complete-title">
+        <i class="kba-icon kba-icon-success"></i>
+        <h2>
+          <span>{{ labels.complete_change }}</span>
+        </h2>
+        <p>
+          <span>{{ labels.set_reflect_notes }}</span>
+        </p>
+      </div>
+
+      <div class="continue-submit complete-submit">
+        <button
+          type="button"
+          (click)="onClickContinue()"
+          class="btn btn-success"
+        >
+          {{ labels.continue }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #terminalChangeSubmitModalContent>
+  <app-kba-tandem-confirm
+    class="submit-modal-content"
+    [desc]="listDesc"
+    [val]="listVal"
+  >
+  </app-kba-tandem-confirm>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

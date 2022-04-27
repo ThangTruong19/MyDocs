@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es2015.iterable",
+      "es2017",
+      "dom"
+    ],
+    "outDir": "../out-tsc/spec",
+    "module": "es2015",
+    "target": "es5",
+    "downlevelIteration": true,
+    "baseUrl": "",
+    "types": [
+      "jest",
+      "node"
+    ]
+  },
+  "files": [],
+  "include": [
+    "**/*.test.ts",
+    "**/*.d.ts",
+    "test.*.ts"
+  ],
+  "exclude": []
+}

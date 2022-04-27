@@ -1,0 +1,222 @@
+<section id="KBA-group-index" *ngIf="labels && resource">
+  <div class="container-fluid">
+    <h2 class="KBA-operator-index__title KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content">
+      <!-- 検索 -->
+      <app-kba-accordion
+        [collapsed]="collapsed"
+        [useCustomHeader]="false"
+        [title]="labels.search_condition"
+        [labels]="labels"
+        (onChangeState)="changePanelState($event)"
+      >
+        <div data-kba-accordion-body>
+          <div class="container KBA-search">
+            <div class="row">
+              <app-kba-selected
+                class="col-sm-3"
+                *ngIf="resource.configuration_group_ids"
+                [kbaName]="'configuration_group_ids'"
+                [kbaParams]="configurationGroupIdParams"
+                [kbaResource]="resource"
+                (onChangeSelectItem)="onSelectBlock($event)"
+              ></app-kba-selected>
+              <app-kba-selected
+                class="col-sm-3"
+                [kbaName]="'group_kind_id'"
+                [kbaParams]="params"
+                [kbaResource]="resource"
+              ></app-kba-selected>
+              <app-kba-selected
+                class="col-sm-3"
+                [kbaName]="'nation_code'"
+                [kbaParams]="params"
+                [kbaResource]="resource"
+              ></app-kba-selected>
+            </div>
+            <div class="row">
+              <app-kba-text
+                class="col-sm-3"
+                [kbaName]="'group_label'"
+                [kbaParams]="params"
+                [kbaResource]="resource"
+                [maxlength]="255"
+              ></app-kba-text>
+              <app-kba-text
+                class="col-sm-3"
+                [kbaName]="'organization_code'"
+                [kbaParams]="params"
+                [kbaResource]="resource"
+                [maxlength]="32"
+              ></app-kba-text>
+            </div>
+          </div>
+          <div class="KBA-panel-footer">
+            <button
+              (click)="onClickSearch()"
+              type="button"
+              class="btn btn-primary search"
+            >
+              {{ labels.search }}
+            </button>
+          </div>
+        </div>
+      </app-kba-accordion>
+
+      <div class="KBA-table-options" [hidden]="count <= 0">
+        <app-kba-pagination
+          [count]="count"
+          [params]="pageParams"
+          [labels]="labels"
+          [element]="pageCountEl"
+          (changeState)="onPaginationChange()"
+        >
+        </app-kba-pagination>
+        <div class="table-option-buttons">
+          <div class="popover-wrapper">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="onClickFieldSelect($event)"
+            >
+              {{ labels.field_select }}
+            </button>
+            <app-kba-popover
+              [labels]="labels"
+              [resource]="fieldResources"
+              [fields]="fields"
+              [title]="labels.field_select_title"
+              [(isVisible)]="fieldSelectPopoverVisible"
+              [promise]="fieldResourcesPromise"
+              (ok)="onFieldSelectOk($event)"
+            ></app-kba-popover>
+          </div>
+          <div class="popover-wrapper">
+            <button
+              type="button"
+              class="btn btn-warning"
+              (click)="onClickDownloadAll($event)"
+            >
+              {{ labels.download_all }}
+              <i class="kba-icon kba-icon-download"></i>
+            </button>
+            <app-kba-popover
+              [labels]="labels"
+              [resource]="downloadFieldResources"
+              [fields]="downloadFields"
+              [title]="labels.download_select_title"
+              [(isVisible)]="downloadPopoverVisible"
+              [download]="true"
+              [downloadType]="resource.file_content_type"
+              [promise]="downloadPromise"
+              (ok)="onDownloadOk($event)"
+            ></app-kba-popover>
+          </div>
+        </div>
+      </div>
+
+      <div class="KBA-table-wrapper">
+        <app-kba-table
+          [customTableThContent]="customTableThContent"
+          [customTableRowContent]="customTableRowContent"
+          [lists]="lists"
+          [pageParams]="pageParams"
+          [thList]="thList"
+          [sortableThList]="sortableThList"
+          [(sortingParams)]="sortingParams"
+          [labels]="labels"
+          [collapsed]="collapsed"
+          [detailedly]="true"
+          [updatable]="updatable"
+          [deletable]="deletable"
+          [isFetching]="isFetching"
+          (edit)="onClickEdit($event)"
+          (delete)="onClickDelete($event)"
+          (detail)="onClickDetail($event)"
+        >
+        </app-kba-table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-kba-alert></app-kba-alert>
+
+<ng-template #customTableThContent>
+  <ng-container *ngFor="let th of thList">
+    <ng-container *ngIf="th.displayable">
+      <th
+        class="th-{{ th.shortName }}"
+        [ngClass]="{
+          fixed: th.name === 'groups.attribute.publish_kind',
+          'KBA-index-th': th.sortable
+        }"
+        appKbaSortingLabel
+        [(sortingParams)]="sortingParams"
+        [labelName]="th.name"
+        [sortableThList]="sortableThList"
+        (sort)="onChangeSort($event)"
+      >
+        <span>{{ th.label }}</span>
+      </th>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #customTableRowContent let-data="data">
+  <ng-container *ngFor="let title of thList">
+    <ng-container *ngIf="title.displayable">
+      <ng-container [ngSwitch]="title.name">
+        <td
+          *ngSwitchCase="'groups.attribute.publish_kind'"
+          class="td-{{
+            title.shortName
+          }} KBA-index-td fixed d-flex align-items-center justify-content-center"
+        >
+          <i *ngIf="data[title.name] === states.on" class="fa fa-check"></i>
+        </td>
+        <td
+          *ngSwitchCase="'groups.attribute.time_difference'"
+          class="td-{{
+            title.shortName
+          }} KBA-index-td d-flex align-items-center justify-content-center"
+        >
+          <span>{{ formatTimeDifference(data[title.name]) }}</span>
+        </td>
+        <td
+          *ngSwitchDefault
+          class="td-{{
+            title.shortName
+          }} KBA-index-td d-flex align-items-center"
+        >
+          <span>{{ data[title.name] }}</span>
+        </td>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #detailModalContent>
+  <app-group-detail-modal
+    [labels]="labels"
+    [groupInfoHeader]="groupInfoHeader"
+    [groupInfoParams]="groupInfoParams"
+    [keyPersonHeader]="keyPersonHeader"
+    [keyPersonParams]="keyPersonParams"
+    [mapParams]="mapParams"
+    [hasMap]="showModalMap"
+  ></app-group-detail-modal>
+</ng-template>
+
+<ng-template #deleteModalContent>
+  <app-group-detail-modal
+    [labels]="labels"
+    [groupInfoHeader]="groupInfoHeader"
+    [groupInfoParams]="groupInfoParams"
+    [keyPersonHeader]="keyPersonHeader"
+    [keyPersonParams]="keyPersonParams"
+    [hasMap]="false"
+  ></app-group-detail-modal>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

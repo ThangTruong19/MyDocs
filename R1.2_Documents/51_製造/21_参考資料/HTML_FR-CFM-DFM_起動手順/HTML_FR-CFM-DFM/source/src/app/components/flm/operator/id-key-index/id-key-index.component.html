@@ -1,0 +1,285 @@
+<section id="KBA-id-key-index" *ngIf="labels && resource">
+  <form class="KBA-form" #f="ngForm">
+    <div class="container-fluid">
+      <h2 class="KBA-operator-id-key-index__title KBA-page-title">
+        {{ labels.title }}
+      </h2>
+      <div class="KBA-content">
+        <!-- 検索 -->
+        <app-kba-accordion
+          [hidden]="!resource.customer_id && !resource.operator_label"
+          [collapsed]="collapsed"
+          [useCustomHeader]="false"
+          [title]="labels.search_condition"
+          [isLoading]="isLoading"
+          [labels]="labels"
+          (onChangeState)="changePanelState($event)"
+        >
+          <div data-kba-accordion-body>
+            <div class="container KBA-search">
+              <div class="row">
+                <ng-container>
+                  <app-kba-selected
+                    *ngIf="resource.customer_id"
+                    class="col-sm-3"
+                    [kbaName]="'customer_id'"
+                    [kbaParams]="params"
+                    [kbaResource]="resource"
+                  >
+                  </app-kba-selected>
+                </ng-container>
+              </div>
+            </div>
+            <div class="KBA-panel-footer">
+              <button
+                (click)="onClickSearch()"
+                type="button"
+                class="btn btn-primary search"
+              >
+                {{ labels.search }}
+              </button>
+            </div>
+          </div>
+        </app-kba-accordion>
+
+        <div class="KBA-table-options" [hidden]="count <= 0">
+          <app-kba-pagination
+            [count]="count"
+            [params]="pageParams"
+            [labels]="labels"
+            [element]="pageCountEl"
+            (changeState)="onPaginationChange()"
+          >
+          </app-kba-pagination>
+          <div class="table-option-buttons">
+            <button
+              type="button"
+              class="btn btn-secondary unlink-all"
+              (click)="onClickAllUnlink()"
+              [disabled]="
+                !(selectedList | isNotEmpty) || isUnlinkAllBtnDisabled
+              "
+            >
+              {{ labels.unlink_all }}
+              <i class="kba-icon kba-extra-icon-release"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="KBA-table-wrapper">
+          <app-kba-table
+            [customTableBtnContent]="null"
+            [customTableRowContent]="customTableRowContent"
+            [customTableThBtnContent]="null"
+            [customTableThContent]="customTableThContent"
+            [lists]="lists"
+            [pageParams]="pageParams"
+            [params]="params"
+            [thList]="thList"
+            [sortableThList]="sortableThList"
+            [labels]="labels"
+            [collapsed]="collapsed"
+            [selectable]="selectable"
+            [checkIdName]="checkIdName"
+            [checkedItems]="checkedItems"
+            [isFetching]="isFetching"
+            (scroll)="onScroll($event)"
+          >
+            <ng-template #customTableThContent>
+              <ng-container *ngFor="let th of thList">
+                <th
+                  *ngIf="th.displayable"
+                  [ngClass]="{
+                    'text-center fixed':
+                      th.shortName === 'header_history' ||
+                      th.shortName === 'header_unlink',
+                    'disable-sort': !th.sortable
+                  }"
+                  class="KBA-index-th th-{{ th.shortName }}"
+                  appKbaSortingLabel
+                  [(sortingParams)]="sortingParams"
+                  [labelName]="th.name"
+                  [sortableThList]="sortableThList"
+                  (sort)="onChangeSort($event)"
+                >
+                  <span>{{ th.label }}</span>
+                </th>
+              </ng-container>
+            </ng-template>
+            <ng-template #customTableRowContent let-data="data" let-idx="idx">
+              <ng-container *ngFor="let title of thList">
+                <!-- IDキー番号の場合 -->
+                <td
+                  *ngIf="title.name === 'id_keys.code'"
+                  [ngClass]="{ disable: !isChecked(data['id_keys.code']) }"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ data[title.name] }}</span>
+                  <input
+                    type="hidden"
+                    name="id-key-id-{{ idx }}"
+                    value="{{ data['id_keys.id'] }}"
+                  />
+                </td>
+
+                <!-- オペレータIDの場合 -->
+                <td
+                  *ngIf="title.name === 'id_keys.current_operator.code'"
+                  [ngClass]="{ disable: !isChecked(data['id_keys.code']) }"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <app-kba-autocomplete
+                    [searchData]="seletecOperatorCodeItemList"
+                    [textNoResult]="labels.operator_suggest_result_not_found"
+                    [textSearching]="labels.operator_suggest_searching_text"
+                    [disabled]="!isChecked(data['id_keys.code'])"
+                    [name]="'operator-code-' + idx"
+                    [searchStr]="data[title.name]"
+                    [required]="true"
+                    [minLength]="1"
+                    [maxLength]="8"
+                    [rowNum]="idx + 1"
+                    [scrollTop]="scrollAmount['top']"
+                    [initialValue]="initList[idx][title.name]"
+                    [identifier]="initList[idx][checkIdName]"
+                    (onblurInput)="changeOperatorCode($event, f, idx)"
+                    (onChangeText)="changeOperatorCode($event, f, idx)"
+                    (onChangeSelectItem)="changeOperatorCode($event, f, idx)"
+                  >
+                  </app-kba-autocomplete>
+                  <input
+                    type="hidden"
+                    name="hidden-operator-code-{{ idx }}"
+                    [required]="true"
+                    [disabled]="!isChecked(data['id_keys.code'])"
+                    [(ngModel)]="data[title.name]"
+                    maxlength="8"
+                  />
+                  <input
+                    type="hidden"
+                    name="operator-id-{{ idx }}"
+                    value="{{ data['id_keys.current_operator.id'] }}"
+                  />
+                </td>
+
+                <!-- オペレータ名の場合 -->
+                <td
+                  *ngIf="
+                    title.name ===
+                    'id_keys.current_operator.current_label.label'
+                  "
+                  [ngClass]="{ disable: !isChecked(data['id_keys.code']) }"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ data[title.name] }}</span>
+                </td>
+
+                <!-- 履歴 の td の場合 -->
+                <td
+                  *ngIf="title.name === 'header_history'"
+                  [ngClass]="{
+                    disable: disableHistories[data['id_keys.code']]
+                  }"
+                  class="KBA-table__small kba-sm-link text-center fixed td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center justify-content-center"
+                  (click)="onClickHistory(data['id_keys.code'])"
+                >
+                  <span>
+                    <i class="kba-icon kba-extra-icon-user"></i>
+                  </span>
+                </td>
+
+                <!-- 解除の td の場合 -->
+                <td
+                  *ngIf="title.name === 'header_unlink'"
+                  [ngClass]="{ disable: disableUnlinks[data['id_keys.code']] }"
+                  class="KBA-table__small kba-sm-link text-center fixed td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center justify-content-center"
+                  (click)="onClickUnlink(data['id_keys.code'])"
+                >
+                  <span>
+                    <i class="kba-icon kba-extra-icon-release"></i>
+                  </span>
+                </td>
+                <!-- IDキーの更新日時の場合 -->
+                <input
+                  *ngIf="title.name === 'id_keys.update_datetime'"
+                  type="hidden"
+                  name="idkey-update-datetime-{{ idx }}"
+                  value="{{ data[title.name] }}"
+                />
+              </ng-container>
+            </ng-template>
+          </app-kba-table>
+        </div>
+      </div>
+    </div>
+
+    <footer class="KBA-form-footer-fixed">
+      <a
+        href="javascript:void(0)"
+        (click)="onClickReset(f)"
+        class="btn btn-link"
+      >
+        {{ labels.reset }}
+      </a>
+      <button
+        (click)="onClickSubmit()"
+        type="button"
+        class="btn btn-primary"
+        [disabled]="f.invalid || editedList.length === 0"
+      >
+        {{ labels.update }}
+      </button>
+    </footer>
+  </form>
+</section>
+
+<ng-template #unlinkModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="unlinkModalValues.listDesc"
+    [val]="unlinkModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #historyModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="historyModalValues.listDesc"
+    [val]="historyModalValues.listVal"
+    [fixedColumns]="fixedColumns"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #resetModalContent>
+  <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+</ng-template>
+
+<ng-template #submitModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="editModalValues.listDesc"
+    [val]="editModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #resultModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="resultDesc"
+    [val]="resultVal"
+    [warningColumns]="'all'"
+  >
+  </app-kba-simple-list-confirm>
+  <p class="result-count-message">{{ resultCountMessage }}</p>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

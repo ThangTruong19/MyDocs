@@ -1,0 +1,86 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "車両ID",
+    "path": "cars.car_identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "車両種類",
+    "path": "cars.car_identification.division_name",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "メーカ",
+    "path": "cars.car_identification.maker_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "機種",
+    "path": "cars.car_identification.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "12",
+    "name": "型式",
+    "path": "cars.car_identification.type_rev",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "14",
+    "name": "機番",
+    "path": "cars.car_identification.serial",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "19",
+    "name": "担当DB",
+    "path": "cars.support_distributor.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "20",
+    "name": "担当DB（英語）",
+    "path": "cars.support_distributor.label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "26",
+    "name": "サービスDB",
+    "path": "cars.service_distributor.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "27",
+    "name": "サービスDB（英語）",
+    "path": "cars.service_distributor.label_english",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "33",
+    "name": "顧客名",
+    "path": "cars.customer.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "34",
+    "name": "顧客名（英語）",
+    "path": "cars.customer.label_english",
+    "control_code": "0",
+    "display_code": "1"
+  }
+]

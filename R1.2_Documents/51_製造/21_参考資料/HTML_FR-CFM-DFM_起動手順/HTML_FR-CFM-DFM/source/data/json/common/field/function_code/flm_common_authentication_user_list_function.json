@@ -1,0 +1,30 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ユーザID",
+    "path": "users.identification.account",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "名前",
+    "path": "users.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "会社名",
+    "path": "users.attribute.company_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "所属国",
+    "path": "users.attribute.nation_name",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

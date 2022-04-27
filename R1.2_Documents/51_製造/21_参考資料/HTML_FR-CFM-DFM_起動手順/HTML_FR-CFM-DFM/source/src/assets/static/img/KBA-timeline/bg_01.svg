@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 16" enable-background="new 0 0 400 16">
+<style>
+  path{ fill: #999; }
+  text{ font-size: 12px; font-family: Helvetica; fill: #999; }
+</style>
+<path d="M8 1h1v3h-1zM12 2h1v1h-1zM16 2h1v1h-1zM20 2h1v1h-1zM28 2h1v1h-1zM32 2h1v1h-1zM36 2h1v1h-1zM44 2h1v1h-1zM48 2h1v1h-1zM52 2h1v1h-1zM60 2h1v1h-1zM64 2h1v1h-1zM68 2h1v1h-1zM76 2h1v1h-1zM80 2h1v1h-1zM84 2h1v1h-1zM92 2h1v1h-1zM96 2h1v1h-1zM100 2h1v1h-1zM108 2h1v1h-1zM112 2h1v1h-1zM116 2h1v1h-1zM124 2h1v1h-1zM128 2h1v1h-1zM132 2h1v1h-1zM140 2h1v1h-1zM144 2h1v1h-1zM148 2h1v1h-1zM156 2h1v1h-1zM160 2h1v1h-1zM164 2h1v1h-1zM172 2h1v1h-1zM176 2h1v1h-1zM180 2h1v1h-1zM188 2h1v1h-1zM192 2h1v1h-1zM196 2h1v1h-1zM204 2h1v1h-1zM208 2h1v1h-1zM212 2h1v1h-1zM220 2h1v1h-1zM224 2h1v1h-1zM228 2h1v1h-1zM236 2h1v1h-1zM240 2h1v1h-1zM244 2h1v1h-1zM252 2h1v1h-1zM256 2h1v1h-1zM260 2h1v1h-1zM268 2h1v1h-1zM272 2h1v1h-1zM276 2h1v1h-1zM284 2h1v1h-1zM288 2h1v1h-1zM292 2h1v1h-1zM300 2h1v1h-1zM304 2h1v1h-1zM308 2h1v1h-1zM316 2h1v1h-1zM320 2h1v1h-1zM324 2h1v1h-1zM332 2h1v1h-1zM336 2h1v1h-1zM340 2h1v1h-1zM348 2h1v1h-1zM352 2h1v1h-1zM356 2h1v1h-1zM364 2h1v1h-1zM368 2h1v1h-1zM372 2h1v1h-1zM380 2h1v1h-1zM384 2h1v1h-1zM388 2h1v1h-1zM24 1h1v3h-1zM40 1h1v3h-1zM56 1h1v3h-1zM72 1h1v3h-1zM88 1h1v3h-1zM104 1h1v3h-1zM120 1h1v3h-1zM136 1h1v3h-1zM152 1h1v3h-1zM168 1h1v3h-1zM184 1h1v3h-1zM200 1h1v3h-1zM216 1h1v3h-1zM232 1h1v3h-1zM248 1h1v3h-1zM264 1h1v3h-1zM280 1h1v3h-1zM296 1h1v3h-1zM312 1h1v3h-1zM328 1h1v3h-1zM344 1h1v3h-1zM360 1h1v3h-1zM376 1h1v3h-1zM391 1h1v3h-1z"/>
+<text transform="translate(1.613 14)">00</text>
+<text transform="translate(96.863 14)">06</text>
+<text transform="translate(193.113 14)">12</text>
+<text transform="translate(289.363 14)">18</text>
+<text transform="translate(384.613 14)">24</text>
+</svg>

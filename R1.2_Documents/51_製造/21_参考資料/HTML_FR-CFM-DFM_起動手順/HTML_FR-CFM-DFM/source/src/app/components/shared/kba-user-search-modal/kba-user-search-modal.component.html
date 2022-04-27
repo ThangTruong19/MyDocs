@@ -1,0 +1,137 @@
+<section class="KBA-modal" *ngIf="labels && resource">
+  <header class="KBA-modal-header modal-header">
+    <h1>{{ labels.user_search_modal_title }}</h1>
+  </header>
+
+  <div class="KBA-modal-body modal-body">
+    <div class="user-search-content">
+      <form name="userSearchForm">
+        <div class="form-group search-condition-area row">
+          <app-kba-text
+            *ngIf="resource.user_account"
+            class="search-item"
+            [kbaName]="'user_account'"
+            [kbaParams]="params"
+            [kbaResource]="resource"
+            [maxlength]="255"
+          >
+          </app-kba-text>
+          <app-kba-text
+            *ngIf="resource.user_label"
+            class="search-item"
+            [kbaName]="'user_label'"
+            [kbaParams]="params"
+            [kbaResource]="resource"
+            [maxlength]="255"
+          >
+          </app-kba-text>
+          <app-kba-text
+            *ngIf="resource.company_label"
+            class="search-item"
+            [kbaName]="'company_label'"
+            [kbaParams]="params"
+            [kbaResource]="resource"
+            [maxlength]="255"
+          >
+          </app-kba-text>
+          <app-kba-selected
+            *ngIf="resource.nation_code"
+            class="search-item"
+            [kbaName]="'nation_code'"
+            [kbaParams]="params"
+            [kbaResource]="resource"
+          >
+          </app-kba-selected>
+        </div>
+        <div class="search-condition-footer">
+          <button
+            (click)="onClickSearch()"
+            type="button"
+            class="btn btn-primary search"
+          >
+            {{ labels.search }}
+          </button>
+        </div>
+      </form>
+      <div class="KBA-table-options" [hidden]="count <= 0">
+        <app-kba-pagination
+          [count]="count"
+          [params]="pageParams"
+          [labels]="labels"
+          [element]="pageCountEl"
+          [showNumberOfDisplay]="false"
+          (changeState)="onPaginationChange()"
+        >
+        </app-kba-pagination>
+      </div>
+      <div class="result_search pagination">
+        <table class="KBA-table-modal KBA-table table table-bordered">
+          <thead class="KBA-table-thead-modal KBA-table-thead">
+            <tr class="KBA-table-flex-cell-modal">
+              <ng-container *ngFor="let field of fields">
+                <th
+                  class="KBA-form-table__head"
+                  *ngIf="field.display_code === DisplayCode.display"
+                >
+                  {{ field.name }}
+                </th>
+              </ng-container>
+            </tr>
+          </thead>
+          <tbody class="KBA-table-tbody-modal KBA-table-tbody">
+            <ng-container *ngIf="userList.length > 0">
+              <tr
+                *ngFor="let user of userList"
+                class="KBA-table-flex-cell-modal"
+                [ngClass]="{
+                  selected:
+                    selectedUser &&
+                    user.identification.id === selectedUser.identification.id
+                }"
+                (click)="onClickUser(user)"
+              >
+                <ng-container *ngFor="let field of fields">
+                  <td
+                    *ngIf="field.display_code === DisplayCode.display"
+                    class="KBA-form-table__value"
+                    [ngClass]="{
+                      center: field.path === 'users.attribute.nation_name'
+                    }"
+                  >
+                    <p>{{ displayData(user, field.path) }}</p>
+                  </td>
+                </ng-container>
+              </tr>
+            </ng-container>
+            <ng-container
+              *ngIf="isAcquired && userList.length === 0 && !isSearching"
+            >
+              <tr class="KBA-table-flex-cell-modal empty-list">
+                <td class="KBA-form-table__value center" colspan="3">
+                  <p>{{ labels.empty_list_message }}</p>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+        <div class="loading-wrapper" [hidden]="!isSearching">
+          <i class="loading-indicator"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="KBA-modal-footer modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="onClickClose()">
+      {{ labels.close }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="!enableOk"
+      (click)="onClickOk()"
+    >
+      {{ labels.reflect_btn }}
+    </button>
+  </footer>
+</section>

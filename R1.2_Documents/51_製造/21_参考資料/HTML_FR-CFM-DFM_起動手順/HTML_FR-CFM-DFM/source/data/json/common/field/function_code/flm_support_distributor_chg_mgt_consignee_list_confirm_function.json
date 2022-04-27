@@ -1,0 +1,51 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ID",
+    "path": "car_assigns.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "引き当て元グループ",
+    "path": "car_assigns.car.assigned_group.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "機種",
+    "path": "car_assigns.car.car_identification.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "型式",
+    "path": "car_assigns.car.car_identification.type_rev",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "機番",
+    "path": "car_assigns.car.car_identification.serial",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "機番PINコード",
+    "path": "car_assigns.car.car_identification.pin",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "更新日時",
+    "path": "car_assigns.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

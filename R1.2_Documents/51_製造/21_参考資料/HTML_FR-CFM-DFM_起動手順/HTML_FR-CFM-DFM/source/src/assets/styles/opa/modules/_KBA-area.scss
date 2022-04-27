@@ -1,0 +1,280 @@
+#KBA-garea-form,
+#KBA-carea-form,
+#KBA-garea-car-form {
+  .container-fluid {
+    padding-bottom: 54px;
+  }
+
+  .KBA-form-table {
+    margin-bottom: 0;
+  }
+
+  .KBA-limit-msg {
+    font-size: 16px;
+    margin: 0 0 10px;
+    color: $kba-error-color;
+  }
+
+  .KBA-map {
+    display: flex;
+
+    .KBA-area-map {
+      padding: 20px 20px 20px 40px;
+      width: 100%;
+    }
+
+    app-kba-area-map {
+      width: 100%;
+    }
+  }
+
+  .KBA-option-notes {
+    color: $kba-darkgray-color;
+    font-size: 13px;
+  }
+}
+
+#KBA-carea-form {
+  .KBA-toggle-buttons {
+    > li .btn {
+      min-width: 170px;
+    }
+  }
+
+  .btn-link {
+    margin-right: 45px;
+  }
+}
+
+app-kba-area-menu {
+  + app-kba-area-map {
+    .KBA-area-map {
+      padding-left: 40px;
+    }
+  }
+}
+
+.KBA-area-map {
+  position: relative;
+  width: calc(100% - 260px);
+  height: 100%;
+
+  .KBA-map-buttons {
+    position: absolute;
+    top: 30px;
+    right: 32px;
+    text-align: right;
+  }
+
+  .KBA-area-canvas {
+    height: 100%;
+  }
+}
+
+.KBA-area-menu {
+  position: relative;
+  width: 260px;
+  background: #fff;
+  z-index: 100;
+  height: 100%;
+
+  > a {
+    position: absolute;
+    top: 0;
+    right: -40px;
+    display: block;
+    width: 40px;
+    height: 100%;
+    border-left: 1px solid $kba-lightgray-color;
+    border-right: 1px solid $kba-lightgray-color;
+    border-radius: 0 4px 4px 0;
+    background: #fff;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      margin-top: -8px;
+      width: 16px;
+      height: 16px;
+    }
+
+    &.KBA-menu-open {
+      &::after {
+        right: 8px;
+        border-left: 4px solid $kba-main-color;
+        border-top: 4px solid $kba-main-color;
+        transform: rotate(-45deg);
+      }
+    }
+
+    &.KBA-menu-close {
+      &::after {
+        left: 8px;
+        border-right: 4px solid $kba-main-color;
+        border-top: 4px solid $kba-main-color;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  .KBA-area-type {
+    padding: 10px 15px;
+    background: $kba-sub-color;
+    color: $kba-main-color;
+    border-bottom: 1px solid $kba-lightgray-color;
+  }
+
+  .KBA-area-position {
+    overflow: auto;
+    height: calc(100% - 42px);
+
+    > ul {
+      padding: 15px;
+
+      > li {
+        > h3 {
+          position: relative;
+          margin: 0 0 10px;
+          padding: 5px;
+          background: #adb4c6;
+          font-size: 14px;
+          color: #fff;
+
+          .kba-icon-close {
+            position: absolute;
+            right: 5px;
+            color: #fff;
+          }
+        }
+
+        label {
+          margin-bottom: 10px;
+          color: $kba-darkgray-color;
+          font-weight: normal;
+          font-size: 13px;
+
+          .KBA-input-text {
+            width: 185px;
+            margin-left: 10px;
+          }
+        }
+
+        &.KBA-area-distance {
+          .KBA-input-text {
+            width: 150px;
+            margin-right: 8px;
+          }
+        }
+      }
+
+      &.KBA-area-polygon {
+        max-height: 380px;
+        overflow-y: auto;
+      }
+    }
+  }
+}
+
+#KBA-garea-show-modal,
+#KBA-carea-show-modal {
+  .KBA-modal-body {
+    padding: 0;
+  }
+
+  .KBA-map {
+    display: flex;
+    height: $kba-gmodal-map-height;
+
+    .KBA-area-menu {
+      width: 200px;
+    }
+
+    .KBA-area-map {
+      width: calc(100% - 200px);
+
+      .KBA-area-canvas {
+        margin-left: -200px;
+      }
+    }
+
+    .KBA-map-buttons {
+      top: 10px;
+      right: 12px;
+    }
+
+    .KBA-area-position label {
+      margin-right: 5px;
+    }
+  }
+}
+
+#KBA-carea-show-modal {
+  .KBA-map {
+    height: $kba-cmodal-map-height;
+  }
+
+  .KBA-toggle-buttons {
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid $kba-lightgray-color;
+
+    > li {
+      margin-bottom: 0;
+
+      .btn {
+        min-width: 160px;
+      }
+    }
+  }
+}
+
+#KBA-garea-index {
+  .KBA-table {
+    .th-DistNS,
+    .th-DistEW {
+      min-width: 50%;
+    }
+
+    .td-Area {
+      min-width: 12%;
+    }
+
+    .td-No {
+      min-width: 5%;
+    }
+
+    .td-DistNS,
+    .td-DistEW {
+      min-width: 6%;
+    }
+
+    .td-ActvCd,
+    .td-NocCd,
+    .td-Set {
+      min-width: 8%;
+    }
+
+    .td-Desc {
+      min-width: 19%;
+    }
+
+    .td-Expl {
+      min-width: 25%;
+    }
+
+    &.auth-admin {
+      .td-Desc {
+        min-width: 13%;
+      }
+
+      .td-Expl {
+        min-width: 19%;
+      }
+
+      .td-StckCd {
+        min-width: 12%;
+      }
+    }
+  }
+}

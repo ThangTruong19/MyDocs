@@ -1,0 +1,117 @@
+[
+  {
+    "path": "group_id",
+    "name": "設定グループ",
+    "help": "ブロックのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック4",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック5",
+        "value": "5",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "flag_kind_code",
+    "name": "設定項目",
+    "help": "設定項目のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "コーション",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "交換時期",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "file_content_type",
+    "name": "出力形式",
+    "help": "ダウンロード表示形式のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "XLSX",
+        "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "kind": "D"
+      },
+      {
+        "key": "CSV",
+        "value": "text/comma-separated-values",
+        "kind": "D"
+      }
+    ]
+  }
+]

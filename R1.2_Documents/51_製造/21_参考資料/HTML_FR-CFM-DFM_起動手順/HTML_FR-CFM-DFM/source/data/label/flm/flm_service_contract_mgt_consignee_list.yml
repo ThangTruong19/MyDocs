@@ -1,0 +1,144 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: サービス委託管理　承認・却下一覧
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: サービス委託管理　承認・却下一覧
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 11
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 12
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 13
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当するサービス委託が見つかりませんでした。
+    en:
+
+  - id: 16
+    description: 結果
+    name: result
+    ja: 結果
+    en:
+
+  - id: 17
+    description: 内容
+    name: result_detail
+    ja: 内容
+    en:
+
+  - id: 18
+    description: 結果件数
+    name: result_count_message
+    ja: '${total} 件中 成功${success}件 失敗${fail}件'
+    en:
+
+  - id: 19
+    description: 承認ボタン
+    name: approve_btn
+    ja: 承認
+    en:
+
+  - id: 20
+    description: 却下ボタン
+    name: reject_btn
+    ja: 却下
+    en:
+
+  - id: 21
+    description: 承認確認モーダル本文
+    name: approve_modal_body
+    ja: 以下の車両の申請を承認します。よろしいですか?
+    en:
+
+  - id: 22
+    description: 却下確認モーダル本文
+    name: reject_modal_body
+    ja: 以下の車両の申請を却下します。よろしいですか?
+    en:
+
+  - id: 23
+    description: コメント付き車両件数メッセージ
+    name: commented_cars_count_message
+    ja: 'コメント付きの申請があります。(${count}件)'
+    en:
+
+  - id: 21
+    description: 承認結果メッセージ
+    name: approve_result_label
+    ja: サービス委託の承認処理が完了しました
+    en:
+
+  - id: 22
+    description: 却下結果メッセージ
+    name: reject_result_label
+    ja: サービス委託の却下処理が完了しました
+    en:
+
+  - id: 19
+    description: 承認ボタン（モーダル）
+    name: modal_approve_btn
+    ja: 承認
+    en:
+
+  - id: 24
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

@@ -1,0 +1,16 @@
+.KBA-form-table {
+  margin-bottom: 0;
+
+  .KBA-form-table__value {
+    p {
+      word-break: break-all;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+  }
+}
+
+.landmark-icon {
+  width: 64px;
+  height: 64px;
+}

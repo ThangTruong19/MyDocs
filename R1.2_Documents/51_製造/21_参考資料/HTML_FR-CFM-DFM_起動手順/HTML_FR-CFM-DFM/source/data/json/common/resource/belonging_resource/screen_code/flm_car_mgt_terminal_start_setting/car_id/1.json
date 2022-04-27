@@ -1,0 +1,650 @@
+[
+  {
+    "path": "orbcomm_request.nation_id",
+    "name": "使用国",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "使用国",
+    "placeholder_text": null,
+    "data_order": "11",
+    "items": [
+      {
+        "key": "ニュージーランド",
+        "value": "5",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "パナマ",
+        "value": "7",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "ペルー",
+        "value": "8",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "フランス領ポリネシア",
+        "value": "9",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "パプアニューギニア",
+        "value": "10",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "ポーランド",
+        "value": "13",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "サンピエール エ ミクロン",
+        "value": "14",
+        "kind": "D",
+        "data_order": "7"
+      },
+      {
+        "key": "プエルトリコ",
+        "value": "16",
+        "kind": "D",
+        "data_order": "8"
+      },
+      {
+        "key": "ポルトガル",
+        "value": "17",
+        "kind": "D",
+        "data_order": "9"
+      },
+      {
+        "key": "パラグアイ",
+        "value": "19",
+        "kind": "D",
+        "data_order": "10"
+      },
+      {
+        "key": "レユニオン",
+        "value": "21",
+        "kind": "D",
+        "data_order": "11"
+      },
+      {
+        "key": "ルーマニア",
+        "value": "22",
+        "kind": "D",
+        "data_order": "12"
+      },
+      {
+        "key": "ロシア",
+        "value": "23",
+        "kind": "D",
+        "data_order": "13"
+      },
+      {
+        "key": "スウェーデン",
+        "value": "29",
+        "kind": "D",
+        "data_order": "14"
+      },
+      {
+        "key": "シンガポール",
+        "value": "30",
+        "kind": "D",
+        "data_order": "15"
+      },
+      {
+        "key": "スロベニア",
+        "value": "32",
+        "kind": "D",
+        "data_order": "16"
+      },
+      {
+        "key": "スロバキア",
+        "value": "34",
+        "kind": "D",
+        "data_order": "17"
+      },
+      {
+        "key": "セネガル",
+        "value": "37",
+        "kind": "D",
+        "data_order": "18"
+      },
+      {
+        "key": "スリナム",
+        "value": "39",
+        "kind": "D",
+        "data_order": "19"
+      },
+      {
+        "key": "エルサルバドル",
+        "value": "41",
+        "kind": "D",
+        "data_order": "20"
+      },
+      {
+        "key": "エスワティニ",
+        "value": "43",
+        "kind": "D",
+        "data_order": "21"
+      },
+      {
+        "key": "フランス領極南諸島",
+        "value": "46",
+        "kind": "D",
+        "data_order": "22"
+      },
+      {
+        "key": "タイランド",
+        "value": "48",
+        "kind": "D",
+        "data_order": "23"
+      },
+      {
+        "key": "トルコ",
+        "value": "55",
+        "kind": "D",
+        "data_order": "24"
+      },
+      {
+        "key": "アメリカ",
+        "value": "63",
+        "kind": "D",
+        "data_order": "25"
+      },
+      {
+        "key": "ウルグアイ",
+        "value": "64",
+        "kind": "D",
+        "data_order": "26"
+      },
+      {
+        "key": "ベネズエラ",
+        "value": "68",
+        "kind": "D",
+        "data_order": "27"
+      },
+      {
+        "key": "ヴァージン諸島(米)",
+        "value": "70",
+        "kind": "D",
+        "data_order": "28"
+      },
+      {
+        "key": "ワリー エ フトゥーナ諸島",
+        "value": "73",
+        "kind": "D",
+        "data_order": "29"
+      },
+      {
+        "key": "南アフリカ",
+        "value": "78",
+        "kind": "D",
+        "data_order": "30"
+      },
+      {
+        "key": "ザンビア",
+        "value": "79",
+        "kind": "D",
+        "data_order": "31"
+      },
+      {
+        "key": "レソト",
+        "value": "84",
+        "kind": "D",
+        "data_order": "32"
+      },
+      {
+        "key": "モナコ",
+        "value": "85",
+        "kind": "D",
+        "data_order": "33"
+      },
+      {
+        "key": "メキシコ",
+        "value": "88",
+        "kind": "D",
+        "data_order": "34"
+      },
+      {
+        "key": "アンドラ",
+        "value": "90",
+        "kind": "D",
+        "data_order": "35"
+      },
+      {
+        "key": "アルバニア",
+        "value": "95",
+        "kind": "D",
+        "data_order": "36"
+      },
+      {
+        "key": "オランダ領アンティル諸島",
+        "value": "97",
+        "kind": "D",
+        "data_order": "37"
+      },
+      {
+        "key": "アルゼンチン",
+        "value": "100",
+        "kind": "D",
+        "data_order": "38"
+      },
+      {
+        "key": "アメリカ領サモア",
+        "value": "101",
+        "kind": "D",
+        "data_order": "39"
+      },
+      {
+        "key": "オーストリア",
+        "value": "102",
+        "kind": "D",
+        "data_order": "40"
+      },
+      {
+        "key": "オーストラリア",
+        "value": "103",
+        "kind": "D",
+        "data_order": "41"
+      },
+      {
+        "key": "ボスニア・ヘルツェゴビナ",
+        "value": "106",
+        "kind": "D",
+        "data_order": "42"
+      },
+      {
+        "key": "ベルギー",
+        "value": "109",
+        "kind": "D",
+        "data_order": "43"
+      },
+      {
+        "key": "ブルガリア",
+        "value": "111",
+        "kind": "D",
+        "data_order": "44"
+      },
+      {
+        "key": "ボリビア",
+        "value": "117",
+        "kind": "D",
+        "data_order": "45"
+      },
+      {
+        "key": "ブラジル",
+        "value": "118",
+        "kind": "D",
+        "data_order": "46"
+      },
+      {
+        "key": "ブータン",
+        "value": "120",
+        "kind": "D",
+        "data_order": "47"
+      },
+      {
+        "key": "ボツワナ",
+        "value": "122",
+        "kind": "D",
+        "data_order": "48"
+      },
+      {
+        "key": "ベラルーシ",
+        "value": "123",
+        "kind": "D",
+        "data_order": "49"
+      },
+      {
+        "key": "カナダ",
+        "value": "125",
+        "kind": "D",
+        "data_order": "50"
+      },
+      {
+        "key": "スイス",
+        "value": "131",
+        "kind": "D",
+        "data_order": "51"
+      },
+      {
+        "key": "チリ",
+        "value": "134",
+        "kind": "D",
+        "data_order": "52"
+      },
+      {
+        "key": "コロンビア",
+        "value": "137",
+        "kind": "D",
+        "data_order": "53"
+      },
+      {
+        "key": "コスタリカ",
+        "value": "138",
+        "kind": "D",
+        "data_order": "54"
+      },
+      {
+        "key": "キプロス",
+        "value": "142",
+        "kind": "D",
+        "data_order": "55"
+      },
+      {
+        "key": "チェコ共和国",
+        "value": "143",
+        "kind": "D",
+        "data_order": "56"
+      },
+      {
+        "key": "ドイツ",
+        "value": "144",
+        "kind": "D",
+        "data_order": "57"
+      },
+      {
+        "key": "デンマーク",
+        "value": "146",
+        "kind": "D",
+        "data_order": "58"
+      },
+      {
+        "key": "エクアドル",
+        "value": "150",
+        "kind": "D",
+        "data_order": "59"
+      },
+      {
+        "key": "エストニア",
+        "value": "151",
+        "kind": "D",
+        "data_order": "60"
+      },
+      {
+        "key": "西サハラ",
+        "value": "153",
+        "kind": "D",
+        "data_order": "61"
+      },
+      {
+        "key": "スペイン",
+        "value": "155",
+        "kind": "D",
+        "data_order": "62"
+      },
+      {
+        "key": "フィンランド",
+        "value": "157",
+        "kind": "D",
+        "data_order": "63"
+      },
+      {
+        "key": "フェロー諸島",
+        "value": "161",
+        "kind": "D",
+        "data_order": "64"
+      },
+      {
+        "key": "フランス",
+        "value": "162",
+        "kind": "D",
+        "data_order": "65"
+      },
+      {
+        "key": "イギリス（グレートブリテン）",
+        "value": "165",
+        "kind": "D",
+        "data_order": "66"
+      },
+      {
+        "key": "仏領ギアナ",
+        "value": "168",
+        "kind": "D",
+        "data_order": "67"
+      },
+      {
+        "key": "ガーナ",
+        "value": "169",
+        "kind": "D",
+        "data_order": "68"
+      },
+      {
+        "key": "グリーンランド",
+        "value": "171",
+        "kind": "D",
+        "data_order": "69"
+      },
+      {
+        "key": "ガドループ",
+        "value": "174",
+        "kind": "D",
+        "data_order": "70"
+      },
+      {
+        "key": "ギリシャ",
+        "value": "176",
+        "kind": "D",
+        "data_order": "71"
+      },
+      {
+        "key": "グァテマラ",
+        "value": "178",
+        "kind": "D",
+        "data_order": "72"
+      },
+      {
+        "key": "グアム",
+        "value": "179",
+        "kind": "D",
+        "data_order": "73"
+      },
+      {
+        "key": "ガイアナ",
+        "value": "181",
+        "kind": "D",
+        "data_order": "74"
+      },
+      {
+        "key": "ホンジュラス",
+        "value": "184",
+        "kind": "D",
+        "data_order": "75"
+      },
+      {
+        "key": "クロアチア",
+        "value": "185",
+        "kind": "D",
+        "data_order": "76"
+      },
+      {
+        "key": "ハンガリー",
+        "value": "187",
+        "kind": "D",
+        "data_order": "77"
+      },
+      {
+        "key": "インドネシア",
+        "value": "188",
+        "kind": "D",
+        "data_order": "78"
+      },
+      {
+        "key": "アイルランド",
+        "value": "189",
+        "kind": "D",
+        "data_order": "79"
+      },
+      {
+        "key": "イラク",
+        "value": "193",
+        "kind": "D",
+        "data_order": "80"
+      },
+      {
+        "key": "アイスランド",
+        "value": "195",
+        "kind": "D",
+        "data_order": "81"
+      },
+      {
+        "key": "イタリー",
+        "value": "196",
+        "kind": "D",
+        "data_order": "82"
+      },
+      {
+        "key": "ジャマイカ",
+        "value": "197",
+        "kind": "D",
+        "data_order": "83"
+      },
+      {
+        "key": "日本",
+        "value": "199",
+        "kind": "D",
+        "data_order": "84"
+      },
+      {
+        "key": "韓国",
+        "value": "206",
+        "kind": "D",
+        "data_order": "85"
+      },
+      {
+        "key": "カザフスタン",
+        "value": "209",
+        "kind": "D",
+        "data_order": "86"
+      },
+      {
+        "key": "リヒテンシュタイン",
+        "value": "212",
+        "kind": "D",
+        "data_order": "87"
+      },
+      {
+        "key": "リトアニア",
+        "value": "215",
+        "kind": "D",
+        "data_order": "88"
+      },
+      {
+        "key": "ルクセンブルグ",
+        "value": "216",
+        "kind": "D",
+        "data_order": "89"
+      },
+      {
+        "key": "ラトビア",
+        "value": "217",
+        "kind": "D",
+        "data_order": "90"
+      },
+      {
+        "key": "モロッコ",
+        "value": "219",
+        "kind": "D",
+        "data_order": "91"
+      },
+      {
+        "key": "マケドニア",
+        "value": "223",
+        "kind": "D",
+        "data_order": "92"
+      },
+      {
+        "key": "モンゴリア",
+        "value": "225",
+        "kind": "D",
+        "data_order": "93"
+      },
+      {
+        "key": "北マリアナ連邦",
+        "value": "227",
+        "kind": "D",
+        "data_order": "94"
+      },
+      {
+        "key": "マルティニク",
+        "value": "228",
+        "kind": "D",
+        "data_order": "95"
+      },
+      {
+        "key": "マルタ",
+        "value": "230",
+        "kind": "D",
+        "data_order": "96"
+      },
+      {
+        "key": "マラウィ",
+        "value": "233",
+        "kind": "D",
+        "data_order": "97"
+      },
+      {
+        "key": "マレーシア",
+        "value": "234",
+        "kind": "D",
+        "data_order": "98"
+      },
+      {
+        "key": "モザンビーク",
+        "value": "235",
+        "kind": "D",
+        "data_order": "99"
+      },
+      {
+        "key": "ナミビア",
+        "value": "236",
+        "kind": "D",
+        "data_order": "100"
+      },
+      {
+        "key": "ニューカレドニア(ﾌﾗﾝｽ)",
+        "value": "237",
+        "kind": "D",
+        "data_order": "101"
+      },
+      {
+        "key": "ナイジェリア",
+        "value": "239",
+        "kind": "D",
+        "data_order": "102"
+      },
+      {
+        "key": "ニカラグア",
+        "value": "240",
+        "kind": "D",
+        "data_order": "103"
+      },
+      {
+        "key": "オランダ",
+        "value": "241",
+        "kind": "D",
+        "data_order": "104"
+      },
+      {
+        "key": "ノルウェー",
+        "value": "242",
+        "kind": "D",
+        "data_order": "105"
+      },
+      {
+        "key": "セルビア",
+        "value": "244",
+        "kind": "D",
+        "data_order": "106"
+      }
+    ]
+  }
+]

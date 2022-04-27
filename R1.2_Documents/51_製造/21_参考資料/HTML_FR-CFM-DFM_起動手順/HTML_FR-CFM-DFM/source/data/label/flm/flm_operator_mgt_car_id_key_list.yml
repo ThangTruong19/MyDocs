@@ -1,0 +1,186 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: オペレータ識別管理　対象車両一覧(IDキー)
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: オペレータ識別管理　対象車両一覧(IDキー)
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: 閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 10
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 12
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 14
+    description: IDキー設定一括OFF
+    name: id_key_off_all
+    ja: IDキー設定一括OFF
+    en:
+
+  - id: 15
+    description: IDキー設定一括ON
+    name: id_key_on_all
+    ja: IDキー設定一括ON
+    en:
+
+  - id: 16
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 17
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 18
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか？
+    en:
+
+  - id: 19
+    description: IDキー設定OFF
+    name: id_key_off
+    ja: OFF
+    en:
+
+  - id: 20
+    description: IDキー設定ON
+    name: id_key_on
+    ja: ON
+    en:
+
+  - id: 21
+    description: ID設定OFF確認モーダルタイトル
+    name: id_key_setting_off
+    ja: 以下の車両のIDキー設定をOFFにします。よろしいですか？
+    en:
+
+  - id: 22
+    description: ID設定ON確認モーダルタイトル
+    name: id_key_setting_on
+    ja: 以下の車両のIDキー設定をONにします。よろしいですか？
+    en:
+
+  - id: 23
+    description: ID設定OFF確認モーダルOKボタンラベル
+    name: id_key_setting_off_ok_label
+    ja: 設定をOFFにする
+    en:
+
+  - id: 24
+    description: ID設定ON確認モーダルOKボタンラベル
+    name: id_key_setting_on_ok_label
+    ja: 設定をONにする
+    en:
+
+  - id: 25
+    description: ID設定確認モーダル注意書き
+    name: id_key_setting_attention
+    ja: ※識別設定の状態が同じものは反映されません。
+    en:
+
+  - id: 26
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当する対象車両が見つかりませんでした。
+    en:
+
+  - id: 27
+    description: 設定OFF処理完了メッセージ
+    name: operator_id_setting_off_result_label
+    ja: 設定OFFが完了しました
+    en:
+
+  - id: 28
+    description: 設定ON処理完了メッセージ
+    name: operator_id_setting_on_result_label
+    ja: 設定ONが完了しました
+    en:
+
+  - id: 29
+    description: 結果
+    name: result
+    ja: 結果
+    en:
+
+  - id: 30
+    description: 内容
+    name: result_detail
+    ja: 内容
+    en:
+
+  - id: 31
+    description: 結果件数
+    name: result_count_message
+    ja: '${total} 件中 成功${success}件 失敗${fail}件'
+    en:
+
+  - id: 1001
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 24
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

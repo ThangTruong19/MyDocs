@@ -1,0 +1,70 @@
+.container-fluid {
+  padding-bottom: 54px;
+}
+
+.annotation {
+  display: flex;
+  align-items: center;
+
+  .caption {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 22px;
+  }
+
+  .KBA-form-table__required {
+    margin-left: 10px;
+  }
+}
+
+.KBA-form-select-application-code {
+  display: flex;
+
+  > .application-code {
+    display: flex;
+    align-items: center;
+
+    > input {
+      margin-right: 10px;
+    }
+
+    &:not(:last-child) {
+      margin-right: 40px;
+    }
+  }
+
+  label {
+    margin-bottom: 1px;
+    font-weight: normal;
+  }
+}
+
+.KBA-form-notification-datetime {
+  display: flex;
+
+  .notification-start-datetime,
+  .notification-end-datetime {
+    display: flex;
+    align-items: center;
+    width: 80px;
+  }
+
+  .delimiter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+  }
+}
+
+.KBA-form-date {
+  > input {
+    width: 50px;
+
+    &.start_datetime_hh,
+    &.end_datetime_hh {
+      margin-left: 50px;
+    }
+  }
+}

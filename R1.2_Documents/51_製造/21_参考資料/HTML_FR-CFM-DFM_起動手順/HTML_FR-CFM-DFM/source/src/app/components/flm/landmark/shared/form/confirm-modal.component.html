@@ -1,0 +1,73 @@
+<section id="KBA-landmark-modal" class="KBA-modal">
+  <header class="KBA-modal-header modal-header">
+    <h1>{{ labels.submit_modal_title }}</h1>
+  </header>
+
+  <div class="KBA-modal-body modal-body">
+    <table class="KBA-form-table table table-bordered">
+      <tbody class="KBA-form-table-tbody">
+        <ng-container *ngFor="let d of desc.upper">
+          <tr>
+            <td class="KBA-form-table__head">
+              <label class="KBA-form-table__label">{{ d.label }}</label>
+            </td>
+            <td class="KBA-form-table__value">
+              <ng-container *ngIf="d.name === 'icon_id'; else elseContent">
+                <img src="{{ val[d.name] }}" class="landmark-icon" />
+              </ng-container>
+              <ng-template #elseContent>
+                <p>{{ val[d.name] }}</p>
+              </ng-template>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <div class="KBA-map">
+      <app-kba-area-map
+        [initMap]="initMap"
+        [labels]="labels"
+        [menuWidth]="0"
+        [menuOpen]="false"
+        [others]="others"
+        [editable]="false"
+        [hasMenu]="false"
+        [isLandmark]="true"
+        [landmarkData]="landmarkData"
+        [isModal]="true"
+      >
+      </app-kba-area-map>
+    </div>
+    <table class="KBA-form-table table table-bordered">
+      <tbody class="KBA-form-table-tbody">
+        <ng-container *ngFor="let d of desc.lower">
+          <tr>
+            <td class="KBA-form-table__head">
+              <label class="KBA-form-table__label">{{ d.label }}</label>
+            </td>
+            <td class="KBA-form-table__value">
+              <p>{{ val[d.name] }}</p>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <footer class="KBA-modal-footer modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary cancel"
+      (click)="onClickClose()"
+    >
+      {{ labels.close }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary submit"
+      (click)="onClickSubmit()"
+    >
+      {{ labels.ok_btn }}
+    </button>
+  </footer>
+</section>

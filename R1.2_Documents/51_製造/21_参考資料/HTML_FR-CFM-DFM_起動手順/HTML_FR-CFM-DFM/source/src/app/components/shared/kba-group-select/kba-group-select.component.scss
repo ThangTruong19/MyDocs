@@ -1,0 +1,42 @@
+@import "../../../../assets/styles/variable";
+
+.row-selected-group-items {
+  padding: 23px 15px 0;
+  margin: 15px -15px 0;
+  border-top: 1px solid #ddd;
+
+  .KBA-list-select-tag {
+    border: 1px solid $kba-darkgray-color;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 16px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+
+    span,
+    button {
+      display: inline-block;
+    }
+
+    span {
+      padding-right: 8px;
+    }
+
+    button {
+      border: 0;
+      background-color: transparent;
+      padding: 0;
+      vertical-align: top;
+    }
+
+    .kba-icon-close {
+      height: 100%;
+      color: $fontRed;
+      vertical-align: middle;
+    }
+  }
+}
+
+.modal-dialog {
+  max-width: 900px;
+}

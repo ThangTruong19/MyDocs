@@ -1,0 +1,11 @@
+[
+  {
+    "path": "maker_setting.makers",
+    "name": "設定メーカ",
+    "help": "設定メーカのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

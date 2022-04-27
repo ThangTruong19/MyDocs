@@ -1,0 +1,49 @@
+<ng-container *ngIf="!customSelectButtons">
+  <div class="row-group-select-buttons">
+    <button
+      (click)="onClickSelect()"
+      type="button"
+      class="btn btn-primary select"
+    >
+      {{ labels.select }}
+    </button>
+    <label
+      *ngIf="!selectedItemLabelHidden && groups != null"
+      class="selected-group-label"
+      >{{ selectedGroup && selectedGroupName() }}</label
+    >
+  </div>
+</ng-container>
+<ng-container *ngTemplateOutlet="customSelectButtons"></ng-container>
+<ng-container *ngIf="!customSelectedGroups">
+  <div class="row-selected-group-items" *ngIf="selectedGroupItems | isNotEmpty">
+    <div
+      class="KBA-list-select-tag"
+      *ngFor="let listItem of getGroupItems(selectedGroupItems)"
+    >
+      <span>
+        {{ listItem.name }}
+      </span>
+      <button type="button" (click)="onClickRemoveTag(listItem.value)">
+        <i class="kba-icon-close"></i>
+      </button>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngTemplateOutlet="customSelectedGroups"></ng-container>
+
+<ng-template #groupSelectModalContent>
+  <app-kba-group-select-modal
+    [labels]="labels"
+    [groups]="groups"
+    [groupItems]="groupItems"
+    [selectedGroup]="selectedGroup"
+    [selectedGroupItems]="selectedGroupItems"
+    [selectAllGroupKind]="selectAllGroupKind"
+    [initGroupKind]="initGroupKind"
+    [disabledItems]="disabledItems"
+    (check)="groupItemChecked($event)"
+    (checkedAll)="toggleCheckAll($event)"
+    (selectedGroupKind)="onSelectGroupKind($event)"
+  ></app-kba-group-select-modal>
+</ng-template>

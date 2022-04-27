@@ -1,0 +1,67 @@
+@import "../../../../assets/styles/variable";
+
+$n: 4; //1行当たりのカラム数
+$m: 20px; //カラム右のマージン
+
+.KBA-group-select-modal-group-items {
+  margin: 0 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.KBA-group-select-modal-group {
+  margin: 0 15px;
+
+  & + .KBA-group-select-modal-group-items {
+    border-top: solid 1px $kba-border-color;
+    padding-top: 30px;
+  }
+
+  .KBA-group-select {
+    display: flex;
+    margin-bottom: 12px;
+    > .group-kind {
+      display: flex;
+      align-items: center;
+      > input {
+        margin-right: 10px;
+      }
+      &:not(:last-child) {
+        margin-right: 40px;
+      }
+    }
+
+    label {
+      margin-bottom: 1px;
+      font-weight: normal;
+    }
+  }
+}
+
+.groups-items {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 15px 0;
+  > .group-item {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-right: 20px;
+    width: calc(((100% - #{$m * ($n - 1)}) / #{$n}));
+    word-wrap: break-word;
+    word-break: break-all;
+
+    > input {
+      margin-right: 10px;
+    }
+    &:nth-child(#{$n}n) {
+      margin-right: 0;
+    }
+  }
+
+  label {
+    margin-bottom: 1px;
+    font-weight: normal;
+    width: 100%;
+  }
+}

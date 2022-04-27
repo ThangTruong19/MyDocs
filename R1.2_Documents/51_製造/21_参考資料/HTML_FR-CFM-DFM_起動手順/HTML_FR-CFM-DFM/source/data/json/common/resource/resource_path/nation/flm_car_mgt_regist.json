@@ -1,0 +1,36 @@
+[
+  {
+    "path": "orbcomm_request.nation_id",
+    "name": "使用国",
+    "help": "使用国のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "未選択",
+        "value": "-2",
+        "kind": "D"
+      },
+      {
+        "key": "代理店ユーザの使用国001",
+        "value": "3001",
+        "kind": "D"
+      },
+      {
+        "key": "代理店ユーザの使用国002",
+        "value": "3002",
+        "kind": "D"
+      },
+      {
+        "key": "代理店ユーザの使用国003",
+        "value": "3003",
+        "kind": "D"
+      },
+      {
+        "key": "代理店ユーザの使用国004",
+        "value": "3004",
+        "kind": "D"
+      }
+    ]
+  }
+]

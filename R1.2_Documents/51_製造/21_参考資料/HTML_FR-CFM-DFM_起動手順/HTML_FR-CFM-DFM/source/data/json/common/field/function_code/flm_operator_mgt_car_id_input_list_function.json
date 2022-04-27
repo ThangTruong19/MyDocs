@@ -1,0 +1,121 @@
+[
+  {
+    "display_code": "0",
+    "display_sequence_no": "0",
+    "control_code": "0",
+    "name": "車両ID",
+    "path": "cars.car_identification.id"
+  },
+  {
+    "display_code": "0",
+    "display_sequence_no": "0",
+    "control_code": "0",
+    "name": "登録ステータス",
+    "path": "cars.car_operator.registration_status_kind"
+  },
+  {
+    "display_code": "0",
+    "display_sequence_no": "0",
+    "control_code": "0",
+    "name": "データ状況区分",
+    "path": "cars.car_operator.progress_kind"
+  },
+  {
+    "display_code": "0",
+    "display_sequence_no": "0",
+    "control_code": "0",
+    "name": "オペレータ識別設定",
+    "path": "cars.car_operator.operator_identification_name"
+  },
+  {
+    "display_code": "0",
+    "display_sequence_no": "0",
+    "control_code": "0",
+    "name": "更新日時",
+    "path": "cars.car_identification.update_datetime"
+  },
+  {
+    "display_code": "1",
+    "display_sequence_no": "1",
+    "control_code": "1",
+    "name": "メーカ",
+    "path": "cars.car_identification.maker_name"
+  },
+  {
+    "display_code": "1",
+    "display_sequence_no": "2",
+    "control_code": "1",
+    "name": "機種",
+    "path": "cars.car_identification.model"
+  },
+  {
+    "display_code": "1",
+    "display_sequence_no": "3",
+    "control_code": "1",
+    "name": "型式",
+    "path": "cars.car_identification.type_rev"
+  },
+  {
+    "display_code": "1",
+    "display_sequence_no": "4",
+    "control_code": "1",
+    "name": "機番",
+    "path": "cars.car_identification.serial"
+  },
+  {
+    "display_code": "1",
+    "display_sequence_no": "5",
+    "control_code": "1",
+    "name": "顧客車両番号",
+    "path": "cars.customer_attribute.customer_car_no"
+  },
+  {
+    "display_code": "1",
+    "display_sequence_no": "6",
+    "control_code": "0",
+    "name": "車両種類",
+    "path": "cars.car_identification.division_name"
+  },
+  {
+    "display_code": "1",
+    "display_sequence_no": "7",
+    "control_code": "0",
+    "name": "顧客管理番号",
+    "path": "cars.customer_attribute.customer_management_no"
+  },
+  {
+    "display_code": "1",
+    "display_sequence_no": "8",
+    "control_code": "0",
+    "name": "顧客名称",
+    "path": "cars.customer.label"
+  },
+  {
+    "display_code": "1",
+    "display_sequence_no": "9",
+    "control_code": "0",
+    "name": "顧客名称(英語)",
+    "path": "cars.customer.label_english"
+  },
+  {
+    "display_code": "1",
+    "display_sequence_no": "10",
+    "control_code": "0",
+    "name": "登録ステータス",
+    "path": "cars.car_operator.registration_status_name"
+  },
+  {
+    "display_code": "1",
+    "display_sequence_no": "11",
+    "control_code": "0",
+    "name": "データ状況",
+    "path": "cars.car_operator.progress_name"
+  },
+  {
+    "display_code": "1",
+    "display_sequence_no": "12",
+    "control_code": "0",
+    "name": "オペレータ識別設定",
+    "path": "cars.car_operator.operator_identification_kind"
+  }
+]

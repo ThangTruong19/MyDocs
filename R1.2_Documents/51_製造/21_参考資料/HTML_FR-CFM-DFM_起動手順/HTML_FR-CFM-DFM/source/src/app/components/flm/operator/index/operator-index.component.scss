@@ -1,0 +1,66 @@
+@import "../../../../../assets/styles/flm/_variable.scss";
+@import "../../../../../assets/styles/_variable.scss";
+
+.container-fluid {
+  padding-bottom: 54px;
+
+  .KBA-content {
+    .KBA-table-options {
+      .KBA-display-options {
+        .delete-all {
+          position: relative;
+          display: flex;
+          width: 105px;
+          padding: 7px 10px;
+          text-align: left;
+          justify-content: space-between;
+        }
+
+        .kba-icon-download-all {
+          position: relative;
+          width: 150px;
+          padding: 7px 5px;
+          text-align: left;
+          vertical-align: middle;
+
+          &::after {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            margin-top: -6px;
+            content: "\E007";
+          }
+        }
+      }
+    }
+  }
+}
+
+.result-count-message {
+  margin-top: 12px;
+}
+
+.delete-warning-message {
+  position: absolute;
+  top: -15px;
+  right: 0;
+  white-space: nowrap;
+  color: $kba-error-color;
+  font-size: 14px;
+}
+
+.delete-wrapper {
+  margin-left: 5px;
+
+  button {
+    margin-left: 0;
+  }
+}
+
+.delete-count {
+  margin-left: 5px;
+
+  &.warning {
+    color: $kba-error-color;
+  }
+}

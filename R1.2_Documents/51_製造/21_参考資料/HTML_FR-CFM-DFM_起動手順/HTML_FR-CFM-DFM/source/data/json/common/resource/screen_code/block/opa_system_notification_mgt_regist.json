@@ -1,0 +1,85 @@
+[
+  {
+    "path": "applications_system_notification.publish_application_codes",
+    "name": "公開先アプリ",
+    "help": "公開先アプリのヘルプ文言",
+    "type": 30,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "DFM",
+        "value": "JPAA1",
+        "kind": "A"
+      },
+      {
+        "key": "CFM",
+        "value": "JPAA2",
+        "kind": "A"
+      }
+    ]
+  },
+  {
+    "path": "applications_system_notification.notification.start_datetime",
+    "name": "表示開始日時(GMT)",
+    "help": "表示開始日時(GMT)のヘルプ文言",
+    "type": -40,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.notification.start_datetime_hh",
+    "name": "表示開始日時(hh)",
+    "help": "表示開始日時(hh)のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.notification.start_datetime_mm",
+    "name": "表示開始日時(mm)",
+    "help": "表示開始日時(mm)のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.notification.end_datetime",
+    "name": "表示終了日時(GMT)",
+    "help": "表示終了日時(GMT)のヘルプ文言",
+    "type": -40,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.notification.end_datetime_hh",
+    "name": "表示終了日時(hh)",
+    "help": "表示終了日時(hh)のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.notification.end_datetime_mm",
+    "name": "表示終了日時(mm)",
+    "help": "表示終了日時(mm)のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.notification.content",
+    "name": "通知内容",
+    "help": "通知内容のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

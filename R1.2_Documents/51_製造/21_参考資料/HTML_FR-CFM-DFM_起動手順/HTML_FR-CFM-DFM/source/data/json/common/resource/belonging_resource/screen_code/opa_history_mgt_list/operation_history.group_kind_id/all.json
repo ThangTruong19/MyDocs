@@ -1,0 +1,32 @@
+[
+  {
+    "path": "operation_history.group_id",
+    "name": "グループ",
+    "help": "グループのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "グループ1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "グループ2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "グループ3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  }
+]

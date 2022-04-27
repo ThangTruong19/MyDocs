@@ -1,0 +1,63 @@
+{
+  "github": {
+    "apiBaseUrl": "https://ghe.fenrir-inc.com/api/v3",
+    "owner": "Fenrir-b2b2",
+    "repo": "KMT_NGK_DESKTOP",
+    "token": ""
+  },
+  "remote": "upstream",
+  "app": {
+    "flm": {
+      "baseBranch": "phase5",
+      "cli": ".angular-cli_flm.json",
+      "vsts": {
+        "dir": "",
+        "remote": "upstream",
+        "baseBranch": "develop",
+        "deployBranch": "Feature/deploy"
+      },
+      "buildTargts": [
+        {
+          "baseHref": "/d/fm/admin/",
+          "distPath": "build_DFM"
+        },
+        {
+          "baseHref": "/c/fm/admin/",
+          "distPath": "build_CFM"
+        }
+      ]
+    },
+    "opa": {
+      "baseBranch": "phase5-add-ntc",
+      "cli": ".angular-cli_opa.json",
+      "vsts": {
+        "dir": "",
+        "remote": "upstream",
+        "baseBranch": "develop",
+        "deployBranch": "Feature/deploy"
+      },
+      "buildTargts": [
+        {
+          "baseHref": "/admin/",
+          "distPath": "build"
+        }
+      ]
+    },
+    "komtrax-link": {
+      "baseBranch": "phase5",
+      "cli": ".angular-cli_komtrax-link.json",
+      "vsts": {
+        "dir": "",
+        "remote": "upstream",
+        "baseBranch": "develop",
+        "deployBranch": "Feature/deploy"
+      },
+      "buildTargts": [
+        {
+          "baseHref": "/d/fm/komtrax_link/",
+          "distPath": "build"
+        }
+      ]
+    }
+  }
+}

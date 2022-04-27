@@ -1,0 +1,26 @@
+<div
+  class="KBA-accordion KBA-panel"
+  [ngClass]="{ collapsed: collapsed }"
+  [attr.aria-expanded]="!collapsed"
+>
+  <div class="KBA-accordion-header-container" (click)="toggleAccordion()">
+    <app-kba-accordion-header
+      [collapsed]="collapsed"
+      [title]="title"
+      [labels]="labels"
+      *ngIf="!useCustomHeader"
+    ></app-kba-accordion-header>
+    <ng-content
+      *ngIf="useCustomHeader"
+      select="[data-kba-accordion-header]"
+    ></ng-content>
+  </div>
+  <div
+    class="KBA-panel-body"
+    [ngbCollapse]="collapsed"
+    [ngStyle]="accordionBodyStyle"
+    (transitionend)="onTransitionEnd()"
+  >
+    <ng-content select="[data-kba-accordion-body]"></ng-content>
+  </div>
+</div>

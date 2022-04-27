@@ -1,0 +1,18 @@
+[
+  {
+    "path": "car.komtrax_unit.terminal_component.part",
+    "name": "端末品番",
+    "help": "端末品番のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car.komtrax_unit.terminal_component.serial",
+    "name": "端末シリアル",
+    "help": "端末シリアルのヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  }
+]

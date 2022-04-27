@@ -1,0 +1,267 @@
+<section id="KBA-rental-car-index" *ngIf="labels && resource && datePickerParams">
+  <div class="container-fluid">
+    <h2 class="KBA-contact-index__title KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content">
+      <app-kba-file-upload
+        [apiId]="uploadPath"
+        [layout]="'index'"
+        [labels]="labels"
+        [uploadOnChange]="false"
+        [collapsed]="true"
+        [isLoading]="isLoading"
+        [json]="uploadJSON"
+        (uploadStart)="_showLoadingSpinner()"
+        (uploadEnd)="onUploadEnd($event)"
+        (uploadFail)="onUploadFail($event)"
+      ></app-kba-file-upload>
+
+      <app-kba-accordion
+        [collapsed]="collapsed"
+        [title]="labels.search_condition"
+        [isLoading]="isLoading"
+        [labels]="labels"
+        (onChangeState)="changePanelState($event)"
+      >
+        <div data-kba-accordion-body>
+          <div class="container KBA-search">
+            <div class="row">
+              <app-kba-selected
+                class="col-sm-3"
+                [kbaName]="'division_codes'"
+                [kbaParams]="params.common.car_identification"
+                [kbaResource]="resource.common.car_identification"
+              >
+              </app-kba-selected>
+              <app-kba-selected
+                class="col-sm-3"
+                [kbaName]="'maker_codes'"
+                [kbaParams]="params.common.car_identification"
+                [kbaResource]="resource.common.car_identification"
+              >
+              </app-kba-selected>
+              <app-kba-text
+                class="col-sm-3"
+                [kbaName]="'models'"
+                [kbaParams]="params.common.car_identification"
+                [kbaResource]="resource.common.car_identification"
+                [maxlength]="20"
+              >
+              </app-kba-text>
+              <app-kba-text
+                class="col-sm-3"
+                [kbaName]="'type_revs'"
+                [kbaParams]="params.common.car_identification"
+                [kbaResource]="resource.common.car_identification"
+                [maxlength]="15"
+              >
+              </app-kba-text>
+            </div>
+            <div class="row">
+              <app-kba-text
+                class="col-sm-3"
+                [kbaName]="'serials'"
+                [kbaParams]="params.common.car_identification"
+                [kbaResource]="resource.common.car_identification"
+              >
+              </app-kba-text>
+              <app-kba-text
+                class="col-sm-3"
+                [kbaName]="'customer_car_no'"
+                [kbaParams]="params.common.customer_attribute"
+                [kbaResource]="resource.common.customer_attribute"
+                [maxlength]="26"
+              >
+              </app-kba-text>
+              <app-kba-selected
+                class="col-sm-3"
+                [kbaName]="'customer_id'"
+                [kbaParams]="params.rental"
+                [kbaResource]="resource.rental"
+              >
+              </app-kba-selected>
+            </div>
+            <div class="row">
+              <app-kba-from-to-date-picker
+                class="col-sm-6"
+                [from]="'date_from'"
+                [to]="'date_to'"
+                [params]="params.rental"
+                [resource]="resource.rental"
+                [labels]="labels"
+                [beginningWday]="beginningWday"
+                [enableDateRange]="enableDateRange"
+                [dateFormat]="_dateFormat"
+                [futureDateSelectable]="true"
+                [timeZone]="timeZone"
+              >
+              </app-kba-from-to-date-picker>
+            </div>
+          </div>
+          <div class="KBA-panel-footer">
+            <button
+              (click)="onClickSearch()"
+              type="button"
+              class="btn btn-primary search"
+            >
+              {{ labels.search }}
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning btn-download"
+              (click)="downonClicDownloadTemplate()"
+            >
+              {{ labels.download_all }}
+              <i class="kba-icon kba-icon-download"></i>
+            </button>
+          </div>
+        </div>
+      </app-kba-accordion>
+
+      <div class="KBA-table-options" [hidden]="count <= 0">
+        <app-kba-pagination
+          [count]="count"
+          [params]="pageParams"
+          [labels]="labels"
+          [element]="pageCountEl"
+          (changeState)="onPaginationChange()"
+        ></app-kba-pagination>
+      </div>
+
+      <app-kba-table
+        [lists]="lists"
+        [customTableRowContent]="customTableRowContent"
+        [customTableThBtnContent]="customTableThBtnContent"
+        [customTableBtnContent]="customTableBtnContent"
+        [pageParams]="pageParams"
+        [sortingParams]="sortingParams"
+        [thList]="thList"
+        [sortableThList]="sortableThList"
+        [labels]="labels"
+        [collapsed]="collapsed"
+        [updatable]="updatable"
+        [isFetching]="isFetching"
+        (edit)="onClickEdit($event)"
+        (sort)="onChangeSort($event)"
+      >
+        <ng-template #customTableRowContent let-data="data">
+          <ng-container *ngFor="let title of thList">
+            <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
+              <td
+                *ngSwitchCase="'cars.rental.reservation1.start_date'"
+                class="td-rental KBA-index-td d-flex align-items-center"
+              >
+                <span
+                  >{{ data['cars.rental.reservation1.start_date'] }}-{{
+                    data['cars.rental.reservation1.end_date']
+                  }}</span
+                >
+              </td>
+              <td
+                *ngSwitchCase="'cars.rental.reservation2.start_date'"
+                class="td-rental KBA-index-td d-flex align-items-center"
+              >
+                <span
+                  >{{ data['cars.rental.reservation2.start_date'] }}-{{
+                    data['cars.rental.reservation2.end_date']
+                  }}</span
+                >
+              </td>
+              <td
+                *ngSwitchDefault
+                class="td-{{
+                  title.shortName
+                }} KBA-index-td d-flex align-items-center"
+              >
+                <span>{{ data[title.name] }}</span>
+              </td>
+            </ng-container>
+          </ng-container>
+        </ng-template>
+
+        <ng-template #customTableThBtnContent>
+          <th *ngIf="updatable" class="fixed">{{ labels.header_edit }}</th>
+          <th class="fixed">{{ labels.header_history }}</th>
+        </ng-template>
+
+        <ng-template #customTableBtnContent let-data="data">
+          <td
+            *ngIf="updatable"
+            class="KBA-index-td KBA-table__small kba-sm-link text-center fixed d-flex align-items-center justify-content-center"
+            (click)="onClickEdit(data)"
+          >
+            <span><i class="kba-icon kba-icon-edit"></i></span>
+          </td>
+          <td
+            class="KBA-index-td KBA-table__small kba-sm-link text-center fixed d-flex align-items-center justify-content-center"
+            (click)="onClickHistory(data)"
+          >
+            <span><i class="kba-icon kba-extra-icon-history"></i></span>
+          </td>
+        </ng-template>
+      </app-kba-table>
+    </div>
+  </div>
+
+  <ng-template #historyModalContent>
+    <table class="KBA-table table-bordered car-info-table">
+      <thead class="KBA-table-thead">
+        <tr class="KBA-table-flex-cell">
+          <ng-container *ngFor="let th of historyModalValues.listDesc[0]">
+            <th *ngIf="th.displayable">
+              {{ th.label }}
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody class="KBA-table-tbody">
+        <tr class="KBA-table-flex-cell">
+          <ng-container *ngFor="let th of historyModalValues.listDesc[0]">
+            <td *ngIf="th.displayable">
+              {{ historyModalValues.listVal | at: th.name }}
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="KBA-table table-bordered rental-histories-table">
+      <thead class="KBA-table-thead">
+        <tr class="KBA-table-flex-cell">
+          <ng-container *ngFor="let th of historyModalValues.listDesc[1]">
+            <th *ngIf="th.displayable">
+              {{ th.label }}
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody class="KBA-table-tbody">
+        <tr
+          class="KBA-table-flex-cell"
+          *ngFor="let item of historyModalValues.listVal.car.rental_histories"
+        >
+          <ng-container *ngFor="let th of historyModalValues.listDesc[1]">
+            <td [ngSwitch]="th.name" *ngIf="th.displayable">
+              <ng-container *ngSwitchCase="'car.rental_histories.start_date'">
+                {{ item['start_date'] }}-{{ item['end_date'] }}
+              </ng-container>
+              <ng-container *ngSwitchDefault>
+                {{ item[th.dataKey] }}
+              </ng-container>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+
+  <ng-template #uploadResultModalContent>
+    <app-kba-simple-list-confirm
+      [desc]="uploadResultThList"
+      [val]="uploadResultVal"
+      [warningColumns]="'all'"
+    >
+    </app-kba-simple-list-confirm>
+    <p class="result-count-message">{{ resultCountMessage }}</p>
+  </ng-template>
+</section>
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

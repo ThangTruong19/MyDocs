@@ -1,0 +1,37 @@
+[
+  {
+    "path": "contact_link.customer_contact_links.contact_kind_code",
+    "name": "サービス",
+    "help": "サービスのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "サービス1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "サービス2",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "サービス3",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "サービス4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "サービス5",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  }
+]

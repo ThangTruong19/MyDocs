@@ -1,0 +1,68 @@
+@import "../../../../../assets/styles/variable";
+
+.container-fluid {
+  padding-bottom: 54px;
+}
+
+.select_cars_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.KBA-form {
+  padding: 20px;
+  border: solid 1px $kba-border-color;
+}
+
+.register-table {
+  width: 80%;
+  margin: 0 auto;
+
+  .error-message {
+    margin: 0;
+  }
+
+  th {
+    font-weight: normal;
+
+    &.required {
+      color: $kba-error-color;
+
+      &::after {
+        margin-left: 5px;
+        content: "*";
+      }
+    }
+  }
+
+  .add-operator-row {
+    padding: 0 15px;
+
+    .add-operator {
+      padding: 4px;
+      margin-top: 10px;
+      font-size: 20px;
+      text-align: center;
+      cursor: pointer;
+      background-color: $kba-lightgray-color;
+
+      &:hover {
+        background-color: $kba-lightgray-color--hover;
+      }
+    }
+  }
+
+  .no-operator-label {
+    width: 100%;
+  }
+}
+
+.confirm-modal-content-item-wrapper {
+  margin-bottom: 15px;
+}
+
+.result-count-message {
+  margin-top: 12px;
+}

@@ -1,0 +1,52 @@
+<section
+  id="KBA-site-management-map"
+  *ngIf="labels && resource && userSettingParams"
+>
+  <app-detail-header [labels]="labels" [url]="url" [title]="headerTitle">
+  </app-detail-header>
+  <app-map-header
+    [labels]="labels"
+    [resource]="resource"
+    [userSettingParams]="userSettingParams"
+    (saveMapOptions)="handleSaveMapOptions()"
+    (toggleDisplayLandmarks)="handleToggleDisplayLandmarks($event)"
+    (toggleDisplayBondAreas)="handleToggleDisplayBondAreas($event)"
+    (toggleDisplayUserSettingBoundParams)="
+      handleToggleDisplayUserSettingBoundParams($event)
+    "
+  >
+  </app-map-header>
+  <div class="map-container">
+    <div
+      class="map-wrapper"
+      [ngClass]="{ 'show-landmark-caption': landmarkCaptionDisplayable }"
+    >
+      <app-kba-area-map
+        *ngIf="loadMap"
+        [initMap]="{}"
+        [labels]="labels"
+        [menuWidth]="0"
+        [menuOpen]="false"
+        [isModal]="true"
+        [editable]="false"
+        [hasMenu]="false"
+        (onLoad)="handleMapLoad()"
+      >
+      </app-kba-area-map>
+    </div>
+    <app-map-route
+      [labels]="labels"
+      [geocoderEnabled]="geocoderEnabled"
+      [currentAddress]="currentAddress"
+      [loading]="routeLoading"
+      [hidden]="!showMapRoute"
+      [(showGuide)]="showRouteGuide"
+      (searchFromPresentLocation)="handleClickSearchFromPresentLocation()"
+      (searchFromInputLocation)="handleClickSearchFromInputLocation($event)"
+      (searchFromClickedPoint)="handleClickSearchFromClickedPoint()"
+      (closeMapRoute)="handleClickCloseMapRoute()"
+      (back)="handleClickRouteBack()"
+    >
+    </app-map-route>
+  </div>
+</section>

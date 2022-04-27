@@ -1,0 +1,196 @@
+<section id="KBA-fuel-car-index" *ngIf="labels && resource">
+  <form class="KBA-form" #f="ngForm">
+    <div class="container-fluid">
+      <h2 class="KBA-group-area-index__title KBA-page-title">
+        {{ labels.title }}
+      </h2>
+      <div class="KBA-content">
+        <!-- 検索欄 -->
+        <app-kba-accordion
+          [collapsed]="collapsed"
+          [useCustomHeader]="false"
+          [title]="labels.search_condition"
+          [labels]="labels"
+          (onChangeState)="changePanelState($event)"
+        >
+          <div data-kba-accordion-body>
+            <div class="container KBA-search">
+              <app-kba-car-search
+                [activeTab]="activeTab"
+                [modelCarTypeCheck]="modelCarTypeCheck"
+                [labels]="labels"
+                [resource]="resource"
+                [params]="params"
+                (changeModelCarTypeCheck)="onChangeModelCarTypeCheck()"
+                (changeSupportDistributor)="onChangeSupportDistributor($event)"
+                (changeSupportDbOrgCode)="onChangeSupportDbOrgCode($event)"
+                (changeServiceDb)="onChangeServiceDb($event)"
+                (changeServiceDbOrgCode)="onChangeServiceDbOrgCode($event)"
+              >
+              </app-kba-car-search>
+            </div>
+            <div class="KBA-panel-footer">
+              <a
+                href="javascript:void(0)"
+                (click)="onClickReset()"
+                class="btn btn-link"
+              >
+                {{ labels.reset }}
+              </a>
+              <button
+                (click)="onClickSearch()"
+                type="button"
+                class="btn btn-primary search"
+              >
+                {{ labels.search }}
+              </button>
+            </div>
+          </div>
+        </app-kba-accordion>
+
+        <!-- 検索条件一覧 -->
+        <app-kba-accordion
+          [collapsed]="listCollapsed"
+          [useCustomHeader]="false"
+          [title]="labels.search_condition_list"
+          [labels]="labels"
+          (onChangeState)="changeListPanelState($event)"
+        >
+          <div data-kba-accordion-body>
+            <app-kba-search-conditions
+              [params]="params"
+              [resource]="resource"
+              [pageCount]="pageParams.pageCount"
+              [selectorKeys]="selectorKeys"
+              [selectedParams]="getSelectedParams()"
+              [modelCarTypeCheck]="modelCarTypeCheck"
+            >
+            </app-kba-search-conditions>
+          </div>
+        </app-kba-accordion>
+
+        <!-- ページネーション -->
+        <div class="KBA-table-options" [hidden]="count <= 0">
+          <app-kba-pagination
+            [count]="count"
+            [params]="pageParams"
+            [labels]="labels"
+            [element]="pageCountEl"
+            (changeState)="onPaginationChange()"
+          >
+          </app-kba-pagination>
+          <div class="table-option-buttons">
+            <div class="popover-wrapper">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="onClickFieldSelect($event)"
+              >
+                {{ labels.field_select }}
+              </button>
+              <app-kba-popover
+                [labels]="labels"
+                [resource]="fieldResources"
+                [fields]="fields"
+                [title]="labels.field_select_title"
+                [(isVisible)]="fieldSelectPopoverVisible"
+                [promise]="fieldResourcesPromise"
+                (ok)="onFieldSelectOk($event)"
+              >
+              </app-kba-popover>
+            </div>
+            <div class="popover-wrapper">
+              <button
+                type="button"
+                class="btn btn-warning"
+                (click)="onClickDownloadAll($event)"
+              >
+                {{ labels.download_all }}
+                <i class="kba-icon kba-icon-download"></i>
+              </button>
+              <app-kba-popover
+                [labels]="labels"
+                [resource]="downloadFieldResources"
+                [fields]="downloadFields"
+                [title]="labels.download_select_title"
+                [(isVisible)]="downloadPopoverVisible"
+                [download]="true"
+                [downloadType]="resource.file_content_type"
+                [promise]="downloadFieldsPromise"
+                (ok)="onDownloadOk($event)"
+              >
+              </app-kba-popover>
+            </div>
+          </div>
+        </div>
+
+        <!-- 一覧 -->
+        <app-kba-table
+          [customFixedTableRowContent]="customFixedTableRowContent"
+          [customTableRowContent]="customTableRowContent"
+          [labels]="labels"
+          [collapsed]="collapsed"
+          [lists]="lists"
+          [pageParams]="pageParams"
+          [fixedThList]="fixedThList"
+          [scrollableThList]="scrollableThList"
+          [(sortingParams)]="sortingParams"
+          [sortableThList]="sortableThList"
+          [updatable]="updatable"
+          [isFetching]="isFetching"
+          [multiLineColumns]="lineBreakColumns"
+          (edit)="onClickEdit($event)"
+          (sort)="onChangeSort($event)"
+        >
+          <ng-template #customFixedTableRowContent let-data="data">
+            <ng-container *ngFor="let title of fixedThList">
+              <ng-container *ngIf="title.displayable">
+                <td
+                  *ngIf="
+                    title.name ===
+                    'cars.accumulate_fuel_interval_items.management_item_name'
+                  "
+                  class="td-{{ title.shortName }} KBA-index-td"
+                >
+                  <ul>
+                    <li *ngFor="let item of data[title.name]">
+                      {{ item }}
+                    </li>
+                  </ul>
+                </td>
+                <td
+                  *ngIf="
+                    title.name !==
+                    'cars.accumulate_fuel_interval_items.management_item_name'
+                  "
+                  class="td-{{ title.shortName }} KBA-index-td"
+                >
+                  {{ data[title.name] }}
+                </td>
+              </ng-container>
+            </ng-container>
+          </ng-template>
+          <ng-template #customTableRowContent let-data="data">
+            <ng-container *ngFor="let title of scrollableThList">
+              <td
+                *ngIf="title.displayable"
+                class="td-{{ title.shortName }} KBA-index-td"
+                [ngClass]="{ 'line-break': isLineBreak(title.name) }"
+              >
+                <span>{{ data[title.dataKey || title.name] }}</span>
+              </td>
+            </ng-container>
+          </ng-template>
+        </app-kba-table>
+      </div>
+    </div>
+  </form>
+</section>
+
+<ng-template #resetModalContent>
+  <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+</ng-template>
+
+<app-kba-alert></app-kba-alert>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

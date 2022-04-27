@@ -1,0 +1,87 @@
+.map-header {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  height: 40px;
+  padding-right: 10px;
+  background-color: #fff;
+}
+
+.pulldown {
+  position: relative;
+}
+
+.pulldown-trigger {
+  height: 40px;
+  padding: 12px 13px;
+  color: #999;
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
+
+  span {
+    color: #333;
+  }
+
+  > .fa {
+    margin-left: 4px;
+  }
+}
+
+.pulldown-list {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  min-width: 230px;
+  overflow: hidden;
+  visibility: hidden;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+
+  &.visible {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.pulldown-list-item {
+  white-space: nowrap;
+
+  &:nth-child(-n + 1) {
+    border-bottom: 1px solid #eee;
+  }
+
+  button {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 0 15px;
+    text-align: left;
+
+    &:hover {
+      background-color: #f2f2f2;
+    }
+
+    .fa {
+      margin-right: 5px;
+    }
+
+    .fa-minus {
+      color: #ccc;
+    }
+  }
+}
+
+.pulldown-list-item-header {
+  height: 24px;
+  padding: 0 15px;
+  font-size: 13px;
+  line-height: 24px;
+  background-color: #f2f2f2;
+}

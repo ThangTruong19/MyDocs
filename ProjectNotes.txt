@@ -1,0 +1,48 @@
+File xem man hinh:
+1. D:\Projects\Komatsu\Documents\R1.2_ビジネスアプリ対応\31_基本設計\画面アプリ\次世代KOMTRAX_カスタマイズデータ・設定管理アプリ_車両カスタマイズ設定管理.xlsx
+2. D:\Projects\Komatsu\Documents\R1.2_ビジネスアプリ対応\21_要件定義\付録4_要件定義書_カスタマイズ用途定義設定.xlsx
+
+File xem duong dan (Dat ten component)
+1. D:\Projects\Komatsu\Documents\R1.2_ビジネスアプリ対応\31_基本設計\画面アプリ\次世代KOMTRAX_カスタマイズデータ・設定管理アプリ_画面遷移図.xlsx
+
+File dinh nghi API cua man hinh:
+D:\Projects\Komatsu\Documents\R1.2_ビジネスアプリ対応\41_詳細設計\画面アプリ\モーダル
+D:\Projects\Komatsu\Documents\R1.2_ビジネスアプリ対応\41_詳細設計\画面アプリ\機能-API紐づけ.xlsx
+
+File Schedule:
+D:\Projects\Komatsu\Documents\R1.2_ビジネスアプリ対応\11_管理\12_WBS\【R1.2_ビジネスアプリ対応】WBS.xlsx
+
+
+
+Source stucture:
++ Define API data to return:
+	1. create data file in source/data/json/cdsm
+	2. modify file: source/data/json/common/getCatalog.json (Add new lines that correspond to the desired api)
+	3. modify file: source/src/app/constants/apis.ts (Add new lines that correspond to the desired api)
++ Define labels to use in the screen: 
+	1. create file in source/data/label/cdsm/
++ Define items of combobox in the screen:
+	1. create file in source/data/json/common/resource/screen_code/
++ Define table's labels in the screen:
+	1. create file in: source/data/json/common/field/function_code/, source/data/json/common/field_resource/function_code/ (??)
+
+Reference: http://192.168.141.139/gitlab/komatsu_ngk/komatsu_ngk_html/html_cdsm/-/commit/609bf963c3dbb6fea5ead0f82ae92a36c4078126
+
+Run source (Old)
+node ./node_modules/@angular/cli/bin/ng serve -c local
+node ./node_modules/gulp/bin/gulp
+
+Create component command:
+ng g c cs-add
+
+
+import { CustomizeSettingService } from './services/api/customize_setting/customize-setting.service';
+import { CsEditComponent } from './components/customize_setting/edit/cs-edit.component';
+import { CsDetailComponent } from './components/customize_setting/cs-detail.component';
+
+{
+        path: 'customize_setting',
+        loadChildren: () =>
+            import('app/modules/cs-detail.module').then(m => m.CsDetailModule),
+        canActivateChild: [AuthenticationService],
+    },

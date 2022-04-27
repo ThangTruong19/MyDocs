@@ -1,0 +1,72 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "担当代理店",
+    "path": "accumulate_fuel_interval_items.support_distributor_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "担当代理店（英語）",
+    "path": "accumulate_fuel_interval_items.support_distributor_label_english",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "累積燃料消費量管理項目インターバル項目名称",
+    "path": "accumulate_fuel_interval_items.label",
+    "control_code": "1",
+    "display_code": "2"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "点検開始累積燃料消費量",
+    "path": "accumulate_fuel_interval_items.inspection_start_accumulate_fuel",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "累積燃料消費量インターバル",
+    "path": "accumulate_fuel_interval_items.accumulate_fuel_interval",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "オレンジフラグ閾値",
+    "path": "accumulate_fuel_interval_items.threshold",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "車両種類",
+    "path": "accumulate_fuel_interval_items.car_conditions.division_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "メーカ",
+    "path": "accumulate_fuel_interval_items.car_conditions.maker_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "機種",
+    "path": "accumulate_fuel_interval_items.car_conditions.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "型式",
+    "path": "accumulate_fuel_interval_items.car_conditions.type_rev",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

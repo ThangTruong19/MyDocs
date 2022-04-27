@@ -1,0 +1,79 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ユーザシーケンスID",
+    "path": "user.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "構成グループ名称",
+    "path": "users.group.configuration_groups.label",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "グループ種別",
+    "path": "users.group.belonging_group.identification.kind_id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "ユーザID",
+    "path": "user.identification.account",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "ユーザ名",
+    "path": "user.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "所属ID",
+    "path": "user.groups.identification.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "所属",
+    "path": "user.groups.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "メールアドレス",
+    "path": "user.identification.email",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "ロール",
+    "path": "user.groups.granted_role",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "権限",
+    "path": "user.groups.granted_authorities",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "更新日時",
+    "path": "user.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

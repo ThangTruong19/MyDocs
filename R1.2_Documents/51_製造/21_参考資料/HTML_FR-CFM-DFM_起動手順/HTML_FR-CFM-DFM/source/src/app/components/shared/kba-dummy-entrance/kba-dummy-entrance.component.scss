@@ -1,0 +1,25 @@
+.groups {
+  display: flex;
+  width: 300px;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+
+  .group,
+  .btn {
+    width: 100%;
+  }
+}
+
+.filter {
+  width: 300px;
+  margin: 0 auto 10px;
+
+  * {
+    width: 300px;
+  }
+}
+
+input {
+  display: block;
+}

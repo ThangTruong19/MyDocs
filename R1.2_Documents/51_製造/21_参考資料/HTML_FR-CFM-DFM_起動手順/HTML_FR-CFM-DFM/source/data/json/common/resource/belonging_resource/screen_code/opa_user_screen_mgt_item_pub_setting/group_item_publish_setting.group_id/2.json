@@ -1,0 +1,36 @@
+[
+  {
+    "path": "group_item_publish_setting.paper_size_id",
+    "name": "稼働レポート出力用紙サイズ",
+    "help": "稼働レポート出力用紙サイズのヘルプ文言",
+    "type": "10",
+    "placeholder_text": "",
+    "memo": "",
+    "items": [{
+        "key": "レターサイズ,8 1/2x11インチ",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "B5",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "B4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "A5",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "A4",
+        "value": "5",
+        "kind": "D"
+      }
+    ]
+  }
+]

@@ -1,0 +1,122 @@
+<section id="KBA-function-publish-setting-confirm-modal" class="KBA-modal">
+  <header class="KBA-modal-header modal-header">
+    <h1>{{ labels.confirm_modal_title }}</h1>
+  </header>
+
+  <div class="KBA-modal-body modal-body">
+    <app-kba-tandem-confirm
+      [desc]="modalTandemValues.listDesc"
+      [val]="modalTandemValues.listVal"
+    >
+    </app-kba-tandem-confirm>
+
+    <div class="setting-list-content">
+      <ul role="tablist" class="tablist nav nav-pills flex-column">
+        <li class="nav-item" *ngFor="let category of categories; let i = index">
+          <a
+            class="nav-link"
+            href="javascript:void(0)"
+            role="tab"
+            (click)="onTabChange(category.id)"
+            [ngClass]="{ active: category.id === currentCategoryId }"
+            appKbaScrollTo
+            [scrollTarget]="'.category-modal-' + category.id"
+            [scrollArea]="'.table-container-modal'"
+          >
+            {{ category.name }}
+          </a>
+        </li>
+      </ul>
+      <div class="table-container table-container-modal">
+        <ng-container *ngFor="let category of categories; let j = index">
+          <div class="setting-list">
+            <table
+              class="KBA-table table table-bordered category-table-modal category-modal-{{
+                category.id
+              }}"
+            >
+              <thead class="KBA-table-thead">
+                <ng-container *ngFor="let th of thLists[category.id]">
+                  <th
+                    *ngIf="th.displayable"
+                    class="KBA-index-th th-{{ th.name }}"
+                    [ngClass]="{
+                      fixed: th.name !== 'name',
+                      'disable-sort': !th.sortable
+                    }"
+                  >
+                    <span>{{ th.label }}</span>
+                  </th>
+                </ng-container>
+              </thead>
+              <tbody class="">
+                <tr
+                  *ngFor="
+                    let data of categoryLists[category.id].originList;
+                    let i = index
+                  "
+                >
+                  <ng-container
+                    *ngFor="let title of thList"
+                    [ngSwitch]="title.name"
+                  >
+                    <td *ngSwitchCase="'name'" class="td-{{ title.name }}">
+                      {{ data[title.name] }}
+                    </td>
+                    <td
+                      *ngSwitchCase="'dfm'"
+                      class="td-{{ title.name }} fixed text-center"
+                    >
+                      <app-external-app-publish-setting
+                        [publishKind]="
+                          data.app_kind[ExternalAppKind.dfm].publish_kind
+                        "
+                        [editable]="false"
+                        [index]="i"
+                        [labels]="labels"
+                        [isConfirm]="true"
+                      >
+                      </app-external-app-publish-setting>
+                    </td>
+                    <td
+                      *ngSwitchCase="'cfm'"
+                      class="td-{{ title.name }} fixed text-center"
+                    >
+                      <app-external-app-publish-setting
+                        [publishKind]="
+                          data.app_kind[ExternalAppKind.cfm].publish_kind
+                        "
+                        [editable]="false"
+                        [index]="i"
+                        [labels]="labels"
+                        [isConfirm]="true"
+                      >
+                      </app-external-app-publish-setting>
+                    </td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <footer class="KBA-modal-footer modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary cancel"
+      (click)="onClickClose()"
+    >
+      {{ labels.close }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary submit"
+      (click)="onClickSubmit()"
+    >
+      {{ labels.ok_btn }}
+    </button>
+  </footer>
+</section>

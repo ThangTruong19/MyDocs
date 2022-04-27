@@ -1,0 +1,26 @@
+@keyframes onload-fade-in {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.container-global {
+  &.loaded {
+    animation-name: onload-fade-in;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+  }
+}

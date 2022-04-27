@@ -1,0 +1,51 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "IDキーID",
+    "path": "id_keys.id_key_id",
+    "control_code": "1",
+    "display_code": "2"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "IDキー番号",
+    "path": "id_keys.id_key_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "オペレータID",
+    "path": "id_keys.operator.id",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "オペレータコード",
+    "path": "id_keys.operator.operator_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "オペレータ名",
+    "path": "id_keys.operator.current_operator_label.operator_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "オペレータ更新日時",
+    "path": "id_keys.operator.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "IDキー更新日時",
+    "path": "id_keys.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

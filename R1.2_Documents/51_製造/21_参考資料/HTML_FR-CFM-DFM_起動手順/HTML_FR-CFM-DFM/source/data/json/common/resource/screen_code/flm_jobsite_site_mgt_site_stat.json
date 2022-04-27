@@ -1,0 +1,38 @@
+[
+  {
+    "path": "year_month_from",
+    "name": "対象期間開始月",
+    "help": "対象期間開始月のヘルプ文言",
+    "type": -42,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "year_month_to",
+    "name": "対象期間終了月",
+    "help": "対象期間終了月のヘルプ文言",
+    "type": -41,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "date_from",
+    "name": "対象期間開始日",
+    "help": "対象期間開始日のヘルプ文言",
+    "type": -42,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "date_to",
+    "name": "対象期間終了日",
+    "help": "対象期間終了日のヘルプ文言",
+    "type": -41,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

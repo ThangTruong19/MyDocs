@@ -1,0 +1,27 @@
+<header class="detail-header">
+  <div class="util-bar disable-hover">
+    <button type="button" class="btn-back" (click)="handleClickBack()">
+      <i class="fa fa-angle-left"></i>
+      {{ labels.back }}
+    </button>
+    <h2 class="header-title">{{ title }}</h2>
+  </div>
+  <div class="tabs-container">
+    <ul class="tabs">
+      <li class="tab" [ngClass]="{ active: activeTab === 'stat' }">
+        <a
+          class="tab-link"
+          [routerLink]="'/site-management/detail/stat/' + id"
+          >{{ labels.tab_stat }}</a
+        >
+      </li>
+      <li class="tab" [ngClass]="{ active: activeTab === 'map' }">
+        <a
+          class="tab-link"
+          [routerLink]="'/site-management/detail/map/' + id"
+          >{{ labels.tab_map }}</a
+        >
+      </li>
+    </ul>
+  </div>
+</header>

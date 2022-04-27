@@ -1,0 +1,23 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "IDキーID",
+    "path": "id_keys.id_key_id",
+    "control_code": "1",
+    "display_code": "2"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "IDキー番号",
+    "path": "id_keys.id_key_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "オペレータID",
+    "path": "id_keys.operator.id",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ユーザ名（英語）",
+    "path": "users.identification.label_english",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

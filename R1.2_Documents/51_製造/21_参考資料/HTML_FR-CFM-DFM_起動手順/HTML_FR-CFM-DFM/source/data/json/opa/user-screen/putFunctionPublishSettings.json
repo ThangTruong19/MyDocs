@@ -1,0 +1,27 @@
+{
+  "result_data": {
+    "group_function_publish_setting": {
+      "function_publish_settings": [
+        {
+          "external_app_publish_settings": [
+            {
+              "permission_kind_name": "設定可",
+              "permission_kind": "1",
+              "publish_kind_name": "非公開",
+              "publish_kind": "0",
+              "external_app_kind_name": "顧客向け",
+              "external_app_kind": "1"
+            }
+          ],
+          "order": "1",
+          "name": "車両リスト/位置",
+          "id": "38"
+        }
+      ],
+      "update_datetime": "2017-05-23T23:59:59.999Z",
+      "group_label_english": "groupEn",
+      "group_label": "groupA",
+      "group_id": "1"
+    }
+  }
+}

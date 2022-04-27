@@ -1,0 +1,52 @@
+.time-difference-title {
+  display: inline-block;
+}
+
+.row {
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+
+  &.row-select-type {
+    min-height: 33px;
+    padding: 0;
+    margin: 0;
+
+    label {
+      margin-bottom: 0;
+      font-weight: normal;
+    }
+  }
+}
+
+.list-select-type {
+  display: flex;
+  align-items: center;
+
+  &:not(:first-child) {
+    margin-left: 25px;
+  }
+
+  input {
+    margin-right: 6px;
+  }
+}
+
+.time-difference-wrapper {
+  margin-top: 10px;
+
+  .time-difference {
+    display: flex;
+
+    .time-difference_block {
+      display: flex;
+      width: 140px;
+      align-items: center;
+
+      .time-difference_select {
+        width: 100px;
+        margin-right: 6px;
+      }
+    }
+  }
+}

@@ -1,0 +1,182 @@
+<div class="PageHeader PageHeader--liquid">
+
+  <div class="PageHeader_Inner">
+
+    <button
+      (click)="onClickHome($event)"
+      type="button"
+      class="PageHeader_Logo"
+    >
+      <span class="PageHeader_LogoInner">
+        <img
+          class="PageHeader_LogoImg"
+          src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20106%2016%22%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M27.64%2012.49c-1.54%201.2-3.07%202.05-4.42%202.52%201.29-.62%202.72-1.62%204.13-2.95%203.85-3.62%206.12-8.32%205.08-10.49-.69-1.45-2.69-1.41-5.09-.14A8.269%208.269%200%200%200%2022.81.01c-4.03-.06-7.42%202.75-8.15%206.5.88-1.04%201.92-2.07%203.09-2.98C19.3%202.31%2020.83%201.46%2022.18%201c-1.29.62-2.72%201.62-4.13%202.95-3.12%202.93-5.2%206.57-5.33%209L8.76%208.22%2013.91%202H8.83L5%206.94V2H0v12h5V9.06L8.83%2014h4.14c.69%202%202.69%201.63%205.09.36%201.29.87%202.84%201.5%204.53%201.53%204.03.06%207.42-2.69%208.15-6.44-.89%201.04-1.93%202.12-3.1%203.04zm2.66-9.71c.31.64.32%201.51.1%202.5a7.972%207.972%200%200%200-2.61-3.55c1.18-.16%202.09.17%202.51%201.05zM15.11%2013.22c-.31-.64-.32-1.51-.09-2.5a7.972%207.972%200%200%200%202.61%203.55c-1.19.16-2.1-.16-2.52-1.05zM50%202v3h4v9h5V5h4V2zM101.54%207.87L105.83%202h-4.98l-1.8%202.64L97.26%202h-4.97l4.28%206.09-3.93%205.9L87.86%202h-5.75l-4.82%2012h4.27l.89-2h5.08l.89%202h8.67l1.97-2.9%201.97%202.9H106l-4.46-6.13zM83.47%209l1.52-4.35L86.5%209h-3.03zM75.39%209.74c-.09-.22-.24-.46-.43-.6.91-.79%201.49-1.75%201.49-3.03%200-2.74-1.61-4.1-4.39-4.1H64v12h5v-4h1.23c.53%200%20.98.19%201.16.65L72.57%2014h4.44l-1.62-4.26zM70.99%207H69V5h1.99c.65%200%201.19.36%201.19%201-.01.64-.54%201-1.19%201zM43.8%202l-2.37%207.49L39.06%202H34v12h4V6.95L39.73%2014h3.41L45%206.95V14h4V2z%22%2F%3E%3CradialGradient%20id%3D%22a%22%20cx%3D%2220.289%22%20cy%3D%225.623%22%20r%3D%226.549%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fff%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%232876a6%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23496486%22%2F%3E%3C%2FradialGradient%3E%3Cellipse%20fill%3D%22url(%23a)%22%20cx%3D%2222.69%22%20cy%3D%227.98%22%20rx%3D%224.11%22%20ry%3D%224.02%22%2F%3E%3C%2Fsvg%3E"
+          alt="KOMTRAX"
+          width="106"
+          height="16"
+        >
+      </span>
+    </button>
+
+    <div
+      *ngIf="isLoggedIn"
+      class="PageHeader_Menu"
+    >
+      <div class="PageHeader_MenuItem">
+        <button
+          [class.is-disabled]="isHome"
+          (click)="onClickHome($event)"
+          type="button"
+          class="PageHeader_MenuItemLink"
+        >
+          <div class="PageHeader_MenuItemLinkInner">
+            <span class="PageHeader_MenuHomeIcon"><span class="Icon-home"></span></span>
+          </div>
+        </button>
+      </div>
+      <div
+        *ngIf="isPermittedUserLink()"
+        class="PageHeader_User"
+      >
+        <div *ngIf="userItems" class="Dropdown">
+          <button
+            commonFlyoutTrigger
+            [attr.aria-controls]="'PageHeaderUserLinkDropdown'"
+            type="button"
+            class="PageHeader_UserLink"
+          >
+            <div class="PageHeader_UserLinkInner">
+              <div class="PageHeader_UserIcon">
+                <span class="Icon-user"></span>
+              </div>
+              <div class="PageHeader_UserName">{{userItems.name}}</div>
+              <div class="Icon-down-dir"></div>
+            </div>
+          </button>
+
+          <div
+            commonFlyout
+            [attr.aria-controls]="'PageHeaderUserLinkDropdown'"
+            class="Dropdown_Body"
+          >
+            <div class="Dropdown_Items">
+              <a
+                *ngFor="let item of userItems.links"
+                commonFlyoutItem
+                [class.is-disabled]="!item.isEnabled"
+                (click)="onClickUserItem(item)"
+                class="Dropdown_Item  is-disabled"
+              >
+                <span class="Dropdown_Text">{{ item.label }}</span>
+              </a>
+              <div
+                *ngIf="userItems.email || userItems.groupName"
+                commonFlyoutItem
+                class="Dropdown_LoginUserInfo"
+              >
+                <span class="Dropdown_LoginUserInfoOptionalTexts">
+                  <span
+                    *ngIf="userItems.email"
+                    class="Dropdown_LoginUserInfoOptionalText"
+                  >{{ userItems.email }}</span>
+                  <span
+                    *ngIf="userItems.groupName"
+                    class="Dropdown_LoginUserInfoOptionalText"
+                  >{{ userItems.groupName }}</span>
+                </span>
+              </div>
+              <!-- サインアウト -->
+              <div *ngIf="signOutIsPermitted" class="Dropdown_SignoutContainer">
+                <button
+                  commonFlyoutTrigger
+                  [attr.aria-controls]="'CommonHeaderSignOut'"
+                  class="Dropdown_SignoutButton"
+                  type="button"
+                >
+                  <span class="Dropdown_SignoutButtonInner">
+                    <span class="Dropdown_SignoutButtonText">{{labels?.logout}}</span>
+                    <span class="Dropdown_SignoutButtonIcon  Icon-logout"></span>
+                  </span>
+                </button>
+                <common-sign-out-dialog
+                  commonFlyout
+                  [attr.aria-controls]="'CommonHeaderSignOut'"
+                  [labels]="labels"
+                  (signOut)="onClickSignOut()"
+                ></common-sign-out-dialog>
+              </div>
+              <!-- /サインアウト -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="isPermittedMenuItem()"
+        class="PageHeader_MenuItem"
+      >
+        <div class="Dropdown">
+          <button
+            commonFlyoutTrigger
+            [attr.aria-controls]="'PageHeaderMenuItemDropdown'"
+            type="button"
+            class="Dropdown_Trigger"
+          >
+            <div class="Dropdown_TriggerInner">
+              <span class="Icon-cog"></span>
+              <span>{{ labels?.managementDropdown }}</span>
+              <span class="Icon-down-dir"></span>
+            </div>
+          </button>
+          <div
+            commonFlyout
+            [attr.aria-controls]="'PageHeaderMenuItemDropdown'"
+            class="Dropdown_Body"
+          >
+            <div class="Dropdown_Items" *ngFor="let item of headerItems">
+              <a
+                commonFlyoutItem
+                [class.is-disabled]="!item.isEnabled"
+                (click)="onClickHeaderItem(item)"
+                class="Dropdown_Item"
+              >
+                <span class="Dropdown_Text">{{ item.label }}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="configItems && configValues"
+        class="PageHeader_MenuItem"
+      >
+        <button
+          commonFlyoutTrigger
+          #configTrigger
+          [attr.aria-controls]="'CommonPageHeaderConfigDropdown'"
+          type="button"
+          class="ConfigFlyoutTrigger"
+        >
+          <div class="ConfigFlyoutTrigger_Inner">
+            <span class="ConfigFlyoutTrigger_IconPlace"><span class="Icon-cog"></span></span>
+            <span>{{ labels?.configDropdown }}</span>
+          </div>
+        </button>
+        <common-config-dialog
+          commonFlyout
+          [id]="'CommonPageHeaderConfigDropdown'"
+          [attr.aria-controls]="'CommonPageHeaderConfigDropdown'"
+          [isAlignRight]="true"
+          [configItems] ="configItems"
+          [configValues]="configValues"
+          [labels]      ="configLabels"
+          (submitConfig)="onSubmitConfig($event)"
+        ></common-config-dialog>
+      </div>
+
+    </div><!-- /.PageHeader_Menu -->
+
+  </div><!-- /.PageHeader_Inner -->
+
+</div><!-- /.PageHeader -->

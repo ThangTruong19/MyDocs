@@ -1,0 +1,23 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": " 分類名称",
+    "path": "classes.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "担当DB",
+    "path": "classes.support_distributor_label",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "分類区分",
+    "path": "classes.kind_name",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

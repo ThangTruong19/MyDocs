@@ -1,0 +1,23 @@
+<section id="KBA-admin-menu">
+  <div class="container-fluid">
+    <h2 class="KBA-page-title">{{ labels && labels.title }}</h2>
+    <div class="KBA-home-body">
+      <app-kba-menu
+        (orderChanged)="refresh()"
+        [wrapperWidth]="wrapperWidth"
+      ></app-kba-menu>
+      <div class="KBA-home-content-right">
+        <app-kba-home-notice
+          [labels]="labels"
+          [notifications]="notifications"
+        ></app-kba-home-notice>
+        <app-kba-home-trademark [labels]="labels"></app-kba-home-trademark>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-kba-sidemenu
+  [isLoading]="isLoading"
+  (orderChanged)="refresh()"
+></app-kba-sidemenu>

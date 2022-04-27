@@ -1,0 +1,450 @@
+swagger: '2.0'
+info:
+  title: 次世代KOMTRAX API
+  description: |
+    # 変更履歴
+    <table>
+      <tr><th>日付</th><th>変更内容</th></tr>
+      <tr>
+        <td>-</td>
+        <td>
+          作成<br>
+        </td>
+      </tr>
+    </table>
+  version: ""
+paths:
+  #パス名（パスパラメータを用いる場合{xxx_id}を入れる）
+  /car/customizes/usage/definition/histories/search/file_create:
+  #path_start
+    #get|put|post|delete
+    post:
+      # API名
+      summary: カスタマイズ操作履歴ファイル作成API
+      produces:
+        - application/json
+      # API説明文
+      description: |
+        カスタマイズ操作履歴ファイルを作成する。
+        <h1>特記事項</h1>
+        X-Sortヘッダに指定可能なソートキーを以下に列挙する。<br>
+        <ul>
+          <li>customizes_usage_definition_histories.datetime</li>
+          <li>customizes_usage_definition_histories.group_label</li>
+          <li>customizes_usage_definition_histories.group_label_english</li>
+          <li>customizes_usage_definition_histories.user_label</li>
+          <li>customizes_usage_definition_histories.category_code</li>
+          <li>customizes_usage_definition_histories.code</li>
+          <li>customizes_usage_definition_histories.category_name</li>
+          <li>customizes_usage_definition_histories.name</li>
+          <li>customizes_usage_definition_histories.model</li>
+          <li>customizes_usage_definition_histories.type_rev</li>
+          <li>customizes_usage_definition_histories.serial</li>
+          <li>customizes_usage_definition_histories.maker_name</li>
+          <li>customizes_usage_definition_histories.division_name</li>
+          <li>customizes_usage_definition_histories.content</li>
+          <li>customizes_usage_definition_histories.app_code</li>
+          <li>customizes_usage_definition_histories.app_name</li>
+          <li>customizes_usage_definition_histories.kind</li>
+          <li>customizes_usage_definition_histories.kind_name</li>
+        </ul>
+        未指定時のデフォルトソートは"customizes_usage_definition_histories.datetime"の降順とする。
+        
+        <hr>
+        <h1>ファイル形式</h1>
+        API入出力ファイルの仕様は<a href="https://miot-msd.jp.fujitsu.com/komtrax/resources/api/spec/komtrax_paths/applications/format/F006002_applications-histories-search-file_create.pdf" target="_blank">API入出力ファイル仕様書</a>に示す。<br>
+        作成可能なファイル形式を下記に示す。<br>
+        <table>
+          <tr><th align="left">ファイル形式</th><th align="left">File-Content-Type</th></tr>
+          <tr><td><a href="https://miot-msd.jp.fujitsu.com/komtrax/resources/api/spec/komtrax_paths/applications/format/applications-histories-search-file_create.csv">csv</a></td><td>text/comma-separated-values</td></tr>
+          <tr><td><a href="https://miot-msd.jp.fujitsu.com/komtrax/resources/api/spec/komtrax_paths/applications/format/applications-histories-search-file_create.tsv">tsv</a></td><td>text/tab-separated-values</td></tr>
+          <tr><td><a href="https://miot-msd.jp.fujitsu.com/komtrax/resources/api/spec/komtrax_paths/applications/format/applications-histories-search-file_create.xlsx">excel</a></td><td>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</td></tr>
+        </table>
+        <hr>
+        <h1>同期/非同期実行</h1>
+        同期/非同期実行の 可/不可 を下記に示す。<br>
+        作成ファイルのサーバからの取得にはファイル取得APIを使用する。
+        <table>
+          <tr><th align="left">実行</th><th align="left">可/不可</th></tr>
+          <tr><td>同期</td><td>○</td></tr>
+          <tr><td>非同期</td><td>－</td></tr>
+        </table>
+        <hr>
+      # リクエスト
+      parameters:
+        #共通のヘッダ
+        #common_header
+        #paging_header
+        #sort_header
+        - name: リクエストボディ
+          in: body
+          #項目の論理名 [使用可能文字] 桁/文字数
+          description: カスタマイズ操作履歴検索条件
+          #必須項目かどうか true|false
+          required: false
+          #bodyの中身
+          schema:
+            type: object
+            title: REQUEST_BODY
+            required:
+              - file_create_condition
+            properties:
+              operation_history:
+                type: object
+                description: "カスタマイズ操作履歴"
+                required:
+                  - date_from
+                  - date_to
+                properties:
+                  date_from:
+                    type: string
+                    description: "日付（FROM）"
+                    minLength: 10
+                    maxLength: 10
+                    pattern: "日付(YYYY-MM-DD固定)"
+                    example: "2018-07-05"
+                  date_to:
+                    type: string
+                    description: "日付（TO）"
+                    minLength: 10
+                    maxLength: 10
+                    pattern: "日付(YYYY-MM-DD固定)"
+                    example: "2018-07-06"
+                  app_code:
+                    type: string
+                    description: "アプリコード -99:未指定と同等"
+                    minLength: 36
+                    maxLength: 36
+                    pattern: "半角英数記号"
+                    example: "080c70ec-bc14-422b-9d1f-xxxxxxxxxxxx"
+                  category_code:
+                    type: string
+                    description: "操作履歴カテゴリコード（大分類） -99:未指定と同等"
+                    minLength: 1
+                    maxLength: 64
+                    pattern: "半角英数字,ハイフンマイナス"
+                    example: "LOCK1"
+                  code:
+                    type: string
+                    description: "操作履歴コード（小分類） -99:未指定と同等"
+                    minLength: 1
+                    maxLength: 64
+                    pattern: "半角英数字,ハイフンマイナス"
+                    example: "201839"
+                  group_kind_id:
+                    type: string
+                    description: "グループ種別ID -99:未指定と同等"
+                    minLength: 1
+                    maxLength: 19
+                    pattern: "半角数字,ハイフンマイナス"
+                    example: "3"
+                  group_id:
+                    type: string
+                    description: "グループID -99:未指定と同等"
+                    minLength: 1
+                    maxLength: 19
+                    pattern: "半角数字,ハイフンマイナス"
+                    example: "17929"
+                  model:
+                    type: string
+                    description: "機種 ワイルドカード使用可能"
+                    minLength: 1
+                    maxLength: 20
+                    pattern: "半角英数字,ワイルドカード"
+                    example: "SK714"
+                  type_rev:
+                    type: string
+                    description: "型式(小変形含む) ワイルドカード使用可能"
+                    minLength: 1
+                    maxLength: 15
+                    pattern: "半角英数字,ワイルドカード"
+                    example: "A12345M0"
+                  serials:
+                    type: array
+                    items:
+                      type: string
+                      description: "機番 ワイルドカード使用可能"
+                      minLength: 1
+                      maxLength: 20
+                      pattern: "半角英字,半角数字,半角記号(\"、'、#、%、&、<、> 、*以外),ワイルドカード"
+                      example: "A387"
+                  maker_code:
+                    type: string
+                    description: "メーカコード -99:未指定と同等"
+                    minLength: 3
+                    maxLength: 4
+                    pattern: "半角数字,ハイフンマイナス"
+                    example: "0001"
+                  division_code:
+                    type: string
+                    description: "車種コード -99:未指定と同等"
+                    minLength: 3
+                    maxLength: 4
+                    pattern: "半角数字,ハイフンマイナス"
+                    example: "0001"
+                  search_keyword:
+                    type: string
+                    description: "検索キーワード：操作履歴内容および補足情報の検索キーワード ※ワイルドカード使用可能"
+                    minLength: 1
+                    maxLength: 2048
+                    pattern: "ALL"
+                    example: "車両の登録*"
+              file_create_condition:
+                type: object
+                description: ファイル作成条件
+                title: FILE_CREATE_CONDITION
+                required:
+                  - file_content_type
+                  - processing_type
+                properties:
+                  file_label:
+                    type: string
+                    description: |
+                      ファイル名
+                      デフォルトのファイル名は「applications-histories＋年月日時分秒（グループのローカル）＋拡張子」（X-Langに従う）となる
+                    minLength: 1
+                    maxLength: 128
+                    pattern: "ALL(ハイフンマイナス、半角アンダーバー、半角ピリオド以外の記号を除く)、記号で終わらないこと"
+                    example: "applications-histories20171113125036.csv"
+                  file_content_type:
+                    type: string
+                    description: |
+                      ファイル形式
+                      ファイル形式.File-Content-Typeで定義されている文字列を指定する。
+                    minLength: 1
+                    maxLength: 65
+                    # 使用可能文字は各APIで使用できるファイル形式に修正すること
+                    pattern: "text/comma-separated-values=CSVファイル、application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=EXCELファイル"
+                    example: "text/comma-separated-values"
+                  processing_type:
+                    type: string
+                    description: |
+                      処理区分
+                      0：同期のみとする。ファイルを作成し、作成したファイルIDを返却する。
+                    enum:
+                      - "0:同期"
+                    minLength: 1
+                    maxLength: 1
+                    pattern: 半角数字
+                    example: "0"
+                  file_request_label:
+                    type: string
+                    description: |
+                      ファイル要求名
+                      省略時はリクエスト時のX-Lang指定に従ったデフォルト名を補填する
+                    minLength: 1
+                    maxLength: 255
+                    pattern: "ALL"
+                    example: "操作履歴ファイル作成"
+      # タグはnamespaceとする
+      tags:
+        - applications
+      # レスポンス
+      responses:
+        '200':
+          description: 作成したファイルのファイルIDを返却する。
+          schema:
+            type: object
+            properties:
+              result_data:
+                $ref: '#/definitions/FILE_CREATE'
+
+          headers:
+            X-From:
+              description:
+                リクエスト未指定時も含め取得開始位置を返却する
+              type: number
+            X-Count:
+              description:
+                リクエスト未指定時も含め取得件数を返却する
+              type: number
+            X-TotalCount:
+              description:
+                ページング範囲外も含めた総件数を返却する
+              type: number
+            X-Sort:
+              description:
+                リクエスト未指定時も含めソート内容を返却する
+              type: string
+            X-FileRowCount:
+              description:
+                作成されるファイルのデータ行数（ヘッダーは含まない）を返却する
+              type: number
+        #common_error
+  #path_end
+definitions:
+  OPERATION_HISTORY:
+    type: object
+    properties:
+      datetime:
+        type: string
+        description: "日時"
+        pattern: "日時（X-DateFormatの設定に従う）"
+        example: "2012/09/30T02:00:00"
+      group_id:
+        type: string
+        description: "グループID"
+        minLength: 1
+        maxLength: 19
+        pattern: "半角数字"
+        example: "17929"
+      group_label:
+        type: string
+        description: "グループ名称"
+        minLength: 1
+        maxLength: 255
+        pattern: "ALL"
+        example: "IT 代理店"
+      group_label_english:
+        type: string
+        description: "グループ名称（英語）"
+        minLength: 1
+        maxLength: 255
+        pattern: "半角英数記号,半角スペース"
+        example: "IT distributor"
+      user_label:
+        type: string
+        description: "ユーザ名称"
+        minLength: 1
+        maxLength: 255
+        pattern: "ALL"
+        example: "小松太郎"
+      category_code:
+        type: string
+        description: "操作履歴カテゴリコード（大分類）"
+        minLength: 1
+        maxLength: 64
+        pattern: "半角英数字,ハイフンマイナス"
+        example: "LOCK1"
+      code:
+        type: string
+        description: "操作履歴コード（小分類）"
+        minLength: 1
+        maxLength: 64
+        pattern: "半角英数字,ハイフンマイナス"
+        example: "201839"
+      category_name:
+        type: string
+        description: "操作履歴カテゴリ名称（大分類）"
+        minLength: 1
+        maxLength: 1024
+        pattern: "ALL（X-Langの設定に従う）"
+        example: "ロック操作"
+      name:
+        type: string
+        description: "操作履歴名称（小分類）"
+        minLength: 1
+        maxLength: 1024
+        pattern: "ALL（X-Langの設定に従う）"
+        example: "パスワードロック設定"
+      model:
+        type: string
+        description: "機種"
+        minLength: 1
+        maxLength: 20
+        pattern: "半角英数字"
+        example: "SK714"
+      type_rev:
+        type: string
+        description: "型式(小変形含む) 小変形の存在しない型式の場合、型式と同値にて返却"
+        minLength: 1
+        maxLength: 15
+        pattern: "半角英数字"
+        example: "A12345M0"
+      serial:
+        type: string
+        description: "機番"
+        minLength: 1
+        maxLength: 20
+        pattern: "半角英数記号(\"、'、#、%、&、<、> 、*以外)"
+        example: "A387"
+      maker_name:
+        type: string
+        description: "メーカ名称"
+        minLength: 1
+        maxLength: 255
+        pattern: "ALL（X-Langの設定に従う）"
+        example: "コマツ"
+      division_name:
+        type: string
+        description: "車種名称"
+        minLength: 1
+        maxLength: 255
+        pattern: "ALL（X-Langの設定に従う）"
+        example: "スキッドステアローダ"
+      content:
+        type: string
+        description: "操作履歴内容"
+        minLength: 1
+        maxLength: 2048
+        pattern: "ALL（X-Langの設定に従う）"
+        example: "パスワードロック設定を行いました。"
+      supplementary_informations:
+        type: array
+        items:
+          type: object
+          description: "補足情報（配列の並び順はマスターの表示順に従う）"
+          example: {code: "serial", name: "機番", value: "A387"}
+          properties:
+            value:
+              type: string
+              description: "補足情報値"
+              minLength: 1
+              maxLength: 255
+              pattern: "ALL"
+              example: "A387"
+            name:
+              type: string
+              description: "補足情報名称"
+              minLength: 1
+              maxLength: 1024
+              pattern: "ALL（X-Langの設定に従う）"
+              example: "機番"
+            code:
+              type: string
+              description: "補足情報コード"
+              minLength: 1
+              maxLength: 255
+              pattern: "半角英数字"
+              example: "serial"
+      app_code:
+        type: string
+        description: "アプリコード"
+        minLength: 5
+        maxLength: 5
+        pattern: "半角英数字"
+        example: "JPAA1"
+      app_name:
+        type: string
+        description: "アプリ名称"
+        minLength: 1
+        maxLength: 1024
+        pattern: "ALL（X-Langの設定に従う）"
+        example: "CFM"
+      kind:
+        type: string
+        description: "操作履歴種別"
+        minLength: 1
+        maxLength: 1
+        pattern: "半角数字"
+        example: "1"
+        enum:
+          - 1:API操作履歴
+          - 2:車両設定イベント履歴
+      kind_name:
+        type: string
+        description: "操作履歴種別名称"
+        minLength: 1
+        maxLength: 1024
+        pattern: "ALL（X-Langの設定に従う）"
+        example: "API操作履歴"
+  FILE_CREATE:
+    type: object
+    properties:
+      file_id:
+        type: string
+        description: "ファイル取得APIで使用するファイルID"
+        minLength: 1
+        maxLength: 19
+        pattern: 半角数字
+        example: "1"

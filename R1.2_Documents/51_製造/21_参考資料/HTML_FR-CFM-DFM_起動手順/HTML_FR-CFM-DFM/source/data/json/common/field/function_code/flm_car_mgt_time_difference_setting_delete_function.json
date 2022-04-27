@@ -1,0 +1,51 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "メーカ",
+    "path": "cars.car_identification.maker_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "機種",
+    "path": "cars.car_identification.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "型式",
+    "path": "cars.car_identification.type_rev",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "機番",
+    "path": "cars.car_identification.serial",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "担当DB",
+    "path": "cars.support_distributor.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "更新日時",
+    "path": "cars.car_identification.update_datetime",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "ID",
+    "path": "cars.car_identification.id",
+    "control_code": "1",
+    "display_code": "0"
+  }
+]

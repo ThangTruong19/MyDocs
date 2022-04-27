@@ -1,0 +1,32 @@
+[
+  {
+    "path": "car.rental.reservation2.customer_id",
+    "name": "顧客ID",
+    "type": "10",
+    "specified_format_kind": "1",
+    "help": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car.rental.reservation2.customer_label",
+    "name": "顧客名称",
+    "type": "10",
+    "specified_format_kind": "1",
+    "help": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "顧客2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  }
+]

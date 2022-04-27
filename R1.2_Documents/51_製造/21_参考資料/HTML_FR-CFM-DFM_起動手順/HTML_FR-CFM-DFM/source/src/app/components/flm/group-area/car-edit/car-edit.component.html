@@ -1,0 +1,137 @@
+<section id="KBA-garea-car-form" *ngIf="!isLoading">
+  <div class="container-fluid">
+    <h2 class="KBA-area-new__title KBA-page-title">
+      {{ labels.title }}
+      <span class="KBA-car-identifier">
+        {{ carIdentifierLabel }}
+      </span>
+    </h2>
+
+    <div class="KBA-content">
+      <form class="KBA-form" name="areaForm" novalidate [formGroup]="areaForm">
+        <ul class="KBA-toggle-buttons">
+          <li *ngFor="let menuItem of areaMenu">
+            <button
+              class="btn KBA-toggle-button__on"
+              type="button"
+              [ngClass]="{ 'KBA-toggle-button__on': isCurrent(menuItem.no) }"
+              (click)="onChangeArea(menuItem)"
+            >
+              {{ menuItem.menuLabel }}
+            </button>
+          </li>
+        </ul>
+        <p class="KBA-form-table__required">
+          {{ labels.description_for_required }}
+        </p>
+        <table class="KBA-form-table table table-bordered">
+          <tbody class="KBA-form-table-tbody">
+            <tr
+              app-kba-form-table-text
+              class="KBA-form-row"
+              [formGroup]="areaForm"
+              [kbaName]="'label'"
+              [kbaParams]="currentMenu"
+              [kbaResource]="resource.car_area"
+              [kbaLabel]="labels"
+              [colspan]="3"
+              [required]="true"
+              [maxLength]="64"
+              [path]="'car_area.label'"
+              [errorData]="errorData"
+            ></tr>
+          </tbody>
+        </table>
+        <div class="KBA-map">
+          <app-kba-area-menu
+            [formGroup]="areaForm"
+            [initMap]="initMap"
+            [number]="currentMenu.no"
+            [menuOpen]="menuOpen"
+            [isCurrent]="true"
+            [labels]="labels"
+            [resource]="resource"
+            [resourceType]="'car_area'"
+            [editable]="true"
+            [selectType]="currentMenu.selectType"
+            [pointNum]="pointNum"
+            [typeResourceValues]="
+              resource.car_area.feature.geometry.type.values
+            "
+            [polyPoints]="currentMenu.polyPoints"
+            [rectData]="currentMenu.rectData"
+            [errorData]="errorData"
+            (delPolyPoint)="onChangePoints($event)"
+            (changeMenuOpen)="menuOpen = $event"
+            (changeSelectType)="onChangeSelectType($event)"
+            (changePolyPoints)="onChangePolyPoints($event)"
+          >
+          </app-kba-area-menu>
+          <app-kba-area-map
+            #areaMapComponent
+            [initMap]="initMap"
+            [no]="currentMenu.no"
+            [labels]="labels"
+            [menuWidth]="312"
+            [menuOpen]="menuOpen"
+            [selectType]="currentMenu.selectType"
+            [polyPoints]="currentMenu.polyPoints"
+            [rectData]="currentMenu.rectData"
+            [others]="others"
+            [editable]="true"
+            [isUpdate]="isUpdate"
+            (changePoints)="onChangePoints($event)"
+            (changeRect)="onChangeRect($event)"
+          >
+          </app-kba-area-map>
+        </div>
+        <table class="KBA-form-table table table-bordered">
+          <tbody class="KBA-form-table-tbody">
+            <tr
+              app-kba-form-table-textarea
+              class="KBA-form-row"
+              [formGroup]="areaForm"
+              [kbaName]="'description'"
+              [kbaParams]="currentMenu"
+              [kbaResource]="resource.car_area"
+              [kbaLabel]="labels"
+              [colspan]="3"
+              [maxLength]="255"
+              [path]="'car_area.description'"
+              [errorData]="errorData"
+            ></tr>
+          </tbody>
+        </table>
+
+        <footer class="KBA-form-footer-fixed">
+          <a
+            *ngIf="currentMenu.isUpdate"
+            href="javascript:void(0)"
+            (click)="onClickDelete()"
+            class="btn btn-link"
+          >
+            {{ labels && labels.delete_link }}
+          </a>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickSubmit()"
+            [disabled]="isFormInvalid()"
+          >
+            {{ labels && labels.submit }}
+          </button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #deleteModalContent>
+    <app-kba-tandem-confirm
+      [desc]="deleteMoalValues.listDesc"
+      [val]="deleteMoalValues.listVal"
+    >
+    </app-kba-tandem-confirm>
+  </ng-template>
+</section>
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>
+<app-kba-alert></app-kba-alert>

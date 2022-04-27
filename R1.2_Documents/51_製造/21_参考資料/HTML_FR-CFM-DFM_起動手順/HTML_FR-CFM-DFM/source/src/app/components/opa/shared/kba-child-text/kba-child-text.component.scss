@@ -1,0 +1,46 @@
+@import "../../../../../assets/styles/opa/_variable.scss";
+@import "../../../../../assets/styles/_util.scss";
+
+.KBA-child-text-container {
+  position: relative;
+  width: calc(100% + 15px);
+  padding: 15px;
+  margin: -15px -15px -15px 0;
+  background: $kba-sub-color;
+
+  .child-text-arrow {
+    position: absolute;
+    left: -30px;
+    width: 0;
+    height: 0;
+    border: solid 16px transparent;
+    border-right-color: $kba-sub-color;
+    transition: top 0.1s ease;
+  }
+}
+
+.child-text-item {
+  display: flex;
+
+  &:not(:last-of-type) {
+    margin-bottom: 10px;
+  }
+
+  .child-text-item-container {
+    width: 100%;
+  }
+
+  label {
+    display: block;
+    width: 100px;
+    padding-left: 10px;
+    margin-bottom: 0;
+    font-weight: normal;
+    line-height: 33px;
+    flex-shrink: 0;
+  }
+}
+
+.edited {
+  @include input-edited;
+}

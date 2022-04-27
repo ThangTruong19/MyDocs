@@ -1,0 +1,21 @@
+.th-custom_car_attributes_block_label,
+.td-custom_car_attributes_block_label,
+.th-custom_car_attributes_field_no,
+.td-custom_car_attributes_field_no {
+  flex-shrink: 0;
+}
+
+.th-custom_car_attributes_block_label,
+.td-custom_car_attributes_block_label {
+  width: 180px !important;
+}
+
+.th-custom_car_attributes_field_no,
+.td-custom_car_attributes_field_no {
+  width: 110px !important;
+}
+
+.td-custom_car_attributes_block_label,
+.td-custom_car_attributes_field_no {
+  text-align: center;
+}

@@ -1,0 +1,27 @@
+<td class="KBA-form-table__head" *ngIf="isVisible">
+  <label
+    class="KBA-form-table__label"
+    [ngClass]="{ 'KBA-form-table__required': required }"
+  >
+    {{ kbaResource[kbaName] && kbaResource[kbaName].name }}
+  </label>
+</td>
+<td [attr.colspan]="colspan" *ngIf="isVisible">
+  <p [hidden]="!notEditable">{{ viewData }}</p>
+  <div
+    [formGroup]="formGroup"
+    [hidden]="notEditable"
+    class="form-group"
+    [ngClass]="sizeClass"
+  >
+    <textarea
+      name="{{ name }}{{ number }}"
+      formControlName="{{ name }}"
+      (ngModelChange)="handleChange($event)"
+      maxlength="{{ maxLength }}"
+      class="KBA-textarea form-control"
+      [ngClass]="{ 'KBA-form-error': errorData | hasError: path }"
+    >
+    </textarea>
+  </div>
+</td>

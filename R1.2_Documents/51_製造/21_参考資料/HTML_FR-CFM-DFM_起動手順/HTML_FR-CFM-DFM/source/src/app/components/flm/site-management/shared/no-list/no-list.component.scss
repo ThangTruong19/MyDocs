@@ -1,0 +1,14 @@
+.no-list-container {
+  position: relative;
+  height: 100px;
+
+  .no-list-message {
+    font-size: 18px;
+  }
+
+  .btn-detail-all-cars {
+    position: absolute;
+    bottom: 0;
+    padding: 4px 20px;
+  }
+}

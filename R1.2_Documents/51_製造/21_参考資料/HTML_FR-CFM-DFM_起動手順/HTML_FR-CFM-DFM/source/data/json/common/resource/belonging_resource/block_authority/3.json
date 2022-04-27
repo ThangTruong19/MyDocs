@@ -1,0 +1,106 @@
+[
+  {
+    "path": "group.administrator_role.authorities.id",
+    "name": "権限（管理者）",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "権限2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "権限3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "group.administrator_role.authorities.checked_items",
+    "name": "権限（管理者）",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "権限3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "group.administrator_role.authorities.default_kind",
+    "name": "権限2",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "ON",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "OFF",
+        "value": "0",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "group.general_role.authorities.id",
+    "name": "権限（一般）",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "権限2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "権限3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "group.general_role.authorities.checked_items",
+    "name": "権限（一般）",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "権限3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "group.general_role.authorities.default_kind",
+    "name": "権限2",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "ON",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "OFF",
+        "value": "0",
+        "kind": "D"
+      }
+    ]
+  }
+]

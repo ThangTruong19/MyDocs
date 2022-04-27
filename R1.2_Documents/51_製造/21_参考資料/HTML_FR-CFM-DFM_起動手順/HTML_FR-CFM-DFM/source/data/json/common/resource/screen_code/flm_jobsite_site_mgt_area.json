@@ -1,0 +1,52 @@
+[
+  {
+    "path": "mode",
+    "name": "モード",
+    "help": "モードのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "エリア",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "現場",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "customer_ids",
+    "name": "顧客ID",
+    "help": "顧客IDのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "顧客1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "顧客2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "顧客3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "顧客4",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  }
+]

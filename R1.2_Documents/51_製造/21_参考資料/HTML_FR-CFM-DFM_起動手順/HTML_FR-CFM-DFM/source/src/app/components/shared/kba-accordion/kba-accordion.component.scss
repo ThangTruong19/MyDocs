@@ -1,0 +1,23 @@
+.KBA-panel {
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.panel-heading {
+  padding: 15px;
+  line-height: 0.1;
+  cursor: pointer;
+}
+
+.KBA-panel-body {
+  display: block;
+  padding: 0;
+}
+
+.pull-right {
+  float: right;
+
+  &::after {
+    clear: both;
+  }
+}

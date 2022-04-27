@@ -1,0 +1,96 @@
+<section id="KBA-contact-customer-form" *ngIf="!isLoading">
+  <div class="container-fluid">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+
+    <div class="KBA-content" *ngIf="params">
+      <form class="KBA-form" name="contactCustomerForm" novalidate>
+        <h2 class="KBA-from-title">{{ labels.table_title }}</h2>
+        <table class="KBA-form-table table table-bordered table-customer">
+          <tbody class="KBA-form-table-tbody">
+            <tr
+              app-kba-form-table-custom
+              class="KBA-form-row"
+              [colspan]="3"
+              [customHeader]="customHeader"
+              [content]="content"
+            ></tr>
+            <ng-template #customHeader>
+              <label class="KBA-form-table__label KBA-contact-customer">
+                {{ customer.label }}
+              </label>
+            </ng-template>
+            <ng-template #content>
+              <div class="form-group">{{ customer.value }}</div>
+            </ng-template>
+          </tbody>
+        </table>
+
+        <table class="KBA-form-table table table-bordered">
+          <tbody class="KBA-form-table-tbody">
+            <ng-container *ngFor="let th of thList">
+              <tr
+                app-kba-form-table-custom
+                class="KBA-form-row"
+                [colspan]="3"
+                [customHeader]="customHeader"
+                [content]="content"
+              ></tr>
+
+              <ng-template #customHeader>
+                <label class="KBA-form-table__label">
+                  <i
+                    *ngIf="th.iconNo != null"
+                    class="kba-icon"
+                    [ngClass]="'kba-contact-icon_' + th.iconNo"
+                  ></i>
+                  {{ th.label }}
+                </label>
+              </ng-template>
+              <ng-template #content>
+                <div class="form-group KBA-input__small"
+                [ngClass]="{ 'select-invalid': isSupportDBSelectNotEdit(th.represetntFlag) }">
+                  <app-kba-selected
+                    [kbaName]="'contact_id'"
+                    [kbaParams]="params[th.name]"
+                    [kbaResource]="
+                      resource.contact_link['customer_contact_links:' + th.name]
+                    "
+                    [showLabel]="false"
+                  ></app-kba-selected>
+                </div>
+              </ng-template>
+            </ng-container>
+          </tbody>
+        </table>
+
+        <footer class="KBA-form-footer-fixed">
+          <a
+            href="javascript:void(0)"
+            (click)="onClickReset(resetModalContent)"
+            class="btn btn-link"
+          >
+            {{ labels.reset }}
+          </a>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickSubmit(submitModalContent, '/')"
+            [disabled]="!isPhoneValid"
+          >
+            {{ labels.submit }}
+          </button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #submitModalContent>
+    <app-kba-tandem-confirm [desc]="descItem" [val]="valItem">
+    </app-kba-tandem-confirm>
+  </ng-template>
+
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+</section>
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

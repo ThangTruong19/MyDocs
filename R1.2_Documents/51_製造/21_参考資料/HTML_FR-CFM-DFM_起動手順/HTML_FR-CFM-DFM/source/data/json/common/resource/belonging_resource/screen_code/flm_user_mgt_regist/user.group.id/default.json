@@ -1,0 +1,82 @@
+[
+  {
+    "path": "user.group.belonging_group_id",
+    "name": "所属",
+    "help": "所属（FLM側）",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "リージョンユニオン",
+        "value": "R0007",
+        "kind": "DRU"
+      },
+      {
+        "key": "リージョン",
+        "value": "R0007",
+        "kind": "DR"
+      },
+      {
+        "key": "ブロックユニオン",
+        "value": "R0007",
+        "kind": "DBU"
+      },
+      {
+        "key": "ブロック",
+        "value": "R0007",
+        "kind": "DB"
+      },
+      {
+        "key": "代理店ユニオン",
+        "value": "R0007",
+        "kind": "DDU"
+      },
+      {
+        "key": "代理店",
+        "value": "R0007",
+        "kind": "DD"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "R0007",
+        "kind": "DGC"
+      },
+      {
+        "key": "広域顧客",
+        "value": "R0007",
+        "kind": "DWC"
+      },
+      {
+        "key": "顧客",
+        "value": "R0007",
+        "kind": "DC"
+      },
+      {
+        "key": "工場",
+        "value": "R0007",
+        "kind": "DP"
+      },
+      {
+        "key": "銀行",
+        "kind": "DBK",
+        "value": "R0007"
+      },
+      {
+        "key": "保険",
+        "kind": "DI",
+        "value": "R0007"
+      },
+      {
+        "key": "ファイナンス",
+        "kind": "DF",
+        "value": "R0007"
+      },
+      {
+        "key": "サブグループ",
+        "kind": "DS",
+        "value": "R0007"
+      }
+    ]
+  }
+]

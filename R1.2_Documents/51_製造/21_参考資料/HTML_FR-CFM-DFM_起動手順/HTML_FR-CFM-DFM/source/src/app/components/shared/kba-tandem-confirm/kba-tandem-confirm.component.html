@@ -1,0 +1,22 @@
+<table class="KBA-form-table table table-bordered">
+  <tbody class="KBA-form-table-tbody">
+    <ng-container *ngFor="let d of desc">
+      <tr *ngIf="d.displayable">
+        <td class="KBA-form-table__head" [ngClass]="{ wide: wideHeader }">
+          <label class="KBA-form-table__label">{{ d.label }}</label>
+        </td>
+        <td class="KBA-form-table__value">
+          <ng-container *ngIf="!customContent">
+            <p>{{ getValue(val, d) }}</p>
+          </ng-container>
+          <ng-container
+            *ngTemplateOutlet="
+              customContent;
+              context: { d: d, value: getValue(val, d) }
+            "
+          ></ng-container>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

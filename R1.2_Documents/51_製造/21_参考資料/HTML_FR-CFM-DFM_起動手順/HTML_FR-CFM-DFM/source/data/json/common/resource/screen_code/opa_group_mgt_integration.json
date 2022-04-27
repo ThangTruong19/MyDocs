@@ -1,0 +1,80 @@
+[
+  {
+    "path": "configuration_group_ids",
+    "name": "ブロック",
+    "help": "ブロックのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "ブロック1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "group_label",
+    "name": "グループ名称",
+    "help": "グループ名称のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "group.group_ids",
+    "name": "グループ",
+    "help": "グループ（エラー表示用）",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "path": "group.map_application.id",
+    "name": "地図ソフト",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "Google Map",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "OSM",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  }
+]

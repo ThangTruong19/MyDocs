@@ -1,0 +1,37 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ID",
+    "path": "group_areas.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "No",
+    "path": "group_areas.no",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "グループ毎エリア名称",
+    "path": "group_areas.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "11",
+    "name": "グループ名称",
+    "path": "group_areas.group_label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "14",
+    "name": "更新日時",
+    "path": "group_areas.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

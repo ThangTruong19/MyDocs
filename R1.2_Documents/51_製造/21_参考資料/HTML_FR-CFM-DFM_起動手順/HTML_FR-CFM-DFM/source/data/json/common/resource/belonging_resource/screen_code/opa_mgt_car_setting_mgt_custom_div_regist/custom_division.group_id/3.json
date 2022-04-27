@@ -1,0 +1,77 @@
+[
+  {
+    "path": "custom_division.names.label",
+    "name": "カスタム車種名",
+    "help": "カスタム車種名のヘルプ文言",
+    "type": -19,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "日本語",
+        "value": "ja-JP",
+        "kind": "D"
+      },
+      {
+        "key": "英語",
+        "value": "en-US",
+        "kind": "D"
+      },
+      {
+        "key": "フランス語",
+        "value": "fr-FR",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "maker_code",
+    "name": "メーカ",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "5",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0001",
+        "value": "0001",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0002",
+        "value": "0002",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0003",
+        "value": "0003",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "division_code",
+    "name": "車両種類",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "6",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A",
+        "data_order": "1"
+      }
+    ]
+  }
+]

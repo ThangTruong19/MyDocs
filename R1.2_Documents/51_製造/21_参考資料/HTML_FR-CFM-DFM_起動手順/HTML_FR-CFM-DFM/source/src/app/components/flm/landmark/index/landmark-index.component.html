@@ -1,0 +1,178 @@
+<section id="KBA-group-area-index" *ngIf="labels && resource">
+  <form class="KBA-form" #f="ngForm">
+    <div class="container-fluid">
+      <h2 class="KBA-group-area-index__title KBA-page-title">
+        {{ labels.title }}
+      </h2>
+
+      <div class="KBA-content">
+        <!-- 検索 -->
+        <app-kba-accordion
+          [collapsed]="collapsed"
+          [useCustomHeader]="false"
+          [title]="labels.search_condition"
+          [labels]="labels"
+          (onChangeState)="changePanelState($event)"
+        >
+          <div data-kba-accordion-body>
+            <div class="container KBA-search">
+              <div class="row">
+                <app-kba-selected
+                  *ngIf="resource.group_id"
+                  class="col-sm-3"
+                  [kbaName]="'group_id'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                >
+                </app-kba-selected>
+                <app-kba-text
+                  class="col-sm-3"
+                  [kbaName]="'landmark_label'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                  [maxlength]="255"
+                >
+                </app-kba-text>
+              </div>
+            </div>
+            <div class="KBA-panel-footer">
+              <button
+                (click)="onClickSearch()"
+                type="button"
+                class="btn btn-primary search"
+              >
+                {{ labels.search }}
+              </button>
+            </div>
+          </div>
+        </app-kba-accordion>
+
+        <!-- ページネーション -->
+        <div class="KBA-table-options" [hidden]="count <= 0">
+          <app-kba-pagination
+            [count]="count"
+            [params]="pageParams"
+            [labels]="labels"
+            [element]="pageCountEl"
+            (changeState)="onPaginationChange()"
+          >
+          </app-kba-pagination>
+        </div>
+
+        <!-- 一覧 -->
+        <div class="KBA-table-wrapper">
+          <app-kba-table
+            [customTableThContent]="customTableThContent"
+            [customTableRowContent]="customTableRowContent"
+            [lists]="lists"
+            [pageParams]="pageParams"
+            [params]="params"
+            [thList]="thList"
+            [sortableThList]="sortableThList"
+            [labels]="labels"
+            [collapsed]="collapsed"
+            [sortingParams]="sortingParams"
+            [updatable]="updatable"
+            [deletable]="deletable"
+            [isFetching]="isFetching"
+            (edit)="onClickEdit($event)"
+            (delete)="onClickDelete($event)"
+          >
+          </app-kba-table>
+
+          <ng-template #customTableThContent>
+            <ng-container *ngFor="let th of thList">
+              <ng-container *ngIf="th.displayable">
+                <th
+                  class="th-{{ th.shortName }} KBA-index-th"
+                  [ngClass]="{
+                    'disable-sort': !th.sortable,
+                    fixed:
+                      th.name === 'landmarks.icon.image' ||
+                      th.name === 'header_map'
+                  }"
+                  appKbaSortingLabel
+                  [(sortingParams)]="sortingParams"
+                  [labelName]="th.sortKey"
+                  [sortableThList]="sortableThList"
+                  (sort)="onChangeSort($event)"
+                >
+                  <span>{{ th.label }}</span>
+                </th>
+              </ng-container>
+            </ng-container>
+          </ng-template>
+
+          <ng-template #customTableRowContent let-data="data" , let-idx="idx">
+            <ng-container *ngFor="let title of thList">
+              <ng-container *ngIf="title.displayable">
+                <!-- アイコンの場合 -->
+                <td
+                  *ngIf="title.name === 'landmarks.icon.image'"
+                  class="KBA-index-td fixed text-center icon-image"
+                >
+                  <img src="{{ data[title.name] }}" />
+                </td>
+                <!-- MAPの場合 -->
+                <td
+                  *ngIf="title.name === 'header_map'"
+                  class="KBA-index-td
+                            KBA-table__small
+                            kba-sm-link
+                            fixed
+                            text-center
+                            d-flex
+                            align-items-center"
+                  (click)="onClickMap(data)"
+                >
+                  <span class="kba-icon kba-icon-map"></span>
+                </td>
+                <!-- 上記以外の td の場合 -->
+                <td
+                  *ngIf="
+                    title.name !== 'header_map' &&
+                    title.name !== 'landmarks.icon.image'
+                  "
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ data[title.name] }}</span>
+                </td>
+              </ng-container>
+            </ng-container>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+
+<ng-template #mapModalContent>
+  <div class="KBA-map">
+    <app-kba-area-map
+      [initMap]="initMap"
+      [labels]="labels"
+      [menuWidth]="0"
+      [menuOpen]="false"
+      [editable]="false"
+      [hasMenu]="false"
+      [others]="landmarkList"
+      [isLandmark]="true"
+      [isModal]="true"
+    >
+    </app-kba-area-map>
+  </div>
+</ng-template>
+
+<ng-template #deleteModalContent>
+  <app-kba-tandem-confirm
+    [desc]="deleteModalValues.listDesc"
+    [val]="deleteModalValues.listVal"
+  >
+  </app-kba-tandem-confirm>
+</ng-template>
+
+<app-kba-alert></app-kba-alert>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

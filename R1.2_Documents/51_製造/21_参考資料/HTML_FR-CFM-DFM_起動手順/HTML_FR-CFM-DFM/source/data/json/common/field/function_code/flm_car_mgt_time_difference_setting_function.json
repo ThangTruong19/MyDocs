@@ -1,0 +1,93 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ID",
+    "path": "cars.car_identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "メーカ",
+    "path": "cars.car_identification.maker_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "機種",
+    "path": "cars.car_identification.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "型式",
+    "path": "cars.car_identification.type_rev",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "機番",
+    "path": "cars.car_identification.serial",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "担当DB",
+    "path": "cars.support_distributor.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "通信種別",
+    "path": "cars.komtrax_unit.sim_attributes_1.communication_kind_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "時差",
+    "path": "cars.car_management_attribute.time_difference",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "変更中時差",
+    "path": "cars.car_management_attribute.change_after_time_difference",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "変更状態",
+    "path": "cars.car_management_attribute.time_difference_setting_change_status_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "11",
+    "name": "変更状態値",
+    "path": "cars.car_management_attribute.time_difference_setting_change_status",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "12",
+    "name": "変更開始日",
+    "path": "cars.car_management_attribute.time_difference_setting_change_start_date",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "13",
+    "name": "更新日時",
+    "path": "cars.car_identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

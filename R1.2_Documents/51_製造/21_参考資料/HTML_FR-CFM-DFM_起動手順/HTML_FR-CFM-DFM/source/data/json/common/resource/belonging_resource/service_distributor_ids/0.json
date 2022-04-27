@@ -1,0 +1,17 @@
+[
+  {
+    "path": "common.service_distributor.organization_codes",
+    "name": "サービスDB組織コード",
+    "help": "サービスDB組織コードのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      }
+    ]
+  }
+]

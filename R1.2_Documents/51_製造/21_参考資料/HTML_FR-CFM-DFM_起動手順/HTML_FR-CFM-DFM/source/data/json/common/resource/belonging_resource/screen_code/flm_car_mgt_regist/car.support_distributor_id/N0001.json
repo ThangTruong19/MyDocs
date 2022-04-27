@@ -1,0 +1,1241 @@
+[
+  {
+    "path": "orbcomm_request.nation_id",
+    "name": "使用国",
+    "help": "使用国のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car.car_identification.maker_code",
+    "name": "メーカ",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "メーカ",
+    "placeholder_text": null,
+    "data_order": "1",
+    "items": [
+      {
+        "key": "コマツ",
+        "value": "0001",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "コマツ2",
+        "value": "0002",
+        "kind": "D",
+        "data_order": "1"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.stock_status_update_date",
+    "name": "在庫状況更新日",
+    "type": "-40",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "在庫状況更新日",
+    "placeholder_text": null,
+    "data_order": "14",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.free_memo",
+    "name": "メモ",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "メモ",
+    "placeholder_text": null,
+    "data_order": "25",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.note_1",
+    "name": "備考1",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "備考1",
+    "placeholder_text": null,
+    "data_order": "26",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.note_2",
+    "name": "備考2",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "備考2",
+    "placeholder_text": null,
+    "data_order": "27",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.note_3",
+    "name": "備考3",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "備考3",
+    "placeholder_text": null,
+    "data_order": "28",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.note_4",
+    "name": "備考4",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "備考4",
+    "placeholder_text": null,
+    "data_order": "29",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.note_5",
+    "name": "備考5",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "備考5",
+    "placeholder_text": null,
+    "data_order": "30",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.intended_use_code",
+    "name": "使用目的",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "使用目的",
+    "placeholder_text": null,
+    "data_order": "36",
+    "items": [
+      {
+        "key": "土木・建築",
+        "value": "1",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "鉄・スクラップ",
+        "value": "2",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "鉱山・採石",
+        "value": "3",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "解体・産廃",
+        "value": "4",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "レンタル",
+        "value": "5",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "その他",
+        "value": "90",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "未選択",
+        "value": "99",
+        "kind": "D",
+        "data_order": "7"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.debit_kind",
+    "name": "債権",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "債権",
+    "placeholder_text": null,
+    "data_order": "37",
+    "items": [
+      {
+        "key": "有",
+        "value": "1",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "無",
+        "value": "0",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.delivery_date",
+    "name": "車両納入日",
+    "type": "-40",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "車両納入日",
+    "placeholder_text": null,
+    "data_order": "43",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.new_used_kind",
+    "name": "新車中古車区分",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "新車中古車区分",
+    "placeholder_text": null,
+    "data_order": "44",
+    "items": [
+      {
+        "key": "新車",
+        "value": "0",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "中古車",
+        "value": "1",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.used_delivery_date",
+    "name": "中古車納入日",
+    "type": "-40",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "中古車納入日",
+    "placeholder_text": null,
+    "data_order": "45",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.used_delivery_smr",
+    "name": "中古車納入時SMR",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "中古車納入時SMR",
+    "placeholder_text": null,
+    "data_order": "46",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.production_year_month",
+    "name": "製造年月",
+    "type": "-30",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "製造年月",
+    "placeholder_text": null,
+    "data_order": "47",
+    "items": []
+  },
+  {
+    "path": "car.distributor_attribute.data_publish_kind",
+    "name": "顧客へのデータ公開",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "顧客へのデータ公開",
+    "placeholder_text": null,
+    "data_order": "48",
+    "items": [
+      {
+        "key": "過去データすべて公開",
+        "value": "0",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "納入日以降のみ公開",
+        "value": "1",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  },
+  {
+    "path": "car.distributor_attribute.spec_pattern_id",
+    "name": "仕様パターン",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": "仕様パターン",
+    "placeholder_text": null,
+    "data_order": "49",
+    "items": [
+      {
+        "key": "なし",
+        "value": "1",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "DAA",
+        "value": "83",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "DAAA",
+        "value": "85",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "DAAB",
+        "value": "84",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "DAB",
+        "value": "82",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "DBCA",
+        "value": "86",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "DBCB",
+        "value": "87",
+        "kind": "D",
+        "data_order": "7"
+      },
+      {
+        "key": "DBE",
+        "value": "88",
+        "kind": "D",
+        "data_order": "8"
+      },
+      {
+        "key": "EAA",
+        "value": "112",
+        "kind": "D",
+        "data_order": "9"
+      },
+      {
+        "key": "EAA6",
+        "value": "11",
+        "kind": "D",
+        "data_order": "10"
+      },
+      {
+        "key": "EAA7",
+        "value": "12",
+        "kind": "D",
+        "data_order": "11"
+      },
+      {
+        "key": "EAA8",
+        "value": "13",
+        "kind": "D",
+        "data_order": "12"
+      },
+      {
+        "key": "EAAC1",
+        "value": "120",
+        "kind": "D",
+        "data_order": "13"
+      },
+      {
+        "key": "EAAC2",
+        "value": "121",
+        "kind": "D",
+        "data_order": "14"
+      },
+      {
+        "key": "EAAC3",
+        "value": "122",
+        "kind": "D",
+        "data_order": "15"
+      },
+      {
+        "key": "EAAD",
+        "value": "116",
+        "kind": "D",
+        "data_order": "16"
+      },
+      {
+        "key": "EAAE",
+        "value": "117",
+        "kind": "D",
+        "data_order": "17"
+      },
+      {
+        "key": "EAB",
+        "value": "113",
+        "kind": "D",
+        "data_order": "18"
+      },
+      {
+        "key": "EAB6",
+        "value": "14",
+        "kind": "D",
+        "data_order": "19"
+      },
+      {
+        "key": "EAB7",
+        "value": "15",
+        "kind": "D",
+        "data_order": "20"
+      },
+      {
+        "key": "EAB8",
+        "value": "16",
+        "kind": "D",
+        "data_order": "21"
+      },
+      {
+        "key": "EABD",
+        "value": "111",
+        "kind": "D",
+        "data_order": "22"
+      },
+      {
+        "key": "EABE",
+        "value": "118",
+        "kind": "D",
+        "data_order": "23"
+      },
+      {
+        "key": "EAC",
+        "value": "93",
+        "kind": "D",
+        "data_order": "24"
+      },
+      {
+        "key": "EAG",
+        "value": "97",
+        "kind": "D",
+        "data_order": "25"
+      },
+      {
+        "key": "EAP6",
+        "value": "17",
+        "kind": "D",
+        "data_order": "26"
+      },
+      {
+        "key": "EAP7",
+        "value": "18",
+        "kind": "D",
+        "data_order": "27"
+      },
+      {
+        "key": "EAP8",
+        "value": "19",
+        "kind": "D",
+        "data_order": "28"
+      },
+      {
+        "key": "EAPA",
+        "value": "94",
+        "kind": "D",
+        "data_order": "29"
+      },
+      {
+        "key": "EAPB",
+        "value": "115",
+        "kind": "D",
+        "data_order": "30"
+      },
+      {
+        "key": "EAPD",
+        "value": "119",
+        "kind": "D",
+        "data_order": "31"
+      },
+      {
+        "key": "EAPE",
+        "value": "114",
+        "kind": "D",
+        "data_order": "32"
+      },
+      {
+        "key": "ECA",
+        "value": "95",
+        "kind": "D",
+        "data_order": "33"
+      },
+      {
+        "key": "ECG",
+        "value": "96",
+        "kind": "D",
+        "data_order": "34"
+      },
+      {
+        "key": "EYA",
+        "value": "90",
+        "kind": "D",
+        "data_order": "35"
+      },
+      {
+        "key": "EYAB1",
+        "value": "105",
+        "kind": "D",
+        "data_order": "36"
+      },
+      {
+        "key": "EYAB2",
+        "value": "106",
+        "kind": "D",
+        "data_order": "37"
+      },
+      {
+        "key": "EYAB3",
+        "value": "108",
+        "kind": "D",
+        "data_order": "38"
+      },
+      {
+        "key": "EYAB4",
+        "value": "107",
+        "kind": "D",
+        "data_order": "39"
+      },
+      {
+        "key": "EYAB5",
+        "value": "109",
+        "kind": "D",
+        "data_order": "40"
+      },
+      {
+        "key": "EYAC1",
+        "value": "110",
+        "kind": "D",
+        "data_order": "41"
+      },
+      {
+        "key": "EYAG1",
+        "value": "101",
+        "kind": "D",
+        "data_order": "42"
+      },
+      {
+        "key": "EYAG2",
+        "value": "102",
+        "kind": "D",
+        "data_order": "43"
+      },
+      {
+        "key": "EYAG3",
+        "value": "99",
+        "kind": "D",
+        "data_order": "44"
+      },
+      {
+        "key": "EYAG4",
+        "value": "100",
+        "kind": "D",
+        "data_order": "45"
+      },
+      {
+        "key": "EYB",
+        "value": "89",
+        "kind": "D",
+        "data_order": "46"
+      },
+      {
+        "key": "EYPA",
+        "value": "91",
+        "kind": "D",
+        "data_order": "47"
+      },
+      {
+        "key": "EYPB",
+        "value": "92",
+        "kind": "D",
+        "data_order": "48"
+      },
+      {
+        "key": "EYPD",
+        "value": "104",
+        "kind": "D",
+        "data_order": "49"
+      },
+      {
+        "key": "EYPE",
+        "value": "98",
+        "kind": "D",
+        "data_order": "50"
+      },
+      {
+        "key": "EYPF",
+        "value": "103",
+        "kind": "D",
+        "data_order": "51"
+      },
+      {
+        "key": "LAA",
+        "value": "126",
+        "kind": "D",
+        "data_order": "52"
+      },
+      {
+        "key": "LAB",
+        "value": "130",
+        "kind": "D",
+        "data_order": "53"
+      },
+      {
+        "key": "LABA",
+        "value": "123",
+        "kind": "D",
+        "data_order": "54"
+      },
+      {
+        "key": "LABB",
+        "value": "128",
+        "kind": "D",
+        "data_order": "55"
+      },
+      {
+        "key": "LABC",
+        "value": "131",
+        "kind": "D",
+        "data_order": "56"
+      },
+      {
+        "key": "LAC",
+        "value": "127",
+        "kind": "D",
+        "data_order": "57"
+      },
+      {
+        "key": "LAD",
+        "value": "125",
+        "kind": "D",
+        "data_order": "58"
+      },
+      {
+        "key": "LAE",
+        "value": "124",
+        "kind": "D",
+        "data_order": "59"
+      },
+      {
+        "key": "LAY",
+        "value": "129",
+        "kind": "D",
+        "data_order": "60"
+      },
+      {
+        "key": "MAAGM1",
+        "value": "138",
+        "kind": "D",
+        "data_order": "61"
+      },
+      {
+        "key": "MAAGM2",
+        "value": "145",
+        "kind": "D",
+        "data_order": "62"
+      },
+      {
+        "key": "MAAGS1",
+        "value": "135",
+        "kind": "D",
+        "data_order": "63"
+      },
+      {
+        "key": "MAAGS2",
+        "value": "144",
+        "kind": "D",
+        "data_order": "64"
+      },
+      {
+        "key": "MAAI1",
+        "value": "20",
+        "kind": "D",
+        "data_order": "65"
+      },
+      {
+        "key": "MAAI2",
+        "value": "21",
+        "kind": "D",
+        "data_order": "66"
+      },
+      {
+        "key": "MAAI3",
+        "value": "22",
+        "kind": "D",
+        "data_order": "67"
+      },
+      {
+        "key": "MAAI4",
+        "value": "23",
+        "kind": "D",
+        "data_order": "68"
+      },
+      {
+        "key": "MAAIM1",
+        "value": "137",
+        "kind": "D",
+        "data_order": "69"
+      },
+      {
+        "key": "MAAIS1",
+        "value": "136",
+        "kind": "D",
+        "data_order": "70"
+      },
+      {
+        "key": "MAAR1",
+        "value": "24",
+        "kind": "D",
+        "data_order": "71"
+      },
+      {
+        "key": "MAAR2",
+        "value": "25",
+        "kind": "D",
+        "data_order": "72"
+      },
+      {
+        "key": "MABGM",
+        "value": "140",
+        "kind": "D",
+        "data_order": "73"
+      },
+      {
+        "key": "MABGS",
+        "value": "141",
+        "kind": "D",
+        "data_order": "74"
+      },
+      {
+        "key": "MABI1",
+        "value": "26",
+        "kind": "D",
+        "data_order": "75"
+      },
+      {
+        "key": "MABI2",
+        "value": "27",
+        "kind": "D",
+        "data_order": "76"
+      },
+      {
+        "key": "MABIM",
+        "value": "148",
+        "kind": "D",
+        "data_order": "77"
+      },
+      {
+        "key": "MABIS",
+        "value": "139",
+        "kind": "D",
+        "data_order": "78"
+      },
+      {
+        "key": "MABR",
+        "value": "28",
+        "kind": "D",
+        "data_order": "79"
+      },
+      {
+        "key": "MAEGM",
+        "value": "142",
+        "kind": "D",
+        "data_order": "80"
+      },
+      {
+        "key": "MAEGS",
+        "value": "143",
+        "kind": "D",
+        "data_order": "81"
+      },
+      {
+        "key": "MAEI1",
+        "value": "29",
+        "kind": "D",
+        "data_order": "82"
+      },
+      {
+        "key": "MAEI2",
+        "value": "30",
+        "kind": "D",
+        "data_order": "83"
+      },
+      {
+        "key": "MAEI3",
+        "value": "31",
+        "kind": "D",
+        "data_order": "84"
+      },
+      {
+        "key": "MAEI4",
+        "value": "32",
+        "kind": "D",
+        "data_order": "85"
+      },
+      {
+        "key": "MAEIM",
+        "value": "147",
+        "kind": "D",
+        "data_order": "86"
+      },
+      {
+        "key": "MAEIS",
+        "value": "146",
+        "kind": "D",
+        "data_order": "87"
+      },
+      {
+        "key": "MAER",
+        "value": "149",
+        "kind": "D",
+        "data_order": "88"
+      },
+      {
+        "key": "MAER1",
+        "value": "33",
+        "kind": "D",
+        "data_order": "89"
+      },
+      {
+        "key": "MAER2",
+        "value": "34",
+        "kind": "D",
+        "data_order": "90"
+      },
+      {
+        "key": "MAGI1",
+        "value": "132",
+        "kind": "D",
+        "data_order": "91"
+      },
+      {
+        "key": "MAGI2",
+        "value": "134",
+        "kind": "D",
+        "data_order": "92"
+      },
+      {
+        "key": "MAGR",
+        "value": "133",
+        "kind": "D",
+        "data_order": "93"
+      },
+      {
+        "key": "MARI1",
+        "value": "35",
+        "kind": "D",
+        "data_order": "94"
+      },
+      {
+        "key": "MARI2",
+        "value": "36",
+        "kind": "D",
+        "data_order": "95"
+      },
+      {
+        "key": "MARR",
+        "value": "37",
+        "kind": "D",
+        "data_order": "96"
+      },
+      {
+        "key": "NONSP",
+        "value": "10",
+        "kind": "D",
+        "data_order": "97"
+      },
+      {
+        "key": "S1",
+        "value": "60",
+        "kind": "D",
+        "data_order": "98"
+      },
+      {
+        "key": "S11",
+        "value": "65",
+        "kind": "D",
+        "data_order": "99"
+      },
+      {
+        "key": "S12",
+        "value": "66",
+        "kind": "D",
+        "data_order": "100"
+      },
+      {
+        "key": "S13",
+        "value": "67",
+        "kind": "D",
+        "data_order": "101"
+      },
+      {
+        "key": "S2",
+        "value": "61",
+        "kind": "D",
+        "data_order": "102"
+      },
+      {
+        "key": "S3",
+        "value": "62",
+        "kind": "D",
+        "data_order": "103"
+      },
+      {
+        "key": "S41",
+        "value": "68",
+        "kind": "D",
+        "data_order": "104"
+      },
+      {
+        "key": "S42",
+        "value": "69",
+        "kind": "D",
+        "data_order": "105"
+      },
+      {
+        "key": "S43",
+        "value": "70",
+        "kind": "D",
+        "data_order": "106"
+      },
+      {
+        "key": "S44",
+        "value": "71",
+        "kind": "D",
+        "data_order": "107"
+      },
+      {
+        "key": "S45",
+        "value": "72",
+        "kind": "D",
+        "data_order": "108"
+      },
+      {
+        "key": "S46",
+        "value": "73",
+        "kind": "D",
+        "data_order": "109"
+      },
+      {
+        "key": "S47",
+        "value": "74",
+        "kind": "D",
+        "data_order": "110"
+      },
+      {
+        "key": "S49",
+        "value": "75",
+        "kind": "D",
+        "data_order": "111"
+      },
+      {
+        "key": "S5",
+        "value": "63",
+        "kind": "D",
+        "data_order": "112"
+      },
+      {
+        "key": "S50",
+        "value": "76",
+        "kind": "D",
+        "data_order": "113"
+      },
+      {
+        "key": "S51",
+        "value": "77",
+        "kind": "D",
+        "data_order": "114"
+      },
+      {
+        "key": "S52",
+        "value": "78",
+        "kind": "D",
+        "data_order": "115"
+      },
+      {
+        "key": "S53",
+        "value": "79",
+        "kind": "D",
+        "data_order": "116"
+      },
+      {
+        "key": "S54",
+        "value": "80",
+        "kind": "D",
+        "data_order": "117"
+      },
+      {
+        "key": "S7",
+        "value": "64",
+        "kind": "D",
+        "data_order": "118"
+      },
+      {
+        "key": "S91",
+        "value": "81",
+        "kind": "D",
+        "data_order": "119"
+      },
+      {
+        "key": "W0001A1",
+        "value": "38",
+        "kind": "D",
+        "data_order": "120"
+      },
+      {
+        "key": "W0001A2",
+        "value": "39",
+        "kind": "D",
+        "data_order": "121"
+      },
+      {
+        "key": "W0001A3",
+        "value": "40",
+        "kind": "D",
+        "data_order": "122"
+      },
+      {
+        "key": "W0001B1",
+        "value": "41",
+        "kind": "D",
+        "data_order": "123"
+      },
+      {
+        "key": "W0001B2",
+        "value": "42",
+        "kind": "D",
+        "data_order": "124"
+      },
+      {
+        "key": "W0001C1",
+        "value": "43",
+        "kind": "D",
+        "data_order": "125"
+      },
+      {
+        "key": "W0001C2",
+        "value": "44",
+        "kind": "D",
+        "data_order": "126"
+      },
+      {
+        "key": "W0001C3",
+        "value": "45",
+        "kind": "D",
+        "data_order": "127"
+      },
+      {
+        "key": "W0001D1",
+        "value": "46",
+        "kind": "D",
+        "data_order": "128"
+      },
+      {
+        "key": "WA001A1",
+        "value": "2",
+        "kind": "D",
+        "data_order": "129"
+      },
+      {
+        "key": "WA001A2",
+        "value": "3",
+        "kind": "D",
+        "data_order": "130"
+      },
+      {
+        "key": "WA001A3",
+        "value": "4",
+        "kind": "D",
+        "data_order": "131"
+      },
+      {
+        "key": "WA001B1",
+        "value": "5",
+        "kind": "D",
+        "data_order": "132"
+      },
+      {
+        "key": "WA001B2",
+        "value": "6",
+        "kind": "D",
+        "data_order": "133"
+      },
+      {
+        "key": "WA001C1",
+        "value": "7",
+        "kind": "D",
+        "data_order": "134"
+      },
+      {
+        "key": "WA001C2",
+        "value": "47",
+        "kind": "D",
+        "data_order": "135"
+      },
+      {
+        "key": "WA001D1",
+        "value": "8",
+        "kind": "D",
+        "data_order": "136"
+      },
+      {
+        "key": "WA001E1",
+        "value": "9",
+        "kind": "D",
+        "data_order": "137"
+      },
+      {
+        "key": "WENA1",
+        "value": "151",
+        "kind": "D",
+        "data_order": "138"
+      },
+      {
+        "key": "WENA2",
+        "value": "150",
+        "kind": "D",
+        "data_order": "139"
+      },
+      {
+        "key": "WENAA1",
+        "value": "154",
+        "kind": "D",
+        "data_order": "140"
+      },
+      {
+        "key": "WENAA2",
+        "value": "152",
+        "kind": "D",
+        "data_order": "141"
+      },
+      {
+        "key": "WENAA3",
+        "value": "155",
+        "kind": "D",
+        "data_order": "142"
+      },
+      {
+        "key": "WENAA4",
+        "value": "153",
+        "kind": "D",
+        "data_order": "143"
+      },
+      {
+        "key": "WENAB1",
+        "value": "156",
+        "kind": "D",
+        "data_order": "144"
+      },
+      {
+        "key": "WENAB2",
+        "value": "158",
+        "kind": "D",
+        "data_order": "145"
+      },
+      {
+        "key": "WENAB3",
+        "value": "157",
+        "kind": "D",
+        "data_order": "146"
+      },
+      {
+        "key": "WMNAA",
+        "value": "48",
+        "kind": "D",
+        "data_order": "147"
+      },
+      {
+        "key": "WMNAA1",
+        "value": "49",
+        "kind": "D",
+        "data_order": "148"
+      },
+      {
+        "key": "WMNAA2",
+        "value": "50",
+        "kind": "D",
+        "data_order": "149"
+      },
+      {
+        "key": "WMNAA3",
+        "value": "51",
+        "kind": "D",
+        "data_order": "150"
+      },
+      {
+        "key": "WMNAB",
+        "value": "52",
+        "kind": "D",
+        "data_order": "151"
+      },
+      {
+        "key": "WMNAB1",
+        "value": "53",
+        "kind": "D",
+        "data_order": "152"
+      },
+      {
+        "key": "WMNAB2",
+        "value": "54",
+        "kind": "D",
+        "data_order": "153"
+      },
+      {
+        "key": "WMNAC",
+        "value": "55",
+        "kind": "D",
+        "data_order": "154"
+      },
+      {
+        "key": "WMNAD",
+        "value": "56",
+        "kind": "D",
+        "data_order": "155"
+      },
+      {
+        "key": "WMNAE",
+        "value": "57",
+        "kind": "D",
+        "data_order": "156"
+      },
+      {
+        "key": "WMNAF",
+        "value": "58",
+        "kind": "D",
+        "data_order": "157"
+      },
+      {
+        "key": "WMNAG",
+        "value": "59",
+        "kind": "D",
+        "data_order": "158"
+      }
+    ]
+  }
+]

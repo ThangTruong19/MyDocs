@@ -1,0 +1,76 @@
+<div class="map-route">
+  <div class="route-header">
+    <button
+      *ngIf="showGuide"
+      type="button"
+      class="route-header-btn btn-back"
+      [disabled]="showSpinner"
+      (click)="onClickBack()"
+    >
+      <i class="fa fa-angle-left"></i>
+      {{ labels.back }}
+    </button>
+    <button
+      type="button"
+      class="route-header-btn btn-close"
+      [disabled]="showSpinner"
+      (click)="onClickCloseMapRoute()"
+    >
+      <i class="fa fa-times-circle"></i>
+      {{ labels.close }}
+    </button>
+  </div>
+  <div class="route-body" [hidden]="showSpinner">
+    <div class="search-route" [hidden]="showGuide">
+      <div class="search-route-content route-from-present-location">
+        <button
+          type="button"
+          class="btn-search-route"
+          (click)="onClickRouteFromPresentLocation()"
+        >
+          {{ labels.route_from_present_location }}
+        </button>
+        <p class="present-location" *ngIf="geocoderEnabled">
+          {{ labels.present_location }}{{ currentAddress || '...' }}
+        </p>
+      </div>
+      <div
+        class="search-route-content input-present-location"
+        *ngIf="geocoderEnabled"
+      >
+        <label
+          class="input-present-location-label"
+          for="present-location-input"
+        >
+          {{ labels.input_present_location }}
+        </label>
+        <input
+          type="text" autocomplete="off"
+          id="present-location-input"
+          [(ngModel)]="inputLocation"
+        />
+        <button
+          [disabled]="!(inputLocation && inputLocation.length)"
+          type="button"
+          class="btn-search-route"
+          (click)="onClickRouteFromInputLocation()"
+        >
+          {{ labels.confirm }}
+        </button>
+      </div>
+      <div class="search-route-content">
+        <button
+          type="button"
+          class="btn-search-route"
+          (click)="onClickRouteFromClickedPoint()"
+        >
+          {{ labels.route_from_clicked_point }}
+        </button>
+      </div>
+    </div>
+    <div id="route-guide" [hidden]="!showGuide"></div>
+  </div>
+  <div class="KBA-spinner" *ngIf="showSpinner">
+    <i class="KBA-spinner__icon fa fa-refresh fa-spin"></i>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+[
+  {
+    "path": "accumulate_fuel_interval_item.support_distributor_id",
+    "name": "担当代理店",
+    "help": "担当代理店のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "担当代理店1",
+        "value": "A0001",
+        "kind": "D"
+      },
+      {
+        "key": "担当代理店2",
+        "value": "A0002",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "accumulate_fuel_interval_item.label",
+    "name": "累積燃料消費量インターバル管理項目名称",
+    "help": "累積燃料消費量インターバル管理項目名称のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "accumulate_fuel_interval_item.inspection_start_accumulate_fuel",
+    "name": "点検開始累積燃料消費量",
+    "help": "点検開始累積燃料消費量のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "accumulate_fuel_interval_item.accumulate_fuel_interval",
+    "name": "累積燃料消費量インターバル",
+    "help": "累積燃料消費量インターバルのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "accumulate_fuel_interval_item.accumulate_fuel_interval_kind",
+    "name": "累積燃料消費量インターバル区分",
+    "help": "累積燃料消費量インターバル区分のヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "あり",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "accumulate_fuel_interval_item.threshold",
+    "name": "オレンジフラグ閾値",
+    "help": "オレンジフラグ閾値のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "accumulate_fuel_interval_item.threshold_kind",
+    "name": "オレンジフラグ閾値区分",
+    "help": "オレンジフラグ閾値区分のヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "なし",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "あり",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "accumulate_fuel_interval_item.target_model_kind",
+    "name": "対象機種区分",
+    "help": "対象機種区分のヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "全機種-型式",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "機種-型式を選択",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "accumulate_fuel_interval_item.car_conditions",
+    "name": "機種-型式",
+    "help": "機種-型式のヘルプ文言",
+    "type": -19,
+    "placeholder_text": "",
+    "items": []
+  }
+]

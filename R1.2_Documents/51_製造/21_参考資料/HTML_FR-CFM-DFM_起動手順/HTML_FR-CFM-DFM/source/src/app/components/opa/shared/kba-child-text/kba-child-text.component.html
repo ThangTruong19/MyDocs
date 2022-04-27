@@ -1,0 +1,29 @@
+<div class="KBA-child-text-container" [formGroup]="formGroup">
+  <ul>
+    <li class="child-text-item" *ngFor="let item of params; let i = index">
+      <div class="child-text-item-container">
+        <input
+          id="KBA-child-text-{{ name }}-{{ item[labelPath] }}"
+          name="{{ name }}-{{ item[labelPath] }}"
+          class="KBA-input-text form-control"
+          type="text" autocomplete="off"
+          maxlength="1024"
+          [ngClass]="{
+            edited: isEdited(
+              item,
+              originalParams && originalParams[i],
+              modelPath
+            ),
+            'KBA-form-error': errorData | hasError: getValidationPath(path, i)
+          }"
+          [formControlName]="item[labelPath]"
+          (ngModelChange)="item[modelPath] = $event"
+        />
+      </div>
+      <label for="KBA-child-text-{{ name }}-{{ item[labelPath] }}">{{
+        labels[item[labelPath]]
+      }}</label>
+    </li>
+  </ul>
+  <div class="child-text-arrow" [style.top]="arrowOffset"></div>
+</div>

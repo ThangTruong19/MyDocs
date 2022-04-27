@@ -1,0 +1,899 @@
+<section id="KBA-group-form" *ngIf="labels && resource">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content">
+      <form
+        class="KBA-form"
+        name="groupForm"
+        novalidate
+        [formGroup]="groupForm"
+      >
+        <div class="KBA-form-header">
+          <ng-container *ngIf="template === 'groupInfo'">
+            <h3 class="content-title">{{ labels.group_information }}</h3>
+            <div class="annotation">
+              <p class="KBA-form-table__required">
+                {{ labels.description_for_required }}
+              </p>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="template === 'keyPerson'">
+            <h3 class="content-title">{{ labels.key_person_information }}</h3>
+            <div class="annotation">
+              <p class="KBA-form-table__required">
+                {{ labels.description_for_required }}
+              </p>
+            </div>
+            <div *ngIf="enabledUserSearch" class="btn-search-wrapper">
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="onClickUserSearch()"
+              >
+                {{ labels.search_user }}
+                <i class="kba-icon kba-icon-search"></i>
+              </button>
+            </div>
+          </ng-container>
+        </div>
+        <table class="KBA-form-table table table-bordered" *ngIf="!loading">
+          <tbody
+            class="KBA-form-table-tbody"
+            [hidden]="template !== 'groupInfo'"
+          >
+            <!-- 変更対象 -->
+            <tr
+              app-kba-form-table-custom
+              *ngIf="exists('target_kind') && template === 'groupInfo'"
+              class="KBA-form-row"
+              [kbaResource]="resource"
+              [kbaName]="'target_kind'"
+              [content]="targetKindContent"
+            ></tr>
+
+            <!-- グループ分類 -->
+            <tr
+              app-kba-form-table-select
+              *ngIf="exists('group.identification.kind_id')"
+              class="KBA-form-row"
+              [kbaName]="'kind_id'"
+              [kbaParams]="params.group.identification"
+              [kbaResource]="resource.group.identification"
+              [required]="true"
+              [notEditable]="isUpdate"
+              [display]="'kind_name'"
+              (onChange)="onGroupKindChange($event)"
+            ></tr>
+
+            <!-- グループ名称 -->
+            <tr
+              app-kba-form-table-text
+              *ngIf="exists('group.identification.label')"
+              class="KBA-form-row"
+              [formGroup]="getFormGroup('identification')"
+              [kbaName]="'label'"
+              [kbaParams]="params.group.identification"
+              [kbaResource]="resource.group.identification"
+              [kbaLabel]="labels"
+              [path]="'group.identification.label'"
+              [errorData]="errorData"
+              [required]="true"
+              [size]="'small'"
+              [maxLength]="255"
+            ></tr>
+
+            <!-- グループ名称（英語） -->
+            <tr
+              app-kba-form-table-text
+              *ngIf="exists('group.identification.label_english')"
+              class="KBA-form-row"
+              [formGroup]="getFormGroup('identification')"
+              [kbaName]="'label_english'"
+              [kbaParams]="params.group.identification"
+              [kbaResource]="resource.group.identification"
+              [kbaLabel]="labels"
+              [path]="'group.identification.label_english'"
+              [errorData]="errorData"
+              [size]="'small'"
+              [maxLength]="255"
+            ></tr>
+
+            <!-- 組織コード -->
+            <tr
+              app-kba-form-table-text
+              *ngIf="exists('group.identification.organization_code')"
+              class="KBA-form-row"
+              [formGroup]="getFormGroup('identification')"
+              [kbaName]="'organization_code'"
+              [kbaParams]="params.group.identification"
+              [kbaResource]="resource.group.identification"
+              [kbaLabel]="labels"
+              [path]="'group.identification.organization_code'"
+              [errorData]="errorData"
+              [size]="'small'"
+              [maxLength]="32"
+            ></tr>
+
+            <!-- 電話番号 -->
+            <tr
+              app-kba-form-table-text
+              *ngIf="exists('group.attribute.phone_no')"
+              class="KBA-form-row"
+              [formGroup]="getFormGroup('attribute')"
+              [kbaName]="'phone_no'"
+              [kbaParams]="params.group.attribute"
+              [kbaResource]="resource.group.attribute"
+              [kbaLabel]="labels"
+              [path]="'group.attribute.phone_no'"
+              [errorData]="errorData"
+              [size]="'small'"
+              [maxLength]="30"
+            ></tr>
+
+            <!-- 電子メール -->
+            <tr
+              app-kba-form-table-text
+              *ngIf="exists('group.attribute.email')"
+              class="KBA-form-row"
+              [formGroup]="getFormGroup('attribute')"
+              [kbaName]="'email'"
+              [kbaParams]="params.group.attribute"
+              [kbaResource]="resource.group.attribute"
+              [kbaLabel]="labels"
+              [path]="'group.attribute.email'"
+              [errorData]="errorData"
+              [maxLength]="255"
+            ></tr>
+
+            <!-- 住所 -->
+            <tr
+              app-kba-form-table-text
+              *ngIf="exists('group.attribute.address')"
+              class="KBA-form-row"
+              [formGroup]="getFormGroup('attribute')"
+              [kbaName]="'address'"
+              [kbaParams]="params.group.attribute"
+              [kbaResource]="resource.group.attribute"
+              [kbaLabel]="labels"
+              [path]="'group.attribute.address'"
+              [errorData]="errorData"
+            ></tr>
+
+            <!-- 所属国 -->
+            <tr
+              app-kba-form-table-select
+              #nationCode
+              *ngIf="exists('group.attribute.nation_code')"
+              class="KBA-form-row"
+              [kbaName]="'nation_code'"
+              [kbaParams]="params.group.attribute"
+              [required]="true"
+              [kbaResource]="resource.group.attribute"
+              (onChange)="onSelectNationCode($event)"
+            ></tr>
+
+            <!--言語 -->
+            <tr
+              app-kba-form-table-custom
+              *ngIf="exists('group.lang_codes')"
+              class="KBA-form-row"
+              [kbaResource]="resource.group"
+              [kbaName]="'lang_codes'"
+              [required]="true"
+              [content]="langCodesContent"
+            ></tr>
+
+            <!-- 時差 -->
+            <tr
+              app-kba-form-table-custom
+              *ngIf="exists('group.attribute.time_difference')"
+              class="KBA-form-row"
+              [kbaResource]="resource.group.attribute"
+              [kbaName]="'time_difference'"
+              [required]="true"
+              [content]="timeDifferenceContent"
+            ></tr>
+
+            <!-- 地図ソフト -->
+            <tr
+              app-kba-form-table-custom
+              *ngIf="exists('group.map_application.id')"
+              class="KBA-form-row"
+              [kbaResource]="resource.group.map_application"
+              [kbaName]="'id'"
+              [required]="true"
+              [content]="mapApplicationContent"
+            ></tr>
+
+            <!-- マップ初期位置 -->
+            <tr
+              app-kba-form-table-custom
+              *ngIf="exists('group.map')"
+              class="KBA-form-row"
+              [kbaResource]="resource.group.map"
+              [kbaName]="'initial_position'"
+              [required]="true"
+              [content]="mapContent"
+            ></tr>
+
+            <!-- 週開始日 -->
+            <tr
+              app-kba-form-table-select
+              *ngIf="exists('group.attribute.first_day_of_week_kind')"
+              class="KBA-form-row"
+              [kbaResource]="resource.group.attribute"
+              [kbaName]="'first_day_of_week_kind'"
+              [kbaParams]="params.group.attribute"
+              [required]="true"
+            ></tr>
+
+            <!-- レンタル車両業務 -->
+            <tr
+              app-kba-form-table-custom
+              *ngIf="exists('group.rental_car_business_kind')"
+              class="KBA-form-row"
+              [kbaResource]="resource.group"
+              [kbaName]="'rental_car_business_kind'"
+              [required]="true"
+              [content]="rentalCarBusinessContent"
+            ></tr>
+
+            <!-- 所属する設定ブロック -->
+            <tr
+              app-kba-form-table-select
+              #configurationGroupSelect
+              *ngIf="
+                exists('block_id') && exists('group.configuration_group_id')
+              "
+              class="KBA-form-row"
+              [kbaName]="'configuration_group_id'"
+              [kbaParams]="params.group"
+              [display]="'configuration_group_label'"
+              [required]="true"
+              [kbaResource]="resource.group"
+              [emitInitialRefresh]="false"
+              [notEditable]="isUpdate"
+              (onChange)="onSelectConfigurationGroup($event)"
+            ></tr>
+
+            <!-- 公開先リージョン -->
+            <tr
+              app-kba-form-table-custom
+              *ngIf="exists('group.publish_target.region_ids')"
+              class="KBA-form-row"
+              [kbaResource]="resource.group.publish_target"
+              [kbaName]="'region_ids'"
+              [required]="true"
+              [content]="publishTargetContent"
+            ></tr>
+
+            <!-- チャイルド工場 -->
+            <tr
+              app-kba-form-table-custom
+              *ngIf="exists('group.child_plant_ids')"
+              class="KBA-form-row"
+              [kbaResource]="resource.group"
+              [kbaName]="'child_plant_ids'"
+              [content]="childPlantContent"
+            ></tr>
+
+            <!-- 権限（管理者） -->
+            <ng-container
+              *ngIf="exists('group.administrator_role.authorities.id')"
+            >
+              <tr class="KBA-form-row">
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label">
+                    {{ resource.group.administrator_role.authorities.id.name }}
+                  </label>
+                </td>
+                <td class="authorities-container">
+                  <ng-container
+                    *ngTemplateOutlet="
+                      authorities;
+                      context: { path: 'group.administrator_role.authorities' }
+                    "
+                  ></ng-container>
+                </td>
+              </tr>
+            </ng-container>
+
+            <!-- 権限（一般） -->
+            <ng-container *ngIf="exists('group.general_role.authorities.id')">
+              <tr class="KBA-form-row">
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label">
+                    {{ resource.group.general_role.authorities.id.name }}
+                  </label>
+                </td>
+                <td class="authorities-container">
+                  <ng-container
+                    *ngTemplateOutlet="
+                      authorities;
+                      context: { path: 'group.general_role.authorities' }
+                    "
+                  ></ng-container>
+                </td>
+              </tr>
+            </ng-container>
+
+            <!-- 権限（配下グループ） -->
+            <ng-container *ngIf="exists('group.preset_roles.group_kind_id')">
+              <tr class="KBA-form-row">
+                <td class="KBA-form-table__head">
+                  <label class="KBA-form-table__label">
+                    {{ resource.group.preset_roles.group_kind_id.name }}
+                  </label>
+                </td>
+                <td class="authorities-container">
+                  <ul class="authoritiy-accordion">
+                    <li
+                      *ngFor="
+                        let kind of resource.group.preset_roles.group_kind_id
+                          .values;
+                        let i = index
+                      "
+                      class="accordion-item accordtion-item-{{ i }}"
+                    >
+                      <div
+                        class="accordion-header"
+                        (click)="toggleAccodtion(i)"
+                      >
+                        <span>
+                          {{ kind.name }}
+                          <ng-container *ngIf="getPresetRolesCount(i)">
+                            ({{ getPresetRolesCount(i) }})
+                          </ng-container>
+                        </span>
+                        <i
+                          class="accordion-icon"
+                          *ngIf="presetRolesTable"
+                          [ngClass]="{
+                            'icon-open': presetRolesTable[i].isOpened,
+                            'icon-close': !presetRolesTable[i].isOpened
+                          }"
+                        ></i>
+                      </div>
+                      <div
+                        class="accordion-body"
+                        [ngStyle]="{ height: getAccordionHeight(i) }"
+                      >
+                        <ng-container
+                          *ngTemplateOutlet="
+                            authorities;
+                            context: {
+                              path: 'group.preset_roles[' + i + '].authorities',
+                              kind: kind.value
+                            }
+                          "
+                        ></ng-container>
+                      </div>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+          <tbody
+            class="KBA-form-table-tbody"
+            [hidden]="template !== 'keyPerson'"
+          >
+            <!-- 変更対象 -->
+            <tr
+              app-kba-form-table-custom
+              *ngIf="exists('target_kind') && template === 'keyPerson'"
+              class="KBA-form-row"
+              [kbaResource]="resource"
+              [kbaName]="'target_kind'"
+              [content]="targetKindContent"
+            ></tr>
+
+            <tr class="KBA-form-row">
+              <td
+                class="KBA-form-table__head"
+                *ngIf="exists('user_account.name')"
+              >
+                <label class="KBA-form-table__label KBA-form-table__required">{{
+                  resource.user_account.name
+                }}</label>
+              </td>
+              <td>
+                <div
+                  class="form-group KBA-input__small"
+                  [formGroup]="groupForm"
+                >
+                  <input
+                    [ngClass]="{
+                      'not-found': !(currentUser | isNotEmpty) && isSearchedUser
+                    }"
+                    name="user_account"
+                    formControlName="user_account"
+                    (ngModelChange)="userSearchParams.user_account = $event"
+                    placeholder="{{ placeholder_text || '' }}"
+                    type="text" autocomplete="off"
+                    maxlength="255"
+                    required="true"
+                    class="KBA-input-text form-control"
+                    (change)="onChangeUserAcount()"
+                    (keyup.enter)="onEnterUserAccount()"
+                    (blur)="onBlurUserAccount()"
+                  />
+                </div>
+              </td>
+            </tr>
+            <tr class="KBA-form-row">
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label">{{
+                  labels.key_person_name
+                }}</label>
+              </td>
+              <td>
+                <p>
+                  {{
+                    (currentUser | isNotEmpty)
+                      ? currentUser.identification.label
+                      : '-'
+                  }}
+                </p>
+              </td>
+            </tr>
+            <tr class="KBA-form-row">
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label">{{
+                  labels.company_name
+                }}</label>
+              </td>
+              <td>
+                <p>
+                  {{
+                    (currentUser | isNotEmpty)
+                      ? currentUser.attribute.company_label
+                      : '-'
+                  }}
+                </p>
+              </td>
+            </tr>
+            <tr class="KBA-form-row">
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label">{{
+                  labels.nation_name
+                }}</label>
+              </td>
+              <td>
+                <p>
+                  {{
+                    (currentUser | isNotEmpty)
+                      ? currentUser.attribute.nation_name
+                      : '-'
+                  }}
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="KBA-form-footer" *ngIf="!isUpdate">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="onClickNext()"
+            *ngIf="template === 'groupInfo'"
+            [disabled]="!isNextButtonEnabled()"
+          >
+            {{ labels.next }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="onClickBack()"
+            *ngIf="template === 'keyPerson'"
+          >
+            {{ labels.back }}
+          </button>
+        </div>
+
+        <footer class="KBA-form-footer-fixed">
+          <a
+            href="javascript:void(0)"
+            (click)="onClickReset()"
+            class="btn btn-link"
+          >
+            {{ labels.reset }}
+          </a>
+          <button
+            class="btn btn-success"
+            type="button"
+            *ngIf="!isUpdate"
+            (click)="onClickContinue()"
+            [disabled]="!isSubmitButtonEnabled()"
+          >
+            {{ labels && labels.continue }}
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickSubmit()"
+            [disabled]="!isSubmitButtonEnabled()"
+          >
+            {{ labels && labels.submit }}
+          </button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #timeDifferenceContent>
+    <div class="time-difference KBA-input__small">
+      <div class="time-difference_block">
+        <app-kba-selected
+          class="time-difference_select"
+          [kbaName]="'time_difference'"
+          [kbaParams]="timeDifference"
+          [kbaResource]="resource.group.attribute"
+          [showLabel]="false"
+          (onChangeSelectItem)="onTimeDiffrenceChange()"
+        ></app-kba-selected>
+        <span>{{ labels.hour }}</span>
+      </div>
+      <div class="time-difference_block">
+        <app-kba-selected
+          class="time-difference_select"
+          [kbaName]="'time_difference_minute'"
+          [kbaParams]="timeDifference"
+          [kbaResource]="resource.group.attribute"
+          [showLabel]="false"
+          (onChangeSelectItem)="onTimeDiffrenceChange()"
+        ></app-kba-selected>
+        <span>{{ labels.minute }}</span>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #mapApplicationContent>
+    <div class="KBA-input__small map-appliation-block-container">
+      <div class="map-appliation-block group-radio-group">
+        <div
+          class="group-radio"
+          *ngFor="
+            let radio of (resource | at: 'group.map_application.id').values
+          "
+        >
+          <input
+            [ngModel]="params.group.map_application.id"
+            (ngModelChange)="onChangeMapApplication($event)"
+            name="map-application-{{ radio.value }}"
+            id="map-application-{{ radio.value }}"
+            type="radio"
+            class="KBA-input-radio"
+            [value]="radio.value"
+          />
+          <label
+            for="map-application-{{ radio.value }}"
+            class="KBA-input-radio__label"
+          >
+            {{ radio.name }}
+          </label>
+        </div>
+      </div>
+      <div
+        class="map-appliation-block"
+        *ngIf="exists('group.map_application.lang_code')"
+      >
+        <app-kba-selected
+          #mapApplicationLangCodeSelect
+          [kbaName]="'lang_code'"
+          [kbaParams]="params.group.map_application"
+          [kbaResource]="resource.group.map_application"
+          [showLabel]="true"
+        ></app-kba-selected>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #mapContent>
+    <div class="map-position-container">
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="onClickMapPositionButton()"
+      >
+        {{ labels.select_initial_position }}
+      </button>
+      <div
+        class="map-position-block"
+        *ngIf="exists('group.map.geometry.coordinates[1]')"
+      >
+        <label>{{ resource.group.map.geometry.coordinates[1].name }}</label>
+        <app-kba-text
+          class="map-position-input"
+          [disabled]="true"
+          [kbaName]="'lat'"
+          [kbaParams]="mapParams"
+          [kbaResource]="resource.group.map.geometry.coordinates"
+          [showLabel]="false"
+        ></app-kba-text>
+      </div>
+      <div
+        class="map-position-block"
+        *ngIf="exists('group.map.geometry.coordinates[0]')"
+      >
+        <label>{{ resource.group.map.geometry.coordinates[0].name }}</label>
+        <app-kba-text
+          class="map-position-input"
+          [disabled]="true"
+          [kbaName]="'lng'"
+          [kbaParams]="mapParams"
+          [kbaResource]="resource.group.map.geometry.coordinates"
+          [showLabel]="false"
+        ></app-kba-text>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #rentalCarBusinessContent>
+    <div class="KBA-input__small rental-car-business-block-container">
+      <div class="rental-car-business-block group-radio-group">
+        <div
+          class="group-radio"
+          *ngFor="
+            let radio of (resource | at: 'group.rental_car_business_kind')
+              .values
+          "
+        >
+          <input
+            [ngModel]="params.group.rental_car_business_kind"
+            (ngModelChange)="onChangeRentalCarBusinessKind($event)"
+            name="rental-car-business-{{ radio.value }}"
+            id="rental-car-business-{{ radio.value }}"
+            type="radio"
+            class="KBA-input-radio"
+            [value]="radio.value"
+          />
+          <label
+            for="rental-car-business-{{ radio.value }}"
+            class="KBA-input-radio__label"
+          >
+            {{ radio.name }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #langCodesContent>
+    <app-kba-group-select
+      [groupItems]="langCodes"
+      [labels]="langCodesLabels"
+      [(selectedGroupItems)]="params.group.lang_codes"
+      [selectedItemLabelHidden]="false"
+      (close)="onSelectLangCodes($event)"
+      [customSelectedGroups]="selectedLangCodesContent"
+      [disabledItems]="forceCheckedLangCodes"
+    ></app-kba-group-select>
+
+    <ng-template #selectedLangCodesContent>
+      <div
+        class="selected-lang-codes"
+        *ngIf="params.group.lang_codes.length > 0"
+      >
+        <ng-container
+          *ngFor="let radio of resource.group.default_lang_code.values"
+        >
+          <div
+            class="lang-code"
+            *ngIf="params.group.lang_codes.indexOf(radio.value) >= 0"
+          >
+            <input
+              [(ngModel)]="params.group.default_lang_code"
+              name="lang-code-{{ radio.value }}"
+              id="lang-code-{{ radio.value }}"
+              type="radio"
+              class="KBA-input-radio"
+              [value]="radio.value"
+            />
+            <label
+              for="lang-code-{{ radio.value }}"
+              class="KBA-input-radio__label"
+            >
+              {{ radio.name }}
+            </label>
+          </div>
+        </ng-container>
+      </div>
+    </ng-template>
+  </ng-template>
+
+  <ng-template #publishTargetContent>
+    <app-kba-group-select
+      [groups]="resource.group.publish_target.global_kind.values"
+      [groupItems]="regionIds"
+      [labels]="publishTargetLabels"
+      [selectAllGroupKind]="groupKind.global"
+      [initGroupKind]="groupKind.region"
+      [selectedGroup]="params.group.publish_target.global_kind"
+      [(selectedGroupItems)]="params.group.publish_target.region_ids"
+      [selectedItemLabelHidden]="false"
+      (close)="onSelectRegionIds($event)"
+    ></app-kba-group-select>
+  </ng-template>
+
+  <ng-template #childPlantContent>
+    <app-kba-group-select
+      [groupItems]="childPlantIds"
+      [labels]="childPlantLabels"
+      [allowEmpty]="true"
+      [(selectedGroupItems)]="params.group.child_plant_ids"
+      [selectedItemLabelHidden]="false"
+      (close)="onSelectChildPlantIds($event)"
+    ></app-kba-group-select>
+  </ng-template>
+
+  <ng-template #targetKindContent>
+    <div class="group-radio-group">
+      <div
+        class="group-radio"
+        *ngFor="let radio of resource.target_kind.values"
+      >
+        <input
+          [ngModel]="targetKind"
+          (ngModelChange)="onTargetKindChange($event)"
+          name="target-kind-{{ radio.value }}"
+          id="target-kind-{{ radio.value }}"
+          type="radio"
+          class="KBA-input-radio"
+          [value]="radio.value"
+        />
+        <label
+          for="target-kind-{{ radio.value }}"
+          class="KBA-input-radio__label"
+        >
+          {{ radio.name }}
+        </label>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #authorities let-path="path" let-kind="kind">
+    <app-kba-authority-select
+      #authoritySelect
+      [authorities]="
+        (resource | at: buildPath(kind ? getResourcePath(kind) : path, 'id')) &&
+        (resource | at: buildPath(kind ? getResourcePath(kind) : path, 'id'))
+          .values
+      "
+      [labels]="authorityLabels"
+      [selectedAuthorities]="getSelectedAuthorities(path)"
+      [customSelectButtons]="authorityCustomHeader"
+      [customSelectedAuthorities]="authorityCustomContent"
+      [defaultAuthorities]="
+        defaultAuthorities[kind ? getResourcePath(kind) : path]
+      "
+      [allowUnselectedAuthorities]="true"
+      (select)="
+        onSelectAuthorities($event, path, kind ? getResourcePath(kind) : null)
+      "
+    ></app-kba-authority-select>
+
+    <ng-template #authorityCustomHeader>
+      <div class="row-group-select-buttons authorities-select">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="authoritySelect.onClickSelect()"
+        >
+          {{ labels.select }}
+        </button>
+      </div>
+    </ng-template>
+
+    <ng-template #authorityCustomContent>
+      <table
+        class="table KBA-form-table authorities-table"
+        *ngIf="params | at: path"
+      >
+        <tr class="KBA-form-row" *ngIf="(params | at: path).length > 0">
+          <td class="authorities-header-cell">{{ labels.authority_name }}</td>
+          <td class="authorities-header-cell">{{ labels.default_setting }}</td>
+        </tr>
+        <ng-container
+          *ngFor="
+            let authority of (
+              resource
+              | at: buildPath(kind ? getResourcePath(kind) : path, 'id')
+            ).values
+          "
+        >
+          <tr
+            class="KBA-form-row"
+            *ngIf="getAuthorityModel(path, authority.value)"
+          >
+            <td>{{ authority.name }}</td>
+            <td>
+              <div class="authorities-radio-group">
+                <div
+                  class="authorities-radio"
+                  *ngFor="
+                    let radio of (
+                      resource
+                      | at
+                        : buildPath(
+                            kind ? getResourcePath(kind) : path,
+                            'default_kind'
+                          )
+                    ).values | orderBy: 'value':'desc'
+                  "
+                >
+                  <input
+                    [(ngModel)]="
+                      getAuthorityModel(path, authority.value).default_kind
+                    "
+                    name="{{ buildPath(path, authority.value) }}"
+                    id="{{ buildPath(path, authority.value, radio.value) }}"
+                    type="radio"
+                    class="KBA-input-radio"
+                    [value]="radio.value"
+                  />
+                  <label
+                    for="{{ buildPath(path, authority.value, radio.value) }}"
+                    class="KBA-input-radio__label"
+                  >
+                    {{ radio.name }}
+                  </label>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+    </ng-template>
+
+    <div
+      class="row-group-select-buttons authorities-select"
+      *ngIf="
+        (resource | at: buildPath(kind ? getResourcePath(kind) : path, 'id')) ==
+        null
+      "
+    >
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="handleClickPresetRolesSelect(kind, authoritySelect)"
+      >
+        {{ labels.select }}
+      </button>
+    </div>
+  </ng-template>
+
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+
+  <ng-template #submitModalContent>
+    <app-group-detail-modal
+      [labels]="labels"
+      [groupInfoHeader]="groupInfoHeader"
+      [groupInfoParams]="groupInfoParams"
+      [keyPersonHeader]="keyPersonHeader"
+      [keyPersonParams]="keyPersonParams"
+      [mapParams]="mapParams"
+      [hasMap]="hasConfirmModalMap"
+    ></app-group-detail-modal>
+  </ng-template>
+
+  <ng-template #mapModalContent>
+    <div class="group-map-container">
+      <app-kba-area-map
+        [initMap]="formattedMapParams"
+        [labels]="labels"
+        [menuWidth]="0"
+        [menuOpen]="false"
+        [isModal]="true"
+        [editable]="false"
+        [hasMenu]="false"
+      >
+      </app-kba-area-map>
+    </div>
+  </ng-template>
+</section>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

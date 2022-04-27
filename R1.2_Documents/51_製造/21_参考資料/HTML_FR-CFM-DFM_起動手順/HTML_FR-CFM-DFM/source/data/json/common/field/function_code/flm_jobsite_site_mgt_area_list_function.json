@@ -1,0 +1,44 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "ID",
+    "path": "group_area_maps.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "グループエリア座標",
+    "path": "group_area_maps.feature.geometry.coordinates",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "現在位置座標",
+    "path": "group_area_maps.cars.latest_status.point.coordinates",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "アイコンフォント番号",
+    "path": "group_area_maps.cars.icon_font.no",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "エリア名称",
+    "path": "group_area_maps.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "説明",
+    "path": "group_area_maps.description",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

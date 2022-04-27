@@ -1,0 +1,11 @@
+[
+  {
+    "path": "division_setting.divisions",
+    "name": "設定車両種類",
+    "help": "設定車両種類のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

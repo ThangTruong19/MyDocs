@@ -1,0 +1,269 @@
+<!-- 一括設定 -->
+<div class="container-fluid">
+  <h2 class="KBA-page-title">{{ labels.setting_all_title }}</h2>
+  <div class="KBA-content">
+    <!-- 顧客情報 -->
+    <table
+      *ngIf="resource.common.customer && resource.common.customer.ids"
+      class="KBA-form-table table table-bordered KBA-form-detail-table"
+    >
+      <tbody class="KBA-form-table-tbody">
+        <tr>
+          <td class="KBA-form-table__head">
+            <label class="KBA-form-table__label">{{
+              resource.common.customer.ids.name
+            }}</label>
+          </td>
+          <td>
+            {{ customerLabel }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 選択車両情報 -->
+    <div class="select_cars_header">
+      <p>{{ labels.select_cars }}</p>
+      <app-kba-selected
+        #idHoldTimeSelect
+        [kbaName]="'id_hold_time'"
+        [kbaParams]="settingOnParams"
+        [kbaResource]="resource"
+        [horizontal]="true"
+      >
+      </app-kba-selected>
+    </div>
+    <table class="KBA-table-modal table table-bordered">
+      <thead class="KBA-table-thead-modal">
+        <tr>
+          <ng-container *ngFor="let carHeader of carHeaders">
+            <th *ngIf="carHeader.displayable">
+              {{ carHeader.label }}
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody class="KBA-form-table-tbody">
+        <tr *ngFor="let car of cars">
+          <ng-container *ngFor="let carHeader of carHeaders">
+            <ng-container
+              *ngIf="carHeader.displayable"
+              [ngSwitch]="carHeader.name"
+            >
+              <!-- オペ識別設定の場合 -->
+              <td
+                *ngSwitchCase="'cars.car_operator.operator_identification_kind'"
+                class="text-center align-middle"
+              >
+                <span
+                  *ngIf="
+                    isOperatorIdSettingKindOn(
+                      car['cars.car_operator.operator_identification_kind']
+                    )
+                  "
+                  class="on"
+                >
+                  {{ labels.id_key_on }}
+                </span>
+                <span
+                  *ngIf="
+                    !isOperatorIdSettingKindOn(
+                      car['cars.car_operator.operator_identification_kind']
+                    )
+                  "
+                  class="off"
+                >
+                  {{ labels.id_key_off }}
+                </span>
+              </td>
+
+              <!-- ID保持時間の場合 -->
+              <td
+                *ngSwitchCase="'cars.car_operator.id_hold_time'"
+                class="align-middle"
+              >
+                <p>{{ displayIdHoldTime(car[carHeader.name]) }}</p>
+              </td>
+
+              <!-- 上記以外の td の場合 -->
+              <td *ngSwitchDefault class="align-middle">
+                <p>{{ car[carHeader.name] }}</p>
+              </td>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 登録オペID情報 -->
+  <div class="KBA-content">
+    <p>{{ labels.regist_ope_ids }}</p>
+    <form class="KBA-form" #f="ngForm">
+      <div class="container KBA-register">
+        <p class="KBA-form-table__required">
+          {{ labels.description_for_required }}
+        </p>
+        <table class="register-table">
+          <thead>
+            <tr class="row">
+              <th
+                *ngIf="exists('car_operator_id_input.operator_codes')"
+                class="required d-inline-block col-sm-3"
+              >
+                {{ resource.car_operator_id_input.operator_codes.name }}
+              </th>
+              <th
+                *ngIf="exists('car_operator_id_input.operator_labels')"
+                class="d-inline-block col-sm-9"
+              >
+                {{ resource.car_operator_id_input.operator_labels.name }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row" *ngFor="let op of operatorParams; let idx = index">
+              <td
+                *ngIf="exists('car_operator_id_input.operator_codes')"
+                class="d-inline-block"
+                [ngClass]="{
+                  'col-sm-3': resource.car_operator_id_input.operator_labels,
+                  'no-operator-label': !resource.car_operator_id_input
+                    .operator_labels
+                }"
+              >
+                <app-kba-autocomplete
+                  [ngClass]="'operator-' + idx"
+                  [searchData]="operatorCodeItemList"
+                  [textNoResult]="labels.operator_suggest_result_not_found"
+                  [textSearching]="labels.operator_suggest_searching_text"
+                  [name]="'operator-code-' + idx"
+                  [searchStr]="op.operator_code"
+                  [required]="false"
+                  [minLength]="1"
+                  [maxLength]="7"
+                  (onFocus)="changeOperatorCode($event, f, idx)"
+                  (onblurInput)="changeOperatorCode($event, f, idx)"
+                  (onChangeText)="changeOperatorCode($event, f, idx)"
+                  (onChangeSelectItem)="changeOperatorCode($event, f, idx)"
+                >
+                </app-kba-autocomplete>
+                <input
+                  type="hidden"
+                  name="hidden-operator-code-{{ idx }}"
+                  [required]="false"
+                  [(ngModel)]="op.operator_code"
+                  maxlength="7"
+                />
+              </td>
+              <td
+                class="d-inline-block col-sm-9"
+                *ngIf="exists('car_operator_id_input.operator_labels')"
+              >
+                <app-kba-autocomplete
+                  [ngClass]="'operator-' + idx"
+                  [searchData]="operatorLabelItemList"
+                  [textNoResult]="labels.operator_suggest_result_not_found"
+                  [textSearching]="labels.operator_suggest_searching_text"
+                  [name]="'operator-label-' + idx"
+                  [searchStr]="op.operator_label"
+                  [required]="false"
+                  [minLength]="1"
+                  [maxLength]="255"
+                  (onFocus)="changeOperatorLabel($event, f, idx)"
+                  (onblurInput)="changeOperatorLabel($event, f, idx)"
+                  (onChangeText)="changeOperatorLabel($event, f, idx)"
+                  (onChangeSelectItem)="changeOperatorLabel($event, f, idx)"
+                >
+                </app-kba-autocomplete>
+                <input
+                  type="hidden"
+                  name="hidden-operator-label-{{ idx }}"
+                  [required]="false"
+                  [(ngModel)]="op.operator_label"
+                  maxlength="255"
+                />
+              </td>
+            </tr>
+            <tr
+              *ngIf="operatorParams.length < 12"
+              class="add-operator-row"
+              [ngClass]="{
+                row: !resource.car_operator_id_input.operator_label
+              }"
+            >
+              <td
+                class="add-operator form-control"
+                colspan="2"
+                (click)="onClickAddOperator()"
+              >
+                +
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <footer class="KBA-form-footer-fixed">
+        <a
+          href="javascript:void(0)"
+          class="btn btn-link"
+          (click)="onClickReset(f)"
+          >{{ labels && labels.reset }}</a
+        >
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="onClickReturn()"
+        >
+          {{ labels.prev }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onClickSubmit()"
+          [disabled]="!f.dirty || !isSubmitBtnEnabled"
+        >
+          {{ labels.submit }}
+        </button>
+      </footer>
+    </form>
+  </div>
+</div>
+
+<ng-template #submitModalContent>
+  <div class="confirm-modal-content-item-wrapper">
+    <app-kba-tandem-confirm
+      [desc]="idHoldTimeDesc"
+      [val]="idHoldTimeParams"
+      [wideHeader]="true"
+    >
+    </app-kba-tandem-confirm>
+  </div>
+  <div class="confirm-modal-content-item-wrapper">
+    <app-kba-simple-list-confirm
+      [desc]="carModalValues.listDesc"
+      [val]="carModalValues.listVal"
+    >
+    </app-kba-simple-list-confirm>
+  </div>
+  <app-kba-simple-list-confirm [desc]="listDesc" [val]="listVal">
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #resultModalContent>
+  <div class="confirm-modal-content-item-wrapper">
+    <app-kba-simple-list-confirm
+      [desc]="resultDesc"
+      [val]="resultVal"
+      [warningColumns]="'all'"
+    >
+    </app-kba-simple-list-confirm>
+  </div>
+  <app-kba-simple-list-confirm [desc]="listDesc" [val]="listVal">
+  </app-kba-simple-list-confirm>
+  <p class="result-count-message">{{ resultCountMessage }}</p>
+</ng-template>
+
+<ng-template #resetModalContent>
+  <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+</ng-template>

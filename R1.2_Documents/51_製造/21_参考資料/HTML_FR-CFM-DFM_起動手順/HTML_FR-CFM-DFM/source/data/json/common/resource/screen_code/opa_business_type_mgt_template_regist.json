@@ -1,0 +1,42 @@
+[
+  {
+    "path": "block_id",
+    "name": "ブロック",
+    "help": "ブロックのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ4",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ5",
+        "value": "5",
+        "kind": "D"
+      }
+    ]
+  }
+]

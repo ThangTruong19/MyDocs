@@ -1,0 +1,72 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ID",
+    "path": "flag_condition_links.flag_conditions.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "機種",
+    "path": "flag_condition_links.car_condition.model",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "型式",
+    "path": "flag_condition_links.car_condition.type_rev",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "メモ",
+    "path": "flag_condition_links.flag_conditions.free_memo",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "エラーコード",
+    "path": "flag_condition_links.flag_conditions.event_condition.event_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "13",
+    "name": "条件種別",
+    "path": "flag_condition_links.flag_conditions.event_condition.detection_condition_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "17",
+    "name": "条件",
+    "path": "flag_condition_links.flag_conditions.event_condition.occurrence_identification.condition",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "19",
+    "name": "0分エラーは無視",
+    "path": "flag_condition_links.flag_conditions.event_condition.occurrence_identification.ignore_0minute_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "27",
+    "name": "最終更新日時",
+    "path": "flag_condition_links.flag_conditions.latest_update_datetime",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "28",
+    "name": "更新日時",
+    "path": "flag_condition_links.flag_conditions.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

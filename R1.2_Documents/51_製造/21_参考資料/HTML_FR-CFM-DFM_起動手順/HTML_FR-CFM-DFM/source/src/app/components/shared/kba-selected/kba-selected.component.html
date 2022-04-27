@@ -1,0 +1,35 @@
+<div
+  class="kba-select"
+  *ngIf="isVisible"
+  [ngClass]="{ horizontal: horizontal }"
+>
+  <label for="KBA-select-label" *ngIf="showLabel">{{
+    kbaResource[kbaName] && kbaResource[kbaName].name
+  }}</label>
+  <p [hidden]="!notEditable">{{ viewData() }}</p>
+  <div [hidden]="notEditable">
+    <ng-select
+      id="KBA-select-{{ kbaName }}"
+      name="kbaName"
+      [ngClass]="hasSearchResult ? '' : 'no-items'"
+      [bindLabel]="'name'"
+      [bindValue]="'id'"
+      [items]="items"
+      [clearable]="false"
+      [(ngModel)]="kbaParams[kbaName]"
+      [virtualScroll]="items.length > 100"
+      [appendTo]="appendTo"
+      [dropdownPosition]="'bottom'"
+      (search)="handleSearch($event)"
+      (change)="onSelectItem($event)"
+      (close)="hasSearchResult = true"
+      (open)="handleOpen()"
+    >
+      <ng-template ng-label-tmp ng-option-tmp let-item="item">
+        <span [ngClass]="item.isHighlightItem ? 'highlight' : ''">{{
+          item.name
+        }}</span>
+      </ng-template>
+    </ng-select>
+  </div>
+</div>

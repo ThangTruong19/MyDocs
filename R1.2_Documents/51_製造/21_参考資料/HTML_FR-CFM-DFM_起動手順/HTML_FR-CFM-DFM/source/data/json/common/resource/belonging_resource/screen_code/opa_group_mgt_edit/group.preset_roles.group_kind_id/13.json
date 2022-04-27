@@ -1,0 +1,92 @@
+[
+  {
+    "path": "group.preset_roles.authorities.id",
+    "name": "配下グループ権限",
+    "type": "30",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "32",
+    "items": [
+      {
+        "key": "作業履歴",
+        "value": "94",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "ユーザ管理権限（登録／削除／変更／権限付与）",
+        "value": "95",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "カレンダ予約ロック権限",
+        "value": "116",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "強制ロック権限/パスワードロック権限",
+        "value": "114",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "夜間予約ロック権限",
+        "value": "115",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "注目車両管理権限",
+        "value": "101",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "エラー情報の参照権限",
+        "value": "107",
+        "kind": "D",
+        "data_order": "7"
+      },
+      {
+        "key": "交換時期情報の参照権限",
+        "value": "108",
+        "kind": "D",
+        "data_order": "8"
+      },
+      {
+        "key": "通信不良記録閲覧権限",
+        "value": "110",
+        "kind": "D",
+        "data_order": "9"
+      }
+    ]
+  },
+  {
+    "path": "group.preset_roles.authorities.default_kind",
+    "name": "配下グループ権限（デフォルト区分）",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "34",
+    "items": [
+      {
+        "key": "ON",
+        "value": "1",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "OFF",
+        "value": "0",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  }
+]

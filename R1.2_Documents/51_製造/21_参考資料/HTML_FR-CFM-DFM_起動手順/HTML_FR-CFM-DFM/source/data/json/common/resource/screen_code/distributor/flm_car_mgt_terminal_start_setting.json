@@ -1,0 +1,257 @@
+[
+  {
+    "path": "common.car_identification.maker_codes",
+    "name": "メーカ",
+    "help": "メーカのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "メーカ 1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "メーカ 2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.models",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.type_revs",
+    "name": "型式",
+    "help": "型式のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.serials",
+    "name": "機番",
+    "help": "機番のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "car_management.komtrax_unit.main_component.part",
+    "name": "端末品番",
+    "help": "端末品番のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "N001",
+        "value": "0001",
+        "kind": "D"
+      },
+      {
+        "key": "N002",
+        "value": "0002",
+        "kind": "D"
+      },
+      {
+        "key": "N003",
+        "value": "0003",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car_management.komtrax_unit.main_component.serial",
+    "name": "端末シリアル",
+    "help": "端末シリアルのヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "car_management.terminal_use_start_kinds",
+    "name": "端末使用開始",
+    "help": "端末使用開始のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "0,1,2,3",
+        "kind": "A"
+      },
+      {
+        "key": "未開局",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "未開始",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "開始準備中",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "リトライオーバ",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car_management.orbcomm_request_status",
+    "name": "ORBCOMMアドレス申請状態",
+    "help": "ORBCOMMアドレス申請状態のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "未申請",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "申請済",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.komtrax_unit.communication_kind_ids",
+    "name": "通信種別",
+    "help": "通信種別のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "Orbcomm",
+        "value": "0001",
+        "kind": "D"
+      },
+      {
+        "key": "Dopa",
+        "value": "0002",
+        "kind": "D"
+      },
+      {
+        "key": "GSM",
+        "value": "0003",
+        "kind": "D"
+      },
+      {
+        "key": "モデム無し",
+        "value": "0004",
+        "kind": "D"
+      },
+      {
+        "key": "GPRS",
+        "value": "0005",
+        "kind": "D"
+      },
+      {
+        "key": "PLUS",
+        "value": "0006",
+        "kind": "D"
+      },
+      {
+        "key": "GPRSMS",
+        "value": "0007",
+        "kind": "D"
+      },
+      {
+        "key": "Iridium",
+        "value": "0008",
+        "kind": "D"
+      },
+      {
+        "key": "Wifi",
+        "value": "0009",
+        "kind": "D"
+      },
+      {
+        "key": "Orbcomm+Wifi",
+        "value": "0010",
+        "kind": "D"
+      },
+      {
+        "key": "Iridium+Wifi",
+        "value": "0011",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+]

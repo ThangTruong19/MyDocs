@@ -1,0 +1,236 @@
+<section id="KBA-user-screen" *ngIf="labels && resource">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels && labels.title }}</h2>
+
+    <form class="KBA-form">
+      <div
+        class="KBA-content"
+        *ngIf="typeName !== 'function' || baseResource.group_id"
+      >
+        <div class="KBA-form-header">
+          <h3 class="content-title">{{ labels.menu_information }}</h3>
+          <div class="annotation">
+            <p class="KBA-form-table__required">
+              {{ labels.description_for_required }}
+            </p>
+          </div>
+        </div>
+
+        <table class="KBA-form-table table table-bordered" *ngIf="!loading">
+          <tbody class="KBA-form-table-tbody">
+            <!-- 設定グループ -->
+            <tr
+              app-kba-form-table-select
+              #groupIdSelect
+              *ngIf="exists('group_id')"
+              class="KBA-form-row"
+              [kbaName]="'group_id'"
+              [kbaParams]="params"
+              [kbaResource]="baseResource"
+              [required]="true"
+              (onChange)="onGroupIdChange($event)"
+            ></tr>
+
+            <!-- 表示件数 -->
+            <tr
+              app-kba-form-table-select
+              #displayCountSelect
+              *ngIf="exists('display_count')"
+              class="KBA-form-row"
+              [kbaName]="'display_count'"
+              [kbaParams]="params.group_item_publish_setting"
+              [kbaResource]="baseResource"
+            ></tr>
+
+            <!-- 稼働レポート出力用紙サイズ -->
+            <tr
+              app-kba-form-table-select
+              *ngIf="exists('paper_size_id')"
+              class="KBA-form-row"
+              [kbaName]="'paper_size_id'"
+              [kbaParams]="params.group_item_publish_setting"
+              [kbaResource]="baseResource"
+            ></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="KBA-content setting-content" *ngIf="categories">
+        <div class="setting-list">
+          <div class="setting-list-header">
+            <h3 class="content-title setting-menu-title">
+              {{ labels.setting_menu }}
+            </h3>
+
+            <!-- 外部アプリケーション区分 切り替えタブ -->
+            <div class="nav-external-app-kind">
+              <ul class="nav nav-pills KBA-pills external-app-kind">
+                <ng-container
+                  *ngFor="let appKind of externalAppKindResource.values"
+                >
+                  <li class="nav-item KBA-pill-item">
+                    <a
+                      class="nav-link"
+                      (click)="setVisibleExternalAppKind(appKind.value)"
+                      [ngClass]="{ active: selectedAppKind === appKind.value }"
+                    >
+                      {{ appKind.name }}
+                    </a>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+          </div>
+
+          <div class="setting-list-content">
+            <ul role="tablist" class="tablist nav nav-pills flex-column">
+              <li
+                class="nav-item"
+                *ngFor="let category of categories; let i = index"
+              >
+                <a
+                  class="nav-link"
+                  href="javascript:void(0)"
+                  role="tab"
+                  (click)="onTabChange(category.id)"
+                  [ngClass]="{ active: category.id === currentCategoryId }"
+                  appKbaScrollTo
+                  [scrollTarget]="'.category-' + category.id"
+                  [scrollArea]="'.table-container'"
+                >
+                  {{ category.name }}
+                </a>
+              </li>
+            </ul>
+            <div class="table-container">
+              <ng-container *ngFor="let category of categories; let j = index">
+                <div class="setting-list">
+                  <table
+                    class="KBA-table table table-bordered category-table category-{{
+                      category.id
+                    }}"
+                  >
+                    <thead class="KBA-table-thead">
+                      <ng-container *ngFor="let th of thLists[category.id]">
+                        <th
+                          *ngIf="th.displayable"
+                          class="KBA-index-th th-{{ th.name }}"
+                          [ngClass]="{
+                            fixed: th.name !== 'name',
+                            'disable-sort': !th.sortable
+                          }"
+                        >
+                          <span>{{ th.label }}</span>
+                        </th>
+                      </ng-container>
+                    </thead>
+                    <tbody class="">
+                      <tr
+                        *ngFor="
+                          let data of categoryLists[category.id].originList;
+                          let i = index
+                        "
+                      >
+                        <ng-container
+                          *ngFor="let title of thLists[category.id]"
+                          [ngSwitch]="title.name"
+                        >
+                          <ng-container *ngIf="title.displayable">
+                            <td
+                              *ngSwitchCase="'name'"
+                              class="td-{{ title.name }}"
+                            >
+                              {{ data[title.name] }}
+                            </td>
+                            <td
+                              *ngSwitchCase="'dfm'"
+                              class="td-{{ title.name }} fixed text-center"
+                            >
+                              <app-external-app-publish-setting
+                                [publishKind]="
+                                  data.app_kind[ExternalAppKind.dfm]
+                                    .publish_kind
+                                "
+                                [editable]="
+                                  data.app_kind[ExternalAppKind.dfm]
+                                    .permission_kind === PermissionKind.enable
+                                "
+                                [index]="i"
+                                [labels]="labels"
+                                [isConfirm]="false"
+                                (change)="
+                                  onChangePublishSetting(
+                                    $event,
+                                    category.id,
+                                    ExternalAppKind.dfm
+                                  )
+                                "
+                              >
+                              </app-external-app-publish-setting>
+                            </td>
+                            <td
+                              *ngSwitchCase="'cfm'"
+                              class="td-{{ title.name }} fixed text-center"
+                            >
+                              <app-external-app-publish-setting
+                                [publishKind]="
+                                  data.app_kind[ExternalAppKind.cfm]
+                                    .publish_kind
+                                "
+                                [editable]="
+                                  data.app_kind[ExternalAppKind.cfm]
+                                    .permission_kind === PermissionKind.enable
+                                "
+                                [index]="i"
+                                [labels]="labels"
+                                [isConfirm]="false"
+                                (change)="
+                                  onChangePublishSetting(
+                                    $event,
+                                    category.id,
+                                    ExternalAppKind.cfm
+                                  )
+                                "
+                              >
+                              </app-external-app-publish-setting>
+                            </td>
+                          </ng-container>
+                        </ng-container>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="KBA-form-footer-fixed">
+        <a
+          href="javascript:void(0)"
+          (click)="onClickReset()"
+          class="btn btn-link"
+        >
+          {{ labels.reset }}
+        </a>
+        <button
+          class="btn btn-success"
+          type="button"
+          (click)="onClickContinue()"
+        >
+          {{ labels && labels.continue }}
+        </button>
+        <button class="btn btn-primary" type="button" (click)="onClickSubmit()">
+          {{ labels && labels.submit }}
+        </button>
+      </footer>
+    </form>
+  </div>
+
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+</section>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

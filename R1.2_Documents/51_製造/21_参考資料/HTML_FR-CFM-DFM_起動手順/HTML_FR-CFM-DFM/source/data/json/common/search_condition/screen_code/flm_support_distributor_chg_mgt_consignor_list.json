@@ -1,0 +1,10 @@
+[
+  {
+    "path": "common.car_identification.models",
+    "value": ["KH-290", "UW-80"]
+  },
+  {
+    "path": "common.support_distributor.ids",
+    "value": ["AA2210"]
+  }
+]

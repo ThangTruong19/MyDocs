@@ -1,0 +1,229 @@
+[
+  {
+    "path": "common.service_distributor.ids",
+    "name": "サービスDB",
+    "help": "サービスDBのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "コマツ東京D1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ東京D2",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "service_contract_request.service_distributor_id",
+    "name": "申請中サービスDB",
+    "help": "申請中サービスDBのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "申請中サービスDB1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "申請中サービスDB2",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.customer.ids",
+    "name": "顧客",
+    "help": "顧客のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "コマツ東京C0001の顧客01",
+        "value": "A000101",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ東京C0001の顧客02",
+        "value": "A000102",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ東京C0001の顧客03",
+        "value": "A000103",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ東京C0001の顧客04",
+        "value": "A000104",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "service_contract_status",
+    "name": "申請状況",
+    "help": "申請状況のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "未申請/完了",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "申請中",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.division_codes",
+    "name": "車両種類",
+    "help": "車両種類のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "ショベル",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "油圧ショベル",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.maker_codes",
+    "name": "メーカ",
+    "help": "メーカのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "コマツ0001",
+        "value": "0001",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0002",
+        "value": "0002",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ0003",
+        "value": "0003",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.models",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.type_revs",
+    "name": "型式",
+    "help": "型式のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.serials",
+    "name": "機番",
+    "help": "機番のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+]

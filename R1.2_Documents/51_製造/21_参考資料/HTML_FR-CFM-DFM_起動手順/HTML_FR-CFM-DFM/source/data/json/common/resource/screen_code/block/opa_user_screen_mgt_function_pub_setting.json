@@ -1,0 +1,27 @@
+[
+  {
+    "path": "group_function_publish_setting.function_publish_settings.external_app_publish_settings.external_app_kind",
+    "name": "外部アプリケーション区分",
+    "help": "外部アプリケーション区分のヘルプ文言",
+    "type": "10",
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "全て",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "DFM",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "CFM",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  }
+]

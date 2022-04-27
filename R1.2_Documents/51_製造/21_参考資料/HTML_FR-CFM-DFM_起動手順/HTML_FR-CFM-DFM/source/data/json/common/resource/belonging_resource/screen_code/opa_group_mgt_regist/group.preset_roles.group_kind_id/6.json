@@ -1,0 +1,69 @@
+[
+  {
+    "path": "group.preset_roles.authorities.id",
+    "name": "権限（配下グループ2）",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "権限1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "権限2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "権限3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "group.preset_roles.authorities.checked_items",
+    "name": "権限（配下グループ2）",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "権限1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "権限2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "権限3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "group.preset_roles.authorities.default_kind",
+    "name": "デフォルト設定",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "ON",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "OFF",
+        "value": "0",
+        "kind": "D"
+      }
+    ]
+  }
+]

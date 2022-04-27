@@ -1,0 +1,23 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "SMRインターバル管理項目ID",
+    "path": "smr_interval_items.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "SMRインターバル管理項目名称",
+    "path": "smr_interval_items.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "更新日時",
+    "path": "smr_interval_items.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

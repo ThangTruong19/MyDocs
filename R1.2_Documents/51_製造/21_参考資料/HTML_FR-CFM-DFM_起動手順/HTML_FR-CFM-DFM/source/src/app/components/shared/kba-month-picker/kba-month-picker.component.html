@@ -1,0 +1,15 @@
+<common-month-picker
+  commonFlyout
+  [id]="id"
+  [attr.aria-controls]="id"
+  [labels]="monthPickerLabels"
+  [disabledNextYearButton]="isDisabledNextYearButton()"
+  [monthList]="monthList"
+  [isVisibleClearButton]="isVisibleClearButton"
+  (hasOpened)="onOpened()"
+  (clickMonth)="onClickMonth($event)"
+  (clickPrev)="onClickPrev()"
+  (clickNext)="onClickNext()"
+  (clickClose)="onClickClose()"
+  (clickClear)="onClickClear()"
+></common-month-picker>

@@ -1,0 +1,156 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: ユーザ管理　登録
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: ユーザ管理　登録
+    en:
+
+  - id: 12
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 13
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 14
+    description: 登録確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容を登録します。よろしいですか？
+    en:
+
+  - id: 15
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 16
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 17
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 18
+    description: 登録
+    name: submit
+    ja: 登録
+    en:
+
+  - id: 19
+    description: 続けて登録
+    name: continue
+    ja: 続けて登録
+    en:
+
+  - id: 20
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 21
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 22
+    description: 検索ボタン
+    name: search_user
+    ja: ユーザ検索
+    en:
+
+  - id: 23
+    description: ユーザ名
+    name: user_label
+    ja: ユーザ名
+    en:
+
+  - id: 25
+    description: 電話番号
+    name: phone_no
+    ja: 電話番号
+    en:
+
+  - id: 26
+    description: 所在地
+    name: address
+    ja: 所在地
+    en:
+
+  - id: 27
+    description: 選択
+    name: select
+    ja: 選択
+    en:
+
+  - id: 28
+    description: 代理店名称
+    name: distributor
+    ja:  代理店
+    en:
+
+  - id: 29
+    description: サブグループ名称
+    name: subgroup
+    ja: サブグループ
+    en:
+
+  - id: 30
+    description: 顧客名称
+    name: customer
+    ja: 顧客
+    en:
+
+  - id: 31
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 32
+    description: 選択モーダルタイトル
+    name: select_modal_title
+    ja: 権限を選択してください
+    en:
+
+  - id: 33
+    description: 反映するボタン
+    name: reflect_btn
+    ja: 反映する
+    en:
+
+  - id: 53
+    description: 該当ユーザなし時のアラート
+    name: user_not_found
+    ja: 該当するユーザが見つかりませんでした。
+    en:
+
+  - id: 19
+    description: メールアドレス
+    name: email
+    ja: メールアドレス
+    en:
+
+  - id: 19
+    description: ワイルドカードチェックエラー
+    name: wild_card_error
+    ja: ワイルドカード「*」「?」の使用はできません。
+    en:

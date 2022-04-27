@@ -1,0 +1,65 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "システム通知ID",
+    "path": "applications_system_notifications.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "公開先アプリ",
+    "path": "applications_system_notifications.publish_applications.name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "登録日時",
+    "path": "applications_system_notifications.registration_datetime",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "表示開始日時（GMT）",
+    "path": "applications_system_notifications.notification.start_datetime",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "表示終了日時（GMT）",
+    "path": "applications_system_notifications.notification.end_datetime",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "通知内容",
+    "path": "applications_system_notifications.notification.content",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "グループ種別ID",
+    "path": "applications_system_notifications.publish_group.kind_id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "公開先グループ",
+    "path": "applications_system_notifications.publish_group.kind_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "更新日時",
+    "path": "applications_system_notifications.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

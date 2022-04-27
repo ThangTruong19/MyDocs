@@ -1,0 +1,97 @@
+[
+  {
+    "path": "group_item_publish_setting.display_count",
+    "name": "表示件数",
+    "help": "表示件数のヘルプ文言",
+    "type": "10",
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "30",
+        "value": "30",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "group_item_publish_setting.paper_size_id",
+    "name": "稼働レポート出力用紙サイズ",
+    "help": "稼働レポート出力用紙サイズのヘルプ文言",
+    "type": "10",
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "レターサイズ,8 1/2x11インチ",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "B5",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "B4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "A5",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "A4",
+        "value": "5",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "group_item_publish_setting.item_publish_settings.external_app_publish_settings.external_app_kind",
+    "name": "外部アプリケーション区分",
+    "help": "外部アプリケーション区分のヘルプ文言",
+    "type": "10",
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "全て",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "DFM",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "CFM",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  }
+]

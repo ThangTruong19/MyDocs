@@ -1,0 +1,59 @@
+.graph-content {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.graph-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 34px;
+  padding: 0 5px 0 7px;
+  margin-bottom: 10px;
+  background-color: #eee;
+
+  .kba-icon,
+  .car-info {
+    font-size: 24px;
+  }
+
+  .car-info,
+  .customer-car-no-label,
+  .customer-car-no {
+    display: block;
+  }
+
+  .car-info {
+    margin-left: 10px;
+  }
+
+  .customer-car-no-label {
+    margin-left: 20px;
+    font-size: 13px;
+    color: #294cae;
+  }
+
+  .customer-car-no {
+    margin-left: 5px;
+    font-size: 16px;
+  }
+}
+
+.graph-wrapper {
+  width: 50%;
+  height: 250px;
+  padding-bottom: 20px;
+}
+
+.graph-footer {
+  font-size: 13px;
+  color: #999;
+  text-align: right;
+}
+
+.stat-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid #e6e6e6;
+}

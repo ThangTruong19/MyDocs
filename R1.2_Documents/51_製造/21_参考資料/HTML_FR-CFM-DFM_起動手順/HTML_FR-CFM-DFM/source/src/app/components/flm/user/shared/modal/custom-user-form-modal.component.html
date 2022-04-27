@@ -1,0 +1,88 @@
+<table class="KBA-form-table table table-bordered">
+  <tbody class="KBA-form-table-tbody">
+    <ng-container *ngFor="let d of desc">
+      <ng-container [ngSwitch]="d.dataKey || d.name">
+        <ng-container *ngSwitchCase="'group.granted_role.name'">
+          <tr *ngIf="d.displayable">
+            <td
+              class="KBA-form-table__head"
+              [attr.rowspan]="
+                (val | at: 'group.granted_authority_names' | isNotEmpty) ? 2 : 1
+              "
+            >
+              <label class="KBA-form-table__label">{{ d.label }}</label>
+            </td>
+            <td class="KBA-form-table__value half-height" colspan="2">
+              <p>{{ val | at: d.dataKey || d.name }}</p>
+            </td>
+          </tr>
+          <tr
+            *ngIf="
+              d.displayable &&
+              (val | at: 'group.granted_authority_names' | isNotEmpty)
+            "
+          >
+            <td class="KBA-form-table__value half-height" colspan="2">
+              <p>{{ val | at: 'group.granted_authority_names' }}</p>
+            </td>
+          </tr>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'groups.granted_authorities'">
+          <tr *ngIf="d.displayable">
+            <td
+              class="KBA-form-table__head"
+              [attr.rowspan]="
+                (val | at: 'groups.granted_authority_names' | isNotEmpty)
+                  ? 2
+                  : 1
+              "
+            >
+              <label class="KBA-form-table__label">{{ d.label }}</label>
+            </td>
+            <td class="KBA-form-table__value half-height" colspan="2">
+              <p>{{ val | at: 'groups.granted_role.name' }}</p>
+            </td>
+          </tr>
+          <tr
+            *ngIf="
+              d.displayable &&
+              (val | at: 'groups.granted_authority_names' | isNotEmpty)
+            "
+          >
+            <td class="KBA-form-table__value half-height" colspan="2">
+              <p>{{ val | at: 'groups.granted_authority_names' }}</p>
+            </td>
+          </tr>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'group.belonging_group_id'">
+          <tr *ngIf="d.displayable">
+            <td class="KBA-form-table__head">
+              <label class="KBA-form-table__label">{{ d.label }}</label>
+            </td>
+            <td class="KBA-form-table__value" colspan="2">
+              <span class="belonging-name"
+                [style.color]="userService.getGroupKindTextColor(belongingNameColor)"
+                [style.backgroundColor]="belongingNameColor">
+                {{ belongingName }}
+              </span>
+              <p>{{ val | at: d.dataKey || d.name }}</p>
+            </td>
+          </tr>
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>
+          <tr *ngIf="d.displayable">
+            <td class="KBA-form-table__head">
+              <label class="KBA-form-table__label">{{ d.label }}</label>
+            </td>
+            <td class="KBA-form-table__value" colspan="2">
+              <p>{{ val | at: d.dataKey || d.name }}</p>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </tbody>
+</table>

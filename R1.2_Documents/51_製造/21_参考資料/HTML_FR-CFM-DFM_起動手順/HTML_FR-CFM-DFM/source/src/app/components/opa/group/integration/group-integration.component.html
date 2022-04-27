@@ -1,0 +1,340 @@
+<section id="KBA-group-integration" *ngIf="labels && resource">
+  <div class="container-fluid">
+    <h2 class="KBA-group-integration__title KBA-page-title">
+      {{ labels.title }}
+    </h2>
+    <div class="KBA-content">
+      <div class="KBA-form">
+        <div class="KBA-form-header">
+          <h3 class="KBA-content-title" *ngIf="template === 'dest'">
+            {{ labels.select_dest_group }}
+          </h3>
+          <h3 class="KBA-content-title" *ngIf="template === 'src'">
+            {{ labels.select_src_groups }}
+          </h3>
+        </div>
+        <table
+          class="KBA-form-table table table-bordered src-header-table"
+          *ngIf="template === 'src'"
+        >
+          <tbody class="KBA-form-table-tbody">
+            <td class="KBA-form-table__head">
+              <label class="KBA-form-table__label">
+                {{ integrationToLabel }}
+              </label>
+            </td>
+            <td>
+              {{ destGroup['groups.identification.label'] }}
+            </td>
+          </tbody>
+        </table>
+        <!-- 検索 -->
+        <app-kba-accordion
+          [collapsed]="collapsed"
+          [useCustomHeader]="false"
+          [title]="labels.search_condition"
+          [labels]="labels"
+          (onChangeState)="changePanelState($event)"
+        >
+          <div data-kba-accordion-body>
+            <div class="container KBA-search">
+              <div class="row">
+                <ng-container *ngIf="template === 'dest'">
+                  <app-kba-selected
+                    *ngIf="exists('configuration_group_ids')"
+                    #searchConditions
+                    #blockSelection
+                    class="col-sm-3"
+                    [kbaName]="'configuration_group_ids'"
+                    [kbaParams]="configurationGroupIdParams"
+                    [kbaResource]="resource"
+                    (onChangeSelectItem)="onSelectBlock($event)"
+                  ></app-kba-selected>
+                </ng-container>
+                <ng-container *ngIf="template === 'src'">
+                  <div
+                    class="col-sm-3 search-condition-label"
+                    *ngIf="resource.configuration_group_ids"
+                  >
+                    <label>{{ resource.configuration_group_ids.name }}</label>
+                    <p>
+                      {{
+                        _getResourceValueName(
+                          'configuration_group_ids',
+                          searchParams.configuration_group_ids[0]
+                        )
+                      }}
+                    </p>
+                  </div>
+                </ng-container>
+                <app-kba-text
+                  class="col-sm-3"
+                  [kbaName]="'group_label'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                  [maxlength]="255"
+                ></app-kba-text>
+              </div>
+            </div>
+            <div class="KBA-panel-footer">
+              <button
+                (click)="onClickSearch()"
+                type="button"
+                class="btn btn-primary search"
+              >
+                {{ labels.search }}
+              </button>
+            </div>
+          </div>
+        </app-kba-accordion>
+
+        <div class="KBA-table-options" [hidden]="count <= 0">
+          <app-kba-pagination
+            [count]="count"
+            [params]="pageParams"
+            [labels]="labels"
+            [element]="pageCountEl"
+            (changeState)="onPaginationChange()"
+          >
+          </app-kba-pagination>
+        </div>
+        <p class="group-integration-notice">
+          {{ labels.group_integration_notice }}
+        </p>
+
+        <div class="KBA-table-wrapper">
+          <app-kba-table
+            [customTableThContent]="customTableThContent"
+            [customTableRowContent]="customTableRowContent"
+            [lists]="lists"
+            [pageParams]="pageParams"
+            [thList]="thList"
+            [sortableThList]="sortableThList"
+            [(sortingParams)]="sortingParams"
+            [labels]="labels"
+            [collapsed]="collapsed"
+            [isFetching]="isFetching"
+            [selectable]="template === 'src'"
+            [checkedItems]="checkedItems"
+            [checkIdName]="checkIdName"
+          >
+          </app-kba-table>
+        </div>
+
+        <div class="KBA-form-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="onClickNext()"
+            *ngIf="template === 'dest'"
+            [disabled]="!isNextButtonEnabled()"
+          >
+            {{ labels.next }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="onClickBack()"
+            *ngIf="template === 'src'"
+          >
+            {{ labels.back }}
+          </button>
+        </div>
+
+        <footer class="KBA-form-footer-fixed">
+          <a
+            href="javascript:void(0)"
+            (click)="onClickReset()"
+            class="btn btn-link"
+          >
+            {{ labels.reset }}
+          </a>
+          <button
+            class="btn btn-success"
+            type="button"
+            (click)="onClickContinue()"
+            [disabled]="!isSubmitButtonEnabled()"
+          >
+            {{ labels && labels.continue }}
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickSubmit()"
+            [disabled]="!isSubmitButtonEnabled()"
+          >
+            {{ labels && labels.integration }}
+          </button>
+        </footer>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-kba-alert></app-kba-alert>
+
+<ng-template #customTableThContent>
+  <th class="th-radio fixed" *ngIf="template === 'dest'"></th>
+
+  <ng-container *ngFor="let th of thList">
+    <ng-container *ngIf="th.displayable">
+      <th
+        class="th-{{ th.shortName }} KBA-index-th"
+        appKbaSortingLabel
+        [(sortingParams)]="sortingParams"
+        [labelName]="th.name"
+        [sortableThList]="sortableThList"
+        (sort)="onChangeSort($event)"
+      >
+        <span>{{ th.label }}</span>
+      </th>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #customTableRowContent let-data="data">
+  <td class="td-radio fixed" *ngIf="template === 'dest'">
+    <ng-container *ngIf="data['groups.integration_status'] === '0'">
+      <input
+        name="group-publish-radio"
+        id="group-publish-radio-{{ data['groups.identification.id'] }}"
+        type="radio"
+        class="KBA-input-radio"
+        [value]="data['groups.identification.id']"
+        [ngModel]="destGroupId"
+        (ngModelChange)="onSelectDestGroup($event, data)"
+      />
+      <label
+        for="group-publish-radio-{{ data['groups.identification.id'] }}"
+        class="KBA-input-radio__label"
+      ></label>
+    </ng-container>
+  </td>
+
+  <ng-container *ngFor="let title of thList">
+    <ng-container *ngIf="title.displayable">
+      <td
+        class="td-{{ title.shortName }} KBA-index-td d-flex align-items-center"
+      >
+        <span>{{ data[title.name] }}</span>
+      </td>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #resetModalContent>
+  <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+</ng-template>
+
+<ng-template #confirmModalContent>
+  <header class="confirm-modal-header">
+    <div class="message message-danger" *ngIf="!isIntegrationDisabled()">
+      <i class="fa fa-warning fa-2x"></i>
+      <p>
+        {{ labels.warning_message }}
+      </p>
+    </div>
+    <div class="message" *ngIf="integrationCheckError">
+      <p
+        *ngFor="let error of integrationCheckError"
+        class="integration-error-wrapper"
+        [ngClass]="
+          isIntegrationDisabled() ? 'message-error' : 'message-warning'
+        "
+      >
+        <i
+          class="fa fa-2x"
+          [ngClass]="{
+            'fa-warning': !isIntegrationDisabled(error),
+            'fa-times-circle': isIntegrationDisabled(error)
+          }"
+        ></i>
+        <span class="integration-error">{{ error.message }}</span>
+      </p>
+    </div>
+  </header>
+  <div class="confirm-modal-content">
+    <ng-container
+      *ngTemplateOutlet="
+        confirmTable;
+        context: {
+          thList: confirmModalDestThList,
+          list: confirmModalDestList,
+          name: 'dest'
+        }
+      "
+    ></ng-container>
+    <ng-container
+      *ngTemplateOutlet="
+        confirmTable;
+        context: {
+          thList: confirmModalSrcThList,
+          list: confirmModalSrcList,
+          name: 'src'
+        }
+      "
+    ></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #confirmTable let-thList="thList" let-list="list" let-name="name">
+  <div class="modal-table-container table-auto-height">
+    <table class="KBA-table-modal KBA-table table table-bordered">
+      <thead class="KBA-table-thead-modal KBA-table-thead">
+        <tr class="KBA-table-flex-cell-modal">
+          <ng-container *ngFor="let th of thList">
+            <th
+              class="KBA-form-table__head"
+              *ngIf="th.displayable"
+              [ngClass]="{ fixed: th.fixed }"
+            >
+              {{ th.label }}
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody class="KBA-form-table-tbody KBA-table-tbody">
+        <tr
+          class="KBA-table-flex-cell-modal"
+          *ngFor="let item of list; let i = index"
+          [ngClass]="{
+            'not-checked':
+              !isIntegrationDisabled() && !confirmModalCheck[name + i]
+          }"
+        >
+          <ng-container *ngFor="let th of thList">
+            <td
+              class="KBA-form-table__value"
+              *ngIf="th.displayable"
+              [ngClass]="{ fixed: th.fixed }"
+            >
+              <ng-container [ngSwitch]="th.name">
+                <ng-container *ngSwitchCase="'confirm'">
+                  <input
+                    id="check-icon-{{ name }}-{{ i }}"
+                    type="checkbox"
+                    class="KBA-input-checkbox"
+                    [disabled]="isIntegrationDisabled()"
+                    [ngModel]="confirmModalCheck[name + i]"
+                    (ngModelChange)="onModalCheck($event, name + i)"
+                  />
+                  <label
+                    class="KBA-input-checkbox__label"
+                    for="check-icon-{{ name }}-{{ i }}"
+                  >
+                    <i class="fa"></i>
+                  </label>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  {{ item | at: th.dataKey }}
+                </ng-container>
+              </ng-container>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

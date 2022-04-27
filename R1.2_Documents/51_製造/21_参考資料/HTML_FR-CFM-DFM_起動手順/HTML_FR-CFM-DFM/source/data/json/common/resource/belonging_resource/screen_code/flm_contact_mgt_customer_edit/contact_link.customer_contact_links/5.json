@@ -1,0 +1,37 @@
+[
+  {
+    "path": "contact_link.customer_contact_links.contact_kind_code",
+    "name": "ICT",
+    "help": "ICTのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "ICT1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "ICT2",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "ICT3",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "ICT4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "ICT5",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "ID",
+    "path": "groups.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "更新日時",
+    "path": "groups.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "グループ統合ステータス",
+    "path": "groups.integration_status",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "統合先グループ",
+    "path": "groups.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "所在地",
+    "path": "groups.attribute.address",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "グループ統合ステータス",
+    "path": "groups.integration_status_name",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

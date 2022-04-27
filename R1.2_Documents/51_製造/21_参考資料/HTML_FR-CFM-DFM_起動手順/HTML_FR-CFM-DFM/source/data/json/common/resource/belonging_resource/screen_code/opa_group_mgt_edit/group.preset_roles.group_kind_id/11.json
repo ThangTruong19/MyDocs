@@ -1,0 +1,110 @@
+[
+  {
+    "path": "group.preset_roles.authorities.id",
+    "name": "配下グループ権限",
+    "type": "30",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "32",
+    "items": [
+      {
+        "key": "作業履歴",
+        "value": "94",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "お知らせ転送権限",
+        "value": "119",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "オペレータ識別設定管理権限",
+        "value": "133",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "範囲外管理権限",
+        "value": "109",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "オペレータ識別管理権限",
+        "value": "127",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "注目車両管理権限",
+        "value": "101",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "ランドマーク管理権限",
+        "value": "104",
+        "kind": "D",
+        "data_order": "7"
+      },
+      {
+        "key": "交換時期情報の参照権限",
+        "value": "108",
+        "kind": "D",
+        "data_order": "8"
+      },
+      {
+        "key": "要求（IDリスト情報）権限",
+        "value": "129",
+        "kind": "D",
+        "data_order": "9"
+      },
+      {
+        "key": "要求（オペ識別情報）権限",
+        "value": "128",
+        "kind": "D",
+        "data_order": "10"
+      },
+      {
+        "key": "オペレータ稼動情報参照権限",
+        "value": "103",
+        "kind": "D",
+        "data_order": "11"
+      },
+      {
+        "key": "オペレータ名称参照権限",
+        "value": "226",
+        "kind": "D",
+        "data_order": "12"
+      }
+    ]
+  },
+  {
+    "path": "group.preset_roles.authorities.default_kind",
+    "name": "配下グループ権限（デフォルト区分）",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "34",
+    "items": [
+      {
+        "key": "ON",
+        "value": "1",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "OFF",
+        "value": "0",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  }
+]

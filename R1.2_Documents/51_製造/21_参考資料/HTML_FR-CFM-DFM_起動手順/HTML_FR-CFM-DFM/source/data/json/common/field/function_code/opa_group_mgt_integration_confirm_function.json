@@ -1,0 +1,44 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "ID",
+    "path": "groups.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "最終更新日時",
+    "path": "groups.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "統合元グループ",
+    "path": "groups.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "所在地",
+    "path": "groups.attribute.address",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "顧客数",
+    "path": "groups.count.subordinate_group.value",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "control_code": "1",
+    "display_code": "1",
+    "name": "車両数",
+    "path": "groups.count.car.value"
+  }
+]

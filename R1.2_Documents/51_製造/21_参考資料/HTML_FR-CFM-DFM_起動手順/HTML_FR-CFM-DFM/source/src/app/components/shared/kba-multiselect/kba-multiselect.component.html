@@ -1,0 +1,29 @@
+<div class="kba-select">
+  <ng-select
+    class="kba-multiselect"
+    [ngClass]="hasSearchResult ? '' : 'no-items'"
+    [items]="options"
+    [multiple]="true"
+    [bindLabel]="'name'"
+    [closeOnSelect]="false"
+    [placeholder]="title"
+    [clearable]="false"
+    (change)="handleChangeSelection($event)"
+    (open)="handleOpen()"
+    (search)="handleSearch($event)"
+    [(ngModel)]="selectedItems"
+    (close)="hasSearchResult = true"
+  >
+    <ng-template
+      ng-option-tmp
+      let-item="item"
+      let-item$="item$"
+      let-index="index"
+    >
+      <div class="multiselect-option">
+        <span>{{ item.name }}</span>
+        <i class="fa fa-check kba-icon" [hidden]="!item$.selected"></i>
+      </div>
+    </ng-template>
+  </ng-select>
+</div>

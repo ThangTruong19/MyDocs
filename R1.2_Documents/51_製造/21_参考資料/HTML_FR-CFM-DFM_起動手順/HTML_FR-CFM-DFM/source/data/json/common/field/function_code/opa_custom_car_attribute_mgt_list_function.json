@@ -1,0 +1,37 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "カスタム車両属性ID",
+    "path": "custom_car_attributes.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "ブロック",
+    "path": "custom_car_attributes.block_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "車両属性NO",
+    "path": "custom_car_attributes.field_no",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "属性名称",
+    "path": "custom_car_attributes.name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "更新日時",
+    "path": "custom_car_attributes.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

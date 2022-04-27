@@ -1,0 +1,306 @@
+<section id="KBA-model-setting" *ngIf="labels && resource">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+
+    <div class="KBA-content" *ngIf="params">
+      <div class="KBA-form">
+        <div class="annotation">
+          <p class="caption">{{ labels.caption }}</p>
+          <p class="KBA-form-table__required">
+            {{ labels.description_for_required }}
+          </p>
+        </div>
+        <div *ngIf="!loading">
+          <ng-container
+            *ngTemplateOutlet="mainContent; context: { isConfirm: false }"
+          ></ng-container>
+
+          <footer class="KBA-form-footer-fixed">
+            <a
+              href="javascript:void(0)"
+              (click)="onClickReset()"
+              class="btn btn-link"
+            >
+              {{ labels.reset }}
+            </a>
+            <button
+              class="btn btn-success"
+              type="button"
+              *ngIf="!isUpdate"
+              (click)="onClickContinue()"
+              [disabled]="!isSubmitBtnEnabled()"
+            >
+              {{ labels.continue }}
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="onClickSubmit()"
+              [disabled]="!isSubmitBtnEnabled()"
+            >
+              {{ labels.submit }}
+            </button>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #mainContent let-isConfirm="isConfirm">
+    <table class="KBA-form-table table table-bordered" *ngIf="isReady">
+      <tbody class="KBA-form-table-tbody">
+        <!-- 設定グループ -->
+        <ng-container *ngIf="exists('custom_division.group_id')">
+          <tr
+            app-kba-form-table-select
+            #groupIDSelection
+            *ngIf="!isConfirm && !isUpdate"
+            class="KBA-form-row"
+            [kbaName]="'group_id'"
+            [kbaParams]="params.custom_division"
+            [kbaResource]="resource.custom_division"
+            [emitInitialRefresh]="false"
+            (onChange)="onGroupIdChange($event)"
+          ></tr>
+          <tr
+            app-kba-form-table-custom
+            *ngIf="isConfirm || isUpdate"
+            class="KBA-form-row"
+            [kbaName]="'group_id'"
+            [kbaResource]="resource.custom_division"
+            [content]="groupIDContent"
+          ></tr>
+          <ng-template #groupIDContent>
+            {{
+              _getResourceValueName(
+                'custom_division.group_id',
+                params.custom_division.group_id
+              )
+            }}
+          </ng-template>
+        </ng-container>
+
+        <!-- 設定 -->
+        <tr
+          app-kba-form-table-custom
+          class="KBA-form-row"
+          [customHeader]="settingHeader"
+          [content]="settingContent"
+        >
+          <ng-template #settingHeader>
+            <label class="KBA-form-table__label">
+              {{ labels.setting }}
+            </label>
+          </ng-template>
+          <ng-template #settingContent>
+            <ng-container *ngIf="!isConfirm">
+              <input
+                type="checkbox"
+                name="setting"
+                id="custom-car-attribute_setting"
+                class="KBA-input-checkbox checkbox-with-label"
+                [(ngModel)]="useSameName"
+              />
+              <label
+                for="custom-car-attribute_setting"
+                class="KBA-input-checkbox__label"
+              >
+                {{ resource.custom_division.use_same_name.name }}
+              </label>
+            </ng-container>
+            <ng-container *ngIf="isConfirm">
+              {{
+                useSameName
+                  ? resource.custom_division.use_same_name.name
+                  : labels.not_set
+              }}
+            </ng-container>
+          </ng-template>
+        </tr>
+
+        <!-- カスタム車種名 -->
+        <tr
+          app-kba-form-table-custom
+          class="KBA-form-row"
+          [kbaName]="'names'"
+          [kbaResource]="resource.custom_division"
+          [customHeader]="namesHeader"
+          [content]="namesContent"
+        >
+          <ng-template #namesHeader>
+            <label
+              class="KBA-form-table__label"
+              [ngClass]="{ 'KBA-form-table__required': !isConfirm }"
+            >
+              {{
+                isConfirm
+                  ? resource.custom_division.names.label.name
+                  : getPrimaryLangLabel(resource.custom_division.names.label)
+              }}
+            </label>
+          </ng-template>
+          <ng-template #namesContent>
+            <div
+              class="names-container"
+              [formGroup]="formGroup"
+              *ngIf="!isConfirm"
+            >
+              <div class="primary-block">
+                <input
+                  id="names-primary"
+                  name="names-primary"
+                  class="KBA-input-text form-control"
+                  type="text" autocomplete="off"
+                  maxlength="1024"
+                  [ngClass]="{
+                    edited: isEdited(
+                      originalParams.custom_division.names[0].label,
+                      params.custom_division.names[0].label
+                    ),
+                    'KBA-form-error':
+                      errorData | hasError: 'custom_division.names[0].label'
+                  }"
+                  (ngModelChange)="params.custom_division.names[0].label = $event"
+                  [formControlName]="
+                    resource.custom_division.names.label.values[0].value
+                  "
+                />
+              </div>
+              <div class="others-block">
+                <app-kba-child-text
+                  [hidden]="useSameName"
+                  [parent]="namesParent"
+                  [root]="namesRoot"
+                  [params]="params.custom_division.names.slice(1)"
+                  [labels]="namesLabel"
+                  [name]="'names'"
+                  [modelPath]="'label'"
+                  [labelPath]="'lang_code'"
+                  [originalParams]="
+                    originalParams &&
+                    originalParams.custom_division.names.slice(1)
+                  "
+                  [checkIsEdited]="checkIsEdited"
+                  [path]="'custom_division.names'"
+                  [errorData]="errorData"
+                  [formGroup]="formGroup.controls.others"
+                ></app-kba-child-text>
+              </div>
+            </div>
+            <ng-container *ngIf="isConfirm">
+              <div
+                class="names-confirm-container use-same-name"
+                *ngIf="useSameName"
+              >
+                {{ params.custom_division.names[0].label }}
+              </div>
+              <div class="names-confirm-container" *ngIf="!useSameName">
+                <div
+                  class="names-row"
+                  *ngFor="let name of params.custom_division.names"
+                >
+                  <div class="names-cell lang-name">
+                    {{ namesLabel[name.lang_code] }}
+                  </div>
+                  <div class="names-cell label">{{ name.label }}</div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-template>
+        </tr>
+
+        <!-- 機種型式 -->
+        <tr
+          app-kba-form-table-custom
+          class="KBA-form-row"
+          [kbaName]="'car_conditions'"
+          [kbaResource]="resource.custom_division"
+          [content]="carConditionsContent"
+          [required]="!isConfirm"
+        >
+          <ng-template #carConditionsContent>
+            <div class="car-conditions-content">
+              <div class="car-conditions-content_header" *ngIf="!isConfirm">
+                <div class="search-conditions">
+                  <app-kba-selected
+                    #makerCodeSelect
+                    class="col-sm-3"
+                    [kbaName]="'maker_code'"
+                    [kbaParams]="searchParams"
+                    [kbaResource]="resource"
+                    (onChangeSelectItem)="handleChangeMakerCode($event)"
+                  >
+                  </app-kba-selected>
+                  <app-kba-selected
+                    #divisionCodeSelect
+                    class="col-sm-3"
+                    [kbaName]="'division_code'"
+                    [kbaParams]="searchParams"
+                    [kbaResource]="resource"
+                  >
+                  </app-kba-selected>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-select"
+                  (click)="onClickModelTypeSettingSelectBtn()"
+                >
+                  {{ labels.select }}
+                </button>
+              </div>
+              <div class="model-type-setting-content_body" *ngIf="data">
+                <app-models
+                  *ngIf="!isConfirm"
+                  [models]="
+                    filterModel(
+                      (confirmData || data).model_type_setting.models,
+                      searchParams.maker_code,
+                      searchParams.division_code
+                    )
+                  "
+                  [clickable]="false"
+                  [labels]="labels"
+                  [resource]="resource"
+                  [emptyMessage]="labels.empty_search_result"
+                >
+                </app-models>
+                <app-models
+                  *ngIf="isConfirm"
+                  [models]="confirmData.model_type_setting.models"
+                  [clickable]="false"
+                  [labels]="labels"
+                  [resource]="resource"
+                >
+                </app-models>
+              </div>
+            </div>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+
+  <ng-template #settingModalContent>
+    <app-model-type-select-modal
+      [resource]="resource"
+      [labels]="labels"
+      [params]="searchParams"
+      [updatedData]="confirmData"
+      [processData]="processData"
+      [enableOkFn]="enableOkFn"
+      [screenCode]="screenCode"
+      [onChange]="handleChangeModelTypes"
+    >
+    </app-model-type-select-modal>
+  </ng-template>
+
+  <ng-template #submitModalContent>
+    <p class="KBA-modal-message">{{ labels.confirm_modal_body }}</p>
+  </ng-template>
+
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+</section>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

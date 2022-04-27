@@ -1,0 +1,30 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "顧客ID",
+    "path": "customer_id",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "顧客名称",
+    "path": "customer_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "オペレータコード",
+    "path": "operators_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "オペレータ名",
+    "path": "operators_current_label",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

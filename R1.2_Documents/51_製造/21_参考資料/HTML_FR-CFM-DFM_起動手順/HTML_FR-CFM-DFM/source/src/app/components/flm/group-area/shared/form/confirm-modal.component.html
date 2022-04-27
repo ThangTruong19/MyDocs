@@ -1,0 +1,84 @@
+<section id="KBA-smrinterval-show-modal" class="KBA-modal">
+  <header class="KBA-modal-header modal-header">
+    <h1>{{ labels.confirm_modal_title }}</h1>
+  </header>
+
+  <div class="KBA-modal-body modal-body">
+    <table class="KBA-form-table table table-bordered">
+      <tbody class="KBA-form-table-tbody">
+        <ng-container *ngFor="let d of desc['upper']">
+          <tr>
+            <td class="KBA-form-table__head">
+              <label class="KBA-form-table__label">{{ d.label }}</label>
+            </td>
+            <td class="KBA-form-table__value">
+              <p>{{ val[d.name] }}</p>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <div class="KBA-map">
+      <app-kba-area-menu
+        [initMap]="{}"
+        [resource]="resource"
+        [resourceType]="'group_area'"
+        [menuOpen]="menuOpen"
+        [isCurrent]="true"
+        [labels]="labels"
+        [editable]="false"
+        [polyPoints]="polyPoints"
+        [rectData]="rectData"
+        [selectType]="selectType"
+        [selectTypeLabel]="selectTypeLabel"
+        (changeMenuOpen)="menuOpen = $event"
+      >
+      </app-kba-area-menu>
+      <app-kba-area-map
+        [initMap]="{}"
+        [labels]="labels"
+        [others]="others"
+        [menuWidth]="312"
+        [menuOpen]="menuOpen"
+        [isModal]="true"
+        [selectType]="selectType"
+        [polyPoints]="polyPoints"
+        [rectData]="rectData"
+        [editable]="false"
+        [no]="no"
+      >
+      </app-kba-area-map>
+    </div>
+    <table class="KBA-form-table table table-bordered">
+      <tbody class="KBA-form-table-tbody">
+        <ng-container *ngFor="let d of desc['lower']">
+          <tr>
+            <td class="KBA-form-table__head">
+              <label class="KBA-form-table__label">{{ d.label }}</label>
+            </td>
+            <td class="KBA-form-table__value">
+              <p>{{ val[d.name] }}</p>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <footer class="KBA-modal-footer modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary cancel"
+      (click)="onClickClose()"
+    >
+      {{ labels.close }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary submit"
+      (click)="onClickSubmit()"
+    >
+      {{ labels.ok_btn }}
+    </button>
+  </footer>
+</section>

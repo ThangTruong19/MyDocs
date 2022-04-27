@@ -1,0 +1,262 @@
+<section id="KBA-group-area-index" *ngIf="labels && resource">
+  <form class="KBA-form" #f="ngForm">
+    <div class="container-fluid">
+      <h2 class="KBA-group-area-index__title KBA-page-title">
+        {{ labels.title }}
+      </h2>
+
+      <div class="KBA-content">
+        <!-- 検索 -->
+        <app-kba-accordion
+          [hidden]="!resource.group_id"
+          [collapsed]="collapsed"
+          [useCustomHeader]="false"
+          [title]="labels.search_condition"
+          [labels]="labels"
+          (onChangeState)="changePanelState($event)"
+        >
+          <div data-kba-accordion-body>
+            <div class="container KBA-search">
+              <div class="row">
+                <ng-container>
+                  <app-kba-selected
+                    *ngIf="resource.group_id"
+                    class="col-sm-3"
+                    [kbaName]="'group_id'"
+                    [kbaParams]="params"
+                    [kbaResource]="resource"
+                  >
+                  </app-kba-selected>
+                </ng-container>
+              </div>
+            </div>
+            <div class="KBA-panel-footer">
+              <button
+                (click)="onClickSearch()"
+                type="button"
+                class="btn btn-primary search"
+              >
+                {{ labels.search }}
+              </button>
+            </div>
+          </div>
+        </app-kba-accordion>
+
+        <!-- ページネーション -->
+        <div class="KBA-table-options" [hidden]="count <= 0">
+          <app-kba-pagination
+            [count]="count"
+            [params]="pageParams"
+            [labels]="labels"
+            [element]="pageCountEl"
+            (changeState)="onPaginationChange()"
+          >
+          </app-kba-pagination>
+        </div>
+
+        <!-- 一覧 -->
+        <div class="KBA-table-wrapper">
+          <app-kba-table
+            [customTableThContent]="customTableThContent"
+            [customTableRowContent]="customTableRowContent"
+            [lists]="lists"
+            [pageParams]="pageParams"
+            [params]="params"
+            [thList]="thList"
+            [sortableThList]="sortableThList"
+            [labels]="labels"
+            [collapsed]="collapsed"
+            [sortingParams]="sortingParams"
+            [updatable]="updatable"
+            [deletable]="deletable"
+            [isFetching]="isFetching"
+            (edit)="onClickEdit($event)"
+            (delete)="onClickDelete($event)"
+          >
+          </app-kba-table>
+
+          <ng-template #customTableThContent>
+            <ng-container *ngFor="let th of unitedThList">
+              <ng-container *ngIf="th.displayable">
+                <!-- エリアの場合 -->
+                <th
+                  *ngIf="th.name === 'area'"
+                  class="KBA-cell-space th-area"
+                  [colSpan]="th.unitedTh.length"
+                >
+                  <span>{{ th.label }}</span>
+                  <ul>
+                    <li
+                      *ngFor="let uTh of th.unitedTh"
+                      class="th-{{ uTh.shortName }}"
+                      appKbaSortingLabel
+                      [(sortingParams)]="sortingParams"
+                      [labelName]="uTh.name"
+                      [sortableThList]="sortableThList"
+                      (sort)="onChangeSort($event)"
+                    >
+                      <span>
+                        {{ uTh.label }}
+                      </span>
+                    </li>
+                  </ul>
+                </th>
+
+                <!-- オプション（有効・お知らせ）の場合 -->
+                <th
+                  *ngIf="
+                    th.name === 'group_areas.active_status_kind' ||
+                    th.name === 'group_areas.notification_kind'
+                  "
+                  class="th-{{ th.shortName }} KBA-index-th fixed"
+                  [ngClass]="{ 'disable-sort': !th.sortable }"
+                  appKbaSortingLabel
+                  [(sortingParams)]="sortingParams"
+                  [labelName]="th.name"
+                  [sortableThList]="sortableThList"
+                  (sort)="onChangeSort($event)"
+                >
+                  <span>{{ th.label }}</span>
+                </th>
+
+                <!-- MAPの場合 -->
+                <th *ngIf="th.name === 'header_map'" class="KBA-index-th fixed">
+                  {{ th.label }}
+                </th>
+
+                <!-- 上記以外の td の場合 -->
+                <th
+                  *ngIf="
+                    th.name !== 'group_areas.active_status_kind' &&
+                    th.name !== 'group_areas.notification_kind' &&
+                    th.name !== 'header_map' &&
+                    th.name !== 'area'
+                  "
+                  class="th-{{ th.shortName }} KBA-index-th"
+                  [ngClass]="{ 'disable-sort': !th.sortable }"
+                  appKbaSortingLabel
+                  [(sortingParams)]="sortingParams"
+                  [labelName]="th.name"
+                  [sortableThList]="sortableThList"
+                  (sort)="onChangeSort($event)"
+                >
+                  <span>{{ th.label }}</span>
+                </th>
+              </ng-container>
+            </ng-container>
+          </ng-template>
+
+          <ng-template #customTableRowContent let-data="data" , let-idx="idx">
+            <ng-container *ngFor="let title of thList">
+              <ng-container *ngIf="title.displayable">
+                <!-- オプション（有効・お知らせ）の場合 -->
+                <td
+                  *ngIf="
+                    title.name === 'group_areas.active_status_kind' ||
+                    title.name === 'group_areas.notification_kind'
+                  "
+                  class="KBA-index-td
+                           KBA-table__small
+                           kba-sm-link
+                           fixed
+                           d-flex
+                           align-items-center
+                           justify-content-center"
+                >
+                  <input
+                    type="checkbox"
+                    class="KBA-input-checkbox"
+                    id="check-icon-{{ title.name }}-{{ idx }}"
+                    (click)="onClickOptionCheckBox(data, title.name)"
+                    [checked]="data[title.name] === optionKind.on"
+                  />
+                  <label
+                    class="KBA-input-checkbox__label"
+                    for="check-icon-{{ title.name }}-{{ idx }}"
+                  >
+                    <i class="fa"></i>
+                  </label>
+                </td>
+
+                <!-- MAPの場合 -->
+                <td
+                  *ngIf="title.name === 'header_map'"
+                  class="KBA-index-td
+                           KBA-table__small
+                           kba-sm-link
+                           fixed
+                           d-flex
+                           text-center
+                           align-items-center
+                           justify-content-center"
+                  (click)="onClickMap(data)"
+                >
+                  <span class="kba-icon kba-icon-map"></span>
+                </td>
+
+                <!-- 上記以外の td の場合 -->
+                <td
+                  *ngIf="
+                    title.name !== 'group_areas.active_status_kind' &&
+                    title.name !== 'group_areas.notification_kind' &&
+                    title.name !== 'header_map'
+                  "
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ data[title.name] }}</span>
+                </td>
+              </ng-container>
+            </ng-container>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+
+<ng-template #mapModalContent>
+  <div class="KBA-map">
+    <app-kba-area-menu
+      [initMap]="{}"
+      [menuOpen]="menuOpen"
+      [isCurrent]="true"
+      [labels]="labels"
+      [editable]="false"
+      [polyPoints]="polyPoints"
+      [rectData]="rectData"
+      [selectType]="selectType"
+      [selectTypeLabel]="selectTypeLabel"
+      (changeMenuOpen)="menuOpen = $event"
+    >
+    </app-kba-area-menu>
+    <app-kba-area-map
+      #modalMap
+      [initMap]="{}"
+      [labels]="labels"
+      [others]="others"
+      [menuWidth]="312"
+      [menuOpen]="menuOpen"
+      [isModal]="true"
+      [selectType]="selectType"
+      [polyPoints]="polyPoints"
+      [rectData]="rectData"
+      [no]="areaNo"
+      [editable]="false"
+    >
+    </app-kba-area-map>
+  </div>
+</ng-template>
+
+<ng-template #deleteModalContent>
+  <app-kba-tandem-confirm
+    [desc]="deleteModalValues.listDesc"
+    [val]="deleteModalValues.listVal"
+  >
+  </app-kba-tandem-confirm>
+</ng-template>
+
+<app-kba-alert></app-kba-alert>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

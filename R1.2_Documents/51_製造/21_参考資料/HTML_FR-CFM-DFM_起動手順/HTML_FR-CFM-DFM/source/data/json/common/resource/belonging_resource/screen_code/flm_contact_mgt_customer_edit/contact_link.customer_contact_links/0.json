@@ -1,0 +1,42 @@
+[
+  {
+    "path": "contact_link.customer_contact_links.contact_kind_code",
+    "name": "代表電話",
+    "help": "代表電話のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": null,
+        "value": "-2",
+        "kind": "N"
+      },
+      {
+        "key": "代表電話1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "代表電話2",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "代表電話3",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "代表電話4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "代表電話5",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  }
+]

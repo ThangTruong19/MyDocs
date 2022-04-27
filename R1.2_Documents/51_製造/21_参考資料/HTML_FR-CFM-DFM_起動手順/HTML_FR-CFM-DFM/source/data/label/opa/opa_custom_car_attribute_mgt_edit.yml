@@ -1,0 +1,84 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: カスタム車両属性管理　変更
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: カスタム車両属性管理　変更
+    en:
+
+  - id: 3
+    description: リセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 4
+    description: 登録
+    name: submit
+    ja: 変更
+    en:
+
+  - id: 6
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 16
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 17
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか？
+    en:
+
+  - id: 18
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 19
+    description: 登録確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容で変更します。よろしいですか？
+    en:
+
+  - id: 20
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 21
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 22
+    description: 表示項目
+    name: display_item
+    ja: 項目
+    en:
+
+  - id: 24
+    description: 未設定
+    name: not_set
+    ja: 未設定
+    en:
+
+  - id: 24
+    description: 設定
+    name: setting
+    ja: 設定
+    en:

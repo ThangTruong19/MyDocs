@@ -1,0 +1,44 @@
+{
+  "result_data": {
+    "user_settings": [
+      {
+        "value": "ja-JP",
+        "key": "lang_code"
+      },
+      {
+        "value": "0",
+        "key": "date_format_code"
+      },
+      {
+        "value": "1",
+        "key": "distance_unit_code"
+      },
+      {
+        "value": "1",
+        "key": "map_magnification"
+      },
+      {
+        "value": "35.681101",
+        "key": "map_longitude"
+      },
+      {
+        "value": "139.767360",
+        "key": "map_latitude"
+      }
+    ],
+    "group_settings": [
+      {
+        "value": "0",
+        "key": "map_mode"
+      },
+      {
+        "value": "+0900",
+        "key": "time_difference"
+      },
+      {
+        "value": "0",
+        "key": "first_day_of_week_kind"
+      }
+    ]
+  }
+}

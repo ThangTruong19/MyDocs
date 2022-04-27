@@ -1,0 +1,14 @@
+.container-fluid {
+  padding-bottom: 54px;
+
+  .unlink-all {
+    .kba-icon::after {
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+
+.result-count-message {
+  margin-top: 12px;
+}

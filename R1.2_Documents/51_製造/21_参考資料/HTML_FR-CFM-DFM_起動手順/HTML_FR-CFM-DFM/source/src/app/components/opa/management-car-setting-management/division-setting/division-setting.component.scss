@@ -1,0 +1,32 @@
+@import "../../../../../assets/styles/_variable.scss";
+@import "../../../../../assets/styles/opa/_variable.scss";
+
+.caption {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 22px;
+}
+
+.division-setting-content {
+  margin: -16px;
+  border: 1px solid #ddd;
+}
+
+.empty-message {
+  padding: 15px;
+}
+
+.cell {
+  padding: 15px;
+  margin: -1px;
+  border: 1px solid #ddd;
+
+  &.cell-green {
+    background-color: $kba-selected-color;
+  }
+
+  &.cell-red {
+    background-color: $kba-danger-color;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "result_data": {
+    "division_setting": {
+      "update_datetime": "2017-11-14T20:36:23.386Z",
+      "group_id": "17929",
+      "group_label": "コマツ関東建設グループ",
+      "group_label_english": "KOMATSU-KANTO-KENSETSU GROUP",
+      "divisions": [
+        {
+          "id": "1",
+          "code": "0001",
+          "name": "スキッドステアローダ",
+          "active_kind": "1",
+          "active_name": "有効"
+        }
+      ]
+    }
+  }
+}

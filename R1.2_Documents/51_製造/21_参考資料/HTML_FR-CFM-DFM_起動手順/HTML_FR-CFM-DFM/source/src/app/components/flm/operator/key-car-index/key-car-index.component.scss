@@ -1,0 +1,31 @@
+@import "../../../../../assets/styles/variable";
+
+.container-fluid {
+  .KBA-content {
+    .KBA-table-options {
+      display: flex;
+
+      .table-option-buttons {
+        .id-key-off-all {
+          min-width: 150px;
+          padding: 7px 5px;
+          text-align: center;
+        }
+
+        .id-key-on-all {
+          min-width: 150px;
+          padding: 7px 5px;
+          text-align: center;
+
+          &:not(:disabled):hover {
+            background-color: $kba-darkgreen-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.result-count-message {
+  margin-top: 12px;
+}

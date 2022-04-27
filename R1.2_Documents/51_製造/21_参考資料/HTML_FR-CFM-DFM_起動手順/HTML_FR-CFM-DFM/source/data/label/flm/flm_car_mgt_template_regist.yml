@@ -1,0 +1,168 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 車両管理　一括登録/変更
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 車両管理　一括登録/変更
+    en:
+
+  - id: 3
+    description: アップロードUIタイトル
+    name: upload_title
+    ja: 一括登録 / 一括変更
+    en:
+
+  - id: 4
+    description: アップロードUI説明
+    name: upload_description
+    ja: データ入力済みのExcelをアップロードし一括登録処理をします。
+    en:
+
+  - id: 5
+    description: ファイルから選択
+    name: select_file
+    ja: ファイルから選択...
+    en:
+
+  - id: 6
+    description: アップロード領域
+    name: upload_area
+    ja: このエリアにドラッグ & ドロップ
+    en:
+
+  - id: 7
+    description: アップロード
+    name: upload
+    ja: アップロード
+    en:
+
+  - id: 8
+    description: アップロード結果モーダルタイトル
+    name: result_modal_title
+    ja: アップロードが完了しました
+    en:
+
+  - id: 9
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 10
+    description: 結果件数
+    name: result_count_message
+    ja: '${total} 件中 成功${success}件 失敗${fail}件'
+    en:
+
+  - id: 11
+    description: 結果
+    name: result
+    ja: 結果
+    en:
+
+  - id: 11
+    description: 内容
+    name: result_detail
+    ja: 内容
+    en:
+
+  - id: 12
+    description: 処理完了
+    name: complete
+    ja: 処理が完了しました
+    en:
+
+  - id: 13
+    description: メーカー
+    name: maker_name
+    ja: メーカー
+    en:
+
+  - id: 14
+    description: 機種
+    name: model
+    ja: 機種
+    en:
+
+  - id: 15
+    description: 型式
+    name: type
+    ja: 型式
+    en:
+
+  - id: 16
+    description: 機番
+    name: serial
+    ja: 機番
+    en:
+
+  - id: 17
+    description: ダウンロードUIタイトル
+    name: download_title
+    ja: フォーマットダウンロード
+    en:
+
+  - id: 18
+    description: Excelダウンロード
+    name: download_excel
+    ja: Excelダウンロード
+    en:
+
+  - id: 19
+    description: ダウンロード説明文1
+    name: download_description_1
+    ja: 上のボタンをクリックし雛形Excelをダウンロードします。
+    en:
+
+  - id: 20
+    description: ダウンロード説明文2
+    name: download_description_2
+    ja: Excelに一括登録されるデータを入力してください。
+    en:
+
+  - id: 21
+    description: ダウンロード説明文3
+    name: download_description_3
+    ja: Excelのシートはファイル形式"Excelブック"、拡張子"xlsx"を保持し、データ入力以外の変更はしないで下さい。変更された場合アップロード時にエラーとなる恐れがあります。
+    en:
+
+  - id: 22
+    description: ダウンロード説明文4
+    name: download_description_4
+    ja: 入力後、下のアップロードボタンをクリックし、ファイルの指定後アップロードを行います。
+    en:
+
+  - id: 23
+    description: ダウンロード説明文5
+    name: download_description_5
+    ja: アップロード後にエラーがなければ、登録確認画面となります。
+    en:
+
+  - id: 24
+    description: ダウンロード注意文言
+    name: download_notice
+    ja: ※ 一括変更用のテンプレートは一覧画面よりダウンロードして下さい。
+    en:
+
+  - id: 25
+    description: ファイル形式エラー
+    name: file_type_error
+    ja: 無効なファイル形式です
+    en:
+
+  - id: 26
+    description: リストドロップダウン
+    name: prompt_to_select
+    ja: 選択してください
+    en:
+
+  - id: 27
+    description: リストから選択
+    name: choose_from_list
+    ja: リストから選択
+    en:

@@ -1,0 +1,204 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: オペレータ識別管理　オペレータID一覧
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: オペレータ識別管理　オペレータID一覧
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 5
+    description: アコーディオンを開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 10
+    description: 一括削除
+    name: delete_all
+    ja: 一括削除
+    en:
+
+  - id: 11
+    description: テンプレートDL
+    name: download_template
+    ja: 更新用テンプレート一括DL
+    en:
+
+  - id: 12
+    description: 完了メッセージ
+    name: complete_message
+    ja: 処理が完了しました
+    en:
+
+  - id: 14
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 16
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 17
+    description: 変更
+    name: update
+    ja: 変更
+    en:
+
+  - id: 18
+    description: 履歴
+    name: header_history
+    ja: 履歴
+    en:
+
+  - id: 19
+    description: ID登録
+    name: register_id
+    ja: ID登録
+    en:
+
+  - id: 22
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 23
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか？
+    en:
+
+  - id: 24
+    description: 削除
+    name: header_delete
+    ja: 削除
+    en:
+
+  - id: 31
+    description: オペレータ変更確認モーダル本文
+    name: update_modal_body
+    ja: 以下のオペレータ情報を変更します。よろしいですか?
+    en:
+
+  - id: 32
+    description: オペレータ削除確認モーダル本文
+    name: delete_modal_body
+    ja: 以下のオペレータ情報を削除します。よろしいですか?
+    en:
+
+  - id: 33
+    description: オペレータ名重複注意文
+    name: operator_label_duplication_attention
+    ja: 同一の姓名で登録済みのオペレータがいます
+    en:
+
+  - id: 34
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当するオペレータIDが見つかりませんでした。
+    en:
+
+  - id: 36
+    description: オペレータ変更処理完了メッセージ
+    name: operator_id_edit_result_label
+    ja:  オペレータ変更が完了しました
+    en:
+
+  - id: 37
+    description: オペレータ削除処理完了メッセージ
+    name: operator_id_delete_result_label
+    ja:  オペレータ削除が完了しました
+    en:
+
+  - id: 38
+    description: 結果
+    name: result
+    ja: 結果
+    en:
+
+  - id: 39
+    description: 内容
+    name: result_detail
+    ja: 内容
+    en:
+
+  - id: 40
+    description: 結果件数
+    name: result_count_message
+    ja: '${total} 件中 成功${success}件 失敗${fail}件'
+    en:
+
+  - id: 1001
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 1002
+    description: 削除
+    name: delete
+    ja: 削除
+    en:
+
+  - id: 40
+    description: 一括削除の最大件数の警告
+    name: alert_over_upper_limit
+    ja: 51件以上は削除できません
+    en:
+
+  - id: 40
+    description: 削除件数
+    name: delete_count
+    ja: 件
+    en:
+
+  - id: 24
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

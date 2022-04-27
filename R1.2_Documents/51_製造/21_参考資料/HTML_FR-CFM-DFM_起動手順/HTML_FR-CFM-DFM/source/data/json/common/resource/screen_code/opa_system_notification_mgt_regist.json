@@ -1,0 +1,160 @@
+[
+  {
+    "path": "applications_system_notification.publish_application_codes",
+    "name": "公開先アプリ",
+    "help": "公開先アプリのヘルプ文言",
+    "type": 30,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "DFM",
+        "value": "JPAA1",
+        "kind": "A"
+      },
+      {
+        "key": "CFM",
+        "value": "JPAA2",
+        "kind": "A"
+      }
+    ]
+  },
+  {
+    "path": "applications_system_notification.notification.start_datetime",
+    "name": "表示開始日時(GMT)",
+    "help": "表示開始日時(GMT)のヘルプ文言",
+    "type": -40,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.notification.start_datetime_hh",
+    "name": "表示開始日時(hh)",
+    "help": "表示開始日時(hh)のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.notification.start_datetime_mm",
+    "name": "表示開始日時(mm)",
+    "help": "表示開始日時(mm)のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.notification.end_datetime",
+    "name": "表示終了日時(GMT)",
+    "help": "表示終了日時(GMT)のヘルプ文言",
+    "type": -40,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.notification.end_datetime_hh",
+    "name": "表示終了日時(hh)",
+    "help": "表示終了日時(hh)のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.notification.end_datetime_mm",
+    "name": "表示終了日時(mm)",
+    "help": "表示終了日時(mm)のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.notification.content",
+    "name": "通知内容",
+    "help": "通知内容のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "applications_system_notification.publish_group.kind_id",
+    "name": "公開先グループ",
+    "help": "公開先グループのヘルプ文言",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "リージョン",
+        "value": "3",
+        "kind": "A"
+      },
+      {
+        "key": "ブロック",
+        "value": "5",
+        "kind": "A"
+      }
+    ]
+  },
+  {
+    "path": "applications_system_notification.publish_group.block_ids",
+    "name": "ブロックID",
+    "help": "ブロック種別IDのヘルプ文言",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "ブロック0001",
+        "value": "1",
+        "kind": "A"
+      },
+      {
+        "key": "ブロック000002",
+        "value": "2",
+        "kind": "A"
+      },
+      {
+        "key": "ブロック003",
+        "value": "3",
+        "kind": "A"
+      },
+      {
+        "key": "ブロック0004",
+        "value": "4",
+        "kind": "A"
+      },
+      {
+        "key": "ブロック000005",
+        "value": "5",
+        "kind": "A"
+      },
+      {
+        "key": "ブロック006",
+        "value": "6",
+        "kind": "A"
+      },
+      {
+        "key": "ブロック0007",
+        "value": "7",
+        "kind": "A"
+      },
+      {
+        "key": "ブロック000008",
+        "value": "8",
+        "kind": "A"
+      },
+      {
+        "key": "ブロック009",
+        "value": "9",
+        "kind": "A"
+      }
+    ]
+  }
+]

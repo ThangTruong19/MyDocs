@@ -1,0 +1,43 @@
+@import "../../../../assets/styles/_variable.scss";
+
+.service_db-all-edit-container {
+  display: flex;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  flex-direction: row-reverse;
+
+  .service_db-all-edit {
+    display: flex;
+    align-items: center;
+
+    .service_db-all-edit-label {
+      margin: 0 10px 0 0;
+    }
+    .service_db-all-edit-selected {
+      width: 200px;
+    }
+  }
+}
+
+.edit-table {
+  overflow: auto;
+  border-bottom: 1px solid $kba-border-color;
+
+  .table-bordered {
+    border: 0;
+  }
+
+  .th-cars_service_distributor_label,
+  .td-cars_service_distributor_label {
+    flex-shrink: 0;
+    width: 200px !important;
+  }
+
+  .td-cars_service_distributor_label {
+    overflow: visible;
+  }
+}
+
+.result-count-message {
+  margin-top: 12px;
+}

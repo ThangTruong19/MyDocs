@@ -1,0 +1,32 @@
+[
+  {
+    "path": "distributor_id",
+    "name": "代理店",
+    "help": "代理店のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "代理店1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "代理店2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "代理店3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  }
+]

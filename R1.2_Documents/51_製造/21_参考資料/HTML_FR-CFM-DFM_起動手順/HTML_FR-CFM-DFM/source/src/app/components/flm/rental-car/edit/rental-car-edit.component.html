@@ -1,0 +1,289 @@
+<section id="KBA-rental-car-edit" *ngIf="labels && resource && datePickerParams">
+  <div class="container-fluid">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content" *ngIf="params">
+      <div class="KBA-form">
+        <section class="rental-car-info-container">
+          <h3 class="section-header">{{ labels.selected_car_information }}</h3>
+          <ng-container
+            *ngTemplateOutlet="rentalCarInfoTemplate"
+          ></ng-container>
+        </section>
+        <div
+          class="checkbox-inline not-use-customer-id-container"
+          *ngIf="
+            resource.not_use_customer_id &&
+            window.settings.showRentalCarCheckbox
+          "
+        >
+          <input
+            id="not-use-customer-id"
+            type="checkbox"
+            class="KBA-input-checkbox checkbox-with-label"
+            [ngModel]="notUseCustomerId"
+            (ngModelChange)="handleNotUseCusromerIdChange($event)"
+          />
+          <label for="not-use-customer-id" class="KBA-input-checkbox__label">
+            {{ resource.not_use_customer_id.name }}
+          </label>
+        </div>
+        <ng-container
+          *ngTemplateOutlet="
+            reservationTemplate;
+            context: {
+              header: labels.reservation1,
+              reservation: rentalCar.rental.reservation1,
+              localResource: resource.car.rental.reservation1,
+              localParams: params.car.rental.reservation1,
+              identifier: 'reservation1'
+            }
+          "
+        >
+        </ng-container>
+        <ng-container
+          *ngTemplateOutlet="
+            reservationTemplate;
+            context: {
+              header: labels.reservation2,
+              reservation: rentalCar.rental.reservation2,
+              localResource: resource.car.rental.reservation2,
+              localParams: params.car.rental.reservation2,
+              identifier: 'reservation2'
+            }
+          "
+        >
+        </ng-container>
+        <footer class="KBA-form-footer-fixed">
+          <a
+            href="javascript:void(0)"
+            (click)="handleClickReset()"
+            class="btn btn-link"
+          >
+            {{ labels.reset }}
+          </a>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="handleClickSubmit()"
+          >
+            {{ labels.submit }}
+          </button>
+        </footer>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template
+  #reservationTemplate
+  let-header="header"
+  let-reservation="reservation"
+  let-localResource="localResource"
+  let-localParams="localParams"
+  let-identifier="identifier"
+>
+  <section class="reservation-container">
+    <h3 class="section-header">{{ header }}</h3>
+    <button
+      type="button"
+      class="btn btn-secondary btn-clear-form"
+      (click)="handleClickClear(identifier)"
+    >
+      {{ labels.clear_form }}
+      <i class="kba-icon kba-icon-dustbox"></i>
+    </button>
+    <table class="KBA-form-table table table-bordered">
+      <tbody class="KBA-form-table-tbody">
+        <tr
+          app-kba-form-table-custom
+          *ngIf="localResource.customer_id_search && !notUseCustomerId"
+          class="KBA-form-row"
+          [colspan]="3"
+          [kbaName]="'customer_id_search'"
+          [kbaResource]="localResource"
+          [content]="content"
+        >
+          <ng-template #content>
+            <div class="form-group KBA-input__small">
+              <input
+                #customerIdSearch
+                name="'customer_id_search'"
+                type="text" autocomplete="off"
+                maxlength="19"
+                class="KBA-input-text form-control"
+                [ngClass]="{ 'not-found': customerNotFound[identifier] }"
+                [(ngModel)]="customerIdSearchValues[identifier]"
+                (focus)="handleFocusCustomerId($event, identifier)"
+                (blur)="handleBlurCustomerId($event, identifier)"
+              />
+            </div>
+          </ng-template>
+        </tr>
+        <tr *ngIf="!notUseCustomerId">
+          <td class="KBA-form-table__head">
+            <label class="KBA-form-table__label">
+              {{
+                this.resource.car.rental.reservation1.customer_id_select.name
+              }}
+            </label>
+          </td>
+          <td>
+            {{
+              customerNames[identifier] === labels.empty
+                ? ''
+                : customerNames[identifier]
+            }}
+          </td>
+        </tr>
+        <tr
+          app-kba-form-table-select
+          #reservationSelects
+          *ngIf="localResource.customer_id_select && notUseCustomerId"
+          class="KBA-form-row"
+          [kbaName]="'customer_id_select'"
+          [kbaParams]="customerIdSelectParams[identifier]"
+          [kbaResource]="localResource"
+          [colspan]="3"
+          [emitInitialRefresh]="false"
+          (onChange)="handleChangeCustomerId($event, identifier)"
+        ></tr>
+        <tr
+          app-kba-form-table-custom
+          *ngIf="localResource.start_date"
+          class="KBA-form-row"
+          [colspan]="3"
+          [kbaName]="'start_date'"
+          [kbaResource]="localResource"
+          [content]="content"
+        >
+          <ng-template #content>
+            <app-kba-from-to-date-picker
+              #rentalStartEndDatePicker
+              class="col-sm-6"
+              [from]="'start_date'"
+              [fromId]="identifier + 'start_date'"
+              [fromDisplay]="'start_date_display'"
+              [to]="'end_date'"
+              [toId]="identifier + 'end_date'"
+              [toDisplay]="'end_date_display'"
+              [params]="localParams"
+              [resource]="localResource"
+              [labels]="labels"
+              [beginningWday]="beginningWday"
+              [enableDateRange]="enableDateRange"
+              [dateFormat]="dateFormat"
+              [futureDateSelectable]="true"
+              [timeZone]="timeZone"
+              (selectTo)="handleSelectEndDate($event, identifier)"
+            >
+            </app-kba-from-to-date-picker>
+          </ng-template>
+        </tr>
+        <tr
+          app-kba-form-table-custom
+          *ngIf="localResource.viewable_end_date"
+          class="KBA-form-row"
+          [colspan]="3"
+          [kbaName]="'viewable_end_date'"
+          [kbaResource]="localResource"
+          [content]="content"
+        >
+          <ng-template #content>
+            <div class="date-range">
+              <p class="col-sm-5 viewable_end_date_start">
+                {{ labels.rental_end_date }}：{{ localParams.end_date_display }}
+              </p>
+              <p class="separator">－</p>
+              <app-kba-search-date-picker
+                #viewableEndDatePicker
+                *ngIf="viewableEndDateRange[identifier].length > 0"
+                class="col-sm-5 date-content"
+                [kbaName]="'viewable_end_date'"
+                [kbaParams]="localParams"
+                [kbaResource]="localResource"
+                [display]="'viewable_end_date_display'"
+                [kbaLabel]="labels"
+                [id]="identifier + 'viewable_end_date'"
+                [enableDateRange]="viewableEndDateRange[identifier]"
+                [showLabel]="false"
+                [dateFormat]="dateFormat"
+                [beginningWday]="beginningWday"
+                [futureDateSelectable]="true"
+                [timeZone]="timeZone"
+              >
+              </app-kba-search-date-picker>
+            </div>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ng-template>
+
+<ng-template #rentalCarInfoTemplate>
+  <table class="KBA-table table-bordered">
+    <thead class="KBA-table-thead">
+      <tr class="KBA-table-flex-cell">
+        <th *ngFor="let th of thList">
+          {{ th.label }}
+        </th>
+      </tr>
+    </thead>
+    <tbody class="KBA-table-tbody">
+      <tr class="KBA-table-flex-cell">
+        <td *ngFor="let th of thList">
+          {{ rentalCar | at: th.dataKey }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #resetModalContent>
+  <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+</ng-template>
+
+<ng-template #submitModalContent>
+  <section class="rental-car-info-container">
+    <h3 class="section-header">{{ labels.selected_car_information }}</h3>
+    <ng-container *ngTemplateOutlet="rentalCarInfoTemplate"></ng-container>
+  </section>
+
+  <section class="reservation-container">
+    <h3 class="section-header">{{ labels.reservation1 }}</h3>
+    <table class="KBA-form-table table table-bordered table-reservation-info">
+      <tbody class="KBA-form-table-tbody">
+        <tr class="KBA-form-row" *ngFor="let th of submitModalThList">
+          <td class="KBA-form-table__head">
+            <label class="KBA-form-table__label">
+              {{ th.label }}
+            </label>
+          </td>
+          <td colspan="3">
+            {{ submitModalValues[0][th.name] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="reservation-container">
+    <h3 class="section-header">{{ labels.reservation2 }}</h3>
+    <table class="KBA-form-table table table-bordered table-reservation-info">
+      <tbody class="KBA-form-table-tbody">
+        <tr class="KBA-form-row" *ngFor="let th of submitModalThList">
+          <td class="KBA-form-table__head">
+            <label class="KBA-form-table__label">
+              {{ th.label }}
+            </label>
+          </td>
+          <td colspan="3">
+            {{ submitModalValues[1][th.name] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

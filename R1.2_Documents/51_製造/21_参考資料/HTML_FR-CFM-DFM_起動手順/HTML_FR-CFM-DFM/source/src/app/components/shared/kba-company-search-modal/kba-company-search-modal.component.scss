@@ -1,0 +1,93 @@
+@import "../../../../assets/styles/_variable";
+
+.company-search-content {
+  display: flex;
+  flex-direction: column;
+
+  .result_search {
+    margin-top: 15px;
+    overflow-y: auto;
+  }
+
+  .search-condition-footer {
+    display: flex;
+    justify-content: center;
+
+    .search {
+      min-width: 200px;
+    }
+  }
+
+  .company-name-label {
+    margin-bottom: 0.25em;
+  }
+}
+
+.KBA-table-modal {
+  thead {
+    border-top-width: 0;
+  }
+
+  tr:not(:last-child) {
+    th,
+    td {
+      border-bottom-width: 0;
+    }
+  }
+
+  tbody.KBA-table-tbody-modal {
+    height: 100%;
+    max-height: 400px;
+    overflow-y: scroll;
+
+    tr {
+      cursor: pointer;
+
+      &.empty-list {
+        height: 100%;
+        cursor: default;
+
+        &:hover {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+
+  .KBA-table-flex-cell-modal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    th {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      &.fixed-column {
+        max-width: 120px;
+      }
+    }
+
+    td {
+      display: flex;
+      width: 100%;
+      justify-content: flex-start;
+      align-items: center;
+
+      &.fixed-column {
+        max-width: 120px;
+      }
+
+      &.center {
+        justify-content: center;
+      }
+
+      p {
+        word-break: break-all;
+      }
+    }
+  }
+}

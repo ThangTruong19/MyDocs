@@ -1,0 +1,63 @@
+{
+  "result_data": {
+    "group": {
+      "identification": {
+        "id": "12345",
+        "label": "グループ名称",
+        "label_english": "group name",
+        "organization_code": "ABBESS",
+        "kind_id": "3",
+        "kind_name": "ブロック",
+        "update_datetime": "2017-08-01T23:59:59.000Z"
+      },
+      "scope_groups": [
+        {
+          "region": {
+            "identification": {
+              "id": "123456",
+              "label": "グループ名称",
+              "label_english": "group name",
+              "organization_code": "ABBESS",
+              "kind_id": "2",
+              "kind_name": "リージョン",
+              "update_datetime": "2017-08-01T23:59:59.000Z"
+            }
+          },
+          "block": {
+            "identification": {
+              "id": "123458",
+              "label": "グループ名称",
+              "label_english": "group name",
+              "organization_code": "ABBESS",
+              "kind_id": "3",
+              "kind_name": "ブロック",
+              "update_datetime": "2017-08-01T23:59:59.000Z"
+            }
+          },
+          "distributor": {
+            "identification": {
+              "id": "123459",
+              "label": "グループ名称",
+              "label_english": "group name",
+              "organization_code": "ABBESS",
+              "kind_id": "4",
+              "kind_name": "代理店",
+              "update_datetime": "2017-08-01T23:59:59.000Z"
+            }
+          },
+          "customer": {
+            "identification": {
+              "id": "1234510",
+              "label": "グループ名称",
+              "label_english": "group name",
+              "organization_code": "ABBESS",
+              "kind_id": "8",
+              "kind_name": "顧客",
+              "update_datetime": "2017-08-01T23:59:59.000Z"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

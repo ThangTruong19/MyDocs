@@ -1,0 +1,37 @@
+<div [formGroup]="formGroup">
+  <label>
+    {{ resName.lat }}
+    <input
+      name="{{ fName[coordinateType.LAT] }}"
+      [value]="point[coordinateType.LAT]"
+      (input)="onChangeLatInput($event.target.value)"
+      formControlName="{{ fName[coordinateType.LAT] }}"
+      [placeholder]="placeholder || ''"
+      [step]="step"
+      [maxlength]="12"
+      [pattern]="pattern"
+      [ngClass]="{ 'KBA-form-error': errorData | hasError: resPaths.lat }"
+      type="text" autocomplete="off"
+      class="KBA-input-text form-control"
+    />
+    {{ inputSuffix }}
+  </label>
+
+  <label>
+    {{ resName.lng }}
+    <input
+      name="{{ fName[coordinateType.LNG] }}"
+      [value]="point[coordinateType.LNG]"
+      (input)="onChangeLngInput($event.target.value)"
+      formControlName="{{ fName[coordinateType.LNG] }}"
+      [placeholder]="placeholder || ''"
+      [step]="step"
+      [maxlength]="13"
+      [pattern]="pattern"
+      [ngClass]="{ 'KBA-form-error': errorData | hasError: resPaths.lng }"
+      type="text" autocomplete="off"
+      class="KBA-input-text form-control"
+    />
+    {{ inputSuffix }}
+  </label>
+</div>

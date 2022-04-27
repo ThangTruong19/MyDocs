@@ -1,0 +1,185 @@
+#KBA-landmark-form {
+  .container-fluid {
+    padding-bottom: 54px;
+  }
+
+  .KBA-form-table {
+    margin-bottom: 0;
+  }
+
+  .KBA-landmark-map {
+    padding: 20px;
+
+    .KBA-landmark-canvas {
+      height: $kba-map-height;
+    }
+  }
+
+  .KBA-landmark-icon {
+    position: relative;
+
+    > img {
+      width: 64px;
+      height: 64px;
+    }
+
+    > a {
+      position: absolute;
+      display: inline-block;
+      left: 0;
+      bottom: 0;
+      width: 64px;
+      line-height: 20px;
+      color: #fff;
+      font-size: 12px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6);
+      @include ellipsis;
+    }
+    .popover {
+      max-width: 370px;
+
+      .popover-content {
+        padding: 20px 20px 10px;
+
+        > ul > li {
+          float: left;
+          margin: 0 10px 10px 0;
+          opacity: 0;
+          -webkit-animation: fadeIn 0.5s ease;
+          -moz-animation: fadeIn 0.5s ease;
+          animation: fadeIn 0.5s ease;
+          -webkit-animation-fill-mode: forwards;
+          -moz-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+
+          > img {
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+          }
+
+          &:nth-child(8n) {
+            margin-right: 0;
+          }
+
+          @for $i from 0 through 40 {
+            &:nth-child(#{$i + 1}) {
+              -webkit-animation-delay: #{$i / 20}s;
+              -moz-animation-delay: #{$i / 20}s;
+              animation-delay: #{$i / 20}s;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.KBA-landmark-icon {
+  > img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.KBA-landmarkIcon__label {
+  width: 64px;
+  color: #000;
+  background: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  @include ellipsis;
+}
+
+#KBA-landmark-show-modal {
+  .KBA-map {
+    height: $kba-gmodal-map-height;
+  }
+
+  .KBA-modal-body {
+    padding: 0;
+  }
+
+  .KBA-landmark-canvas {
+    height: $kba-gmodal-map-height;
+  }
+}
+
+#KBA-landmark-index {
+  .KBA-table {
+    .td-Desc {
+      min-width: 25%;
+    }
+
+    .td-Icn {
+      min-width: 10%;
+    }
+
+    .td-Inf {
+      min-width: 35%;
+    }
+
+    .td-ShrdDesc {
+      min-width: 15%;
+    }
+
+    &.auth-admin {
+      .td-Desc {
+        min-width: 15%;
+      }
+
+      .td-Inf {
+        min-width: 20%;
+      }
+
+      .td-ShrdDesc {
+        min-width: 10%;
+      }
+
+      .td-GrpDesc,
+      .td-GrpDescEn {
+        min-width: 15%;
+      }
+    }
+
+    &.auth-wac {
+      .td-Desc {
+        min-width: 20%;
+      }
+
+      .td-Inf {
+        min-width: 25%;
+      }
+
+      .td-CustDesc,
+      .td-CustNmEn {
+        min-width: 15%;
+      }
+    }
+  }
+}

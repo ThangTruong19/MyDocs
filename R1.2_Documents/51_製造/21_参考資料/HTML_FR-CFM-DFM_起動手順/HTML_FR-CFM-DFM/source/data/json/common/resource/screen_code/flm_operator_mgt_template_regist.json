@@ -1,0 +1,41 @@
+[
+  {
+    "path": "customer_id",
+    "name": "顧客",
+    "help": "顧客のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "顧客001",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "顧客002",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "顧客003",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "顧客004",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "operator.current_label.label",
+    "name": "オペレータ名称",
+    "help": "オペレータ名称のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  }
+]

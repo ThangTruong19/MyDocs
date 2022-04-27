@@ -1,0 +1,30 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "ID",
+    "path": "car.car_areas.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "No",
+    "path": "car.car_areas.no",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "範囲名称",
+    "path": "car.car_areas.label",
+    "control_code": "0",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "最終更新日",
+    "path": "car.car_areas.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

@@ -1,0 +1,188 @@
+<!-- 一括削除 -->
+<div class="container-fluid">
+  <h2 class="KBA-page-title">{{ labels.delete_all_title }}</h2>
+  <div class="KBA-content">
+    <!-- 顧客情報 -->
+    <table
+      *ngIf="resource.common.customer && resource.common.customer.ids"
+      class="KBA-form-table table table-bordered KBA-form-detail-table"
+    >
+      <tbody class="KBA-form-table-tbody">
+        <tr if="resource.common.customer.ids">
+          <td class="KBA-form-table__head">
+            <label class="KBA-form-table__label">{{
+              resource.common.customer.ids.name
+            }}</label>
+          </td>
+          <td>
+            {{ customerLabel }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 選択車両情報 -->
+    <p>{{ labels.select_cars }}</p>
+    <table class="KBA-table-modal table table-bordered">
+      <thead class="KBA-table-thead-modal">
+        <tr>
+          <ng-container *ngFor="let carHeader of carHeaders">
+            <th *ngIf="carHeader.displayable">
+              {{ carHeader.label }}
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody class="KBA-form-table-tbody">
+        <tr *ngFor="let car of cars">
+          <ng-container *ngFor="let carHeader of carHeaders">
+            <ng-container
+              *ngIf="carHeader.displayable"
+              [ngSwitch]="carHeader.name"
+            >
+              <!-- オペ識別設定の場合 -->
+              <td
+                *ngSwitchCase="'cars.car_operator.operator_identification_kind'"
+                class="text-center align-middle"
+              >
+                <span
+                  *ngIf="
+                    isOperatorIdSettingKindOn(
+                      car['cars.car_operator.operator_identification_kind']
+                    )
+                  "
+                  class="on"
+                >
+                  {{ labels.id_key_on }}
+                </span>
+                <span
+                  *ngIf="
+                    !isOperatorIdSettingKindOn(
+                      car['cars.car_operator.operator_identification_kind']
+                    )
+                  "
+                  class="off"
+                >
+                  {{ labels.id_key_off }}
+                </span>
+              </td>
+
+              <!-- ID保持時間の場合 -->
+              <td
+                *ngSwitchCase="'cars.car_operator.id_hold_time'"
+                class="align-middle"
+              >
+                <p>{{ displayIdHoldTime(car[carHeader.name]) }}</p>
+              </td>
+
+              <!-- 上記以外の td の場合 -->
+              <td *ngSwitchDefault class="align-middle">
+                <p>{{ car[carHeader.name] }}</p>
+              </td>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 登録オペID情報 -->
+  <div class="KBA-content">
+    <p *ngIf="lists.originList.length > 0">{{ labels.regist_ope_ids }}</p>
+    <form class="KBA-form">
+      <app-kba-table
+        [customTableRowContent]="customTableRowContent"
+        [customTableThContent]="customTableThContent"
+        [lists]="lists"
+        [params]="params"
+        [thList]="thList"
+        [sortableThList]="sortableThList"
+        [labels]="labels"
+        [collapsed]="collapsed"
+        [selectable]="selectable"
+        [checkIdName]="checkIdName"
+        [checkedItems]="checkedItems"
+        [isFetching]="isFetching"
+        [emptyListMessage]="labels.delete_empty_list_message"
+      >
+        <ng-template #customTableThContent>
+          <ng-container *ngFor="let th of thList">
+            <th
+              *ngIf="th.displayable"
+              [ngClass]="{ 'disable-sort': !th.sortable }"
+              class="KBA-index-th th-{{ th.shortName }}"
+              appKbaSortingLabel
+              [(sortingParams)]="sortingParams"
+              [labelName]="th.name"
+              [sortableThList]="sortableThList"
+              (sort)="onChangeSort($event)"
+            >
+              <span>{{ th.label || labels[th.shortName] }}</span>
+            </th>
+          </ng-container>
+        </ng-template>
+        <ng-template #customTableRowContent let-data="data" , let-idx="idx">
+          <ng-container *ngFor="let title of thList">
+            <td
+              *ngIf="title.displayable"
+              class="td-{{
+                title.shortName
+              }} KBA-index-td d-flex align-items-center"
+            >
+              <span>{{ data[title.name] }}</span>
+            </td>
+          </ng-container>
+        </ng-template>
+      </app-kba-table>
+      <footer class="KBA-form-footer-fixed">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="onClickReturn()"
+        >
+          {{ labels.prev }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-delete"
+          (click)="onClickDelete()"
+          [disabled]="emptyOperatorParams()"
+        >
+          {{ labels.delete }}
+        </button>
+      </footer>
+    </form>
+  </div>
+</div>
+
+<ng-template #deleteModalContent>
+  <div class="confirm-modal-content-item-wrapper">
+    <app-kba-simple-list-confirm
+      [desc]="carModalValues.listDesc"
+      [val]="carModalValues.listVal"
+    >
+    </app-kba-simple-list-confirm>
+  </div>
+  <app-kba-simple-list-confirm
+    [desc]="operatorModalValues.listDesc"
+    [val]="operatorModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #resultModalContent>
+  <div class="confirm-modal-content-item-wrapper">
+    <app-kba-simple-list-confirm
+      [desc]="resultDesc"
+      [val]="resultVal"
+      [warningColumns]="'all'"
+    >
+    </app-kba-simple-list-confirm>
+  </div>
+  <app-kba-simple-list-confirm
+    [desc]="operatorModalValues.listDesc"
+    [val]="operatorModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+  <p class="result-count-message">{{ resultCountMessage }}</p>
+</ng-template>

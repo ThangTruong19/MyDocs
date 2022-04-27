@@ -1,0 +1,93 @@
+@import "../../../../../../assets/styles/_variable.scss";
+@import "../../../../../../assets/styles/opa/_variable.scss";
+
+.maker-divisions {
+  margin: -2px -1px -1px;
+}
+
+.maker-divisions-table {
+  table-layout: fixed;
+  margin: 0;
+
+  .header-cell {
+    padding: 5px 15px;
+    font-weight: normal;
+    color: $kba-main-color;
+    background-color: $kba-sub-color;
+  }
+
+  .maker-division-cell {
+    padding: 0;
+  }
+}
+
+.models {
+  display: flex;
+  padding-left: 1px;
+  margin: 0 -1px -1px;
+  flex-wrap: wrap;
+
+  .cell {
+    width: 150px;
+    padding: 15px;
+    margin: -1px 0 0 -1px;
+    color: inherit;
+    text-align: left;
+    word-break: break-all;
+    white-space: normal;
+    border: 1px solid #ddd;
+    flex-grow: 1;
+    outline: none;
+    transition: background-color 0.2s ease;
+
+    &:not(.dummy-cell) {
+      background-color: #fff;
+    }
+
+    &:not(:disabled):not(.dummy-cell) {
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken(#fff, 9%);
+      }
+
+      @media (hover: none) {
+        &:hover {
+          background-color: #fff;
+        }
+      }
+    }
+
+    &_text {
+      vertical-align: middle;
+    }
+
+    &.cell-green {
+      background-color: $kba-selected-color;
+
+      &:not(:disabled):hover {
+        background-color: darken($kba-selected-color, 6%);
+
+        @media (hover: none) {
+          &:hover {
+            background-color: $kba-selected-color;
+          }
+        }
+      }
+    }
+
+    &.cell-red {
+      background-color: $kba-danger-color;
+    }
+  }
+
+  .dummy-cell {
+    border: 0;
+    padding: 0;
+    flex-grow: 1;
+  }
+}
+
+.empty-message {
+  padding: 15px;
+}

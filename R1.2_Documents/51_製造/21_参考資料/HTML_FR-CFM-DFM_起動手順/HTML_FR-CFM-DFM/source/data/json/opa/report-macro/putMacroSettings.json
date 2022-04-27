@@ -1,0 +1,21 @@
+{
+  "group_id": "0492039",
+  "macro_settings": [
+    {
+      "publish_kind": "1",
+      "macro_report_code": "2",
+      "macro_report_name": "循環用　中古車レポート",
+      "file": {
+        "id": "5",
+        "version": "2",
+        "version_label": "v.2",
+        "size": 11200,
+        "size_label": "11.2 KB",
+        "free_memo": "循環用　中古車レポートです。",
+        "latest_update_datetime": "2017/06/01 13:54:22"
+      },
+      "latest_update_datetime": "2017/05/01 22:00:30",
+      "update_datetime": "2017-06-01T13:54:22.000Z"
+    }
+  ]
+}

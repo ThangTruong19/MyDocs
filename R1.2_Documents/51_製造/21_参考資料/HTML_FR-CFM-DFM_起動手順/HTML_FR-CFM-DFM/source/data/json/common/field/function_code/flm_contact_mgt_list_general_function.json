@@ -1,0 +1,58 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ID",
+    "path": "contacts.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "連絡先種別",
+    "path": "contacts.kind",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "更新日時",
+    "path": "contacts.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "氏名",
+    "path": "contacts.general_contact.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "電子メール",
+    "path": "contacts.general_contact.email",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "勤務先電話番号",
+    "path": "contacts.general_contact.office_phone_no",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "携帯電話番号",
+    "path": "contacts.general_contact.cell_phone_no",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "登録画像あり",
+    "path": "contacts.general_contact.photo_exists_kind",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

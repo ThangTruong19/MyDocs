@@ -1,0 +1,50 @@
+<div class="maker-divisions">
+  <table
+    class="KBA-form-table table table-bordered maker-divisions-table"
+    *ngIf="!isModelsEmpty()"
+  >
+    <tbody class="KBA-form-table-tbody">
+      <ng-container *ngFor="let makerDivision of makerDivisions">
+        <ng-container
+          *ngTemplateOutlet="
+            makerDivisionContent;
+            context: { makerDivision: makerDivision }
+          "
+        ></ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+  <p *ngIf="isModelsEmpty()" class="empty-message">
+    {{ emptyMessage }}
+  </p>
+</div>
+
+<ng-template #makerDivisionContent let-makerDivision="makerDivision">
+  <ng-container *ngIf="makerDivision.models.length > 0">
+    <tr>
+      <th class="header-cell">
+        {{ managementCarService.getMakerDivisonName(makerDivision) }}
+      </th>
+    </tr>
+    <tr>
+      <td class="parent-cell maker-division-cell">
+        <div class="models">
+          <ng-container *ngFor="let model of makerDivision.models">
+            <button
+              class="cell"
+              type="button"
+              [disabled]="!clickable"
+              [ngClass]="getCellClasses(model, makerDivision)"
+              (click)="handleCellClicked(model)"
+            >
+              <span class="cell_text">
+                {{ model.model }}
+              </span>
+            </button>
+          </ng-container>
+          <div *ngFor="let i of dummyCells" class="cell dummy-cell"></div>
+        </div>
+      </td>
+    </tr>
+  </ng-container>
+</ng-template>

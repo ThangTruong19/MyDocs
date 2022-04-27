@@ -1,0 +1,58 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "フラグ",
+    "path": "flag_conditions.flag_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "コーション",
+    "path": "flag_conditions.event_condition.event_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "条件",
+    "path": "flag_conditions.event_condition.occurrence_identification.condition",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "最小継続時間[分]",
+    "path": "flag_conditions.event_condition.occurrence_identification.min_alerm_time",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "メモ",
+    "path": "flag_conditions.free_memo",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "登録グループ",
+    "path": "flag_conditions.group_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "登録グループ種別",
+    "path": "flag_conditions.group_kind_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "最終更新日",
+    "path": "flag_conditions.latest_update_datetime",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

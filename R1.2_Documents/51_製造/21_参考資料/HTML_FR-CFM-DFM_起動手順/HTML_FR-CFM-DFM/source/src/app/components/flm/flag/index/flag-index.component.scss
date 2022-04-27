@@ -1,0 +1,45 @@
+.th-flag_conditions_event_condition_event_code,
+.td-flag_conditions_event_condition_event_code {
+  width: 110px !important;
+  flex-shrink: 0;
+}
+
+.th-flag_conditions_event_condition_occurrence_identification_ignore_0minute_code,
+.td-flag_conditions_event_condition_occurrence_identification_ignore_0minute_code {
+  width: 90px !important;
+  flex-shrink: 0;
+}
+
+.td-flag_conditions_flag_code,
+.td-flag_conditions_event_condition_occurrence_identification_ignore_0minute_code {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: top !important;
+}
+
+.KBA-model-cell {
+  white-space: nowrap !important;
+}
+
+.KBA-rev-cell {
+  padding: 10px !important;
+
+  .KBA-rev-cell_value {
+    display: inline-block;
+    min-width: 54px;
+    margin: 2px 4px;
+    text-align: center;
+  }
+}
+
+.td-flag_conditions_free_memo,
+.th-flag_conditions_free_memo {
+  width: 150% !important;
+}
+
+.td-flag_conditions_free_memo,
+.free-memo {
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}

@@ -1,0 +1,669 @@
+[
+  {
+    "path": "user.group.id",
+    "name": "グループ",
+    "help": "グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "リージョンユニオンnnnnnnnnnnnnnnnnnnnnnnnn",
+        "value": "1",
+        "kind": "DRU"
+      },
+      {
+        "key": "リージョン",
+        "value": "2",
+        "kind": "DR"
+      },
+      {
+        "key": "ブロックユニオン",
+        "value": "3",
+        "kind": "DBU"
+      },
+      {
+        "key": "ブロック",
+        "value": "4",
+        "kind": "DB"
+      },
+      {
+        "key": "代理店ユニオン",
+        "value": "5",
+        "kind": "DDU"
+      },
+      {
+        "key": "代理店",
+        "value": "6",
+        "kind": "DD"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "7",
+        "kind": "DGC"
+      },
+      {
+        "key": "広域顧客",
+        "value": "8",
+        "kind": "DWC"
+      },
+      {
+        "key": "顧客",
+        "value": "9",
+        "kind": "DC"
+      },
+      {
+        "key": "工場",
+        "value": "10",
+        "kind": "DP"
+      },
+      {
+        "key": "銀行",
+        "kind": "DBK",
+        "value": "11"
+      },
+      {
+        "key": "保険",
+        "kind": "DI",
+        "value": "12"
+      },
+      {
+        "key": "ファイナンス",
+        "kind": "DF",
+        "value": "13"
+      },
+      {
+        "key": "サブグループ",
+        "kind": "DS",
+        "value": "14"
+      },
+      {
+        "key": "リージョン",
+        "value": "2",
+        "kind": "DR"
+      },
+      {
+        "key": "ブロックユニオン",
+        "value": "3",
+        "kind": "DBU"
+      },
+      {
+        "key": "ブロック",
+        "value": "4",
+        "kind": "DB"
+      },
+      {
+        "key": "代理店ユニオン",
+        "value": "5",
+        "kind": "DDU"
+      },
+      {
+        "key": "代理店",
+        "value": "6",
+        "kind": "DD"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "7",
+        "kind": "DGC"
+      },
+      {
+        "key": "広域顧客",
+        "value": "8",
+        "kind": "DWC"
+      },
+      {
+        "key": "顧客",
+        "value": "9",
+        "kind": "DC"
+      },
+      {
+        "key": "工場",
+        "value": "10",
+        "kind": "DP"
+      },
+      {
+        "key": "銀行",
+        "kind": "DBK",
+        "value": "11"
+      },
+      {
+        "key": "保険",
+        "kind": "DI",
+        "value": "12"
+      },
+      {
+        "key": "ファイナンス",
+        "kind": "DF",
+        "value": "13"
+      },
+      {
+        "key": "サブグループ",
+        "kind": "DS",
+        "value": "14"
+      },
+      {
+        "key": "リージョン",
+        "value": "2",
+        "kind": "DR"
+      },
+      {
+        "key": "ブロックユニオン",
+        "value": "3",
+        "kind": "DBU"
+      },
+      {
+        "key": "ブロック",
+        "value": "4",
+        "kind": "DB"
+      },
+      {
+        "key": "代理店ユニオン",
+        "value": "5",
+        "kind": "DDU"
+      },
+      {
+        "key": "代理店",
+        "value": "6",
+        "kind": "DD"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "7",
+        "kind": "DGC"
+      },
+      {
+        "key": "広域顧客",
+        "value": "8",
+        "kind": "DWC"
+      },
+      {
+        "key": "顧客",
+        "value": "9",
+        "kind": "DC"
+      },
+      {
+        "key": "工場",
+        "value": "10",
+        "kind": "DP"
+      },
+      {
+        "key": "銀行",
+        "kind": "DBK",
+        "value": "11"
+      },
+      {
+        "key": "保険",
+        "kind": "DI",
+        "value": "12"
+      },
+      {
+        "key": "ファイナンス",
+        "kind": "DF",
+        "value": "13"
+      },
+      {
+        "key": "サブグループ",
+        "kind": "DS",
+        "value": "14"
+      },
+      {
+        "key": "リージョン",
+        "value": "2",
+        "kind": "DR"
+      },
+      {
+        "key": "ブロックユニオン",
+        "value": "3",
+        "kind": "DBU"
+      },
+      {
+        "key": "ブロック",
+        "value": "4",
+        "kind": "DB"
+      },
+      {
+        "key": "代理店ユニオン",
+        "value": "5",
+        "kind": "DDU"
+      },
+      {
+        "key": "代理店",
+        "value": "6",
+        "kind": "DD"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "7",
+        "kind": "DGC"
+      },
+      {
+        "key": "広域顧客",
+        "value": "8",
+        "kind": "DWC"
+      },
+      {
+        "key": "顧客",
+        "value": "9",
+        "kind": "DC"
+      },
+      {
+        "key": "工場",
+        "value": "10",
+        "kind": "DP"
+      },
+      {
+        "key": "銀行",
+        "kind": "DBK",
+        "value": "11"
+      },
+      {
+        "key": "保険",
+        "kind": "DI",
+        "value": "12"
+      },
+      {
+        "key": "ファイナンス",
+        "kind": "DF",
+        "value": "13"
+      },
+      {
+        "key": "サブグループ",
+        "kind": "DS",
+        "value": "14"
+      },
+      {
+        "key": "リージョン",
+        "value": "2",
+        "kind": "DR"
+      },
+      {
+        "key": "ブロックユニオン",
+        "value": "3",
+        "kind": "DBU"
+      },
+      {
+        "key": "ブロック",
+        "value": "4",
+        "kind": "DB"
+      },
+      {
+        "key": "代理店ユニオン",
+        "value": "5",
+        "kind": "DDU"
+      },
+      {
+        "key": "代理店",
+        "value": "6",
+        "kind": "DD"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "7",
+        "kind": "DGC"
+      },
+      {
+        "key": "広域顧客",
+        "value": "8",
+        "kind": "DWC"
+      },
+      {
+        "key": "顧客",
+        "value": "9",
+        "kind": "DC"
+      },
+      {
+        "key": "工場",
+        "value": "10",
+        "kind": "DP"
+      },
+      {
+        "key": "銀行",
+        "kind": "DBK",
+        "value": "11"
+      },
+      {
+        "key": "保険",
+        "kind": "DI",
+        "value": "12"
+      },
+      {
+        "key": "ファイナンス",
+        "kind": "DF",
+        "value": "13"
+      },
+      {
+        "key": "サブグループ",
+        "kind": "DS",
+        "value": "14"
+      },
+      {
+        "key": "リージョン",
+        "value": "2",
+        "kind": "DR"
+      },
+      {
+        "key": "ブロックユニオン",
+        "value": "3",
+        "kind": "DBU"
+      },
+      {
+        "key": "ブロック",
+        "value": "4",
+        "kind": "DB"
+      },
+      {
+        "key": "代理店ユニオン",
+        "value": "5",
+        "kind": "DDU"
+      },
+      {
+        "key": "代理店",
+        "value": "6",
+        "kind": "DD"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "7",
+        "kind": "DGC"
+      },
+      {
+        "key": "広域顧客",
+        "value": "8",
+        "kind": "DWC"
+      },
+      {
+        "key": "顧客",
+        "value": "9",
+        "kind": "DC"
+      },
+      {
+        "key": "工場",
+        "value": "10",
+        "kind": "DP"
+      },
+      {
+        "key": "銀行",
+        "kind": "DBK",
+        "value": "11"
+      },
+      {
+        "key": "保険",
+        "kind": "DI",
+        "value": "12"
+      },
+      {
+        "key": "ファイナンス",
+        "kind": "DF",
+        "value": "13"
+      },
+      {
+        "key": "サブグループ",
+        "kind": "DS",
+        "value": "14"
+      },
+      {
+        "key": "リージョン",
+        "value": "2",
+        "kind": "DR"
+      },
+      {
+        "key": "ブロックユニオン",
+        "value": "3",
+        "kind": "DBU"
+      },
+      {
+        "key": "ブロック",
+        "value": "4",
+        "kind": "DB"
+      },
+      {
+        "key": "代理店ユニオン",
+        "value": "5",
+        "kind": "DDU"
+      },
+      {
+        "key": "代理店",
+        "value": "6",
+        "kind": "DD"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "7",
+        "kind": "DGC"
+      },
+      {
+        "key": "広域顧客",
+        "value": "8",
+        "kind": "DWC"
+      },
+      {
+        "key": "顧客",
+        "value": "9",
+        "kind": "DC"
+      },
+      {
+        "key": "工場",
+        "value": "10",
+        "kind": "DP"
+      },
+      {
+        "key": "銀行",
+        "kind": "DBK",
+        "value": "11"
+      },
+      {
+        "key": "保険",
+        "kind": "DI",
+        "value": "12"
+      },
+      {
+        "key": "ファイナンス",
+        "kind": "DF",
+        "value": "13"
+      },
+      {
+        "key": "サブグループ",
+        "kind": "DS",
+        "value": "14"
+      },
+      {
+        "key": "リージョン",
+        "value": "2",
+        "kind": "DR"
+      },
+      {
+        "key": "ブロックユニオン",
+        "value": "3",
+        "kind": "DBU"
+      },
+      {
+        "key": "ブロック",
+        "value": "4",
+        "kind": "DB"
+      },
+      {
+        "key": "代理店ユニオン",
+        "value": "5",
+        "kind": "DDU"
+      },
+      {
+        "key": "代理店",
+        "value": "6",
+        "kind": "DD"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "7",
+        "kind": "DGC"
+      },
+      {
+        "key": "広域顧客",
+        "value": "8",
+        "kind": "DWC"
+      },
+      {
+        "key": "顧客",
+        "value": "9",
+        "kind": "DC"
+      },
+      {
+        "key": "工場",
+        "value": "10",
+        "kind": "DP"
+      },
+      {
+        "key": "銀行",
+        "kind": "DBK",
+        "value": "11"
+      },
+      {
+        "key": "保険",
+        "kind": "DI",
+        "value": "12"
+      },
+      {
+        "key": "ファイナンス",
+        "kind": "DF",
+        "value": "13"
+      },
+      {
+        "key": "サブグループ",
+        "kind": "DS",
+        "value": "14"
+      }
+    ]
+  },
+  {
+    "path": "user_id",
+    "name": "ユーザID",
+    "help": "ユーザIDのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "user.group.belonging_group_id",
+    "name": "所属",
+    "help": "所属のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "user.group.granted_role_id",
+    "name": "権限",
+    "help": "権限のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "user.group.granted_authority_ids",
+    "name": "権限",
+    "help": "権限のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "user.attribute_create_place",
+    "name": "所在地",
+    "help": "所在地のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "user_account",
+    "name": "ユーザID",
+    "help": "ユーザIDのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "belonging_group_kind",
+    "name": "グループ種別",
+    "help": null,
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "リージョンユニオンとてもとても長い名称",
+        "value": "DRU",
+        "kind": "D"
+      },
+      {
+        "key": "リージョン",
+        "value": "DR",
+        "kind": "D"
+      },
+      {
+        "key": "ブロックユニオン",
+        "value": "DBU",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック",
+        "value": "DB",
+        "kind": "D"
+      },
+      {
+        "key": "代理店ユニオン",
+        "value": "DDU",
+        "kind": "D"
+      },
+      {
+        "key": "代理店",
+        "value": "DD",
+        "kind": "D"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "DGC",
+        "kind": "D"
+      },
+      {
+        "key": "広域顧客",
+        "value": "DWC",
+        "kind": "D"
+      },
+      {
+        "key": "顧客",
+        "value": "DC",
+        "kind": "D"
+      },
+      {
+        "key": "工場",
+        "value": "DP",
+        "kind": "D"
+      },
+      {
+        "key": "銀行",
+        "value": "DBK",
+        "kind": "D"
+      },
+      {
+        "key": "保険",
+        "value": "DI",
+        "kind": "D"
+      },
+      {
+        "key": "ファイナンス",
+        "value": "DF",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ",
+        "value": "DS",
+        "kind": "D"
+      }
+    ]
+  }
+]

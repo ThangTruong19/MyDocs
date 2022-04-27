@@ -1,0 +1,49 @@
+<div class="table-auto-height">
+  <table class="KBA-table-modal KBA-table table table-bordered">
+    <thead class="KBA-table-thead-modal KBA-table-thead">
+      <tr class="KBA-table-flex-cell-modal">
+        <th
+          class="KBA-form-table__head"
+          [ngClass]="{
+            'fixed-column': isfixedColumn(idx),
+            'wide-column': isWideColumn(idx)
+          }"
+          *ngFor="let d of desc; let idx = index"
+        >
+          {{ displayLabel(d) }}
+        </th>
+      </tr>
+    </thead>
+    <tbody class="KBA-form-table-tbody KBA-table-tbody">
+      <tr
+        class="KBA-table-flex-cell-modal"
+        [ngClass]="row.css_class"
+        *ngFor="let row of val"
+      >
+        <td
+          class="KBA-form-table__value"
+          [ngClass]="{
+            'warning-column': isWarningColumn(idx),
+            'fixed-column': isfixedColumn(idx),
+            'wide-column': isWideColumn(idx)
+          }"
+          *ngFor="
+            let v of row | values: { exclusion: 'css_class' };
+            let idx = index
+          "
+        >
+          <ng-container [ngSwitch]="displayType(v)">
+            <p *ngSwitchCase="'string'">{{ v }}</p>
+            <div *ngSwitchCase="'array'">
+              <p *ngFor="let vItem of v">{{ vItem }}</p>
+            </div>
+            <div class="result" *ngSwitchCase="'result'">
+              <i *ngIf="v.success" class="kba-icon-check"></i>
+              <i *ngIf="!v.success" class="kba-icon-close"></i>
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,111 @@
+[
+  {
+    "path": "customer_ids",
+    "name": "顧客",
+    "help": "顧客のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "顧客1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "顧客2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "顧客3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "顧客4",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "顧客5",
+        "value": "5",
+        "kind": "D"
+      },
+      {
+        "key": "顧客6",
+        "value": "6",
+        "kind": "D"
+      },
+      {
+        "key": "顧客7",
+        "value": "7",
+        "kind": "D"
+      },
+      {
+        "key": "顧客8",
+        "value": "8",
+        "kind": "D"
+      },
+      {
+        "key": "顧客9",
+        "value": "9",
+        "kind": "D"
+      },
+      {
+        "key": "顧客10",
+        "value": "10",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "search_keyword",
+    "name": "ワード",
+    "help": "連絡先名称のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+]

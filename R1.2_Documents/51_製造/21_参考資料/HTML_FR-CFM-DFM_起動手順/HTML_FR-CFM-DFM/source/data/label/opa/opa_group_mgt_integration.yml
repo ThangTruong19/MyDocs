@@ -1,0 +1,180 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: グループ管理　グループ統合
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: グループ管理　グループ統合
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 19
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当するグループが見つかりませんでした。
+    en:
+
+  - id: 20
+    description: 統合する
+    name: integrate_btn
+    ja: 統合する
+    en:
+
+  - id: 21
+    description: 次へ
+    name: next
+    ja: 次へ
+    en:
+
+  - id: 22
+    description: 戻る
+    name: back
+    ja: 戻る
+    en:
+
+  - id: 23
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認
+    en:
+
+  - id: 24
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 25
+    description: 統合確認モーダルタイトル
+    name: integrate_modal_title
+    ja: 以下グループを統合します。よろしいですか？
+    en:
+
+  - id: 26
+    description: 統合確認モーダル警告
+    name: warning_message
+    ja: この処理は取り消しできません。確認の項目をチェックした後、統合するボタンを押してください。
+    en:
+
+  - id: 27
+    description: 統合エラー文言
+    name: integrate_error
+    ja: 以下のグループエラーにより統合できませんでした。
+    en:
+
+  - id: 28
+    description: 確認
+    name: confirm
+    ja: 確認
+    en:
+
+  - id: 29
+    description: 続けて統合
+    name: continue
+    ja: 続けて統合
+    en:
+
+  - id: 30
+    description: 統合
+    name: integration
+    ja: 統合
+    en:
+
+  - id: 31
+    description: 統合先選択タイトル
+    name: select_dest_group
+    ja: 統合先を選択
+    en:
+
+  - id: 32
+    description: 統合元選択タイトル
+    name: select_src_groups
+    ja: 統合元を選択
+    en:
+
+  - id: 33
+    description: リセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 35
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 36
+    description: 完了メッセージ
+    name: complete_message
+    ja: 統合処理の受付が完了しました
+    en:
+
+  - id: 1001
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 1001
+    description: グループ統合注意事項
+    name: group_integration_notice
+    ja: 統合処理中のグループは選択できません
+    en:
+
+  - id: 1001
+    description: 統合元グループ
+    name: integration_from_group
+    ja: 統合元グループ
+    en:
+
+  - id: 1001
+    description: 統合先グループ
+    name: integration_to_group
+    ja: 統合先グループ
+    en:

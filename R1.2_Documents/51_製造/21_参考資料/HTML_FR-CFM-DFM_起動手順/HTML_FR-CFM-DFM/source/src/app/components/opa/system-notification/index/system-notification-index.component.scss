@@ -1,0 +1,29 @@
+.th-applications_system_notifications_publish_applications_name,
+.th-applications_system_notifications_publish_group_kind_name,
+.td-applications_system_notifications_publish_applications_name,
+.td-applications_system_notifications_publish_group_kind_name {
+  max-width: 102px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.date-range {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+
+  .separator {
+    margin: 0 0 10px 40px;
+  }
+}
+
+.th-applications_system_notifications_notification_content,
+.td-applications_system_notifications_notification_content {
+  width: 150% !important;
+}
+
+.td-applications_system_notifications_notification_content span {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+}

@@ -1,0 +1,35 @@
+<div [formGroup]="formGroup">
+  <label>
+    {{ resName.ew }}
+    <input
+      name="{{ name }}{{ number }}"
+      [value]="distance[distanceType.EW]"
+      (input)="onChangeEwInput($event.target.value)"
+      [formControlName]="fName[distanceType.EW]"
+      [step]="step"
+      [maxlength]="8"
+      [pattern]="pattern"
+      [ngClass]="{ 'KBA-form-error': errorData | hasError: resPaths.ew }"
+      type="text" autocomplete="off"
+      class="KBA-input-text form-control"
+    />
+    {{ inputSuffix }}
+  </label>
+
+  <label>
+    {{ resName.ns }}
+    <input
+      name="{{ name }}{{ number }}"
+      [value]="distance[distanceType.NS]"
+      (input)="onChangeNsInput($event.target.value)"
+      [formControlName]="fName[distanceType.NS]"
+      [step]="step"
+      [maxlength]="8"
+      [pattern]="pattern"
+      [ngClass]="{ 'KBA-form-error': errorData | hasError: resPaths.ns }"
+      type="text" autocomplete="off"
+      class="KBA-input-text form-control"
+    />
+    {{ inputSuffix }}
+  </label>
+</div>

@@ -1,0 +1,11 @@
+[
+  {
+    "path": "operator.current_label.label",
+    "name": "オペレータ名称",
+    "help": "オペレータ名称のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  }
+]

@@ -1,0 +1,72 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 分類管理　変更
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 分類管理　変更
+    en:
+
+  - id: 3
+    description: 変更
+    name: submit
+    ja: 変更
+    en:
+
+  - id: 4
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 5
+    description: 変更確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容に変更します。よろしいですか？
+    en:
+
+  - id: 6
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 7
+    description: 必須バリデーション
+    name: valid_required
+    ja: 必須です。
+    en:
+
+  - id: 8
+    description: 最大文字数バリデーション
+    name: valid_maxlength
+    ja: 最大文字数をオーバーしています。
+    en:
+
+  - id: 9
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 10
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 10
+    description: 分類区分
+    name: kind_name
+    ja: 分類区分
+    en:
+
+  - id: 10
+    description: 現在の分類名称
+    name: current_label
+    ja: 現在の分類名称
+    en:

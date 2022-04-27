@@ -1,0 +1,567 @@
+<div class="KBA-panel-body KBA-car-search row ng-scope">
+  <ngb-tabset
+    [activeId]="activeTab"
+    orientation="vertical"
+    [destroyOnHide]="false"
+    (tabChange)="onTabChange($event)"
+    type="pills"
+  >
+    <ngb-tab id="target-car" title="{{ labels.target_car }}">
+      <ng-template ngbTabContent>
+        <div class="row">
+          <app-kba-selected
+            *ngIf="resource.common.target_car_group_id"
+            class="col-sm-3"
+            [kbaName]="'target_car_group_id'"
+            [kbaParams]="params.common"
+            [kbaResource]="resource.common"
+          >
+          </app-kba-selected>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="identifier" title="{{ labels.identifier }}">
+      <ng-template ngbTabContent>
+        <div class="row">
+          <app-kba-text
+            *ngIf="
+              resource.common.customer_attribute &&
+              resource.common.customer_attribute.customer_management_no
+            "
+            class="col-sm-3"
+            [kbaName]="'customer_management_no'"
+            [kbaParams]="params.common.customer_attribute"
+            [kbaResource]="resource.common.customer_attribute"
+            [maxlength]="26"
+          >
+          </app-kba-text>
+
+          <app-kba-text
+            *ngIf="
+              resource.common.customer_attribute &&
+              resource.common.customer_attribute.customer_car_no
+            "
+            class="col-sm-3"
+            [kbaName]="'customer_car_no'"
+            [kbaParams]="params.common.customer_attribute"
+            [kbaResource]="resource.common.customer_attribute"
+            [maxlength]="26"
+          >
+          </app-kba-text>
+
+          <app-kba-selected
+            *ngIf="
+              resource.common.car_identification &&
+              resource.common.car_identification.division_codes
+            "
+            class="col-sm-3"
+            [kbaName]="'division_codes'"
+            [kbaParams]="params.common.car_identification"
+            [kbaResource]="resource.common.car_identification"
+          >
+          </app-kba-selected>
+
+          <app-kba-selected
+            *ngIf="
+              resource.common.car_identification &&
+              resource.common.car_identification.maker_codes
+            "
+            class="col-sm-3"
+            [kbaName]="'maker_codes'"
+            [kbaParams]="params.common.car_identification"
+            [kbaResource]="resource.common.car_identification"
+          >
+          </app-kba-selected>
+        </div>
+
+        <div class="row" *ngIf="resource.common.car_identification">
+          <div class="model-carType-check">
+            <label>
+              <input
+                type="checkbox"
+                [checked]="modelCarTypeCheck"
+                (change)="onChangeModelCarTypeCheck()"
+              />
+              {{ labels.input_model_type_revs }}
+            </label>
+          </div>
+
+          <ng-container *ngIf="!modelCarTypeCheck">
+            <app-kba-text
+              *ngIf="resource.common.car_identification.models"
+              class="col-sm-3"
+              [kbaName]="'models'"
+              [kbaParams]="params.common.car_identification"
+              [kbaResource]="resource.common.car_identification"
+              [maxlength]="20"
+            >
+            </app-kba-text>
+
+            <app-kba-text
+              *ngIf="resource.common.car_identification.type_revs"
+              class="col-sm-3"
+              [kbaName]="'type_revs'"
+              [kbaParams]="params.common.car_identification"
+              [kbaResource]="resource.common.car_identification"
+              [maxlength]="15"
+            >
+            </app-kba-text>
+          </ng-container>
+
+          <ng-container *ngIf="modelCarTypeCheck">
+            <app-kba-text
+              *ngIf="resource.common.car_identification.model_type_revs"
+              class="col-sm-3"
+              [kbaName]="'model_type_revs'"
+              [kbaParams]="params.common.car_identification"
+              [kbaResource]="resource.common.car_identification"
+              [maxlength]="36"
+            >
+            </app-kba-text>
+          </ng-container>
+
+          <app-kba-text
+            *ngIf="resource.common.car_identification.serials"
+            class="col-sm-3"
+            [kbaName]="'serials'"
+            [kbaParams]="params.common.car_identification"
+            [kbaResource]="resource.common.car_identification"
+          >
+          </app-kba-text>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="belongs" title="{{ labels.belongs }}">
+      <ng-template ngbTabContent>
+        <div class="row">
+          <app-kba-select-type
+            #supportDistributorSelect
+            *ngIf="
+              resource.common.support_distributor &&
+              resource.common.support_distributor.ids
+            "
+            class="col-sm-8"
+            name="support_distibutor"
+            [labels]="labels"
+            [targets]="resource.common.support_distributor.ids"
+            (changed)="onChangeSupportDistributor()"
+          >
+          </app-kba-select-type>
+        </div>
+
+        <div class="row" *ngIf="resource.common.support_distributor">
+          <app-kba-selected
+            #sdOrganizationCodesSelect
+            *ngIf="resource.common.support_distributor.organization_codes"
+            class="col-sm-3"
+            [kbaName]="'organization_codes'"
+            [kbaParams]="params.common.support_distributor"
+            [kbaResource]="resource.common.support_distributor"
+            (onChangeSelectItem)="onChangeSupportDbOrgCode($event)"
+          >
+          </app-kba-selected>
+        </div>
+
+        <div class="row">
+          <app-kba-select-type
+            *ngIf="resource.common.user_permission_sub_group_ids"
+            #subGroupSelect
+            class="col-sm-8"
+            name="user_permission_sub_group_ids"
+            [labels]="labels"
+            [targets]="resource.common.user_permission_sub_group_ids"
+          >
+          </app-kba-select-type>
+        </div>
+
+        <div class="row">
+          <app-kba-select-type
+            *ngIf="resource.common.customer && resource.common.customer.ids"
+            #customerSelect
+            class="col-sm-8"
+            name="customer"
+            [labels]="labels"
+            [targets]="resource.common.customer.ids"
+          >
+          </app-kba-select-type>
+        </div>
+
+        <div class="row">
+          <app-kba-selected
+            #bankSelect
+            *ngIf="resource.common.bank_ids"
+            class="col-sm-3"
+            [kbaName]="'bank_ids'"
+            [kbaParams]="params.common"
+            [kbaResource]="resource.common"
+          >
+          </app-kba-selected>
+
+          <app-kba-selected
+            #insuranceSelect
+            *ngIf="resource.common.insurance_ids"
+            class="col-sm-3"
+            [kbaName]="'insurance_ids'"
+            [kbaParams]="params.common"
+            [kbaResource]="resource.common"
+          >
+          </app-kba-selected>
+
+          <app-kba-selected
+            #financeSelect
+            *ngIf="resource.common.finance_ids"
+            class="col-sm-3"
+            [kbaName]="'finance_ids'"
+            [kbaParams]="params.common"
+            [kbaResource]="resource.common"
+          >
+          </app-kba-selected>
+        </div>
+
+        <div class="row" *ngIf="resource.common.service_distributor">
+          <app-kba-selected
+            #serviceDistributorSelect
+            *ngIf="resource.common.service_distributor.ids"
+            class="col-sm-3"
+            [kbaName]="'ids'"
+            [kbaParams]="params.common.service_distributor"
+            [kbaResource]="resource.common.service_distributor"
+            (onChangeSelectItem)="onChangeServiceDb($event)"
+          >
+          </app-kba-selected>
+
+          <app-kba-selected
+            #svOrganizationCodesSelect
+            *ngIf="resource.common.service_distributor.organization_codes"
+            class="col-sm-3"
+            [kbaName]="'organization_codes'"
+            [kbaParams]="params.common.service_distributor"
+            [kbaResource]="resource.common.service_distributor"
+            (onChangeSelectItem)="onChangeServiceDbOrgCode($event)"
+          >
+          </app-kba-selected>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="attributes" title="{{ labels.attributes }}">
+      <ng-template ngbTabContent>
+        <ng-container *ngIf="resource.common.distributor_attribute">
+          <div class="row">
+            <app-kba-text
+              *ngIf="resource.common.distributor_attribute.note_1"
+              class="col-sm-3"
+              [kbaName]="'note_1'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+              [maxlength]="80"
+            >
+            </app-kba-text>
+
+            <app-kba-text
+              *ngIf="resource.common.distributor_attribute.note_2"
+              class="col-sm-3"
+              [kbaName]="'note_2'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+              [maxlength]="80"
+            >
+            </app-kba-text>
+
+            <app-kba-text
+              *ngIf="resource.common.distributor_attribute.note_3"
+              class="col-sm-3"
+              [kbaName]="'note_3'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+              [maxlength]="80"
+            >
+            </app-kba-text>
+
+            <app-kba-text
+              *ngIf="resource.common.distributor_attribute.note_4"
+              class="col-sm-3"
+              [kbaName]="'note_4'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+              [maxlength]="80"
+            >
+            </app-kba-text>
+
+            <app-kba-text
+              *ngIf="resource.common.distributor_attribute.note_5"
+              class="col-sm-3"
+              [kbaName]="'note_5'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+              [maxlength]="80"
+            >
+            </app-kba-text>
+          </div>
+
+          <div class="row">
+            <app-kba-selected
+              #class1Select
+              *ngIf="resource.common.distributor_attribute.class_1_ids"
+              class="col-sm-3 col-md-15"
+              [kbaName]="'class_1_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #class2Select
+              *ngIf="resource.common.distributor_attribute.class_2_ids"
+              class="col-sm-3 col-md-15"
+              [kbaName]="'class_2_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #class3Select
+              *ngIf="resource.common.distributor_attribute.class_3_ids"
+              class="col-sm-3 col-md-15"
+              [kbaName]="'class_3_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #class4Select
+              *ngIf="resource.common.distributor_attribute.class_4_ids"
+              class="col-sm-3 col-md-15"
+              [kbaName]="'class_4_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #class5Select
+              *ngIf="resource.common.distributor_attribute.class_5_ids"
+              class="col-sm-3 col-md-15"
+              [kbaName]="'class_5_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+          </div>
+
+          <div class="row">
+            <app-kba-selected
+              #customAttribute
+              *ngIf="
+                resource.common.distributor_attribute
+                  .custom_car_attribute_1_detail_ids
+              "
+              class="col-sm-3 col-md-15"
+              [kbaName]="'custom_car_attribute_1_detail_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #customAttribute
+              *ngIf="
+                resource.common.distributor_attribute
+                  .custom_car_attribute_2_detail_ids
+              "
+              class="col-sm-3 col-md-15"
+              [kbaName]="'custom_car_attribute_2_detail_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #customAttribute
+              *ngIf="
+                resource.common.distributor_attribute
+                  .custom_car_attribute_3_detail_ids
+              "
+              class="col-sm-3 col-md-15"
+              [kbaName]="'custom_car_attribute_3_detail_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #customAttribute
+              *ngIf="
+                resource.common.distributor_attribute
+                  .custom_car_attribute_4_detail_ids
+              "
+              class="col-sm-3 col-md-15"
+              [kbaName]="'custom_car_attribute_4_detail_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #customAttribute
+              *ngIf="
+                resource.common.distributor_attribute
+                  .custom_car_attribute_5_detail_ids
+              "
+              class="col-sm-3 col-md-15"
+              [kbaName]="'custom_car_attribute_5_detail_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #customAttribute
+              *ngIf="
+                resource.common.distributor_attribute
+                  .custom_car_attribute_6_detail_ids
+              "
+              class="col-sm-3 col-md-15"
+              [kbaName]="'custom_car_attribute_6_detail_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #customAttribute
+              *ngIf="
+                resource.common.distributor_attribute
+                  .custom_car_attribute_7_detail_ids
+              "
+              class="col-sm-3 col-md-15"
+              [kbaName]="'custom_car_attribute_7_detail_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #customAttribute
+              *ngIf="
+                resource.common.distributor_attribute
+                  .custom_car_attribute_8_detail_ids
+              "
+              class="col-sm-3 col-md-15"
+              [kbaName]="'custom_car_attribute_8_detail_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #customAttribute
+              *ngIf="
+                resource.common.distributor_attribute
+                  .custom_car_attribute_9_detail_ids
+              "
+              class="col-sm-3 col-md-15"
+              [kbaName]="'custom_car_attribute_9_detail_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+
+            <app-kba-selected
+              #customAttribute
+              *ngIf="
+                resource.common.distributor_attribute
+                  .custom_car_attribute_10_detail_ids
+              "
+              class="col-sm-3 col-md-15"
+              [kbaName]="'custom_car_attribute_10_detail_ids'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+          </div>
+
+          <div
+            class="row"
+            *ngIf="exists('common.distributor_attribute.new_used_kind')"
+          >
+            <app-kba-selected
+              class="col-sm-3 col-md-15"
+              [kbaName]="'new_used_kind'"
+              [kbaParams]="params.common.distributor_attribute"
+              [kbaResource]="resource.common.distributor_attribute"
+            >
+            </app-kba-selected>
+          </div>
+        </ng-container>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab
+      id="settings"
+      title="{{ labels.settings }}"
+      *ngIf="
+        resource.car_management &&
+        resource.car_management.time_difference_setting
+      "
+    >
+      <ng-template ngbTabContent>
+        <div class="row">
+          <app-kba-time-difference
+            #timeDifferenceComponent
+            class="col-sm-12"
+            [value]="params.car_management.time_difference"
+            [resource]="resource"
+            [labels]="labels"
+            (changeTimeDifference)="onChangeTimeDifference($event)"
+          >
+          </app-kba-time-difference>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab
+      id="smr-settings"
+      title="{{ labels.smr_settings }}"
+      *ngIf="resource.smr_interval_item"
+    >
+      <ng-template ngbTabContent>
+        <div class="row">
+          <app-kba-selected
+            #smrIntervalSelect
+            *ngIf="resource.smr_interval_item"
+            class="col-sm-3"
+            [kbaName]="'id'"
+            [kbaParams]="params.smr_interval_item"
+            [kbaResource]="resource.smr_interval_item"
+          >
+          </app-kba-selected>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab
+      id="fuel-settings"
+      title="{{ labels.fuel_settings }}"
+      *ngIf="resource.accumulate_fuel_interval_item"
+    >
+      <ng-template ngbTabContent>
+        <div class="row">
+          <app-kba-selected
+            #fuelSelect
+            *ngIf="resource.accumulate_fuel_interval_item"
+            class="col-sm-3"
+            [kbaName]="'id'"
+            [kbaParams]="params.accumulate_fuel_interval_item"
+            [kbaResource]="resource.accumulate_fuel_interval_item"
+          >
+          </app-kba-selected>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

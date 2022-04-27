@@ -1,0 +1,16 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: とびこみリンク
+    en:
+  - id: 2
+    description: 該当車両なし時のアラート
+    name: car_not_found
+    ja: 該当する車両が見つかりませんでした。
+    en:
+  - id: 3
+    description: 該当車両複数時のアラート
+    name: car_found_multiple
+    ja: 該当する車両が複数見つかりました。
+    en:

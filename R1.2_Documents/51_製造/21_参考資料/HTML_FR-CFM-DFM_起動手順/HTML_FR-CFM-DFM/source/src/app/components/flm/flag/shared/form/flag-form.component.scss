@@ -1,0 +1,101 @@
+.kba-flag {
+  margin-left: 5px;
+  font-size: 24px;
+
+  &.flag-type-5 {
+    color: #ffa500;
+  }
+}
+
+.wrap {
+  display: block !important;
+  margin: 0 !important;
+}
+
+.reference-title {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.no-profile {
+  margin: 10px 0 15px;
+}
+
+.td-event_code {
+  white-space: nowrap !important;
+}
+
+.KBA-rev-cell {
+  padding: 10px !important;
+
+  .KBA-rev-cell_value {
+    display: inline-block;
+    min-width: 54px;
+    margin: 2px 4px;
+    text-align: center;
+  }
+}
+
+.KBA-model-table {
+  width: calc(100% + 30px);
+  margin: -15px;
+
+  tr {
+    &:first-of-type {
+      td {
+        border-top: solid 0;
+      }
+    }
+
+    &:last-of-type {
+      td {
+        border-bottom: solid 0;
+      }
+    }
+
+    td {
+      &:first-child {
+        border-left: solid 0;
+      }
+
+      &:last-child {
+        border-right: solid 0;
+      }
+    }
+  }
+}
+
+.vertical-align-top {
+  vertical-align: top !important;
+}
+
+#consecutive_occurrence_days,
+#consecutive_occurrence_days__decision_period,
+#occurrence_days,
+#occurrence_days__decision_period,
+#accumulate_occurrence_count {
+  &:disabled {
+    background-color: #eceeef !important;
+    border-color: #a9a9a9 !important;
+  }
+}
+
+.unit {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.rev-modal-wrapper {
+  overflow-x: scroll;
+}
+
+.free-memo {
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.KBA-model-cell {
+  white-space: nowrap !important;
+}

@@ -1,0 +1,15 @@
+.KBA-form-table {
+  margin-bottom: 0;
+
+  .KBA-form-table__value {
+    p {
+      word-break: break-all;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+  }
+}
+
+.KBA-form-table .KBA-form-table-tbody td.KBA-form-table__head {
+  width: 313px;
+}

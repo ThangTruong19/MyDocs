@@ -1,0 +1,36 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 管理画面メニュー
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 管理画面メニュー
+    en:
+
+  - id: 3
+    description: システムNEWS
+    name: news_title
+    ja: KOMTRAX NEWS
+    en:
+
+  - id: 4
+    description: システムNEWSなし
+    name: news_has_no_data
+    ja: 現在ニュースはありません
+    en:
+
+  - id: 5
+    description: ©️2020 KOMATSU .Ltd.
+    name: copyright
+    ja: ©️2020 KOMATSU .Ltd.
+    en:
+
+  - id: 6
+    description: AdBlue®️は、ドイツ自動車工業会(VDA)の登録商標です。
+    name: registered_trademark
+    ja: AdBlue®️は、ドイツ自動車工業会(VDA)の登録商標です。
+    en:

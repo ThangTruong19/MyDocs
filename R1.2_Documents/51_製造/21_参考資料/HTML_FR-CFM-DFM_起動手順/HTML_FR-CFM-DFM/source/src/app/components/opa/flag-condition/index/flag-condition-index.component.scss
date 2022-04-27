@@ -1,0 +1,113 @@
+@import "../../../../../assets/styles/variable";
+@import "../../../../../assets/styles/opa/variable";
+
+.KBA-pills {
+  > .nav-item {
+    width: auto;
+    min-width: 110px;
+    margin-bottom: 10px;
+    text-align: center;
+    border: 1px solid $kba-nav-link-color;
+    border-radius: 3px;
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .nav-link {
+      color: $kba-nav-link-color;
+      border: 0;
+      border-radius: 0;
+
+      &:not(.active) {
+        &:hover {
+          background-color: $kba-sub-color;
+        }
+      }
+
+      &.active {
+        color: #fff;
+        background-color: $kba-nav-link-color;
+      }
+    }
+  }
+}
+
+.kba-flag {
+  font-size: 18px;
+
+  &.flag-type-1 {
+    color: $fontRed;
+  }
+
+  &.flag-type-2 {
+    color: #ebd200;
+  }
+}
+
+.td-flag_conditions_flag_code {
+  position: relative;
+
+  .kba-flag {
+    position: absolute;
+    left: calc(50% - 9px);
+  }
+}
+
+th {
+  &.th-flag_conditions_latest_update_datetime,
+  &.th-flag_conditions_event_condition_occurrence_identification_min_alerm_time {
+    width: 145px;
+    flex-shrink: 0;
+  }
+
+  &.th-flag_conditions_event_condition_time_identification_remaining_time_threshold {
+    width: 170px;
+    flex-shrink: 0;
+  }
+}
+
+td {
+  &.td-flag_conditions_latest_update_datetime,
+  &.td-flag_conditions_event_condition_occurrence_identification_min_alerm_time {
+    width: 145px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  &.td-flag_conditions_event_condition_time_identification_remaining_time_threshold {
+    width: 170px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .flag-caution {
+    display: inline;
+
+    > span {
+      vertical-align: top;
+    }
+  }
+}
+
+.td-flag_conditions_free_memo > span,
+.free_memo {
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.th-flag_conditions_free_memo,
+.td-flag_conditions_free_memo {
+  width: 150% !important;
+}

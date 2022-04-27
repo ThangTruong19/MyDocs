@@ -1,0 +1,428 @@
+<section id="KBA-group-area-car-index" *ngIf="labels && resource">
+  <div class="container-fluid">
+    <h2 class="KBA-group-area-index__title KBA-page-title">
+      {{ labels.title }}
+    </h2>
+
+    <div class="KBA-content">
+      <app-kba-accordion
+        [collapsed]="collapsed"
+        [title]="labels.search_condition"
+        [isLoading]="isLoading"
+        [labels]="labels"
+        (onChangeState)="changePanelState($event)"
+      >
+        <div data-kba-accordion-body>
+          <div class="container KBA-search">
+            <ng-container *ngIf="resource">
+              <div class="row">
+                <app-kba-selected
+                  *ngIf="exists('common.support_distributor.ids')"
+                  class="col-sm-3"
+                  [kbaName]="'ids'"
+                  [kbaParams]="params.common.support_distributor"
+                  [kbaResource]="resource.common.support_distributor"
+                >
+                </app-kba-selected>
+
+                <app-kba-selected
+                  *ngIf="exists('common.car_identification.maker_codes')"
+                  class="col-sm-3"
+                  [kbaName]="'maker_codes'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                >
+                </app-kba-selected>
+
+                <app-kba-text
+                  *ngIf="exists('common.car_identification.models')"
+                  class="col-sm-3"
+                  [kbaName]="'models'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                  [maxlength]="20"
+                >
+                </app-kba-text>
+
+                <app-kba-text
+                  *ngIf="exists('common.car_identification.type_revs')"
+                  class="col-sm-3"
+                  [kbaName]="'type_revs'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                  [maxlength]="10"
+                >
+                </app-kba-text>
+              </div>
+
+              <div class="row">
+                <app-kba-text
+                  *ngIf="exists('common.car_identification.serials')"
+                  class="col-sm-3"
+                  [kbaName]="'serials'"
+                  [kbaParams]="params.common.car_identification"
+                  [kbaResource]="resource.common.car_identification"
+                >
+                </app-kba-text>
+
+                <app-kba-selected
+                  *ngIf="
+                    exists(
+                      'car_management.komtrax_unit.terminal_component.part'
+                    )
+                  "
+                  class="col-sm-3"
+                  [kbaName]="'part'"
+                  [kbaParams]="
+                    params.car_management.komtrax_unit.terminal_component
+                  "
+                  [kbaResource]="
+                    resource.car_management.komtrax_unit.terminal_component
+                  "
+                >
+                </app-kba-selected>
+
+                <app-kba-text
+                  *ngIf="
+                    exists(
+                      'car_management.komtrax_unit.terminal_component.serial'
+                    )
+                  "
+                  class="col-sm-3"
+                  [kbaName]="'serial'"
+                  [kbaParams]="
+                    params.car_management.komtrax_unit.terminal_component
+                  "
+                  [kbaResource]="
+                    resource.car_management.komtrax_unit.terminal_component
+                  "
+                  [maxlength]="255"
+                >
+                </app-kba-text>
+
+                <app-kba-selected
+                  *ngIf="exists('car_management.terminal_use_start_kinds')"
+                  class="col-sm-3"
+                  [kbaName]="'terminal_use_start_kinds'"
+                  [kbaParams]="params.car_management"
+                  [kbaResource]="resource.car_management"
+                >
+                </app-kba-selected>
+              </div>
+
+              <div class="row">
+                <app-kba-selected
+                  *ngIf="exists('car_management.orbcomm_request_status')"
+                  class="col-sm-3"
+                  [kbaName]="'orbcomm_request_status'"
+                  [kbaParams]="params.car_management"
+                  [kbaResource]="resource.car_management"
+                >
+                </app-kba-selected>
+
+                <app-kba-selected
+                  *ngIf="exists('common.komtrax_unit.communication_kind_ids')"
+                  class="col-sm-3"
+                  [kbaName]="'communication_kind_ids'"
+                  [kbaParams]="params.common.komtrax_unit"
+                  [kbaResource]="resource.common.komtrax_unit"
+                >
+                </app-kba-selected>
+              </div>
+
+              <div class="row">
+                <app-kba-select-type
+                  *ngIf="resource.common.user_permission_sub_group_ids"
+                  #subGroupSelect
+                  class="col-sm-8"
+                  name="user_permission_sub_group_ids"
+                  [labels]="labels"
+                  [targets]="resource.common.user_permission_sub_group_ids"
+                >
+                </app-kba-select-type>
+              </div>
+            </ng-container>
+          </div>
+          <div class="KBA-panel-footer">
+            <button
+              (click)="onClickSearch()"
+              type="button"
+              class="btn btn-primary search"
+            >
+              {{ labels.search }}
+            </button>
+          </div>
+        </div>
+      </app-kba-accordion>
+
+      <!-- ページネーション -->
+      <div class="KBA-table-options" [hidden]="count <= 0">
+        <app-kba-pagination
+          [count]="count"
+          [params]="pageParams"
+          [labels]="labels"
+          [element]="pageCountEl"
+          (changeState)="onPaginationChange()"
+        >
+        </app-kba-pagination>
+        <div class="table-option-buttons">
+          <div class="popover-wrapper">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="onClickFieldSelect($event)"
+            >
+              {{ labels.field_select }}
+            </button>
+            <app-kba-popover
+              [labels]="labels"
+              [resource]="fieldResources"
+              [fields]="fields"
+              [title]="labels.field_select_title"
+              [(isVisible)]="fieldSelectPopoverVisible"
+              (ok)="onFieldSelectOk($event)"
+            ></app-kba-popover>
+          </div>
+          <button
+            type="button"
+            class="btn btn-warning"
+            (click)="onClickBatchStart()"
+            [disabled]="!(selectedList | isNotEmpty) || !enableStartSetting"
+          >
+            {{ labels.batch_start }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning"
+            (click)="onClickBatchRetry()"
+            [disabled]="
+              !(retryOverTerminals | isNotEmpty) || !enableStartSetting
+            "
+          >
+            {{ labels.batch_retry }}
+          </button>
+        </div>
+      </div>
+
+      <app-kba-table
+        [customTableThContent]="customTableThContent"
+        [customTableRowContent]="customTableRowContent"
+        [lists]="lists"
+        [pageParams]="pageParams"
+        [params]="params"
+        [sortingParams]="sortingParams"
+        [thList]="thList"
+        [sortableThList]="sortableThList"
+        [labels]="labels"
+        [collapsed]="collapsed"
+        [updatable]="updatable"
+        [deletable]="deletable"
+        [selectable]="selectable"
+        [checkedItems]="checkedItems"
+        [checkIdName]="checkIdName"
+        [isFetching]="isFetching"
+        (sort)="onChangeSort($event)"
+      >
+        <ng-template #customTableThContent>
+          <ng-container *ngFor="let title of thList">
+            <th
+              *ngIf="title.displayable"
+              class="th-{{ title.shortName }} KBA-index-th"
+              [ngClass]="{ 'disable-sort': !title.sortable }"
+              appKbaSortingLabel
+              [(sortingParams)]="sortingParams"
+              [labelName]="title.name"
+              [sortableThList]="sortableThList"
+              (sort)="onChangeSort($event)"
+            >
+              <span>{{ title.label }}</span>
+            </th>
+          </ng-container>
+        </ng-template>
+
+        <ng-template #customTableRowContent let-data="data" let-title="title">
+          <ng-container *ngFor="let title of thList">
+            <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
+              <!-- 端末使用開始 -->
+              <ng-container
+                *ngSwitchCase="
+                  'cars.car_management_attribute.terminal_use_start_name'
+                "
+              >
+                <td
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center justify-content-center"
+                  [ngSwitch]="
+                    data[
+                      'cars.car_management_attribute.terminal_use_start_kind'
+                    ]
+                  "
+                >
+                  <div>
+                    <ng-container
+                      *ngSwitchCase="terminalUseStartKind.notStarted"
+                    >
+                      <button
+                        type="button"
+                        [disabled]="devStartClicked || !enableStartSetting"
+                        (click)="onClickDeviceStart(data)"
+                        class="btn btn-success"
+                      >
+                        {{ labels.start }}
+                      </button>
+                    </ng-container>
+                    <ng-container
+                      *ngSwitchCase="terminalUseStartKind.retryOver"
+                    >
+                      {{ data[title.name] }}<br />
+                      <button
+                        type="button"
+                        [disabled]="devStartClicked || !enableStartSetting"
+                        (click)="onClickDeviceStart(data, true)"
+                        class="btn btn-success"
+                      >
+                        {{ labels.retry }}
+                      </button>
+                    </ng-container>
+                    <ng-container
+                      *ngSwitchCase="terminalUseStartKind.notOpened"
+                    ></ng-container>
+                    <ng-container *ngSwitchDefault>
+                      <span>{{ data[title.name] }}</span>
+                    </ng-container>
+                  </div>
+                </td>
+              </ng-container>
+              <!-- ORBCOMMアドレス申請状態 -->
+              <ng-container *ngSwitchCase="'cars.car_management_attribute.orbcomm_request_status_name'">
+                <td class="td-{{title.shortName}} KBA-index-td d-flex align-items-center justify-content-center">
+                  <ng-container *ngIf="data['cars.car_management_attribute.terminal_use_start_kind'] === terminalUseStartKind.notOpened">
+                    <ng-container *ngIf="data['cars.car_management_attribute.orbcomm_request_status'] === orbcommRequestStatus.unapplied; else elseOrbcomRequestStatus">
+                      <ng-container *ngIf="data['cars.car_management_attribute.orbcomm_request_target_kind'] === orbcommRequestTargetKind.target">
+                        <button type="button" [disabled]="orbcommClicked || !enableOrbcomm" (click)="onClickOrbcommApply(data)" class="btn btn-success">
+                          {{labels.apply}}
+                        </button>
+                      </ng-container>
+                    </ng-container>
+
+                    <ng-template #elseOrbcomRequestStatus>
+                      <span>{{data[title.name]}}</span>
+                    </ng-template>
+                  </ng-container>
+                </td>
+              </ng-container>
+              <!-- ORBCOMMアドレス申請日時 -->
+              <ng-container
+                *ngSwitchCase="
+                  'cars.car_management_attribute.orbcomm_request_datetime'
+                "
+              >
+                <td
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center justify-content-center"
+                >
+                  <span
+                    *ngIf="data['cars.car_management_attribute.terminal_use_start_kind'] === terminalUseStartKind.notOpened &&
+                    data['cars.car_management_attribute.orbcomm_request_status'] === orbcommRequestStatus.applied"
+                  >
+                    {{ displayDateTime(data[title.name]) }}
+                  </span>
+                </td>
+              </ng-container>
+              <!-- それ以外 -->
+              <ng-container *ngSwitchDefault>
+                <td
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ data[title.name] }}</span>
+                </td>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-template>
+      </app-kba-table>
+    </div>
+  </div>
+</section>
+
+<ng-template #orbcommApplyModalContent>
+  <div class="table-auto-height orbcomm-apply-modal">
+    <table class="KBA-table-modal KBA-table table table-bordered">
+      <thead class="KBA-table-thead-modal KBA-table-thead">
+        <tr class="KBA-table-flex-cell-modal">
+          <ng-container *ngFor="let d of modalValues.listDesc; let idx = index">
+            <th
+              *ngIf="d.displayable"
+              class="KBA-form-table__head"
+              [ngClass]="{
+                'nation-id-select': d.name === 'orbcomm_request.nation_id'
+              }"
+            >
+              {{ d.label }}
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody class="KBA-form-table-tbody KBA-table-tbody">
+        <tr
+          class="KBA-table-flex-cell-modal"
+          [ngClass]="row.css_class"
+          *ngFor="let row of modalValues.listVal"
+        >
+          <ng-container *ngFor="let d of modalValues.listDesc; let idx = index">
+            <td
+              *ngIf="d.displayable"
+              class="KBA-form-table__value"
+              [ngClass]="{
+                'nation-id-select': d.name === 'orbcomm_request.nation_id'
+              }"
+            >
+              <ng-container [ngSwitch]="d.name">
+                <ng-container *ngSwitchCase="'orbcomm_request.nation_id'">
+                  <app-kba-selected
+                    [kbaName]="'nation_id'"
+                    [kbaParams]="orbcommApplyParams.orbcomm_request"
+                    [kbaResource]="resource.orbcomm_request"
+                    [showLabel]="false"
+                    [appendTo]="'body'"
+                    (onChangeSelectItem)="handleNationIdChange($event)"
+                  >
+                  </app-kba-selected>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  {{ row[d.name] }}
+                </ng-container>
+              </ng-container>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<ng-template #operationModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="modalValues.listDesc"
+    [val]="modalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #resultModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="resultDesc"
+    [val]="resultVal"
+    [warningColumns]="'all'"
+  >
+  </app-kba-simple-list-confirm>
+  <p class="result-count-message">{{ resultCountMessage }}</p>
+</ng-template>
+
+<app-kba-alert></app-kba-alert>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

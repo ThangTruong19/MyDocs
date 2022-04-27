@@ -1,0 +1,30 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "ID",
+    "path": "contact.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "更新日時",
+    "path": "contact.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "会社名",
+    "path": "contact.represent_contact.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "代表電話番号",
+    "path": "contact.represent_contact.phone_no",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

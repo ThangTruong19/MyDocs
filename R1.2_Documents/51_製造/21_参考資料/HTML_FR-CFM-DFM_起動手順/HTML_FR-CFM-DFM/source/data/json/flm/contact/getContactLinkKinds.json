@@ -1,0 +1,66 @@
+{
+  "result_data": {
+    "customer_contact_link_kinds": [
+      {
+        "code": "0",
+        "name": "代表電話",
+        "order": "1",
+        "represent_flag": "1",
+        "icon_font": {
+          "id": "1",
+          "no": "1"
+        }
+      },
+      {
+        "code": "1",
+        "name": "セールス",
+        "order": "2",
+        "represent_flag": "1",
+        "icon_font": {
+          "id": "1",
+          "no": "2"
+        }
+      },
+      {
+        "code": "2",
+        "name": "PSSR",
+        "order": "3",
+        "represent_flag": "1",
+        "icon_font": {
+          "id": "1",
+          "no": "3"
+        }
+      },
+      {
+        "code": "3",
+        "name": "サービス",
+        "order": "4",
+        "represent_flag": "1",
+        "icon_font": {
+          "id": "1",
+          "no": "4"
+        }
+      },
+      {
+        "code": "4",
+        "name": "パーツ",
+        "order": "5",
+        "represent_flag": "1",
+        "icon_font": {
+          "id": "1",
+          "no": "5"
+        }
+      },
+      {
+        "code": "5",
+        "name": "ICT",
+        "order": "6",
+        "represent_flag": "1",
+        "icon_font": {
+          "id": "1",
+          "no": "6"
+        }
+      }
+    ]
+  }
+}

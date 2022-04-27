@@ -1,0 +1,27 @@
+[
+  {
+    "path": "role_id",
+    "name": "権限",
+    "help": "権限のヘルプ文言（OPA側）",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "所属2の運用ユーザ権限1",
+        "value": "R2G0001",
+        "kind": "D"
+      },
+      {
+        "key": "所属2の運用ユーザ権限2",
+        "value": "R2G0002",
+        "kind": "D"
+      }
+    ]
+  }
+]

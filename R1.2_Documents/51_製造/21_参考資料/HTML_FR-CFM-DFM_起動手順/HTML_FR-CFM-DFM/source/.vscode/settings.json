@@ -1,0 +1,10 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#0f519c",
+        "titleBar.activeBackground": "#06489e",
+        "titleBar.activeForeground": "#fefdfb"
+    },
+    "projectNameInStatusBar.template": "HTML_FR-CFM-DFM",
+    "window.title": "HTML_FR-CFM-DFM${separator}${dirty}${activeEditorShort}${separator}${rootPath}${separator}${appName}"
+}

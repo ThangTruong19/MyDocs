@@ -1,0 +1,312 @@
+<section id="KBA-system-notification-form" *ngIf="labels && resource && datePickerParams">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels && labels.title }}</h2>
+
+    <div class="KBA-content" *ngIf="params">
+      <form
+        class="KBA-form"
+        name="systemNotificationForm"
+        [formGroup]="systemNotificationForm"
+      >
+        <div class="annotation">
+          <p class="caption">{{ labels && labels.caption }}</p>
+          <p class="KBA-form-table__required">
+            {{ labels && labels.description_for_required }}
+          </p>
+        </div>
+        <table class="KBA-form-table table table-bordered" *ngIf="!loading">
+          <tbody class="KBA-form-table-tbody">
+            <tr
+              class="KBA-form-row"
+              *ngIf="
+                exists('applications_system_notification.publish_group.kind_id')
+              "
+            >
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label KBA-form-table__required">{{
+                  resource.applications_system_notification.publish_group
+                    .kind_id.name
+                }}</label>
+              </td>
+              <td colspan="3">
+                <app-kba-group-select
+                  [groups]="
+                    resource.applications_system_notification.publish_group
+                      .kind_id.values
+                  "
+                  [groupItems]="groupItems"
+                  [labels]="labels"
+                  [selectAllGroupKind]="selectAllGroupKind"
+                  [initGroupKind]="initGroupKind"
+                  [selectedGroup]="selectedGroup"
+                  [(selectedGroupItems)]="selectedGroupItems"
+                  [selectedItemLabelHidden]="false"
+                  (close)="onCloseGroupSelectModal($event)"
+                ></app-kba-group-select>
+              </td>
+            </tr>
+            <tr
+              class="KBA-form-row"
+              *ngIf="
+                exists(
+                  'applications_system_notification.publish_application_codes'
+                )
+              "
+            >
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label KBA-form-table__required">{{
+                  resource.applications_system_notification
+                    .publish_application_codes.name
+                }}</label>
+              </td>
+              <td colspan="3">
+                <div class="KBA-form-select-application-code">
+                  <ng-container
+                    *ngFor="
+                      let application_code of resource
+                        .applications_system_notification
+                        .publish_application_codes.values;
+                      let i = index
+                    "
+                  >
+                    <div class="application-code {{ i }}">
+                      <input
+                        type="checkbox"
+                        name="application_code_{{ i }}"
+                        id="KBA-form__application-code-{{ i }}"
+                        class="KBA-input-checkbox checkbox-with-label"
+                        [checked]="isChecked(application_code.value)"
+                        (change)="
+                          onChangePublishAppCode($event, application_code.value)
+                        "
+                        value="{{ application_code.value }}"
+                      />
+                      <label
+                        for="KBA-form__application-code-{{ i }}"
+                        class="KBA-input-checkbox__label"
+                      >
+                        {{
+                          _getResourceValueName(
+                            'applications_system_notification.publish_application_codes',
+                            application_code.value
+                          )
+                        }}
+                      </label>
+                    </div>
+                  </ng-container>
+                </div>
+              </td>
+            </tr>
+            <tr
+              app-kba-form-table-date-picker
+              class="KBA-form-row"
+              [formGroup]="getFormGroup('notification')"
+              [customContent]="customStartDatetimeContent"
+              [kbaName]="'start_datetime'"
+              [kbaParams]="params"
+              [kbaLabel]="labels"
+              [display]="'start_datetime_formatted'"
+              [kbaResource]="
+                resource.applications_system_notification.notification
+              "
+              [colspan]="3"
+              [continuous]="true"
+              [required]="true"
+              [id]="'start_datetime'"
+              [enableDateRange]="enableDateRange"
+              [dateFormat]="dateFormat"
+              [beginningWday]="beginningWday"
+              [futureDateSelectable]="true"
+              [timeZone]="timeZone"
+              [path]="
+                'applications_system_notification.notification.start_datetime'
+              "
+              [errorData]="errorData"
+            ></tr>
+            <tr
+              app-kba-form-table-date-picker
+              class="KBA-form-row"
+              [formGroup]="getFormGroup('notification')"
+              [customContent]="customEndDatetimeContent"
+              [kbaName]="'end_datetime'"
+              [kbaParams]="params"
+              [kbaLabel]="labels"
+              [display]="'end_datetime_formatted'"
+              [kbaResource]="
+                resource.applications_system_notification.notification
+              "
+              [colspan]="3"
+              [required]="true"
+              [id]="'end_datetime'"
+              [enableDateRange]="enableDateRange"
+              [dateFormat]="dateFormat"
+              [beginningWday]="beginningWday"
+              [futureDateSelectable]="true"
+              [timeZone]="timeZone"
+              [path]="
+                'applications_system_notification.notification.end_datetime'
+              "
+              [errorData]="errorData"
+            ></tr>
+            <tr
+              app-kba-form-table-textarea
+              class="KBA-form-row"
+              [formGroup]="getFormGroup('notification')"
+              [kbaName]="'content'"
+              [kbaParams]="params"
+              [kbaResource]="
+                resource.applications_system_notification.notification
+              "
+              [kbaLabel]="labels"
+              [colspan]="3"
+              [required]="true"
+              [maxLength]="1024"
+              [path]="'applications_system_notification.notification.content'"
+              [errorData]="errorData"
+            ></tr>
+          </tbody>
+        </table>
+
+        <footer class="KBA-form-footer-fixed">
+          <a
+            href="javascript:void(0)"
+            (click)="onClickReset()"
+            class="btn btn-link"
+          >
+            {{ labels && labels.reset }}
+          </a>
+          <button
+            class="btn btn-success"
+            type="button"
+            *ngIf="!isUpdate"
+            (click)="onClickContinue()"
+            [disabled]="
+              systemNotificationForm.invalid ||
+              !isModalGroupSelectOk ||
+              !(selectedAppCodes | isNotEmpty) ||
+              !isStartDateTimeValid() ||
+              !isEndDateTimeValid()
+            "
+          >
+            {{ labels && labels.continue }}
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickSubmit()"
+            [disabled]="
+              systemNotificationForm.invalid ||
+              !isModalGroupSelectOk ||
+              !(selectedAppCodes | isNotEmpty) ||
+              !isStartDateTimeValid() ||
+              !isEndDateTimeValid()
+            "
+          >
+            {{ labels && labels.submit }}
+          </button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #submitModalContent>
+    <app-custom-system-notification-form-modal
+      class="confirm-modal-content"
+      [desc]="descItem"
+      [val]="valItem"
+      [rowspan]="rowspan"
+      [isBlockKind]="isBlockKind"
+    >
+    </app-custom-system-notification-form-modal>
+  </ng-template>
+
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+
+  <ng-template #customStartDatetimeContent>
+    <div class="KBA-form-date" [formGroup]="getFormGroup('notification')">
+      <input
+        type="text" autocomplete="off"
+        class="KBA-input-text form-control start_datetime_hh"
+        name="start_datetime_hh"
+        maxlength="2"
+        required="true"
+        (ngModelChange)="params.start_datetime_hh = $event"
+        formControlName="start_datetime_hh"
+        [ngClass]="{
+          'KBA-form-error':
+            (errorData
+              | hasError
+                : 'applications_system_notification.notification.start_datetime') ||
+            !isStartDateTimeFormatValid() ||
+            !isTimeValueValid(params.start_datetime_hh) ||
+            !isTimeValueValid(params.start_datetime_mm)
+        }"
+      />
+      <p class="separator">：</p>
+      <input
+        type="text" autocomplete="off"
+        class="KBA-input-text form-control start_datetime_mm"
+        name="start_datetime_mm"
+        maxlength="2"
+        required="true"
+        (ngModelChange)="params.start_datetime_mm = $event"
+        formControlName="start_datetime_mm"
+        [ngClass]="{
+          'KBA-form-error':
+            (errorData
+              | hasError
+                : 'applications_system_notification.notification.start_datetime') ||
+            !isStartDateTimeFormatValid() ||
+            !isTimeValueValid(params.start_datetime_hh) ||
+            !isTimeValueValid(params.start_datetime_mm)
+        }"
+      />
+    </div>
+  </ng-template>
+
+  <ng-template #customEndDatetimeContent>
+    <div class="KBA-form-date" [formGroup]="getFormGroup('notification')">
+      <input
+        type="text" autocomplete="off"
+        class="KBA-input-text form-control end_datetime_hh"
+        name="end_datetime_hh"
+        maxlength="2"
+        required="true"
+        (ngModelChange)="params.end_datetime_hh = $event"
+        formControlName="end_datetime_hh"
+        [ngClass]="{
+          'KBA-form-error':
+            (errorData
+              | hasError
+                : 'applications_system_notification.notification.end_datetime') ||
+            !isEndDateTimeFormatValid() ||
+            !isTimeValueValid(params.end_datetime_hh) ||
+            !isTimeValueValid(params.end_datetime_mm)
+        }"
+      />
+      <p class="separator">：</p>
+      <input
+        type="text" autocomplete="off"
+        class="KBA-input-text form-control end_datetime_mm"
+        name="end_datetime_mm"
+        maxlength="2"
+        required="true"
+        (ngModelChange)="params.end_datetime_mm = $event"
+        formControlName="end_datetime_mm"
+        [ngClass]="{
+          'KBA-form-error':
+            (errorData
+              | hasError
+                : 'applications_system_notification.notification.end_datetime') ||
+            !isEndDateTimeFormatValid() ||
+            !isTimeValueValid(params.end_datetime_hh) ||
+            !isTimeValueValid(params.end_datetime_mm)
+        }"
+      />
+    </div>
+  </ng-template>
+</section>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

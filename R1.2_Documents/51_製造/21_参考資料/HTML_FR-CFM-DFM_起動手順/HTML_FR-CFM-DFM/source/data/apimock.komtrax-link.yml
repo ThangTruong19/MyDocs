@@ -1,0 +1,103 @@
+#### 共通
+
+#
+# x. リソース取得API
+#
+# 指定した画面コードと条件、言語に応じた画面要素の情報を取得する。
+# プルダウンメニューの内容作成等に利用する。
+#
+- request:
+    url: /v1/applications/views/resources/search
+    method: POST
+  response:
+    type: js
+    file: json/common/getResources.js
+
+#
+# x. アプリケーション機能取得API
+#
+# アプリケーション機能に関わる情報を取得する。
+# サイドメニュー / ダッシュボードの項目作成に使用する。
+#
+# @param screen_id
+- request:
+    url: /v1/applications/functions/search
+    method: POST
+  response:
+    type: js
+    file: json/common/komtrax-link/getFunctions.js
+
+#
+# x. ラベル取得API
+#
+# 指定したファイルIdと言語に応じたリソース言語情報を取得する。
+# 画面内の文言表示等に利用する。
+#
+# @param screen_code 半角英数字,半角アンダーバーで構成される画面名
+#
+- request:
+    url: /v1/applications/views/labels
+    method: GET
+  response:
+    type: js
+    file: json/common/komtrax-link/getLabels.js
+
+#
+# x. 実行可能API一覧取得API
+#
+# ユーザーが利用可能なAPI一覧を取得する。
+#
+- request:
+    url: /catalog
+    method: GET
+  response:
+    type: js
+    file: json/common/getCatalog.js
+
+#
+# x. 外部アプリ連携ログ出力 API (POST)
+#
+# 次世代KOMTRAXの業務APIを使用する外部アプリのログを格納する。
+#
+- request:
+    url: /v1/applications/extapplog
+    method: POST
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. ユーザ設定取得 API (GET)
+#
+# ユーザ設定を取得する
+#
+- request:
+    url: /v1/user_settings
+    method: GET
+  response:
+    status: 200
+    file: json/common/komtrax-link/getUserSetting.json
+
+#
+# x. 車両一覧取得 (POST)
+#
+# 車両一覧を取得する。
+#
+- request:
+    url: /v1/cars/search
+    method: POST
+  response:
+    type: js
+    file: json/komtrax-link/home/postCars.js
+
+#
+# x. Not Found
+#
+# 上記以外のリクエストはNot Found。
+#
+- request:
+    url: /v1/*
+    method: GET
+  response:
+    status: 404
+    file: json/common/notFound.json

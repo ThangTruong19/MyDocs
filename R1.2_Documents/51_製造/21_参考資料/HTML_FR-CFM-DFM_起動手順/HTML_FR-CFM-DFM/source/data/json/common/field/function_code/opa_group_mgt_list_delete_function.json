@@ -1,0 +1,51 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "グループID",
+    "path": "group.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "最終更新日時",
+    "path": "group.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "グループ分類",
+    "path": "group.identification.kind_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "グループ名称",
+    "path": "group.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "11",
+    "name": "所属ブロック",
+    "path": "group.configuration_groups.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "27",
+    "name": "KeyPersonID",
+    "path": "group.represent_administrator.user_account",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "28",
+    "name": "KeyPerson名",
+    "path": "group.represent_administrator.user_label",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

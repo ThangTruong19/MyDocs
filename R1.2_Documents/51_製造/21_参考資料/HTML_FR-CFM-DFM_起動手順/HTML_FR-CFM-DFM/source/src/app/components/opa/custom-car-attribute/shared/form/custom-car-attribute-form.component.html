@@ -1,0 +1,330 @@
+<section id="KBA-custom-car-attribute-form" *ngIf="labels && resource">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content">
+      <form
+        class="KBA-form"
+        name="customCarAttributeForm"
+        novalidate
+        [formGroup]="customCarAttributeForm"
+      >
+        <div class="annotation">
+          <p class="KBA-form-table__required">
+            {{ labels.description_for_required }}
+          </p>
+        </div>
+        <table class="KBA-form-table table table-bordered" *ngIf="!loading">
+          <tbody class="KBA-form-table-tbody">
+            <tr
+              app-kba-form-table-select
+              #blockIdSelection
+              *ngIf="!isUpdate"
+              class="KBA-form-row"
+              [emitInitialRefresh]="false"
+              [kbaName]="'block_id'"
+              [kbaParams]="params.custom_car_attribute"
+              [kbaResource]="resource.custom_car_attribute"
+              [colspan]="3"
+              (onChange)="onBlockIdChange($event)"
+            ></tr>
+            <tr
+              app-kba-form-table-custom
+              *ngIf="isUpdate && resource.custom_car_attribute.block_id"
+              class="KBA-form-row"
+              [colspan]="3"
+              [customHeader]="blockIdHeader"
+              [content]="blockIdContent"
+            >
+              <ng-template #blockIdHeader>
+                <label class="KBA-form-table__label">
+                  {{ resource.custom_car_attribute.block_id.name }}
+                </label>
+              </ng-template>
+              <ng-template #blockIdContent>
+                <p>{{ params.custom_car_attribute.block_label }}</p>
+              </ng-template>
+            </tr>
+            <tr
+              app-kba-form-table-select
+              #fieldNoSelection
+              *ngIf="exists('custom_car_attribute.field_no')"
+              class="KBA-form-row"
+              [kbaName]="'field_no'"
+              [kbaParams]="params.custom_car_attribute"
+              [kbaResource]="resource.custom_car_attribute"
+              [colspan]="3"
+              [notEditable]="isUpdate"
+            ></tr>
+            <ng-container *ngIf="isReady">
+              <tr
+                app-kba-form-table-custom
+                [formGroup]="customCarAttributeForm.get('custom_car_attribute')"
+                class="KBA-form-row"
+                [colspan]="3"
+                [customHeader]="settingHeader"
+                [content]="settingContent"
+              >
+                <ng-template #settingHeader>
+                  <label class="KBA-form-table__label">
+                    {{ labels.setting }}
+                  </label>
+                </ng-template>
+                <ng-template #settingContent>
+                  <input
+                    type="checkbox"
+                    name="setting"
+                    id="custom-car-attribute_setting"
+                    class="KBA-input-checkbox checkbox-with-label"
+                    [(ngModel)]="useSameName"
+                    [ngModelOptions]="{ standalone: true }"
+                    (change)="onUseSameNameChange($event.target.checked)"
+                  />
+                  <label
+                    for="custom-car-attribute_setting"
+                    class="KBA-input-checkbox__label"
+                  >
+                    {{ resource.custom_car_attribute.use_same_name.name }}
+                  </label>
+                </ng-template>
+              </tr>
+              <tr
+                app-kba-form-table-custom
+                class="KBA-form-row"
+                [colspan]="3"
+                [customHeader]="attributeNamesHeader"
+                [content]="attributeNamesContent"
+                [formGroup]="attributeNameGroup"
+              >
+                <ng-template #attributeNamesHeader>
+                  <label class="KBA-form-table__label KBA-form-table__required">
+                    {{ getPrimaryLangLabel('custom_car_attribute.names') }}
+                  </label>
+                </ng-template>
+                <ng-template #attributeNamesContent>
+                  <div class="attribute-name-container" *ngIf="originalParams">
+                    <div class="attribute-name-primary primary-block">
+                      <input
+                        id="KBA-text-attribute-name-primary"
+                        name="attribute-name-primary"
+                        class="KBA-input-text form-control"
+                        type="text" autocomplete="off"
+                        maxlength="1024"
+                        [ngClass]="{
+                          edited: isEdited(
+                            getPrimaryAttributeName(
+                              params.custom_car_attribute
+                            ),
+                            getPrimaryAttributeName(
+                              originalParams.custom_car_attribute
+                            ),
+                            'label'
+                          ),
+                          'KBA-form-error':
+                            errorData
+                            | hasError: 'custom_car_attribute.names[0].label'
+                        }"
+                        [formControlName]="
+                          getPrimaryAttributeName(params.custom_car_attribute)
+                            .lang_code
+                        "
+                        (ngModelChange)="
+                          getPrimaryAttributeName(params.custom_car_attribute)
+                            .label = $event
+                        "
+                      />
+                    </div>
+                    <div class="attribute-name-others others-block">
+                      <app-kba-child-text
+                        [hidden]="useSameName"
+                        [parent]="attributeNameParent"
+                        [params]="
+                          getOtherAttributeNames(params.custom_car_attribute)
+                        "
+                        [labels]="labels"
+                        [formGroup]="attributeNameGroup"
+                        [name]="'attributeName'"
+                        [modelPath]="'label'"
+                        [labelPath]="'lang_code'"
+                        [root]="attributeNameRoot"
+                        [originalParams]="
+                          getOtherAttributeNames(
+                            originalParams.custom_car_attribute
+                          )
+                        "
+                        [checkIsEdited]="checkIsEdited"
+                        [path]="'custom_car_attribute.names'"
+                        [errorData]="errorData"
+                      ></app-kba-child-text>
+                    </div>
+                  </div>
+                </ng-template>
+              </tr>
+              <tr
+                app-kba-form-table-custom
+                class="KBA-form-row"
+                [colspan]="3"
+                [customHeader]="displayItemsHeader"
+                [content]="displayItemsContent"
+              >
+                <ng-template #displayItemsHeader>
+                  <label class="KBA-form-table__label KBA-form-table__required">
+                    {{ getPrimaryLangLabel('custom_car_attribute.details') }}
+                  </label>
+                </ng-template>
+                <ng-template #displayItemsContent>
+                  <div class="display-items-container" *ngIf="originalParams">
+                    <div class="display-items-primary primary-block">
+                      <ng-container
+                        *ngFor="
+                          let item of params.custom_car_attribute.details;
+                          let i = index
+                        "
+                        [formGroup]="displayItemsArray.at(i)"
+                      >
+                        <div class="display-items-primary-item">
+                          <label
+                            for="KBA-text-display-items-primary-{{
+                              item.order
+                            }}"
+                            >{{ item.order }}.</label
+                          >
+                          <input
+                            id="KBA-text-display-items-primary-{{ i }}"
+                            name="display-items-primary-{{ i }}"
+                            class="KBA-input-text form-control"
+                            type="text" autocomplete="off"
+                            maxlength="1024"
+                            [ngClass]="{
+                              edited: isEdited(
+                                getPrimaryDisplayItemName(item),
+                                getPrimaryDisplayItemName(
+                                  originalParams.custom_car_attribute.details[i]
+                                ),
+                                'label'
+                              ),
+                              'KBA-form-error':
+                                errorData
+                                | hasError
+                                  : 'custom_car_attribute.details[' +
+                                      i +
+                                      '].names[0].label'
+                            }"
+                            (focus)="
+                              setCurrentDisplayItem(
+                                i,
+                                item,
+                                originalParams.custom_car_attribute.details[i]
+                              )
+                            "
+                            [formControlName]="
+                              getPrimaryDisplayItemName(item).lang_code
+                            "
+                            (ngModelChange)="getPrimaryDisplayItemName(item).label = $event"
+                          />
+                          <button
+                            type="button"
+                            class="btn display-items-remove"
+                            (click)="removeDisplayItem(i)"
+                            [disabled]="
+                              params.custom_car_attribute.details.length <= 1
+                            "
+                          >
+                            <div class="kba-extra-icon-btn_form_delete">
+                              <i class="path1"></i>
+                              <i class="path2"></i>
+                            </div>
+                          </button>
+                        </div>
+                      </ng-container>
+                      <button
+                        type="button"
+                        class="btn display-items-add"
+                        (click)="addDisplayItem()"
+                        [disabled]="displayItemsIndex >= maxDisplayItemCount"
+                      >
+                        <i class="kba-extra-icon-btn_form_add"></i>
+                      </button>
+                    </div>
+                    <div class="display-items-others others-block">
+                      <app-kba-child-text
+                        *ngIf="currentDisplayItem.item"
+                        [hidden]="useSameName"
+                        [parent]="displayItemParent"
+                        [params]="
+                          getOtherDisplayItemNames(currentDisplayItem.item)
+                        "
+                        [labels]="labels"
+                        [formGroup]="
+                          displayItemsArray.at(currentDisplayItem.index)
+                        "
+                        [name]="'displayItems'"
+                        [modelPath]="'label'"
+                        [labelPath]="'lang_code'"
+                        [root]="displayItemRoot"
+                        [originalParams]="
+                          getOtherDisplayItemNames(
+                            currentDisplayItem.originalItem
+                          )
+                        "
+                        [checkIsEdited]="checkIsEdited"
+                        [path]="
+                          'custom_car_attribute.details[' +
+                          currentDisplayItem.index +
+                          '].names'
+                        "
+                        [errorData]="errorData"
+                      ></app-kba-child-text>
+                    </div>
+                  </div>
+                </ng-template>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+
+        <footer class="KBA-form-footer-fixed">
+          <a
+            href="javascript:void(0)"
+            (click)="onClickReset()"
+            class="btn btn-link"
+          >
+            {{ labels.reset }}
+          </a>
+          <button
+            class="btn btn-success"
+            type="button"
+            *ngIf="!isUpdate"
+            (click)="onClickContinue()"
+            [disabled]="isFormInvalid()"
+          >
+            {{ labels && labels.continue }}
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickSubmit()"
+            [disabled]="isFormInvalid()"
+          >
+            {{ labels && labels.submit }}
+          </button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+
+  <ng-template #submitModalContent>
+    <app-custom-car-attribute-detail-modal
+      [desc]="confirmModalHeader"
+      [val]="confirmModalParams.custom_car_attribute"
+      [resource]="resource.custom_car_attribute"
+      [useSameName]="useSameName"
+      [labels]="labels"
+    ></app-custom-car-attribute-detail-modal>
+  </ng-template>
+</section>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

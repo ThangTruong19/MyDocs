@@ -1,0 +1,56 @@
+[
+  {
+    "path": "group.preset_roles.authorities.id",
+    "name": "配下グループ権限",
+    "type": "30",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "32",
+    "items": [
+      {
+        "key": "テスト権限1",
+        "value": "100",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "テスト権限2",
+        "value": "200",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "テスト権限3",
+        "value": "300",
+        "kind": "D",
+        "data_order": "3"
+      }
+    ]
+  },
+  {
+    "path": "group.preset_roles.authorities.default_kind",
+    "name": "配下グループ権限（デフォルト区分）",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "34",
+    "items": [
+      {
+        "key": "ON",
+        "value": "1",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "OFF",
+        "value": "0",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  }
+]

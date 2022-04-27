@@ -1,0 +1,73 @@
+[
+  {
+    "path": "user.group.belonging_group_id",
+    "name": "所属",
+    "help": "所属のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "所属1",
+        "value": "R0001",
+        "kind": "D"
+      },
+      {
+        "key": "所属2",
+        "value": "R0002",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "user.group.granted_role_id",
+    "name": "権限",
+    "help": "権限のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "user.group.granted_authority_ids",
+    "name": "権限",
+    "help": "権限のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "user.group.granted_authority_checked_items",
+    "name": "デフォルト権限",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "user_id",
+    "name": "ユーザID",
+    "help": "ユーザIDのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "user_account",
+    "name": "ユーザID",
+    "help": "ユーザIDのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "user.attribute_create_place",
+    "name": "所在地",
+    "help": "所在地のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  }
+]

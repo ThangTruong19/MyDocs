@@ -1,0 +1,22 @@
+[
+  {
+    "path": "group.granted_role_id",
+    "name": "権限",
+    "help": "権限のヘルプ文言（FLM側）",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "通常項目のユーザ権限1",
+        "value": "R2G0001",
+        "kind": "D"
+      },
+      {
+        "key": "通常項目のユーザ権限2",
+        "value": "R2G0002",
+        "kind": "D"
+      }
+    ]
+  }
+]

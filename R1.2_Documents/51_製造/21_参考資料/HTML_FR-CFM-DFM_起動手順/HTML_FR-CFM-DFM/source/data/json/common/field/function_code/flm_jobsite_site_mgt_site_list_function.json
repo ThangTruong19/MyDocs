@@ -1,0 +1,30 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "ID",
+    "path": "site_maps.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "現在位置座標",
+    "path": "site_maps.cars.latest_status.point.coordinates",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "アイコンフォント番号",
+    "path": "site_maps.cars.icon_font.no",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "現場名称",
+    "path": "site_maps.label",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

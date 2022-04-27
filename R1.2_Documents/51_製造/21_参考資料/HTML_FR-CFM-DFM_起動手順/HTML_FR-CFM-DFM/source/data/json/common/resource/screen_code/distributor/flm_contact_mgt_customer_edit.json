@@ -1,0 +1,212 @@
+[
+  {
+    "path": "representive_phone_no",
+    "name": "代表電話",
+    "help": "代表電話のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "代表電話1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "代表電話2",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "代表電話3",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "代表電話4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "代表電話5",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "sales",
+    "name": "セールス",
+    "help": "セールスのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "セールス1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "セールス2",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "セールス3",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "セールス4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "セールス5",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "pssr",
+    "name": "PSSR",
+    "help": "PSSRのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "PSSR1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "PSSR2",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "PSSR3",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "PSSR4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "PSSR5",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "service",
+    "name": "サービス",
+    "help": "サービスのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "サービス1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "サービス2",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "サービス3",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "サービス4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "サービス5",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "parts",
+    "name": "パーツ",
+    "help": "パーツのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "パーツ1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "パーツ2",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "パーツ3",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "パーツ4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "パーツ5",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "ict",
+    "name": "ICT",
+    "help": "ICTのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "ICT1",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "ICT2",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "ICT3",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "ICT4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "ICT5",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  }
+]

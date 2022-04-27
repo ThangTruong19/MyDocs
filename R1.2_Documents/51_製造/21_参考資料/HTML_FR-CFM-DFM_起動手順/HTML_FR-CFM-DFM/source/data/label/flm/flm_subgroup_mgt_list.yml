@@ -1,0 +1,138 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: サブグループ管理　一覧
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: サブグループ管理　一覧
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 10
+    description: 削除
+    name: delete
+    ja: 削除
+    en:
+
+  - id: 11
+    description: 変更
+    name: header_edit
+    ja: 変更
+    en:
+
+  - id: 12
+    description: 削除モーダルタイトル
+    name: delete_modal_title
+    ja: 以下のサブグループ情報を削除します。よろしいですか?
+    en:
+
+  - id: 13
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 14
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当するサブグループが見つかりませんでした。
+    en:
+
+  - id: 15
+    description: 表示項目設定
+    name: field_select
+    ja: 表示項目設定
+    en:
+
+  - id: 16
+    description: 表示項目選択
+    name: field_select_title
+    ja: 表示項目設定
+    en:
+
+  - id: 17
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 18
+    description: 詳細
+    name: header_detail
+    ja: 詳細
+    en:
+
+  - id: 19
+    description: 戻る
+    name: back
+    ja: 戻る
+    en:
+
+  - id: 20
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 21
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 22
+    description: テーブルヘッダの削除
+    name: header_delete
+    ja: 削除
+    en:
+
+  - id: 23
+    description: サブグループに紐づく車両が無い場合
+    name: details_empty_list_message
+    ja: 該当する車両が見つかりませんでした。
+    en:

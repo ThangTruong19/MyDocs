@@ -1,0 +1,43 @@
+table {
+  width: 100%;
+}
+
+.list-header {
+  padding-left: 10px;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 20px;
+  color: #294cae;
+  white-space: nowrap;
+
+  &.th-group_area_maps_label {
+    width: 1%;
+  }
+}
+
+.list-row {
+  border-bottom: 1px solid #eee;
+
+  &:nth-child(odd) {
+    background-color: #fbfbfb;
+  }
+
+  &:nth-child(even) {
+    background-color: #fff;
+  }
+}
+
+.list-cell {
+  padding: 10px;
+  font-size: 15px;
+  white-space: nowrap;
+
+  .link {
+    color: #08f;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

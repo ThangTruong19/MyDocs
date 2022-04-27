@@ -1,0 +1,96 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 分類管理　一覧
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 分類管理　一覧
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: 分類名称
+    name: class_kind_name
+    ja: 分類名称
+    en:
+
+  - id: 8
+    description: 変更
+    name: header_edit
+    ja: 変更
+    en:
+
+  - id: 9
+    description: 削除
+    name: delete
+    ja: 削除
+    en:
+
+  - id: 10
+    description: 削除確認メッセージ
+    name: delete_confirm_message
+    ja: 以下の分類を削除します。よろしいですか？
+    en:
+
+  - id: 11
+    description: 完了メッセージ
+    name: complete_message
+    ja: 処理が完了しました
+    en:
+
+  - id: 12
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 22
+    description: 検索結果0件時の表示
+    name: empty_list_message
+    ja: 該当する分類が見つかりませんでした。
+    en:
+
+  - id: 1001
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 1002
+    description: テーブルヘッダの削除
+    name: header_delete
+    ja: 削除
+    en:
+
+  - id: 30
+    description: 削除モーダル注意文言
+    name: delete_warning_message
+    ja: 車両に紐付いた分類情報も削除されます
+    en:

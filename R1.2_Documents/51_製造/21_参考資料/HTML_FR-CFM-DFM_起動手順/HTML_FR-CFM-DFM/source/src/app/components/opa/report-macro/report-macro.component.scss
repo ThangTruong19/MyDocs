@@ -1,0 +1,61 @@
+@import "../../../../assets/styles/opa/_variable.scss";
+
+.th-macro_settings_latest_update_datetime,
+.td-macro_settings_latest_update_datetime,
+.th-macro_files_latest_update_datetime,
+.td-macro_files_latest_update_datetime {
+  width: 140px !important;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.version-header {
+  margin-bottom: 20px;
+}
+
+.version-table {
+  thead {
+    border-top-width: 0;
+    border-bottom-width: 0;
+  }
+
+  tr:not(:last-child) {
+    th,
+    td {
+      border-bottom-width: 0;
+    }
+  }
+}
+
+.select-version-cell {
+  position: relative;
+}
+
+.th-macro_settings_file_version_label,
+.td-macro_settings_file_version_label {
+  width: 100px !important;
+  flex-shrink: 0;
+}
+
+.select-version {
+  color: $kba-main-color;
+  outline: none;
+
+  &::after {
+    transform: translateX(-3px);
+    display: block;
+    width: 24px;
+    height: 1px;
+    margin: auto;
+    content: "";
+    background-color: $kba-main-color;
+  }
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.confirm-check {
+  color: $kba-main-color;
+}

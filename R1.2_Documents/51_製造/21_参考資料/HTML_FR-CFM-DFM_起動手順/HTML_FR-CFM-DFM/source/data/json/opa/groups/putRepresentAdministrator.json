@@ -1,0 +1,113 @@
+{
+  "result_data": {
+    "group": {
+      "identification": {
+        "id": "12345",
+        "label": "グループ名称",
+        "label_english": "group name",
+        "organization_code": "ABBESS",
+        "kind_id": "3",
+        "kind_name": "ブロック",
+        "update_datetime": "2017-08-01T23:59:59.000Z"
+      },
+      "attribute": {
+        "phone_no": "0312345678",
+        "email": "example@example.jp",
+        "address": "青森県青森市青森町2-10",
+        "nation_code": "JP",
+        "nation_name": "日本",
+        "time_difference": "+0900",
+        "publish_kind": "1",
+        "publish_name": "公開有",
+        "customer_publish_group_label": "公開名称1"
+      },
+      "map_application": {
+        "id": "1",
+        "name": "GoogleMaps",
+        "lang_code": "ja",
+        "lang_name": "日本語"
+      },
+      "default_lang": {
+        "code": "ja",
+        "name": "日本語"
+      },
+      "langs": [
+        {
+          "code": "ja",
+          "name": "日本語"
+        }
+      ],
+      "configuration_groups": [
+        {
+          "id": "12345678",
+          "label": "グループ名称",
+          "label_english": "group name",
+          "kind_id": "2",
+          "kind_name": "リージョン"
+        }
+      ],
+      "publish_target": {
+        "global_kind": "0",
+        "global_name": "全世界",
+        "regions": [
+          {
+            "id": "123456",
+            "label": "リージョン名",
+            "label_english": "region name"
+          }
+        ]
+      },
+      "child_plants": [
+        {
+          "id": "33333",
+          "label": "チャイルド工場名",
+          "label_english": "Child Plant"
+        }
+      ],
+      "represent_administrator": {
+        "user_id": "44444",
+        "label": "小松太郎",
+        "label_english": "komatsu tarou"
+      },
+      "administrator_role": {
+        "id": "66666",
+        "name": "管理者権限",
+        "authorities": [
+          {
+            "id": "77777",
+            "name": "車両操作",
+            "default_kind": "1",
+            "default_kind_name": "On"
+          }
+        ]
+      },
+      "general_role": {
+        "id": "88888",
+        "name": "一般権限",
+        "authorities": [
+          {
+            "id": "99999",
+            "name": "車両参照",
+            "default_kind": "1",
+            "default_kind_name": "On"
+          }
+        ]
+      },
+      "preset_roles": [
+        {
+          "id": "11117",
+          "group_kind_id": "3",
+          "group_kind_name": "ブロック",
+          "authorities": [
+            {
+              "id": "11115",
+              "name": "車両参照",
+              "default_kind": "1",
+              "default_kind_name": "On"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

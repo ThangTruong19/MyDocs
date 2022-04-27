@@ -1,0 +1,297 @@
+@import "../../../../../../assets/styles/variable";
+@import "../../../../../../assets/styles/flm/_variable.scss";
+
+$n: 4; //1行当たりのカラム数
+$m: 20px; //カラム右のマージン
+
+.main-submit,
+.detail-submit,
+.apply-submit {
+  display: flex;
+  justify-content: center;
+
+  .btn {
+    &.btn-primary {
+      min-width: 200px;
+    }
+  }
+}
+
+.KBA-content {
+  margin-bottom: 30px;
+}
+
+.content-title,
+.caption {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: baseline;
+  font-size: 16px;
+
+  .retrofit-content-title,
+  .retrofit-caption {
+    font-size: 13px;
+    color: $kba-error-color;
+  }
+}
+
+.KBA-form-table {
+  table-layout: fixed;
+  .KBA-form-table-tbody {
+    .time-difference {
+      display: flex;
+
+      .time-difference_block {
+        display: flex;
+        width: 140px;
+        align-items: center;
+
+        .time-difference_select {
+          width: 100px;
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+}
+
+.KBA-form-select-sub-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+
+  &.label {
+    align-items: start;
+  }
+
+  > .sub-group {
+    display: block;
+    width: calc((100% - #{($m + 4px) * ($n - 1)}) / #{$n});
+    margin-right: 20px;
+
+    &:nth-child(#{$n}n) {
+      margin-right: 0;
+    }
+
+    &:nth-child(n + #{$n + 1}) {
+      margin-top: 15px;
+    }
+  }
+
+  label {
+    width: 100%;
+    margin-bottom: 1px;
+    font-weight: normal;
+  }
+
+  &.label {
+    flex-direction: column;
+
+    .sub-group-label {
+      margin: 0;
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+  }
+}
+
+.KBA-form-select-kind {
+  display: flex;
+
+  > .kind {
+    display: flex;
+    align-items: center;
+
+    > input {
+      margin-right: 10px;
+    }
+
+    &:not(:last-child) {
+      margin-right: 40px;
+    }
+  }
+
+  label {
+    width: 200px;
+
+    &.kind-attribute,
+    &.kind-main-info {
+      width: auto;
+      min-width: 120px;
+      max-width: 200px;
+    }
+
+    margin-bottom: 1px;
+    font-weight: normal;
+  }
+}
+
+%accordion-header {
+  padding: 6px 15px;
+  color: $kba-main-color;
+  background-color: #cae5df;
+}
+
+.content-title {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.submit-modal-content {
+  .submit-modal-list {
+    width: calc(100% + 30px);
+    margin: -15px 0 -15px -15px;
+
+    li {
+      padding: 15px;
+
+      &.preset-roles-header {
+        @extend %accordion-header;
+        text-align: center;
+      }
+
+      &:nth-child(n + 2) {
+        border-top: 1px solid #ddd;
+      }
+    }
+  }
+}
+
+.submit-modal-table {
+  table-layout: fixed;
+}
+
+.submit-modal-group-container {
+  margin-bottom: -20px;
+
+  .submit-modal-group {
+    margin-bottom: 20px;
+  }
+}
+
+.complete-submit {
+  .complete-title {
+    position: relative;
+    padding-left: 52px;
+    margin-bottom: 10px;
+
+    .kba-icon {
+      position: absolute;
+      left: 0;
+      font-size: 43px;
+    }
+
+    .kba-icon-success {
+      color: $kba-main-color;
+    }
+
+    .fa-warning {
+      color: $kba-warning-color;
+    }
+
+    > h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: $kba-main-color;
+
+      .warning-label {
+        color: $kba-warning-color;
+      }
+    }
+  }
+
+  .orbcomm-notes {
+    color: $kba-error-color;
+  }
+
+  .KBA-customize-links {
+    margin-bottom: 10px;
+
+    > li {
+      float: left;
+      width: 49%;
+      padding: 10px;
+      margin-left: 2%;
+      background: $kba-sub-color;
+      border: 1px solid $kba-lightgray-color;
+      border-radius: 4px;
+
+      > p {
+        margin-bottom: 10px;
+      }
+
+      > a {
+        position: relative;
+        display: flex;
+        padding-left: 10px;
+        align-items: center;
+        font-size: 13px;
+        line-height: 20px;
+        color: $kba-dragover-color;
+
+        &::before {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 0;
+          height: 0;
+          margin-top: -5px;
+          content: "";
+          border: 5px solid transparent;
+          border-left-color: $kba-dragover-color;
+
+          &:hover {
+            color: $kba-dragover-color--hover;
+          }
+        }
+
+        &:hover {
+          color: $kba-dragover-color--hover;
+        }
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .KBA-orbcomm-apply {
+    padding: 10px;
+    border: 1px solid $kba-darkgray-color;
+
+    > h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: $kba-main-color;
+    }
+
+    > p {
+      margin-bottom: 10px;
+    }
+  }
+
+  .continue-submit {
+    margin-top: 20px;
+    text-align: center;
+
+    .btn {
+      min-width: 200px;
+    }
+  }
+}
+
+.eqp_delivery_date {
+  display: flex;
+  margin-left: 40px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+
+  p {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+}

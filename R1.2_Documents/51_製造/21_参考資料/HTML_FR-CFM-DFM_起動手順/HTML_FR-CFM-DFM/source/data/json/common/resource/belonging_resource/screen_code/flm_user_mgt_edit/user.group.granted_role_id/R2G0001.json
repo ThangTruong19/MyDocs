@@ -1,0 +1,75 @@
+[
+  {
+    "path": "user.group.granted_authority_checked_items",
+    "name": "デフォルト権限",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "所属2の運用ユーザ権限1の権限0007",
+        "value": "R2G00017",
+        "kind": "D"
+      },
+      {
+        "key": "所属2の運用ユーザ権限1の権限009",
+        "value": "R2G00019",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "user.group.granted_authority_ids",
+    "name": "権限",
+    "help": "権限のヘルプ文言（FLM/OPA共通）",
+    "type": 10,
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "所属2の運用ユーザ権限1の権限001",
+        "value": "R2G00011",
+        "kind": "D"
+      },
+      {
+        "key": "所属2の運用ユーザ権限1の権限000002",
+        "value": "R2G00012",
+        "kind": "D"
+      },
+      {
+        "key": "所属2の運用ユーザ権限1の権限003",
+        "value": "R2G00013",
+        "kind": "D"
+      },
+      {
+        "key": "所属2の運用ユーザ権限1の権限0004",
+        "value": "R2G00014",
+        "kind": "D"
+      },
+      {
+        "key": "所属2の運用ユーザ権限1の権限000005",
+        "value": "R2G00015",
+        "kind": "D"
+      },
+      {
+        "key": "所属2の運用ユーザ権限1の権限006",
+        "value": "R2G00016",
+        "kind": "D"
+      },
+      {
+        "key": "所属2の運用ユーザ権限1の権限0007",
+        "value": "R2G00017",
+        "kind": "D"
+      },
+      {
+        "key": "所属2の運用ユーザ権限1の権限000008",
+        "value": "R2G00018",
+        "kind": "D"
+      },
+      {
+        "key": "所属2の運用ユーザ権限1の権限009",
+        "value": "R2G00019",
+        "kind": "D"
+      }
+    ]
+  }
+]

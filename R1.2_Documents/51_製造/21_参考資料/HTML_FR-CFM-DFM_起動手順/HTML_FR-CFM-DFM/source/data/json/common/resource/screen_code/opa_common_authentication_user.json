@@ -1,0 +1,49 @@
+[
+  {
+    "path": "user_account",
+    "name": "ユーザID",
+    "help": "ユーザIDのヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "user_label",
+    "name": "ユーザ名",
+    "help": "ユーザ名のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "company_label",
+    "name": "会社名",
+    "help": "会社名のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "nation_code",
+    "name": "所属国",
+    "help": "所属国のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "日本",
+        "value": "JP",
+        "kind": "D"
+      },
+      {
+        "key": "アメリカ",
+        "value": "US",
+        "kind": "D"
+      }
+    ]
+  }
+]

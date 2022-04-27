@@ -1,0 +1,80 @@
+{
+  "result_data": {
+    "user_settings": [
+      {
+        "value": "ja-JP",
+        "key": "lang_code"
+      },
+      {
+        "value": "0",
+        "key": "date_format_code"
+      },
+      {
+        "value": "1",
+        "key": "distance_unit_code"
+      },
+      {
+        "value": "1",
+        "key": "temperature_unit_code"
+      },
+      {
+        "value": "1",
+        "key": "division_display_kind"
+      },
+      {
+        "value": "1",
+        "key": "map_magnification"
+      },
+      {
+        "value": "35.681101",
+        "key": "map_longitude"
+      },
+      {
+        "value": "139.767360",
+        "key": "map_latitude"
+      },
+      {
+        "value": "1",
+        "key": "customer_car_no_caption_display_kind"
+      },
+      {
+        "value": "1",
+        "key": "customer_label_caption_display_kind"
+      },
+      {
+        "value": "1",
+        "key": "model_type_serial_caption_display_kind"
+      },
+      {
+        "value": "1",
+        "key": "service_car_model_type_serial_caption_display_kind"
+      },
+      {
+        "value": "1",
+        "key": "service_man_label_caption_display_kind"
+      },
+      {
+        "value": "1",
+        "key": "landmark_label_caption_display_kind"
+      },
+      {
+        "value": "",
+        "key": "default_page_url"
+      }
+    ],
+    "group_settings": [
+      {
+        "value": "0",
+        "key": "map_mode"
+      },
+      {
+        "value": "+0900",
+        "key": "time_difference"
+      },
+      {
+        "value": "0",
+        "key": "first_day_of_week_kind"
+      }
+    ]
+  }
+}

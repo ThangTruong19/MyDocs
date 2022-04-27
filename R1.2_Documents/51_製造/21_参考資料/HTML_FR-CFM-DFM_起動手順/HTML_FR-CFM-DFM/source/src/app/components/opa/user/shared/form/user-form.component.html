@@ -1,0 +1,259 @@
+<section id="KBA-user-form" *ngIf="labels && resource">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels && labels.title }}</h2>
+
+    <div class="KBA-content">
+      <form class="KBA-form" name="userForm" novalidate>
+        <div class="content-header">
+          <div class="annotation">
+            <p class="caption">{{ labels && labels.caption }}</p>
+            <p class="KBA-form-table__required">
+              {{ labels && labels.description_for_required }}
+            </p>
+          </div>
+          <button
+            *ngIf="!isUpdate && enabledUserSearch"
+            type="button"
+            class="btn btn-primary search"
+            (click)="onClickSearch()"
+          >
+            <div class="btn-content">
+              {{ labels.search_user }}
+              <i class="kba-icon kba-icon-search"></i>
+            </div>
+          </button>
+        </div>
+        <table class="KBA-form-table table table-bordered" *ngIf="!loading">
+          <tbody class="KBA-form-table-tbody" [formGroup]="userForm">
+            <tr
+              app-kba-form-table-select
+              *ngIf="
+                exists('user.group.belonging_group_id') &&
+                resource.user.group.belonging_group_id.values.length > 0
+              "
+              class="KBA-form-row"
+              [kbaName]="'belonging_group_id'"
+              [kbaParams]="params.group"
+              [kbaResource]="resource.user.group"
+              [colspan]="3"
+              [display]="'label'"
+              [notEditable]="isUpdate"
+              [emitInitialRefresh]="!isUpdate"
+              (onChange)="onGroupIdChange($event)"
+            ></tr>
+            <tr
+              app-kba-form-table-custom
+              *ngIf="exists('user_account')"
+              class="KBA-form-row"
+              [kbaResource]="resource"
+              [kbaName]="'user_account'"
+              [colspan]="3"
+              [content]="userAccountContent"
+              [required]="true"
+            ></tr>
+            <ng-template #userAccountContent>
+              <div class="form-group KBA-input__small" [formGroup]="userForm">
+                <input
+                  [ngClass]="{
+                    'not-found': !(selectedUser | isNotEmpty) && isSearchedUser
+                  }"
+                  name="user_account"
+                  formControlName="user_account"
+                  (ngModelChange)="userSearchParams.user_account = $event"
+                  placeholder="{{
+                    resource.user_account.placeholder_text || ''
+                  }}"
+                  type="text" autocomplete="off"
+                  maxlength="255"
+                  required="true"
+                  class="KBA-input-text form-control"
+                  (change)="onChangeUserAcount()"
+                  (keyup.enter)="onEnterUserAccount()"
+                  (blur)="onBlurUserAccount()"
+                />
+              </div>
+            </ng-template>
+            <tr *ngIf="isUpdate" class="KBA-form-row">
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label">
+                  {{ labels.user_id }}
+                </label>
+              </td>
+              <td>
+                <p>{{ userSearchParams.user_account }}</p>
+              </td>
+            </tr>
+            <tr class="KBA-form-row">
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label">{{
+                  labels.user_label
+                }}</label>
+              </td>
+              <td colspan="3">
+                <p>
+                  {{
+                    (selectedUser | isNotEmpty)
+                      ? selectedUser.identification.label
+                      : '-'
+                  }}
+                </p>
+              </td>
+            </tr>
+            <tr class="KBA-form-row">
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label">{{
+                  labels.user_label_english
+                }}</label>
+              </td>
+              <td colspan="3">
+                <p>
+                  {{
+                    (selectedUser | isNotEmpty)
+                      ? selectedUser.identification.label_english
+                      : '-'
+                  }}
+                </p>
+              </td>
+            </tr>
+            <tr class="KBA-form-row">
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label">{{ labels.email }}</label>
+              </td>
+              <td colspan="3">
+                <p>
+                  {{
+                    (selectedUser | isNotEmpty)
+                      ? selectedUser.identification.email
+                      : '-'
+                  }}
+                </p>
+              </td>
+            </tr>
+            <tr class="KBA-form-row">
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label">{{
+                  labels.phone_no
+                }}</label>
+              </td>
+              <td colspan="3">
+                <p>
+                  {{
+                    (selectedUser | isNotEmpty)
+                      ? selectedUser.attribute.phone_no
+                      : '-'
+                  }}
+                </p>
+              </td>
+            </tr>
+            <tr
+              *ngIf="exists('user.attribute_create_place')"
+              class="KBA-form-row"
+            >
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label">{{
+                  resource.user.attribute_create_place.name
+                }}</label>
+              </td>
+              <td colspan="3">
+                <div class="KBA-input__small">
+                  <app-kba-text
+                    [showLabel]="false"
+                    [kbaName]="'attribute_create_place'"
+                    [kbaParams]="params"
+                    [kbaResource]="resource.user"
+                  >
+                  </app-kba-text>
+                </div>
+              </td>
+            </tr>
+            <tr class="KBA-form-row">
+              <td class="KBA-form-table__head">
+                <label class="KBA-form-table__label">
+                  {{ resource.user.group.granted_role_id.name }}
+                </label>
+              </td>
+              <td colspan="3">
+                <div class="authority">
+                  <app-kba-selected
+                    *ngIf="
+                      exists('user.group.granted_role_id') &&
+                      resource.user.group.granted_role_id.values.length > 0
+                    "
+                    class="form-group KBA-input__small"
+                    [kbaName]="'granted_role_id'"
+                    [kbaParams]="params.group"
+                    [kbaResource]="resource.user.group"
+                    [showLabel]="false"
+                    [display]="'granted_role_name'"
+                    [notEditable]="isUpdate && (params.group.represent_administrator_kind === '1')"
+                    (onChangeSelectItem)="_onGrantedRoleIdChange($event)"
+                  ></app-kba-selected>
+                  <app-kba-authority-select
+                    *ngIf="exists('user.group.granted_authority_ids')"
+                    [authorities]="_authorities()"
+                    [labels]="labels"
+                    [defaultAuthorities]="defaultAuthorities"
+                    [selectedAuthorities]="selectedAuthorities"
+                    [allowUnselectedAuthorities]="true"
+                    (select)="onCloseAuthoritySelectModal($event)"
+                  >
+                  </app-kba-authority-select>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <footer class="KBA-form-footer-fixed">
+          <a
+            href="javascript:void(0)"
+            (click)="onClickReset()"
+            class="btn btn-link"
+          >
+            {{ labels && labels.reset }}
+          </a>
+          <button
+            class="btn btn-success"
+            type="button"
+            *ngIf="!isUpdate"
+            (click)="onClickContinue()"
+            [disabled]="
+              userForm.invalid ||
+              !isModalAuthoritySelectOk ||
+              !(selectedUser | isNotEmpty)
+            "
+          >
+            {{ labels && labels.continue }}
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClickSubmit()"
+            [disabled]="
+              userForm.invalid ||
+              !isModalAuthoritySelectOk ||
+              !(selectedUser | isNotEmpty)
+            "
+          >
+            {{ labels && labels.submit }}
+          </button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #submitModalContent>
+    <app-custom-user-form-modal
+      class="confirm-modal-content"
+      [desc]="descItem"
+      [val]="valItem"
+    >
+    </app-custom-user-form-modal>
+  </ng-template>
+
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+</section>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

@@ -1,0 +1,17 @@
+.KBA-modal-body {
+  overflow: hidden;
+
+  .image-header {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .photo-crop-area {
+    width: 600px;
+    height: 400px;
+  }
+}
+
+.KBA-modal-footer {
+  justify-content: center;
+}

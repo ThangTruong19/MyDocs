@@ -1,0 +1,371 @@
+[
+  {
+    "path": "flag_condition.flag_code",
+    "name": "フラグ",
+    "help": "フラグのヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "黄旗",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "flag_condition.flag_kind_code",
+    "name": "設定項目",
+    "help": "設定項目のヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "コーション",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "交換時期",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "flag_condition.event_condition.event_code",
+    "name": "コーション",
+    "help": "コーションのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "エアークリーナー目詰まり1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり4",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり5",
+        "value": "5",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり6",
+        "value": "6",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり7",
+        "value": "7",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり8",
+        "value": "8",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり9",
+        "value": "9",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり11",
+        "value": "11",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり12",
+        "value": "12",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり13",
+        "value": "13",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり14",
+        "value": "14",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり15",
+        "value": "15",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり16",
+        "value": "16",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり17",
+        "value": "17",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり18",
+        "value": "18",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり19",
+        "value": "19",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり21",
+        "value": "21",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり22",
+        "value": "22",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり23",
+        "value": "23",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり24",
+        "value": "24",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり25",
+        "value": "25",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり26",
+        "value": "26",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり27",
+        "value": "27",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり28",
+        "value": "28",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり29",
+        "value": "29",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり30",
+        "value": "30",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり31",
+        "value": "31",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり32",
+        "value": "32",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり33",
+        "value": "33",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり34",
+        "value": "34",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり35",
+        "value": "35",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり36",
+        "value": "36",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり37",
+        "value": "37",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり38",
+        "value": "38",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり39",
+        "value": "39",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり41",
+        "value": "41",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり42",
+        "value": "42",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり43",
+        "value": "43",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり44",
+        "value": "44",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり45",
+        "value": "45",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり46",
+        "value": "46",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり47",
+        "value": "47",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり48",
+        "value": "48",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり49",
+        "value": "49",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "エアークリーナー目詰まり51",
+        "value": "51",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "flag_condition.minimum_duration",
+    "name": "最小継続時間を設定",
+    "help": "最小継続時間を設定チェックボックスのヘルプ文言",
+    "type": 30,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "flag_condition.event_condition.occurrence_identification.min_alerm_time",
+    "name": "オプション",
+    "help": "最小継続時間を設定テキストボックスのヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "flag_condition.event_condition.detection_condition_code",
+    "name": "条件種別",
+    "help": "条件種別のヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "連続発生",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "指定期間発生日数",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "残り時間閾値",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "flag_condition.event_condition.occurrence_identification.consecutive_occurrence_days",
+    "name": "連続発生日",
+    "help": "連続発生日のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "flag_condition.event_condition.occurrence_identification.occurrence_days",
+    "name": "日数",
+    "help": "日数のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "flag_condition.event_condition.occurrence_identification.decision_period",
+    "name": "期間",
+    "help": "期間のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

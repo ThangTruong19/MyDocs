@@ -1,0 +1,174 @@
+<div class="stat-header" *ngIf="datePickerParams">
+  <div class="graph-selection header-section">
+    <label>{{ labels.graph_mode }}</label>
+    <ul class="nav nav-pills KBA-pills">
+      <li
+        class="nav-item KBA-pill-item"
+        *ngFor="let graphMode of [GraphMode.monthly, GraphMode.daily]"
+      >
+        <a
+          class="nav-link"
+          (click)="handleSelectGraphMode(graphMode)"
+          [ngClass]="{ active: isGraphActive(graphMode) }"
+        >
+          {{ labels[graphMode] }}
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div
+    class="date-picker-container header-section"
+    [ngSwitch]="graphMode"
+    *ngIf="isDatePickerSectionVisible()"
+  >
+    <button
+      type="button"
+      class="btn-set-date btn-jobsite-common"
+      (click)="handleClickResetDatePicker()"
+    >
+      {{
+        graphMode === GraphMode.monthly
+          ? labels.since_last_month
+          : labels.since_yesterday
+      }}
+    </button>
+    <div class="date-pickers-wrapper disable-hover">
+      <button
+        type="button"
+        class="btn-date-picker"
+        (click)="handleClickShiftBack()"
+        [disabled]="isShiftBackButtonDisabled()"
+      >
+        <i class="fa fa-angle-left"></i>
+      </button>
+      <div class="date-pickers">
+        <ng-container *ngSwitchCase="GraphMode.monthly">
+          <a
+            class="date-picker-anchor"
+            href="javascript:void(0)"
+            commonFlyoutTrigger
+            [attr.aria-controls]="'year_month_from'"
+          >
+            {{ getMonthYearStringDisplay(monthlyParams.year_month_from) }}
+            <i class="fa fa-caret-down"></i>
+          </a>
+          <p class="separator">-</p>
+          <a
+            class="date-picker-anchor"
+            href="javascript:void(0)"
+            commonFlyoutTrigger
+            [attr.aria-controls]="'year_month_to'"
+          >
+            {{ getMonthYearStringDisplay(monthlyParams.year_month_to) }}
+            <i class="fa fa-caret-down"></i>
+          </a>
+          <app-kba-month-picker
+            [id]="'year_month_from'"
+            [labels]="labels"
+            [dateFormat]="dateFormat"
+            [timeZone]="timeZone"
+            [enableDateRange]="monthPickerFromDateRange"
+            [initialBaseYearMonth]="
+              getMonthYearString(monthlyParams.year_month_from)
+            "
+            [futureDateSelectable]="true"
+            [isVisibleClearButton]="false"
+            (selectMonth)="handleSelectMonth('year_month_from', $event)"
+          >
+          </app-kba-month-picker>
+          <app-kba-month-picker
+            [id]="'year_month_to'"
+            [labels]="labels"
+            [dateFormat]="dateFormat"
+            [timeZone]="timeZone"
+            [enableDateRange]="monthPickerToDateRange"
+            [initialBaseYearMonth]="
+              getMonthYearString(monthlyParams.year_month_to)
+            "
+            [futureDateSelectable]="false"
+            [isVisibleClearButton]="false"
+            (selectMonth)="handleSelectMonth('year_month_to', $event)"
+          >
+          </app-kba-month-picker>
+        </ng-container>
+        <ng-container *ngSwitchCase="GraphMode.daily">
+          <a
+            class="date-picker-anchor"
+            href="javascript:void(0)"
+            commonFlyoutTrigger
+            [attr.aria-controls]="'date_from'"
+          >
+            {{ getDateStringDisplay(dailyParams.date_from) }}
+            <i class="fa fa-caret-down"></i>
+          </a>
+          <p class="separator">-</p>
+          <a
+            class="date-picker-anchor"
+            href="javascript:void(0)"
+            commonFlyoutTrigger
+            [attr.aria-controls]="'date_to'"
+          >
+            {{ getDateStringDisplay(dailyParams.date_to) }}
+            <i class="fa fa-caret-down"></i>
+          </a>
+          <app-kba-date-picker
+            #datePickerFrom
+            class="today-hidden"
+            [id]="'date_from'"
+            [labels]="labels"
+            [dateFormat]="dateFormat"
+            [timeZone]="timeZone"
+            [enableDateRange]="datePickerFromDateRange"
+            [initialBaseDay]="getDateString(dailyParams.date_from)"
+            [beginningWday]="beginningWday"
+            [futureDateSelectable]="true"
+            [isVisibleClearButton]="false"
+            [disableTodayButton]="toggleTodayButton()"
+            (selectDate)="handleSelectDate('date_from', $event)"
+          >
+          </app-kba-date-picker>
+          <app-kba-date-picker
+            #datePickerTo
+            class="today-hidden"
+            [id]="'date_to'"
+            [labels]="labels"
+            [dateFormat]="dateFormat"
+            [timeZone]="timeZone"
+            [enableDateRange]="datePickerToDateRange"
+            [initialBaseDay]="getDateString(dailyParams.date_to)"
+            [beginningWday]="beginningWday"
+            [futureDateSelectable]="false"
+            [isVisibleClearButton]="false"
+            (selectDate)="handleSelectDate('date_to', $event)"
+          >
+          </app-kba-date-picker>
+        </ng-container>
+      </div>
+      <button
+        type="button"
+        class="btn-date-picker"
+        (click)="handleClickShiftNext()"
+        [disabled]="isShiftNextButtonDisabled()"
+      >
+        <i class="fa fa-angle-right"></i>
+      </button>
+    </div>
+  </div>
+  <div class="graph-type-selection header-section">
+    <label>{{ labels.stat }}</label>
+    <ul class="nav nav-pills KBA-pills">
+      <li
+        class="nav-item KBA-pill-item"
+        *ngFor="let type of [GraphType.time, GraphType.rate]"
+      >
+        <a
+          class="nav-link"
+          (click)="handleSelectGraphType(type)"
+          [ngClass]="{ active: isGraphTypeActive(type) }"
+        >
+          {{ labels[type] }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

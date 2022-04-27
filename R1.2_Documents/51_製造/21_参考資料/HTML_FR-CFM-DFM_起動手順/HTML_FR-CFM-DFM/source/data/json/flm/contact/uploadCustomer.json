@@ -1,0 +1,11 @@
+{
+  "result_data": {
+    "id": "0",
+    "name": "連絡先紐付けアップロード処理",
+    "request_datetime": "2000/01/01 00:00:00",
+    "request_api_id": "KOM-00100010",
+    "result_api_id": "KOM-00000011",
+    "status_code": "0",
+    "status_name": "受付"
+  }
+}

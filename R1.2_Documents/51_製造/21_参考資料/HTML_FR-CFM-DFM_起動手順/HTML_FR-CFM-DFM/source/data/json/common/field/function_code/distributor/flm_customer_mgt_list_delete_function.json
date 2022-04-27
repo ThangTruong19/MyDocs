@@ -1,0 +1,23 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "顧客ID",
+    "path": "customer.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "顧客名称",
+    "path": "customer.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "更新日時",
+    "path": "customer.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

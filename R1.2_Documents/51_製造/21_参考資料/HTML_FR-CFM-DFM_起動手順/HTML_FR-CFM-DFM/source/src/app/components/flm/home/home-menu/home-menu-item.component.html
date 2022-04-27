@@ -1,0 +1,6 @@
+<h4>{{ item.name }}</h4>
+<ul>
+  <li class="KBA-menu-list__item" *ngFor="let nav of item.functions">
+    <a [routerLink]="nav.options[0].value" draggable="false">{{ nav.name }}</a>
+  </li>
+</ul>

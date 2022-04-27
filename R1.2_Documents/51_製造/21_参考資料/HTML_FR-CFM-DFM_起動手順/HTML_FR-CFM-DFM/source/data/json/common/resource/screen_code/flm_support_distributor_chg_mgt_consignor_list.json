@@ -1,0 +1,3947 @@
+[
+  {
+    "path": "common.support_distributor.ids",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "LooooooooooooooooooooooooooooooooooooooooooooooooooooooooongText",
+        "value": "AA0017",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2",
+        "value": "AA1998",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB3",
+        "value": "AA2210",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB4",
+        "value": "AA2211",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "cars.change_support_distributor_id",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "A-1 RENTAL(North Block)",
+        "value": "6424",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "ABDUL LATIF JAMEEL(Saudiarabia_Block)",
+        "value": "201997",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "AGV Maquinarias(KHSA_Block)",
+        "value": "190444",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "ANDERSON EQUIPMENT CO(North Block)",
+        "value": "1242",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "ANDERSON EQUIPMENT SALES(Komatsu Canada Block)",
+        "value": "3021",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "ATDC(Thailand_ATDC_Block)",
+        "value": "174382",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "Action Material Hndl(KAC FORKLIFT 1 Block)",
+        "value": "34582",
+        "kind": "D",
+        "data_order": "7"
+      },
+      {
+        "key": "Aero Snow Removal Corp.(North Block)",
+        "value": "7751",
+        "kind": "D",
+        "data_order": "8"
+      },
+      {
+        "key": "Agrosuperior(KHSA_Block)",
+        "value": "192353",
+        "kind": "D",
+        "data_order": "9"
+      },
+      {
+        "key": "Andersen Mtrl Handling(KAC FORKLIFT 1 Block)",
+        "value": "25592",
+        "kind": "D",
+        "data_order": "10"
+      },
+      {
+        "key": "Automaq(KHSA_Block)",
+        "value": "193578",
+        "kind": "D",
+        "data_order": "11"
+      },
+      {
+        "key": "BACON-UNIVERSAL COMPANY(West Block)",
+        "value": "1152",
+        "kind": "D",
+        "data_order": "12"
+      },
+      {
+        "key": "BALTEM(Estonia_Block)",
+        "value": "134691",
+        "kind": "D",
+        "data_order": "13"
+      },
+      {
+        "key": "BALTLT(Lithuania_Block)",
+        "value": "137412",
+        "kind": "D",
+        "data_order": "14"
+      },
+      {
+        "key": "BALTLV(Latvia_Block)",
+        "value": "130988",
+        "kind": "D",
+        "data_order": "15"
+      },
+      {
+        "key": "BAUMA VERTRIEB(Germany_Block)",
+        "value": "130815",
+        "kind": "D",
+        "data_order": "16"
+      },
+      {
+        "key": "BC Conveying Machine(KAC FORKLIFT 1 Block)",
+        "value": "34580",
+        "kind": "D",
+        "data_order": "17"
+      },
+      {
+        "key": "BERRY TRACTOR  AND EQUIP(North Block)",
+        "value": "1243",
+        "kind": "D",
+        "data_order": "18"
+      },
+      {
+        "key": "BIA Burkina Faso(DakarSSC)",
+        "value": "208505",
+        "kind": "D",
+        "data_order": "19"
+      },
+      {
+        "key": "BIA Cameroon(DakarSSC)",
+        "value": "208520",
+        "kind": "D",
+        "data_order": "20"
+      },
+      {
+        "key": "BIA CotedIvoire(DakarSSC)",
+        "value": "208573",
+        "kind": "D",
+        "data_order": "21"
+      },
+      {
+        "key": "BIA DRC(DakarSSC)",
+        "value": "209011",
+        "kind": "D",
+        "data_order": "22"
+      },
+      {
+        "key": "BIA Guinea(DakarSSC)",
+        "value": "209022",
+        "kind": "D",
+        "data_order": "23"
+      },
+      {
+        "key": "BIA Mali(DakarSSC)",
+        "value": "208957",
+        "kind": "D",
+        "data_order": "24"
+      },
+      {
+        "key": "BIA Rep. of Congo(DakarSSC)",
+        "value": "208506",
+        "kind": "D",
+        "data_order": "25"
+      },
+      {
+        "key": "BIA Senegal(DakarSSC)",
+        "value": "208572",
+        "kind": "D",
+        "data_order": "26"
+      },
+      {
+        "key": "BIA Togo(DakarSSC)",
+        "value": "209089",
+        "kind": "D",
+        "data_order": "27"
+      },
+      {
+        "key": "BIA Zambia(DakarSSC)",
+        "value": "208569",
+        "kind": "D",
+        "data_order": "28"
+      },
+      {
+        "key": "BIABE(Belgium_Block)",
+        "value": "135003",
+        "kind": "D",
+        "data_order": "29"
+      },
+      {
+        "key": "BIANL TIMMERMAN(Netherlands_Block)",
+        "value": "145067",
+        "kind": "D",
+        "data_order": "30"
+      },
+      {
+        "key": "BIANL VERHOEVEN(Netherlands_Block)",
+        "value": "145278",
+        "kind": "D",
+        "data_order": "31"
+      },
+      {
+        "key": "BIANL(Netherlands_Block)",
+        "value": "122909",
+        "kind": "D",
+        "data_order": "32"
+      },
+      {
+        "key": "BINA PERTIWI(KMSIFork_Block)",
+        "value": "165267",
+        "kind": "D",
+        "data_order": "33"
+      },
+      {
+        "key": "BKF(ThailandFork_Block)",
+        "value": "167697",
+        "kind": "D",
+        "data_order": "34"
+      },
+      {
+        "key": "BKS(Thailand_BKS_Block)",
+        "value": "157223",
+        "kind": "D",
+        "data_order": "35"
+      },
+      {
+        "key": "BRANDEIS MACHINERY(South Block)",
+        "value": "1142",
+        "kind": "D",
+        "data_order": "36"
+      },
+      {
+        "key": "BRR(Germany_Block)",
+        "value": "143611",
+        "kind": "D",
+        "data_order": "37"
+      },
+      {
+        "key": "Bacon Universal Forklift(KAC FORKLIFT 1 Block)",
+        "value": "10294",
+        "kind": "D",
+        "data_order": "38"
+      },
+      {
+        "key": "Bauko(KBI Construction Block)",
+        "value": "190658",
+        "kind": "D",
+        "data_order": "39"
+      },
+      {
+        "key": "Bina Pertiwi(KMSI_Block)",
+        "value": "155385",
+        "kind": "D",
+        "data_order": "40"
+      },
+      {
+        "key": "Booth Energy Group(South Block)",
+        "value": "5597",
+        "kind": "D",
+        "data_order": "41"
+      },
+      {
+        "key": "Bramaq SA(KHSA_Block)",
+        "value": "190446",
+        "kind": "D",
+        "data_order": "42"
+      },
+      {
+        "key": "Bramco Certified Rentals(South Block)",
+        "value": "5066",
+        "kind": "D",
+        "data_order": "43"
+      },
+      {
+        "key": "Bridgeport Eqp and Tool(KAC FORKLIFT 1 Block)",
+        "value": "34583",
+        "kind": "D",
+        "data_order": "44"
+      },
+      {
+        "key": "C and C LIFT TRUCK(Komatsu Canada Block)",
+        "value": "3022",
+        "kind": "D",
+        "data_order": "45"
+      },
+      {
+        "key": "C and C Lift Trucks(KAC FORKLIFT 1 Block)",
+        "value": "16569",
+        "kind": "D",
+        "data_order": "46"
+      },
+      {
+        "key": "C.N. WOOD COMPANY INC(North Block)",
+        "value": "1246",
+        "kind": "D",
+        "data_order": "47"
+      },
+      {
+        "key": "CIM AGROLIMA(Portugal_Block)",
+        "value": "138060",
+        "kind": "D",
+        "data_order": "48"
+      },
+      {
+        "key": "CIM FACIL(Portugal_Block)",
+        "value": "138442",
+        "kind": "D",
+        "data_order": "49"
+      },
+      {
+        "key": "CIM IT TRANDIV SERVICE(Cimertex IT_Block)",
+        "value": "145401",
+        "kind": "D",
+        "data_order": "50"
+      },
+      {
+        "key": "CIM M.T.A.(Portugal_Block)",
+        "value": "136515",
+        "kind": "D",
+        "data_order": "51"
+      },
+      {
+        "key": "CIM MANUEL(Portugal_Block)",
+        "value": "138338",
+        "kind": "D",
+        "data_order": "52"
+      },
+      {
+        "key": "CIM PEIXOTO(Portugal_Block)",
+        "value": "138289",
+        "kind": "D",
+        "data_order": "53"
+      },
+      {
+        "key": "CIM SEPREM(Portugal_Block)",
+        "value": "138092",
+        "kind": "D",
+        "data_order": "54"
+      },
+      {
+        "key": "CIMERTEX ITALIA SRL(Cimertex IT_Block)",
+        "value": "143943",
+        "kind": "D",
+        "data_order": "55"
+      },
+      {
+        "key": "CIMERTEX(Portugal_Block)",
+        "value": "121162",
+        "kind": "D",
+        "data_order": "56"
+      },
+      {
+        "key": "CLAIREMONT EQUIPMENT CO(West Block)",
+        "value": "1153",
+        "kind": "D",
+        "data_order": "57"
+      },
+      {
+        "key": "CMarket GTM(KHSA_Block)",
+        "value": "191410",
+        "kind": "D",
+        "data_order": "58"
+      },
+      {
+        "key": "CMarket NIC(KHSA_Block)",
+        "value": "193601",
+        "kind": "D",
+        "data_order": "59"
+      },
+      {
+        "key": "CMarket PA(KHSA_Block)",
+        "value": "193218",
+        "kind": "D",
+        "data_order": "60"
+      },
+      {
+        "key": "CMarket SLV(KHSA_Block)",
+        "value": "190924",
+        "kind": "D",
+        "data_order": "61"
+      },
+      {
+        "key": "CNS BE(CNS Belgium_Block)",
+        "value": "143108",
+        "kind": "D",
+        "data_order": "62"
+      },
+      {
+        "key": "CNS DE(CNS Germany_Block)",
+        "value": "143103",
+        "kind": "D",
+        "data_order": "63"
+      },
+      {
+        "key": "CNS FR(CNS France_Block)",
+        "value": "145412",
+        "kind": "D",
+        "data_order": "64"
+      },
+      {
+        "key": "CNS IE(CNS Ireland_Block)",
+        "value": "143114",
+        "kind": "D",
+        "data_order": "65"
+      },
+      {
+        "key": "CNS IT(CNS Italy_Block)",
+        "value": "141976",
+        "kind": "D",
+        "data_order": "66"
+      },
+      {
+        "key": "CNS NL(CNS Netherlands_Block)",
+        "value": "141615",
+        "kind": "D",
+        "data_order": "67"
+      },
+      {
+        "key": "COLORADOLIFT EQUIPMENT(KAC FORKLIFT 1 Block)",
+        "value": "25493",
+        "kind": "D",
+        "data_order": "68"
+      },
+      {
+        "key": "COLUMBUS EQUIPMENT CO(North Block)",
+        "value": "1247",
+        "kind": "D",
+        "data_order": "69"
+      },
+      {
+        "key": "CONTINENTAL BHUTAN ENTER(Bhutan_Block)",
+        "value": "170215",
+        "kind": "D",
+        "data_order": "70"
+      },
+      {
+        "key": "CONTINENTAL DISTRIBUTING(North Block)",
+        "value": "1248",
+        "kind": "D",
+        "data_order": "71"
+      },
+      {
+        "key": "CONTRACTOR SALES-RENTAL(North Block)",
+        "value": "5550",
+        "kind": "D",
+        "data_order": "72"
+      },
+      {
+        "key": "CRAIG TAYLOR EQUIPMENT(West Block)",
+        "value": "1236",
+        "kind": "D",
+        "data_order": "73"
+      },
+      {
+        "key": "CTE Central(Nepal_Block)",
+        "value": "174460",
+        "kind": "D",
+        "data_order": "74"
+      },
+      {
+        "key": "CTE East(Nepal_Block)",
+        "value": "174463",
+        "kind": "D",
+        "data_order": "75"
+      },
+      {
+        "key": "CTE West(Nepal_Block)",
+        "value": "174462",
+        "kind": "D",
+        "data_order": "76"
+      },
+      {
+        "key": "Carolina Indust Trucks(KAC FORKLIFT 1 Block)",
+        "value": "34579",
+        "kind": "D",
+        "data_order": "77"
+      },
+      {
+        "key": "Ceccacci Lift Truck Serv(KAC FORKLIFT 1 Block)",
+        "value": "26405",
+        "kind": "D",
+        "data_order": "78"
+      },
+      {
+        "key": "Cimertex-Angola(Nairobi SSC)",
+        "value": "208641",
+        "kind": "D",
+        "data_order": "79"
+      },
+      {
+        "key": "Clairemont Eq Forklift(KAC FORKLIFT 1 Block)",
+        "value": "27882",
+        "kind": "D",
+        "data_order": "80"
+      },
+      {
+        "key": "Connell Co.(KAC FORKLIFT 1 Block)",
+        "value": "31132",
+        "kind": "D",
+        "data_order": "81"
+      },
+      {
+        "key": "Cuba KLTD(Cuba KLTD Block)",
+        "value": "198234",
+        "kind": "D",
+        "data_order": "82"
+      },
+      {
+        "key": "DAR ALHAI(Kuwait_Block)",
+        "value": "202235",
+        "kind": "D",
+        "data_order": "83"
+      },
+      {
+        "key": "DB for Demo(Block for Demo)",
+        "value": "10000004411",
+        "kind": "D",
+        "data_order": "84"
+      },
+      {
+        "key": "DB_KAZ_KOMEK(Kazakhstan)",
+        "value": "204448",
+        "kind": "D",
+        "data_order": "85"
+      },
+      {
+        "key": "DCCO(KBI Construction Block)",
+        "value": "190722",
+        "kind": "D",
+        "data_order": "86"
+      },
+      {
+        "key": "DCDN(KBI Construction Block)",
+        "value": "190567",
+        "kind": "D",
+        "data_order": "87"
+      },
+      {
+        "key": "DE-activation Group(Cuba KLTD Block)(Cuba KLTD Block)",
+        "value": "200436",
+        "kind": "D",
+        "data_order": "88"
+      },
+      {
+        "key": "DE-activation Group(Demo_REGION_Warehouse_Block)",
+        "value": "10000011692",
+        "kind": "D",
+        "data_order": "89"
+      },
+      {
+        "key": "DE-activation Group(KBI Construction Block)(KBI Construction Block)",
+        "value": "200430",
+        "kind": "D",
+        "data_order": "90"
+      },
+      {
+        "key": "DE-activation Group(KBI Forestry Block)(KBI Forestry Block)",
+        "value": "200433",
+        "kind": "D",
+        "data_order": "91"
+      },
+      {
+        "key": "DE-activation Group(KBI Mining Block)(KBI Mining Block)",
+        "value": "200427",
+        "kind": "D",
+        "data_order": "92"
+      },
+      {
+        "key": "DE-activation Group(KHSA_Block)(KHSA_Block)",
+        "value": "200439",
+        "kind": "D",
+        "data_order": "93"
+      },
+      {
+        "key": "DE-activation Group(WareHouse Block)",
+        "value": "35774",
+        "kind": "D",
+        "data_order": "94"
+      },
+      {
+        "key": "DE-activation Group(Warehouse_Block)",
+        "value": "185401",
+        "kind": "D",
+        "data_order": "95"
+      },
+      {
+        "key": "DE-activation Group(Warehouse_Block)",
+        "value": "204334",
+        "kind": "D",
+        "data_order": "96"
+      },
+      {
+        "key": "DE-activation group(DE-activation)",
+        "value": "209193",
+        "kind": "D",
+        "data_order": "97"
+      },
+      {
+        "key": "DIESEL MACHINERY INC.(North Block)",
+        "value": "3234",
+        "kind": "D",
+        "data_order": "98"
+      },
+      {
+        "key": "DIMO(Sri Lanka_Block)",
+        "value": "167727",
+        "kind": "D",
+        "data_order": "99"
+      },
+      {
+        "key": "DUBICK UND STEHR(Germany_Block)",
+        "value": "140102",
+        "kind": "D",
+        "data_order": "100"
+      },
+      {
+        "key": "DYMAK(KBI Construction Block)",
+        "value": "190723",
+        "kind": "D",
+        "data_order": "101"
+      },
+      {
+        "key": "Data Base Australia(KAL_REGION_Block)",
+        "value": "148014",
+        "kind": "D",
+        "data_order": "102"
+      },
+      {
+        "key": "Data Base New Zealand(KAL_REGION_Block)",
+        "value": "148015",
+        "kind": "D",
+        "data_order": "103"
+      },
+      {
+        "key": "Deactivate Group(Warehouse Block)",
+        "value": "207921",
+        "kind": "D",
+        "data_order": "104"
+      },
+      {
+        "key": "Deactivate Group(Warehouse block)",
+        "value": "147751",
+        "kind": "D",
+        "data_order": "105"
+      },
+      {
+        "key": "Deactivate Group(Warehouse_Block)",
+        "value": "152853",
+        "kind": "D",
+        "data_order": "106"
+      },
+      {
+        "key": "Dicsa Bolivia(KHSA_Block)",
+        "value": "190680",
+        "kind": "D",
+        "data_order": "107"
+      },
+      {
+        "key": "Diteca(KHSA_Block)",
+        "value": "192235",
+        "kind": "D",
+        "data_order": "108"
+      },
+      {
+        "key": "EBC(Komatsu Canada Block)",
+        "value": "16972",
+        "kind": "D",
+        "data_order": "109"
+      },
+      {
+        "key": "EDGE CONTRACTING(Komatsu Canada Block)",
+        "value": "1423",
+        "kind": "D",
+        "data_order": "110"
+      },
+      {
+        "key": "EDWARD EHRBAR(North Block)",
+        "value": "1249",
+        "kind": "D",
+        "data_order": "111"
+      },
+      {
+        "key": "ELDORADO FORKLIFT(KAC FORKLIFT 1 Block)",
+        "value": "33140",
+        "kind": "D",
+        "data_order": "112"
+      },
+      {
+        "key": "EQUIPMENT SALES AND SRVC(Komatsu Canada Block)",
+        "value": "1261",
+        "kind": "D",
+        "data_order": "113"
+      },
+      {
+        "key": "EUROMARKET(Bulgaria_Block)",
+        "value": "146558",
+        "kind": "D",
+        "data_order": "114"
+      },
+      {
+        "key": "EXE_نام گروه(Bahrain_Block)",
+        "value": "10000004281",
+        "kind": "D",
+        "data_order": "115"
+      },
+      {
+        "key": "EXE_49031代理店(UK_Block)",
+        "value": "10000001147",
+        "kind": "D",
+        "data_order": "116"
+      },
+      {
+        "key": "EXE_NLS_TEST_代理店_01(EXE_テスト_ブロック)",
+        "value": "10000008618",
+        "kind": "D",
+        "data_order": "117"
+      },
+      {
+        "key": "EXE_NLS_代理店_02(EXE_TEST_ブロック)",
+        "value": "10000008615",
+        "kind": "D",
+        "data_order": "118"
+      },
+      {
+        "key": "EXE_NLS_代理店_04(EXETEST04)",
+        "value": "10000008613",
+        "kind": "D",
+        "data_order": "119"
+      },
+      {
+        "key": "EXE_NLS_代理店_05(EXE_TEST_ブロック)",
+        "value": "10000008611",
+        "kind": "D",
+        "data_order": "120"
+      },
+      {
+        "key": "EXE_NLS_代理店_06(EXE_TEST_ブロック)",
+        "value": "10000008612",
+        "kind": "D",
+        "data_order": "121"
+      },
+      {
+        "key": "EXE_NLS代理店(EXE_TEST_ブロック)",
+        "value": "10000008614",
+        "kind": "D",
+        "data_order": "122"
+      },
+      {
+        "key": "EXE_PFTEST_代理店(KCSJリフト)",
+        "value": "10000004280",
+        "kind": "D",
+        "data_order": "123"
+      },
+      {
+        "key": "EXE_TEST_DB1(Austria_Block)",
+        "value": "10000004310",
+        "kind": "D",
+        "data_order": "124"
+      },
+      {
+        "key": "EXE_TEST_DB2(Austria_Block)",
+        "value": "10000004312",
+        "kind": "D",
+        "data_order": "125"
+      },
+      {
+        "key": "EXE_TEST_代理店1(EXE_TEST_ブロック)",
+        "value": "10000004311",
+        "kind": "D",
+        "data_order": "126"
+      },
+      {
+        "key": "EXE_TEST_代理店2(EXE_TEST_ブロック)",
+        "value": "10000004289",
+        "kind": "D",
+        "data_order": "127"
+      },
+      {
+        "key": "EXE_TEST_代理店3(EXE_TEST_ブロック)",
+        "value": "10000004291",
+        "kind": "D",
+        "data_order": "128"
+      },
+      {
+        "key": "EXE_TEST_代理店4(EXE_TEST_ブロック)",
+        "value": "10000004292",
+        "kind": "D",
+        "data_order": "129"
+      },
+      {
+        "key": "EXE_パフォーマンス_代理店_001(EXEパフォーマンステスト_R1_01変更5)",
+        "value": "10000004399",
+        "kind": "D",
+        "data_order": "130"
+      },
+      {
+        "key": "EXE_パフォーマンス_代理店_005(EXEパフォーマンステスト_R1_01変更5)",
+        "value": "10000004395",
+        "kind": "D",
+        "data_order": "131"
+      },
+      {
+        "key": "EXE_パフォーマンス_代理店_006(EXEパフォーマンステスト_R1_01変更5)",
+        "value": "10000004396",
+        "kind": "D",
+        "data_order": "132"
+      },
+      {
+        "key": "EXE_パフォーマンス_代理店_007(EXEパフォーマンステスト_R1_01変更5)",
+        "value": "10000004408",
+        "kind": "D",
+        "data_order": "133"
+      },
+      {
+        "key": "Eaheart Industrial Svc(KAC FORKLIFT 1 Block)",
+        "value": "19419",
+        "kind": "D",
+        "data_order": "134"
+      },
+      {
+        "key": "Earth Structures(South Block)",
+        "value": "3232",
+        "kind": "D",
+        "data_order": "135"
+      },
+      {
+        "key": "Equinova(KHSA_Block)",
+        "value": "190580",
+        "kind": "D",
+        "data_order": "136"
+      },
+      {
+        "key": "Er Jahna(South Block)",
+        "value": "1949",
+        "kind": "D",
+        "data_order": "137"
+      },
+      {
+        "key": "FASIECO(Germany_Block)",
+        "value": "122520",
+        "kind": "D",
+        "data_order": "138"
+      },
+      {
+        "key": "FRIESENS INC.(North Block)",
+        "value": "6591",
+        "kind": "D",
+        "data_order": "139"
+      },
+      {
+        "key": "FW(KBI Construction Block)",
+        "value": "190724",
+        "kind": "D",
+        "data_order": "140"
+      },
+      {
+        "key": "Farmers Equipment Co(KAC FORKLIFT 1 Block)",
+        "value": "31096",
+        "kind": "D",
+        "data_order": "141"
+      },
+      {
+        "key": "Frasinelli SA(KHSA_Block)",
+        "value": "190445",
+        "kind": "D",
+        "data_order": "142"
+      },
+      {
+        "key": "GALADARI(UAE_Block)",
+        "value": "201096",
+        "kind": "D",
+        "data_order": "143"
+      },
+      {
+        "key": "GEN. EQUIP.GUYANA(KHSA_Block)",
+        "value": "188768",
+        "kind": "D",
+        "data_order": "144"
+      },
+      {
+        "key": "GENERAL EQUIP AND SUPPLY(North Block)",
+        "value": "1251",
+        "kind": "D",
+        "data_order": "145"
+      },
+      {
+        "key": "GENERAL EQUIPMENT(KHSA_Block)",
+        "value": "190051",
+        "kind": "D",
+        "data_order": "146"
+      },
+      {
+        "key": "GIANT(Taiwan_Block)",
+        "value": "161079",
+        "kind": "D",
+        "data_order": "147"
+      },
+      {
+        "key": "GP(Germany_Block)",
+        "value": "117884",
+        "kind": "D",
+        "data_order": "148"
+      },
+      {
+        "key": "GUM CHUN(Hong Kong_Block)",
+        "value": "154365",
+        "kind": "D",
+        "data_order": "149"
+      },
+      {
+        "key": "Genco SA(KHSA_Block)",
+        "value": "190447",
+        "kind": "D",
+        "data_order": "150"
+      },
+      {
+        "key": "Gold Coast Lift Trucks(KAC FORKLIFT 1 Block)",
+        "value": "13251",
+        "kind": "D",
+        "data_order": "151"
+      },
+      {
+        "key": "H and K Equipment(KAC FORKLIFT 1 Block)",
+        "value": "30378",
+        "kind": "D",
+        "data_order": "152"
+      },
+      {
+        "key": "H-E EQUIPMENT SERVICES(South Block)",
+        "value": "1144",
+        "kind": "D",
+        "data_order": "153"
+      },
+      {
+        "key": "HE SERVICES(UK_Block)",
+        "value": "143341",
+        "kind": "D",
+        "data_order": "154"
+      },
+      {
+        "key": "HES(Norway_Block)",
+        "value": "112876",
+        "kind": "D",
+        "data_order": "155"
+      },
+      {
+        "key": "HMA(Norway_Block)",
+        "value": "125245",
+        "kind": "D",
+        "data_order": "156"
+      },
+      {
+        "key": "HUB INTERNATIONAL(Komatsu Canada Block)",
+        "value": "6610",
+        "kind": "D",
+        "data_order": "157"
+      },
+      {
+        "key": "Hettinger Welding(West Block)",
+        "value": "5990",
+        "kind": "D",
+        "data_order": "158"
+      },
+      {
+        "key": "INTER CITE(Komatsu Canada Block)",
+        "value": "21576",
+        "kind": "D",
+        "data_order": "159"
+      },
+      {
+        "key": "Igarreta Maquinarias(KHSA_Block)",
+        "value": "190585",
+        "kind": "D",
+        "data_order": "160"
+      },
+      {
+        "key": "Indumotora(KHSA_Block)",
+        "value": "197295",
+        "kind": "D",
+        "data_order": "161"
+      },
+      {
+        "key": "Inventory Group(Cuba KLTD Block)(Cuba KLTD Block)",
+        "value": "200438",
+        "kind": "D",
+        "data_order": "162"
+      },
+      {
+        "key": "Inventory Group(DE-activation)",
+        "value": "209194",
+        "kind": "D",
+        "data_order": "163"
+      },
+      {
+        "key": "Inventory Group(DakarSSC)(DakarSSC)",
+        "value": "209196",
+        "kind": "D",
+        "data_order": "164"
+      },
+      {
+        "key": "Inventory Group(KBI Construction Block)(KBI Construction Block)",
+        "value": "200432",
+        "kind": "D",
+        "data_order": "165"
+      },
+      {
+        "key": "Inventory Group(KBI Forestry Block)(KBI Forestry Block)",
+        "value": "200435",
+        "kind": "D",
+        "data_order": "166"
+      },
+      {
+        "key": "Inventory Group(KBI Mining Block)(KBI Mining Block)",
+        "value": "200429",
+        "kind": "D",
+        "data_order": "167"
+      },
+      {
+        "key": "Inventory Group(KHSA_Block)(KHSA_Block)",
+        "value": "200441",
+        "kind": "D",
+        "data_order": "168"
+      },
+      {
+        "key": "Inventory Group(Nairobi SSC)(Nairobi SSC)",
+        "value": "209198",
+        "kind": "D",
+        "data_order": "169"
+      },
+      {
+        "key": "Inventory Group(WareHouse Block)",
+        "value": "35776",
+        "kind": "D",
+        "data_order": "170"
+      },
+      {
+        "key": "Inventory Group(Warehouse Block)",
+        "value": "207923",
+        "kind": "D",
+        "data_order": "171"
+      },
+      {
+        "key": "Inventory Group(Warehouse block)",
+        "value": "147753",
+        "kind": "D",
+        "data_order": "172"
+      },
+      {
+        "key": "Inventory Group(Warehouse_Block)",
+        "value": "152855",
+        "kind": "D",
+        "data_order": "173"
+      },
+      {
+        "key": "Inventory Group(Warehouse_Block)",
+        "value": "185403",
+        "kind": "D",
+        "data_order": "174"
+      },
+      {
+        "key": "Inventory Group(Warehouse_Block)",
+        "value": "204336",
+        "kind": "D",
+        "data_order": "175"
+      },
+      {
+        "key": "JAIDAH GROUP(Qatar_Block)",
+        "value": "201680",
+        "kind": "D",
+        "data_order": "176"
+      },
+      {
+        "key": "JBL(Pakistan_Block)",
+        "value": "203779",
+        "kind": "D",
+        "data_order": "177"
+      },
+      {
+        "key": "JM Duran(KHSA_Block)",
+        "value": "190584",
+        "kind": "D",
+        "data_order": "178"
+      },
+      {
+        "key": "K-Rents(Komatsu Canada Block)",
+        "value": "17239",
+        "kind": "D",
+        "data_order": "179"
+      },
+      {
+        "key": "KAC Forklift Inventory(KAC FORKLIFT 1 Block)",
+        "value": "16572",
+        "kind": "D",
+        "data_order": "180"
+      },
+      {
+        "key": "KAC Inventory(East Block)",
+        "value": "8461",
+        "kind": "D",
+        "data_order": "181"
+      },
+      {
+        "key": "KBI Mining(KBI Mining Block)",
+        "value": "190657",
+        "kind": "D",
+        "data_order": "182"
+      },
+      {
+        "key": "KBI_KDB(KBI Construction Block)",
+        "value": "192334",
+        "kind": "D",
+        "data_order": "183"
+      },
+      {
+        "key": "KCIS_FL(Russia)",
+        "value": "205361",
+        "kind": "D",
+        "data_order": "184"
+      },
+      {
+        "key": "KDG DIRECT SALES(Germany_Block)",
+        "value": "139227",
+        "kind": "D",
+        "data_order": "185"
+      },
+      {
+        "key": "KEC Forklift(KAC FORKLIFT 1 Block)",
+        "value": "10291",
+        "kind": "D",
+        "data_order": "186"
+      },
+      {
+        "key": "KEISA DEMO(Belgium KEISA_Block)",
+        "value": "141585",
+        "kind": "D",
+        "data_order": "187"
+      },
+      {
+        "key": "KESA(Spain_Block)",
+        "value": "147500",
+        "kind": "D",
+        "data_order": "188"
+      },
+      {
+        "key": "KESTELOOT ENTERPRISES(North Block)",
+        "value": "7765",
+        "kind": "D",
+        "data_order": "189"
+      },
+      {
+        "key": "KFB - KF Long Beach(KAC FORKLIFT 1 Block)",
+        "value": "19372",
+        "kind": "D",
+        "data_order": "190"
+      },
+      {
+        "key": "KFSA AFBTP(France_Block)",
+        "value": "121762",
+        "kind": "D",
+        "data_order": "191"
+      },
+      {
+        "key": "KFSA AUTOMOBILES REUNION(France_Block)",
+        "value": "128940",
+        "kind": "D",
+        "data_order": "192"
+      },
+      {
+        "key": "KFSA BFH EQUIPEMENTS(France_Block)",
+        "value": "133806",
+        "kind": "D",
+        "data_order": "193"
+      },
+      {
+        "key": "KFSA COMEQUIP(France_Block)",
+        "value": "125941",
+        "kind": "D",
+        "data_order": "194"
+      },
+      {
+        "key": "KFSA DELTAZUR(France_Block)",
+        "value": "143291",
+        "kind": "D",
+        "data_order": "195"
+      },
+      {
+        "key": "KFSA KAV(France_Block)",
+        "value": "122005",
+        "kind": "D",
+        "data_order": "196"
+      },
+      {
+        "key": "KFSA KBF(France_Block)",
+        "value": "122223",
+        "kind": "D",
+        "data_order": "197"
+      },
+      {
+        "key": "KFSA KIC(France_Block)",
+        "value": "133642",
+        "kind": "D",
+        "data_order": "198"
+      },
+      {
+        "key": "KFSA KIDF(France_Block)",
+        "value": "123385",
+        "kind": "D",
+        "data_order": "199"
+      },
+      {
+        "key": "KFSA KLM(France_Block)",
+        "value": "142659",
+        "kind": "D",
+        "data_order": "200"
+      },
+      {
+        "key": "KFSA KMP(France_Block)",
+        "value": "125637",
+        "kind": "D",
+        "data_order": "201"
+      },
+      {
+        "key": "KFSA KNO(France_Block)",
+        "value": "136552",
+        "kind": "D",
+        "data_order": "202"
+      },
+      {
+        "key": "KFSA KSV(France_Block)",
+        "value": "126281",
+        "kind": "D",
+        "data_order": "203"
+      },
+      {
+        "key": "KFSA LOCSAMAT(France_Block)",
+        "value": "141518",
+        "kind": "D",
+        "data_order": "204"
+      },
+      {
+        "key": "KFSA LYON(France_Block)",
+        "value": "123606",
+        "kind": "D",
+        "data_order": "205"
+      },
+      {
+        "key": "KFSA MATTP(France_Block)",
+        "value": "126139",
+        "kind": "D",
+        "data_order": "206"
+      },
+      {
+        "key": "KFSA MAZEAU(France_Block)",
+        "value": "139648",
+        "kind": "D",
+        "data_order": "207"
+      },
+      {
+        "key": "KFSA PERCO ALSACE(France_Block)",
+        "value": "126437",
+        "kind": "D",
+        "data_order": "208"
+      },
+      {
+        "key": "KFSA PRO SERVICES BTP(France_Block)",
+        "value": "142922",
+        "kind": "D",
+        "data_order": "209"
+      },
+      {
+        "key": "KFSA PROVENCE(France_Block)",
+        "value": "141980",
+        "kind": "D",
+        "data_order": "210"
+      },
+      {
+        "key": "KFSA SAMI NANTES(France_Block)",
+        "value": "126840",
+        "kind": "D",
+        "data_order": "211"
+      },
+      {
+        "key": "KFSA SAMI TP AQUITAI(France_Block)",
+        "value": "126481",
+        "kind": "D",
+        "data_order": "212"
+      },
+      {
+        "key": "KFSA SAMI TP CAEN(France_Block)",
+        "value": "143188",
+        "kind": "D",
+        "data_order": "213"
+      },
+      {
+        "key": "KFSA SAMI TP NIORT(France_Block)",
+        "value": "143121",
+        "kind": "D",
+        "data_order": "214"
+      },
+      {
+        "key": "KFSA SAMI TP RENNES(France_Block)",
+        "value": "127160",
+        "kind": "D",
+        "data_order": "215"
+      },
+      {
+        "key": "KFSA SGM(France_Block)",
+        "value": "142754",
+        "kind": "D",
+        "data_order": "216"
+      },
+      {
+        "key": "KFSA SOCAMAT(France_Block)",
+        "value": "128965",
+        "kind": "D",
+        "data_order": "217"
+      },
+      {
+        "key": "KFSA SODIMAT(France_Block)",
+        "value": "128968",
+        "kind": "D",
+        "data_order": "218"
+      },
+      {
+        "key": "KFSA STPM(France_Block)",
+        "value": "128769",
+        "kind": "D",
+        "data_order": "219"
+      },
+      {
+        "key": "KFSA(France_Block)",
+        "value": "123369",
+        "kind": "D",
+        "data_order": "220"
+      },
+      {
+        "key": "KH AU(Austria_Block)",
+        "value": "136618",
+        "kind": "D",
+        "data_order": "221"
+      },
+      {
+        "key": "KH CH(Switzerland_Block)",
+        "value": "120049",
+        "kind": "D",
+        "data_order": "222"
+      },
+      {
+        "key": "KH CR(Croatia_Block)",
+        "value": "124975",
+        "kind": "D",
+        "data_order": "223"
+      },
+      {
+        "key": "KH CZ(Czech_Republic_Block)",
+        "value": "131197",
+        "kind": "D",
+        "data_order": "224"
+      },
+      {
+        "key": "KH DE(Kuhn Germany_Block)",
+        "value": "135771",
+        "kind": "D",
+        "data_order": "225"
+      },
+      {
+        "key": "KH HU(Hungary_Block)",
+        "value": "117508",
+        "kind": "D",
+        "data_order": "226"
+      },
+      {
+        "key": "KH SI(Slovenia_Block)",
+        "value": "125059",
+        "kind": "D",
+        "data_order": "227"
+      },
+      {
+        "key": "KIR(Bulgaria_Block)",
+        "value": "115409",
+        "kind": "D",
+        "data_order": "228"
+      },
+      {
+        "key": "KIRBY-SMITH MACHINERY(South Block)",
+        "value": "1145",
+        "kind": "D",
+        "data_order": "229"
+      },
+      {
+        "key": "KIT ALFANO SERGIO(Italy_Block)",
+        "value": "139062",
+        "kind": "D",
+        "data_order": "230"
+      },
+      {
+        "key": "KIT BONTEMPI(Cimertex IT_Block)",
+        "value": "141121",
+        "kind": "D",
+        "data_order": "231"
+      },
+      {
+        "key": "KIT C.O.M.I. SRL(Italy_Block)",
+        "value": "141188",
+        "kind": "D",
+        "data_order": "232"
+      },
+      {
+        "key": "KIT CALDAROLA SRL(Italy_Block)",
+        "value": "141179",
+        "kind": "D",
+        "data_order": "233"
+      },
+      {
+        "key": "KIT CARMAC SRL(Italy_Block)",
+        "value": "141034",
+        "kind": "D",
+        "data_order": "234"
+      },
+      {
+        "key": "KIT CERMA SAS(Italy_Block)",
+        "value": "124563",
+        "kind": "D",
+        "data_order": "235"
+      },
+      {
+        "key": "KIT CLEMENTE MACCHI(Italy_Block)",
+        "value": "140531",
+        "kind": "D",
+        "data_order": "236"
+      },
+      {
+        "key": "KIT CO.M.EDIL SNC(Italy_Block)",
+        "value": "140115",
+        "kind": "D",
+        "data_order": "237"
+      },
+      {
+        "key": "KIT CO.ME.G SRL(Italy_Block)",
+        "value": "139265",
+        "kind": "D",
+        "data_order": "238"
+      },
+      {
+        "key": "KIT COMIES(Italy_Block)",
+        "value": "141022",
+        "kind": "D",
+        "data_order": "239"
+      },
+      {
+        "key": "KIT D ARCO UMBERTO(Italy_Block)",
+        "value": "140361",
+        "kind": "D",
+        "data_order": "240"
+      },
+      {
+        "key": "KIT DE MARCO MACCHI SRL(Italy_Block)",
+        "value": "143443",
+        "kind": "D",
+        "data_order": "241"
+      },
+      {
+        "key": "KIT EDIL CIESSE(Cimertex IT_Block)",
+        "value": "124095",
+        "kind": "D",
+        "data_order": "242"
+      },
+      {
+        "key": "KIT EL.PE SRL(Italy_Block)",
+        "value": "114057",
+        "kind": "D",
+        "data_order": "243"
+      },
+      {
+        "key": "KIT EURO MECCANICA(Italy_Block)",
+        "value": "141008",
+        "kind": "D",
+        "data_order": "244"
+      },
+      {
+        "key": "KIT FARETRA(Italy_Block)",
+        "value": "143115",
+        "kind": "D",
+        "data_order": "245"
+      },
+      {
+        "key": "KIT FERRARI GIOVANN(Cimertex IT_Block)",
+        "value": "140072",
+        "kind": "D",
+        "data_order": "246"
+      },
+      {
+        "key": "KIT GIS SRL(Italy_Block)",
+        "value": "119214",
+        "kind": "D",
+        "data_order": "247"
+      },
+      {
+        "key": "KIT ITALRICAMBI SNC(Italy_Block)",
+        "value": "119794",
+        "kind": "D",
+        "data_order": "248"
+      },
+      {
+        "key": "KIT ITALTRACTOR SUD(Italy_Block)",
+        "value": "124656",
+        "kind": "D",
+        "data_order": "249"
+      },
+      {
+        "key": "KIT KEI EQUIPMENT(Italy_Block)",
+        "value": "119915",
+        "kind": "D",
+        "data_order": "250"
+      },
+      {
+        "key": "KIT LORANDO SRL(Italy_Block)",
+        "value": "140544",
+        "kind": "D",
+        "data_order": "251"
+      },
+      {
+        "key": "KIT LUCCHIARI SRL(Italy_Block)",
+        "value": "141409",
+        "kind": "D",
+        "data_order": "252"
+      },
+      {
+        "key": "KIT M.A.R.A. SRL(Cimertex IT_Block)",
+        "value": "140972",
+        "kind": "D",
+        "data_order": "253"
+      },
+      {
+        "key": "KIT MAINETTI GUIDO(Cimertex IT_Block)",
+        "value": "120890",
+        "kind": "D",
+        "data_order": "254"
+      },
+      {
+        "key": "KIT MAIOR ALDO BAFF(Italy_Block)",
+        "value": "139604",
+        "kind": "D",
+        "data_order": "255"
+      },
+      {
+        "key": "KIT MAMOTER SNC(Italy_Block)",
+        "value": "146031",
+        "kind": "D",
+        "data_order": "256"
+      },
+      {
+        "key": "KIT MAUGERI MACCHIN(Italy_Block)",
+        "value": "140641",
+        "kind": "D",
+        "data_order": "257"
+      },
+      {
+        "key": "KIT MAZZUOLI(Italy_Block)",
+        "value": "146171",
+        "kind": "D",
+        "data_order": "258"
+      },
+      {
+        "key": "KIT O.R.M.A. SNC(Cimertex IT_Block)",
+        "value": "140941",
+        "kind": "D",
+        "data_order": "259"
+      },
+      {
+        "key": "KIT OMAI SERVICE(Italy_Block)",
+        "value": "146623",
+        "kind": "D",
+        "data_order": "260"
+      },
+      {
+        "key": "KIT PACCANI MACCHINE(Cimertex IT_Block)",
+        "value": "143668",
+        "kind": "D",
+        "data_order": "261"
+      },
+      {
+        "key": "KIT PALAZZO MACCHINE SPA(Italy_Block)",
+        "value": "143125",
+        "kind": "D",
+        "data_order": "262"
+      },
+      {
+        "key": "KIT PANCOTTI S.P.A.(Cimertex IT_Block)",
+        "value": "124185",
+        "kind": "D",
+        "data_order": "263"
+      },
+      {
+        "key": "KIT PLAT SERVICE(Italy_Block)",
+        "value": "146079",
+        "kind": "D",
+        "data_order": "264"
+      },
+      {
+        "key": "KIT RIMAT SRL(Cimertex IT_Block)",
+        "value": "134495",
+        "kind": "D",
+        "data_order": "265"
+      },
+      {
+        "key": "KIT SABER SRL(Cimertex IT_Block)",
+        "value": "140926",
+        "kind": "D",
+        "data_order": "266"
+      },
+      {
+        "key": "KIT SALERNO GERARDO(Italy_Block)",
+        "value": "141462",
+        "kind": "D",
+        "data_order": "267"
+      },
+      {
+        "key": "KIT SERICO(Cimertex IT_Block)",
+        "value": "119724",
+        "kind": "D",
+        "data_order": "268"
+      },
+      {
+        "key": "KIT SERTECH(Italy_Block)",
+        "value": "143779",
+        "kind": "D",
+        "data_order": "269"
+      },
+      {
+        "key": "KIT SOMIA SRL(Italy_Block)",
+        "value": "124639",
+        "kind": "D",
+        "data_order": "270"
+      },
+      {
+        "key": "KIT TRACTOR SPARE P(Italy_Block)",
+        "value": "140917",
+        "kind": "D",
+        "data_order": "271"
+      },
+      {
+        "key": "KIT VARINI SRL(Italy_Block)",
+        "value": "142210",
+        "kind": "D",
+        "data_order": "272"
+      },
+      {
+        "key": "KIT VENPA SUD(Italy_Block)",
+        "value": "143119",
+        "kind": "D",
+        "data_order": "273"
+      },
+      {
+        "key": "KIT(Italy_Block)",
+        "value": "140630",
+        "kind": "D",
+        "data_order": "274"
+      },
+      {
+        "key": "KITCHENER TRACTOR CENTRE(Komatsu Canada Block)",
+        "value": "6322",
+        "kind": "D",
+        "data_order": "275"
+      },
+      {
+        "key": "KM FL(Russia)",
+        "value": "204582",
+        "kind": "D",
+        "data_order": "276"
+      },
+      {
+        "key": "KOMATSU EQUIPMENT CO(West Block)",
+        "value": "1235",
+        "kind": "D",
+        "data_order": "277"
+      },
+      {
+        "key": "KOMATSU FOREST(North Block)",
+        "value": "5627",
+        "kind": "D",
+        "data_order": "278"
+      },
+      {
+        "key": "KOMTRAX_Provision_Group(KOMTRAXブロック)",
+        "value": "10000004175",
+        "kind": "D",
+        "data_order": "279"
+      },
+      {
+        "key": "KOMTRAX_利用中止グループ(KOMTRAXブロック)",
+        "value": "10000004297",
+        "kind": "D",
+        "data_order": "280"
+      },
+      {
+        "key": "KOMTRAX教育リージョン_在庫グループ(KOMTRAX教育リージョン_倉庫ブロック)",
+        "value": "10000004351",
+        "kind": "D",
+        "data_order": "281"
+      },
+      {
+        "key": "KOMTRAX教育リージョン_利用中止グループ(KOMTRAX教育リージョン_倉庫ブロック)",
+        "value": "10000004352",
+        "kind": "D",
+        "data_order": "282"
+      },
+      {
+        "key": "KOMTRAX教育代理店_A01(KOMTRAX教育ブロック_A01)",
+        "value": "10000004343",
+        "kind": "D",
+        "data_order": "283"
+      },
+      {
+        "key": "KOMTRAX教育代理店_A02(KOMTRAX教育ブロック_A01)",
+        "value": "10000004344",
+        "kind": "D",
+        "data_order": "284"
+      },
+      {
+        "key": "KOMTRAX教育代理店_B01(KOMTRAX教育ブロック_B01)",
+        "value": "10000004349",
+        "kind": "D",
+        "data_order": "285"
+      },
+      {
+        "key": "KOMTRAX在庫グループ(KOMTRAXブロック)",
+        "value": "10000004353",
+        "kind": "D",
+        "data_order": "286"
+      },
+      {
+        "key": "KPAC BSSC(Thailand_KPAC BSSC_Block)",
+        "value": "167917",
+        "kind": "D",
+        "data_order": "287"
+      },
+      {
+        "key": "KPL(Poland_Block)",
+        "value": "115708",
+        "kind": "D",
+        "data_order": "288"
+      },
+      {
+        "key": "KRA DEALER(Iceland_Block)",
+        "value": "132226",
+        "kind": "D",
+        "data_order": "289"
+      },
+      {
+        "key": "KRA(Iceland_Block)",
+        "value": "125530",
+        "kind": "D",
+        "data_order": "290"
+      },
+      {
+        "key": "KSC(Cambodia_Block)",
+        "value": "170840",
+        "kind": "D",
+        "data_order": "291"
+      },
+      {
+        "key": "KU－研修センタ2(KCSJリフト（ミニ建機）)",
+        "value": "37833",
+        "kind": "D",
+        "data_order": "292"
+      },
+      {
+        "key": "KUHN SLOVAKIA(Slovakia_Block)",
+        "value": "141762",
+        "kind": "D",
+        "data_order": "293"
+      },
+      {
+        "key": "Kane Caribbean(East Block)",
+        "value": "23009",
+        "kind": "D",
+        "data_order": "294"
+      },
+      {
+        "key": "Klink Equipment(KAC FORKLIFT 1 Block)",
+        "value": "15445",
+        "kind": "D",
+        "data_order": "295"
+      },
+      {
+        "key": "Komatsu Chile(KHSA_Block)",
+        "value": "190579",
+        "kind": "D",
+        "data_order": "296"
+      },
+      {
+        "key": "Komatsu Colombia S.A.S.(KHSA_Block)",
+        "value": "196204",
+        "kind": "D",
+        "data_order": "297"
+      },
+      {
+        "key": "Komatsu Forest(KBI Forestry Block)",
+        "value": "190725",
+        "kind": "D",
+        "data_order": "298"
+      },
+      {
+        "key": "Komatsu Forest(Russia)",
+        "value": "206443",
+        "kind": "D",
+        "data_order": "299"
+      },
+      {
+        "key": "Komatsu Forklift Atlanta(KAC FORKLIFT 1 Block)",
+        "value": "17965",
+        "kind": "D",
+        "data_order": "300"
+      },
+      {
+        "key": "Komatsu Forklift Chicago(KAC FORKLIFT 1 Block)",
+        "value": "16570",
+        "kind": "D",
+        "data_order": "301"
+      },
+      {
+        "key": "Komatsu Forklift Oakland(KAC FORKLIFT 1 Block)",
+        "value": "19371",
+        "kind": "D",
+        "data_order": "302"
+      },
+      {
+        "key": "Komatsu Forklift(Komatsu Forklift_Block)",
+        "value": "148896",
+        "kind": "D",
+        "data_order": "303"
+      },
+      {
+        "key": "Komatsu Mining Co(KAC FORKLIFT 1 Block)",
+        "value": "34906",
+        "kind": "D",
+        "data_order": "304"
+      },
+      {
+        "key": "Komatsu Northeast(North Block)",
+        "value": "1244",
+        "kind": "D",
+        "data_order": "305"
+      },
+      {
+        "key": "Komatsu Southwest(West Block)",
+        "value": "24489",
+        "kind": "D",
+        "data_order": "306"
+      },
+      {
+        "key": "L and T CEB(KIPL_Block)",
+        "value": "155481",
+        "kind": "D",
+        "data_order": "307"
+      },
+      {
+        "key": "L and T East(KIPL_Block)",
+        "value": "156102",
+        "kind": "D",
+        "data_order": "308"
+      },
+      {
+        "key": "L and T MEB(KIPL_Block)",
+        "value": "155475",
+        "kind": "D",
+        "data_order": "309"
+      },
+      {
+        "key": "L and T North(KIPL_Block)",
+        "value": "156103",
+        "kind": "D",
+        "data_order": "310"
+      },
+      {
+        "key": "L and T South1(KIPL_Block)",
+        "value": "156098",
+        "kind": "D",
+        "data_order": "311"
+      },
+      {
+        "key": "L and T South2(KIPL_Block)",
+        "value": "156099",
+        "kind": "D",
+        "data_order": "312"
+      },
+      {
+        "key": "L and T West1(KIPL_Block)",
+        "value": "156100",
+        "kind": "D",
+        "data_order": "313"
+      },
+      {
+        "key": "L and T West2(KIPL_Block)",
+        "value": "156101",
+        "kind": "D",
+        "data_order": "314"
+      },
+      {
+        "key": "LINDER INDUSTRIAL MACH.(South Block)",
+        "value": "1141",
+        "kind": "D",
+        "data_order": "315"
+      },
+      {
+        "key": "LYLE MACHINERY(South Block)",
+        "value": "1143",
+        "kind": "D",
+        "data_order": "316"
+      },
+      {
+        "key": "La Maquina Vial(KHSA_Block)",
+        "value": "190623",
+        "kind": "D",
+        "data_order": "317"
+      },
+      {
+        "key": "Laothani(Laos_Block)",
+        "value": "160169",
+        "kind": "D",
+        "data_order": "318"
+      },
+      {
+        "key": "Larry T Wess(KAC FORKLIFT 1 Block)",
+        "value": "27155",
+        "kind": "D",
+        "data_order": "319"
+      },
+      {
+        "key": "Lehigh-Hanson(North Block)",
+        "value": "8292",
+        "kind": "D",
+        "data_order": "320"
+      },
+      {
+        "key": "Lift Services(KAC FORKLIFT 1 Block)",
+        "value": "27142",
+        "kind": "D",
+        "data_order": "321"
+      },
+      {
+        "key": "Lift Truck Parts Serv(KAC FORKLIFT 1 Block)",
+        "value": "27292",
+        "kind": "D",
+        "data_order": "322"
+      },
+      {
+        "key": "Lift Truck Parts Service(KAC FORKLIFT 1 Block)",
+        "value": "32957",
+        "kind": "D",
+        "data_order": "323"
+      },
+      {
+        "key": "Limited Access(Limited_Access_Block)",
+        "value": "151246",
+        "kind": "D",
+        "data_order": "324"
+      },
+      {
+        "key": "MAKO(Luxembourg_Block)",
+        "value": "137957",
+        "kind": "D",
+        "data_order": "325"
+      },
+      {
+        "key": "MAL_DB1(sys_MAL)",
+        "value": "208104",
+        "kind": "D",
+        "data_order": "326"
+      },
+      {
+        "key": "MARK HEISEL EQUIPMENT(North Block)",
+        "value": "6425",
+        "kind": "D",
+        "data_order": "327"
+      },
+      {
+        "key": "MASON(KBI Construction Block)",
+        "value": "194177",
+        "kind": "D",
+        "data_order": "328"
+      },
+      {
+        "key": "MATECH(Tunisia_Block)",
+        "value": "147728",
+        "kind": "D",
+        "data_order": "329"
+      },
+      {
+        "key": "MAXIMA(Philippines_Block)",
+        "value": "157406",
+        "kind": "D",
+        "data_order": "330"
+      },
+      {
+        "key": "MCHALE(Ireland_Block)",
+        "value": "133963",
+        "kind": "D",
+        "data_order": "331"
+      },
+      {
+        "key": "MC_DB1(sys_RSA)",
+        "value": "208906",
+        "kind": "D",
+        "data_order": "332"
+      },
+      {
+        "key": "MHE FORK(VietnamFork_Block)",
+        "value": "163156",
+        "kind": "D",
+        "data_order": "333"
+      },
+      {
+        "key": "MHE(Vietnam_Block)",
+        "value": "157407",
+        "kind": "D",
+        "data_order": "334"
+      },
+      {
+        "key": "MIDLANTIC MACHINERY(North Block)",
+        "value": "1250",
+        "kind": "D",
+        "data_order": "335"
+      },
+      {
+        "key": "MINEQUIP(KHSA_Block)",
+        "value": "187742",
+        "kind": "D",
+        "data_order": "336"
+      },
+      {
+        "key": "MITSUI MACHINERY DIST(North Block)",
+        "value": "6673",
+        "kind": "D",
+        "data_order": "337"
+      },
+      {
+        "key": "MKL MC CANDLES(UK_Block)",
+        "value": "120927",
+        "kind": "D",
+        "data_order": "338"
+      },
+      {
+        "key": "MKL(UK_Block)",
+        "value": "127480",
+        "kind": "D",
+        "data_order": "339"
+      },
+      {
+        "key": "MM FL(Russia)",
+        "value": "204583",
+        "kind": "D",
+        "data_order": "340"
+      },
+      {
+        "key": "MODERN MACHINERY COMPANY(West Block)",
+        "value": "3233",
+        "kind": "D",
+        "data_order": "341"
+      },
+      {
+        "key": "MOENCO(Nairobi SSC)",
+        "value": "208695",
+        "kind": "D",
+        "data_order": "342"
+      },
+      {
+        "key": "MOTOBEL(KBI Construction Block)",
+        "value": "194866",
+        "kind": "D",
+        "data_order": "343"
+      },
+      {
+        "key": "MRM(Romania_Block)",
+        "value": "114102",
+        "kind": "D",
+        "data_order": "344"
+      },
+      {
+        "key": "Makint(KHSA_Block)",
+        "value": "190583",
+        "kind": "D",
+        "data_order": "345"
+      },
+      {
+        "key": "Mantomac(KBI Construction Block)",
+        "value": "190659",
+        "kind": "D",
+        "data_order": "346"
+      },
+      {
+        "key": "Maryland Industrial(KAC FORKLIFT 1 Block)",
+        "value": "26406",
+        "kind": "D",
+        "data_order": "347"
+      },
+      {
+        "key": "Material Handling Inc(KAC FORKLIFT 1 Block)",
+        "value": "28291",
+        "kind": "D",
+        "data_order": "348"
+      },
+      {
+        "key": "Max Lift Inc.(KAC FORKLIFT 1 Block)",
+        "value": "25492",
+        "kind": "D",
+        "data_order": "349"
+      },
+      {
+        "key": "Mega(KHSA_Block)",
+        "value": "191092",
+        "kind": "D",
+        "data_order": "350"
+      },
+      {
+        "key": "Mehvar(Iran_Block)",
+        "value": "203562",
+        "kind": "D",
+        "data_order": "351"
+      },
+      {
+        "key": "Mid State Paver(South Block)",
+        "value": "1231",
+        "kind": "D",
+        "data_order": "352"
+      },
+      {
+        "key": "Mid-Atlantic Ind Equip(KAC FORKLIFT 1 Block)",
+        "value": "29229",
+        "kind": "D",
+        "data_order": "353"
+      },
+      {
+        "key": "Mid-Ohio Forklifts(KAC FORKLIFT 1 Block)",
+        "value": "10633",
+        "kind": "D",
+        "data_order": "354"
+      },
+      {
+        "key": "Mid-West Industrial Eq(KAC FORKLIFT 1 Block)",
+        "value": "11761",
+        "kind": "D",
+        "data_order": "355"
+      },
+      {
+        "key": "Mile High Forklift(KAC FORKLIFT 1 Block)",
+        "value": "27161",
+        "kind": "D",
+        "data_order": "356"
+      },
+      {
+        "key": "Miner Material Handling(KAC FORKLIFT 1 Block)",
+        "value": "32119",
+        "kind": "D",
+        "data_order": "357"
+      },
+      {
+        "key": "Mitsui Maquinarias Peru(KHSA_Block)",
+        "value": "190663",
+        "kind": "D",
+        "data_order": "358"
+      },
+      {
+        "key": "Mobilift(KAC FORKLIFT 1 Block)",
+        "value": "13286",
+        "kind": "D",
+        "data_order": "359"
+      },
+      {
+        "key": "Mosaic(South Block)",
+        "value": "2620",
+        "kind": "D",
+        "data_order": "360"
+      },
+      {
+        "key": "National Accounts(North Block)",
+        "value": "3776",
+        "kind": "D",
+        "data_order": "361"
+      },
+      {
+        "key": "Near East Equipment(Jordan_Block)",
+        "value": "202861",
+        "kind": "D",
+        "data_order": "362"
+      },
+      {
+        "key": "NewFeldman(Israel_Block)",
+        "value": "144884",
+        "kind": "D",
+        "data_order": "363"
+      },
+      {
+        "key": "Noroeste (KBI Construction Block)",
+        "value": "190726",
+        "kind": "D",
+        "data_order": "364"
+      },
+      {
+        "key": "Northwest Handling Sys(KAC FORKLIFT 1 Block)",
+        "value": "31097",
+        "kind": "D",
+        "data_order": "365"
+      },
+      {
+        "key": "PA Industrial Equipment(KAC FORKLIFT 1 Block)",
+        "value": "27237",
+        "kind": "D",
+        "data_order": "366"
+      },
+      {
+        "key": "PDQ RENTALS(West Block)",
+        "value": "6589",
+        "kind": "D",
+        "data_order": "367"
+      },
+      {
+        "key": "PINE BUSH EQUIPMENT CO.(North Block)",
+        "value": "1254",
+        "kind": "D",
+        "data_order": "368"
+      },
+      {
+        "key": "POWER EQUIPMENT COMPANY(South Block)",
+        "value": "1146",
+        "kind": "D",
+        "data_order": "369"
+      },
+      {
+        "key": "POWER MOTIVE CORP.(West Block)",
+        "value": "1238",
+        "kind": "D",
+        "data_order": "370"
+      },
+      {
+        "key": "PTUT(KMSI_Block)",
+        "value": "155610",
+        "kind": "D",
+        "data_order": "371"
+      },
+      {
+        "key": "Panafrican Ghana(Nairobi SSC)",
+        "value": "208227",
+        "kind": "D",
+        "data_order": "372"
+      },
+      {
+        "key": "Panafrican Kenya(Nairobi SSC)",
+        "value": "208751",
+        "kind": "D",
+        "data_order": "373"
+      },
+      {
+        "key": "Panafrican Nigeria(Nairobi SSC)",
+        "value": "208228",
+        "kind": "D",
+        "data_order": "374"
+      },
+      {
+        "key": "Panafrican Tanzania(Nairobi SSC)",
+        "value": "208750",
+        "kind": "D",
+        "data_order": "375"
+      },
+      {
+        "key": "Penn Equipment Co(KAC FORKLIFT 1 Block)",
+        "value": "27238",
+        "kind": "D",
+        "data_order": "376"
+      },
+      {
+        "key": "Pennell Forklift Service(KAC FORKLIFT 1 Block)",
+        "value": "13530",
+        "kind": "D",
+        "data_order": "377"
+      },
+      {
+        "key": "Permian Machinery(KAC FORKLIFT 1 Block)",
+        "value": "25299",
+        "kind": "D",
+        "data_order": "378"
+      },
+      {
+        "key": "Praco SA(KHSA_Block)",
+        "value": "190581",
+        "kind": "D",
+        "data_order": "379"
+      },
+      {
+        "key": "Preferred Mtl Handling(KAC FORKLIFT 1 Block)",
+        "value": "31095",
+        "kind": "D",
+        "data_order": "380"
+      },
+      {
+        "key": "Prime Equipment(South Block)",
+        "value": "1453",
+        "kind": "D",
+        "data_order": "381"
+      },
+      {
+        "key": "Professional Forklift(KAC FORKLIFT 1 Block)",
+        "value": "19420",
+        "kind": "D",
+        "data_order": "382"
+      },
+      {
+        "key": "Provisional Group(Cuba KLTD Block)(Cuba KLTD Block)",
+        "value": "200437",
+        "kind": "D",
+        "data_order": "383"
+      },
+      {
+        "key": "Provisional Group(KBI Construction Block)(KBI Construction Block)",
+        "value": "200431",
+        "kind": "D",
+        "data_order": "384"
+      },
+      {
+        "key": "Provisional Group(KBI Forestry Block)(KBI Forestry Block)",
+        "value": "200434",
+        "kind": "D",
+        "data_order": "385"
+      },
+      {
+        "key": "Provisional Group(KBI Mining Block)(KBI Mining Block)",
+        "value": "200428",
+        "kind": "D",
+        "data_order": "386"
+      },
+      {
+        "key": "Provisional Group(KHSA_Block)(KHSA_Block)",
+        "value": "200440",
+        "kind": "D",
+        "data_order": "387"
+      },
+      {
+        "key": "Provisional Group(Warehouse_Block)",
+        "value": "185402",
+        "kind": "D",
+        "data_order": "388"
+      },
+      {
+        "key": "Provisional group(WareHouse Block)",
+        "value": "35775",
+        "kind": "D",
+        "data_order": "389"
+      },
+      {
+        "key": "Provisional group(Warehouse Block)",
+        "value": "207922",
+        "kind": "D",
+        "data_order": "390"
+      },
+      {
+        "key": "Provisional group(Warehouse block)",
+        "value": "147752",
+        "kind": "D",
+        "data_order": "391"
+      },
+      {
+        "key": "Provisional group(Warehouse_Block)",
+        "value": "152854",
+        "kind": "D",
+        "data_order": "392"
+      },
+      {
+        "key": "Provisional group(Warehouse_Block)",
+        "value": "204335",
+        "kind": "D",
+        "data_order": "393"
+      },
+      {
+        "key": "REID_CIA(KHSA_Block)",
+        "value": "188916",
+        "kind": "D",
+        "data_order": "394"
+      },
+      {
+        "key": "REIF(Germany_Block)",
+        "value": "143589",
+        "kind": "D",
+        "data_order": "395"
+      },
+      {
+        "key": "RISH EQUIPMENT CO(South Block)",
+        "value": "1147",
+        "kind": "D",
+        "data_order": "396"
+      },
+      {
+        "key": "RITTER UND SCHWALD(Germany_Block)",
+        "value": "124805",
+        "kind": "D",
+        "data_order": "397"
+      },
+      {
+        "key": "RMS INSTRUMENT Electric(North Block)",
+        "value": "6423",
+        "kind": "D",
+        "data_order": "398"
+      },
+      {
+        "key": "ROAD MACHINERY AND SPLY(North Block)",
+        "value": "1255",
+        "kind": "D",
+        "data_order": "399"
+      },
+      {
+        "key": "ROAD MACHINERY LLC(West Block)",
+        "value": "1239",
+        "kind": "D",
+        "data_order": "400"
+      },
+      {
+        "key": "ROADBUILDERS MACHINERY(North Block)",
+        "value": "1256",
+        "kind": "D",
+        "data_order": "401"
+      },
+      {
+        "key": "ROLAND MACHINERY CO.(North Block)",
+        "value": "1257",
+        "kind": "D",
+        "data_order": "402"
+      },
+      {
+        "key": "RSA_DB1(sys_RSA)",
+        "value": "207928",
+        "kind": "D",
+        "data_order": "403"
+      },
+      {
+        "key": "Ridgway(UK_Block)",
+        "value": "143345",
+        "kind": "D",
+        "data_order": "404"
+      },
+      {
+        "key": "Road Machinery Mexico(KHSA_Block)",
+        "value": "190916",
+        "kind": "D",
+        "data_order": "405"
+      },
+      {
+        "key": "Rogers Group Inc(South Block)",
+        "value": "5092",
+        "kind": "D",
+        "data_order": "406"
+      },
+      {
+        "key": "Roman(KHSA_Block)",
+        "value": "194236",
+        "kind": "D",
+        "data_order": "407"
+      },
+      {
+        "key": "SARACAKIS(Greece_Block)",
+        "value": "138357",
+        "kind": "D",
+        "data_order": "408"
+      },
+      {
+        "key": "SCANTRUCK(Denmark_Block)",
+        "value": "132241",
+        "kind": "D",
+        "data_order": "409"
+      },
+      {
+        "key": "SCHLUTER(Germany_Block)",
+        "value": "129056",
+        "kind": "D",
+        "data_order": "410"
+      },
+      {
+        "key": "SMS RENTS(Komatsu Canada Block)",
+        "value": "1405",
+        "kind": "D",
+        "data_order": "411"
+      },
+      {
+        "key": "SMS-Alaska(Komatsu Canada Block)",
+        "value": "34581",
+        "kind": "D",
+        "data_order": "412"
+      },
+      {
+        "key": "SMS-EASTERN(Komatsu Canada Block)",
+        "value": "1262",
+        "kind": "D",
+        "data_order": "413"
+      },
+      {
+        "key": "SMS-MINING(Komatsu Canada Block)",
+        "value": "3020",
+        "kind": "D",
+        "data_order": "414"
+      },
+      {
+        "key": "SMS-WESTERN(Komatsu Canada Block)",
+        "value": "1332",
+        "kind": "D",
+        "data_order": "415"
+      },
+      {
+        "key": "SODERBERG HAAK(Sweden_Block)",
+        "value": "145868",
+        "kind": "D",
+        "data_order": "416"
+      },
+      {
+        "key": "SODIM-TP(DakarSSC)",
+        "value": "208056",
+        "kind": "D",
+        "data_order": "417"
+      },
+      {
+        "key": "SRO(Finland_Block)",
+        "value": "138526",
+        "kind": "D",
+        "data_order": "418"
+      },
+      {
+        "key": "STOFFEL EQUIPMENT(KAC FORKLIFT 1 Block)",
+        "value": "12989",
+        "kind": "D",
+        "data_order": "419"
+      },
+      {
+        "key": "STOK(Morocco_Block)",
+        "value": "139536",
+        "kind": "D",
+        "data_order": "420"
+      },
+      {
+        "key": "SZ_DB1(sys_RSA)",
+        "value": "209151",
+        "kind": "D",
+        "data_order": "421"
+      },
+      {
+        "key": "Soosan(Korea_Block)",
+        "value": "155611",
+        "kind": "D",
+        "data_order": "422"
+      },
+      {
+        "key": "Southwest Mtrl Handling(KAC FORKLIFT 1 Block)",
+        "value": "29478",
+        "kind": "D",
+        "data_order": "423"
+      },
+      {
+        "key": "Stewart(KHSA_Block)",
+        "value": "192525",
+        "kind": "D",
+        "data_order": "424"
+      },
+      {
+        "key": "Sumitec(Ukraine_Block)",
+        "value": "144936",
+        "kind": "D",
+        "data_order": "425"
+      },
+      {
+        "key": "Sunbelt Industrial Truck(KAC FORKLIFT 1 Block)",
+        "value": "16571",
+        "kind": "D",
+        "data_order": "426"
+      },
+      {
+        "key": "TECMAP(KHSA_Block)",
+        "value": "199734",
+        "kind": "D",
+        "data_order": "427"
+      },
+      {
+        "key": "TEIKOM BOSNIA(Bosnia Herzegovina_Block)",
+        "value": "145493",
+        "kind": "D",
+        "data_order": "428"
+      },
+      {
+        "key": "TEIKOM MACEDONIA(Macedonia_Block)",
+        "value": "142889",
+        "kind": "D",
+        "data_order": "429"
+      },
+      {
+        "key": "TEIKOM MONTENEGRO(Montenegro_Block)",
+        "value": "142893",
+        "kind": "D",
+        "data_order": "430"
+      },
+      {
+        "key": "TEIKOM SERBIA(Serbia_Block)",
+        "value": "142845",
+        "kind": "D",
+        "data_order": "431"
+      },
+      {
+        "key": "TESMA(Turkey_Block)",
+        "value": "200704",
+        "kind": "D",
+        "data_order": "432"
+      },
+      {
+        "key": "TESMA_FORK(TurkeyFork_Block)",
+        "value": "202550",
+        "kind": "D",
+        "data_order": "433"
+      },
+      {
+        "key": "TEST(KAC FORKLIFT 1 Block)",
+        "value": "10369",
+        "kind": "D",
+        "data_order": "434"
+      },
+      {
+        "key": "TRACTOR AND EQUIPMENT CO(South Block)",
+        "value": "1148",
+        "kind": "D",
+        "data_order": "435"
+      },
+      {
+        "key": "Taiwan Forklift(TaiwanFork_Block)",
+        "value": "185282",
+        "kind": "D",
+        "data_order": "436"
+      },
+      {
+        "key": "Tampa Forklift(KAC FORKLIFT 1 Block)",
+        "value": "31262",
+        "kind": "D",
+        "data_order": "437"
+      },
+      {
+        "key": "Tiesa(KHSA_Block)",
+        "value": "191371",
+        "kind": "D",
+        "data_order": "438"
+      },
+      {
+        "key": "Transwest Mongolia(Mongolia_Block)",
+        "value": "201081",
+        "kind": "D",
+        "data_order": "439"
+      },
+      {
+        "key": "Tricor(South Block)",
+        "value": "1451",
+        "kind": "D",
+        "data_order": "440"
+      },
+      {
+        "key": "UMW_EM(Malaysia_Block)",
+        "value": "155528",
+        "kind": "D",
+        "data_order": "441"
+      },
+      {
+        "key": "UMW_MMR(Myanmar_Block)",
+        "value": "176413",
+        "kind": "D",
+        "data_order": "442"
+      },
+      {
+        "key": "UMW_PG(Papua New Guinea_Block)",
+        "value": "157147",
+        "kind": "D",
+        "data_order": "443"
+      },
+      {
+        "key": "UMW_PM(Malaysia_Block)",
+        "value": "155527",
+        "kind": "D",
+        "data_order": "444"
+      },
+      {
+        "key": "UMW_SG(Singapore_Block)",
+        "value": "155529",
+        "kind": "D",
+        "data_order": "445"
+      },
+      {
+        "key": "United Mach Forklift(KAC FORKLIFT 1 Block)",
+        "value": "10293",
+        "kind": "D",
+        "data_order": "446"
+      },
+      {
+        "key": "United Rentals(South Block)",
+        "value": "1452",
+        "kind": "D",
+        "data_order": "447"
+      },
+      {
+        "key": "VALGK_中古車グループ(VALGK_Block)",
+        "value": "10000011653",
+        "kind": "D",
+        "data_order": "448"
+      },
+      {
+        "key": "VALGK_利用中止グループ(VALGK_Block)",
+        "value": "10000011687",
+        "kind": "D",
+        "data_order": "449"
+      },
+      {
+        "key": "VALTES_代理店_014(VALTES_ブロック_014)",
+        "value": "10000011645",
+        "kind": "D",
+        "data_order": "450"
+      },
+      {
+        "key": "VALTES_代理店_014_2(VALTES_ブロック_014)",
+        "value": "10000011661",
+        "kind": "D",
+        "data_order": "451"
+      },
+      {
+        "key": "VALTES_廃車代理店_014(VALTES_ブロック_014)",
+        "value": "10000011647",
+        "kind": "D",
+        "data_order": "452"
+      },
+      {
+        "key": "VALTES代理店(Estonia_Block)",
+        "value": "10000004332",
+        "kind": "D",
+        "data_order": "453"
+      },
+      {
+        "key": "VALTES代理店_007(KCSJ建機)",
+        "value": "10000004379",
+        "kind": "D",
+        "data_order": "454"
+      },
+      {
+        "key": "VAL_DB_A(KCSJ建機)",
+        "value": "10000004329",
+        "kind": "D",
+        "data_order": "455"
+      },
+      {
+        "key": "VAL_グループ統合_代理店A(KCSJ建機)",
+        "value": "10000004324",
+        "kind": "D",
+        "data_order": "456"
+      },
+      {
+        "key": "VAL_グループ統合_代理店A-1(KCSJ建機)",
+        "value": "10000011701",
+        "kind": "D",
+        "data_order": "457"
+      },
+      {
+        "key": "VAL_グループ統合_代理店B(KCSJ建機)",
+        "value": "10000011702",
+        "kind": "D",
+        "data_order": "458"
+      },
+      {
+        "key": "VAL_グループ統合_代理店B-1(KCSJ建機)",
+        "value": "10000011703",
+        "kind": "D",
+        "data_order": "459"
+      },
+      {
+        "key": "VAL_代理店_JPN(KCSJ建機)",
+        "value": "10000011684",
+        "kind": "D",
+        "data_order": "460"
+      },
+      {
+        "key": "VIANMAQ(KBI Construction Block)",
+        "value": "190727",
+        "kind": "D",
+        "data_order": "461"
+      },
+      {
+        "key": "Victoria Equipment Ltd.(Nairobi SSC)",
+        "value": "208752",
+        "kind": "D",
+        "data_order": "462"
+      },
+      {
+        "key": "W E Johnson(KAC FORKLIFT 1 Block)",
+        "value": "7318",
+        "kind": "D",
+        "data_order": "463"
+      },
+      {
+        "key": "W. L. Foster Ranch(South Block)",
+        "value": "3067",
+        "kind": "D",
+        "data_order": "464"
+      },
+      {
+        "key": "WAUKESHA-PEARCE IND.(South Block)",
+        "value": "1149",
+        "kind": "D",
+        "data_order": "465"
+      },
+      {
+        "key": "WESTERN SPRINKLER(North Block)",
+        "value": "7766",
+        "kind": "D",
+        "data_order": "466"
+      },
+      {
+        "key": "WILSON EQUIPMENT(Komatsu Canada Block)",
+        "value": "1422",
+        "kind": "D",
+        "data_order": "467"
+      },
+      {
+        "key": "Y.K. AL MOAYYED(Bahrain_Block)",
+        "value": "201922",
+        "kind": "D",
+        "data_order": "468"
+      },
+      {
+        "key": "ZM_DB1(sys_ZM)",
+        "value": "208845",
+        "kind": "D",
+        "data_order": "469"
+      },
+      {
+        "key": "Zanelato SA(KHSA_Block)",
+        "value": "190448",
+        "kind": "D",
+        "data_order": "470"
+      },
+      {
+        "key": "test0216(TEST_Block)",
+        "value": "201468",
+        "kind": "D",
+        "data_order": "471"
+      },
+      {
+        "key": "test0216a(TEST_Block)",
+        "value": "201948",
+        "kind": "D",
+        "data_order": "472"
+      },
+      {
+        "key": "used machine group(DE-activation)",
+        "value": "209195",
+        "kind": "D",
+        "data_order": "473"
+      },
+      {
+        "key": "used machine group(DakarSSC)(DakarSSC)",
+        "value": "209197",
+        "kind": "D",
+        "data_order": "474"
+      },
+      {
+        "key": "used machine group(Nairobi SSC)(Nairobi SSC)",
+        "value": "209199",
+        "kind": "D",
+        "data_order": "475"
+      },
+      {
+        "key": "イバジュウ(KCSJ建機)",
+        "value": "37738",
+        "kind": "D",
+        "data_order": "476"
+      },
+      {
+        "key": "イマギイレ(KCSJ建機)",
+        "value": "37835",
+        "kind": "D",
+        "data_order": "477"
+      },
+      {
+        "key": "インフラソフト開発Gr代理店グループ(KCSJ建機)",
+        "value": "10000011642",
+        "kind": "D",
+        "data_order": "478"
+      },
+      {
+        "key": "エグゼパフォーマンス代理店1(EXEパフォーマンステスト_R1_01変更5)",
+        "value": "10000001123",
+        "kind": "D",
+        "data_order": "479"
+      },
+      {
+        "key": "エグゼパフォーマンス代理店2(EXEパフォーマンステスト_R1_01変更5)",
+        "value": "10000001124",
+        "kind": "D",
+        "data_order": "480"
+      },
+      {
+        "key": "エグゼパフォーマンス代理店3(EXEパフォーマンステスト_R1_03)",
+        "value": "10000001125",
+        "kind": "D",
+        "data_order": "481"
+      },
+      {
+        "key": "エグゼ代理店1(エグゼPFブロック)",
+        "value": "10000004381",
+        "kind": "D",
+        "data_order": "482"
+      },
+      {
+        "key": "ケー・エム・リース(KCSJ建機)",
+        "value": "37803",
+        "kind": "D",
+        "data_order": "483"
+      },
+      {
+        "key": "コマツクイック(KCSJ建機)",
+        "value": "37811",
+        "kind": "D",
+        "data_order": "484"
+      },
+      {
+        "key": "コマツサービスエース(KCSJ建機)",
+        "value": "37788",
+        "kind": "D",
+        "data_order": "485"
+      },
+      {
+        "key": "コマツユーティリティ2(KCSJリフト（ミニ建機）)",
+        "value": "37813",
+        "kind": "D",
+        "data_order": "486"
+      },
+      {
+        "key": "コマツリフト本社(KCSJリフト)",
+        "value": "37331",
+        "kind": "D",
+        "data_order": "487"
+      },
+      {
+        "key": "コマツレンタル(KCSJ建機)",
+        "value": "37834",
+        "kind": "D",
+        "data_order": "488"
+      },
+      {
+        "key": "コマツレンタル道東(KCSJ建機)",
+        "value": "37718",
+        "kind": "D",
+        "data_order": "489"
+      },
+      {
+        "key": "コマツ茨城(KCSJ建機)",
+        "value": "37703",
+        "kind": "D",
+        "data_order": "490"
+      },
+      {
+        "key": "コマツ加賀(KCSJ建機)",
+        "value": "37774",
+        "kind": "D",
+        "data_order": "491"
+      },
+      {
+        "key": "コマツ岩手(KCSJ建機)",
+        "value": "37747",
+        "kind": "D",
+        "data_order": "492"
+      },
+      {
+        "key": "コマツ宮崎(KCSJ建機)",
+        "value": "37740",
+        "kind": "D",
+        "data_order": "493"
+      },
+      {
+        "key": "コマツ埼玉(KCSJ建機)",
+        "value": "37710",
+        "kind": "D",
+        "data_order": "494"
+      },
+      {
+        "key": "コマツ山陰(KCSJ建機)",
+        "value": "37735",
+        "kind": "D",
+        "data_order": "495"
+      },
+      {
+        "key": "コマツ山形(KCSJ建機)",
+        "value": "37749",
+        "kind": "D",
+        "data_order": "496"
+      },
+      {
+        "key": "コマツ滋賀(KCSJ建機)",
+        "value": "37737",
+        "kind": "D",
+        "data_order": "497"
+      },
+      {
+        "key": "コマツ秋田(KCSJ建機)",
+        "value": "37748",
+        "kind": "D",
+        "data_order": "498"
+      },
+      {
+        "key": "コマツ信南(KCSJ建機)",
+        "value": "37792",
+        "kind": "D",
+        "data_order": "499"
+      },
+      {
+        "key": "コマツ石川(KCSJ建機)",
+        "value": "37731",
+        "kind": "D",
+        "data_order": "500"
+      },
+      {
+        "key": "コマツ淡路(KCSJ建機)",
+        "value": "37751",
+        "kind": "D",
+        "data_order": "501"
+      },
+      {
+        "key": "コマツ東京C(KCSJ建機)",
+        "value": "36088",
+        "kind": "D",
+        "data_order": "502"
+      },
+      {
+        "key": "コマツ道東(KCSJ建機)",
+        "value": "37809",
+        "kind": "D",
+        "data_order": "503"
+      },
+      {
+        "key": "コマツ栃工デモ(KCSJリフト)",
+        "value": "53812",
+        "kind": "D",
+        "data_order": "504"
+      },
+      {
+        "key": "コマツ栃木(KCSJ建機)",
+        "value": "37789",
+        "kind": "D",
+        "data_order": "505"
+      },
+      {
+        "key": "コマツ飛騨(KCSJ建機)",
+        "value": "37787",
+        "kind": "D",
+        "data_order": "506"
+      },
+      {
+        "key": "コマツ富山(KCSJ建機)",
+        "value": "37709",
+        "kind": "D",
+        "data_order": "507"
+      },
+      {
+        "key": "コマツ福島(KCSJ建機)",
+        "value": "37790",
+        "kind": "D",
+        "data_order": "508"
+      },
+      {
+        "key": "スマコンデモ(KCSJ建機)",
+        "value": "85073",
+        "kind": "D",
+        "data_order": "509"
+      },
+      {
+        "key": "タイガーリース(KCSJ建機)",
+        "value": "37732",
+        "kind": "D",
+        "data_order": "510"
+      },
+      {
+        "key": "テクノセンタ(KCSJ建機)",
+        "value": "37713",
+        "kind": "D",
+        "data_order": "511"
+      },
+      {
+        "key": "テクノトレーニングセンタ(KCSJ建機)",
+        "value": "108142",
+        "kind": "D",
+        "data_order": "512"
+      },
+      {
+        "key": "テクノレンタル(KCSJ建機)",
+        "value": "37795",
+        "kind": "D",
+        "data_order": "513"
+      },
+      {
+        "key": "デモ用代理店(Block for Demo)",
+        "value": "10000004409",
+        "kind": "D",
+        "data_order": "514"
+      },
+      {
+        "key": "ベストレンタル(KCSJ建機)",
+        "value": "37752",
+        "kind": "D",
+        "data_order": "515"
+      },
+      {
+        "key": "マルマテクニカ(KCSJ建機)",
+        "value": "37311",
+        "kind": "D",
+        "data_order": "516"
+      },
+      {
+        "key": "ライト(KCSJ建機)",
+        "value": "37763",
+        "kind": "D",
+        "data_order": "517"
+      },
+      {
+        "key": "レンタルコトス(KCSJ建機)",
+        "value": "37769",
+        "kind": "D",
+        "data_order": "518"
+      },
+      {
+        "key": "レンタル宮崎(KCSJ建機)",
+        "value": "37741",
+        "kind": "D",
+        "data_order": "519"
+      },
+      {
+        "key": "レンタル山形(KCSJ建機)",
+        "value": "37750",
+        "kind": "D",
+        "data_order": "520"
+      },
+      {
+        "key": "ИКО МАШИНЕРИ (Армения)(Armenia)",
+        "value": "206194",
+        "kind": "D",
+        "data_order": "521"
+      },
+      {
+        "key": "ИКО МАШИНЕРИ (Беларусь)(Belarus)",
+        "value": "206193",
+        "kind": "D",
+        "data_order": "522"
+      },
+      {
+        "key": "ИКО МАШИНЕРИ (Кыргызстан)(Kyrgyzstan)",
+        "value": "207001",
+        "kind": "D",
+        "data_order": "523"
+      },
+      {
+        "key": "ИКО МАШИНЕРИ (Таджикистан)(Tajikistan)",
+        "value": "207342",
+        "kind": "D",
+        "data_order": "524"
+      },
+      {
+        "key": "ИКО МАШИНЕРИ (Узбекистан)(Uzbekistan)",
+        "value": "207670",
+        "kind": "D",
+        "data_order": "525"
+      },
+      {
+        "key": "ИСТК FL(Russia)",
+        "value": "204945",
+        "kind": "D",
+        "data_order": "526"
+      },
+      {
+        "key": "ИСТК(Russia)",
+        "value": "204494",
+        "kind": "D",
+        "data_order": "527"
+      },
+      {
+        "key": "КМ(Russia)",
+        "value": "204489",
+        "kind": "D",
+        "data_order": "528"
+      },
+      {
+        "key": "Крым(Russia)",
+        "value": "206520",
+        "kind": "D",
+        "data_order": "529"
+      },
+      {
+        "key": "ММ(Russia)",
+        "value": "204492",
+        "kind": "D",
+        "data_order": "530"
+      },
+      {
+        "key": "Маштехимпорт(Ukraine)",
+        "value": "206544",
+        "kind": "D",
+        "data_order": "531"
+      },
+      {
+        "key": "СТИ-ДВ(Russia)",
+        "value": "204491",
+        "kind": "D",
+        "data_order": "532"
+      },
+      {
+        "key": "СТИ-КЕМ(Russia)",
+        "value": "204493",
+        "kind": "D",
+        "data_order": "533"
+      },
+      {
+        "key": "СТИ-СИБ(Russia)",
+        "value": "204496",
+        "kind": "D",
+        "data_order": "534"
+      },
+      {
+        "key": "СТИ-СПБ(Russia)",
+        "value": "204495",
+        "kind": "D",
+        "data_order": "535"
+      },
+      {
+        "key": "Сток КСНГ Вилки(Russia)",
+        "value": "204943",
+        "kind": "D",
+        "data_order": "536"
+      },
+      {
+        "key": "Сток КСНГ(Russia)",
+        "value": "204387",
+        "kind": "D",
+        "data_order": "537"
+      },
+      {
+        "key": "茨城小松リフト(KCSJリフト)",
+        "value": "37325",
+        "kind": "D",
+        "data_order": "538"
+      },
+      {
+        "key": "茨城小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37819",
+        "kind": "D",
+        "data_order": "539"
+      },
+      {
+        "key": "沖縄産機(KCSJリフト)",
+        "value": "37330",
+        "kind": "D",
+        "data_order": "540"
+      },
+      {
+        "key": "沖縄産機株式会社2(KCSJリフト（ミニ建機）)",
+        "value": "37832",
+        "kind": "D",
+        "data_order": "541"
+      },
+      {
+        "key": "温井(KCSJ建機)",
+        "value": "37716",
+        "kind": "D",
+        "data_order": "542"
+      },
+      {
+        "key": "開成(KCSJ建機)",
+        "value": "37762",
+        "kind": "D",
+        "data_order": "543"
+      },
+      {
+        "key": "開発JPテスト(KCSJ建機)",
+        "value": "37717",
+        "kind": "D",
+        "data_order": "544"
+      },
+      {
+        "key": "監視運用代理店(監視運用ブロック)",
+        "value": "1027",
+        "kind": "D",
+        "data_order": "545"
+      },
+      {
+        "key": "関越カンパニー(KCSJ建機)",
+        "value": "37743",
+        "kind": "D",
+        "data_order": "546"
+      },
+      {
+        "key": "関越小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37820",
+        "kind": "D",
+        "data_order": "547"
+      },
+      {
+        "key": "共和工業(KCSJ建機)",
+        "value": "37805",
+        "kind": "D",
+        "data_order": "548"
+      },
+      {
+        "key": "近畿カンパニー(KCSJ建機)",
+        "value": "37726",
+        "kind": "D",
+        "data_order": "549"
+      },
+      {
+        "key": "近畿四国カンパニ(KCSJリフト)",
+        "value": "37313",
+        "kind": "D",
+        "data_order": "550"
+      },
+      {
+        "key": "近畿小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37826",
+        "kind": "D",
+        "data_order": "551"
+      },
+      {
+        "key": "九州小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37831",
+        "kind": "D",
+        "data_order": "552"
+      },
+      {
+        "key": "建機販売（デモ車輛）(KCSJ建機)",
+        "value": "53307",
+        "kind": "D",
+        "data_order": "553"
+      },
+      {
+        "key": "国土交通省東北整備局(KCSJ建機)",
+        "value": "68325",
+        "kind": "D",
+        "data_order": "554"
+      },
+      {
+        "key": "在庫グループ（KCSJリフト）(KCSJリフト)",
+        "value": "112844",
+        "kind": "D",
+        "data_order": "555"
+      },
+      {
+        "key": "在庫グループ（KCSJリフトミニ建機）(KCSJリフト（ミニ建機）)",
+        "value": "112842",
+        "kind": "D",
+        "data_order": "556"
+      },
+      {
+        "key": "在庫グループ（KCSJ建機）(KCSJ建機)",
+        "value": "112840",
+        "kind": "D",
+        "data_order": "557"
+      },
+      {
+        "key": "三洋重機(KCSJ建機)",
+        "value": "37770",
+        "kind": "D",
+        "data_order": "558"
+      },
+      {
+        "key": "山形小松リフト(KCSJリフト)",
+        "value": "37322",
+        "kind": "D",
+        "data_order": "559"
+      },
+      {
+        "key": "山形小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37815",
+        "kind": "D",
+        "data_order": "560"
+      },
+      {
+        "key": "産栄車輛工業(KCSJ建機)",
+        "value": "52279",
+        "kind": "D",
+        "data_order": "561"
+      },
+      {
+        "key": "四国カンパニー(KCSJ建機)",
+        "value": "37728",
+        "kind": "D",
+        "data_order": "562"
+      },
+      {
+        "key": "四国小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37828",
+        "kind": "D",
+        "data_order": "563"
+      },
+      {
+        "key": "糸魚川重機工業(KCSJ建機)",
+        "value": "37796",
+        "kind": "D",
+        "data_order": "564"
+      },
+      {
+        "key": "試験センタ（栃工）(KCSJ建機)",
+        "value": "92901",
+        "kind": "D",
+        "data_order": "565"
+      },
+      {
+        "key": "秋田総合リース(KCSJ建機)",
+        "value": "37759",
+        "kind": "D",
+        "data_order": "566"
+      },
+      {
+        "key": "昭和リース(KCSJ建機)",
+        "value": "48858",
+        "kind": "D",
+        "data_order": "567"
+      },
+      {
+        "key": "西日本カンパニー(KCSJ建機)",
+        "value": "37724",
+        "kind": "D",
+        "data_order": "568"
+      },
+      {
+        "key": "静岡小松リフト(KCSJリフト)",
+        "value": "37318",
+        "kind": "D",
+        "data_order": "569"
+      },
+      {
+        "key": "静岡小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37822",
+        "kind": "D",
+        "data_order": "570"
+      },
+      {
+        "key": "前田製作所(KCSJ建機)",
+        "value": "37723",
+        "kind": "D",
+        "data_order": "571"
+      },
+      {
+        "key": "双見重車輌(KCSJ建機)",
+        "value": "37757",
+        "kind": "D",
+        "data_order": "572"
+      },
+      {
+        "key": "対馬重販(KCSJ建機)",
+        "value": "37810",
+        "kind": "D",
+        "data_order": "573"
+      },
+      {
+        "key": "代理店A(ブロックA)",
+        "value": "10000011655",
+        "kind": "D",
+        "data_order": "574"
+      },
+      {
+        "key": "代理店B(ブロックB)",
+        "value": "10000011656",
+        "kind": "D",
+        "data_order": "575"
+      },
+      {
+        "key": "代理店C(ブロックC)",
+        "value": "10000011654",
+        "kind": "D",
+        "data_order": "576"
+      },
+      {
+        "key": "大分小松リフト(KCSJリフト)",
+        "value": "37329",
+        "kind": "D",
+        "data_order": "577"
+      },
+      {
+        "key": "大分小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37829",
+        "kind": "D",
+        "data_order": "578"
+      },
+      {
+        "key": "第一建機(KCSJ建機)",
+        "value": "37760",
+        "kind": "D",
+        "data_order": "579"
+      },
+      {
+        "key": "池田内燃機工業(KCSJ建機)",
+        "value": "37304",
+        "kind": "D",
+        "data_order": "580"
+      },
+      {
+        "key": "中古車グループ（KCSJリフト）(KCSJリフト)",
+        "value": "112843",
+        "kind": "D",
+        "data_order": "581"
+      },
+      {
+        "key": "中古車グループ（KCSJリフトミニ建機）(KCSJリフト（ミニ建機）)",
+        "value": "112841",
+        "kind": "D",
+        "data_order": "582"
+      },
+      {
+        "key": "中古車グループ（KCSJ建機）(KCSJ建機)",
+        "value": "112839",
+        "kind": "D",
+        "data_order": "583"
+      },
+      {
+        "key": "中国カンパニー(KCSJ建機)",
+        "value": "37725",
+        "kind": "D",
+        "data_order": "584"
+      },
+      {
+        "key": "中国九州カンパニ(KCSJリフト)",
+        "value": "37317",
+        "kind": "D",
+        "data_order": "585"
+      },
+      {
+        "key": "中国小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37827",
+        "kind": "D",
+        "data_order": "586"
+      },
+      {
+        "key": "中部カンパニ(KCSJリフト)",
+        "value": "37315",
+        "kind": "D",
+        "data_order": "587"
+      },
+      {
+        "key": "中部カンパニー(KCSJ建機)",
+        "value": "37721",
+        "kind": "D",
+        "data_order": "588"
+      },
+      {
+        "key": "中部小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37824",
+        "kind": "D",
+        "data_order": "589"
+      },
+      {
+        "key": "砺波重機(KCSJ建機)",
+        "value": "37791",
+        "kind": "D",
+        "data_order": "590"
+      },
+      {
+        "key": "東京関越カンパニ(KCSJリフト)",
+        "value": "37314",
+        "kind": "D",
+        "data_order": "591"
+      },
+      {
+        "key": "東京小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37821",
+        "kind": "D",
+        "data_order": "592"
+      },
+      {
+        "key": "東北カンパニー(KCSJ建機)",
+        "value": "53841",
+        "kind": "D",
+        "data_order": "593"
+      },
+      {
+        "key": "東北小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37816",
+        "kind": "D",
+        "data_order": "594"
+      },
+      {
+        "key": "東洋リース(KCSJ建機)",
+        "value": "37807",
+        "kind": "D",
+        "data_order": "595"
+      },
+      {
+        "key": "東洋重機工業(KCSJ建機)",
+        "value": "37758",
+        "kind": "D",
+        "data_order": "596"
+      },
+      {
+        "key": "東洋内燃機工業社(KCSJ建機)",
+        "value": "37305",
+        "kind": "D",
+        "data_order": "597"
+      },
+      {
+        "key": "栃木小松リフト(KCSJリフト)",
+        "value": "37324",
+        "kind": "D",
+        "data_order": "598"
+      },
+      {
+        "key": "栃木小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37818",
+        "kind": "D",
+        "data_order": "599"
+      },
+      {
+        "key": "浜松小松リフト(KCSJリフト)",
+        "value": "37326",
+        "kind": "D",
+        "data_order": "600"
+      },
+      {
+        "key": "浜松小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37823",
+        "kind": "D",
+        "data_order": "601"
+      },
+      {
+        "key": "福井小松リフト(KCSJリフト)",
+        "value": "37327",
+        "kind": "D",
+        "data_order": "602"
+      },
+      {
+        "key": "福井小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37825",
+        "kind": "D",
+        "data_order": "603"
+      },
+      {
+        "key": "福岡小松リフト(KCSJリフト)",
+        "value": "37328",
+        "kind": "D",
+        "data_order": "604"
+      },
+      {
+        "key": "福岡小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37830",
+        "kind": "D",
+        "data_order": "605"
+      },
+      {
+        "key": "福正小松販売(KCSJ建機)",
+        "value": "37797",
+        "kind": "D",
+        "data_order": "606"
+      },
+      {
+        "key": "福島小松リフト(KCSJリフト)",
+        "value": "37323",
+        "kind": "D",
+        "data_order": "607"
+      },
+      {
+        "key": "福島小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37817",
+        "kind": "D",
+        "data_order": "608"
+      },
+      {
+        "key": "北海道カンパニー(KCSJ建機)",
+        "value": "37707",
+        "kind": "D",
+        "data_order": "609"
+      },
+      {
+        "key": "北海道小松リフト2(KCSJリフト（ミニ建機）)",
+        "value": "37814",
+        "kind": "D",
+        "data_order": "610"
+      },
+      {
+        "key": "北海道東北カンパニ(KCSJリフト)",
+        "value": "37316",
+        "kind": "D",
+        "data_order": "611"
+      },
+      {
+        "key": "陽和産業(KCSJ建機)",
+        "value": "103344",
+        "kind": "D",
+        "data_order": "612"
+      },
+      {
+        "key": "利用中止車両(利用中止車両)",
+        "value": "112838",
+        "kind": "D",
+        "data_order": "613"
+      }
+    ]
+  },
+  {
+    "path": "cars.change_support_distributor_label_english",
+    "name": "担当DB（英語）",
+    "help": "担当DB（英語）のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "Support DB1",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "Support DB2",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "Support DB3",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "Support DB4",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.service_distributor.ids",
+    "name": "サービスDB",
+    "help": "サービスDBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "SuperLooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooongText",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "サービスDB2",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.customer.ids",
+    "name": "顧客",
+    "help": "顧客のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "顧客001",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "顧客002",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "顧客003",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "顧客004",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car_management.car_assign_statuses",
+    "name": "引当状況",
+    "help": "引当状況のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "LooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooongText",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "未申請/完了",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "申請中",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.division_codes",
+    "name": "車両種類",
+    "help": "車両種類のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "ショベル",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "油圧ショベル",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.maker_codes",
+    "name": "メーカ",
+    "help": null,
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "SpecialLoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooongText",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "メーカ 2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "common.car_identification.models",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.type_revs",
+    "name": "型式",
+    "help": "型式のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "common.car_identification.serials",
+    "name": "機番",
+    "help": "機番のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+]

@@ -1,0 +1,130 @@
+[
+  {
+    "path": "assigned_group_id",
+    "name": "引き当て元グループ",
+    "help": "引き当て元グループのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "注目車両 1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "注目車両 2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "注目車両 3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "注目車両 4",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "models",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "機種 1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "機種 2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "type_revs",
+    "name": "型式",
+    "help": "型式のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "型式 1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "型式 2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "serials",
+    "name": "機番",
+    "help": "機番のヘルプ文言",
+    "type": "-10",
+    "memo": "",
+    "placeholder_text": ""
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+]

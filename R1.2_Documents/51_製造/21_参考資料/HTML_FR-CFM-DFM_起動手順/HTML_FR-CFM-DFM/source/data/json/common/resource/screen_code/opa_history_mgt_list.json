@@ -1,0 +1,321 @@
+[
+  {
+    "path": "operation_history.app_code",
+    "name": "対象画面",
+    "help": "対象画面のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "画面１",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "画面２",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "画面3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "operation_history.category_code",
+    "name": "大分類",
+    "help": "大分類のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "大分類0",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "大分類1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "大分類2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "operation_history.code",
+    "name": "小分類",
+    "help": "小分類のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "小分類1",
+        "value": "100001",
+        "kind": "D"
+      },
+      {
+        "key": "小分類2",
+        "value": "100002",
+        "kind": "D"
+      },
+      {
+        "key": "小分類3",
+        "value": "100003",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "operation_history.group_kind_id",
+    "name": "グループ分類",
+    "help": "グループ分類のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "グループ分類1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "グループ分類2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "グループ分類3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "operation_history.group_id",
+    "name": "グループ",
+    "help": "グループのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "グループ1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "グループ2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "グループ3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "operation_history.division_code",
+    "name": "車両種類",
+    "help": "車両種類のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "車種1",
+        "value": "6001",
+        "kind": "D"
+      },
+      {
+        "key": "車種2",
+        "value": "6002",
+        "kind": "D"
+      },
+      {
+        "key": "車種3",
+        "value": "6003",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "operation_history.maker_code",
+    "name": "メーカ",
+    "help": "メーカのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "メーカ1",
+        "value": "0001",
+        "kind": "D"
+      },
+      {
+        "key": "メーカ2",
+        "value": "0002",
+        "kind": "D"
+      },
+      {
+        "key": "メーカ3",
+        "value": "0003",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "operation_history.model",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "operation_history.type_rev",
+    "name": "型式",
+    "help": "型式のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "operation_history.serial",
+    "name": "機番",
+    "help": "機番のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "operation_history.search_keyword",
+    "name": "内容(フリーワード)",
+    "help": "内容(フリーワード)のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "operation_history.date_from",
+    "name": "履歴日付",
+    "help": "履歴日付のヘルプ文言",
+    "type": -42,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "operation_history.date_to",
+    "name": "履歴日付",
+    "help": "履歴日付のヘルプ文言",
+    "type": -41,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "file_content_type",
+    "name": "出力形式",
+    "help": "ダウンロード表示形式のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "XLSX",
+        "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "kind": "D"
+      },
+      {
+        "key": "CSV",
+        "value": "text/comma-separated-values",
+        "kind": "D"
+      }
+    ]
+  }
+]

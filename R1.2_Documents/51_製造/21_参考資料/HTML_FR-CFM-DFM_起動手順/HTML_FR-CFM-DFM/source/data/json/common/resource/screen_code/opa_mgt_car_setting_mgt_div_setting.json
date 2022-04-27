@@ -1,0 +1,41 @@
+[
+  {
+    "path": "division_setting.group_id",
+    "name": "設定グループ",
+    "help": "設定グループのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "リージョン1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "リージョン2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック1",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック2",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "division_setting.divisions",
+    "name": "設定車両種類",
+    "help": "設定車両種類のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

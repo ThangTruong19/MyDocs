@@ -1,0 +1,183 @@
+<!-- 担当DB変更申請 -->
+<div class="container-fluid">
+  <h2 class="KBA-page-title">{{ labels.title }}</h2>
+
+  <div class="KBA-content">
+    <form class="KBA-form">
+      <h3 class="block-header">{{ labels.service_db_edit_title }}</h3>
+      <p class="KBA-form-table__required">
+        {{ labels.description_for_required }}
+      </p>
+      <div class="service_db-applicant-container">
+        <table class="KBA-form-table table table-bordered" *ngIf="!isLoading">
+          <tbody class="KBA-form-table-tbody" [formGroup]="serviceDBForm">
+            <tr
+              app-kba-form-table-text
+              class="KBA-form-row"
+              [formGroup]="serviceDBForm"
+              [kbaName]="'applicant_label'"
+              [kbaParams]="applicantParams.service_contract_requests"
+              [kbaResource]="resource.service_contract_requests"
+              [kbaLabel]="labels"
+              [colspan]="3"
+              [required]="true"
+              [maxLength]="255"
+              [errorData]="errorData"
+            ></tr>
+
+            <tr
+              app-kba-form-table-text
+              class="KBA-form-row"
+              [formGroup]="serviceDBForm"
+              [kbaName]="'applicant_email'"
+              [kbaParams]="applicantParams.service_contract_requests"
+              [kbaResource]="resource.service_contract_requests"
+              [kbaLabel]="labels"
+              [colspan]="3"
+              [required]="true"
+              [maxLength]="255"
+              [errorData]="errorData"
+            ></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="service_db-all-edit-container">
+        <div class="service_db-all-edit">
+          <label class="service_db-all-edit-label">
+            {{ labels.service_db_all_edit }}
+          </label>
+          <app-kba-selected
+            #allEditSelect
+            [kbaName]="'service_distributor_id'"
+            [kbaParams]="{}"
+            [kbaResource]="resource.service_contract_requests"
+            [showLabel]="false"
+            [hasEmpty]="true"
+            (onChangeSelectItem)="onSelectServiceIDAllEdit($event)"
+          >
+          </app-kba-selected>
+        </div>
+      </div>
+
+      <app-kba-table
+        class="edit-table"
+        [customTableThContent]="customTableThContent"
+        [customTableRowContent]="customTableRowContent"
+        [lists]="lists"
+        [params]="params"
+        [thList]="thList"
+        [labels]="labels"
+        [collapsed]="collapsed"
+        [sortingParams]="sortingParams"
+        [isFetching]="isFetching"
+        [sortableThList]="[]"
+        (scroll)="handleScroll()"
+      >
+        <ng-template #customTableThContent>
+          <ng-container *ngFor="let title of thList">
+            <th
+              *ngIf="title.displayable"
+              class="th-{{ title.shortName }} KBA-index-th"
+            >
+              {{ title.label }}
+            </th>
+          </ng-container>
+        </ng-template>
+
+        <ng-template #customTableRowContent let-data="data" let-idx="idx">
+          <ng-container *ngFor="let title of thList" [ngSwitch]="title.name">
+            <ng-container *ngIf="title.displayable">
+              <td
+                *ngSwitchCase="'cars.service_distributor.label'"
+                class="td-{{ title.shortName }} KBA-index-td select-{{
+                  idx
+                }} d-flex align-items-center justify-content-center"
+                [ngClass]="{ 'select-invalid': (isServiceDBSelectNotEdit(idx) || isSupportDBSelectNotEdit(idx)) }"
+              >
+                <app-kba-selected
+                  #serviceDBSelect
+                  [kbaName]="'service_distributor_id'"
+                  [kbaParams]="editParams.service_contract_requests[idx]"
+                  [kbaResource]="resource.service_contract_requests"
+                  [showLabel]="false"
+                  [appendTo]="'body'"
+                  (onChangeSelectItem)="refreshEnglishLabel(data, $event)"
+                >
+                </app-kba-selected>
+              </td>
+              <td
+                *ngSwitchCase="'cars.service_contract_request.free_memo'"
+                class="td-{{ title.shortName }} KBA-index-td select-{{
+                  idx
+                }} d-flex align-items-center justify-content-center"
+              >
+                <app-kba-text
+                  *ngIf="exists('service_contract_requests.free_memo')"
+                  [kbaName]="'free_memo'"
+                  [kbaParams]="editParams.service_contract_requests[idx]"
+                  [kbaResource]="resource.service_contract_requests"
+                  [showLabel]="false"
+                  [maxlength]="2048"
+                  [ngClass]="{
+                    'KBA-form-error':
+                      errorData
+                      | hasError: 'service_contract_requests.free_memo'
+                  }"
+                >
+                </app-kba-text>
+              </td>
+              <td
+                *ngSwitchDefault
+                class="td-{{
+                  title.shortName
+                }} KBA-index-td d-flex align-items-center"
+              >
+                <span>{{ data[title.name] }}</span>
+              </td>
+            </ng-container>
+          </ng-container>
+        </ng-template>
+      </app-kba-table>
+
+      <footer class="KBA-form-footer-fixed">
+        <button class="btn btn-secondary" type="button" (click)="onClickBack()">
+          {{ labels.back }}
+        </button>
+        <button
+          class="btn btn-primary"
+          type="button"
+          (click)="onClickApply()"
+          [disabled]="!isEditValid || serviceDBForm.invalid"
+        >
+          {{ labels.apply }}
+        </button>
+      </footer>
+    </form>
+  </div>
+</div>
+
+<!-- 申請モーダル -->
+<ng-template #applyModalContent>
+  <div class="KBA-content">
+    <div class="apply-modal-content">
+      <app-kba-tandem-confirm [desc]="applicantHeader" [val]="applicantParams">
+      </app-kba-tandem-confirm>
+    </div>
+    <app-kba-simple-list-confirm
+      [desc]="applyModalValues.listDesc"
+      [val]="applyModalValues.listVal"
+    >
+    </app-kba-simple-list-confirm>
+  </div>
+</ng-template>
+
+<!-- 結果モーダル -->
+<ng-template #resultModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="resultDesc"
+    [val]="resultVal"
+    [warningColumns]="'all'"
+  >
+  </app-kba-simple-list-confirm>
+  <p class="result-count-message">{{ resultCountMessage }}</p>
+</ng-template>

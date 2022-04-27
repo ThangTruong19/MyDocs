@@ -1,0 +1,870 @@
+swagger: '2.0'
+info:
+  title: 次世代KOMTRAX API
+  description: |
+     変更履歴
+     <table>
+       <tr><th>日付</th><th>変更内容</th></tr>
+       <tr>
+         <td>-</td>
+         <td>作成</td>
+       </tr>
+       <tr>
+         <td>2017/09/07</td>
+         <td>
+          リクエスト　role_id と group_id の必須選択を解除<br>
+          リクエスト　物理名を　email_address →　email に変更 <br>
+          リクエスト　user_name　→　user_label に変更<br>
+          レスポンス  202 共通モデル ASYNC のref参照スタイルに変更<br>
+          レスポンス　administrator_frag →　representative_administrator_kind　に変更<br>
+          レスポンス　representative_administrator_name を追加<br>
+          レスポンス　E-メールの物理名を　email_address →　email に変更 <br>
+          レスポンス  ユーザ名の物理名を　name →　label に変更<br>
+          レスポンス　ユーザ名（英語）の物理名を　name_english →　label_english　に変更<br>
+          difinitions の切り出し項目を削除<br>
+         </td>
+       </tr>
+       <tr>
+         <td>2017/09/14</td>
+         <td>
+          ソートキー、デフォルトソートを修正<br>
+          ソートキー　項目を新規に追加<br>
+          リクエスト　ユーザ名の備考欄を修正<br>
+          リクエスト　Emailアドレスの備考欄を修正<br>
+          レスポンス　representative_administrator_kind、representative_administrator_nameを削除<br>
+          レスポンス　更新日時を削除<br>
+          備考のエラーコード一覧の項目を削除<br>
+          リクエスト,レスポンス　group_kind_idの項目を追加<br>
+          レスポンス　role と　authorities の箱をgroupオブジェクトの中に格納<br>
+          レスポンス　新規にsub_groups の項目を追加<br>
+         </td>
+       </tr>
+      <tr>
+         <td>2017/09/26</td>
+         <td>
+          ■ユーザ一覧取得API<br>
+          email の使用可能文字を半角英数字記号に変更<br>
+          ユーザ名称　の備考欄を修正<br>
+          identificationモデルの中にユーザ作成日と最終ログイン日の項目を追加<br>
+          attributeモデルの中にユーザ作成場所の項目を追加<br>
+          agreementモデルをgroupオブジェクトの中に格納<br>
+          role と authorities の物理名とdescriptionを変更<br>
+          configuration_groupsモデルを追加<br>
+          代表管理者区分の項目をgroupオブジェクト内に移動<br>
+          代表の物理名を　representative　→　represent　に変更<br>
+          granted_authorities.nameにpatternを追加<br>
+          group_kind_ids　の使用可能文字 　備考　に追記<br>
+          API説明文を更新<br>
+          sub_groupをbelonging_groupに変更 identificationを参照する形式に変更<br>
+          リクエストに電話番号を追加<br>
+          リクエストに所属グループIDを追加<br>
+          ソートキーの修正<br>
+          多言語化の項目はX-Langの設定に従う仕様に変更<br>
+          エラーコード一覧を追加<br>
+          特記事項　取得ユーザが所属する～　の文言を削除<br>
+          belonging_group.id  exampleの値を変更<br>
+          ソートキーを修正<br>
+         </td>
+      </tr>
+       <tr>
+         <td>2017/10/26</td>
+         <td>
+          ○リクエスト<br>
+          phone_no の備考を　完全一致　→　ワイルドカード使用可能　に変更<br>
+         </td>
+       </tr>
+       <tr>
+         <td>2017/11/01</td>
+         <td>
+          ダウンロードの記述を削除<br>
+          file_nameを削除<br>
+         </td>
+       </tr>
+       <tr>
+          <td>2017/11/02</td>
+          <td>
+          group_kind_ids　の「使用可能文字」「備考」の文言を修正<br>
+          多言語化項目のmaxLengthを1024に変更<br>
+        　クエリに権限IDの項目を追加<br>
+        　クエリの電話番号の使用可能文字を　半角数字,ワイルドカード　に変更<br>
+          </td>
+       </tr>
+       <tr>
+          <td>2018/02/27</td>
+          <td>
+          レスポンス項目の国名称のmaxLengthを1024に変更<br>
+          レスポンス項目の同意状況名称のmaxLengthを1024に変更しpatternに(X-Langの設定に従う)の文言を追加<br>
+          レスポンス　HTTPステータス202を削除<br>
+          </td>
+       </tr>
+       <tr>
+          <td>2018/04/04</td>
+          <td>
+            チェックリスト対応に伴い、レスポンス内の更新日時のpatternを"yyyy-MM-ddTHH:mm:ss.SSSZ"から"日時(YYYY-MM-DDThh:mm:ss.SSSZ固定)"に修正
+          <td>
+          </td>
+       </tr>
+        <tr>
+          <td>2018/08/31</td>
+          <td>
+            リクエストのemail(Eメールアドレス)をuser_account(ユーザアカウント)に修正<br>
+            リクエストにソートキー：users.identification.account（ユーザアカウント）を追加<br>
+            レスポンスにusers.identification.account（ユーザアカウント）を追加<br>
+          <td>
+          </td>
+       </tr>
+       </tr>
+        <tr>
+          <td>2018/09/14</td>
+          <td>
+            リクエストにuser_kind（ユーザ区分）を追加<br>
+            ソートキーにusers.group.granted_role.user_kind（ユーザ区分）を追加<br>
+            レスポンスにusers.group.granted_role.user_kind（ユーザ区分）を追加<br>
+          <td>
+          </td>
+       </tr>
+      　<tr>
+          <td>2018/10/16</td>
+          <td>
+            ソートキーにusers.identification.email（Eメールアドレス）を追加<br>
+            ソートキーにusers.identification.label（ユーザ名称）を追加<br>
+            ソートキーにusers.identification.label_english（ユーザ名称（英語））を追加<br>
+            ソートキーにusers.attribute.phone_no（電話番号）を追加<br>
+          <td>
+          </td>
+       </tr>
+      <tr>
+        <td>2019/04/04</td>
+        <td>
+        APIのレスポンスに必須を記載
+        </td>
+      </tr>
+      <tr>
+        <td>2019/04/05</td>
+        <td>
+        リクエストにemail(Eメールアドレス)を追加
+        </td>
+      </tr>
+      <tr>
+        <td>2019/04/16</td>
+        <td>
+          #32004対応<br>
+          ■ユーザ一覧取得API<br>
+          ・ソートキーにusers.attribute.create_place（ユーザ所在地）を追加<br>
+          ・レスポンス項目のユーザ作成場所の説明およびexampleを修正<br>
+          説明：ユーザ作成場所 → ユーザ所在地<br>
+          example：開発本部管理部 → 青森県青森市青森町2-10<br>
+        </td>
+      </tr>
+     <tr>
+        <td>2019/05/13</td>
+        <td>
+          ■エラーコード一覧修正<br>
+          ・エラーコード一覧にuser_account（ユーザアカウント）を追加
+        </td>
+      </tr>
+      <tr>
+        <td>2019/08/08</td>
+        <td>
+        #29714対応<br>
+        ■ユーザ一覧取得API<br>
+        ・リクエスト項目のgroup_idをconfiguration_group_idに変更<br>
+        ・レスポンス項目のusers.group.identificationを削除<br>
+        ・レスポンス項目のusers.group.belonging_groupの説明を修正<br>
+        説明：ユーザが所属するグループを返却<br>
+        ・レスポンス項目のusers.group.configuration_groupsの説明を修正<br>
+        説明：ユーザの親(代表)グループからリージョンまでのグループを返却<br>
+        ・ソートキーからusers.group.identificationの全パラメータを削除<br>
+        </td>
+      </tr>
+      <tr>
+        <td>2020/07/13</td>
+        <td>
+        #51172対応<br>
+        ■KOM-00200011:ユーザ一覧取得API<br>
+        ・特記事項に権限配列のソート順を追記<br>
+        </td>
+      </tr>
+      <tr>
+        <td>2021/06/22</td>
+        <td>
+        #62513対応<br>
+        対象リクエスト項目のemailとuser_accountの備考欄に、大文字・小文字を判別しないことを記載する。<br>
+        </td>
+      </tr>
+          <td>2022/04/11</td>
+          <td>
+            リクエストにauthority_kinds（権限区分）を追加<br>
+            ソートキーにusers.group.granted_authorities.kind（権限区分）を追加<br>
+            レスポンスにusers.group.granted_authorities.kind（権限区分）を追加<br>
+          <td>
+          </td>
+       </tr>
+      　<tr>
+     </table>
+  version: ""
+paths:
+  #パス名（パスパラメータを用いる場合{xxx_id}を入れる）
+  /users:
+  #path_start
+    #get|put|post|delete
+    get: 
+      # API名
+      summary: ユーザ一覧取得API
+      # API説明文
+      description: |
+        KOMTRAXに登録されているユーザの一覧情報を取得する。
+        <hr>
+        <hr>
+        <h1>特記事項</h1>
+        <p>内部で共通認証サービスのAPIを実行する。<br>
+        <br>
+        X-Sortヘッダに指定可能なソートキーを以下に列挙する。
+        </p>
+        <ul>
+        <li>users.identification.id</li>
+        <li>users.identification.account</li>
+        <li>users.identification.email</li>
+        <li>users.identification.label</li>
+        <li>users.identification.label_english</li>
+        <li>users.attribute.phone_no</li>
+        <li>users.attribute.create_place</li>
+        <li>users.group.represent_administrator_kind</li>
+        <li>users.group.represent_administrator_kind_name</li>
+        <li>users.group.belonging_group.identification.id</li>
+        <li>users.group.belonging_group.identification.label</li>
+        <li>users.group.belonging_group.identification.label_english</li>
+        <li>users.group.belonging_group.identification.organization_code</li>
+        <li>users.group.belonging_group.identification.kind_id</li>
+        <li>users.group.belonging_group.identification.kind_name</li>
+        <li>users.group.belonging_group.identification.update_datetime</li>
+        <li>users.group.configuration_groups.id</li>
+        <li>users.group.configuration_groups.label</li>
+        <li>users.group.configuration_groups.label_english</li>
+        <li>users.group.configuration_groups.kind_id</li>
+        <li>users.group.configuration_groups.kind_name</li>
+        <li>users.group.granted_role.id</li>
+        <li>users.group.granted_role.name</li>
+        <li>users.group.granted_role.user_kind</li>
+        <li>users.group.granted_authorities.id</li>
+        <li>users.group.granted_authorities.name</li>
+        <li>users.group.granted_authorities.kind</li>
+        <li>users.group.agreement.status</li>
+        <li>users.group.agreement.status.name</li>
+        <li>users.group.agreement.date</li>
+        <li>users.group.granted_authorities.kind</li>
+        </ul>
+        未指定時のデフォルトソートは"users.identification.id"の昇順とする。<br>
+        <br>
+        第二配列の権限のデフォルトソートについては下記の通りとする<br>
+        <ul>
+          <li>①優先度の降順</li>
+          <li>②"users.group.granted_authorities.name"の昇順</li>
+        </ul>
+        <hr>
+      x-detaildescription: |
+        【処理概要】<br>
+        1.  ユーザ一覧取得(共通認証)APIを呼び出し、共通認証のユーザ情報を取得する。<br>
+              リクエストパラメータの内、Eメールアドレス、ユーザ名称、電話番号をユーザ一覧取得(共通認証)APIのリクエストに指定する。<br>
+              取得結果は一時テーブルに格納する。<br>
+        2.  一時テーブルとRDBのテーブルから、ユーザ一覧情報を検索する。<br>
+              リクエストパラメータの内、グループID、グループ種別ID、パラメータの権限IDを抽出条件に指定する。<br>
+              取得結果は1レコード毎にusersオブジェクト配列に格納する。<br>
+        3.  所属グループ情報を取得する。<br>
+              ユーザが所属するグループの配下グループ・サブグループのデータを再起的に取得し、.belonging_groupオブジェクト配列に格納する。<br>
+        4.  構成グループ情報を取得する。<br>
+              ユーザが所属するグループの親グループの情報（自グループの１つ上の親の層からリージョン層まで）を配列で取得し、configuration_groupsオブジェクト配列に格納する。<br>
+        5.  1～4で取得した情報を１レコードとしてusersオブジェクト配列に格納し、全レコード処理後、レスポンスを返却する。<br>
+        <br>
+      # リクエスト
+      parameters:
+        #共通のヘッダ
+        #common_header
+        #paging_header
+        #sort_header
+        #クエリパラメータ
+          #物理名
+        - name: role_id
+          in: query
+          #項目の論理名 桁/文字数 [使用可能文字]
+          #指定がない場合は項目を削除する
+          description: |
+            論理名　　　：ロールID<br>
+            使用可能文字：半角数字、ハイフンマイナス<br>
+            桁／文字数　：1～19<br>
+            備考　　　　：完全一致<br>
+            　　　　　　　-99=全て、未指定時は 全て として取り扱う。
+          #必須項目かどうか true|false
+          required: false
+          #型（numberやString）
+          type: string
+          x-detaildescription: |
+            入力チェック：API制約(半角数字、ハイフンマイナスであること)<br>
+            　　　　　　　桁数チェック(1～19桁であること)<br>
+            　　　　　　　未指定時は 全て として取り扱う<br>
+            用途　　　　：【RDB.ユーザ】権限-ロール連結.ロールIDと完全一致<br>
+        - name: configuration_group_id
+          in: query
+          #項目の論理名 桁/文字数 [使用可能文字]
+          #指定がない場合は項目を削除する
+          description: |
+            論理名　　　：グループID <br>
+            使用可能文字：半角数字、ハイフンマイナス<br>
+            桁／文字数　：1～19<br>
+            備考　　　　：完全一致<br>
+            　　　　　　　-99=全て、未指定時は 全て として取り扱う。
+          #必須項目かどうか true|false
+          required: false
+          #型（numberやString）
+          type: string
+          x-detaildescription: |
+            入力チェック：API制約(半角数字、ハイフンマイナスであること)<br>
+            　　　　　　　桁数チェック(1～19桁であること)<br>
+            　　　　　　　未指定時は 全て として取り扱う<br>
+            用途　　　　：【RDB.グループ】グループ-ユーザ連結.グループIDと完全一致<br>
+        - name: belonging_group_id
+          in: query
+          #項目の論理名 桁/文字数 [使用可能文字]
+          #指定がない場合は項目を削除する
+          description: |
+            論理名　　　：所属グループID <br>
+            使用可能文字：半角数字、ハイフンマイナス<br>
+            桁／文字数　：1～19<br>
+            備考　　　　：完全一致<br>
+            　　　　　　　-99=全て、未指定時は 全て として取り扱う。
+          #必須項目かどうか true|false
+          required: false
+          #型（numberやString）
+          type: string
+          x-detaildescription: |
+            入力チェック：API制約(半角数字、ハイフンマイナスであること)<br>
+            　　　　　　　桁数チェック(1～19桁であること)<br>
+            　　　　　　　未指定時は 全て として取り扱う<br>
+            用途　　　　　【RDB.グループ】グループ-ユーザ連結.グループIDと完全一致<br>
+        - name: email
+          in: query
+          #項目の論理名 桁/文字数 [使用可能文字]
+          #指定がない場合は項目を削除する
+          description: |
+            論理名　　　：Eメールアドレス<br>
+            使用可能文字：半角英数字記号<br>
+            桁／文字数　：1～255<br>
+            備考　　　　：ワイルドカード使用可能<br>
+            　　　　　　　未指定時は検索条件に含めない<br>
+            　　　　　　　大文字・小文字を判別せずに条件絞り込み検索を実施する。<br>
+          #必須項目かどうか true|false
+          required: false
+          #型（numberやString）
+          type: string
+          x-detaildescription: |
+            入力チェック：API制約(半角英数字記号であること)<br>
+            　　　　　　　桁数チェック(1～255桁であること)<br>
+            　　　　　　　ワイルドカード使用可能<br>
+            　　　　　　　未指定時は 全て として取り扱う<br>
+            用途　　　　：共通認証のユーザマスタ．メールアドレス<br>
+        - name: user_account
+          in: query
+          #項目の論理名 桁/文字数 [使用可能文字]
+          #指定がない場合は項目を削除する
+          description: |
+            論理名　　　：ユーザアカウント<br>
+            使用可能文字：半角英数字記号<br>
+            桁／文字数　：1～255<br>
+            備考　　　　：ワイルドカード使用可能<br>
+            　　　　　　　未指定時は検索条件に含めない<br>
+            　　　　　　　大文字・小文字を判別せずに条件絞り込み検索を実施する。<br>
+          #必須項目かどうか true|false
+          required: false
+          #型（numberやString）
+          type: string
+          x-detaildescription: |
+            入力チェック：API制約(半角英数字記号であること)<br>
+            　　　　　　　桁数チェック(1～255桁であること)<br>
+            　　　　　　　ワイルドカード使用可能<br>
+            　　　　　　　未指定時は 全て として取り扱う<br>
+            用途　　　　：共通認証のユーザマスタ．ログインユーザID<br>
+        - name: user_label
+          in: query
+          #項目の論理名 桁/文字数 [使用可能文字]
+          #指定がない場合は項目を削除する
+          description: |
+            論理名　　　：ユーザ名称 <br>
+            使用可能文字：ALL<br>
+            桁／文字数　：1～255<br>
+            備考　　　　：ワイルドカード使用可能<br>
+            　　　　　　　未指定時は検索条件に含めない<br>
+            　　　　　　　ユーザ名称とユーザ名称(英語)の両方に対して検索を行う
+          #必須項目かどうか true|false
+          required: false
+          #型（numberやString）
+          type: string
+          x-detaildescription: |
+            入力チェック：桁数チェック(1～255桁であること)<br>
+            　　　　　　　ワイルドカード使用可能<br>
+            　　　　　　　未指定時は検索条件に含めない<br>
+            　　　　　　　ユーザ名称とユーザ名称(英語)の両方に対して検索を行う<br>
+            用途　　　　：共通認証のユーザマスタ．表示名<br>
+        - name: phone_no
+          in: query
+          #項目の論理名 桁/文字数 [使用可能文字]
+          #指定がない場合は項目を削除する
+          description: |
+            論理名　　　：電話番号 <br>
+            使用可能文字：半角数字,ワイルドカード<br>
+            桁／文字数　：1～30<br>
+            備考　　　　：ワイルドカード使用可能<br>
+            　　　　　　　未指定時は検索条件に含めない<br>
+          #必須項目かどうか true|false
+          required: false
+          #型（numberやString）
+          type: string
+          x-detaildescription: |
+            入力チェック：API制約(半角数字であること)<br>
+            　　　　　　　桁数チェック(1～30桁であること)<br>
+            　　　　　　　未指定時は検索条件に含めない<br>
+            用途　　　　：共通認証の会社マスタ．電話番号と完全一致<br>
+        - name: group_kind_ids
+          in: query
+          description:  |
+            論理名　　　：グループ種別ID<br>
+            使用可能文字：半角数字,ハイフンマイナス<br>
+            桁／文字数　：1～19<br>
+            備考　　　　：完全一致<br>
+            　　　　　　　-99=全て、未指定時は 全て として取り扱う。<br>
+          required: false
+          type: array
+          items: {
+            type: string
+          }
+          collectionFormat: multi 
+          x-detaildescription: |
+            入力チェック：API制約(半角数字,ハイフンマイナス,半角カンマであること)<br>
+            　　　　　　　桁数チェック(1～19桁であること)<br>
+            　　　　　　　未指定時は 全て として取り扱う<br>
+            用途　　　　　【RDB.グループ】グループマスタ.グループ種別IDと完全一致<br>
+        - name: granted_authority_id
+          in: query
+          description: |
+            論理名　　　：権限ID <br>
+            使用可能文字：半角数字<br>
+            桁／文字数　：1～19<br>
+            備考　　　　：完全一致<br>
+            　　　　　　　未指定時は検索条件に含めない<br>
+          #必須項目かどうか true|false
+          required: false
+          type: string
+        - name: user_kind
+          in: query
+          description: |
+            論理名　　　：ユーザ区分 <br>
+            使用可能文字：1:管理者、2:一般<br>
+            桁／文字数　：1<br>
+            備考　　　　：完全一致<br>
+            　　　　　　　未指定時は検索条件に含めない<br>
+          #必須項目かどうか true|false
+          required: false
+          type: string
+        - name: authority_kinds
+          in: query
+          description:  |
+            論理名　　　：権限区分<br>
+            使用可能文字：0:ユーザ権限、1:標準権限、2:システム権限、3:個別権限、4:カスタマイズ権限、5:カスタマイズアクセスレベル権限、9:複合権限<br>
+            桁／文字数　：1<br>
+            備考　　　　：完全一致<br>
+            　　　　　　　未指定時は検索条件に含めない。<br>
+          required: false
+          type: array
+          items: {
+            type: string
+          }
+          collectionFormat: multi 
+          x-detaildescription: |
+            入力チェック：API制約(0:ユーザ権限、1:標準権限、2:システム権限、3:個別権限、4:カスタマイズ権限、5:カスタマイズアクセスレベル権限、9:複合権限であること)<br>
+            　　　　　　　桁数チェック(1桁であること)<br>
+            　　　　　　　未指定時は 検索条件に含めない<br>
+            用途　　　　　【RDB.グループ】権限マスタ.権限区分と完全一致<br>
+      tags:
+      - users
+      # レスポンス
+      responses:
+        '200':
+          description: KOMTRAXユーザ一覧情報を返却する。
+          headers:
+            X-Sort:
+              type: string
+              description: リクエスト未指定時も含めソート内容を返却する
+            X-TotalCount:
+              type: number
+              description: ページング範囲外も含めた総件数を返却する
+            X-Count:
+              type: number
+              description: リクエスト未指定時も含め取得件数を返却する
+            X-From:
+              type: number
+              description: リクエスト未指定時も含め取得開始位置を返却する
+          schema:
+            type: object
+            properties:
+              result_data:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        identification: 
+                          $ref: '#/definitions/USER_IDENTIFICATION'
+                        attribute: 
+                          $ref: '#/definitions/USER_ATTRIBUTE'
+                        group:
+                          type: object
+                          description: ユーザが所属するグループ
+                          properties:
+                            represent_administrator_kind:
+                              type: string
+                              description: 代表管理者区分
+                              minLength: 1
+                              maxLength: 1
+                              pattern: "半角数字"
+                              example: "1"
+                              enum:
+                                - 0:無効
+                                - 1:有効
+                              x-detaildescription: 【取得元リソース】[RDB.ユーザ]グループ-ユーザ連結．代表管理者区分
+                            represent_administrator_kind_name:
+                              type: string
+                              description: 代表管理者区分名称
+                              minLength: 1
+                              maxLength: 1024
+                              pattern: "ALL(X-Langの設定に従う)"
+                              example: "有効"
+                              x-detaildescription: 【取得元リソース】[RDB.アプリケーション管理]多言語化マスタ．値
+                            belonging_group:
+                              type: object
+                              description: ユーザが所属するグループを返却
+                              properties:
+                                identification:
+                                  type: object
+                                  required:
+                                    - id
+                                    - update_datetime
+                                  properties:
+                                    id:
+                                      type: string
+                                      description: グループID
+                                      minLength: 1
+                                      maxLength: 19
+                                      pattern: "半角数字"
+                                      example: "12345678"
+                                      x-detaildescription: 【取得元リソース】[RDB.ユーザ]グループ-ユーザ連結.グループID
+                                    label:
+                                      type: string
+                                      description: グループ名称
+                                      minLength: 1
+                                      maxLength: 255
+                                      pattern: "ALL"
+                                      example: "グループ名称"
+                                      x-detaildescription: 【取得元リソース】[RDB.グループ]グループマスタ．グループ名
+                                    label_english:
+                                      type: string
+                                      description: グループ名称(英語)
+                                      minLength: 1
+                                      maxLength: 255
+                                      pattern: "半角英数字"
+                                      example: "group name"
+                                      x-detaildescription: 【取得元リソース】[RDB.グループ]グループマスタ．グループ名(英語)
+                                    organization_code:
+                                      type: string
+                                      description: 組織コード
+                                      minLength:  1
+                                      maxLength:  32
+                                      pattern:  "ALL"
+                                      example: "ABBESS"
+                                      x-detaildescription: 【取得元リソース】[RDB.グループ]グループマスタ．組織コード
+                                    kind_id:
+                                      type: string
+                                      description: グループ種別ID
+                                      minLength: 1
+                                      maxLength: 19
+                                      pattern: "半角数字"
+                                      example: "2"
+                                      x-detaildescription: 【取得元リソース】[RDB.グループ]グループマスタ．グループ種別ID
+                                    kind_name:
+                                      type: string
+                                      description: グループ種別名称
+                                      minLength: 1
+                                      maxLength: 1024
+                                      pattern: "ALL(X-Langの設定に従う)"
+                                      example: "リージョン"
+                                      x-detaildescription: 【取得元リソース】[RDB.アプリケーション管理]多言語化マスタ．値
+                                    update_datetime:
+                                      type: string
+                                      description: 更新日時
+                                      minLength: 24
+                                      maxLength: 24
+                                      pattern: "日時(YYYY-MM-DDThh:mm:ss.SSSZ固定)"
+                                      example: "2017-08-01T23:59:59.000Z"
+                                      x-detaildescription: 【取得元リソース】[RDB.グループ]グループマスタ．更新日時
+                            configuration_groups:
+                              type: array
+                              items:
+                                type: object
+                                description: ユーザの親(代表)グループからリージョンまでのグループを返却
+                                required:
+                                  - id
+                                properties:
+                                  id:
+                                    type: string
+                                    description: グループID
+                                    minLength: 1
+                                    maxLength: 19
+                                    pattern: "半角数字"
+                                    example: "12345678"
+                                  label:
+                                    type: string
+                                    description: グループ名称
+                                    minLength: 1
+                                    maxLength: 255
+                                    pattern: "ALL"
+                                    example: "グループ名称"
+                                  label_english:
+                                    type: string
+                                    description: グループ名称(英語)
+                                    minLength: 1
+                                    maxLength: 255
+                                    pattern: "半角英数字"
+                                    example: "group name"
+                                  kind_id:
+                                    type: string
+                                    description: グループ種別ID
+                                    minLength: 1
+                                    maxLength: 19
+                                    pattern: "半角数字"
+                                    example: "2"
+                                  kind_name:
+                                    type: string
+                                    description: グループ種別名称
+                                    minLength: 1
+                                    maxLength: 1024
+                                    pattern: "ALL(X-Langの設定に従う)"
+                                    example: "リージョン"
+                            granted_role:
+                              type: object
+                              description: ユーザに付与されたロール
+                              properties:
+                                id:
+                                  description: ロールID
+                                  type: string
+                                  minLength: 1
+                                  maxLength: 19
+                                  pattern: "半角数字"
+                                  example: "123456"
+                                  x-detaildescription: 【取得元リソース】[RDB.ユーザ]グループ-ユーザ連結．ロールID
+                                name:
+                                  description: ロール名称
+                                  type: string
+                                  minLength: 1
+                                  maxLength: 1024
+                                  pattern: "ALL(X-Langの設定に従う)"
+                                  example: "管理者"
+                                  x-detaildescription: 【取得元リソース】[RDB.アプリケーション管理]多言語化マスタ．値
+                                user_kind:
+                                  description: ユーザ区分
+                                  type: string
+                                  minLength: 1
+                                  maxLength: 1
+                                  pattern: "半角数字"
+                                  example: "1"
+                                  enum:
+                                    - 1:管理者
+                                    - 2:一般
+                                  x-detaildescription: 【取得元リソース】[RDB.ロールマスタ．ユーザ区分
+                            granted_authorities:
+                              type: array
+                              items:
+                                type: object
+                                description: ユーザに付与された権限
+                                properties:
+                                  id:
+                                    type: string
+                                    description: 権限ID
+                                    minLength: 1
+                                    maxLength: 19
+                                    pattern: "半角数字"
+                                    example: "1234567"
+                                    x-detaildescription: 【取得元リソース】[RDB.ユーザ]ユーザ-権限連結．権限ID
+                                  name:
+                                    type: string
+                                    description: 権限名称
+                                    minLength: 1
+                                    maxLength: 1024
+                                    pattern: "ALL(X-Langの設定に従う)"
+                                    example: "参照のみ"
+                                    x-detaildescription: 【取得元リソース】[RDB.アプリケーション管理]多言語化マスタ．値
+                                  kind:
+                                    description: 権限区分
+                                    type: string
+                                    minLength: 1
+                                    maxLength: 1
+                                    pattern: "半角数字"
+                                    example: "1"
+                                    enum:
+                                      - 0:ユーザ権限
+                                      - 1:標準権限
+                                      - 2:システム権限
+                                      - 3:個別権限
+                                      - 4:カスタマイズ権限
+                                      - 5:カスタマイズアクセスレベル権限
+                                      - 9:複合権限
+                                    x-detaildescription: 【取得元リソース】[RDB.ユーザ]権限マスタ．権限区分
+                            agreement: 
+                                $ref: '#/definitions/AGREEMENT'
+      #common_error
+  #path_end
+definitions:
+  USER_IDENTIFICATION:
+    type: object
+    description: ユーザ情報
+    required:
+      - create_datetime
+      - update_datetime
+    properties:
+      id:
+        type: string
+        description: ユーザID
+        minLength: 1
+        maxLength: 19
+        pattern: "半角数字"
+        example: "12345"
+      account:
+        type: string
+        description: ユーザアカウント
+        minLength: 1
+        maxLength: 255
+        pattern: "Eメールアドレス"
+        example: "example@example.jp"
+      email:
+        type: string
+        description: Eメールアドレス
+        minLength: 1
+        maxLength: 255
+        pattern: "Eメールアドレス"
+        example: "test@example.com"
+      label:
+        type: string
+        description: ユーザ名称
+        minLength: 1
+        maxLength: 255
+        pattern: "ALL"
+        example: "小松太郎"
+      label_english:
+        type: string
+        description: ユーザ名称（英語）
+        minLength: 1
+        maxLength: 255
+        pattern: "半角英数字"
+        example: "komatsu tarou"
+      primary_group_id:
+        type: string
+        description: プライマリグループID
+        minLength: 1
+        maxLength: 19
+        pattern: "半角数字"
+        example: "54321"
+      create_datetime:
+        type: string
+        description: ユーザ作成日時
+        pattern: "X-DateFormatヘッダ指定書式に基づく"
+        example: "2017/05/23 23:59:59"
+      login_datetime:
+        type: string
+        description: 最終ログイン日時
+        pattern: "X-DateFormatヘッダ指定書式に基づく"
+        example: "2017/05/23 23:59:59"
+      update_datetime:
+        type: string
+        description: 更新日時
+        minLength: 24
+        maxLength: 24
+        pattern: "日時(YYYY-MM-DDThh:mm:ss.SSSZ固定)"
+        example: "2017-08-01T23:59:59.000Z"        
+  USER_ATTRIBUTE:
+    type: object
+    description: ユーザ属性
+    properties:
+      company_code:
+        type: string
+        description: 会社コード
+        minLength: 1
+        maxLength: 20
+        pattern: "半角数字、半角英字(大文字)"
+        example: "KOMATSU0000000000001"
+      company_label:
+        type: string
+        description: 会社名称
+        minLength: 1
+        maxLength: 255
+        pattern: "ALL"
+        example: "コマツ東京"
+      company_label_english:
+        type: string
+        description: 会社名称(英語)
+        minLength: 1
+        maxLength: 255
+        pattern: "半角英数字"
+        example: "Komatsu Tokyo"
+      nation_code:
+        type: string
+        description: 国コード
+        minLength: 2
+        maxLength: 4
+        pattern: "半角英字(大文字)"
+        example: "JP"
+      nation_name:
+        type: string
+        description: 国名称
+        minLength: 1
+        maxLength: 1024
+        pattern: "ALL(X-Langの設定に従う)"
+        example: "日本"
+      phone_no:
+        type: string
+        description: 電話番号
+        minLength: 1
+        maxLength: 30
+        pattern: "半角数字"
+        example: "0312345678"
+      create_place:
+        type: string
+        description: ユーザ所在地
+        minLength: 1
+        maxLength: 255
+        pattern: "ALL"
+        example: "青森県青森市青森2-10"
+  AGREEMENT:
+    type: object
+    description: 利用規約の同意状況
+    properties:
+      status:
+        type: string
+        description: 同意状況
+        minLength: 1
+        maxLength: 1
+        pattern: "半角数字"
+        example: "1"
+        enum:
+          - 0:同意前
+          - 1:同意済
+      status_name:
+        type: string
+        description: 同意状況名称
+        minLength: 1
+        maxLength: 1024
+        pattern: "ALL(X-Langの設定に従う)"
+        example: "同意済"
+      date:
+        type: string
+        description: 承認日(未許諾の場合はNULLになる。)
+        pattern: "X-DateFormatヘッダ指定書式に基づく"
+        example: "2017/05/23"

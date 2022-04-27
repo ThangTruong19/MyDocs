@@ -1,0 +1,37 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "閲覧設定区分",
+    "path": "group.scope_groups.kind",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "ID",
+    "path": "group.scope_groups.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "更新日時",
+    "path": "group.scope_groups.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "公開設定",
+    "path": "group.scope_groups.name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "グループ名",
+    "path": "group.scope_groups.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

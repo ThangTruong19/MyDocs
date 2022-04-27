@@ -1,0 +1,31 @@
+<div class="KBA-home-notice-wrapper">
+  <div class="KBA-home-notice__title">
+    <span class="kba-icon kba-icon-detail"></span>
+    <span>{{ labels && labels.news_title }}</span>
+  </div>
+  <div
+    *ngIf="
+      notifications.length > 0;
+      then notificationContent;
+      else emptyNotificationContent
+    "
+  ></div>
+  <ng-template #notificationContent>
+    <div
+      class="KBA-home-notice__body"
+      *ngFor="let notification of notifications"
+    >
+      <p class="KBA-home-notice__start_datetime">
+        {{ notification.start_datetime }}
+      </p>
+      <p class="KBA-home-notice__contents">{{ notification.content }}</p>
+    </div>
+  </ng-template>
+  <ng-template #emptyNotificationContent>
+    <div class="KBA-home-notice__body">
+      <p class="KBA-home-notice__empty">
+        {{ labels && labels.news_has_no_data }}
+      </p>
+    </div>
+  </ng-template>
+</div>

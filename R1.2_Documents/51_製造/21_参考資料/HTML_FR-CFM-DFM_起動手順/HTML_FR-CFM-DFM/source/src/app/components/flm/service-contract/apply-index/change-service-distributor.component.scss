@@ -1,0 +1,44 @@
+.service_db-all-edit-container {
+  display: flex;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  flex-direction: row-reverse;
+
+  .service_db-all-edit {
+    display: flex;
+
+    .service_db-all-edit-label {
+      margin: 0 10px 0 0;
+      font-weight: normal;
+      line-height: 40px;
+    }
+
+    app-kba-selected {
+      width: 200px;
+    }
+  }
+}
+
+.edit-table {
+  .th-cars_service_distributor_label,
+  .td-cars_service_distributor_label {
+    flex-shrink: 0;
+    width: 200px !important;
+  }
+
+  .td-cars_service_distributor_label {
+    overflow: visible;
+  }
+}
+
+.result-count-message {
+  margin-top: 12px;
+}
+
+.apply-modal-content {
+  margin-bottom: 20px;
+}
+
+app-kba-selected {
+  width: 200px;
+}

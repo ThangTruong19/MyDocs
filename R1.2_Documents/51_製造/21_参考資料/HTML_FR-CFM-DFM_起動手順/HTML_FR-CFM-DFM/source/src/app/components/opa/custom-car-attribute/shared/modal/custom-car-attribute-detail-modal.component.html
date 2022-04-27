@@ -1,0 +1,123 @@
+<p class="delete-alert" *ngIf="isDeleteModal">
+  {{ labels.delete_alert_message_1 }}<br />
+  {{ labels.delete_alert_message_2 }} : 【 {{ val.registered_cars_count }} 】
+</p>
+
+<table class="KBA-form-table table table-bordered">
+  <tbody class="KBA-form-table-tbody">
+    <ng-container *ngFor="let d of desc">
+      <ng-container [ngSwitch]="d.name">
+        <ng-container *ngSwitchCase="'names'">
+          <ng-container *ngFor="let item of val.names; let i = index">
+            <tr *ngIf="isItemVisible(i)">
+              <td
+                class="KBA-form-table__head"
+                [attr.rowspan]="useSameName ? 1 : val.names.length"
+                *ngIf="i === 0"
+              >
+                <label class="KBA-form-table__label">{{ d.label }}</label>
+              </td>
+              <td
+                class="KBA-form-table__value half-height"
+                *ngIf="!useSameName"
+              >
+                <p>{{ item.lang_name }}</p>
+              </td>
+              <td class="KBA-form-table__value half-height">
+                <p>{{ item.label }}</p>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'names.label'">
+          <ng-container *ngFor="let item of val.names; let i = index">
+            <tr *ngIf="isItemVisible(i)">
+              <td
+                class="KBA-form-table__head"
+                [attr.rowspan]="useSameName ? 1 : val.names.length"
+                *ngIf="i === 0"
+              >
+                <label class="KBA-form-table__label">{{ d.label }}</label>
+              </td>
+              <td
+                class="KBA-form-table__value half-height"
+                *ngIf="!useSameName"
+              >
+                <p>{{ item.lang_name }}</p>
+              </td>
+              <td class="KBA-form-table__value half-height">
+                <p>{{ item.label }}</p>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'details'">
+          <ng-container
+            *ngFor="let item of val.details[d.index].names; let i = index"
+          >
+            <tr *ngIf="isItemVisible(i)">
+              <td
+                class="KBA-form-table__head"
+                [attr.rowspan]="
+                  useSameName ? 1 : val.details[d.index].names.length
+                "
+                *ngIf="i === 0"
+              >
+                <label class="KBA-form-table__label">{{ d.label }}</label>
+              </td>
+              <td
+                class="KBA-form-table__value half-height"
+                *ngIf="!useSameName"
+              >
+                <p>{{ item.lang_name }}</p>
+              </td>
+              <td class="KBA-form-table__value half-height">
+                <p>{{ item.label }}</p>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'use_same_name'">
+          <tr>
+            <td class="KBA-form-table__head">
+              <label class="KBA-form-table__label">{{ labels.setting }}</label>
+            </td>
+            <td class="KBA-form-table__value" colspan="2">
+              <p *ngIf="val | at: d.name; else notUseSameName">
+                {{ resource.use_same_name.name }}
+              </p>
+              <ng-template #notUseSameName>
+                <p>{{ labels.not_set }}</p>
+              </ng-template>
+            </td>
+          </tr>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'block_id'">
+          <tr>
+            <td class="KBA-form-table__head">
+              <label class="KBA-form-table__label">{{ d.label }}</label>
+            </td>
+            <td class="KBA-form-table__value" colspan="2">
+              <p>{{ val | at: 'block_label' }}</p>
+            </td>
+          </tr>
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>
+          <tr>
+            <td class="KBA-form-table__head">
+              <label class="KBA-form-table__label">{{ d.label }}</label>
+            </td>
+            <td class="KBA-form-table__value" colspan="2">
+              <p>{{ val | at: d.name }}</p>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </tbody>
+</table>

@@ -1,0 +1,174 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: エリア管理 グループエリア一覧
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: エリア管理 グループエリア一覧
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 10
+    description: 変更
+    name: header_edit
+    ja: 変更
+    en:
+
+  - id: 11
+    description: テーブルヘッダの削除
+    name: header_delete
+    ja: 削除
+    en:
+
+  - id: 12
+    description: MAP
+    name: header_map
+    ja: MAP
+    en:
+
+  - id: 13
+    description: 完了メッセージ
+    name: complete_message
+    ja: 処理が完了しました
+    en:
+
+  - id: 14
+    description: 削除確認メッセージ
+    name: delete_confirm_message
+    ja: 以下のグループ毎エリア名称項目を削除します。よろしいですか？
+    en:
+
+  - id: 15
+    description: 緯度
+    name: latitude
+    ja: 緯度
+    en:
+
+  - id: 16
+    description: 経度
+    name: longitude
+    ja: 経度
+    en:
+
+  - id: 17
+    description: 東西
+    name: east_west_distance
+    ja: 東西
+    en:
+
+  - id: 18
+    description: 南北
+    name: north_south_distance
+    ja: 南北
+    en:
+
+  - id: 19
+    description: 頂点
+    name: vertex
+    ja: 頂点
+    en:
+
+  - id: 20
+    description: 中心
+    name: center
+    ja: 中心
+    en:
+
+  - id: 21
+    description: 距離
+    name: distance
+    ja: 距離
+    en:
+
+  - id: 22
+    description: 領域をフィット
+    name: fit_bounds
+    ja: 領域をフィット
+    en:
+
+  - id: 23
+    description: エリア
+    name: header_area
+    ja: エリア
+    en:
+
+  - id: 24
+    description: 検索結果0件時の表示
+    name: empty_list_message
+    ja: 該当するグループエリアが見つかりませんでした。
+    en:
+
+  - id: 25
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 26
+    description: 削除
+    name: delete
+    ja: 削除
+    en:
+
+  - id: 27
+    description: キロメートル
+    name: kilometer
+    ja: km
+    en:
+
+  - id: 28
+    description: マイル
+    name: mile
+    ja: mile
+    en:
+
+  - id: 31
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

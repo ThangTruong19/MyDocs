@@ -1,0 +1,96 @@
+@import "../../../../../../assets/styles/_variable.scss";
+@import "../../../../../../assets/styles/_util.scss";
+
+.primary-block,
+.others-block {
+  position: relative;
+}
+
+.primary-block {
+  width: 48%;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.others-block {
+  z-index: 0;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.attribute-name-primary {
+  padding-right: 48px;
+}
+
+.display-items-primary {
+  padding-right: 10px;
+}
+
+.display-items-primary-item {
+  display: flex;
+  margin-bottom: 12px;
+
+  label {
+    line-height: 33px;
+    margin-bottom: 0;
+    font-weight: normal;
+    width: 30px;
+    margin-right: 5px;
+  }
+
+  .display-items-remove {
+    margin-left: 5px;
+    padding: 7px 10px;
+    background-color: transparent;
+    color: $kba-darkgray-color;
+    position: relative;
+
+    .kba-extra-icon-btn_form_delete {
+      .path1,
+      .path2 {
+        position: absolute;
+        top: 6px;
+        left: -1px;
+        font-size: 18px;
+        font-style: normal;
+      }
+    }
+
+    &:hover {
+      color: $kba-lightgray-color;
+    }
+
+    &:disabled {
+      color: transparent;
+      cursor: default;
+    }
+  }
+}
+
+.display-items-add {
+  width: calc(100% - 67px);
+  margin-left: 29px;
+  background-color: $kba-lightgray-color;
+  color: #fff;
+
+  .kba-extra-icon-btn_form_add {
+    position: relative;
+    top: 2px;
+    font-size: 14px;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: $kba-darkgray-color;
+  }
+}
+
+.attribute-name-container,
+.display-items-container {
+  position: relative;
+  display: flex;
+}
+
+.edited {
+  @include input-edited;
+}

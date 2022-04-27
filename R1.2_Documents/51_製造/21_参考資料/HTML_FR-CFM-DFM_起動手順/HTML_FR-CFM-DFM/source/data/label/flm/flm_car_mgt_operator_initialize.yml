@@ -1,0 +1,150 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 車両管理　オペ識別初期化
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 車両管理　オペ識別初期化
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 5
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 12
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 16
+    description: 初期化（ボタン）
+    name: init
+    ja: オペ識別初期化
+    en:
+
+  - id: 18
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 24
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 25
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 35
+    description: 初期化確認モーダルタイトル
+    name: car_operator_init
+    ja: 以下の車両のオペ識別設定を初期化します。よろしいですか？
+    en:
+
+  - id: 43
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当する対象車両が見つかりませんでした。
+    en:
+
+  - id: 45
+    description: 初期化処理完了メッセージ
+    name: init_result_label
+    ja: 初期化が完了しました
+    en:
+
+  - id: 47
+    description: 結果
+    name: result
+    ja: 結果
+    en:
+
+  - id: 48
+    description: 内容
+    name: result_detail
+    ja: 内容
+    en:
+
+  - id: 49
+    description: 結果件数
+    name: result_count_message
+    ja: '${total} 件中 成功${success}件 失敗${fail}件'
+    en:
+
+  - id: 60
+    description: 表示項目設定
+    name: field_select
+    ja: 表示項目設定
+    en:
+
+  - id: 61
+    description: 表示項目選択
+    name: field_select_title
+    ja: 表示項目設定
+    en:
+
+  - id: 62
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 1001
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 31
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

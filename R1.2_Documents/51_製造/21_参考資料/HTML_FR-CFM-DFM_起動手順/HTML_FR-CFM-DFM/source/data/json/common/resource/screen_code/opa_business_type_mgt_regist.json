@@ -1,0 +1,45 @@
+[
+  {
+    "path": "business_type.block_id",
+    "name": "設定ブロック",
+    "help": "設定ブロックのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "公開先グループ2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "business_type.use_same_name",
+    "name": "すべての言語で同じ名称を使用",
+    "help": "すべての言語で同じ名称を使用のヘルプ文言",
+    "type": 30,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "business_type.item_names",
+    "name": "新規業種名称",
+    "help": "新規業種名称のヘルプ文言",
+    "type": -19,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

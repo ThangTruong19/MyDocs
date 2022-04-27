@@ -1,0 +1,137 @@
+@import "../../../../../assets/styles/opa/_variable.scss";
+
+$n: 8; //1行当たりのカラム数
+$m: 30px; //カラム右のマージン
+
+.group-links {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 58px;
+  > .group-link {
+    display: flex;
+    align-items: center;
+    width: calc((100% - #{$m * ($n - 1)}) / #{$n});
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-right: 30px;
+
+    > a {
+      color: $kba-main-color;
+      text-decoration: none;
+      outline: none;
+      border-bottom: 1px solid $kba-main-color;
+      padding-bottom: 2px;
+    }
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    @media (min-width: 1025px) {
+      &:nth-child(#{$n}n) {
+        margin-right: 0;
+      }
+
+      &:nth-child(n + #{$n + 1}) {
+        margin-top: 15px;
+      }
+    }
+
+    // 表示する段数を調整
+    @media (max-width: 1024px) {
+      width: calc((100% - #{$m * ($n - 3 - 1)}) / #{$n - 3});
+
+      &:hover {
+        opacity: 0.6;
+      }
+
+      &:nth-child(#{$n - 3}n) {
+        margin-right: 0;
+      }
+
+      &:nth-child(n + #{$n - 3 + 1}) {
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
+.group-counts {
+  border: 1px solid #ddd;
+  height: 500px;
+  margin: 15px 0;
+  padding: 15px;
+  overflow: hidden;
+  overflow-y: auto;
+
+  p[class^="group-name-"] {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  > table {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    .KBA-index-th {
+      cursor: default;
+    }
+
+    th,
+    td {
+      &.fixed {
+        width: 160px;
+        text-align: right;
+      }
+    }
+  }
+}
+
+.KBA-panel {
+  border: none;
+  margin-bottom: 20px;
+}
+
+.panel-heading {
+  border: 1px solid $kba-main-color;
+  border-radius: 4px 4px 0 0;
+  padding: 15px 15px;
+  line-height: 0.1;
+}
+
+.KBA-panel-body {
+  display: block;
+  padding: 0;
+
+  .KBA-form-table {
+    margin: 0;
+  }
+}
+
+.container {
+  &.KBA-search {
+    padding: 20px 10px;
+  }
+}
+
+.KBA-content {
+  margin-bottom: 30px;
+  &.target-export {
+    padding: 0;
+  }
+  &.KBA-search {
+    padding: 15px;
+  }
+}
+
+.footer-button {
+  display: flex;
+  justify-content: center;
+  .btn {
+    &.btn-success {
+      cursor: pointer;
+      min-width: 200px;
+    }
+  }
+}

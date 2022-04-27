@@ -1,0 +1,180 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 車両管理 端末開始設定
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 車両管理 端末開始設定
+    en:
+
+  - id: 12
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 13
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 14
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 15
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 16
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 17
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 18
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 19
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 20
+    description: 完了メッセージ
+    name: complete_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 21
+    description: 一括開始
+    name: batch_start
+    ja: 一括開始
+    en:
+
+  - id: 22
+    description: 一括リトライ
+    name: batch_retry
+    ja: 一括リトライ
+    en:
+
+  - id: 23
+    description: 開始
+    name: start
+    ja: 開始
+    en:
+
+  - id: 24
+    description: リトライ再送
+    name: retry
+    ja: リトライ再送
+    en:
+
+  - id: 25
+    description: 申請
+    name: apply
+    ja: 申請･･･
+    en:
+
+  - id: 26
+    description: 端末開始設定モーダルタイトル
+    name: start_setting_modal_title
+    ja: 対象車両に端末開始設定をします。よろしいですか？
+    en:
+
+  - id: 27
+    description: ORBCOMM申請モーダルタイトル
+    name: orbcomm_apply_modal_title
+    ja: 対象車両にORBCOMMアドレスを申請します。よろしいですか？
+    en:
+
+  - id: 28
+    description: 結果
+    name: result
+    ja: 結果
+    en:
+
+  - id: 29
+    description: 内容
+    name: result_detail
+    ja: 内容
+    en:
+
+  - id: 30
+    description: 端末開始処理完了メッセージ
+    name: terminal_start_result_label
+    ja: 端末開始処理が完了しました
+    en:
+
+  - id: 31
+    description: 結果件数
+    name: result_count_message
+    ja: '${total} 件中 成功${success}件 失敗${fail}件'
+    en:
+
+  - id: 43
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当する対象車両が見つかりませんでした。
+    en:
+
+  - id: 1001
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 15
+    description: 表示項目設定
+    name: field_select
+    ja: 表示項目設定
+    en:
+
+  - id: 17
+    description: 表示項目選択
+    name: field_select_title
+    ja: 表示項目設定
+    en:
+
+  - id: 17
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 16
+    description: リストから選択
+    name: choose_from_list
+    ja: リストから選択
+    en:
+
+  - id: 26
+    description: リストドロップダウン
+    name: prompt_to_select
+    ja: 選択してください
+    en:
+
+  - id: 26
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

@@ -1,0 +1,30 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "フラグ",
+    "path": "flag_conditions.flag_code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "残り時間しきい値[H]",
+    "path": "flag_conditions.event_condition.time_identification.remaining_time_threshold",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "メモ",
+    "path": "flag_conditions.free_memo",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "最終更新日",
+    "path": "flag_conditions.latest_update_datetime",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

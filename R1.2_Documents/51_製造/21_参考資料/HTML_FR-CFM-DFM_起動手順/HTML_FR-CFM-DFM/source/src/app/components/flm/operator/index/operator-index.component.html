@@ -1,0 +1,332 @@
+<section id="KBA-operator-index" *ngIf="labels && resource">
+  <form class="KBA-form" #f="ngForm">
+    <div class="container-fluid">
+      <h2 class="KBA-operator-index__title KBA-page-title">
+        {{ labels.title }}
+      </h2>
+      <div class="KBA-content">
+        <!-- 登録 -->
+        <app-kba-accordion
+          *ngIf="!isLoading"
+          [collapsed]="registerCollapsed"
+          [useCustomHeader]="false"
+          [title]="labels.register_id"
+          [labels]="labels"
+          (onChangeState)="onChangeRegisterAccordionState($event)"
+        >
+          <div data-kba-accordion-body>
+            <app-operator-register
+              *ngIf="registLabels && registResource; else loadingContent"
+              [labels]="registLabels"
+              [resource]="registResource"
+              [thList]="thList"
+              [collapsed]="registerCollapsed"
+              (registered)="onRegisterdOperator()"
+            >
+            </app-operator-register>
+            <ng-template #loadingContent>
+              <div class="KBA-spinner">
+                <i class="KBA-spinner__icon fa fa-refresh fa-spin"></i>
+              </div>
+            </ng-template>
+          </div>
+        </app-kba-accordion>
+
+        <!-- 検索 -->
+        <app-kba-accordion
+          [hidden]="!resource.customer_id && !resource.operator_label"
+          [collapsed]="collapsed"
+          [useCustomHeader]="false"
+          [title]="labels.search_condition"
+          [labels]="labels"
+          (onChangeState)="changePanelState($event)"
+        >
+          <div data-kba-accordion-body>
+            <div class="container KBA-search">
+              <div class="row">
+                <ng-container>
+                  <app-kba-selected
+                    *ngIf="resource.customer_id"
+                    class="col-sm-3"
+                    [kbaName]="'customer_id'"
+                    [kbaParams]="params"
+                    [kbaResource]="resource"
+                  >
+                  </app-kba-selected>
+                  <app-kba-text
+                    *ngIf="resource.operator_label"
+                    class="col-sm-3"
+                    [kbaName]="'operator_label'"
+                    [kbaParams]="params"
+                    [kbaResource]="resource"
+                    [maxlength]="50"
+                  >
+                  </app-kba-text>
+                </ng-container>
+              </div>
+            </div>
+            <div class="KBA-panel-footer">
+              <button
+                (click)="onClickSearch()"
+                type="button"
+                class="btn btn-primary search"
+              >
+                {{ labels.search }}
+              </button>
+              <button
+                type="button"
+                class="btn btn-warning btn-download"
+                (click)="onClickDownload()"
+              >
+                {{ labels.download_template }}
+                <i class="kba-icon kba-icon-download"></i>
+              </button>
+            </div>
+          </div>
+        </app-kba-accordion>
+
+        <div class="KBA-table-options" [hidden]="count <= 0">
+          <app-kba-pagination
+            [count]="count"
+            [params]="pageParams"
+            [labels]="labels"
+            [element]="pageCountEl"
+            (changeState)="onPaginationChange()"
+          >
+          </app-kba-pagination>
+          <div class="table-option-buttons">
+            <button
+              *ngIf="!resource.customer_id && !resource.operator_label"
+              type="button"
+              class="btn btn-warning btn-download"
+              (click)="onClickDownload()"
+            >
+              {{ labels.download_template }}
+              <i class="kba-icon kba-icon-download"></i>
+            </button>
+            <div class="delete-wrapper">
+              <span
+                class="delete-warning-message"
+                *ngIf="selectedList.length > batchDeleteLimit"
+                >{{ labels.alert_over_upper_limit }}</span
+              >
+              <button
+                type="button"
+                class="KBA-selectable-columns btn btn-secondary"
+                (click)="onClickDeleteAll()"
+                [disabled]="
+                  !(selectedList | isNotEmpty) ||
+                  selectedList.length > batchDeleteLimit
+                "
+              >
+                {{ labels.delete_all }}
+                <i class="kba-icon kba-icon-dustbox"></i>
+                <span
+                  class="delete-count"
+                  [ngClass]="
+                    selectedList.length > batchDeleteLimit ? 'warning' : ''
+                  "
+                >
+                  {{ selectedList.length }}/{{ lists.originList.length
+                  }}{{ labels.delete_count }}
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="KBA-table-wrapper">
+          <app-kba-table
+            [customTableBtnContent]="null"
+            [customTableRowContent]="customTableRowContent"
+            [customTableThBtnContent]="null"
+            [customTableThContent]="customTableThContent"
+            [lists]="lists"
+            [pageParams]="pageParams"
+            [params]="params"
+            [thList]="thList"
+            [sortableThList]="sortableThList"
+            [labels]="labels"
+            [collapsed]="collapsed"
+            [selectable]="selectable"
+            [checkIdName]="checkIdName"
+            [checkedItems]="checkedItems"
+            [deletable]="deletable"
+            [isFetching]="isFetching"
+            (delete)="onClickDelete($event)"
+          >
+            <ng-template #customTableThContent>
+              <ng-container *ngFor="let th of thList">
+                <th
+                  *ngIf="
+                    th.name === 'header_history' && resource.operator_label
+                  "
+                  class="KBA-index-th th-{{
+                    th.shortName
+                  }} text-center fixed disable-sort"
+                  appKbaSortingLabel
+                  [(sortingParams)]="sortingParams"
+                  [labelName]="th.name"
+                  [sortableThList]="sortableThList"
+                  (sort)="onChangeSort($event)"
+                >
+                  <span>{{ th.label }}</span>
+                </th>
+                <th
+                  *ngIf="th.name !== 'header_history' && th.displayable"
+                  [ngClass]="{ 'disable-sort': !th.sortable }"
+                  class="KBA-index-th th-{{ th.shortName }}"
+                  appKbaSortingLabel
+                  [(sortingParams)]="sortingParams"
+                  [labelName]="th.name"
+                  [sortableThList]="sortableThList"
+                  (sort)="onChangeSort($event)"
+                >
+                  <span>{{ th.label }}</span>
+                </th>
+              </ng-container>
+            </ng-template>
+            <ng-template #customTableRowContent let-data="data" , let-idx="idx">
+              <ng-container *ngFor="let title of thList">
+                <!-- オペレータコードの場合 -->
+                <td
+                  *ngIf="title.name === 'operators.code'"
+                  [ngClass]="{ disable: !isChecked(data['operators.id']) }"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <span>{{ data[title.name] }}</span>
+                  <input
+                    type="hidden"
+                    name="operator-id-{{ idx }}"
+                    value="{{ data['operators.id'] }}"
+                  />
+                </td>
+
+                <!-- オペレータ名の場合 -->
+                <td
+                  *ngIf="
+                    title.name === 'operators.current_label.label' &&
+                    resource.operator_label
+                  "
+                  [ngClass]="{
+                    disable: !isChecked(data['operators.id']),
+                    edit: initList[idx][title.name] !== data[title.name]
+                  }"
+                  class="td-{{
+                    title.shortName
+                  }} KBA-index-td d-flex align-items-center"
+                >
+                  <input
+                    type="text" autocomplete="off"
+                    name="operator-label-{{ idx }}"
+                    class="KBA-input-text form-control"
+                    maxlength="255"
+                    [(ngModel)]="data[title.name]"
+                    [disabled]="!isChecked(data['operators.id'])"
+                  />
+                </td>
+
+                <!-- 履歴 の td の場合 -->
+                <td
+                  *ngIf="
+                    title.name === 'header_history' && resource.operator_label
+                  "
+                  [ngClass]="{
+                    disable: disableHistories[data['operators.id']]
+                  }"
+                  class="KBA-table__small kba-sm-link text-center fixed td-{{
+                    title.shortName
+                  }}
+                         KBA-index-td d-flex align-items-center justify-content-center"
+                  (click)="onClickHistory(data['operators.id'])"
+                >
+                  <span>
+                    <i class="kba-icon kba-extra-icon-user"></i>
+                  </span>
+                </td>
+
+                <!-- 更新日時の場合 -->
+                <input
+                  *ngIf="title.name === 'operators.update_datetime'"
+                  type="hidden"
+                  name="update-datetime-{{ idx }}"
+                  value="{{ data[title.name] }}"
+                />
+              </ng-container>
+            </ng-template>
+          </app-kba-table>
+        </div>
+      </div>
+    </div>
+
+    <footer *ngIf="resource.operator_label" class="KBA-form-footer-fixed">
+      <a
+        href="javascript:void(0)"
+        (click)="onClickReset(f)"
+        class="btn btn-link"
+      >
+        {{ labels.reset }}
+      </a>
+      <button
+        (click)="onClickSubmit()"
+        type="button"
+        class="btn btn-primary"
+        [disabled]="!f.dirty || !f.valid"
+      >
+        {{ labels.update }}
+      </button>
+    </footer>
+  </form>
+</section>
+
+<app-kba-alert></app-kba-alert>
+
+<ng-template #deleteModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="deleteModalValues.listDesc"
+    [val]="deleteModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #historyModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="historyModalValues.listDesc"
+    [val]="historyModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #resetModalContent>
+  <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+</ng-template>
+
+<ng-template #submitModalContent>
+  <div class="subtitle" *ngIf="isOperatorLabelDuplicate">
+    <p class="text-attention">
+      {{ labels.operator_label_duplication_attention }}
+    </p>
+    <p></p>
+  </div>
+
+  <app-kba-simple-list-confirm
+    [desc]="editModalValues.listDesc"
+    [val]="editModalValues.listVal"
+    [warningColumns]="warningColumns"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<ng-template #resultModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="resultDesc"
+    [val]="resultVal"
+    [warningColumns]="'all'"
+  >
+  </app-kba-simple-list-confirm>
+  <p class="result-count-message">{{ resultCountMessage }}</p>
+</ng-template>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

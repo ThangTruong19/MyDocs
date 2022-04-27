@@ -1,0 +1,31 @@
+[
+  {
+    "path": "flag_condition.flag_kind_code",
+    "name": "設定項目",
+    "help": "設定項目のヘルプ文言",
+    "type": 20,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "コーション",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "交換時期",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "flag_condition.free_memo",
+    "name": "メモ",
+    "help": "メモのヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  }
+]

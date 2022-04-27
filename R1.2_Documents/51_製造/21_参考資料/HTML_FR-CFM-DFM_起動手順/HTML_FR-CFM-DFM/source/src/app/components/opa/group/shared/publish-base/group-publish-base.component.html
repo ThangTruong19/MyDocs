@@ -1,0 +1,405 @@
+<section id="KBA-group-publish" *ngIf="labels && resource">
+  <div class="container-fluid">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content">
+      <ng-container *ngIf="template === 'index'">
+        <app-kba-accordion
+          [collapsed]="collapsed"
+          [useCustomHeader]="false"
+          [title]="labels.search_condition"
+          [labels]="labels"
+          (onChangeState)="changePanelState($event)"
+        >
+          <div data-kba-accordion-body>
+            <div class="container KBA-search">
+              <div class="row">
+                <app-kba-selected
+                  #groupKindSelect
+                  *ngIf="resource.group_kind_id"
+                  class="col-sm-3"
+                  [kbaName]="'group_kind_id'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                ></app-kba-selected>
+                <app-kba-text
+                  *ngIf="resource.group_label"
+                  class="col-sm-3"
+                  [kbaName]="'group_label'"
+                  [kbaParams]="params"
+                  [maxlength]="255"
+                  [kbaResource]="resource"
+                ></app-kba-text>
+              </div>
+            </div>
+            <div class="KBA-panel-footer">
+              <button
+                (click)="onClickSearch()"
+                type="button"
+                class="btn btn-primary search"
+              >
+                {{ labels.search }}
+              </button>
+            </div>
+          </div>
+        </app-kba-accordion>
+
+        <div class="KBA-table-options" [hidden]="count <= 0">
+          <app-kba-pagination
+            [count]="count"
+            [params]="pageParams"
+            [labels]="labels"
+            [element]="pageCountEl"
+            (changeState)="onPaginationChange()"
+          >
+          </app-kba-pagination>
+          <div class="table-option-buttons">
+            <div class="popover-wrapper">
+              <button
+                type="button"
+                class="btn btn-warning"
+                (click)="handleClickDownload()"
+              >
+                {{ labels.list_download }}
+                <i class="kba-icon kba-icon-download"></i>
+              </button>
+              <app-kba-popover
+                [labels]="labels"
+                [resource]="downloadFieldResources"
+                [fields]="downloadFields"
+                [title]="labels.download_select_title"
+                [(isVisible)]="downloadPopoverVisible"
+                [download]="true"
+                [downloadType]="resource.file_content_type"
+                (ok)="handleClickDownloadOk($event)"
+              >
+              </app-kba-popover>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary unlink-all"
+              (click)="onClickPublishTargetEdit()"
+              [disabled]="targetId == null"
+            >
+              {{ labels.pub_target_edit }}
+            </button>
+          </div>
+        </div>
+
+        <div class="KBA-table-wrapper">
+          <app-kba-table
+            [customTableThContent]="customTableThContent"
+            [customTableRowContent]="customTableRowContent"
+            [lists]="lists"
+            [pageParams]="pageParams"
+            [thList]="thList"
+            [sortableThList]="sortableThList"
+            [(sortingParams)]="sortingParams"
+            [labels]="labels"
+            [collapsed]="collapsed"
+            [isFetching]="isFetching"
+          >
+          </app-kba-table>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="template === 'edit'">
+        <div class="KBA-form" *ngIf="currentItem">
+          <div class="KBA-form-header">
+            <h3 class="KBA-content-title">{{ editContentTitle }}</h3>
+            <div class="annotation">
+              <p class="KBA-form-table__required">
+                {{ labels.description_for_required }}
+              </p>
+            </div>
+          </div>
+          <table class="KBA-form-table table table-bordered">
+            <tbody class="KBA-form-table-tbody">
+              <tr class="KBA-form-row">
+                <td class="KBA-form-table__head">
+                  <span class="KBA-form-table__label">{{
+                    targetItemLabel
+                  }}</span>
+                </td>
+                <td>
+                  {{ currentItem.identification.label }}
+                </td>
+              </tr>
+              <tr class="KBA-form-row">
+                <td class="KBA-form-table__head">
+                  <span
+                    class="KBA-form-table__label KBA-form-table__required"
+                    >{{ labels.scope_items }}</span
+                  >
+                </td>
+                <td class="scope-items-cell">
+                  <div class="row-scope-item">
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-select"
+                      (click)="onClickScopeSelect()"
+                    >
+                      {{ labels.select }}
+                    </button>
+                  </div>
+                  <div class="row-scope-item add-items">
+                    <ng-container *ngIf="additionalGroups.length > 0">
+                      <label class="scope-item-label"
+                        >{{ additionalGroups.length
+                        }}{{ labels.add_count }}</label
+                      >
+                      <ng-container
+                        *ngTemplateOutlet="
+                          scopeTable;
+                          context: {
+                            thList: registModalValues.listDesc,
+                            list: additionalGroups
+                          }
+                        "
+                      ></ng-container>
+                    </ng-container>
+                  </div>
+
+                  <div class="row-scope-item remove-items">
+                    <ng-container *ngIf="removalGroups.length > 0">
+                      <label class="scope-item-label"
+                        >{{ removalGroups.length
+                        }}{{ labels.remove_count }}</label
+                      >
+                      <ng-container
+                        *ngTemplateOutlet="
+                          scopeTable;
+                          context: {
+                            thList: registModalValues.listDesc,
+                            list: removalGroups
+                          }
+                        "
+                      ></ng-container>
+                    </ng-container>
+                  </div>
+
+                  <div class="row-scope-item">
+                    <ng-container *ngIf="currentScopeGroups.length > 0">
+                      <label class="scope-item-label"
+                        >{{ currentScopeGroups.length
+                        }}{{ labels.set_count }}</label
+                      >
+                      <ng-container
+                        *ngTemplateOutlet="
+                          scopeTable;
+                          context: {
+                            thList: registModalValues.listDesc,
+                            list: currentScopeGroups
+                          }
+                        "
+                      ></ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="currentScopeGroups.length === 0">
+                      <p
+                        class="no-scope-items"
+                        [hidden]="additionalGroups.length > 0"
+                      >
+                        {{ labels.no_scope_items }}
+                      </p>
+                    </ng-container>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <footer class="KBA-form-footer-fixed">
+            <a
+              href="javascript:void(0)"
+              (click)="onClickReset()"
+              class="btn btn-link"
+            >
+              {{ labels.reset }}
+            </a>
+            <button
+              class="btn btn-secondary"
+              type="button"
+              (click)="onClickBack()"
+            >
+              {{ labels.back }}
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="onClickSubmit()"
+              [disabled]="
+                additionalGroups.length === 0 && removalGroups.length === 0
+              "
+            >
+              {{ labels.submit }}
+            </button>
+          </footer>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>
+
+<ng-template #customTableThContent>
+  <th class="th-radio fixed"></th>
+
+  <ng-container *ngFor="let th of thList">
+    <ng-container *ngIf="th.displayable">
+      <th
+        class="th-{{ th.shortName }} KBA-index-th"
+        appKbaSortingLabel
+        [(sortingParams)]="sortingParams"
+        [labelName]="th.name"
+        [sortableThList]="sortableThList"
+        (sort)="onChangeSort($event)"
+      >
+        <span>{{ th.label }}</span>
+      </th>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #customTableRowContent let-data="data">
+  <td class="td-radio fixed">
+    <input
+      name="group-publish-radio"
+      id="group-publish-radio-{{ data['groups.identification.id'] }}"
+      type="radio"
+      class="KBA-input-radio"
+      [value]="data['groups.identification.id']"
+      [ngModel]="targetId"
+      (ngModelChange)="handleSelectItem(data)"
+    />
+    <label
+      for="group-publish-radio-{{ data['groups.identification.id'] }}"
+      class="KBA-input-radio__label"
+    ></label>
+  </td>
+
+  <ng-container *ngFor="let th of thList">
+    <ng-container *ngIf="th.displayable">
+      <td class="td-{{ th.shortName }} KBA-index-td d-flex align-items-center">
+        <span>{{ data[th.name] }}</span>
+      </td>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #scopeTable let-thList="thList" let-list="list">
+  <div class="scope-table-container">
+    <table class="KBA-table table table-bordered table-scope">
+      <thead class="KBA-table-thead">
+        <tr class="KBA-table-flex-cell">
+          <ng-container *ngFor="let title of thList">
+            <th *ngIf="title.displayable" class="th-{{ title.shortName }}">
+              {{ title.label }}
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody class="KBA-table-tbody">
+        <tr
+          *ngFor="let data of list; let i = index"
+          class="KBA-table-flex-cell"
+        >
+          <ng-container *ngFor="let title of thList">
+            <td
+              *ngIf="title.displayable"
+              class="td-{{
+                title.shortName
+              }} KBA-index-td d-flex align-items-center"
+            >
+              <span>{{ data | at: title.dataKey }}</span>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<ng-template #submitModalScopeTable let-thList="thList" let-list="list">
+  <table class="KBA-form-table table table-bordered submit-modal-table">
+    <thead class="KBA-table-thead">
+      <tr>
+        <ng-container *ngFor="let title of thList">
+          <th *ngIf="title.displayable" class="th-{{ title.shortName }}">
+            {{ title.label }}
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody class="KBA-table-tbody">
+      <tr *ngFor="let data of list; let i = index">
+        <ng-container *ngFor="let title of thList">
+          <td *ngIf="title.displayable" class="td-{{ title.shortName }}">
+            <span>{{ data | at: title.dataKey }}</span>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #scopeSearchModalContent>
+  <app-scope-search-modal
+    [labels]="labels"
+    [resource]="modalResource"
+    [groupId]="targetId"
+    [fetchScope]="fetchScope"
+    [modalValues]="selectModalValues"
+    [checkIdKey]="scopeCheckIdKey"
+    [additionalItems]="additionalGroups"
+    [removalItems]="removalGroups"
+    [groupKindId]="currentItem.identification.kind_id"
+    (checked)="updateScopeGroups($event)"
+  ></app-scope-search-modal>
+</ng-template>
+
+<ng-template #resetModalContent>
+  <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+</ng-template>
+
+<ng-template #submitModalContent>
+  <app-kba-tandem-confirm
+    class="confirm-modal-content"
+    [desc]="submitModalHeader"
+    [val]="submitModalItems"
+    [customContent]="submitModalCustomContent"
+  >
+  </app-kba-tandem-confirm>
+</ng-template>
+
+<ng-template #submitModalCustomContent let-d="d" let-value="value">
+  <span *ngIf="d.name === 'target_item_label'">{{ value }}</span>
+  <div class="submit-modal-scope-items" *ngIf="d.name === 'scope_items'">
+    <div class="row-scope-item add-items" *ngIf="additionalGroups.length > 0">
+      <label class="scope-item-label"
+        >{{ additionalGroups.length }}{{ labels.add_count }}</label
+      >
+      <ng-container
+        *ngTemplateOutlet="
+          submitModalScopeTable;
+          context: {
+            thList: confirmModalValues.listDesc,
+            list: confirmAdditionalGroups
+          }
+        "
+      ></ng-container>
+    </div>
+    <div class="row-scope-item remove-items" *ngIf="removalGroups.length > 0">
+      <label class="scope-item-label"
+        >{{ removalGroups.length }}{{ labels.remove_count }}</label
+      >
+      <ng-container
+        *ngTemplateOutlet="
+          submitModalScopeTable;
+          context: {
+            thList: confirmModalValues.listDesc,
+            list: confirmRemovalGroups
+          }
+        "
+      ></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<app-kba-alert></app-kba-alert>
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

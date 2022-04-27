@@ -1,0 +1,23 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "オペレータID",
+    "path": "operators.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "オペレータID",
+    "path": "operators.code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "オペレータ更新日時",
+    "path": "operators.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

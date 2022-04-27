@@ -1,0 +1,2740 @@
+[
+  {
+    "path": "target_kind",
+    "name": "変更対象",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": "1",
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "1",
+    "items": [
+      {
+        "key": "グループ情報",
+        "value": "0",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "KeyPerson情報",
+        "value": "1",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  },
+  {
+    "path": "group.identification.kind_id",
+    "name": "グループ種別",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "2",
+    "items": [
+      {
+        "key": "ブロック・ユニオン",
+        "value": "4",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "ブロック",
+        "value": "5",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "工場",
+        "value": "6",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "代理店・ユニオン",
+        "value": "7",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "代理店",
+        "value": "8",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "9",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "広域顧客",
+        "value": "10",
+        "kind": "D",
+        "data_order": "7"
+      },
+      {
+        "key": "銀行",
+        "value": "12",
+        "kind": "D",
+        "data_order": "8"
+      },
+      {
+        "key": "保険",
+        "value": "13",
+        "kind": "D",
+        "data_order": "9"
+      },
+      {
+        "key": "ファイナンス",
+        "value": "14",
+        "kind": "D",
+        "data_order": "10"
+      }
+    ]
+  },
+  {
+    "path": "group.identification.label",
+    "name": "グループ名称",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "3",
+    "items": []
+  },
+  {
+    "path": "group.identification.label_english",
+    "name": "グループ名称（英語）",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "4",
+    "items": []
+  },
+  {
+    "path": "group.identification.organization_code",
+    "name": "組織コード",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "5",
+    "items": []
+  },
+  {
+    "path": "group.attribute.customer_publish_group_label",
+    "name": "グループ名称(表示用)",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "6",
+    "items": []
+  },
+  {
+    "path": "group.attribute.phone_no",
+    "name": "電話番号",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "7",
+    "items": []
+  },
+  {
+    "path": "group.attribute.email",
+    "name": "メールアドレス",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "8",
+    "items": []
+  },
+  {
+    "path": "group.attribute.address",
+    "name": "所在地",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "9",
+    "items": []
+  },
+  {
+    "path": "group.attribute.nation_code",
+    "name": "所属国",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "10",
+    "items": [
+      {
+        "key": "アイスランド",
+        "value": "IS",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "アイルランド",
+        "value": "IE",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "アゼルバイジャン",
+        "value": "AZ",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "アフガニスタン",
+        "value": "AF",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "アメリカ",
+        "value": "US",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "アメリカ領サモア",
+        "value": "AS",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "アラブ首長国連邦",
+        "value": "AE",
+        "kind": "D",
+        "data_order": "7"
+      },
+      {
+        "key": "アルーバ",
+        "value": "AW",
+        "kind": "D",
+        "data_order": "8"
+      },
+      {
+        "key": "アルジェリア",
+        "value": "DZ",
+        "kind": "D",
+        "data_order": "9"
+      },
+      {
+        "key": "アルゼンチン",
+        "value": "AR",
+        "kind": "D",
+        "data_order": "10"
+      },
+      {
+        "key": "アルバニア",
+        "value": "AL",
+        "kind": "D",
+        "data_order": "11"
+      },
+      {
+        "key": "アルメニア",
+        "value": "AM",
+        "kind": "D",
+        "data_order": "12"
+      },
+      {
+        "key": "アンギラ",
+        "value": "AI",
+        "kind": "D",
+        "data_order": "13"
+      },
+      {
+        "key": "アンゴラ",
+        "value": "AO",
+        "kind": "D",
+        "data_order": "14"
+      },
+      {
+        "key": "アンティグア・バーブーダ",
+        "value": "AG",
+        "kind": "D",
+        "data_order": "15"
+      },
+      {
+        "key": "アンドラ",
+        "value": "AD",
+        "kind": "D",
+        "data_order": "16"
+      },
+      {
+        "key": "イェ－メン",
+        "value": "YE",
+        "kind": "D",
+        "data_order": "17"
+      },
+      {
+        "key": "イギリス（グレートブリテン）",
+        "value": "GB",
+        "kind": "D",
+        "data_order": "18"
+      },
+      {
+        "key": "イスラエル",
+        "value": "IL",
+        "kind": "D",
+        "data_order": "19"
+      },
+      {
+        "key": "イタリー",
+        "value": "IT",
+        "kind": "D",
+        "data_order": "20"
+      },
+      {
+        "key": "イラク",
+        "value": "IQ",
+        "kind": "D",
+        "data_order": "21"
+      },
+      {
+        "key": "イラン",
+        "value": "IR",
+        "kind": "D",
+        "data_order": "22"
+      },
+      {
+        "key": "インド",
+        "value": "IN",
+        "kind": "D",
+        "data_order": "23"
+      },
+      {
+        "key": "インドネシア",
+        "value": "ID",
+        "kind": "D",
+        "data_order": "24"
+      },
+      {
+        "key": "ウガンダ",
+        "value": "UG",
+        "kind": "D",
+        "data_order": "25"
+      },
+      {
+        "key": "ウクライナ",
+        "value": "UA",
+        "kind": "D",
+        "data_order": "26"
+      },
+      {
+        "key": "ウズベキスタン",
+        "value": "UZ",
+        "kind": "D",
+        "data_order": "27"
+      },
+      {
+        "key": "ウルグアイ",
+        "value": "UY",
+        "kind": "D",
+        "data_order": "28"
+      },
+      {
+        "key": "エクアドル",
+        "value": "EC",
+        "kind": "D",
+        "data_order": "29"
+      },
+      {
+        "key": "エジプト",
+        "value": "EG",
+        "kind": "D",
+        "data_order": "30"
+      },
+      {
+        "key": "エストニア",
+        "value": "EE",
+        "kind": "D",
+        "data_order": "31"
+      },
+      {
+        "key": "エチオピア",
+        "value": "ET",
+        "kind": "D",
+        "data_order": "32"
+      },
+      {
+        "key": "エリトリア",
+        "value": "ER",
+        "kind": "D",
+        "data_order": "33"
+      },
+      {
+        "key": "エルサルバドル",
+        "value": "SV",
+        "kind": "D",
+        "data_order": "34"
+      },
+      {
+        "key": "オーストラリア",
+        "value": "AU",
+        "kind": "D",
+        "data_order": "35"
+      },
+      {
+        "key": "オーストリア",
+        "value": "AT",
+        "kind": "D",
+        "data_order": "36"
+      },
+      {
+        "key": "オマーン",
+        "value": "OM",
+        "kind": "D",
+        "data_order": "37"
+      },
+      {
+        "key": "オランダ",
+        "value": "NL",
+        "kind": "D",
+        "data_order": "38"
+      },
+      {
+        "key": "オランダ領アンティル諸島",
+        "value": "AN",
+        "kind": "D",
+        "data_order": "39"
+      },
+      {
+        "key": "カザフスタン",
+        "value": "KZ",
+        "kind": "D",
+        "data_order": "40"
+      },
+      {
+        "key": "カタール",
+        "value": "QA",
+        "kind": "D",
+        "data_order": "41"
+      },
+      {
+        "key": "カナダ",
+        "value": "CA",
+        "kind": "D",
+        "data_order": "42"
+      },
+      {
+        "key": "カメルーン",
+        "value": "CM",
+        "kind": "D",
+        "data_order": "43"
+      },
+      {
+        "key": "カンボジア",
+        "value": "KH",
+        "kind": "D",
+        "data_order": "44"
+      },
+      {
+        "key": "ガーナ",
+        "value": "GH",
+        "kind": "D",
+        "data_order": "45"
+      },
+      {
+        "key": "ガイアナ",
+        "value": "GY",
+        "kind": "D",
+        "data_order": "46"
+      },
+      {
+        "key": "ガドループ",
+        "value": "GP",
+        "kind": "D",
+        "data_order": "47"
+      },
+      {
+        "key": "ガボン",
+        "value": "GA",
+        "kind": "D",
+        "data_order": "48"
+      },
+      {
+        "key": "ガンビア",
+        "value": "GM",
+        "kind": "D",
+        "data_order": "49"
+      },
+      {
+        "key": "キプロス",
+        "value": "CY",
+        "kind": "D",
+        "data_order": "50"
+      },
+      {
+        "key": "キューバ",
+        "value": "CU",
+        "kind": "D",
+        "data_order": "51"
+      },
+      {
+        "key": "キリバス",
+        "value": "KI",
+        "kind": "D",
+        "data_order": "52"
+      },
+      {
+        "key": "キルギス共和国",
+        "value": "KG",
+        "kind": "D",
+        "data_order": "53"
+      },
+      {
+        "key": "ギニア",
+        "value": "GN",
+        "kind": "D",
+        "data_order": "54"
+      },
+      {
+        "key": "ギニアビサウ",
+        "value": "GW",
+        "kind": "D",
+        "data_order": "55"
+      },
+      {
+        "key": "ギリシャ",
+        "value": "GR",
+        "kind": "D",
+        "data_order": "56"
+      },
+      {
+        "key": "クウェート",
+        "value": "KW",
+        "kind": "D",
+        "data_order": "57"
+      },
+      {
+        "key": "クック諸島",
+        "value": "CK",
+        "kind": "D",
+        "data_order": "58"
+      },
+      {
+        "key": "クリスマス島",
+        "value": "CX",
+        "kind": "D",
+        "data_order": "59"
+      },
+      {
+        "key": "クロアチア",
+        "value": "HR",
+        "kind": "D",
+        "data_order": "60"
+      },
+      {
+        "key": "グァテマラ",
+        "value": "GT",
+        "kind": "D",
+        "data_order": "61"
+      },
+      {
+        "key": "グアム",
+        "value": "GU",
+        "kind": "D",
+        "data_order": "62"
+      },
+      {
+        "key": "グリーンランド",
+        "value": "GL",
+        "kind": "D",
+        "data_order": "63"
+      },
+      {
+        "key": "グレナダ",
+        "value": "GD",
+        "kind": "D",
+        "data_order": "64"
+      },
+      {
+        "key": "ケープベルデ",
+        "value": "CV",
+        "kind": "D",
+        "data_order": "65"
+      },
+      {
+        "key": "ケイマン諸島",
+        "value": "KY",
+        "kind": "D",
+        "data_order": "66"
+      },
+      {
+        "key": "ケニヤ",
+        "value": "KE",
+        "kind": "D",
+        "data_order": "67"
+      },
+      {
+        "key": "コートジボワール",
+        "value": "CI",
+        "kind": "D",
+        "data_order": "68"
+      },
+      {
+        "key": "ココス諸島",
+        "value": "CC",
+        "kind": "D",
+        "data_order": "69"
+      },
+      {
+        "key": "コスタリカ",
+        "value": "CR",
+        "kind": "D",
+        "data_order": "70"
+      },
+      {
+        "key": "コモロ",
+        "value": "KM",
+        "kind": "D",
+        "data_order": "71"
+      },
+      {
+        "key": "コロンビア",
+        "value": "CO",
+        "kind": "D",
+        "data_order": "72"
+      },
+      {
+        "key": "コンゴ共和国",
+        "value": "CG",
+        "kind": "D",
+        "data_order": "73"
+      },
+      {
+        "key": "コンゴ民主共和国(旧ザイール)",
+        "value": "CD",
+        "kind": "D",
+        "data_order": "74"
+      },
+      {
+        "key": "サウジアラビア",
+        "value": "SA",
+        "kind": "D",
+        "data_order": "75"
+      },
+      {
+        "key": "サモア",
+        "value": "WS",
+        "kind": "D",
+        "data_order": "76"
+      },
+      {
+        "key": "サントーメ-プリンシペ",
+        "value": "ST",
+        "kind": "D",
+        "data_order": "77"
+      },
+      {
+        "key": "サンピエール エ ミクロン",
+        "value": "PM",
+        "kind": "D",
+        "data_order": "78"
+      },
+      {
+        "key": "サンマリノ",
+        "value": "SM",
+        "kind": "D",
+        "data_order": "79"
+      },
+      {
+        "key": "ザイール共和国",
+        "value": "ZR",
+        "kind": "D",
+        "data_order": "80"
+      },
+      {
+        "key": "ザンビア",
+        "value": "ZM",
+        "kind": "D",
+        "data_order": "81"
+      },
+      {
+        "key": "シエラレオーネ",
+        "value": "SL",
+        "kind": "D",
+        "data_order": "82"
+      },
+      {
+        "key": "シリア",
+        "value": "SY",
+        "kind": "D",
+        "data_order": "83"
+      },
+      {
+        "key": "シンガポール",
+        "value": "SG",
+        "kind": "D",
+        "data_order": "84"
+      },
+      {
+        "key": "ジブティ共和国",
+        "value": "DJ",
+        "kind": "D",
+        "data_order": "85"
+      },
+      {
+        "key": "ジブラルタル",
+        "value": "GI",
+        "kind": "D",
+        "data_order": "86"
+      },
+      {
+        "key": "ジャマイカ",
+        "value": "JM",
+        "kind": "D",
+        "data_order": "87"
+      },
+      {
+        "key": "ジョージア",
+        "value": "GE",
+        "kind": "D",
+        "data_order": "88"
+      },
+      {
+        "key": "ジンバブエ",
+        "value": "ZW",
+        "kind": "D",
+        "data_order": "89"
+      },
+      {
+        "key": "スーダン",
+        "value": "SD",
+        "kind": "D",
+        "data_order": "90"
+      },
+      {
+        "key": "スイス",
+        "value": "CH",
+        "kind": "D",
+        "data_order": "91"
+      },
+      {
+        "key": "スウェーデン",
+        "value": "SE",
+        "kind": "D",
+        "data_order": "92"
+      },
+      {
+        "key": "スペイン",
+        "value": "ES",
+        "kind": "D",
+        "data_order": "93"
+      },
+      {
+        "key": "スリナム",
+        "value": "SR",
+        "kind": "D",
+        "data_order": "94"
+      },
+      {
+        "key": "スリランカ",
+        "value": "LK",
+        "kind": "D",
+        "data_order": "95"
+      },
+      {
+        "key": "スロバキア",
+        "value": "SK",
+        "kind": "D",
+        "data_order": "96"
+      },
+      {
+        "key": "スロベニア",
+        "value": "SI",
+        "kind": "D",
+        "data_order": "97"
+      },
+      {
+        "key": "スワジランド",
+        "value": "SZ",
+        "kind": "D",
+        "data_order": "98"
+      },
+      {
+        "key": "スヴァールバル、ヤンマイエン諸島",
+        "value": "SJ",
+        "kind": "D",
+        "data_order": "99"
+      },
+      {
+        "key": "セーシェル",
+        "value": "SC",
+        "kind": "D",
+        "data_order": "100"
+      },
+      {
+        "key": "セネガル",
+        "value": "SN",
+        "kind": "D",
+        "data_order": "101"
+      },
+      {
+        "key": "セルビア",
+        "value": "RS",
+        "kind": "D",
+        "data_order": "102"
+      },
+      {
+        "key": "セントキッツネヴィス",
+        "value": "KN",
+        "kind": "D",
+        "data_order": "103"
+      },
+      {
+        "key": "セントヘレナ",
+        "value": "SH",
+        "kind": "D",
+        "data_order": "104"
+      },
+      {
+        "key": "セントルシア",
+        "value": "LC",
+        "kind": "D",
+        "data_order": "105"
+      },
+      {
+        "key": "セントヴィンセント-グレナディン諸島",
+        "value": "VC",
+        "kind": "D",
+        "data_order": "106"
+      },
+      {
+        "key": "ソマリア",
+        "value": "SO",
+        "kind": "D",
+        "data_order": "107"
+      },
+      {
+        "key": "ソロモン諸島",
+        "value": "SB",
+        "kind": "D",
+        "data_order": "108"
+      },
+      {
+        "key": "タークス アンド ケーコス諸島",
+        "value": "TC",
+        "kind": "D",
+        "data_order": "109"
+      },
+      {
+        "key": "タイランド",
+        "value": "TH",
+        "kind": "D",
+        "data_order": "110"
+      },
+      {
+        "key": "タジキスタン",
+        "value": "TJ",
+        "kind": "D",
+        "data_order": "111"
+      },
+      {
+        "key": "タンザニア",
+        "value": "TZ",
+        "kind": "D",
+        "data_order": "112"
+      },
+      {
+        "key": "チェコ",
+        "value": "CB",
+        "kind": "D",
+        "data_order": "113"
+      },
+      {
+        "key": "チェコ共和国",
+        "value": "CZ",
+        "kind": "D",
+        "data_order": "114"
+      },
+      {
+        "key": "チャド",
+        "value": "TD",
+        "kind": "D",
+        "data_order": "115"
+      },
+      {
+        "key": "チュニジア",
+        "value": "TN",
+        "kind": "D",
+        "data_order": "116"
+      },
+      {
+        "key": "チリ",
+        "value": "CL",
+        "kind": "D",
+        "data_order": "117"
+      },
+      {
+        "key": "デンマーク",
+        "value": "DK",
+        "kind": "D",
+        "data_order": "118"
+      },
+      {
+        "key": "トーゴ共和国",
+        "value": "TG",
+        "kind": "D",
+        "data_order": "119"
+      },
+      {
+        "key": "トゥヴァル",
+        "value": "TV",
+        "kind": "D",
+        "data_order": "120"
+      },
+      {
+        "key": "トケラウ諸島",
+        "value": "TK",
+        "kind": "D",
+        "data_order": "121"
+      },
+      {
+        "key": "トリニダード・トバゴ",
+        "value": "TT",
+        "kind": "D",
+        "data_order": "122"
+      },
+      {
+        "key": "トルクメニスタン",
+        "value": "TM",
+        "kind": "D",
+        "data_order": "123"
+      },
+      {
+        "key": "トルコ",
+        "value": "TR",
+        "kind": "D",
+        "data_order": "124"
+      },
+      {
+        "key": "トンガ",
+        "value": "TO",
+        "kind": "D",
+        "data_order": "125"
+      },
+      {
+        "key": "ドイツ",
+        "value": "DE",
+        "kind": "D",
+        "data_order": "126"
+      },
+      {
+        "key": "ドミニカ共和国",
+        "value": "DO",
+        "kind": "D",
+        "data_order": "127"
+      },
+      {
+        "key": "ドミニカ国",
+        "value": "DM",
+        "kind": "D",
+        "data_order": "128"
+      },
+      {
+        "key": "ナイジェリア",
+        "value": "NG",
+        "kind": "D",
+        "data_order": "129"
+      },
+      {
+        "key": "ナウル",
+        "value": "NR",
+        "kind": "D",
+        "data_order": "130"
+      },
+      {
+        "key": "ナミビア",
+        "value": "NA",
+        "kind": "D",
+        "data_order": "131"
+      },
+      {
+        "key": "ニウエ自治領",
+        "value": "NU",
+        "kind": "D",
+        "data_order": "132"
+      },
+      {
+        "key": "ニカラグア",
+        "value": "NI",
+        "kind": "D",
+        "data_order": "133"
+      },
+      {
+        "key": "ニジェール",
+        "value": "NE",
+        "kind": "D",
+        "data_order": "134"
+      },
+      {
+        "key": "ニューカレドニア(ﾌﾗﾝｽ)",
+        "value": "NC",
+        "kind": "D",
+        "data_order": "135"
+      },
+      {
+        "key": "ニュージーランド",
+        "value": "NZ",
+        "kind": "D",
+        "data_order": "136"
+      },
+      {
+        "key": "ネパール",
+        "value": "NP",
+        "kind": "D",
+        "data_order": "137"
+      },
+      {
+        "key": "ノーフォーク島",
+        "value": "NF",
+        "kind": "D",
+        "data_order": "138"
+      },
+      {
+        "key": "ノルウェー",
+        "value": "NO",
+        "kind": "D",
+        "data_order": "139"
+      },
+      {
+        "key": "ハード、マクドナルド諸島",
+        "value": "HM",
+        "kind": "D",
+        "data_order": "140"
+      },
+      {
+        "key": "ハイチ",
+        "value": "HT",
+        "kind": "D",
+        "data_order": "141"
+      },
+      {
+        "key": "ハンガリー",
+        "value": "HU",
+        "kind": "D",
+        "data_order": "142"
+      },
+      {
+        "key": "バーミューダ諸島",
+        "value": "BM",
+        "kind": "D",
+        "data_order": "143"
+      },
+      {
+        "key": "バーレーン",
+        "value": "BH",
+        "kind": "D",
+        "data_order": "144"
+      },
+      {
+        "key": "バハマ",
+        "value": "BS",
+        "kind": "D",
+        "data_order": "145"
+      },
+      {
+        "key": "バルバドス",
+        "value": "BB",
+        "kind": "D",
+        "data_order": "146"
+      },
+      {
+        "key": "バングラデシュ",
+        "value": "BD",
+        "kind": "D",
+        "data_order": "147"
+      },
+      {
+        "key": "パキスタン",
+        "value": "PK",
+        "kind": "D",
+        "data_order": "148"
+      },
+      {
+        "key": "パナマ",
+        "value": "PA",
+        "kind": "D",
+        "data_order": "149"
+      },
+      {
+        "key": "パプアニューギニア",
+        "value": "PG",
+        "kind": "D",
+        "data_order": "150"
+      },
+      {
+        "key": "パラウ(パラオ)",
+        "value": "PW",
+        "kind": "D",
+        "data_order": "151"
+      },
+      {
+        "key": "パラグアイ",
+        "value": "PY",
+        "kind": "D",
+        "data_order": "152"
+      },
+      {
+        "key": "パレスチナ",
+        "value": "PS",
+        "kind": "D",
+        "data_order": "153"
+      },
+      {
+        "key": "ピトケルン島",
+        "value": "PN",
+        "kind": "D",
+        "data_order": "154"
+      },
+      {
+        "key": "フィジー",
+        "value": "FJ",
+        "kind": "D",
+        "data_order": "155"
+      },
+      {
+        "key": "フィリピン",
+        "value": "PH",
+        "kind": "D",
+        "data_order": "156"
+      },
+      {
+        "key": "フィンランド",
+        "value": "FI",
+        "kind": "D",
+        "data_order": "157"
+      },
+      {
+        "key": "フェロー諸島",
+        "value": "FO",
+        "kind": "D",
+        "data_order": "158"
+      },
+      {
+        "key": "フォークランド諸島",
+        "value": "FK",
+        "kind": "D",
+        "data_order": "159"
+      },
+      {
+        "key": "フランス",
+        "value": "FR",
+        "kind": "D",
+        "data_order": "160"
+      },
+      {
+        "key": "フランス首都圏",
+        "value": "FX",
+        "kind": "D",
+        "data_order": "161"
+      },
+      {
+        "key": "フランス領ポリネシア",
+        "value": "PF",
+        "kind": "D",
+        "data_order": "162"
+      },
+      {
+        "key": "フランス領極南諸島",
+        "value": "TF",
+        "kind": "D",
+        "data_order": "163"
+      },
+      {
+        "key": "ブータン",
+        "value": "BT",
+        "kind": "D",
+        "data_order": "164"
+      },
+      {
+        "key": "ブーベ島",
+        "value": "BV",
+        "kind": "D",
+        "data_order": "165"
+      },
+      {
+        "key": "ブラジル",
+        "value": "BR",
+        "kind": "D",
+        "data_order": "166"
+      },
+      {
+        "key": "ブルガリア",
+        "value": "BG",
+        "kind": "D",
+        "data_order": "167"
+      },
+      {
+        "key": "ブルキナファソ",
+        "value": "BF",
+        "kind": "D",
+        "data_order": "168"
+      },
+      {
+        "key": "ブルネイ",
+        "value": "BN",
+        "kind": "D",
+        "data_order": "169"
+      },
+      {
+        "key": "ブルンジ",
+        "value": "BI",
+        "kind": "D",
+        "data_order": "170"
+      },
+      {
+        "key": "プエルトリコ",
+        "value": "PR",
+        "kind": "D",
+        "data_order": "171"
+      },
+      {
+        "key": "ベトナム",
+        "value": "VN",
+        "kind": "D",
+        "data_order": "172"
+      },
+      {
+        "key": "ベニン",
+        "value": "BJ",
+        "kind": "D",
+        "data_order": "173"
+      },
+      {
+        "key": "ベネズエラ",
+        "value": "VE",
+        "kind": "D",
+        "data_order": "174"
+      },
+      {
+        "key": "ベラルーシ",
+        "value": "BY",
+        "kind": "D",
+        "data_order": "175"
+      },
+      {
+        "key": "ベリーズ",
+        "value": "BZ",
+        "kind": "D",
+        "data_order": "176"
+      },
+      {
+        "key": "ベルギー",
+        "value": "BE",
+        "kind": "D",
+        "data_order": "177"
+      },
+      {
+        "key": "ペルー",
+        "value": "PE",
+        "kind": "D",
+        "data_order": "178"
+      },
+      {
+        "key": "ホンジュラス",
+        "value": "HN",
+        "kind": "D",
+        "data_order": "179"
+      },
+      {
+        "key": "ボスニア・ヘルツェゴビナ",
+        "value": "BA",
+        "kind": "D",
+        "data_order": "180"
+      },
+      {
+        "key": "ボツワナ",
+        "value": "BW",
+        "kind": "D",
+        "data_order": "181"
+      },
+      {
+        "key": "ボリビア",
+        "value": "BO",
+        "kind": "D",
+        "data_order": "182"
+      },
+      {
+        "key": "ポーランド",
+        "value": "PL",
+        "kind": "D",
+        "data_order": "183"
+      },
+      {
+        "key": "ポルトガル",
+        "value": "PT",
+        "kind": "D",
+        "data_order": "184"
+      },
+      {
+        "key": "マーシャル諸島",
+        "value": "MH",
+        "kind": "D",
+        "data_order": "185"
+      },
+      {
+        "key": "マカオ",
+        "value": "MO",
+        "kind": "D",
+        "data_order": "186"
+      },
+      {
+        "key": "マケドニア",
+        "value": "MK",
+        "kind": "D",
+        "data_order": "187"
+      },
+      {
+        "key": "マダガスカル",
+        "value": "MG",
+        "kind": "D",
+        "data_order": "188"
+      },
+      {
+        "key": "マヨット",
+        "value": "YT",
+        "kind": "D",
+        "data_order": "189"
+      },
+      {
+        "key": "マラウィ",
+        "value": "MW",
+        "kind": "D",
+        "data_order": "190"
+      },
+      {
+        "key": "マリ",
+        "value": "ML",
+        "kind": "D",
+        "data_order": "191"
+      },
+      {
+        "key": "マルタ",
+        "value": "MT",
+        "kind": "D",
+        "data_order": "192"
+      },
+      {
+        "key": "マルティニク",
+        "value": "MQ",
+        "kind": "D",
+        "data_order": "193"
+      },
+      {
+        "key": "マレーシア",
+        "value": "MY",
+        "kind": "D",
+        "data_order": "194"
+      },
+      {
+        "key": "ミクロネシア",
+        "value": "FM",
+        "kind": "D",
+        "data_order": "195"
+      },
+      {
+        "key": "ミャンマー",
+        "value": "MM",
+        "kind": "D",
+        "data_order": "196"
+      },
+      {
+        "key": "メキシコ",
+        "value": "MX",
+        "kind": "D",
+        "data_order": "197"
+      },
+      {
+        "key": "モーリシャス",
+        "value": "MU",
+        "kind": "D",
+        "data_order": "198"
+      },
+      {
+        "key": "モーリタニア",
+        "value": "MR",
+        "kind": "D",
+        "data_order": "199"
+      },
+      {
+        "key": "モザンビーク",
+        "value": "MZ",
+        "kind": "D",
+        "data_order": "200"
+      },
+      {
+        "key": "モナコ",
+        "value": "MC",
+        "kind": "D",
+        "data_order": "201"
+      },
+      {
+        "key": "モルディブ",
+        "value": "MV",
+        "kind": "D",
+        "data_order": "202"
+      },
+      {
+        "key": "モルドバ",
+        "value": "MD",
+        "kind": "D",
+        "data_order": "203"
+      },
+      {
+        "key": "モロッコ",
+        "value": "MA",
+        "kind": "D",
+        "data_order": "204"
+      },
+      {
+        "key": "モンゴリア",
+        "value": "MN",
+        "kind": "D",
+        "data_order": "205"
+      },
+      {
+        "key": "モンテネグロ",
+        "value": "ME",
+        "kind": "D",
+        "data_order": "206"
+      },
+      {
+        "key": "モントセラト",
+        "value": "MS",
+        "kind": "D",
+        "data_order": "207"
+      },
+      {
+        "key": "ヨルダン",
+        "value": "JO",
+        "kind": "D",
+        "data_order": "208"
+      },
+      {
+        "key": "ラオス",
+        "value": "LA",
+        "kind": "D",
+        "data_order": "209"
+      },
+      {
+        "key": "ラトビア",
+        "value": "LV",
+        "kind": "D",
+        "data_order": "210"
+      },
+      {
+        "key": "リトアニア",
+        "value": "LT",
+        "kind": "D",
+        "data_order": "211"
+      },
+      {
+        "key": "リヒテンシュタイン",
+        "value": "LI",
+        "kind": "D",
+        "data_order": "212"
+      },
+      {
+        "key": "リビア",
+        "value": "LY",
+        "kind": "D",
+        "data_order": "213"
+      },
+      {
+        "key": "リベリア",
+        "value": "LR",
+        "kind": "D",
+        "data_order": "214"
+      },
+      {
+        "key": "ルーマニア",
+        "value": "RO",
+        "kind": "D",
+        "data_order": "215"
+      },
+      {
+        "key": "ルクセンブルグ",
+        "value": "LU",
+        "kind": "D",
+        "data_order": "216"
+      },
+      {
+        "key": "ルワンダ",
+        "value": "RW",
+        "kind": "D",
+        "data_order": "217"
+      },
+      {
+        "key": "レソト",
+        "value": "LS",
+        "kind": "D",
+        "data_order": "218"
+      },
+      {
+        "key": "レバノン",
+        "value": "LB",
+        "kind": "D",
+        "data_order": "219"
+      },
+      {
+        "key": "レユニオン",
+        "value": "RE",
+        "kind": "D",
+        "data_order": "220"
+      },
+      {
+        "key": "ロシア",
+        "value": "RU",
+        "kind": "D",
+        "data_order": "221"
+      },
+      {
+        "key": "ワリー エ フトゥーナ諸島",
+        "value": "WF",
+        "kind": "D",
+        "data_order": "222"
+      },
+      {
+        "key": "ヴァージン諸島(米)",
+        "value": "VI",
+        "kind": "D",
+        "data_order": "223"
+      },
+      {
+        "key": "ヴァティカン市国",
+        "value": "VA",
+        "kind": "D",
+        "data_order": "224"
+      },
+      {
+        "key": "ヴァヌアトゥ",
+        "value": "VU",
+        "kind": "D",
+        "data_order": "225"
+      },
+      {
+        "key": "英領インド洋植民地",
+        "value": "IO",
+        "kind": "D",
+        "data_order": "226"
+      },
+      {
+        "key": "英領ヴァージン諸島",
+        "value": "VG",
+        "kind": "D",
+        "data_order": "227"
+      },
+      {
+        "key": "韓国",
+        "value": "KR",
+        "kind": "D",
+        "data_order": "228"
+      },
+      {
+        "key": "旧・ユーゴスラビア",
+        "value": "YU",
+        "kind": "D",
+        "data_order": "229"
+      },
+      {
+        "key": "香港",
+        "value": "HK",
+        "kind": "D",
+        "data_order": "230"
+      },
+      {
+        "key": "西サハラ",
+        "value": "EH",
+        "kind": "D",
+        "data_order": "231"
+      },
+      {
+        "key": "赤道ギニア",
+        "value": "GQ",
+        "kind": "D",
+        "data_order": "232"
+      },
+      {
+        "key": "台湾",
+        "value": "TW",
+        "kind": "D",
+        "data_order": "233"
+      },
+      {
+        "key": "中央アフリカ",
+        "value": "CF",
+        "kind": "D",
+        "data_order": "234"
+      },
+      {
+        "key": "中国",
+        "value": "CN",
+        "kind": "D",
+        "data_order": "235"
+      },
+      {
+        "key": "中立地帯",
+        "value": "NT",
+        "kind": "D",
+        "data_order": "236"
+      },
+      {
+        "key": "東ティモール",
+        "value": "TP",
+        "kind": "D",
+        "data_order": "237"
+      },
+      {
+        "key": "南アフリカ",
+        "value": "ZA",
+        "kind": "D",
+        "data_order": "238"
+      },
+      {
+        "key": "南ジョージア島・南サンドイッチ諸島",
+        "value": "GS",
+        "kind": "D",
+        "data_order": "239"
+      },
+      {
+        "key": "南極大陸",
+        "value": "AQ",
+        "kind": "D",
+        "data_order": "240"
+      },
+      {
+        "key": "日本",
+        "value": "JP",
+        "kind": "D",
+        "data_order": "241"
+      },
+      {
+        "key": "仏領ギアナ",
+        "value": "GF",
+        "kind": "D",
+        "data_order": "242"
+      },
+      {
+        "key": "米領太平洋諸島(ミッドウェー、ジョンストン、ウェーク島)",
+        "value": "UM",
+        "kind": "D",
+        "data_order": "243"
+      },
+      {
+        "key": "北マリアナ連邦",
+        "value": "MP",
+        "kind": "D",
+        "data_order": "244"
+      },
+      {
+        "key": "北朝鮮",
+        "value": "KP",
+        "kind": "D",
+        "data_order": "245"
+      }
+    ]
+  },
+  {
+    "path": "group.lang_codes",
+    "name": "言語",
+    "type": "30",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "11",
+    "items": [
+      {
+        "key": "日本語",
+        "value": "ja",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "英語",
+        "value": "en",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "フランス語（欧州）",
+        "value": "fr",
+        "kind": "D",
+        "data_order": "3"
+      }
+    ]
+  },
+  {
+    "path": "group.lang_codes_force_checked",
+    "name": "言語（強制チェック）",
+    "type": "30",
+    "help": null,
+    "specified_format_kind": "1",
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "12",
+    "items": [
+      {
+        "key": "英語",
+        "value": "en",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "日本語",
+        "value": "ja",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  },
+  {
+    "path": "group.default_lang_code",
+    "name": "言語（デフォルト言語）",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "13",
+    "items": [
+      {
+        "key": "日本語",
+        "value": "ja",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "英語",
+        "value": "en",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "フランス語（欧州）",
+        "value": "fr",
+        "kind": "D",
+        "data_order": "3"
+      }
+    ]
+  },
+  {
+    "path": "group.attribute.time_difference",
+    "name": "時差（時）",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "14",
+    "items": [
+      {
+        "key": "-12",
+        "value": "-12",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "-11",
+        "value": "-11",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "-10",
+        "value": "-10",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "-09",
+        "value": "-09",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "-08",
+        "value": "-08",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "-07",
+        "value": "-07",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "-06",
+        "value": "-06",
+        "kind": "D",
+        "data_order": "7"
+      },
+      {
+        "key": "-05",
+        "value": "-05",
+        "kind": "D",
+        "data_order": "8"
+      },
+      {
+        "key": "-04",
+        "value": "-04",
+        "kind": "D",
+        "data_order": "9"
+      },
+      {
+        "key": "-03",
+        "value": "-03",
+        "kind": "D",
+        "data_order": "10"
+      },
+      {
+        "key": "-02",
+        "value": "-02",
+        "kind": "D",
+        "data_order": "11"
+      },
+      {
+        "key": "-01",
+        "value": "-01",
+        "kind": "D",
+        "data_order": "12"
+      },
+      {
+        "key": "-00",
+        "value": "-00",
+        "kind": "D",
+        "data_order": "13"
+      },
+      {
+        "key": "+00",
+        "value": "+00",
+        "kind": "D",
+        "data_order": "14"
+      },
+      {
+        "key": "+01",
+        "value": "+01",
+        "kind": "D",
+        "data_order": "15"
+      },
+      {
+        "key": "+02",
+        "value": "+02",
+        "kind": "D",
+        "data_order": "16"
+      },
+      {
+        "key": "+03",
+        "value": "+03",
+        "kind": "D",
+        "data_order": "17"
+      },
+      {
+        "key": "+04",
+        "value": "+04",
+        "kind": "D",
+        "data_order": "18"
+      },
+      {
+        "key": "+05",
+        "value": "+05",
+        "kind": "D",
+        "data_order": "19"
+      },
+      {
+        "key": "+06",
+        "value": "+06",
+        "kind": "D",
+        "data_order": "20"
+      },
+      {
+        "key": "+07",
+        "value": "+07",
+        "kind": "D",
+        "data_order": "21"
+      },
+      {
+        "key": "+08",
+        "value": "+08",
+        "kind": "D",
+        "data_order": "22"
+      },
+      {
+        "key": "+09",
+        "value": "+09",
+        "kind": "D",
+        "data_order": "23"
+      },
+      {
+        "key": "+10",
+        "value": "+10",
+        "kind": "D",
+        "data_order": "24"
+      },
+      {
+        "key": "+11",
+        "value": "+11",
+        "kind": "D",
+        "data_order": "25"
+      },
+      {
+        "key": "+12",
+        "value": "+12",
+        "kind": "D",
+        "data_order": "26"
+      }
+    ]
+  },
+  {
+    "path": "group.attribute.time_difference_minute",
+    "name": "時差（分）",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": "1",
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "15",
+    "items": [
+      {
+        "key": "00",
+        "value": "00",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "30",
+        "value": "30",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  },
+  {
+    "path": "group.map_application.id",
+    "name": "地図ソフト",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "16",
+    "items": []
+  },
+  {
+    "path": "group.map_application.lang_code",
+    "name": "逆引き地名言語",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "17",
+    "items": []
+  },
+  {
+    "path": "group.map.initial_position",
+    "name": "マップ初期位置",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": "1",
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "18",
+    "items": []
+  },
+  {
+    "path": "group.map.geometry.coordinates[1]",
+    "name": "緯度",
+    "type": "-20",
+    "help": null,
+    "specified_format_kind": "1",
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "19",
+    "items": []
+  },
+  {
+    "path": "group.map.geometry.coordinates[0]",
+    "name": "経度",
+    "type": "-20",
+    "help": null,
+    "specified_format_kind": "1",
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "20",
+    "items": []
+  },
+  {
+    "path": "group.map.geometry.coordinates",
+    "name": "座標",
+    "type": "-20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "21",
+    "items": []
+  },
+  {
+    "path": "group.map.properties.magnification",
+    "name": "拡大率",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "22",
+    "items": []
+  },
+  {
+    "path": "group.attribute.first_day_of_week_kind",
+    "name": "週開始日",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "23",
+    "items": [
+      {
+        "key": "日",
+        "value": "0",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "月",
+        "value": "1",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "火",
+        "value": "2",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "水",
+        "value": "3",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "木",
+        "value": "4",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "金",
+        "value": "5",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "土",
+        "value": "6",
+        "kind": "D",
+        "data_order": "7"
+      }
+    ]
+  },
+  {
+    "path": "group.administrator_role.authorities.id",
+    "name": "管理者権限",
+    "type": "30",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "28",
+    "items": [
+      {
+        "key": "外部アプリ連携ログ管理権限",
+        "value": "251",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "ユーザ管理権限",
+        "value": "134",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "全ユーザ一覧出力権限",
+        "value": "85",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "グループ管理権限",
+        "value": "84",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "管理車両設定権限",
+        "value": "90",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "サービス委託管理権限",
+        "value": "86",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "フラグ条件設定権限（コーション/交換時期）",
+        "value": "88",
+        "kind": "D",
+        "data_order": "7"
+      },
+      {
+        "key": "ユーザ画面設定権限",
+        "value": "91",
+        "kind": "D",
+        "data_order": "8"
+      },
+      {
+        "key": "カスタム車両属性管理権限",
+        "value": "87",
+        "kind": "D",
+        "data_order": "9"
+      },
+      {
+        "key": "システム通知設定権限",
+        "value": "89",
+        "kind": "D",
+        "data_order": "10"
+      },
+      {
+        "key": "業種管理権限",
+        "value": "92",
+        "kind": "D",
+        "data_order": "11"
+      },
+      {
+        "key": "Reportマクロ管理権限",
+        "value": "93",
+        "kind": "D",
+        "data_order": "12"
+      },
+      {
+        "key": "作業履歴",
+        "value": "94",
+        "kind": "D",
+        "data_order": "13"
+      },
+      {
+        "key": "コンテンツ鍵暗号化済み車両配信ファイル取得権限",
+        "value": "269",
+        "kind": "D",
+        "data_order": "14"
+      },
+      {
+        "key": "コンポ交換鍵暗号化済みソフトウェア取得権限",
+        "value": "288",
+        "kind": "D",
+        "data_order": "15"
+      },
+      {
+        "key": "ソフトウェア配信権限",
+        "value": "267",
+        "kind": "D",
+        "data_order": "16"
+      },
+      {
+        "key": "操作履歴閲覧権限",
+        "value": "271",
+        "kind": "D",
+        "data_order": "17"
+      },
+      {
+        "key": "ユーザ管理権限（登録／削除／変更／権限付与）",
+        "value": "95",
+        "kind": "D",
+        "data_order": "18"
+      },
+      {
+        "key": "SMS API設定作成権限",
+        "value": "121",
+        "kind": "D",
+        "data_order": "19"
+      },
+      {
+        "key": "複数車両ロック権限",
+        "value": "113",
+        "kind": "D",
+        "data_order": "20"
+      },
+      {
+        "key": "SMS送信権限",
+        "value": "120",
+        "kind": "D",
+        "data_order": "21"
+      },
+      {
+        "key": "お知らせ転送権限",
+        "value": "119",
+        "kind": "D",
+        "data_order": "22"
+      },
+      {
+        "key": "オペレータ識別設定管理権限",
+        "value": "133",
+        "kind": "D",
+        "data_order": "23"
+      },
+      {
+        "key": "カレンダ予約ロック権限",
+        "value": "116",
+        "kind": "D",
+        "data_order": "24"
+      },
+      {
+        "key": "パスワードクリア権限",
+        "value": "117",
+        "kind": "D",
+        "data_order": "25"
+      },
+      {
+        "key": "メッセージ送受信権限",
+        "value": "112",
+        "kind": "D",
+        "data_order": "26"
+      },
+      {
+        "key": "レンタル車両管理権限",
+        "value": "97",
+        "kind": "D",
+        "data_order": "27"
+      },
+      {
+        "key": "強制ロック権限/パスワードロック権限",
+        "value": "114",
+        "kind": "D",
+        "data_order": "28"
+      },
+      {
+        "key": "車両管理権限(削除)",
+        "value": "286",
+        "kind": "D",
+        "data_order": "29"
+      },
+      {
+        "key": "車両管理権限（登録／変更）",
+        "value": "96",
+        "kind": "D",
+        "data_order": "30"
+      },
+      {
+        "key": "夜間予約ロック権限",
+        "value": "115",
+        "kind": "D",
+        "data_order": "31"
+      },
+      {
+        "key": "範囲外管理権限",
+        "value": "109",
+        "kind": "D",
+        "data_order": "32"
+      },
+      {
+        "key": "SMR間隔管理項目設定権限",
+        "value": "126",
+        "kind": "D",
+        "data_order": "33"
+      },
+      {
+        "key": "オペレータ識別管理権限",
+        "value": "127",
+        "kind": "D",
+        "data_order": "34"
+      },
+      {
+        "key": "サブグループ管理権限",
+        "value": "118",
+        "kind": "D",
+        "data_order": "35"
+      },
+      {
+        "key": "サブグループ参照権限",
+        "value": "102",
+        "kind": "D",
+        "data_order": "36"
+      },
+      {
+        "key": "フラグ条件設定権限",
+        "value": "136",
+        "kind": "D",
+        "data_order": "37"
+      },
+      {
+        "key": "顧客管理権限",
+        "value": "99",
+        "kind": "D",
+        "data_order": "38"
+      },
+      {
+        "key": "顧客権限情報一括更新権限",
+        "value": "100",
+        "kind": "D",
+        "data_order": "39"
+      },
+      {
+        "key": "注目車両管理権限",
+        "value": "101",
+        "kind": "D",
+        "data_order": "40"
+      },
+      {
+        "key": "分類管理権限（登録／削除／変更）",
+        "value": "98",
+        "kind": "D",
+        "data_order": "41"
+      },
+      {
+        "key": "累積燃料消費量管理権限",
+        "value": "131",
+        "kind": "D",
+        "data_order": "42"
+      },
+      {
+        "key": "エラー情報の参照権限",
+        "value": "107",
+        "kind": "D",
+        "data_order": "43"
+      },
+      {
+        "key": "ランドマーク管理権限",
+        "value": "104",
+        "kind": "D",
+        "data_order": "44"
+      },
+      {
+        "key": "交換時期情報の参照権限",
+        "value": "108",
+        "kind": "D",
+        "data_order": "45"
+      },
+      {
+        "key": "KDPF要求権限",
+        "value": "125",
+        "kind": "D",
+        "data_order": "46"
+      },
+      {
+        "key": "要求（IDリスト情報）権限",
+        "value": "129",
+        "kind": "D",
+        "data_order": "47"
+      },
+      {
+        "key": "要求（エラー情報）権限",
+        "value": "106",
+        "kind": "D",
+        "data_order": "48"
+      },
+      {
+        "key": "要求（オペ識別情報）権限",
+        "value": "128",
+        "kind": "D",
+        "data_order": "49"
+      },
+      {
+        "key": "要求（交換時期）権限",
+        "value": "111",
+        "kind": "D",
+        "data_order": "50"
+      },
+      {
+        "key": "連絡先管理権限",
+        "value": "130",
+        "kind": "D",
+        "data_order": "51"
+      },
+      {
+        "key": "オペレータ稼動情報参照権限",
+        "value": "103",
+        "kind": "D",
+        "data_order": "52"
+      },
+      {
+        "key": "オペレータ名称参照権限",
+        "value": "226",
+        "kind": "D",
+        "data_order": "53"
+      },
+      {
+        "key": "グループ一括統合権限",
+        "value": "287",
+        "kind": "D",
+        "data_order": "54"
+      },
+      {
+        "key": "端末交換操作権限",
+        "value": "284",
+        "kind": "D",
+        "data_order": "55"
+      },
+      {
+        "key": "通信不良記録閲覧権限",
+        "value": "110",
+        "kind": "D",
+        "data_order": "56"
+      },
+      {
+        "key": "非工場リージョン権限",
+        "value": "285",
+        "kind": "D",
+        "data_order": "57"
+      },
+      {
+        "key": "要求（基本情報）権限",
+        "value": "105",
+        "kind": "D",
+        "data_order": "58"
+      }
+    ]
+  },
+  {
+    "path": "group.administrator_role.authorities.default_kind",
+    "name": "管理者権限（デフォルト区分）",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "29",
+    "items": [
+      {
+        "key": "ON",
+        "value": "1",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "OFF",
+        "value": "0",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  },
+  {
+    "path": "group.general_role.authorities.id",
+    "name": "一般権限",
+    "type": "30",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "30",
+    "items": [
+      {
+        "key": "ソフトウェア配信権限",
+        "value": "267",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "オペレータ識別設定管理権限",
+        "value": "133",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "カレンダ予約ロック権限",
+        "value": "116",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "パスワードクリア権限",
+        "value": "117",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "メッセージ送受信権限",
+        "value": "112",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "強制ロック権限/パスワードロック権限",
+        "value": "114",
+        "kind": "D",
+        "data_order": "6"
+      },
+      {
+        "key": "夜間予約ロック権限",
+        "value": "115",
+        "kind": "D",
+        "data_order": "7"
+      },
+      {
+        "key": "サブグループ参照権限",
+        "value": "102",
+        "kind": "D",
+        "data_order": "8"
+      },
+      {
+        "key": "注目車両管理権限",
+        "value": "101",
+        "kind": "D",
+        "data_order": "9"
+      },
+      {
+        "key": "エラー情報の参照権限",
+        "value": "107",
+        "kind": "D",
+        "data_order": "10"
+      },
+      {
+        "key": "交換時期情報の参照権限",
+        "value": "108",
+        "kind": "D",
+        "data_order": "11"
+      },
+      {
+        "key": "KDPF要求権限",
+        "value": "125",
+        "kind": "D",
+        "data_order": "12"
+      },
+      {
+        "key": "要求（IDリスト情報）権限",
+        "value": "129",
+        "kind": "D",
+        "data_order": "13"
+      },
+      {
+        "key": "要求（エラー情報）権限",
+        "value": "106",
+        "kind": "D",
+        "data_order": "14"
+      },
+      {
+        "key": "要求（オペ識別情報）権限",
+        "value": "128",
+        "kind": "D",
+        "data_order": "15"
+      },
+      {
+        "key": "要求（交換時期）権限",
+        "value": "111",
+        "kind": "D",
+        "data_order": "16"
+      },
+      {
+        "key": "オペレータ稼動情報参照権限",
+        "value": "103",
+        "kind": "D",
+        "data_order": "17"
+      },
+      {
+        "key": "オペレータ名称参照権限",
+        "value": "226",
+        "kind": "D",
+        "data_order": "18"
+      },
+      {
+        "key": "端末交換操作権限",
+        "value": "284",
+        "kind": "D",
+        "data_order": "19"
+      },
+      {
+        "key": "通信不良記録閲覧権限",
+        "value": "110",
+        "kind": "D",
+        "data_order": "20"
+      },
+      {
+        "key": "非工場リージョン権限",
+        "value": "285",
+        "kind": "D",
+        "data_order": "21"
+      },
+      {
+        "key": "要求（基本情報）権限",
+        "value": "105",
+        "kind": "D",
+        "data_order": "22"
+      }
+    ]
+  },
+  {
+    "path": "group.general_role.authorities.default_kind",
+    "name": "一般権限（デフォルト区分）",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "31",
+    "items": [
+      {
+        "key": "ON",
+        "value": "1",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "OFF",
+        "value": "0",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  },
+  {
+    "path": "group.preset_roles.authorities.id",
+    "name": "配下グループ権限",
+    "type": "30",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "32",
+    "items": []
+  },
+  {
+    "path": "group.preset_roles.group_kind_id",
+    "name": "配下グループ権限（グループ種別）",
+    "type": "10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "33",
+    "items": [
+      {
+        "key": "工場",
+        "value": "6",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "代理店・ユニオン",
+        "value": "7",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "代理店",
+        "value": "8",
+        "kind": "D",
+        "data_order": "2"
+      },
+      {
+        "key": "顧客",
+        "value": "11",
+        "kind": "D",
+        "data_order": "3"
+      },
+      {
+        "key": "銀行",
+        "value": "12",
+        "kind": "D",
+        "data_order": "4"
+      },
+      {
+        "key": "保険",
+        "value": "13",
+        "kind": "D",
+        "data_order": "5"
+      },
+      {
+        "key": "ファイナンス",
+        "value": "14",
+        "kind": "D",
+        "data_order": "6"
+      }
+    ]
+  },
+  {
+    "path": "group.preset_roles.authorities.default_kind",
+    "name": "配下グループ権限（デフォルト区分）",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "34",
+    "items": [
+      {
+        "key": "ON",
+        "value": "1",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "OFF",
+        "value": "0",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  },
+  {
+    "path": "user_account",
+    "name": "KeyPersonID",
+    "type": "-10",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "35",
+    "items": []
+  },
+  {
+    "path": "group.publish_target.global_kind",
+    "name": "公開対象区分",
+    "type": "20",
+    "help": null,
+    "specified_format_kind": null,
+    "memo": null,
+    "placeholder_text": null,
+    "data_order": "36",
+    "items": [
+      {
+        "key": "全リージョン",
+        "value": "0",
+        "kind": "D",
+        "data_order": "1"
+      },
+      {
+        "key": "個別選択",
+        "value": "1",
+        "kind": "D",
+        "data_order": "2"
+      }
+    ]
+  }
+]

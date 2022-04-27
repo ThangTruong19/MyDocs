@@ -1,0 +1,47 @@
+<div class="models">
+  <table
+    class="KBA-form-table table table-bordered models-table"
+    *ngIf="!isTypesEmpty()"
+  >
+    <tbody class="KBA-form-table-tbody">
+      <tr>
+        <th class="header-cell model-cell">{{ labels.model }}</th>
+        <th class="header-cell">{{ labels.type }}</th>
+      </tr>
+      <ng-container *ngFor="let model of models">
+        <ng-container
+          *ngTemplateOutlet="modelContent; context: { model: model }"
+        ></ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+  <p *ngIf="isTypesEmpty()" class="empty-message">
+    {{ emptyMessage }}
+  </p>
+</div>
+
+<ng-template #modelContent let-model="model">
+  <tr *ngIf="model.types.length > 0">
+    <td class="parent-cell model-cell">
+      {{ model.model }}
+    </td>
+    <td class="parent-cell types-cell">
+      <div class="types">
+        <ng-container *ngFor="let type of model.types">
+          <button
+            type="button"
+            class="cell"
+            [disabled]="!clickable"
+            [ngClass]="getCellClasses && getCellClasses(type, model)"
+            (click)="handleCellClicked(type)"
+          >
+            <span class="cell_text">
+              {{ type.type_rev }}
+            </span>
+          </button>
+        </ng-container>
+        <div *ngFor="let i of dummyCells" class="cell dummy-cell"></div>
+      </div>
+    </td>
+  </tr>
+</ng-template>

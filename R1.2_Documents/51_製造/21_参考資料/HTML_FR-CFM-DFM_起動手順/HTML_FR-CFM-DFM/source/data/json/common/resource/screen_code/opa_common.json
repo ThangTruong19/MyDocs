@@ -1,0 +1,67 @@
+[
+  {
+    "path": "X-Lang",
+    "name": "言語",
+    "help": "言語のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "English",
+        "value": "en-US",
+        "kind": "D"
+      },
+      {
+        "key": "Japanese",
+        "value": "ja-JP",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "X-DateFormat",
+    "name": "日付フォーマット",
+    "help": "日付フォーマットのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "YYYY/MM/DD",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "MM/DD/YYYY",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "DD/MM/YYYY",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "X-DistanceUnit",
+    "name": "長さ単位",
+    "help": "長さ単位のヘルプ文言",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "メートル",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "マイル",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  }
+]

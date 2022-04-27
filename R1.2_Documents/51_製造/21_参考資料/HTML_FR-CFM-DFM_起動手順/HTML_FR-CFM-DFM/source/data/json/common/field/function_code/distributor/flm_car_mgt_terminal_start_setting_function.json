@@ -1,0 +1,107 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "ID",
+    "path": "cars.car_identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "メーカ",
+    "path": "cars.car_identification.maker_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "機種",
+    "path": "cars.car_identification.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "型式",
+    "path": "cars.car_identification.type_rev",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "機番",
+    "path": "cars.car_identification.serial",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "端末品番",
+    "path": "cars.komtrax_unit.main_component.part",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "端末シリアル",
+    "path": "cars.komtrax_unit.main_component.serial",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "端末使用開始",
+    "path": "cars.car_management_attribute.terminal_use_start_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "端末使用開始コード",
+    "path": "cars.car_management_attribute.terminal_use_start_kind",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "ORBCOMMアドレス申請状態",
+    "path": "cars.car_management_attribute.orbcomm_request_status_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "11",
+    "name": "ORBCOMMアドレス申請状態コード",
+    "path": "cars.car_management_attribute.orbcomm_request_status",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "12",
+    "name": "ORBCOMMアドレス申請日時",
+    "path": "cars.car_management_attribute.orbcomm_request_datetime",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "13",
+    "name": "通信種別",
+    "path": "cars.komtrax_unit.sim_attributes_1.communication_kind_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "14",
+    "name": "国ID",
+    "path": "cars.car_management_attribute.nation_id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "15",
+    "name": "更新日時",
+    "path": "cars.car_identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

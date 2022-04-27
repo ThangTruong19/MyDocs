@@ -1,0 +1,125 @@
+@import "../../../../assets/styles/variable";
+
+.KBA-file-upload-panel {
+  .panel {
+    border-radius: 4px;
+    background-color: #fff;
+  }
+
+  .panel-heading {
+    color: #333;
+    border-color: #ddd;
+    padding: 10px 15px;
+    border-bottom: 1px solid;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    .panel-title {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  .KBA-multiple-select {
+    margin-bottom: 10px;
+  }
+
+  ol {
+    margin-bottom: 0;
+
+    li:last-child > p {
+      margin-bottom: 0;
+    }
+  }
+
+  .KBA-drop-box {
+    background: $kba-drop-box-color;
+    border: 3px dashed #ddd;
+    width: 100%;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .KBA-dragover {
+    border: 3px dashed $kba-dragover-color;
+  }
+
+  .item-name,
+  .upload-error {
+    margin-left: 20px;
+    line-height: 31px;
+  }
+
+  .upload-error {
+    color: $kba-error-color;
+  }
+}
+
+.batch-layout {
+  .panel-body {
+    padding: 15px;
+
+    .container {
+      .row {
+        margin-bottom: 10px;
+        > p {
+          margin-bottom: 0;
+          &.KBA-upload-attention {
+            color: $fontRed;
+          }
+        }
+      }
+    }
+  }
+
+  .KBA-input-file {
+    margin-bottom: 15px;
+
+    .kba-icon {
+      font-size: 18px;
+      margin-right: 3px;
+    }
+  }
+
+  p {
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .KBA-panel-footer {
+    background-color: #fff;
+    margin: 0;
+    padding-bottom: 20px;
+  }
+}
+
+.index-layout {
+  .container {
+    padding: 10px;
+    margin-bottom: -5px;
+  }
+
+  .row {
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.kba-input-file {
+  display: none;
+}
+
+.file-label {
+  margin: 0;
+}
+
+.KBA-input-file {
+  padding: 0;
+
+  .file-label {
+    padding: 0.5rem 1rem;
+  }
+}

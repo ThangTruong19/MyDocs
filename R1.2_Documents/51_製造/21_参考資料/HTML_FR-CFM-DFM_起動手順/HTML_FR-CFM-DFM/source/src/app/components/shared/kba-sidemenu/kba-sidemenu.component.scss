@@ -1,0 +1,47 @@
+$kba-sidemenu-width: 260px;
+
+#kba-sidemenu {
+  right: 0;
+  transition: right 0.25s linear;
+
+  &.visible {
+    right: $kba-sidemenu-width;
+  }
+}
+
+.KBA-accordion {
+  margin-bottom: 20px;
+}
+
+.accordion-toggle {
+  text-align: left;
+}
+
+.sidemenu-item-container {
+  overflow: hidden;
+}
+
+.panel-heading {
+  margin-bottom: 0;
+
+  .panel-title {
+    > p {
+      width: 92%;
+    }
+  }
+}
+
+.KBA-menu-list {
+  margin: 15px 0;
+  width: 100%;
+}
+
+.kba-sidemenu-backdrop {
+  position: fixed;
+  background-color: transparent;
+  z-index: 199;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

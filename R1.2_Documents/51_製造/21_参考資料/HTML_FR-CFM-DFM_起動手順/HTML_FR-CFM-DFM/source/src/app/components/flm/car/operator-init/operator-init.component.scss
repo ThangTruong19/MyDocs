@@ -1,0 +1,17 @@
+@import "../../../../../assets/styles/variable";
+@import "../../../../../assets/styles/util";
+
+.init-btn {
+  color: #fff;
+  background-color: $kba-green-color;
+  @include btnBorder($kba-green-color);
+
+  &:hover {
+    background-color: $kba-darkgreen-color;
+    @include btnBorder($kba-darkgreen-color);
+  }
+}
+
+.result-count-message {
+  margin-top: 12px;
+}

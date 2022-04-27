@@ -1,0 +1,75 @@
+{
+  "result_data": {
+    "user": {
+      "groups": [
+        {
+          "agreement": {
+            "date": "2017/05/23",
+            "status_name": "同意済",
+            "status": "1"
+          },
+          "granted_authorities": [
+            {
+              "name": "参照のみ",
+              "id": "1234567"
+            }
+          ],
+          "granted_role": {
+            "name": "管理者",
+            "id": "123456"
+          },
+          "configuration_groups": [
+            {
+              "kind_name": "リージョン",
+              "kind_id": "2",
+              "label_english": "group name",
+              "label": "グループ名称",
+              "id": "12345678"
+            }
+          ],
+          "belonging_group": {
+            "identification": {
+              "update_datetime": "2017-08-01T23:59:59.000Z",
+              "kind_name": "リージョン",
+              "kind_id": "2",
+              "organization_code": "ABBESS",
+              "label_english": "group name",
+              "label": "グループ名称",
+              "id": "12345678"
+            }
+          },
+          "identification": {
+            "update_datetime": "2017-08-01T23:59:59.000Z",
+            "kind_name": "ブロック",
+            "kind_id": "3",
+            "organization_code": "ABBESS",
+            "label_english": "group name",
+            "label": "グループ名称",
+            "id": "12345"
+          },
+          "represent_administrator_kind_name": "有効",
+          "represent_administrator_kind": "1"
+        }
+      ],
+      "attribute": {
+        "create_place": "開発本部管理部",
+        "phone_no": "0312345678",
+        "nation_name": "日本",
+        "nation_code": "JP",
+        "company_label_english": "Komatsu Tokyo",
+        "company_label": "コマツ東京",
+        "company_code": "KOMATSU0000000000001"
+      },
+      "identification": {
+        "update_datetime": "2017-08-01T23:59:59.000Z",
+        "login_datetime": "2017/05/23 23:59:59",
+        "create_datetime": "2017/05/23 23:59:59",
+        "primary_group_id": "54321",
+        "label_english": "komatsu tarou",
+        "label": "小松太郎",
+        "email": "test@example.com",
+        "id": "12345"
+      }
+    }
+  }
+}

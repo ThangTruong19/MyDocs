@@ -1,0 +1,38 @@
+<div class="site-management-list" *ngIf="hasList; else noListTemplate">
+  <table>
+    <tr>
+      <ng-container *ngFor="let th of thList">
+        <th
+          class="list-header"
+          *ngIf="th.displayable"
+          [ngClass]="'th-' + th.shortName"
+        >
+          {{ th.label }}
+        </th>
+      </ng-container>
+    </tr>
+    <tr class="list-row" *ngFor="let data of list">
+      <ng-container *ngFor="let th of thList">
+        <td
+          class="list-cell"
+          *ngIf="th.displayable"
+          [ngClass]="'td-' + th.shortName"
+        >
+          <a
+            class="link"
+            [routerLink]="th.link + data.id"
+            *ngIf="th.link; else elseContent"
+          >
+            {{ data[th.dataKey] }}
+          </a>
+          <ng-template #elseContent>
+            {{ data[th.dataKey] }}
+          </ng-template>
+        </td>
+      </ng-container>
+    </tr>
+  </table>
+</div>
+<ng-template #noListTemplate
+  ><app-no-list [labels]="labels"></app-no-list
+></ng-template>

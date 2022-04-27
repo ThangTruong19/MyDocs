@@ -1,0 +1,14 @@
+<td class="KBA-form-table__head" *ngIf="!customHeader">
+  <label
+    class="KBA-form-table__label"
+    [ngClass]="{ 'KBA-form-table__required': required }"
+  >
+    {{ kbaResource && kbaResource[kbaName] && kbaResource[kbaName].name }}
+  </label>
+</td>
+<td class="KBA-form-table__head" *ngIf="customHeader">
+  <ng-container *ngTemplateOutlet="customHeader"></ng-container>
+</td>
+<td [attr.colspan]="colspan">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</td>

@@ -1,0 +1,37 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "顧客ID",
+    "path": "contact_links.customer_id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "更新日時",
+    "path": "contact_links.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "連絡先紐付け種別コード",
+    "path": "contact_links.customer_contact_links.contact_kind_code",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "連絡先紐付け名称",
+    "path": "contact_links.customer_contact_links.contact_label",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "顧客名",
+    "path": "contact_links.customer_label",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

@@ -1,0 +1,136 @@
+[
+  {
+    "path": "user.group.id",
+    "name": "グループ",
+    "help": "グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "グループ1",
+        "value": "G0001",
+        "kind": "D"
+      },
+      {
+        "key": "グループ2",
+        "value": "G0002",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "user.group.belonging_group_id",
+    "name": "所属",
+    "help": "所属のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "user.group.granted_role_id",
+    "name": "権限",
+    "help": "権限のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "user.group.granted_authority_ids",
+    "name": "権限",
+    "help": "権限のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "user.attribute_create_place",
+    "name": "所在地",
+    "help": "所在地のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "belonging_group_kind",
+    "name": "グループ種別",
+    "help": null,
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "リージョンユニオン",
+        "value": "DRU",
+        "kind": "D"
+      },
+      {
+        "key": "リージョン",
+        "value": "DR",
+        "kind": "D"
+      },
+      {
+        "key": "ブロックユニオン",
+        "value": "DBU",
+        "kind": "D"
+      },
+      {
+        "key": "ブロック",
+        "value": "DB",
+        "kind": "D"
+      },
+      {
+        "key": "代理店ユニオン",
+        "value": "DDU",
+        "kind": "D"
+      },
+      {
+        "key": "代理店",
+        "value": "DD",
+        "kind": "D"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "DGC",
+        "kind": "D"
+      },
+      {
+        "key": "広域顧客",
+        "value": "DWC",
+        "kind": "D"
+      },
+      {
+        "key": "顧客",
+        "value": "DC",
+        "kind": "D"
+      },
+      {
+        "key": "工場",
+        "value": "DP",
+        "kind": "D"
+      },
+      {
+        "key": "銀行",
+        "value": "DBK",
+        "kind": "D"
+      },
+      {
+        "key": "保険",
+        "value": "DI",
+        "kind": "D"
+      },
+      {
+        "key": "ファイナンス",
+        "value": "DF",
+        "kind": "D"
+      },
+      {
+        "key": "サブグループ",
+        "value": "DS",
+        "kind": "D"
+      }
+    ]
+  }
+]

@@ -1,0 +1,67 @@
+<ng-container *ngIf="targets">
+  <label class="label-caption">{{ targets.name }}</label>
+  <div class="col row row-select-type">
+    <ng-container *ngFor="let type of selectTypes">
+      <ng-container *ngIf="type !== 'selections'">
+        <div class="list-select-type">
+          <input
+            name="select-type-{{ name }}"
+            class="KBA-input-radio"
+            type="radio"
+            id="select-type-{{ name }}-{{ type }}"
+            [value]="type"
+            [(ngModel)]="selectedOption"
+            (change)="onChangeSelectType()"
+          />
+          <label
+            for="select-type-{{ name }}-{{ type }}"
+            class="KBA-input-radio__label"
+          >
+            {{ targetInfo[type].label }}
+          </label>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="type === 'selections'">
+        <div class="list-select-type">
+          <input
+            name="select-type-{{ name }}"
+            class="KBA-input-radio"
+            type="radio"
+            id="select-type-select-{{ name }}"
+            [value]="type"
+            [(ngModel)]="selectedOption"
+            (change)="onChangeSelectType()"
+          />
+          <label
+            for="select-type-select-{{ name }}"
+            class="KBA-input-radio__label"
+          >
+            {{ labels.choose_from_list }}
+          </label>
+        </div>
+        <app-kba-multiselect
+          *ngIf="selectedOption === 'selections'"
+          [title]="labels.prompt_to_select"
+          [options]="listSelections"
+          [(selectedItems)]="selectedListItems"
+          (changeItems)="onChangeItems()"
+        >
+        </app-kba-multiselect>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div
+    class="row KBA-list-select"
+    *ngIf="listSelections != null && selectedOption === 'selections'"
+  >
+    <div class="KBA-list-select-tag" *ngFor="let listItem of selectedListItems">
+      <span>
+        {{ listItem.name }}
+      </span>
+      <button type="button" (click)="onClickRemoveTag(listItem.id)">
+        <i class="kba-icon-close"></i>
+      </button>
+    </div>
+  </div>
+</ng-container>

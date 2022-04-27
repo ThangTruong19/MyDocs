@@ -1,0 +1,37 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "IDキーID",
+    "path": "id_keys.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "IDキー番号",
+    "path": "id_keys.code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "オペレータID",
+    "path": "id_keys.current_operator.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "オペレータID",
+    "path": "id_keys.current_operator.code",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "IDキー更新日時",
+    "path": "id_keys.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

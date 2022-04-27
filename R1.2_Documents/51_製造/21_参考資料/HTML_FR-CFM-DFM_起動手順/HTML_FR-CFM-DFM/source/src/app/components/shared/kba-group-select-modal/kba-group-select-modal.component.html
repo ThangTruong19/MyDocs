@@ -1,0 +1,55 @@
+<form name="groupSelectForm">
+  <div class="form-group KBA-group-select-modal-group" *ngIf="groups">
+    <div class="KBA-group-select">
+      <div class="group-kind" *ngFor="let group of groups; let i = index">
+        <input
+          id="group-select-{{ i }}"
+          class="KBA-input-radio"
+          type="radio"
+          [(ngModel)]="evacuateSelectedGroup"
+          (ngModelChange)="onSelectGroupKind($event)"
+          name="groupSelect"
+          [value]="group.value"
+        />
+        <label class="KBA-input-radio__label" for="group-select-{{ i }}">
+          {{ group.name }}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="KBA-group-select-modal-group-items" *ngIf="!isSelectAllKind()">
+    <div class="select-all">
+      <input
+        type="checkbox"
+        class="KBA-input-checkbox checkbox-with-label"
+        id="check-icon-all"
+        (click)="toggleCheckAll()"
+        [(checked)]="checkAll"
+      />
+      <label for="check-icon-all" class="KBA-input-checkbox__label">
+        {{ labels.select_all }}
+      </label>
+    </div>
+    <div class="groups-items">
+      <div
+        class="group-item"
+        *ngFor="let groupItem of groupItems; let i = index"
+      >
+        <input
+          (appKbaGroupSelectCheckbox)="onChange($event)"
+          (toggleClick)="onCheckSelect($event)"
+          [selectedList]="evacuateSelectedGroupItems"
+          [checked]="isChecked(groupItem.value)"
+          [disabled]="isDisabled(groupItem.value)"
+          id="check-icon-{{ i }}"
+          value="{{ groupItem.value }}"
+          type="checkbox"
+          class="KBA-input-checkbox checkbox-with-label"
+        />
+        <label class="KBA-input-checkbox__label" for="check-icon-{{ i }}">
+          {{ groupItem.name }}
+        </label>
+      </div>
+    </div>
+  </div>
+</form>

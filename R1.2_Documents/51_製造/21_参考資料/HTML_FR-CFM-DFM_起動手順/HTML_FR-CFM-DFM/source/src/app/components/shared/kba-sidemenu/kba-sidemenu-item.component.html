@@ -1,0 +1,36 @@
+<div class="KBA-menu-list">
+  <app-kba-accordion
+    [collapsed]="true"
+    [useCustomHeader]="true"
+    [isLoading]="isLoading"
+  >
+    <h4
+      class="panel-heading"
+      data-kba-accordion-header
+      (click)="toggleIsOpened()"
+    >
+      <div class="accordion-toggle panel-title">
+        <p>{{ item["name"] }}</p>
+        <div class="float-right clearfix">
+          <span
+            [ngClass]="{
+              'kba-panel-open': isOpened,
+              'kba-panel-close': !isOpened
+            }"
+          ></span>
+        </div>
+      </div>
+    </h4>
+    <ul data-kba-accordion-body>
+      <li
+        class="KBA-menu-list__item"
+        *ngFor="let nav of item['functions']"
+        [ngClass]="{ 'KBA-menu-list_active': isActive(nav) }"
+      >
+        <a (click)="handleClick(nav.options[0].value)" draggable="false">{{
+          nav["name"]
+        }}</a>
+      </li>
+    </ul>
+  </app-kba-accordion>
+</div>

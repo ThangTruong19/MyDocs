@@ -1,0 +1,144 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 連絡先管理　登録
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 連絡先管理　登録
+    en:
+
+  - id: 3
+    description: 登録
+    name: submit
+    ja: 登録
+    en:
+
+  - id: 4
+    description: 続けて登録
+    name: continue
+    ja: 続けて登録
+    en:
+
+  - id: 5
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 6
+    description: 必須説明
+    name: description_for_required
+    ja: '*印の項目は、必須項目です'
+    en:
+
+  - id: 7
+    description: 登録確認モーダルタイトル
+    name: submit_modal_title
+    ja: 以下の内容を登録します。よろしいですか？
+    en:
+
+  - id: 8
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 9
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 10
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
+    en:
+
+  - id: 14
+    description: 写真の削除
+    name: delete_photo
+    ja: 削除
+    en:
+
+  - id: 15
+    description: トリミングモーダルタイトル
+    name: trimming_modal_title
+    ja: トリミング
+    en:
+
+  - id: 16
+    description: ファイルを選択
+    name: select_file
+    ja: ファイルを選択
+    en:
+
+  - id: 17
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:
+
+  - id: 18
+    description: ファイルサイズバリデーション
+    name: valid_file_size
+    ja: ファイルサイズが10MBを超えています。
+    en:
+
+  - id: 21
+    description: 連絡先複合必須バリデーション
+    name: valid_composite_contract_required
+    ja: 電子メール、勤務先電話番号、携帯電話番号のいずれかひとつは必須です。
+    en:
+
+  - id: 22
+    description: ファイル形式注記
+    name: notice_file_format
+    ja: bmp, jpeg, gif 形式が利用可能
+    en:
+
+  - id: 23
+    description: ファイルサイズ注記
+    name: notice_file_size
+    ja: ファイルサイズ10.0MBまで対応
+    en:
+
+  - id: 24
+    description: 未登録
+    name: no_registered
+    ja: 未登録
+    en:
+
+  - id: 25
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 26
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 27
+    description: 画像削除確認モーダルタイトル
+    name: delete_image_modal_title
+    ja: 画像削除確認メッセージ
+    en:
+
+  - id: 28
+    description: 画像削除確認モーダル本文
+    name: delete_image_modal_body
+    ja: 登録画像を削除します。よろしいですか?
+    en:
+
+  - id: 22
+    description: ファイル形式注記
+    name: valid_file_format
+    ja: bmp, jpeg, gif 形式が利用可能
+    en:

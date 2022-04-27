@@ -1,0 +1,58 @@
+/* ==========================================================================
+   KBA-spinner
+   ========================================================================== */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.KBA-spinner {
+  position: relative;
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+
+  &.popover-spinner {
+    height: 320px;
+  }
+}
+
+.KBA-spinner__icon {
+  &::before {
+    font-size: 30px;
+    color: #ccc;
+    animation: fade-in-out 2s infinite linear;
+  }
+}
+
+// 一括登録用
+.KBA-spinner-upload {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3030;
+}

@@ -1,0 +1,34 @@
+<td class="KBA-form-table__head" *ngIf="isVisible">
+  <label
+    class="KBA-form-table__label"
+    [ngClass]="{ 'KBA-form-table__required': required }"
+  >
+    {{ kbaResource[kbaName] && kbaResource[kbaName].name }}
+  </label>
+</td>
+<td [attr.colspan]="colspan" *ngIf="isVisible">
+  <p [hidden]="!notEditable">{{ viewData() }}</p>
+  <div [hidden]="notEditable" class="form-group KBA-input__small">
+    <ng-select
+      name="kbaName"
+      [ngClass]="hasSearchResult ? '' : 'no-items'"
+      [items]="items"
+      [(ngModel)]="kbaParams[kbaName]"
+      [bindLabel]="'name'"
+      [bindValue]="'id'"
+      [clearable]="false"
+      [virtualScroll]="items.length > 100"
+      [dropdownPosition]="'bottom'"
+      (open)="handleOpen()"
+      (search)="handleSearch($event)"
+      (change)="onSelectItem($event)"
+      (close)="hasSearchResult = true"
+    >
+      <ng-template ng-label-tmp ng-option-tmp let-item="item">
+        <span [ngClass]="item.isHighlightItem ? 'highlight' : ''">{{
+          item.name
+        }}</span>
+      </ng-template>
+    </ng-select>
+  </div>
+</td>

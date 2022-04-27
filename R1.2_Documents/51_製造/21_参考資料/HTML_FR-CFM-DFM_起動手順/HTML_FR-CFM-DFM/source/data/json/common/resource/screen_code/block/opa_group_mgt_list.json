@@ -1,0 +1,160 @@
+[
+  {
+    "path": "group_kind_id",
+    "name": "グループ分類",
+    "help": "グループ分類のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "BU",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "Block",
+        "value": "5",
+        "kind": "D"
+      },
+      {
+        "key": "工場",
+        "value": "6",
+        "kind": "D"
+      },
+      {
+        "key": "DU",
+        "value": "7",
+        "kind": "D"
+      },
+      {
+        "key": "DB",
+        "value": "8",
+        "kind": "D"
+      },
+      {
+        "key": "銀行",
+        "value": "12",
+        "kind": "D"
+      },
+      {
+        "key": "保険",
+        "value": "13",
+        "kind": "D"
+      },
+      {
+        "key": "ファイナンス",
+        "value": "14",
+        "kind": "D"
+      },
+      {
+        "key": "グローバル顧客",
+        "value": "9",
+        "kind": "D"
+      },
+      {
+        "key": "広域顧客",
+        "value": "10",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "nation_code",
+    "name": "所属国",
+    "help": "所属国のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "日本",
+        "value": "ja-JP",
+        "kind": "D"
+      },
+      {
+        "key": "アメリカ",
+        "value": "en-US",
+        "kind": "D"
+      },
+      {
+        "key": "フランス",
+        "value": "fr-FR",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "group_label",
+    "name": "グループ名称",
+    "help": "グループ名称のヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "organization_code",
+    "name": "組織コード",
+    "help": "組織コードのヘルプ文言",
+    "type": -10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "file_content_type",
+    "name": "出力形式",
+    "help": "ダウンロード表示形式のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "XLSX",
+        "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "kind": "D"
+      },
+      {
+        "key": "CSV",
+        "value": "text/comma-separated-values",
+        "kind": "D"
+      }
+    ]
+  }
+]

@@ -1,0 +1,136 @@
+<div class="KBA-file-upload-panel">
+  <ng-container [ngSwitch]="layout">
+    <div class="batch-layout" *ngSwitchCase="'batch'">
+      <div class="KBA-panel panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            {{ labels.upload_title }}
+          </h4>
+        </div>
+        <div class="panel-body">
+          <div class="container">
+            <div class="row">
+              <p class="KBA-upload-desc">{{ labels.upload_description }}</p>
+              <p *ngIf="labels.upload_attention" class="KBA-upload-attention">
+                {{ labels.upload_attention }}
+              </p>
+            </div>
+            <div class="row" *ngIf="conditionsContent">
+              <ng-container
+                *ngTemplateOutlet="conditionsContent"
+              ></ng-container>
+            </div>
+            <div class="row">
+              <div class="KBA-input-file btn btn-secondary">
+                <label class="file-label">
+                  {{ labels.select_file }}
+                  <input
+                    type="file"
+                    ng2FileSelect
+                    class="kba-input-file"
+                    [uploader]="uploader"
+                    accept=".xlsx"
+                  />
+                </label>
+              </div>
+              <p class="item-name" *ngIf="!hasError">
+                {{ currentItem && currentItem.name }}
+              </p>
+              <p class="upload-error" *ngIf="hasError">
+                {{ labels.file_type_error }}
+              </p>
+            </div>
+            <div class="row">
+              <div
+                ng2FileDrop
+                [ngClass]="{ 'KBA-dragover': hasDropZoneOver }"
+                (fileOver)="fileOver($event)"
+                [uploader]="uploader"
+                (onFileDrop)="onChange($event)"
+                accept=".xlsx"
+                class="KBA-drop-box"
+              >
+                {{ labels.upload_area }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="KBA-panel-footer">
+          <button
+            (click)="uploadManually()"
+            type="button"
+            class="btn btn-primary"
+            [disabled]="!currentItem"
+          >
+            {{ labels.upload }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="index-layout" *ngSwitchCase="'index'">
+      <app-kba-accordion
+        [collapsed]="collapsed"
+        [useCustomHeader]="false"
+        [title]="labels.upload_title"
+        [isLoading]="isLoading"
+        [labels]="labels"
+      >
+        <div data-kba-accordion-body class="panel-body">
+          <div class="container">
+            <div class="row">
+              <p>{{ labels.upload_description }}</p>
+            </div>
+            <div class="row" *ngIf="conditionsContent">
+              <ng-container
+                *ngTemplateOutlet="conditionsContent"
+              ></ng-container>
+            </div>
+            <div class="row">
+              <div class="KBA-input-file btn btn-secondary">
+                <label class="file-label">
+                  {{ labels.select_file }}
+                  <input
+                    type="file"
+                    ng2FileSelect
+                    class="kba-input-file"
+                    [uploader]="uploader"
+                    accept=".xlsx"
+                  />
+                </label>
+              </div>
+              <p class="item-name" *ngIf="!hasError">
+                {{ currentItem && currentItem.name }}
+              </p>
+              <p class="upload-error" *ngIf="hasError">
+                {{ labels.file_type_error }}
+              </p>
+            </div>
+            <div class="row">
+              <div
+                ng2FileDrop
+                [ngClass]="{ 'KBA-dragover': hasDropZoneOver }"
+                [uploader]="uploader"
+                (fileOver)="fileOver($event)"
+                (onFileDrop)="onChange($event)"
+                accept=".xlsx"
+                class="KBA-drop-box"
+              >
+                {{ labels.upload_area }}
+              </div>
+            </div>
+          </div>
+          <div class="KBA-panel-footer">
+            <button
+              (click)="uploadManually()"
+              type="button"
+              class="btn btn-primary"
+              [disabled]="!currentItem"
+            >
+              {{ labels.upload }}
+            </button>
+          </div>
+        </div>
+      </app-kba-accordion>
+    </div>
+  </ng-container>
+</div>

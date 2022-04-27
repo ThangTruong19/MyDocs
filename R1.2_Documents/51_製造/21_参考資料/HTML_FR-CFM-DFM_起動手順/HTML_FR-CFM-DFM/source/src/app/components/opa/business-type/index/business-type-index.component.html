@@ -1,0 +1,102 @@
+<section id="KBA-business-type-index" *ngIf="labels && resource">
+  <div class="container-fluid">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+    <div class="KBA-content">
+      <!-- 一覧画面 -->
+      <ng-container>
+        <!-- 検索アコーディオン -->
+        <app-kba-accordion
+          *ngIf="resource.block_id"
+          [collapsed]="collapsed"
+          [useCustomHeader]="false"
+          [title]="labels.search_condition"
+          [labels]="labels"
+          (onChangeState)="changePanelState($event)"
+        >
+          <div data-kba-accordion-body>
+            <div class="container KBA-search">
+              <div class="row">
+                <app-kba-selected
+                  class="col-sm-3"
+                  [kbaName]="'block_id'"
+                  [kbaParams]="params"
+                  [kbaResource]="resource"
+                >
+                </app-kba-selected>
+              </div>
+            </div>
+            <div class="KBA-panel-footer">
+              <button
+                (click)="onClickSearch()"
+                type="button"
+                class="btn btn-primary search"
+              >
+                {{ labels.search }}
+              </button>
+              <button
+                type="button"
+                class="btn btn-warning btn-download"
+                (click)="onClickDownloadTemplate()"
+              >
+                {{ labels.download_all }}
+                <i class="kba-icon kba-icon-download"></i>
+              </button>
+            </div>
+          </div>
+        </app-kba-accordion>
+
+        <!-- 一覧テーブル上部検索オプション欄 -->
+        <div class="KBA-table-options" [hidden]="count <= 0">
+          <app-kba-pagination
+            [count]="count"
+            [params]="pageParams"
+            [labels]="labels"
+            [element]="pageCountEl"
+            (changeState)="onPaginationChange()"
+          >
+          </app-kba-pagination>
+          <div class="table-option-buttons" *ngIf="!resource.block_id">
+            <button
+              type="button"
+              class="btn btn-warning btn-download"
+              (click)="onClickDownloadTemplate()"
+            >
+              {{ labels.download_all }}
+              <i class="kba-icon kba-icon-download"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 一覧テーブル -->
+        <div class="KBA-table-wrapper">
+          <app-kba-table
+            [lists]="lists"
+            [pageParams]="pageParams"
+            [thList]="thList"
+            [sortableThList]="sortableThList"
+            [(sortingParams)]="sortingParams"
+            [labels]="labels"
+            [collapsed]="collapsed"
+            [updatable]="updatable"
+            [deletable]="deletable"
+            [isFetching]="isFetching"
+            (edit)="onClickEdit($event)"
+            (delete)="onClickDelete($event)"
+            (sort)="onChangeSort($event)"
+          >
+          </app-kba-table>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <ng-template #deleteModalContent>
+    <app-kba-tandem-confirm
+      [desc]="deleteModalValues.listDesc"
+      [val]="deleteModalValues.listVal"
+    >
+    </app-kba-tandem-confirm>
+  </ng-template>
+</section>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

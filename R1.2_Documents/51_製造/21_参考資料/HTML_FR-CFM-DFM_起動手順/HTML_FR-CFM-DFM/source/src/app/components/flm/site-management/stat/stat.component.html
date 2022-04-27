@@ -1,0 +1,74 @@
+<section id="KBA-site-management-stat" *ngIf="labels && labels && resource">
+  <app-detail-header [labels]="labels" [url]="url" [title]="headerTitle">
+  </app-detail-header>
+  <app-stat-header
+    [labels]="labels"
+    [labels]="labels"
+    [resource]="resource"
+    [graphMode]="graphMode"
+    [graphType]="graphType"
+    (graphModeChange)="handleGraphModeChange($event)"
+    (graphTypeChange)="handleGraphTypeChange($event)"
+    (yearMonthChange)="handleYearMonthChange($event)"
+    (dateChange)="handleDateChange($event)"
+  >
+  </app-stat-header>
+  <div class="container container-fluid" [hidden]="isContentsLoading">
+    <ng-container *ngFor="let graph of graphOptions; let i = index">
+      <ng-container
+        *ngTemplateOutlet="graphContent; context: { graph: graph, index: i }"
+      ></ng-container>
+    </ng-container>
+    <footer class="stat-footer">
+      <span class="count"> {{ listCount.count }} / {{ listCount.max }} </span>
+
+      <button
+        type="button"
+        class="btn-see-more btn-jobsite-common"
+        [disabled]="listCount.count >= listCount.max"
+        (click)="handleClickSeeMore()"
+      >
+        {{ labels.see_more }}
+      </button>
+    </footer>
+  </div>
+  <div class="KBA-spinner" [hidden]="!isContentsLoading">
+    <i class="KBA-spinner__icon fa fa-refresh fa-spin"></i>
+  </div>
+</section>
+
+<ng-template #graphContent let-graph="graph" let-index="index">
+  <div class="graph-container" *ngIf="index < listIndex">
+    <div class="graph-header">
+      <i
+        class="kba-icon"
+        [ngClass]="'kba-car-icon-' + graph.headerInfo.icon_font_no"
+      ></i>
+      <span class="car-info"
+        >{{ graph.headerInfo.model }}-{{ graph.headerInfo.type_rev }} #{{
+          graph.headerInfo.serial
+        }}</span
+      >
+      <span class="customer-car-no-label">{{ labels.customer_car_no }}</span>
+      <span class="customer-car-no">{{
+        graph.headerInfo.customer_car_no
+      }}</span>
+    </div>
+    <div class="graph-content">
+      <div class="graph-wrapper">
+        <app-graph
+          [data]="graph.workTime.data"
+          [columns]="graph.workTime.columns"
+          [max]="graphType === GraphType.rate ? 100 : null"
+        >
+        </app-graph>
+        <p class="graph-footer">{{ labels.footer_stat }}</p>
+      </div>
+      <div class="graph-wrapper" *ngIf="graph.fuel">
+        <app-graph [data]="graph.fuel.data" [columns]="graph.fuel.columns">
+        </app-graph>
+        <p class="graph-footer">{{ graph.fuel.label }}</p>
+      </div>
+    </div>
+  </div>
+</ng-template>

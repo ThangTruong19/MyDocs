@@ -1,0 +1,87 @@
+@import "../../../../../../assets/styles/flm/variable";
+
+.stat-header {
+  display: flex;
+  min-width: 1024px;
+  padding: 12px 20px 17px;
+  border-bottom: 1px solid #e6e6e6;
+
+  .header-section {
+    display: flex;
+    padding-right: 10px;
+  }
+
+  .graph-selection,
+  .graph-type-selection {
+    label {
+      padding: 5px 10px;
+      margin: 0;
+      font-size: 14px;
+    }
+  }
+
+  .date-picker-container {
+    .btn-set-date {
+      height: 30px;
+      padding: 7px 10px;
+      margin-right: 5px;
+      font-size: 15px;
+    }
+
+    .date-pickers-wrapper {
+      @extend %jobsite-gradient;
+
+      display: flex;
+      height: 30px;
+      overflow: hidden;
+      border-radius: 4px;
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+
+      .btn-date-picker {
+        @extend %jobsite-gradient;
+
+        width: 40px;
+        padding: 0;
+        background-color: transparent;
+        border: 0;
+        border-radius: 0;
+
+        .fa {
+          font-size: 22px;
+          font-weight: bold;
+        }
+      }
+
+      .date-pickers {
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+
+        .separator {
+          padding: 0 10px;
+        }
+
+        .date-picker-anchor {
+          color: inherit;
+
+          &:hover {
+            color: #08f;
+          }
+
+          .fa {
+            margin-left: 5px;
+            color: #999;
+          }
+        }
+      }
+
+      > :first-child {
+        border-right: 1px solid #ccc;
+      }
+
+      > :last-child {
+        border-left: 1px solid #ccc;
+      }
+    }
+  }
+}

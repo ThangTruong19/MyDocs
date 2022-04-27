@@ -1,0 +1,169 @@
+html {
+  color: $fontColor;
+  font-size: $fontBaseSize;
+  font-family: $fontSansSerif;
+  height: 100%;
+  background: $kba-gray-color;
+}
+
+body {
+  min-width: $fullWidth;
+  height: 100%;
+  background: none;
+  min-width: 0;
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+.KBA-page-title {
+  font-size: 16px;
+  margin: 15px 0 15px 15px;
+
+  .KBA-car-identifier {
+    margin-left: 10px;
+    color: $kba-error-color;
+  }
+}
+
+.KBA-important {
+  color: $kba-error-color;
+}
+
+.KBA-content {
+  background: #fff;
+  padding: 15px;
+
+  .KBA-content-title {
+    font-size: 15px;
+    margin: 0 0 15px;
+
+    .KBA-content-title__retro {
+      margin-left: 15px;
+      color: $kba-error-color;
+    }
+  }
+
+  > p {
+    margin-bottom: 10px;
+  }
+}
+
+.KBA-monthSelector-admin {
+  position: absolute;
+  z-index: 1000;
+  bottom: 0;
+
+  .KBA-monthSelector {
+    .KBA-monthSelector__foot {
+      > a {
+        display: inline-block;
+        padding: 0 10px;
+
+        &.KBA-monthSelector__footClear {
+          color: #000;
+          font-weight: bold;
+
+          &:before {
+            display: inline-block;
+            content: "";
+            width: 13px;
+            height: 3px;
+            vertical-align: middle;
+            margin-right: 5px;
+            background: #ee2200;
+          }
+        }
+
+        & + a {
+          margin-left: 30px;
+        }
+
+        &:hover {
+          background: #b4dbfd;
+        }
+      }
+    }
+  }
+}
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+[dnd-sortable-container],
+[dnd-sortable] {
+  cursor: default !important;
+}
+
+.container-global {
+  .table-bordered td,
+  .table-bordered th {
+    border: 1px solid #ddd;
+  }
+}
+
+.block-header {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+// Chrome, IE でのスタイル崩れ対応のためデートピッカーのスタイルを上書き
+common-date-picker {
+  .Calendar_Head {
+    select {
+      padding: 0 0 0 0.5em !important;
+    }
+  }
+}
+
+button,
+input[type="file"],
+.btn {
+  cursor: pointer !important;
+
+  &:disabled {
+    cursor: not-allowed !important;
+
+    * {
+      cursor: not-allowed !important;
+    }
+  }
+
+  * {
+    cursor: pointer !important;
+  }
+}
+
+.btn {
+  max-width: 100%;
+  white-space: normal;
+}

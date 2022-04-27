@@ -1,0 +1,37 @@
+[
+  {
+    "path": "common.customer.ids",
+    "name": "顧客",
+    "help": "顧客のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "コマツ東京C0002の顧客01",
+        "value": "A000201",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ東京C0002の顧客02",
+        "value": "A000202",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ東京C0002の顧客03",
+        "value": "A000203",
+        "kind": "D"
+      },
+      {
+        "key": "コマツ東京C0002の顧客04",
+        "value": "A000204",
+        "kind": "D"
+      }
+    ]
+  }
+]

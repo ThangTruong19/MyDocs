@@ -1,0 +1,92 @@
+@import "../../../../../../../assets/styles/_util.scss";
+@import "../../../../../../../assets/styles/opa/_variable.scss";
+
+.caption {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 22px;
+}
+
+.names-container {
+  position: relative;
+  display: flex;
+}
+
+.primary-block,
+.others-block {
+  position: relative;
+}
+
+.primary-block {
+  width: 48%;
+  padding-right: 48px;
+  flex-shrink: 0;
+}
+
+.others-block {
+  width: 100%;
+}
+
+.btn-select {
+  min-width: 100px;
+  margin-top: 20px;
+}
+
+.car-conditions-content {
+  margin: -16px -15px;
+
+  &_header {
+    padding: 16px;
+    align-items: baseline;
+
+    .search-conditions {
+      display: flex;
+      width: 100%;
+      margin-left: -15px;
+    }
+  }
+
+  &_body {
+    padding-top: 1px;
+    border: 1px solid #ddd;
+  }
+}
+
+.names-confirm-container {
+  word-break: break-all;
+
+  &:not(.use-same-name) {
+    margin: -15px -15px -16px -16px;
+  }
+}
+
+.names-row {
+  display: flex;
+
+  .names-cell {
+    padding: 7px 15px;
+    margin: -1px -1px 0 0;
+    border: 1px solid #ddd;
+
+    &.lang-name {
+      width: 50%;
+    }
+
+    &.label {
+      width: 100%;
+    }
+  }
+}
+
+.model-type-setting-content_body {
+  max-width: 1000px;
+}
+
+.edited {
+  @include input-edited;
+}
+
+.KBA-form-table {
+  table-layout: fixed;
+}

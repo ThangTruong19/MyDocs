@@ -1,0 +1,37 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "業種ID",
+    "path": "business_types.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "ブロック名",
+    "path": "business_types.block_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "ブロック名称（英語）",
+    "path": "business_types.block_label_english",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "業種名称",
+    "path": "business_types.name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "更新日時",
+    "path": "business_types.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  }
+]

@@ -1,0 +1,130 @@
+[
+  {
+    "path": "support_distributor_id",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "担当DB1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB4",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB5",
+        "value": "5",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB6",
+        "value": "6",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB7",
+        "value": "7",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB8",
+        "value": "8",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB9",
+        "value": "A",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "contact_label",
+    "name": "氏名",
+    "help": "氏名のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "phone_no",
+    "name": "電話番号",
+    "help": "電話番号のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "contact_kind",
+    "name": "連絡先種別",
+    "help": "連絡先種別のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "一般",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "代表",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  }
+]

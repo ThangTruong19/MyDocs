@@ -1,0 +1,103 @@
+<div class="detail-modal-group-container">
+  <div class="detail-modal-group" *ngIf="groupInfoParams">
+    <h3 class="content-title">{{ labels.group_information }}</h3>
+    <app-kba-tandem-confirm
+      class="detail-modal-content"
+      [desc]="groupInfoHeader"
+      [val]="groupInfoParams"
+      [customContent]="detailModalCustomContent"
+    ></app-kba-tandem-confirm>
+  </div>
+  <div class="detail-modal-group" *ngIf="keyPersonParams">
+    <h3 class="content-title">{{ labels.key_person_information }}</h3>
+    <app-kba-tandem-confirm
+      class="detail-modal-content"
+      [desc]="keyPersonHeader"
+      [val]="keyPersonParams"
+      [customContent]="detailModalCustomContent"
+    ></app-kba-tandem-confirm>
+  </div>
+</div>
+
+<ng-template #detailModalCustomContent let-d="d" let-value="value">
+  <ng-container [ngSwitch]="getParamType(value)">
+    <p *ngSwitchCase="'string'">
+      <ng-container
+        *ngIf="d.name !== 'group.attribute.publish_kind'; else elseBlock"
+      >
+        {{ value }}
+      </ng-container>
+      <ng-template #elseBlock>
+        <i *ngIf="value === '1'" class="fa fa-check check-icon"></i>
+      </ng-template>
+    </p>
+    <ng-container *ngSwitchCase="'list'">
+      <div *ngIf="d.name === 'group.langs.name'">
+        <p
+          *ngFor="let lang of value"
+          [ngClass]="{
+            'default-lang': lang === groupInfoParams['group.default_lang.name']
+          }"
+        >
+          {{ lang }}
+        </p>
+      </div>
+      <ul class="detail-modal-list" *ngIf="d.name !== 'group.langs.name'">
+        <li *ngFor="let v of value">
+          <p>{{ v }}</p>
+        </li>
+      </ul>
+    </ng-container>
+    <ng-container *ngSwitchCase="'table'">
+      <ng-container
+        *ngTemplateOutlet="detailModalRoleContent; context: { data: value }"
+      ></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'object'">
+      <ul class="detail-modal-list">
+        <ng-container *ngFor="let role of value">
+          <li class="preset-roles-header">
+            <p>{{ role.label }}</p>
+          </li>
+          <li>
+            <ng-container
+              *ngTemplateOutlet="
+                detailModalRoleContent;
+                context: { data: role.roles }
+              "
+            ></ng-container>
+          </li>
+        </ng-container>
+      </ul>
+    </ng-container>
+    <ng-container *ngSwitchCase="'map'">
+      <div class="map-container">
+        <app-kba-area-map
+          [initMap]="{}"
+          [labels]="labels"
+          [menuWidth]="0"
+          [menuOpen]="false"
+          [isModal]="true"
+          [editable]="false"
+          [hasMenu]="false"
+          [simpleMap]="true"
+          (onLoad)="onMapLoad()"
+        >
+        </app-kba-area-map>
+        <div class="map-overlay"></div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #detailModalRoleContent let-data="data">
+    <div class="KBA-form-inner-table-container">
+      <table class="table KBA-form-table detail-modal-table">
+        <tr *ngFor="let row of data">
+          <td *ngFor="let v of row">
+            <p>{{ v }}</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </ng-template>
+</ng-template>

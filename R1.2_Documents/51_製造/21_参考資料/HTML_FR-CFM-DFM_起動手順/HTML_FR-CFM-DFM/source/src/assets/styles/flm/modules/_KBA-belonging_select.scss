@@ -1,0 +1,56 @@
+.color-icon-item {
+  transition: none;
+
+  i {
+    margin-right: 4px;
+    font-size: 15px;
+    border-radius: 50%;
+  }
+}
+
+.color-icon-item-dropdown {
+  line-height: 2 !important;
+}
+
+@each $key, $color in $belongingGroupIdColor {
+  .#{$key} {
+    &::before {
+      color: $color;
+      opacity: 1;
+    }
+  }
+}
+
+.red-icon-color {
+  color: map-get($belongingGroupIdColor, red-icon-color) !important;
+
+  &::before {
+    content: "";
+  }
+}
+
+.belonging-name {
+  display: inline-block;
+  min-width: 110px;
+  padding: 0 10px;
+  line-height: 2;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 100px;
+
+  @each $key, $color in $belongingGroupIdColor {
+    &.#{$key} {
+      background-color: $color;
+    }
+  }
+
+  &.red-icon-color {
+    color: map-get($belongingGroupIdColor, red-icon-color) !important;
+  }
+}
+
+.belong-name-label {
+  margin-right: 10px;
+  line-height: 2;
+}

@@ -1,0 +1,50 @@
+@import "../../../../../assets/styles/variable";
+
+.tabset {
+  display: flex;
+  margin-top: 20px;
+}
+
+#KBA-function-publish-setting-confirm-modal {
+  .modal-body {
+    th {
+      border-top: 1px solid $kba-border-color;
+      border-bottom: 0;
+    }
+
+    td {
+      border: 1px solid $kba-border-color;
+      padding: 5px 10px;
+    }
+
+    .td-dfm,
+    .td-cfm {
+      padding: 0 !important;
+      margin-top: -1px;
+    }
+  }
+}
+
+.KBA-table {
+  display: table;
+}
+
+.KBA-table-thead {
+  display: table-header-group;
+}
+
+.tablist {
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.setting-list-content {
+  display: flex;
+}
+
+.table-container {
+  width: 100%;
+  overflow: scroll;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}

@@ -1,0 +1,376 @@
+<section id="KBA-smr-interval-form" *ngIf="labels && resource">
+  <div class="container-fluid" [hidden]="loading">
+    <h2 class="KBA-page-title">{{ labels.title }}</h2>
+
+    <div class="KBA-content" *ngIf="params">
+      <form
+        class="KBA-form"
+        name="smrIntervalForm"
+        novalidate
+        [formGroup]="smrIntervalForm"
+      >
+        <p class="KBA-form-table__required">
+          {{ labels.description_for_required }}
+        </p>
+        <table class="KBA-form-table table table-bordered" *ngIf="!loading">
+          <tbody class="KBA-form-table-tbody">
+            <ng-container
+              *ngIf="exists('smr_interval_item.support_distributor_id')"
+            >
+              <tr
+                app-kba-form-table-select
+                *ngIf="!isUpdate"
+                class="KBA-form-row"
+                (onChange)="handleSupportDistributorChange($event)"
+                [formGroup]="smrIntervalForm"
+                [kbaName]="'support_distributor_id'"
+                [kbaParams]="params.smr_interval_item"
+                [kbaResource]="resource.smr_interval_item"
+                [colspan]="3"
+                [display]="'support_distributor_label'"
+                [emitInitialRefresh]="false"
+              ></tr>
+              <tr
+                app-kba-form-table-custom
+                *ngIf="isUpdate"
+                class="KBA-form-row"
+                [colspan]="3"
+                [customHeader]="header"
+                [content]="content"
+              >
+                <ng-template #header>
+                  <label class="KBA-form-table__label">
+                    {{ resource.smr_interval_item.support_distributor_id.name }}
+                  </label>
+                </ng-template>
+                <ng-template #content>
+                  {{
+                    _getResourceValueName(
+                      'smr_interval_item.support_distributor_id',
+                      params.smr_interval_item.support_distributor_id
+                    )
+                  }}
+                </ng-template>
+              </tr>
+            </ng-container>
+
+            <tr
+              app-kba-form-table-text
+              class="KBA-form-row"
+              [formGroup]="smrIntervalForm"
+              [kbaName]="'label'"
+              [kbaParams]="params.smr_interval_item"
+              [kbaResource]="resource.smr_interval_item"
+              [kbaLabel]="labels"
+              [colspan]="3"
+              [required]="true"
+              [maxLength]="255"
+              [path]="'smr_interval_item.label'"
+              [errorData]="errorData"
+            ></tr>
+
+            <tr
+              app-kba-form-table-custom
+              class="KBA-form-row"
+              [formGroup]="smrIntervalForm"
+              [kbaName]="'inspection_start_smr'"
+              [kbaResource]="resource.smr_interval_item"
+              [colspan]="3"
+              [required]="true"
+              [content]="inspectionStartSmrContent"
+            >
+              <ng-template #inspectionStartSmrContent>
+                <div [formGroup]="smrIntervalForm" class="KBA-input-unit">
+                  <input
+                    type="text" autocomplete="off"
+                    class="KBA-input-text form-control"
+                    formControlName="inspectionStartSmr"
+                    maxlength="6"
+                    (ngModelChange)="params.smr_interval_item.inspection_start_smr = $event"
+                    [ngClass]="{
+                      'KBA-form-error':
+                        errorData
+                        | hasError: 'smr_interval_item.inspection_start_smr'
+                    }"
+                  />
+                  {{ labels.hour }}
+                </div>
+              </ng-template>
+            </tr>
+
+            <tr
+              app-kba-form-table-custom
+              class="KBA-form-row"
+              [formGroup]="smrIntervalForm"
+              [kbaName]="'smr_interval'"
+              [kbaResource]="resource.smr_interval_item"
+              [colspan]="3"
+              [required]="true"
+              [content]="smrIntervalContent"
+            >
+              <ng-template #smrIntervalContent>
+                <div [formGroup]="smrIntervalForm">
+                  <ng-container *ngFor="let item of resource.smr_interval_item.smr_interval_kind.values">
+                    <input
+                      type="radio"
+                      id="smr-interval-kind-{{ item.value }}"
+                      name="smrIntervalKind"
+                      [ngModelOptions]="{ standalone: true }"
+                      class="KBA-input-radio"
+                      [value]="item.value"
+                      [(ngModel)]="params.smr_interval_item.smr_interval_kind"
+                      (ngModelChange)="onSelectSmrIntervalKind($event)"
+                    />
+                    <label
+                      for="smr-interval-kind-{{ item.value }}"
+                      class="KBA-input-radio__label"
+                    >
+                      {{ item.name }}
+                    </label>
+                  </ng-container>
+
+                  <span [formGroup]="smrIntervalForm" class="KBA-input-unit">
+                    <input
+                      type="text" autocomplete="off"
+                      class="KBA-input-text form-control"
+                      formControlName="smrInterval"
+                      maxlength="6"
+                      (ngModelChange)="params.smr_interval_item.smr_interval = $event"
+                      [ngClass]="{
+                        'KBA-form-error':
+                          errorData | hasError: 'smr_interval_item.smr_interval'
+                      }"
+                    />
+                    {{ labels.hour }}
+                  </span>
+                </div>
+              </ng-template>
+            </tr>
+
+            <tr class="KBA-form-row">
+              <td
+                class="KBA-form-table__head"
+                [attr.rowspan]="allModels ? 2 : divisionsForDisplay.length + 1"
+              >
+                <label class="KBA-form-table__label KBA-form-table__required">{{
+                  resource.smr_interval_item.car_conditions.name
+                }}</label>
+              </td>
+              <td colspan="3">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  (click)="showModelRevModal()"
+                >
+                  {{ labels.select }}
+                </button>
+              </td>
+            </tr>
+            <ng-container *ngTemplateOutlet="modelRevDisplay"></ng-container>
+
+            <tr
+              app-kba-form-table-custom
+              class="KBA-form-row"
+              [formGroup]="smrIntervalForm"
+              [kbaName]="'threshold'"
+              [kbaResource]="resource.smr_interval_item"
+              [colspan]="3"
+              [required]="true"
+              [content]="thresholdContent"
+            >
+              <ng-template #thresholdContent>
+                <ng-container *ngFor="let item of resource.smr_interval_item.threshold_kind.values">
+                  <input
+                    type="radio"
+                    id="threshold-kind-{{ item.value }}"
+                    class="KBA-input-radio"
+                    name="thresholdKind"
+                    [ngModelOptions]="{ standalone: true }"
+                    [value]="item.value"
+                    [(ngModel)]="params.smr_interval_item.threshold_kind"
+                    (ngModelChange)="onSelectThresholdKind($event)"
+                  />
+                  <label for="threshold-kind-{{ item.value }}" class="KBA-input-radio__label">
+                    {{ item.name }}
+                  </label>
+                </ng-container>
+
+                <span [formGroup]="smrIntervalForm" class="KBA-input-unit">
+                  <span>-</span>
+                  <input
+                    type="text" autocomplete="off"
+                    class="KBA-input-text form-control"
+                    formControlName="threshold"
+                    maxlength="5"
+                    (ngModelChange)="params.smr_interval_item.threshold = $event"
+                    [ngClass]="{
+                      'KBA-form-error':
+                        errorData | hasError: 'smr_interval_item.threshold'
+                    }"
+                    [pattern]="thresholdPattern"
+                    (blur)="
+                      handleBlurThreshold(params.smr_interval_item.threshold)
+                    "
+                  />
+                  {{ labels.hour }}
+                </span>
+              </ng-template>
+            </tr>
+          </tbody>
+        </table>
+        <footer class="KBA-form-footer-fixed">
+          <a
+            href="javascript:void(0)"
+            class="btn btn-link"
+            (click)="onClickReset()"
+          >
+            {{ labels.reset }}
+          </a>
+          <button
+            class="btn btn-success"
+            (click)="onClickContinue()"
+            type="button"
+            [disabled]="smrIntervalForm.invalid || !modelRevOk"
+            *ngIf="!isUpdate"
+          >
+            {{ labels.continue }}
+          </button>
+          <button
+            class="btn btn-primary"
+            (click)="onClickSubmit()"
+            type="button"
+            [disabled]="smrIntervalForm.invalid || !modelRevOk"
+          >
+            {{ labels.submit }}
+          </button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #submitModalContent>
+    <app-kba-tandem-confirm
+      class="confirm-modal-content"
+      [desc]="desc"
+      [val]="val"
+      [customContent]="submitModalCustomContent"
+    ></app-kba-tandem-confirm>
+  </ng-template>
+
+  <ng-template #submitModalCustomContent let-d="d" let-value="value">
+    <ng-container [ngSwitch]="d.name">
+      <ng-container *ngSwitchCase="'car_conditions'">
+        <table class="KBA-model-table" *ngIf="!allModels">
+          <tbody>
+            <ng-container *ngTemplateOutlet="modelRevDisplay"></ng-container>
+          </tbody>
+        </table>
+        <p *ngIf="allModels">
+          {{ labels.all_models }}
+        </p>
+      </ng-container>
+      <p *ngSwitchDefault>{{ value }}</p>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #resetModalContent>
+    <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+  </ng-template>
+
+  <ng-template #modelRevModalContent>
+    <app-kba-model-rev-modal
+      [labels]="labels"
+      [resource]="resource.smr_interval_item"
+      [params]="modelRevParams"
+      [divisionList]="divisionList"
+      [selectedDivisions]="selectedDivisions"
+      [showRefModal]="showRefModal"
+    ></app-kba-model-rev-modal>
+  </ng-template>
+
+  <ng-template #refModalContent>
+    <div class="rev-modal-wrapper">
+      <ng-container *ngFor="let data of refModalData">
+        <h5 class="reference-title">
+          {{ data.car_condition.model }}-{{ data.car_condition.type_rev }}
+        </h5>
+        <table
+          class="KBA-form-table KBA-table-modal table table-bordered table-reference"
+          *ngIf="!!data.smr_interval_items.length; else elseBlock"
+        >
+          <thead class="KBA-table-thead-modal">
+            <tr>
+              <ng-container *ngFor="let th of refModalHeaderParams.listDesc">
+                <th
+                  *ngIf="th.displayable"
+                  class="KBA-index-th th-{{ th.shortName }}"
+                >
+                  {{ th.label }}
+                </th>
+              </ng-container>
+            </tr>
+          </thead>
+          <tbody class="KBA-form-table-tbody">
+            <tr *ngFor="let item of data.smr_interval_items">
+              <td class="KBA-form-table__value">
+                <p>{{ item.label }}</p>
+              </td>
+              <td class="KBA-form-table__value">
+                <p>{{ item.inspection_start_smr + labels.hour }}</p>
+              </td>
+              <td class="KBA-form-table__value">
+                <p>
+                  {{
+                    item.smr_interval
+                      ? item.smr_interval + labels.hour
+                      : resource.smr_interval_item.smr_interval_kind.values[0]
+                          .name
+                  }}
+                </p>
+              </td>
+              <td class="KBA-form-table__value">
+                <p>
+                  {{
+                    item.threshold
+                      ? item.threshold + labels.hour
+                      : resource.smr_interval_item.threshold_kind.values[0].name
+                  }}
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ng-template #elseBlock>
+          <p class="no-profile">{{ labels.no_reference }}</p>
+        </ng-template>
+      </ng-container>
+      <ng-container *ngIf="refModalData.length === 0">
+        <p class="no-profile">{{ labels.no_reference }}</p>
+      </ng-container>
+    </div>
+  </ng-template>
+
+  <ng-template #modelRevDisplay>
+    <ng-container *ngIf="!allModels">
+      <tr class="KBA-form-row" *ngFor="let division of divisionsForDisplay">
+        <td class="KBA-model-cell">{{ division.model }}</td>
+        <td colspan="2" class="KBA-rev-cell">
+          <span
+            class="KBA-rev-cell_value"
+            *ngFor="let d of division.divisions"
+            >{{ d.type_rev }}</span
+          >
+        </td>
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="allModels">
+      <tr class="KBA-form-row">
+        <td colspan="3">
+          <span>{{ labels.all_models }}</span>
+        </td>
+      </tr>
+    </ng-container>
+  </ng-template>
+</section>
+
+<app-kba-sidemenu [isLoading]="isLoading"></app-kba-sidemenu>

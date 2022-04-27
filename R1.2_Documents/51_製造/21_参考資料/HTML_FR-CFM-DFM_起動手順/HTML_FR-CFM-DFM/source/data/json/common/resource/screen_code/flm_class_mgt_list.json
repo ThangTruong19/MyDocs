@@ -1,0 +1,92 @@
+[
+  {
+    "path": "support_distributor_id",
+    "name": "担当DB",
+    "help": "担当DBのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "担当DB1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB4",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB5",
+        "value": "5",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB6",
+        "value": "6",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB7",
+        "value": "7",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB8",
+        "value": "8",
+        "kind": "D"
+      },
+      {
+        "key": "担当DB9",
+        "value": "A",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "class_kind_id",
+    "name": "分類区分",
+    "help": "分類区分のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "分類1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "分類2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "分類3",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "分類4",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "分類5",
+        "value": "5",
+        "kind": "D"
+      }
+    ]
+  }
+]
