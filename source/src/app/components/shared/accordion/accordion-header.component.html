@@ -1,0 +1,15 @@
+<div class="panel-heading">
+    <div class="panel-title app-accordion-header">
+        <span>{{ title }}</span>
+        <div class="pull-right">
+            <span
+                [ngClass]="{
+                    'app-panel-open': !collapsed,
+                    'app-panel-close': collapsed
+                }"
+            >
+                {{ accordionOperationText }}
+            </span>
+        </div>
+    </div>
+</div>

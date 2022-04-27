@@ -1,0 +1,87 @@
+[
+  {
+    "path": "field_no",
+    "name": "車両属性NO",
+    "help": "車両属性NOのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "11",
+        "value": "11",
+        "kind": "D"
+      },
+      {
+        "key": "21",
+        "value": "21",
+        "kind": "D"
+      },
+      {
+        "key": "31",
+        "value": "31",
+        "kind": "D"
+      },
+      {
+        "key": "12",
+        "value": "12",
+        "kind": "D"
+      },
+      {
+        "key": "22",
+        "value": "22",
+        "kind": "D"
+      },
+      {
+        "key": "32",
+        "value": "32",
+        "kind": "D"
+      },
+      {
+        "key": "13",
+        "value": "13",
+        "kind": "D"
+      },
+      {
+        "key": "23",
+        "value": "23",
+        "kind": "D"
+      },
+      {
+        "key": "33",
+        "value": "33",
+        "kind": "D"
+      },
+      {
+        "key": "14",
+        "value": "14",
+        "kind": "D"
+      },
+      {
+        "key": "24",
+        "value": "24",
+        "kind": "D"
+      },
+      {
+        "key": "34",
+        "value": "34",
+        "kind": "D"
+      },
+      {
+        "key": "15",
+        "value": "15",
+        "kind": "D"
+      },
+      {
+        "key": "25",
+        "value": "25",
+        "kind": "D"
+      },
+      {
+        "key": "35",
+        "value": "35",
+        "kind": "D"
+      }
+    ]
+  }
+]

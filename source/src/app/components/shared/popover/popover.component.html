@@ -1,0 +1,86 @@
+<div
+    class="app-popover"
+    *ngIf="visible"
+    [ngClass]="{ visible: afterVisualize }"
+>
+    <div class="popover-arrow"></div>
+    <div class="popover-wrapper">
+        <div class="popover-header">
+            <h3 class="popover-title">{{ title }}</h3>
+        </div>
+        <div class="popover-body">
+            <ng-container *ngIf="!isLoading; else loadingContent">
+                <div class="popover-row">
+                    <input
+                        type="checkbox"
+                        name="check-all"
+                        id="popover-check-all"
+                        class="app-input-checkbox checkbox-with-label"
+                        [(ngModel)]="checkAll"
+                        (ngModelChange)="onCheckAll($event)"
+                    />
+                    <label for="popover-check-all" class="app-input-checkbox__label popover-select-all">
+                        {{ labels.select_all }}
+                    </label>
+                </div>
+                <div class="popover-row popover-row-fields" *ngIf="selectableFields">
+                    <ul>
+                        <li class="popover-list-item" *ngFor="let item of selectableFields">
+                            <input
+                                type="checkbox"
+                                name="check-all"
+                                id="popover-{{ item.path }}"
+                                class="app-input-checkbox checkbox-with-label"
+                                [(ngModel)]="checkedItems[item.path]"
+                                [disabled]="item.display_code === displayCodes.inactiveDisplay"
+                                (ngModelChange)="onCheck()"
+                            />
+                            <label
+                                for="popover-{{ item.path }}"
+                                class="app-input-checkbox__label"
+                            >
+                                {{ item.name }}
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="popover-row popover-row-with-separator" *ngIf="download">
+                    <label>{{ downloadType.name }}</label>
+                    <div class="download-types">
+                      <div class="download-type" *ngFor="let type of downloadType.values">
+                          <input
+                                type="radio"
+                                class="app-input-radio"
+                                name="download-type"
+                                id="download-type-{{ type.name }}"
+                                [value]="type.value"
+                                [(ngModel)]="selectedDownloadType"
+                          />
+                          <label
+                                for="download-type-{{ type.name }}"
+                                class="app-input-radio__label"
+                                >{{ type.name }}</label
+                          >
+                      </div>
+                    </div>
+                </div>
+                <div class="popover-row popover-row-with-separator popover-footer">
+                    <button
+                        class="btn btn-warning"
+                        type="button"
+                        (click)="onClickOk()"
+                        [disabled]="!okButtonEnabled"
+                    >
+                        {{ labels.ok_btn }}
+                    </button>
+                </div>
+            </ng-container>
+
+            <ng-template #loadingContent>
+                <div class="app-spinner popover-spinner">
+                    <i class="app-spinner__icon fa fa-refresh fa-spin"></i>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

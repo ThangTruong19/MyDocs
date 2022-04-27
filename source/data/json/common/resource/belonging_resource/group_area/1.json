@@ -1,0 +1,22 @@
+[
+  {
+    "path": "group_area.no",
+    "name": "グループエリアNo",
+    "help": "グループエリアNoのヘルプ文言",
+    "kind": 30,
+    "placeholder_text": "",
+    "memo": "b",
+    "items": [
+      {
+        "key": "7",
+        "value": "7",
+        "kind": "D"
+      },
+      {
+        "key": "8",
+        "value": "8",
+        "kind": "D"
+      }
+    ]
+  }
+]

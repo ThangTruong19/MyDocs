@@ -1,0 +1,22 @@
+<section>
+    <div class="container-fluid">
+        <h2 class="KBA-page-title">
+            テスト用エントランス画面
+        </h2>
+        <div class="filter" *ngIf="groups">
+            <label for="filter">グループ名絞り込み</label>
+            <input type="text" autocomplete="off" id="filter" [(ngModel)]="filter" />
+        </div>
+        <ul class="groups">
+            <li *ngFor="let group of filteredGroups" class="group">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="redirect(group.id)"
+                >
+                    {{ group.label }}
+                </button>
+            </li>
+        </ul>
+    </div>
+</section>

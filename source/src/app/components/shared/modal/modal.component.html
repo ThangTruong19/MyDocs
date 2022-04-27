@@ -1,0 +1,30 @@
+<section class="app-modal">
+    <header class="app-modal-header modal-header">
+        <h1>{{ title }}</h1>
+    </header>
+
+    <div class="app-modal-body modal-body" [style.overflow]="'auto'">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </div>
+
+    <footer class="app-modal-footer modal-footer">
+        <button
+            *ngIf="showCloseBtn"
+            type="button"
+            class="btn btn-secondary"
+            (click)="onClickClose()"
+        >
+            {{ createCloseBtnLabel() }}
+        </button>
+        <button
+            *ngIf="hasOk"
+            type="button"
+            class="btn"
+            [ngClass]="createOkBtnClass()"
+            [disabled]="!enableOk"
+            (click)="onClickOk()"
+        >
+            {{ createOkBtnLabel() }}
+        </button>
+    </footer>
+</section>

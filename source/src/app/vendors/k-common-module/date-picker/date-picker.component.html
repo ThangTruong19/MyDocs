@@ -1,0 +1,109 @@
+<div class="DatePickerFlyout">
+  <div class="DatePickerFlyout_Body">
+    <div class="Calendar">
+      <div class="Calendar_Head">
+        <button
+          [attr.disabled]="disabledPrevMonthButton ? true : null"
+          (click)="onClickPrev($event)"
+          type="button"
+          class="Calendar_HeadButton"
+        >
+          <span class="Icon-nav-arrow-left"></span>
+        </button>
+
+        <select
+          [ngModel]="getYear()"
+          (ngModelChange)="onChangeYear($event)"
+          class="Calendar_HeadSelectYear"
+        >
+          <option
+            *ngFor="let year of years"
+            [ngValue]="year"
+          >{{year}}</option>
+        </select>
+
+        <select
+          [ngModel]="getMonth()"
+          (ngModelChange)="onChangeMonth($event)"
+          class="Calendar_HeadSelectMonth"
+        >
+          <option
+            *ngFor="let month of getMonthLabels(); let i = index"
+            [ngValue]="i"
+            [disabled]="monthIsDisabled(i) ? true : null"
+          >{{month}}</option>
+        </select>
+
+        <button
+          [attr.disabled]="disabledNextMonthButton ? true : null"
+          (click)="onClickNext($event)"
+          type="button"
+          class="Calendar_HeadButton"
+        >
+          <span class="Icon-nav-arrow-right"></span>
+        </button>
+      </div>
+
+      <div class="Calendar_Body">
+        <div class="Calendar_WeekLabels">
+          <div
+            *ngFor="let label of weekLabels"
+            class="Calendar_WeekLabel"
+          >{{label}}</div>
+        </div>
+
+        <div class="Calendar_Week" *ngFor="let daysPerWeek of days">
+          <div class="Calendar_Day" *ngFor="let day of daysPerWeek">
+            <button
+              (click)="onClickDay($event, day)"
+              [attr.disabled]="day.disabled ? true : null"
+              [class.is-today]="day.isToday"
+              [class.is-selected]="day.isSelected"
+              [class.is-highlighted]="day.isHighlighted"
+              [class.is-last-month]="day.isLastMonth"
+              [class.is-next-month]="day.isNextMonth"
+              type ="button"
+              class="Calendar_DayButton"
+             >
+               {{day.date}}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="Calendar_Foot">
+        <button
+          [attr.disabled]="disabledTodayButton ? true : null"
+          (click)="onClickToday($event)"
+          type="button"
+          class="Calendar_Today"
+        >
+          <span>{{labels.todayButton}}</span>
+        </button>
+
+        <button
+          *ngIf="isVisibleClearButton"
+          (click)="onClickClear($event)"
+          type="button"
+          class="Calendar_Today"
+        >
+          <span>{{labels.clearButton}}</span>
+        </button>
+
+        <button
+          (click)="onClickClose($event)"
+          type="button"
+          class="Calendar_Close"
+        >
+          <span class="Icon-cancel"></span>
+          <span>{{labels.closeButton}}</span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="DatePickerFlyout_Backdrop" (click)="onClickClose($event)"></div>
+
+  </div>
+
+</div>

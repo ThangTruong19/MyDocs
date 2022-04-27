@@ -1,0 +1,19 @@
+<div class="app-text" *ngIf="isVisible">
+    <label for="app-text-{{ itemName }}" *ngIf="customLabel != null">{{ customLabel }}</label>
+    <label
+        for="app-text-{{ itemName }}"
+        *ngIf="customLabel == null && showLabel"
+        >{{ itemResource[itemName] && itemResource[itemName].name }}</label
+    >
+    <input
+        id="app-text-{{ itemName }}"
+        name="itemName"
+        class="app-input-text form-control"
+        [placeholder]="itemResource[itemName].placeholder_text || ''"
+        [type]="type"
+        autocomplete="off"
+        [maxlength]="maxlength"
+        [(ngModel)]="itemParams[itemName]"
+        [disabled]="disabled"
+    />
+</div>

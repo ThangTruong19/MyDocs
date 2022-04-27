@@ -1,0 +1,40 @@
+.PageHeader {
+  min-width: 0 !important;
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 3000 !important;
+
+  .PageHeader_Inner {
+    width: auto !important;
+    max-width: 1280px !important;
+    min-width: 0 !important;
+  }
+
+  .PageHeader_Logo > img {
+    padding-top: 0 !important;
+  }
+
+  .PageHeader_Flyout {
+    width: 320px !important;
+  }
+
+  .PageHeader_FlyoutInputItem label {
+    font-weight: normal !important;
+    max-width: none !important;
+  }
+
+  .Dropdown_Item[_ngcontent-c1] {
+    &,
+    &:hover,
+    &:active {
+      color: #333;
+      border-radius: 0 0 4px 4px;
+    }
+  }
+
+  .PageHeader_MenuItem {
+    height: 100%;
+  }
+}

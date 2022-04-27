@@ -1,0 +1,84 @@
+$app-lightgray-color: #e0e6ee;
+$app-lightgray-color--hover: #9d9fa5;
+$app-gray-color: #f4f4f4;
+$app-darkgray-color: #a9a9a9;
+$app-green-color: #76a82c;
+$app-darkgreen-color: #607523;
+$app-disable-color: #eceeef;
+$app-error-color: #e43838;
+$app-warning-color: #f7931e;
+$app-danger-color: #f8e4e4;
+$app-drop-box-color: #f8f8f8;
+$app-dragover-color: #337ab7;
+$app-dragover-color--hover: #23527c;
+$app-border-color: #eceeef;
+$app-danger-border-color: #f87272;
+$app-row-removed-color: #fff3f3;
+
+$app-main-color: #2a4dae;
+$app-sub-color: #eff2f6;
+$app-header-color: #0e1271;
+$app-primary-btn-color: #0275d8;
+$app-primary-btn-color--hover: #025aa5;
+$app-active-btn-color: #d5e5f3;
+$app-active-btn-color--hover: #b6d5f0;
+$app-active-btn-font-color: #2c72db;
+$app-nav-link-color: #2a51ab;
+$app-selected-color: #cdefff;
+
+$easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+$app-map-height: 734px;
+$app-gmodal-map-height: 500px;
+$app-cmodal-map-height: 445px;
+
+$fontBaseSize: 14px;
+$fontColor: #333;
+$fontBlue: #294cae;
+$fontRed: #e43838;
+$fullWidth: 1024px;
+$buttonShadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+$starPrivateBookmarkColor: #8cc63f;
+$starPrivateBookmarkColor--hover: #afd77c;
+$starBookmarkColor: #f7931e;
+$starBookmarkColor--hover: #f9b46a;
+//easing
+$easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+$carMapIconColor: (
+  //colorname: (background, foreground, border)
+    black: (#1a1a1a, #ffffff, transparent),
+  green: (#236616, #ffffff, transparent),
+  blue: (#1418bf, #ffffff, transparent),
+  yellow: (#ebd200, #ffffff, transparent),
+  pink: (#ff788d, #ffffff, transparent),
+  red: (#cf1b1b, #ffffff, transparent),
+  white: (#ffffff, #333333, #cccccc),
+  darkblue: (#22167d, #ffffff, transparent),
+  darkviolet: (#7000b3, #ffffff, transparent),
+  purple: (#63005b, #ffffff, transparent),
+  sienna: (#a13e00, #ffffff, transparent),
+  tomato: (#e05200, #ffffff, transparent),
+  aqua: (#00c8db, #ffffff, transparent),
+  lime: (#1cd109, #ffffff, transparent)
+);
+
+$fontSansSerif: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+  Helvetica, Arial, "\30D2\30E9\30AE\30CE\89D2\30B4\20\50\72\6F\20\57\33",
+  "Hiragino Kaku Gothic Pro", "\30E1\30A4\30EA\30AA", Meiryo,
+  "\FF2D\FF33\20\FF30\30B4\30B7\30C3\30AF", sans-serif;
+
+$belongingGroupIdColor: (
+  subgroup-icon-color: #009993,
+  distributor-icon-color: #f64f4f,
+  customer-icon-color: #2a4dae,
+  red-icon-color: #cf1b1b
+);
+
+%jobsite-gradient {
+  background-image: linear-gradient(#fff, #e4e4e4);
+
+  &:not(.disable-hover):not(:disabled):hover {
+    background-image: linear-gradient(#f2f2f2, #b9b9b9);
+  }
+}

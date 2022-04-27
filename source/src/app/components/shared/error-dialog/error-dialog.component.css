@@ -1,0 +1,29 @@
+.error_dialog {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    right: 20%;
+    text-align: center;
+    background: #F8E4E4;
+    border: #F77B7D solid 1px;
+    z-index: 2000;
+}
+
+.error_dialog_message {
+    margin: 10px 60px;
+    color: #F77B7D;
+}
+
+.error_dialog_close {
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    color: #968C8C;
+    background: transparent;
+    border: 0px solid;
+}
+
+.dialog_close_style {
+    background: transparent;
+    border: 0px solid;
+}

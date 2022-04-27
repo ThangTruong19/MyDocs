@@ -1,0 +1,26 @@
+<div
+    class="app-accordion app-panel"
+    [ngClass]="{ collapsed: collapsed }"
+    [attr.aria-expanded]="!collapsed"
+>
+    <div class="app-accordion-header-container" (click)="toggleAccordion()">
+        <app-accordion-header
+            [collapsed]="collapsed"
+            [title]="title"
+            [labels]="labels"
+            *ngIf="!useCustomHeader"
+        ></app-accordion-header>
+        <ng-content
+            *ngIf="useCustomHeader"
+            select="[data-app-accordion-header]"
+        ></ng-content>
+    </div>
+    <div
+        class="app-panel-body"
+        [ngbCollapse]="collapsed"
+        [ngStyle]="accordionBodyStyle"
+        (transitionend)="onTransitionEnd()"
+    >
+        <ng-content select="[data-app-accordion-body]"></ng-content>
+    </div>
+</div>

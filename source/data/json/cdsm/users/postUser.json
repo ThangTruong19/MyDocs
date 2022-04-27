@@ -1,0 +1,75 @@
+{
+  "result_data": {
+    "user": {
+      "identification": {
+        "id": "12345",
+        "email": "test@example.com",
+        "label": "小松太郎",
+        "label_english": "komatsu tarou",
+        "primary_group_id": "54321",
+        "create_datetime": "2017/05/23 23:59:59",
+        "login_datetime": "2017/05/23 23:59:59",
+        "update_datetime": "2017-08-01T23:59:59.000Z"
+      },
+      "attribute": {
+        "company_code": "KOMATSU0000000000001",
+        "company_label": "コマツ東京",
+        "company_label_english": "Komatsu Tokyo",
+        "nation_code": "JP",
+        "nation_name": "日本",
+        "phone_no": "0312345678",
+        "create_place": "開発本部管理部"
+      },
+      "groups": [
+        {
+          "represent_administrator_kind": "1",
+          "represent_administrator_kind_name": "有効",
+          "identification": {
+            "id": "12345",
+            "label": "グループ名称",
+            "label_english": "group name",
+            "organization_code": "ABBESS",
+            "kind_id": "3",
+            "kind_name": "ブロック",
+            "update_datetime": "2017-08-01T23:59:59.000Z"
+          },
+          "belonging_group": {
+            "identification": {
+              "id": "12345678",
+              "label": "グループ名称",
+              "label_english": "group name",
+              "organization_code": "ABBESS",
+              "kind_id": "2",
+              "kind_name": "リージョン",
+              "update_datetime": "2017-08-01T23:59:59.000Z"
+            }
+          },
+          "configuration_groups": [
+            {
+              "id": "12345678",
+              "label": "グループ名称",
+              "label_english": "group name",
+              "kind_id": "2",
+              "kind_name": "リージョン"
+            }
+          ],
+          "granted_role": {
+            "id": "123456",
+            "name": "管理者"
+          },
+          "granted_authorities": [
+            {
+              "id": "1234567",
+              "name": "参照のみ"
+            }
+          ],
+          "agreement": {
+            "status": "1",
+            "status_name": "同意済",
+            "date": "2017/05/23"
+          }
+        }
+      ]
+    }
+  }
+}

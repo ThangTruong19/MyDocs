@@ -1,0 +1,41 @@
+<div class="app-search-date-picker" *ngIf="isVisible">
+    <label for="app-search-date-picker-{{ itemName }}" *ngIf="showLabel">{{
+        itemResource[itemName] && itemResource[itemName].name
+    }}</label>
+    <input
+        commonFlyoutTrigger
+        [attr-aria-controls]="id"
+        name="itemName"
+        class="app-input-date-picker form-control"
+        [type]="'text'"
+        [ngModel]="displayLabel"
+        [disabled]="isDisabled"
+        readonly
+    />
+
+    <button
+        type="button"
+        class="app-datepicker"
+        commonFlyoutTrigger
+        [attr-aria-controls]="id"
+        [disabled]="isDisabled"
+        [ngClass]="{ 'no-label': !showLabel }"
+    >
+        <i class="app-icon app-icon-calendar"></i>
+    </button>
+
+    <app-date-picker
+        #datePicker
+        [id]="id"
+        [labels]="itemLabel"
+        [dateFormat]="dateFormat"
+        [timeZone]="timeZone"
+        [enableDateRange]="enableDateRange"
+        [initialBaseDay]="initialBaseDay || itemParams[itemName]"
+        [beginningWday]="beginningWday"
+        [futureDateSelectable]="futureDateSelectable"
+        [isVisibleClearButton]="!required"
+        (selectDate)="onSelectDate($event)"
+    >
+    </app-date-picker>
+</div>

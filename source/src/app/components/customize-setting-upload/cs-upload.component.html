@@ -1,0 +1,80 @@
+<section id="app-history-mgt-list" *ngIf="labels && resource && datePickerParams">
+    <div class="container-fluid">
+      <h2 class="app-page-title">{{ labels.title }}</h2>
+
+      <div class="flex-container">
+        <div class="app-file-upload_component">
+          <app-file-upload
+            [apiId]="uploadPath"
+            [layout]="'batch'"
+            [labels]="labels"
+            [json]="uploadJSON"
+            (uploadStart)="_showLoadingSpinner()"
+            (uploadEnd)="onUploadEnd($event)"
+            (uploadFail)="onUploadFail($event)"
+          ></app-file-upload>
+        </div>
+
+        <div class="app-file-upload_component download">
+          <div class="app-panel panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                {{ labels.download_title }}
+              </h4>
+            </div>
+            <div class="panel-body">
+              <div class="container">
+                <!--<div
+                  class="row"
+                  *ngIf="resource && resource.support_distributor_id"
+                >
+                  <app-select-type
+                    class="col"
+                    #supportDistributorSelect
+                    name="support_distibutor_id"
+                    [labels]="labels"
+                    [targets]="resource.support_distributor_id"
+                  >
+                  </app-select-type>
+                </div>-->
+                <div class="row">
+                  <div class="col">
+                    <button
+                      class="btn btn-secondary"
+                      type="button"
+                      (click)="onClickDownload()"
+                    >
+                      <i class="app-icon app-icon-download"></i>
+                      {{ labels.download_excel }}
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div
+                      class="download-description"
+                      *ngFor="let i of [1, 2, 3, 4, 5]"
+                    >
+                      <div class="box-index">
+                        <span class="index">{{ i }}</span>
+                      </div>
+                      <div class="box-text">
+                        <p class="text">
+                          {{ labels['download_description_' + i] }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="download-notice">{{ labels.download_notice }}</p>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <app-sidemenu [isLoading]="isLoading"></app-sidemenu>

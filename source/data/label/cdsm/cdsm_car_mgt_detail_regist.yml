@@ -1,0 +1,72 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 車両管理　登録
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 追加
+    en:
+
+  - id: 3
+    description: カスタマイズ用途定義名
+    name: custom_usage_definition_name
+    ja: カスタマイズ用途定義名
+    en:
+
+  - id: 4
+    description: バージョン
+    name: version
+    ja: バージョン
+    en:
+
+  - id: 5
+    description: 開始日
+    name: start_date
+    ja: 開始日
+    en:
+
+  - id: 6
+    description: 終了日
+    name: end_date
+    ja: 終了日
+    en:
+
+  - id: 7
+    description: 有効/無効
+    name: enabled_disabled
+    ja: 有効/無効
+    en:
+
+  - id: 8
+    description: 優先度
+    name: priority
+    ja: 優先度
+    en:
+
+  - id: 9
+    description: カスタマイズ定義詳細
+    name: custom_defintion_details
+    ja: カスタマイズ定義詳細
+    en:
+
+  - id: 10
+    description: オペレーション分析
+    name: operation_analysis
+    ja: オペレーション分析
+    en:
+
+  - id: 11
+    description: 閉じる
+    name: close
+    ja: キャンセル
+    en:
+
+  - id: 12
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:

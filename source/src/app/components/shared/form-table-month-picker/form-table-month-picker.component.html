@@ -1,0 +1,56 @@
+<td class="app-form-table__head" *ngIf="isVisible">
+    <label
+        class="app-form-table__label"
+        [ngClass]="{ 'app-form-table__required': required }"
+    >
+        {{ itemResource[itemName] && itemResource[itemName].name }}
+    </label>
+</td>
+<td [attr.colspan]="colspan" *ngIf="isVisible">
+    <p [hidden]="!notEditable">{{ viewData }}</p>
+    <div
+        [formGroup]="formGroup"
+        *ngIf="!notEditable"
+        class="form-group calendar"
+        [ngClass]="sizeClass"
+    >
+        <input
+            type="hidden"
+            name="{{ name }}"
+            formControlName="{{ name }}"
+        >
+        <input
+            commonFlyoutTrigger
+            [attr-aria-controls]="id"
+            [(ngModel)]="itemParams[display]"
+            (ngModelChange)="changeValue()"
+            [ngModelOptions]="{ standalone: true }"
+            [disabled]="isDisabled"
+            [type]="'text'"
+            class="app-input-date-picker form-control"
+            [ngClass]="{ 'app-form-error': hasError }"
+            readonly
+        />
+        <button
+            type="button"
+            class="app-datepicker"
+            commonFlyoutTrigger
+            [attr-aria-controls]="id"
+            [disabled]="isDisabled"
+        >
+            <i class="app-icon app-icon-calendar"></i>
+        </button>
+
+        <app-month-picker
+            [id]="id"
+            [labels]="itemLabel"
+            [dateFormat]="dateFormat"
+            [timeZone]="timeZone"
+            [enableDateRange]="enableDateRange"
+            [initialBaseYearMonth]="itemParams[itemName]"
+            [futureDateSelectable]="futureDateSelectable"
+            (selectMonth)="onSelectMonth($event)"
+        >
+        </app-month-picker>
+    </div>
+</td>

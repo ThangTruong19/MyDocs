@@ -1,0 +1,26 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "tslint.enable": true,
+    "tslint.autoFixOnSave": true,
+    "html.format.enable": false,
+    "editor.tabSize": 4,
+    "editor.formatOnSave": false,
+    "[json]": {
+        "editor.formatOnSave": false
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.tslint": true
+    },
+    "json.format.enable": false,
+    "[bat]": {
+        "files.encoding": "shiftjis"
+    },
+    "prettier.tabWidth": 4,
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#c06448",
+        "titleBar.activeBackground": "#a74629",
+        "titleBar.activeForeground": "#FBFCFE"
+    },
+    "projectNameInStatusBar.template": "HTML_CDSM",
+    "window.title": "HTML_CDSM${separator}${dirty}${activeEditorShort}${separator}${rootPath}${separator}${appName}"
+}

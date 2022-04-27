@@ -1,0 +1,9 @@
+<h4>{{ item.name }}</h4>
+<ul>
+    <li class="app-menu-list__item" *ngFor="let nav of item.functions">
+        <!--
+        <a [routerLink]="nav.options[0].value" draggable="false">{{ nav.name }}</a>
+        <a href="javascript:void(0)" (click)="moveToPage(nav.options[0].value)">{{ nav.name }}</a>
+        -->
+        <a href="javascript:void(0)" (click)="handleClick(nav.options[0].value)" draggable="false">{{ nav.name }}</a>
+</ul>

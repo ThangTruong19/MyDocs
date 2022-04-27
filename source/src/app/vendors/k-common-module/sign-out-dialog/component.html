@@ -1,0 +1,26 @@
+<div
+  class="ConfirmDialog"
+>
+  <form class="ConfirmDialog_Inner" novalidate>
+    <div class="ConfirmDialog_Body">
+      <h2 class="ConfirmDialog_Title">{{labels?.signOutDialogTitle}}</h2>
+      <p class="ConfirmDialog_Text">{{labels?.signOutDialogNote}}</p>
+    </div>
+    <div class="ConfirmDialog_Footer">
+      <div class="ConfirmDialog_FooterItem">
+        <button
+          (click)="onClickSignOutCancel()"
+          class="ConfirmDialog_Button  -cancel"
+          type="button"
+        >{{labels?.signOutDialogButtonCancel}}</button>
+      </div>
+      <div class="ConfirmDialog_FooterItem">
+        <button
+          (click)="onClickSignOutOk()"
+          class="ConfirmDialog_Button  -ok"
+          type="submit"
+        >{{labels?.signOutDialogButtonSignOut}}</button>
+      </div>
+    </div>
+  </form>
+</div>

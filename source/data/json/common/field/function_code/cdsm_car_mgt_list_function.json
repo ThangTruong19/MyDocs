@@ -1,0 +1,79 @@
+[
+  {
+    "display_sequence_no": "2",
+    "name": "機種",
+    "path": "operation_histories.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "型式",
+    "path": "operation_histories.type_rev",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "機番",
+    "path": "operation_histories.serial",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "端末モード区分",
+    "path": "operation_histories.customize_usage_definition_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "編集",
+    "path": "operation_histories.customize_definition_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "通信機種",
+    "path": "operation_histories.content",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "担当DB",
+    "path": "operation_histories.datetime",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "顧客",
+    "path": "operation_histories.group_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "カスタマイズ用途",
+    "path": "operation_histories.user_label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "11",
+    "name": "バージョン",
+    "path": "operation_histories.division_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "12",
+    "name": "変更状態",
+    "path": "operation_histories.change_status",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

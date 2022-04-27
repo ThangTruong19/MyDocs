@@ -1,0 +1,3560 @@
+{
+  "result_data": {
+    "user": {
+      "groups": [
+        {
+          "id": "1",
+          "label": "テスト1",
+          "label_english": "KL0001"
+        },
+        {
+          "id": "-99",
+          "label": "テスト-99",
+          "label_english": "KL0001"
+        },
+        {
+          "id": "53525",
+          "label": "KUJシステムブロック",
+          "label_english": "KL0001"
+        },
+        {
+          "id": "53526",
+          "label": "KUJミニ建機システムブロック",
+          "label_english": "KLSYS0002"
+        },
+        {
+          "id": "53609",
+          "label": "システム管理ブロック",
+          "label_english": "SYSKLTD"
+        },
+        {
+          "id": "53640",
+          "label": "大阪工場",
+          "label_english": "Plant-Osaka"
+        },
+        {
+          "id": "53644",
+          "label": "工場（親）",
+          "label_english": "Plant_parent"
+        },
+        {
+          "id": "53648",
+          "label": "日本リージョン",
+          "label_english": "JPN_REGION"
+        },
+        {
+          "id": "53659",
+          "label": "栃木工場",
+          "label_english": "Plant-Tochigi"
+        },
+        {
+          "id": "53667",
+          "label": "湘南工場",
+          "label_english": "Plant Shonan"
+        },
+        {
+          "id": "53683",
+          "label": "茨城工場",
+          "label_english": "Plant-Ibaraki"
+        },
+        {
+          "id": "53688",
+          "label": "金沢工場",
+          "label_english": "Plant-Kanazawa"
+        },
+        {
+          "id": "53710",
+          "label": "＠コマツ茨城",
+          "label_english": "NU2040"
+        },
+        {
+          "id": "53720",
+          "label": "＠東洋重機工業",
+          "label_english": "NA0007"
+        },
+        {
+          "id": "53722",
+          "label": "KACリージョン",
+          "label_english": "KAC_REGION"
+        },
+        {
+          "id": "53724",
+          "label": "東北ブロック・ユニオン",
+          "label_english": "TOHOKU_BLOCK_UNION"
+        },
+        {
+          "id": "54771",
+          "label": "EQPCare工場",
+          "label_english": "Plant-EQPCare"
+        },
+        {
+          "id": "54774",
+          "label": "XXXブロック",
+          "label_english": "XXX_Block"
+        },
+        {
+          "id": "54791",
+          "label": "XXリージョン",
+          "label_english": "XX_REGION"
+        },
+        {
+          "id": "54792",
+          "label": "YYリージョン",
+          "label_english": "YY_REGION"
+        },
+        {
+          "id": "54797",
+          "label": "YYYブロック",
+          "label_english": "YYY_Block"
+        },
+        {
+          "id": "54800",
+          "label": "移管元リージョン",
+          "label_english": "Transfer Source Region"
+        },
+        {
+          "id": "54801",
+          "label": "移管元ブロック01",
+          "label_english": "Transfer Source Block 01"
+        },
+        {
+          "id": "54802",
+          "label": "移管対象ブロック01",
+          "label_english": "Transfer target Block 01"
+        },
+        {
+          "id": "54803",
+          "label": "移管対象ブロック02",
+          "label_english": "Transfer target Block 02"
+        },
+        {
+          "id": "54804",
+          "label": "移管対象ブロック03",
+          "label_english": "Transfer target Block 03"
+        },
+        {
+          "id": "54805",
+          "label": "移管先リージョン",
+          "label_english": "Transfer Destination Region"
+        },
+        {
+          "id": "54806",
+          "label": "移管先ブロック01",
+          "label_english": "Transfer Destination Block 01"
+        }
+      ],
+      "apis": [
+        {
+          "api_id": "KOM-00100010",
+          "url": "{protocol}://{hostname}/v1/cars",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100013",
+          "url": "{protocol}://{hostname}/v1/cars",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00100020",
+          "url": "{protocol}://{hostname}/v1/cars/area_status/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100041",
+          "url": "{protocol}://{hostname}/v1/cars/fuzzy",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100050",
+          "url": "{protocol}://{hostname}/v1/cars/mobile_cfm/summary/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100060",
+          "url": "{protocol}://{hostname}/v1/cars/operator_identification/id_input/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100070",
+          "url": "{protocol}://{hostname}/v1/cars/operator_identification/id_key/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100082",
+          "url": "{protocol}://{hostname}/v1/cars/requests/operator_identification/id_input/on/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100093",
+          "url": "{protocol}://{hostname}/v1/cars/requests/operator_identification/id_input/operators/delete/s2m",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00100102",
+          "url": "{protocol}://{hostname}/v1/cars/requests/operator_identification/id_key/on/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100113",
+          "url": "{protocol}://{hostname}/v1/cars/requests/operator_identification/off/s2m",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00100180",
+          "url": "{protocol}://{hostname}/v1/cars/statistics/operations/business_type/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100190",
+          "url": "{protocol}://{hostname}/v1/cars/statistics/operations/operating_place/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100200",
+          "url": "{protocol}://{hostname}/v1/cars/usage/daily/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100210",
+          "url": "{protocol}://{hostname}/v1/cars/usage/monthly/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100220",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/areas",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100221",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/areas",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100231",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/abnormalities",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100241",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/abnormalities/{abnormality_code}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100251",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/latest_abnormalities",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100261",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/altitudes",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100272",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/attribute",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100281",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/latest_cautions",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100291",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/cautions",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100301",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/cautions/{caution_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100311",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/accumulate_caution/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100321",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/accumulate_operation/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100331",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/customer",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100341",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/accumulate_fuel_interval",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100351",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/accumulate_fuel_interval_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100360",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/accumulate_fuel_interval/result",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100371",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/identification",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100381",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/latest",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100391",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operations",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100401",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/positions",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100411",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/automatic_idle_stops/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100421",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/automatic_idle_stops/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100431",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/guidances/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100441",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/guidances/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100451",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/headers/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100461",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/headers/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100471",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/hst_reliefs/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100481",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/hst_reliefs/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100491",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/hydraulic_reliefs/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100501",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/hydraulic_reliefs/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100511",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/mc_usages/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100521",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/mc_usages/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100531",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/load_frequencies/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100541",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/mode_aggregations/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100551",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/mode_aggregations/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100561",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/modes/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100571",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/modes/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100581",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/operations/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100591",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/tcs_actuation_times/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100601",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/tcs_actuation_times/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100611",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/usages/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100621",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/usages/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100641",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/smr_interval",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100651",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/smr_interval_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100662",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/smr_interval_items",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100670",
+          "url": "{protocol}://{hostname}/v1/cars/smr_interval_items/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100680",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/smr_interval/result",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100691",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/smr_histories/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100701",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/lock_status",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100710",
+          "url": "{protocol}://{hostname}/v1/cars/accumulate_fuel_interval/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100720",
+          "url": "{protocol}://{hostname}/v1/cars/smr_interval/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00100751",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/abnormalities",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100762",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/abnormalities/{flag_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100771",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/areas",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100782",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/areas/{flag_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100791",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/cautions",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100802",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/cautions/{flag_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100811",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/fuel",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100822",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/fuel/{flag_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100831",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/low_batteries",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100842",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/low_batteries/{flag_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100851",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/measure_failure",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100862",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/measure_failure/{flag_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100871",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/non_communication",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100882",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/non_communication/{flag_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100891",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/replacement",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100892",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/replacement",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100902",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/replacement/{flag_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100921",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/security",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100932",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/security/{flag_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100941",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/smr_intervals",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00100952",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/flags/smr_intervals/{flag_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100962",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/terminal/change",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00100970",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/orbcomm",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101011",
+          "url": "{protocol}://{hostname}/v1/cars/assigns",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101012",
+          "url": "{protocol}://{hostname}/v1/cars/assigns",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00101040",
+          "url": "{protocol}://{hostname}/v1/cars/daily_operation_transition/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101060",
+          "url": "{protocol}://{hostname}/v1/cars/flag_histories/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101070",
+          "url": "{protocol}://{hostname}/v1/cars/flags/action_result/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101080",
+          "url": "{protocol}://{hostname}/v1/cars/flags/status/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101100",
+          "url": "{protocol}://{hostname}/v1/cars/management/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101120",
+          "url": "{protocol}://{hostname}/v1/cars/management/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101130",
+          "url": "{protocol}://{hostname}/v1/cars/monthly_operation_transition/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101160",
+          "url": "{protocol}://{hostname}/v1/cars/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101190",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/periodic_maintenance/result",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101202",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/periodic_maintenance/smr",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00101220",
+          "url": "{protocol}://{hostname}/v1/cars/periodic_maintenance/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101230",
+          "url": "{protocol}://{hostname}/v1/cars/statistics/operations/distributor/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101242",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00101251",
+          "url": "{protocol}://{hostname}/v1/cars/request_sets/lock",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101262",
+          "url": "{protocol}://{hostname}/v1/cars/request_sets/lock/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00101272",
+          "url": "{protocol}://{hostname}/v1/cars/request_sets/time_difference_setting/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00101291",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/notifications",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101302",
+          "url": "{protocol}://{hostname}/v1/cars/request_sets/terminal/start_setting/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00101311",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/program_deliveries/histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101320",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/program_delivery/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101330",
+          "url": "{protocol}://{hostname}/v1/cars/service_cars/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101360",
+          "url": "{protocol}://{hostname}/v1/cars/support_distributor_change/consignor",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101371",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/smr_histories/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101381",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/load_frequency_histories/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101391",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/load_frequencies/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101401",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/accumulate_operation/lifetime",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101411",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/accumulate_caution/lifetime",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101421",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/solidifying_material/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101431",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/solidifying_material/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101441",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/workload/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101451",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/summary/workload/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101461",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/latest_notifications",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101471",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/notifications/{notifications_item_code}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101483",
+          "url": "{protocol}://{hostname}/v1/cars/request_sets/{request_set_id}/lock",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00101492",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/accumulate_fuel_interval_items",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00101500",
+          "url": "{protocol}://{hostname}/v1/cars/accumulate_fuel_interval_items/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101510",
+          "url": "{protocol}://{hostname}/v1/cars/areas/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101522",
+          "url": "{protocol}://{hostname}/v1/cars/service_contract",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00101523",
+          "url": "{protocol}://{hostname}/v1/cars/service_contract",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00101530",
+          "url": "{protocol}://{hostname}/v1/cars/service_contract/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101540",
+          "url": "{protocol}://{hostname}/v1/cars/service_contract/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101571",
+          "url": "{protocol}://{hostname}/v1/cars/service_contract/consignee",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101572",
+          "url": "{protocol}://{hostname}/v1/cars/service_contract/consignee",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00101580",
+          "url": "{protocol}://{hostname}/v1/cars/service_contract/consignor/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101590",
+          "url": "{protocol}://{hostname}/v1/cars/service_contract/consignor",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101601",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/message_kinds",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101611",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/messages/{message_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101621",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/messages",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101630",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/messages/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101641",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/load_frequency_histories/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101650",
+          "url": "{protocol}://{hostname}/v1/cars/identification",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101653",
+          "url": "{protocol}://{hostname}/v1/cars/identification",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00101661",
+          "url": "{protocol}://{hostname}/v1/cars/identification/{car_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101670",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/components",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101673",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/components",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00101681",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operations/raw_data/{rowkey}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101701",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operations/raw_data/abnormalities/histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101721",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operations/raw_data/cautions/histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101741",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operations/raw_data/maintenances/histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101771",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/customize_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101781",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/customize_settings/{customize_seq_no}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101791",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/customize_data",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101801",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/data_objects",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101811",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/files",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101840",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/customize_settings/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101850",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/customize_settings/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101860",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/data_objects/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101870",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/data_objects/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101880",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/files/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101890",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/files/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101900",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/customize_data_list/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101910",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/customize_data/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101931",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operations/receive_data/{rowkey}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00101940",
+          "url": "{protocol}://{hostname}/v1/cars/macro_reports/circulation/monthly/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101950",
+          "url": "{protocol}://{hostname}/v1/cars/macro_reports/energy_efficient_operation/monthly/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101960",
+          "url": "{protocol}://{hostname}/v1/cars/macro_reports/ict_car/daily/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101970",
+          "url": "{protocol}://{hostname}/v1/cars/reports/monthly/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101980",
+          "url": "{protocol}://{hostname}/v1/cars/macro_reports/operator/daily/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00101990",
+          "url": "{protocol}://{hostname}/v1/cars/macro_reports/usages/daily/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102000",
+          "url": "{protocol}://{hostname}/v1/cars/macro_reports/usages/monthly/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102011",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/replacements",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102021",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/replacements/result",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102032",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/replacement_settings/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00102040",
+          "url": "{protocol}://{hostname}/v1/cars/event_histories/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102050",
+          "url": "{protocol}://{hostname}/v1/cars/event_histories/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102060",
+          "url": "{protocol}://{hostname}/v1/cars/service_contract/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102070",
+          "url": "{protocol}://{hostname}/v1/cars/macro_reports/circulation/monthly/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102080",
+          "url": "{protocol}://{hostname}/v1/cars/macro_reports/energy_efficient_operation/monthly/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102090",
+          "url": "{protocol}://{hostname}/v1/cars/macro_reports/ict_car/daily/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102100",
+          "url": "{protocol}://{hostname}/v1/cars/macro_reports/operator/daily/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102110",
+          "url": "{protocol}://{hostname}/v1/cars/macro_reports/usages/daily/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102120",
+          "url": "{protocol}://{hostname}/v1/cars/macro_reports/usages/monthly/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102141",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/working_mode_histories/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102151",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/travel_mode_histories/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102161",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/working_mode_histories/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102171",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/travel_mode_histories/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102181",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/gear_speed_histories/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102190",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/maker_lock/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102201",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/komtrax_password",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102211",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/maker_lock",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102220",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/lock_status/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102230",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/lock_settings/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102241",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/lock_password_clear",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102250",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/lock_password_clear/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102261",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/password_lock",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102271",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/night_lock",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102281",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/calendar_lock",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102291",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/forced_lock",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102300",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/latest/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102311",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/monitor_messages",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102330",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/monitor_message/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102341",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/monitor_message/length",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102352",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/areas/{car_area_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00102353",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/areas/{car_area_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00102360",
+          "url": "{protocol}://{hostname}/v1/cars/rental/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102370",
+          "url": "{protocol}://{hostname}/v1/cars/rental/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102380",
+          "url": "{protocol}://{hostname}/v1/cars/rental/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102392",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/rental",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00102401",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/rental_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102410",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/offline_data/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102421",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/replacements/result/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102431",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/energy_saving_guidance_histories/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102441",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/energy_saving_guidance_ais_histories/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102451",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/energy_saving_guidance_histories/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102461",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/energy_saving_guidance_ais_histories/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102470",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/energy_saving_guidance_graph/monthly/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102481",
+          "url": "{protocol}://{hostname}/v1/cars/traffic_summary/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102491",
+          "url": "{protocol}://{hostname}/v1/cars/traffic/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102501",
+          "url": "{protocol}://{hostname}/v1/cars/ftp_traffics",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102511",
+          "url": "{protocol}://{hostname}/v1/cars/ftp_traffics/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102520",
+          "url": "{protocol}://{hostname}/v1/cars/none_terminal/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102531",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operator_identifications",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102542",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/operator_identifications/id_input/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00102550",
+          "url": "{protocol}://{hostname}/v1/cars/periodic_maintenance/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102561",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/customize_menu_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102570",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/customize_menu_settings/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102580",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/customize_menu_settings/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102601",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operation_histories/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102611",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operation_histories/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102621",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operation_status_histories/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102631",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operation_status_histories/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102641",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/atmosphere_histories/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102651",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/main_component_temperature_histories/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102661",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operation_detail_histories/daily/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102671",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operation_detail_histories/monthly/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102681",
+          "url": "{protocol}://{hostname}/v1/cars/secret_key/update_command/encryption",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102692",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/secret_key/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00102702",
+          "url": "{protocol}://{hostname}/v1/cars/requests/wifi_profile/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00102711",
+          "url": "{protocol}://{hostname}/v1/cars/secret_key/encryption",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102721",
+          "url": "{protocol}://{hostname}/v1/cars/customize_setting",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102731",
+          "url": "{protocol}://{hostname}/v1/cars/data_objects",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102740",
+          "url": "{protocol}://{hostname}/v1/cars/wifi_profile",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102741",
+          "url": "{protocol}://{hostname}/v1/cars/wifi_profile",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102751",
+          "url": "{protocol}://{hostname}/v1/cars/secret_key/mobile_device",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102771",
+          "url": "{protocol}://{hostname}/v1/cars/wifi_profile/encryption",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102780",
+          "url": "{protocol}://{hostname}/v1/cars/accumulate_fuel_interval_items/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102790",
+          "url": "{protocol}://{hostname}/v1/cars/accumulate_fuel_interval/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102800",
+          "url": "{protocol}://{hostname}/v1/cars/smr_interval_items/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102810",
+          "url": "{protocol}://{hostname}/v1/cars/smr_interval/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102821",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operation_histories/operators/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102831",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/latest_abnormalities/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102841",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/abnormalities/{abnormality_code}/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102851",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/latest_cautions/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102861",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/cautions/{caution_id}/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102871",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/positions/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102880",
+          "url": "{protocol}://{hostname}/v1/cars/statistics/operations/business_type/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102890",
+          "url": "{protocol}://{hostname}/v1/cars/statistics/operations/operating_place/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102900",
+          "url": "{protocol}://{hostname}/v1/cars/statistics/operations/distributor/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102910",
+          "url": "{protocol}://{hostname}/v1/cars/usage/daily/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102920",
+          "url": "{protocol}://{hostname}/v1/cars/usage/monthly/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102931",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/after_treatement_device_caution_histories/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102941",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/accumulate_fuel_consumption_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102951",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/after_treatment_device_regeneration_count_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102961",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/after_treatment_device_regeneration_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102971",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/after_treatment_device_regeneration_histories/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00102980",
+          "url": "{protocol}://{hostname}/v1/cars/area_status/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00102991",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/latest_notifications/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103001",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/notifications/{notifications_item_code}/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103010",
+          "url": "{protocol}://{hostname}/v1/cars/daily_operation_transition/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00103020",
+          "url": "{protocol}://{hostname}/v1/cars/monthly_operation_transition/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00103031",
+          "url": "{protocol}://{hostname}/v1/cars/content_crypto_key",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103042",
+          "url": "{protocol}://{hostname}/v1/cars/asset_status",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00103050",
+          "url": "{protocol}://{hostname}/v1/cars/asset_status/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00103060",
+          "url": "{protocol}://{hostname}/v1/cars/management/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00103071",
+          "url": "{protocol}://{hostname}/v1/cars/management/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103080",
+          "url": "{protocol}://{hostname}/v1/cars/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00103091",
+          "url": "{protocol}://{hostname}/v1/cars/summary_eqp_care",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103101",
+          "url": "{protocol}://{hostname}/v1/cars/smr_arrival",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103111",
+          "url": "{protocol}://{hostname}/v1/cars/owner_change_customer",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103121",
+          "url": "{protocol}://{hostname}/v1/cars/summary_operations/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103131",
+          "url": "{protocol}://{hostname}/v1/cars/summary_operations/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103141",
+          "url": "{protocol}://{hostname}/v1/cars/summary_operations/latest",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103150",
+          "url": "{protocol}://{hostname}/v1/cars/flag_histories/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00103160",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/all_memory_initialization/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00103170",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/user_password_initialization/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00103180",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/all_data_object_ids/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00103190",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/all_data_objects/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00103201",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operation_detail_histories/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103211",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/operation_detail_histories/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103221",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/komtrax_password/detail",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103230",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/komtrax_password/s2m",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00103241",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/secret_keys",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103251",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/communication_kinds",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00103260",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/komtrax_password/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00103270",
+          "url": "{protocol}://{hostname}/v1/cars/reports/monthly/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00200011",
+          "url": "{protocol}://{hostname}/v1/users",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00200031",
+          "url": "{protocol}://{hostname}/v1/user_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00200032",
+          "url": "{protocol}://{hostname}/v1/user_settings",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00200041",
+          "url": "{protocol}://{hostname}/v1/user_settings/reports/personnel",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00200042",
+          "url": "{protocol}://{hostname}/v1/user_settings/reports/personnel",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00200050",
+          "url": "{protocol}://{hostname}/v1/users/{user_id}",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00200052",
+          "url": "{protocol}://{hostname}/v1/users/{user_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00200053",
+          "url": "{protocol}://{hostname}/v1/users/{user_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00200061",
+          "url": "{protocol}://{hostname}/v1/users/{user_id}/detail",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00200082",
+          "url": "{protocol}://{hostname}/v1/users/{user_id}/authorities",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00200091",
+          "url": "{protocol}://{hostname}/v1/users/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300042",
+          "url": "{protocol}://{hostname}/v1/groups/{group_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300043",
+          "url": "{protocol}://{hostname}/v1/groups/{group_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300070",
+          "url": "{protocol}://{hostname}/v1/target_car_groups",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300071",
+          "url": "{protocol}://{hostname}/v1/target_car_groups",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300081",
+          "url": "{protocol}://{hostname}/v1/target_car_groups/{target_car_group_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300082",
+          "url": "{protocol}://{hostname}/v1/target_car_groups/{target_car_group_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300083",
+          "url": "{protocol}://{hostname}/v1/target_car_groups/{target_car_group_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300093",
+          "url": "{protocol}://{hostname}/v1/target_car_groups/{target_car_group_id}/cars/{car_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300100",
+          "url": "{protocol}://{hostname}/v1/classes",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300101",
+          "url": "{protocol}://{hostname}/v1/classes",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300112",
+          "url": "{protocol}://{hostname}/v1/classes/{class_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300113",
+          "url": "{protocol}://{hostname}/v1/classes/{class_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300120",
+          "url": "{protocol}://{hostname}/v1/landmarks",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300121",
+          "url": "{protocol}://{hostname}/v1/landmarks",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300132",
+          "url": "{protocol}://{hostname}/v1/landmarks/{landmark_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300133",
+          "url": "{protocol}://{hostname}/v1/landmarks/{landmark_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300171",
+          "url": "{protocol}://{hostname}/v1/groups/user_counts",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300212",
+          "url": "{protocol}://{hostname}/v1/groups/{group_id}/represent_administrator",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300320",
+          "url": "{protocol}://{hostname}/v1/smr_interval_items",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300321",
+          "url": "{protocol}://{hostname}/v1/smr_interval_items",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300332",
+          "url": "{protocol}://{hostname}/v1/smr_interval_items/{smr_interval_item_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300333",
+          "url": "{protocol}://{hostname}/v1/smr_interval_items/{smr_interval_item_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300341",
+          "url": "{protocol}://{hostname}/v1/model_types/smr_interval_items",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300350",
+          "url": "{protocol}://{hostname}/v1/accumulate_fuel_interval_items",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300351",
+          "url": "{protocol}://{hostname}/v1/accumulate_fuel_interval_items",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300362",
+          "url": "{protocol}://{hostname}/v1/accumulate_fuel_interval_items/{accumulate_fuel_interval_item_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300363",
+          "url": "{protocol}://{hostname}/v1/accumulate_fuel_interval_items/{accumulate_fuel_interval_item_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300371",
+          "url": "{protocol}://{hostname}/v1/model_types/accumulate_fuel_interval_items",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300380",
+          "url": "{protocol}://{hostname}/v1/groups",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300381",
+          "url": "{protocol}://{hostname}/v1/groups",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300401",
+          "url": "{protocol}://{hostname}/v1/groups/{group_id}/scope_customers",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300402",
+          "url": "{protocol}://{hostname}/v1/groups/{group_id}/scope_customers",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300412",
+          "url": "{protocol}://{hostname}/v1/groups/{group_id}/integration",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300431",
+          "url": "{protocol}://{hostname}/v1/groups/{group_id}/scope_groups",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300432",
+          "url": "{protocol}://{hostname}/v1/groups/{group_id}/scope_groups",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300551",
+          "url": "{protocol}://{hostname}/v1/groups/scale",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300560",
+          "url": "{protocol}://{hostname}/v1/customers",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300561",
+          "url": "{protocol}://{hostname}/v1/customers",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300572",
+          "url": "{protocol}://{hostname}/v1/customers/{customer_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300573",
+          "url": "{protocol}://{hostname}/v1/customers/{customer_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300581",
+          "url": "{protocol}://{hostname}/v1/customers/{customer_id}/detail",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300590",
+          "url": "{protocol}://{hostname}/v1/customers/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300600",
+          "url": "{protocol}://{hostname}/v1/groups/sub_groups",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300601",
+          "url": "{protocol}://{hostname}/v1/groups/sub_groups",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300612",
+          "url": "{protocol}://{hostname}/v1/groups/sub_groups/{sub_group_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300613",
+          "url": "{protocol}://{hostname}/v1/groups/sub_groups/{sub_group_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300621",
+          "url": "{protocol}://{hostname}/v1/groups/sub_groups/{sub_group_id}/detail",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300651",
+          "url": "{protocol}://{hostname}/v1/groups/{group_id}/detail",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300661",
+          "url": "{protocol}://{hostname}/v1/common_authentication/companies",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300671",
+          "url": "{protocol}://{hostname}/v1/common_authentication/users",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300680",
+          "url": "{protocol}://{hostname}/v1/business_types",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300681",
+          "url": "{protocol}://{hostname}/v1/business_types",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300691",
+          "url": "{protocol}://{hostname}/v1/business_types/{business_type_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300692",
+          "url": "{protocol}://{hostname}/v1/business_types/{business_type_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300693",
+          "url": "{protocol}://{hostname}/v1/business_types/{business_type_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300701",
+          "url": "{protocol}://{hostname}/v1/business_types/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300710",
+          "url": "{protocol}://{hostname}/v1/business_types/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300721",
+          "url": "{protocol}://{hostname}/v1/customers/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300741",
+          "url": "{protocol}://{hostname}/v1/business_types/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300752",
+          "url": "{protocol}://{hostname}/v1/target_car_groups/{target_car_group_id}/cars",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300791",
+          "url": "{protocol}://{hostname}/v1/groups/api_publish_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300793",
+          "url": "{protocol}://{hostname}/v1/groups/api_publish_settings",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300802",
+          "url": "{protocol}://{hostname}/v1/groups/{group_id}/api_publish_settings",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300810",
+          "url": "{protocol}://{hostname}/v1/groups/api_publish_settings/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300821",
+          "url": "{protocol}://{hostname}/v1/groups/api_publish_settings/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300830",
+          "url": "{protocol}://{hostname}/v1/regions",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300831",
+          "url": "{protocol}://{hostname}/v1/regions",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300842",
+          "url": "{protocol}://{hostname}/v1/regions/{region_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300843",
+          "url": "{protocol}://{hostname}/v1/regions/{region_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300852",
+          "url": "{protocol}://{hostname}/v1/regions/{region_id}/represent_administrator",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300861",
+          "url": "{protocol}://{hostname}/v1/regions/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300871",
+          "url": "{protocol}://{hostname}/v1/regions/region_structures",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300881",
+          "url": "{protocol}://{hostname}/v1/regions/region_structures/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300890",
+          "url": "{protocol}://{hostname}/v1/region_unions",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300891",
+          "url": "{protocol}://{hostname}/v1/region_unions",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300902",
+          "url": "{protocol}://{hostname}/v1/region_unions/{region_union_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300903",
+          "url": "{protocol}://{hostname}/v1/region_unions/{region_union_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00300912",
+          "url": "{protocol}://{hostname}/v1/region_unions/{region_union_id}/represent_administrator",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300921",
+          "url": "{protocol}://{hostname}/v1/region_unions/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300931",
+          "url": "{protocol}://{hostname}/v1/customers/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300940",
+          "url": "{protocol}://{hostname}/v1/blocks/region/update",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00300941",
+          "url": "{protocol}://{hostname}/v1/blocks/region/update",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300951",
+          "url": "{protocol}://{hostname}/v1/accumulate_fuel_interval_items/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300961",
+          "url": "{protocol}://{hostname}/v1/smr_interval_items/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300971",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/maker_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300972",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/maker_settings",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300981",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/division_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300982",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/division_settings",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00300991",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/model_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00300992",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/model_settings",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00301001",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/model_type_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00301002",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/model_type_settings",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00301011",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/custom_divisions/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00301020",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/custom_divisions",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00301021",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/custom_divisions",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00301032",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/custom_divisions/{custom_division_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00301033",
+          "url": "{protocol}://{hostname}/v1/management_car_settings/custom_divisions/{custom_division_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00301041",
+          "url": "{protocol}://{hostname}/v1/groups/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00301071",
+          "url": "{protocol}://{hostname}/v1/groups/api_publish_settings/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00301081",
+          "url": "{protocol}://{hostname}/v1/groups/publish_setting_groups",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00301091",
+          "url": "{protocol}://{hostname}/v1/groups/publish_setting_groups/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00301100",
+          "url": "{protocol}://{hostname}/v1/plants/{plant_id}/model_types",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00301101",
+          "url": "{protocol}://{hostname}/v1/plants/{plant_id}/model_types",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400010",
+          "url": "{protocol}://{hostname}/v1/manufactures/divisions/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400022",
+          "url": "{protocol}://{hostname}/v1/manufactures/divisions/{division_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400030",
+          "url": "{protocol}://{hostname}/v1/manufactures/divisions",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400031",
+          "url": "{protocol}://{hostname}/v1/manufactures/divisions",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400033",
+          "url": "{protocol}://{hostname}/v1/manufactures/divisions",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400040",
+          "url": "{protocol}://{hostname}/v1/manufactures/makers/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400052",
+          "url": "{protocol}://{hostname}/v1/manufactures/makers/{maker_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400060",
+          "url": "{protocol}://{hostname}/v1/manufactures/makers",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400061",
+          "url": "{protocol}://{hostname}/v1/manufactures/makers",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400063",
+          "url": "{protocol}://{hostname}/v1/manufactures/makers",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400070",
+          "url": "{protocol}://{hostname}/v1/manufactures/models/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400080",
+          "url": "{protocol}://{hostname}/v1/manufactures/models",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400081",
+          "url": "{protocol}://{hostname}/v1/manufactures/models",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400082",
+          "url": "{protocol}://{hostname}/v1/manufactures/models",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400083",
+          "url": "{protocol}://{hostname}/v1/manufactures/models",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400090",
+          "url": "{protocol}://{hostname}/v1/manufactures/model_types/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400102",
+          "url": "{protocol}://{hostname}/v1/manufactures/model_types/{model_type_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400110",
+          "url": "{protocol}://{hostname}/v1/manufactures/model_types",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400111",
+          "url": "{protocol}://{hostname}/v1/manufactures/model_types",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400113",
+          "url": "{protocol}://{hostname}/v1/manufactures/model_types",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400280",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400291",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400300",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400310",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400332",
+          "url": "{protocol}://{hostname}/v1/manufactures/modems/{component_id}/sims",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400343",
+          "url": "{protocol}://{hostname}/v1/manufactures/modems/{component_id}/sims/{sim_attribute_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400380",
+          "url": "{protocol}://{hostname}/v1/manufactures/gw_parts",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400381",
+          "url": "{protocol}://{hostname}/v1/manufactures/gw_parts",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400383",
+          "url": "{protocol}://{hostname}/v1/manufactures/gw_parts",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400392",
+          "url": "{protocol}://{hostname}/v1/manufactures/gw_parts/{gw_part_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400400",
+          "url": "{protocol}://{hostname}/v1/manufactures/gw_parts/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400420",
+          "url": "{protocol}://{hostname}/v1/manufactures/modem_parts",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400421",
+          "url": "{protocol}://{hostname}/v1/manufactures/modem_parts",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400423",
+          "url": "{protocol}://{hostname}/v1/manufactures/modem_parts",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400432",
+          "url": "{protocol}://{hostname}/v1/manufactures/modem_parts/{modem_part_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400440",
+          "url": "{protocol}://{hostname}/v1/manufactures/modem_parts/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400472",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400473",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400490",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/orbcomm_address_application_status/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400500",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/orbcomm_address_application_status/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400512",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/{component_id}/orbcomm_start_communication_application_complete",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400520",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/orbcomm_address_registration/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400540",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/service_stop_check",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400552",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/{component_id}/service_stop",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400560",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/service_stop_registration/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400570",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/temporary_start_communication/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400582",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/temporary_start_communication",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400591",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/start_communication",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400602",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/requests/inspection_retry/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400612",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/requests/inspection_forced_complete/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400620",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/requests/inspection_status_ref/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400632",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/requests/configuration_retry/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400642",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/requests/inspection_cancel/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400652",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/requests/automatic_data_transmission_stop/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400662",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/requests/all_memory_initialization/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400672",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/requests/modem_power_off/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400681",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/availabilities",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400691",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/replacement_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400701",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/system_configurations",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400710",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/requests/system_configuration/component_attribute_items/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400722",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/requests/system_configuration/{component_attribute_item_id}/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400731",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/receive_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400741",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/receive_history_detail",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400751",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/send_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400761",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/sms_receive_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400770",
+          "url": "{protocol}://{hostname}/v1/manufactures/system_notifications",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400771",
+          "url": "{protocol}://{hostname}/v1/manufactures/system_notifications",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400773",
+          "url": "{protocol}://{hostname}/v1/manufactures/system_notifications",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400782",
+          "url": "{protocol}://{hostname}/v1/manufactures/system_notifications/{system_notification_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400790",
+          "url": "{protocol}://{hostname}/v1/manufactures/data_sets",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400791",
+          "url": "{protocol}://{hostname}/v1/manufactures/data_sets",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400793",
+          "url": "{protocol}://{hostname}/v1/manufactures/data_sets",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400802",
+          "url": "{protocol}://{hostname}/v1/manufactures/data_sets/{data_set_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400810",
+          "url": "{protocol}://{hostname}/v1/manufactures/default_data_sets",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400811",
+          "url": "{protocol}://{hostname}/v1/manufactures/default_data_sets",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400813",
+          "url": "{protocol}://{hostname}/v1/manufactures/default_data_sets",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400820",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400830",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400841",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400850",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400860",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/delete/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400891",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/parts/{component_part_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400900",
+          "url": "{protocol}://{hostname}/v1/manufactures/components",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400912",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/{component_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00400913",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/{component_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400923",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/components/{component_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00400931",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/{component_id}/car_equipment_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400941",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/components/car_equipment_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400950",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400961",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/group_ownership_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400971",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/configuration_event_histories",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00400980",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/part_command_version_update/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00400992",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/part_command_version_update",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00401002",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/{component_id}/part_command_version_manage_status_update",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00401010",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/part_command_version_update/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00401022",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/{component_id}/tier4_part",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00401041",
+          "url": "{protocol}://{hostname}/v1/manufactures/default_data_sets/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401050",
+          "url": "{protocol}://{hostname}/v1/manufactures/data_sets/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00401061",
+          "url": "{protocol}://{hostname}/v1/manufactures/data_sets/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401080",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/vhms",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00401092",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/{component_id}/requests/part_command_version_update_configuration_retry/s2m",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00401101",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/gw_component_writing_data/encryption",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401111",
+          "url": "{protocol}://{hostname}/v1/manufactures/components/initial_crypto_key",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401122",
+          "url": "{protocol}://{hostname}/v1/manufactures/cars/{car_id}/components",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00401131",
+          "url": "{protocol}://{hostname}/v1/manufactures/data_objects",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401141",
+          "url": "{protocol}://{hostname}/v1/manufactures/divisions/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401151",
+          "url": "{protocol}://{hostname}/v1/manufactures/makers/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401161",
+          "url": "{protocol}://{hostname}/v1/manufactures/models/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401171",
+          "url": "{protocol}://{hostname}/v1/manufactures/model_types/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401181",
+          "url": "{protocol}://{hostname}/v1/manufactures/system_notifications/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401191",
+          "url": "{protocol}://{hostname}/v1/manufactures/gw_parts/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401201",
+          "url": "{protocol}://{hostname}/v1/manufactures/modem_parts/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401211",
+          "url": "{protocol}://{hostname}/v1/manufactures/makers/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401221",
+          "url": "{protocol}://{hostname}/v1/manufactures/divisions/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401231",
+          "url": "{protocol}://{hostname}/v1/manufactures/models/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401241",
+          "url": "{protocol}://{hostname}/v1/manufactures/model_types/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401251",
+          "url": "{protocol}://{hostname}/v1/manufactures/gw_parts/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401261",
+          "url": "{protocol}://{hostname}/v1/manufactures/modem_parts/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00401271",
+          "url": "{protocol}://{hostname}/v1/manufactures/data_sets/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00500011",
+          "url": "{protocol}://{hostname}/catalog",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600030",
+          "url": "{protocol}://{hostname}/v1/applications/extapplog",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00600041",
+          "url": "{protocol}://{hostname}/v1/applications/files/{file_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600050",
+          "url": "{protocol}://{hostname}/v1/applications/functions/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00600061",
+          "url": "{protocol}://{hostname}/v1/applications/news",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600071",
+          "url": "{protocol}://{hostname}/v1/applications/search_condition",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600072",
+          "url": "{protocol}://{hostname}/v1/applications/search_condition",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00600073",
+          "url": "{protocol}://{hostname}/v1/applications/search_condition",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00600082",
+          "url": "{protocol}://{hostname}/v1/applications/system_notifications/{system_notification_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00600083",
+          "url": "{protocol}://{hostname}/v1/applications/system_notifications/{system_notification_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00600090",
+          "url": "{protocol}://{hostname}/v1/applications/system_notifications",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00600091",
+          "url": "{protocol}://{hostname}/v1/applications/system_notifications",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600101",
+          "url": "{protocol}://{hostname}/v1/applications/views/labels",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600121",
+          "url": "{protocol}://{hostname}/v1/applications/fields",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600122",
+          "url": "{protocol}://{hostname}/v1/applications/fields",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00600131",
+          "url": "{protocol}://{hostname}/v1/applications/fields/resources",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600150",
+          "url": "{protocol}://{hostname}/v1/applications/views/resources/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00600161",
+          "url": "{protocol}://{hostname}/v1/applications/landmark_icons",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600170",
+          "url": "{protocol}://{hostname}/v1/applications/terms/provisions/{terms_provision_id}/agreement",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00600181",
+          "url": "{protocol}://{hostname}/v1/applications/terms/provisions/agreement",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600191",
+          "url": "{protocol}://{hostname}/v1/applications/terms/provisions/latest",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600201",
+          "url": "{protocol}://{hostname}/v1/applications/terms/agreement",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600211",
+          "url": "{protocol}://{hostname}/v1/applications/model_types",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600230",
+          "url": "{protocol}://{hostname}/v1/applications/car_management/registration_control",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00600321",
+          "url": "{protocol}://{hostname}/v1/applications/file_requests/{file_request_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600331",
+          "url": "{protocol}://{hostname}/v1/applications/file_requests",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600341",
+          "url": "{protocol}://{hostname}/v1/applications/message_langs",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600350",
+          "url": "{protocol}://{hostname}/v1/applications/abnormalities/code_check",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00600361",
+          "url": "{protocol}://{hostname}/v1/applications/function_publish_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600362",
+          "url": "{protocol}://{hostname}/v1/applications/function_publish_settings",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00600371",
+          "url": "{protocol}://{hostname}/v1/applications/item_publish_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00600372",
+          "url": "{protocol}://{hostname}/v1/applications/item_publish_settings",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00700010",
+          "url": "{protocol}://{hostname}/v1/areas",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00700011",
+          "url": "{protocol}://{hostname}/v1/areas",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00700021",
+          "url": "{protocol}://{hostname}/v1/areas/bond",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00700032",
+          "url": "{protocol}://{hostname}/v1/areas/{group_area_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00700033",
+          "url": "{protocol}://{hostname}/v1/areas/{group_area_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00800010",
+          "url": "{protocol}://{hostname}/v1/contacts",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00800011",
+          "url": "{protocol}://{hostname}/v1/contacts",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00800021",
+          "url": "{protocol}://{hostname}/v1/contacts/customers/response_items",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00800032",
+          "url": "{protocol}://{hostname}/v1/contacts/customers/{customer_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00800040",
+          "url": "{protocol}://{hostname}/v1/contacts/customers/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00800050",
+          "url": "{protocol}://{hostname}/v1/contacts/image/check",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00800061",
+          "url": "{protocol}://{hostname}/v1/contacts/{contact_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00800062",
+          "url": "{protocol}://{hostname}/v1/contacts/{contact_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00800063",
+          "url": "{protocol}://{hostname}/v1/contacts/{contact_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-00800070",
+          "url": "{protocol}://{hostname}/v1/contacts/customers/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00800091",
+          "url": "{protocol}://{hostname}/v1/contacts/supports",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00800100",
+          "url": "{protocol}://{hostname}/v1/contacts/customers/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00900010",
+          "url": "{protocol}://{hostname}/v1/custom_car_attributes",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00900011",
+          "url": "{protocol}://{hostname}/v1/custom_car_attributes",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00900021",
+          "url": "{protocol}://{hostname}/v1/custom_car_attributes/{custom_car_attribute_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00900022",
+          "url": "{protocol}://{hostname}/v1/custom_car_attributes/{custom_car_attribute_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-00900023",
+          "url": "{protocol}://{hostname}/v1/custom_car_attributes/{custom_car_attribute_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-01000011",
+          "url": "{protocol}://{hostname}/v1/emn/bounce_messages/{bounce_message_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000021",
+          "url": "{protocol}://{hostname}/v1/emn/bounce_messages",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000023",
+          "url": "{protocol}://{hostname}/v1/emn/bounce_messages",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-01000032",
+          "url": "{protocol}://{hostname}/v1/emn/profiles/activate",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-01000041",
+          "url": "{protocol}://{hostname}/v1/emn/profiles/{profile_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000042",
+          "url": "{protocol}://{hostname}/v1/emn/profiles/{profile_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-01000050",
+          "url": "{protocol}://{hostname}/v1/emn/profiles",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01000051",
+          "url": "{protocol}://{hostname}/v1/emn/profiles",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000053",
+          "url": "{protocol}://{hostname}/v1/emn/profiles",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-01000060",
+          "url": "{protocol}://{hostname}/v1/emn/quick_messages",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01000072",
+          "url": "{protocol}://{hostname}/v1/emn/receivers/activate",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-01000081",
+          "url": "{protocol}://{hostname}/v1/emn/receivers/{receiver_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000082",
+          "url": "{protocol}://{hostname}/v1/emn/receivers/{receiver_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-01000090",
+          "url": "{protocol}://{hostname}/v1/emn/receivers",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01000091",
+          "url": "{protocol}://{hostname}/v1/emn/receivers",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000093",
+          "url": "{protocol}://{hostname}/v1/emn/receivers",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-01000101",
+          "url": "{protocol}://{hostname}/v1/emn/send_messages",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000111",
+          "url": "{protocol}://{hostname}/v1/emn/smr_messages/{smr_message_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000112",
+          "url": "{protocol}://{hostname}/v1/emn/smr_messages/{smr_message_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-01000120",
+          "url": "{protocol}://{hostname}/v1/emn/smr_messages",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01000121",
+          "url": "{protocol}://{hostname}/v1/emn/smr_messages",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000123",
+          "url": "{protocol}://{hostname}/v1/emn/smr_messages",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-01000131",
+          "url": "{protocol}://{hostname}/v1/emn/summary/sms_api_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000141",
+          "url": "{protocol}://{hostname}/v1/emn/sms_api_settings/{sms_api_setting_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000142",
+          "url": "{protocol}://{hostname}/v1/emn/sms_api_settings/{sms_api_setting_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-01000150",
+          "url": "{protocol}://{hostname}/v1/emn/sms_api_settings",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01000153",
+          "url": "{protocol}://{hostname}/v1/emn/sms_api_settings",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-01000160",
+          "url": "{protocol}://{hostname}/v1/emn/sms_api_test_messages",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01000170",
+          "url": "{protocol}://{hostname}/v1/emn/profile_cars/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01000191",
+          "url": "{protocol}://{hostname}/v1/emn/security_items",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000201",
+          "url": "{protocol}://{hostname}/v1/emn/other_notification_items",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01000232",
+          "url": "{protocol}://{hostname}/v1/emn/receivers/key_activate",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-01000241",
+          "url": "{protocol}://{hostname}/v1/emn/send_messages/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100010",
+          "url": "{protocol}://{hostname}/v1/flag_conditions",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01100011",
+          "url": "{protocol}://{hostname}/v1/flag_conditions",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100022",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/{flag_condition_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-01100023",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/{flag_condition_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-01100030",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/abnormalities",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01100031",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/abnormalities",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100041",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/areas",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100051",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/cautions",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100061",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/fuel",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100071",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/low_batteries",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100081",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/measure_failure",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100091",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/non_communication",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100101",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/replacement",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100111",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/security",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100121",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/smr_intervals",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100132",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/abnormalities/{flag_condition_id}",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-01100133",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/abnormalities/{flag_condition_id}",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-01100141",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/model_types/abnormalities",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100151",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/abnormalities/model_types",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100161",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/abnormalities/model_types/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01100171",
+          "url": "{protocol}://{hostname}/v1/flag_conditions/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01300010",
+          "url": "{protocol}://{hostname}/v1/operators",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01300011",
+          "url": "{protocol}://{hostname}/v1/operators",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01300012",
+          "url": "{protocol}://{hostname}/v1/operators",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-01300013",
+          "url": "{protocol}://{hostname}/v1/operators",
+          "http_method": "DELETE"
+        },
+        {
+          "api_id": "KOM-01300021",
+          "url": "{protocol}://{hostname}/v1/operators/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01300030",
+          "url": "{protocol}://{hostname}/v1/operators/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01300041",
+          "url": "{protocol}://{hostname}/v1/operators/id_keys",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01300042",
+          "url": "{protocol}://{hostname}/v1/operators/id_keys",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-01300051",
+          "url": "{protocol}://{hostname}/v1/operators/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01300061",
+          "url": "{protocol}://{hostname}/v1/operators/id_keys/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01400011",
+          "url": "{protocol}://{hostname}/v1/macro_reports/{macro_report_code}/macro_files",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01400021",
+          "url": "{protocol}://{hostname}/v1/macro_reports/macro_settings",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01400022",
+          "url": "{protocol}://{hostname}/v1/macro_reports/macro_settings",
+          "http_method": "PUT"
+        },
+        {
+          "api_id": "KOM-01400031",
+          "url": "{protocol}://{hostname}/v1/reports/{report_code}/comment",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01400161",
+          "url": "{protocol}://{hostname}/v1/macro_reports/{macro_report_code}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01400181",
+          "url": "{protocol}://{hostname}/v1/reports/{report_code}/notification_message",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01500021",
+          "url": "{protocol}://{hostname}/v1/sites/cars/operations/daily",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01500031",
+          "url": "{protocol}://{hostname}/v1/sites/cars/operations/monthly",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01500041",
+          "url": "{protocol}://{hostname}/v1/sites/maps",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01600021",
+          "url": "{protocol}://{hostname}/v1/customizes/customize_definitions/{customize_definition_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01600030",
+          "url": "{protocol}://{hostname}/v1/customizes/data_amounts/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01600040",
+          "url": "{protocol}://{hostname}/v1/customizes/data_amount_transitions/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01600050",
+          "url": "{protocol}://{hostname}/v1/customizes/condition_formulas/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-01600061",
+          "url": "{protocol}://{hostname}/v1/customizes/customize_menus",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01800011",
+          "url": "{protocol}://{hostname}/v1/mq/transfer_data",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01900011",
+          "url": "{protocol}://{hostname}/v1/subscribers/{subscriber_id}/Fleet/Equipment/MakeModelSerial/{makeCode}/{model}/{serialNumber}/{sensor_name}/{startDateUTC}/{endDateUTC}/{pageNumber}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01900021",
+          "url": "{protocol}://{hostname}/v1/subscribers/{subscriber_id}/Fleet/Equipment/MakeModelSerial/{makeCode}/{model}/{serialNumber}/{startDateUTC}/{endDateUTC}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01900031",
+          "url": "{protocol}://{hostname}/v1/subscribers/{subscriber_id}/Fleet/Equipment/MakeModelSerial/{makeCode}/{model}/{serialNumber}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-01900040",
+          "url": "{protocol}://{hostname}/v1/subscribers/{subscriber_id}/Fleet/{pageNumber}",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-02000010",
+          "url": "{protocol}://{hostname}/v1/requests/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00110111",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/customize_definitions",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-00110120",
+          "url": "{protocol}://{hostname}/v1/cars/request_sets/customize_usage_definitions/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00110181",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/customize_usage_definition_details",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-1xxxxxxx",
+          "url": "{protocol}://{hostname}/v1/cars/requests/customize_data/period/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00110170",
+          "url": "{protocol}://{hostname}/v1/cars/customize_requests/status/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-xxxxxxx1",
+          "url": "{protocol}://{hostname}/v1/example/file_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-xxxxxxx2",
+          "url": "{protocol}://{hostname}/v1/example/comma.test",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-xxxxxxx3",
+          "url": "{protocol}://{hostname}/v1/example/upload",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-xxxxxxx4",
+          "url": "{protocol}://{hostname}/v1/example/template_create",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-xxxxxxx5",
+          "url": "{protocol}://{hostname}/v1/example/hyphen-test",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-xxxxxxx6",
+          "url": "{protocol}://{hostname}/v1/example/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-xxxxxxx7",
+          "url": "{protocol}://{hostname}/v1/example/upload/{file_request_id}",
+          "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-xxxxxxx8",
+          "url": "{protocol}://{hostname}/v1/car/customizes/usage/definition/histories/search",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-xxxxxxx9",
+          "url": "{protocol}://{hostname}/v1/car/customizes/usage/definition/histories/search/file_create",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-xxxxxx10",
+          "url": "{protocol}://{hostname}/v1/car/search",
+          "http_method": "POST"
+        }
+      ]
+    }
+  }
+}

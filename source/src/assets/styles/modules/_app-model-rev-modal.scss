@@ -1,0 +1,15 @@
+.app-button-rev {
+  min-width: 66px;
+  margin: 5px;
+  border-radius: 53px;
+
+  &.btn-active {
+    background-color: $app-active-btn-color;
+    border: 1px solid $app-active-btn-color;
+    color: $app-active-btn-font-color;
+
+    &:hover {
+      background-color: $app-active-btn-color--hover;
+    }
+  }
+}

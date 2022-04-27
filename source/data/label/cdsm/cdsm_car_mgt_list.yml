@@ -1,0 +1,108 @@
+labels:
+  - id: 1
+    description: アコーディオン
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 2
+    description: アコーディオン
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 3
+    description: ボタン
+    name: download_template
+    ja: 一括変更用テンプレート
+    en:
+
+  - id: 4
+    description: オブジェクトタイトル
+    name: download_select_title
+    ja: 項目選択
+    en:
+
+  - id: 5
+    description: 説明表示
+    name: empty_list_message
+    ja: 該当する作業履歴が見つかりませんでした。
+    en:
+
+  - id: 6
+    description: ボタン
+    name: field_select
+    ja: 表示項目設定
+    en:
+
+  - id: 7
+    description: オブジェクトタイトル
+    name: field_select_title
+    ja: 表示項目設定
+    en:
+
+  - id: 8
+    description: 説明表示
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 9
+    description: ボタン
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 10
+    description: 説明表示
+    name: page
+    ja: ページ
+    en:
+
+  - id: 11
+    description: 説明表示
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 12
+    description: 画面タイトル
+    name: page_title
+    ja: 車両検索
+    en:
+
+  - id: 13
+    description: ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 14
+    description: オブジェクトタイトル
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 15
+    description: チェックボックス(ALL ON/OFF)
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 16
+    description: ブラウザタイトル
+    name: title
+    ja: 車両検索
+    en:
+
+  - id: 17
+    description: ボタン
+    name: send_data_request_link
+    ja: データ送信要求画面へ
+    en:
+
+  - id: 18
+    description: ボタン
+    name: setting_request_modal
+    ja: 一括設定取得要求
+    en:

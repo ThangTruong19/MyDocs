@@ -1,0 +1,73 @@
+<div class="TimePickerFlyout">
+    <div class="TimePickerFlyout_Body">
+        <div class="Timer">
+            <div class="Timer_Body">
+                <fieldset>
+                    <div class="time-picker">
+                    <div class="time-picker-input-container time-picker-hour">
+                        <button tabindex="-1" type="button" class="btn btn-link" (click)="onClickHours(TIME_ARROW.FORWORD)" [attr.disabled]="isDisabledHoursArrow ? true : null">
+                            <span class="chevron time-picker-chevron"></span>
+                        </button>
+                        <input type="text" [(ngModel)]="params.hours" maxlength="2" inputmode="numeric" [placeholder]="TIME_PLACEHOLDER.HOURS"
+                            (change)="onChangeTime(TIME_PART_TYPE.HOURS)" [ngClass]="{ 'time-picker-input-error': isHoursInputError }" class="time-picker-input form-control">
+                        <button tabindex="-1" type="button" class="btn btn-link" (click)="onClickHours(TIME_ARROW.BACK)" [attr.disabled]="isDisabledHoursArrow ? true : null">
+                            <span class="chevron time-picker-chevron bottom"></span>
+                        </button>
+                    </div>
+                    <div class="time-picker-spacer">:</div>
+                    <div class="time-picker-input-container time-picker-minute">
+                        <button tabindex="-1" type="button" class="btn btn-link" (click)="onClickMinutes(TIME_ARROW.FORWORD)" [attr.disabled]="isDisabledMinutesArrow ? true : null">
+                            <span class="chevron time-picker-chevron"></span>
+                        </button>
+                        <input type="text" [(ngModel)]="params.minutes" maxlength="2" inputmode="numeric" [placeholder]="TIME_PLACEHOLDER.MINUTES"
+                            (change)="onChangeTime(TIME_PART_TYPE.MINUTES)" [ngClass]="{ 'time-picker-input-error': isMinutesInputError }" class="time-picker-input form-control">
+                        <button tabindex="-1" type="button" class="btn btn-link" (click)="onClickMinutes(TIME_ARROW.BACK)" [attr.disabled]="isDisabledMinutesArrow ? true : null">
+                            <span class="chevron time-picker-chevron bottom"></span>
+                        </button>
+                    </div>
+                    <div *ngIf="showSeconds" class="time-picker-spacer">:</div>
+                    <div *ngIf="showSeconds" class="time-picker-input-container time-picker-second">
+                        <button tabindex="-1" type="button" class="btn btn-link" (click)="onClickSeconds(TIME_ARROW.FORWORD)" [attr.disabled]="isDisabledSecondsArrow ? true : null">
+                            <span class="chevron time-picker-chevron"></span>
+                        </button>
+                        <input type="text" [(ngModel)]="params.seconds" maxlength="2" inputmode="numeric" [placeholder]="TIME_PLACEHOLDER.SECONDS"
+                            (change)="onChangeTime(TIME_PART_TYPE.SECONDS)" [ngClass]="{ 'time-picker-input-error': isSecondsInputError }" class="time-picker-input form-control">
+                        <button tabindex="-1" type="button" class="btn btn-link" (click)="onClickSeconds(TIME_ARROW.BACK)" [attr.disabled]="isDisabledSecondsArrow ? true : null">
+                            <span class="chevron time-picker-chevron bottom"></span>
+                        </button>
+                    </div>
+                    <div *ngIf="showMilliseconds" class="time-picker-spacer">.</div>
+                    <div *ngIf="showMilliseconds" class="time-picker-input-container time-picker-millisecond">
+                        <button tabindex="-1" type="button" class="btn btn-link" (click)="onClickMilliseconds(TIME_ARROW.FORWORD)" [attr.disabled]="isDisabledMillisecondsArrow ? true : null">
+                            <span class="chevron time-picker-chevron"></span>
+                        </button>
+                        <input type="text" [(ngModel)]="params.milliseconds" maxlength="3" inputmode="numeric" [placeholder]="TIME_PLACEHOLDER.MILLISECONDS"
+                            (change)="onChangeTime(TIME_PART_TYPE.MILLISECONDS)" [ngClass]="{ 'time-picker-input-error': isMillisecondsInputError }" class="time-picker-input form-control">
+                        <button tabindex="-1" type="button" class="btn btn-link" (click)="onClickMilliseconds(TIME_ARROW.BACK)" [attr.disabled]="isDisabledMillisecondsArrow ? true : null">
+                            <span class="chevron time-picker-chevron bottom"></span>
+                        </button>
+                    </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="Timer_Foot">
+                <button
+                    (click)="onClickSetting()"
+                    type="button"
+                    class="Timer_Setting"
+                    [attr.disabled]="isDisabledSettingButton ? true : null"
+                >
+                    <span>{{labels.settingButton}}</span>
+                </button>
+
+                <button
+                    (click)="onClickClose()"
+                    type="button"
+                    class="Timer_Close"
+                >
+                    <span>{{labels.closeButton}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

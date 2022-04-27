@@ -1,0 +1,46 @@
+<div
+    class="app-table-pagination clearfix"
+    *ngIf="options && count && element && element.pageCount"
+>
+    <p class="app-table-pagination-count float-left">{{ replacePageCount() }}</p>
+    <div class="app-table-pagination-move float-right">
+        <p *ngIf="showNumberOfDisplay">{{ labels.number_of_display }}</p>
+        <div class="app-select" *ngIf="showNumberOfDisplay">
+            <select
+                [(ngModel)]="params.pageCount"
+                (ngModelChange)="onChangePageCount()"
+                class="form-control page-count"
+            >
+                <option
+                    *ngFor="let option of element['pageCount'].values"
+                    [value]="option.value"
+                >
+                    {{ option.name }}
+                </option>
+            </select>
+        </div>
+        <button
+            type="button"
+            (click)="onClickPrevButton()"
+            [disabled]="params.pageNo <= 1"
+            class="app-table-pagination-move__prev btn btn-default btn-secondary"
+        ></button>
+        <div class="page-no">
+            <input
+                [formControl]="pageNoForm"
+                (ngModelChange)="params.dispPageNo = $event"
+                (blur)="onChangePageNo()"
+                (keyup.enter)="onChangePageNo()"
+                [readOnly]="options.length <= 1"
+                class="app-input-text form-control"
+            />
+        </div>
+        <p>/ {{ options.length + labels.page }}</p>
+        <button
+            type="button"
+            (click)="onClickNextButton()"
+            [disabled]="params.pageNo >= count / params.pageCount"
+            class="app-table-pagination-move__next btn btn-default btn-secondary"
+        ></button>
+    </div>
+</div>

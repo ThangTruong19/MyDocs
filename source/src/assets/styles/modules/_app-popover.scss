@@ -1,0 +1,105 @@
+.popover-wrapper {
+  position: relative;
+}
+
+.app-popover {
+  position: absolute;
+  z-index: 10;
+  min-width: 220px;
+  color: #333;
+  right: 0;
+  top: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease, top 0.2s ease;
+
+  &.visible {
+    opacity: 1;
+    top: calc(100% + 14px);
+  }
+
+  .popover-arrow {
+    border: solid 11px transparent;
+    border-bottom-color: rgba(16, 4, 8, 0.4);
+    width: 0;
+    height: 0;
+    top: -22px;
+    right: 33%;
+
+    &,
+    &::after {
+      position: absolute;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      border: solid 10px transparent;
+      border-bottom-color: $app-main-color;
+      margin-top: -9px;
+      margin-left: -10px;
+    }
+  }
+
+  .popover-wrapper {
+    box-shadow: 0 1px 1px 0px rgba(16, 4, 8, 0.5),
+      0 2px 4px 0px rgba(16, 4, 8, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .popover-title {
+    background: $app-main-color;
+    color: #fff;
+    border-radius: 0;
+  }
+
+  .popover-body {
+    background-color: #fff;
+    padding-top: 10px;
+
+    .popover-row {
+      &:not(:last-of-type) {
+        margin-bottom: 15px;
+      }
+      padding: 0 10px;
+
+      &.popover-row-fields {
+        overflow-y: auto;
+        max-height: 225px;
+      }
+
+      &.popover-row-with-separator {
+        border-top: 1px solid $app-lightgray-color;
+        padding: 10px 10px 0 10px;
+      }
+
+      &.popover-footer {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+
+        .btn {
+          margin: 0;
+        }
+      }
+
+      .popover-list-item {
+        &:nth-last-of-type(n + 1) {
+          margin-top: 7px;
+        }
+      }
+
+      .download-types {
+        display: flex;
+
+        .download-type {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .popover-select-all {
+    font-weight: bold;
+  }
+}

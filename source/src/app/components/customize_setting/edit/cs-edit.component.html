@@ -1,0 +1,89 @@
+<div id="app-cs-edit" *ngIf="labels && resource">
+    <div class="app-content">
+        <div class="row">
+            <div class="col-sm-3" style="margin-top: 4px;">
+                <p>{{labels.custom_usage_definition_name}}</p>
+                <label style="margin-top: 10px;">{{inputParams.regist_customize_usage_definition_name}}</label>
+            </div>
+            <app-selected
+                #customizeDefinitionVersion
+                class="col-sm-3"
+                [itemName]="'regist_customize_usage_definition_version'"
+                [itemParams]="params"
+                [showLabel]="true"
+                [itemResource]="resource"
+                (onChangeSelectItem)="refreshCustomizeDefinitionVersion($event)">
+            </app-selected>
+        </div>
+
+        <div class="row">
+            <app-selected
+                #requestType
+                class="col-sm-3"
+                [itemName]="'edit_customize_edit_kind'"
+                [itemParams]="params"
+                [showLabel]="true"
+                (onChangeSelectItem)="changeRequestType($event)"
+                [itemResource]="resource">
+            </app-selected>
+        </div>
+
+        <div class="row">
+            <app-from-to-date-picker
+                  #fromToDatePicker
+                  class="col-sm-6"
+                  [from]="'edit_start_date_ymd'"
+                  [to]="'edit_end_date_ymd'"
+                  [params]="params"
+                  [resource]="resource"
+                  [labels]="labels"
+                  [beginningWday]="beginningWday"
+                  [enableDateRange]="enableDateRange"
+                  [dateFormat]="dateFormat"
+                  [timeZone]="timeZone"
+                  [fromShowLabel]="true"
+                  [toShowLabel]="true"
+                  [hidden]="isDelete"
+                >
+            </app-from-to-date-picker>
+        </div>
+
+        <div class="row">
+            <app-selected
+                #isEnabled
+                class="col-sm-3"
+                [itemName]="'regist_active_name'"
+                [itemParams]="params"
+                [showLabel]="true"
+                [itemResource]="resource"
+                [hidden]="isDelete">
+            </app-selected>
+
+            <app-selected
+                #priority
+                class="col-sm-3"
+                [itemName]="'regist_priority_name'"
+                [itemParams]="params"
+                [showLabel]="true"
+                [itemResource]="resource"
+                [hidden]="isDelete">
+            </app-selected>
+        </div>
+
+        <div class="row" style="margin-top: 15px;">
+            <p>{{labels.customize_definition_detail}}</p>
+        </div>
+
+        <div class="row" style="margin-top: 5px; text-align: center;">
+            <app-common-table
+                style="width: 820px;"
+                [lists]="lists"
+                [thList]="thList"
+                [(sortingParams)]="sortingParams"
+                [mergeRows]="false"
+                [emptyListMessage]="'Empty'">
+
+            </app-common-table>
+        </div>
+    </div>
+</div>

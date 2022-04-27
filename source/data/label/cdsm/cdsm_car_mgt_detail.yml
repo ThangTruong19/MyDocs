@@ -1,0 +1,174 @@
+labels:
+  - id: 1
+    description: ブラウザタイトル
+    name: page_title
+    ja: カスタマイズ設定詳細
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 車両詳細
+    en:
+
+  - id: 3
+    description: 説明表示
+    name: accordion_open
+    ja: 車両情報
+    en:
+
+  - id: 4
+    description: 説明表示
+    name: maker_model_type_rev_serial
+    ja: メーカ-機種-型式-機番：
+    en:
+
+  - id: 5
+    description: ボタン
+    name: addition
+    ja: 追加
+    en:
+
+  - id: 6
+    description: ボタン
+    name: discard_all_edits
+    ja: 編集内容全破棄
+    en:
+
+  - id: 7
+    description: ボタン
+    name: setting_acquisition_request
+    ja: 設定取得要求
+    en:
+
+  - id: 8
+    description: ボタン
+    name: setting_update_request
+    ja: 設定更新要求
+    en:
+
+  - id: 9
+    description: ボタン
+    name: immediate_setting_update_request
+    ja: 設定即時更新要求
+    en:
+
+  - id: 10
+    description: ボタン
+    name: communication_charge_confirmation
+    ja: 通信量確認
+    en:
+
+  - id: 11
+    description: 説明表示
+    name: page_count
+    ja: ${total}件中${first}件〜${end}件を表示
+    en:
+
+  - id: 12
+    description: 説明表示
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 13
+    description: 説明表示
+    name: page
+    ja: ページ
+    en:
+
+  - id: 14
+    description: 説明表示
+    name: empty_list_message
+    ja: 該当するデータが見つかりませんでした。
+    en:
+
+  - id: 15
+    description: オブジェクトタイトル
+    name: addition_title
+    ja: 追加
+    en:
+
+  - id: 16
+    description: オブジェクトタイトル
+    name: edit_title
+    ja: 編集
+    en:
+
+  - id: 17
+    description: オブジェクトタイトル
+    name: confirmation_title
+    ja: 確認
+    en:
+
+  - id: 18
+    description: 説明表示
+    name: customize_definition_detail
+    ja: カスタマイズ定義詳細
+    en:
+
+  - id: 19
+    description: 確認メッセージ
+    name: customize_get_request_message
+    ja: 車両にカスタマイズ設定取得を要求しますか？
+    en:
+
+  - id: 20
+    description: 確認メッセージ
+    name: acustomize_update_request_messageaa
+    ja: 以下のカスタマイズ設定について、車両への設定更新を要求しますか？
+    en:
+
+  - id: 21
+    description: 確認メッセージ
+    name: customize_update_resend_message
+    ja: 以下のカスタマイズ設定について、車両への設定更新を再送しますか？
+    en:
+
+  - id: 22
+    description: 確認メッセージ
+    name: customize_update_immediate_reflection_request_message
+    ja: 以下のカスタマイズ設定について、車両への設定更新を即時反映要求しますか？
+    en:
+
+  - id: 23
+    description: 説明表示
+    name: customize_update_request_caution_message
+    ja: ※複数のカスタマイズ用途定義に含まれるカスタマイズ定義の場合、実際に設定される開始日・終了日が表示と異なる場合があります。
+    en:
+
+  - id: 24
+    description: 説明表示
+    name: estimated_traffic_caution_message
+    ja: 衛星通信の車両のため、通信費が大きくなる可能性があります。
+    en:
+
+  - id: 25
+    description: 説明表示
+    name: regular_call_customize_data
+    ja: ・定期発信カスタマイズデータ
+    en:
+
+  - id: 26
+    description: 説明表示
+    name: other_customize_data
+    ja: ・その他カスタマイズデータ
+    en:
+
+  - id: 27
+    description: ボタン
+    name: cancel
+    ja: キャンセル
+    en:
+
+  - id: 28
+    description: ボタン
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 29
+    description: カスタマイズ用途定義名
+    name: custom_usage_definition_name
+    ja: カスタマイズ用途定義名
+    en:

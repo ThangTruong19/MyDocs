@@ -1,0 +1,32 @@
+[
+  {
+    "path": "common.customer.ids",
+    "name": "顧客",
+    "help": "顧客のヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "顧客001",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "顧客002",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "顧客003",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "顧客004",
+        "value": "4",
+        "kind": "D"
+      }
+    ]
+  }
+]

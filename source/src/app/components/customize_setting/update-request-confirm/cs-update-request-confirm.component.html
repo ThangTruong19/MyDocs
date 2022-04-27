@@ -1,0 +1,16 @@
+<div id="app-cs-update-request-confirm" *ngIf="labels">
+    <div class="row" style="padding: 5px 5px 40px 10px;">
+        <p>{{labels.customize_update_request_message}}</p>
+    </div>
+    <app-common-table
+        [lists]="lists"
+        [thList]="thList"
+        [(sortingParams)]="sortingParams"
+        [mergeRows]="false"
+        [emptyListMessage]="'Empty'"
+        >
+    </app-common-table>
+    <div class="row" style="padding: 10px">
+        <p>{{labels.customize_update_request_caution_message}}</p>
+    </div>
+</div>

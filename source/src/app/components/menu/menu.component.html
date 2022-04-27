@@ -1,0 +1,11 @@
+<section id="app-admin-menu">
+    <div class="container-fluid">
+        <h2 class="app-page-title">{{ labels && labels.title }}</h2>
+        <app-menu-list (orderChanged)="refresh()"></app-menu-list>
+    </div>
+</section>
+
+<app-sidemenu
+    [isLoading]="isLoading"
+    (orderChanged)="refresh()"
+></app-sidemenu>

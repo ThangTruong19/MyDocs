@@ -1,0 +1,102 @@
+labels:
+  - id: 1
+    description: title要素
+    name: page_title
+    ja: 権限管理
+    en:
+
+  - id: 2
+    description: 画面タイトル
+    name: title
+    ja: 権限管理
+    en:
+
+  - id: 3
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 4
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 5
+    description: アコーディオンを開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 6
+    description: 検索ボタン
+    name: search
+    ja: 検索
+    en:
+
+  - id: 7
+    description: ページング件数
+    name: page_count
+    ja: "${total}件中${first}件〜${end}件を表示"
+    en:
+
+  - id: 8
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 9
+    description: 一覧表示件数
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 10
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当するユーザが見つかりませんでした。
+    en:
+
+  - id: 11
+    description: ダウンロード
+    name: download_all
+    ja: ダウンロード
+    en:
+
+  - id: 12
+    description: 表示項目設定
+    name: field_select
+    ja: 表示項目設定
+    en:
+
+  - id: 13
+    description: 表示項目設定
+    name: field_select_title
+    ja: 表示項目設定
+    en:
+
+  - id: 14
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 15
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 16
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 17
+    description: 項目選択
+    name: download_select_title
+    ja: 項目選択
+    en:

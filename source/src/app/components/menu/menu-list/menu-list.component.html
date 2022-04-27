@@ -1,0 +1,18 @@
+<div class="app-menu-wrapper">
+    <ul
+        dnd-sortable-container
+        [sortableData]="navigationsMenu"
+        *ngIf="navigationsMenu"
+        [ngStyle]="wrapperWidth"
+    >
+        <li
+            class="app-menu-list"
+            *ngFor="let item of navigationsMenu; let i = index"
+            dnd-sortable
+            [sortableIndex]="i"
+            (dragend)="onDragEnd($event)"
+        >
+            <app-menu-item [item]="item"></app-menu-item>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,22 @@
+[
+  {
+    "path": "common.service_distributor.ids",
+    "name": "サービスDB",
+    "help": "サービスDBのヘルプ文言",
+    "type": "10",
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "A"
+      },
+      {
+        "key": "サービスDB1",
+        "value": "0",
+        "kind": "D"
+      }
+    ]
+  }
+]

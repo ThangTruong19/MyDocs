@@ -1,0 +1,18 @@
+#app-cd-request-detail {
+    width: 100%;
+    .tab {
+        display: inline-block;
+        width: 200px;
+        text-align: center;
+        border: 1px solid #ccc;
+        height: 30px;
+        line-height: 30px;
+        background: #fff;
+        color: #000;
+        cursor: pointer;
+    }
+    .active {
+        background: #2a4dae;
+        color: #fff;
+    }
+}

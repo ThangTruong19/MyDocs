@@ -1,0 +1,338 @@
+<div class="app-table-wrapper">
+    <ng-container *ngIf="thList">
+        <div class="app-normal-table-wrapper">
+            <table
+                appChangeTableHeight
+                [collapsed]="collapsed"
+                class="app-table table table-bordered"
+            >
+                <thead class="app-table-thead" [ngClass]="thClass">
+                    <tr [ngClass]="{ 'app-table-flex-cell-merge-rows': mergeRows, 'app-table-flex-cell': !mergeRows }">
+                        <th *ngIf="selectable" class="app-index-th fixed th-check">
+                            <input
+                                type="checkbox"
+                                class="app-input-checkbox"
+                                [disabled]="checkAllDisabled"
+                                id="check-icon-all"
+                                (click)="toggleCheckAll()"
+                                [checked]="checkAll"
+                            />
+                            <label class="app-input-checkbox__label" for="check-icon-all">
+                                <i class="fa"></i>
+                            </label>
+                        </th>
+                        <ng-container *ngIf="!customTableThContent">
+                            <ng-container *ngFor="let title of thList">
+                                <th
+                                    *ngIf="title.displayable"
+                                    class="th-{{ title.shortName }} app-index-th"
+                                    [ngClass]="{ 'disable-sort': !title.sortable }"
+                                    appSortingLabel
+                                    [(sortingParams)]="sortingParams"
+                                    [labelName]="title.name"
+                                    [sortableThList]="sortableThList"
+                                    (sort)="onClickSortingLabel($event)"
+                                >
+                                    <span>{{ title.label }}</span>
+                                </th>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container
+                            *ngTemplateOutlet="customTableThContent"
+                        ></ng-container>
+                        <!-- ボタンタイトルのデフォルト要素 -->
+                        <ng-container *ngIf="!customTableThBtnContent">
+                            <th *ngIf="detailedly" class="fixed">
+                                {{ labels.header_detail }}
+                            </th>
+                            <th *ngIf="updatable" class="fixed">{{ labels.header_edit }}</th>
+                            <th *ngIf="deletable" class="fixed">
+                                {{ labels.header_delete }}
+                            </th>
+                        </ng-container>
+                        <!-- ボタンタイトルのカスタム要素 -->
+                        <ng-container
+                            *ngTemplateOutlet="customTableThBtnContent"
+                        ></ng-container>
+                    </tr>
+                </thead>
+                <tbody
+                    (appScrollLoad)="onScroll($event)"
+                    (scrolled)="onScrolled($event)"
+                    [lists]="lists"
+                    [params]="pageParams"
+                    [ngClass]="{
+                      'empty-loading':
+                        this.lists.originList.length === 0 && this.isFetching
+                    }"
+                    class="app-table-tbody"
+                >
+                    <tr
+                      *ngFor="let data of lists.visibleList; let i = index"
+                      [ngClass]="{ 'app-table-flex-cell-merge-rows': mergeRows, 'app-table-flex-cell': !mergeRows }"
+                    >
+                        <td
+                            *ngIf="selectable"
+                            [ngClass]="{ disable: checkBoxHidden(data) }"
+                            class="app-sm-link fixed d-flex justify-content-center td-check"
+                        >
+                          <input
+                              (appTableCheckbox)="onChange($event)"
+                              (toggleClick)="onCheckSelect($event)"
+                              [selectedList]="selectedList"
+                              [checked]="checkedItems[checkId(data)]"
+                              id="check-icon-{{ i }}"
+                              value="{{ checkId(data) }}"
+                              type="checkbox"
+                              class="app-input-checkbox"
+                          />
+                          <label
+                              class="app-input-checkbox__label"
+                              [ngClass]="{ hidden: checkBoxHidden(data) }"
+                              for="check-icon-{{ i }}"
+                          >
+                              <i class="fa"></i>
+                          </label>
+                        </td>
+                        <!-- データ行のデフォルト要素 -->
+                        <ng-container *ngIf="!customTableRowContent">
+                            <ng-container *ngFor="let title of thList">
+                                <td
+                                    *ngIf="title.displayable"
+                                    class="td-{{
+                                      title.shortName
+                                    }} app-index-td d-flex align-items-center"
+                                >
+                                    <p>{{ data[title.dataKey || title.name] }}</p>
+                                </td>
+                            </ng-container>
+                        </ng-container>
+                        <!-- データ行のカスタム要素 -->
+                        <ng-container
+                            *ngTemplateOutlet="
+                              customTableRowContent;
+                              context: { data: data, title: title, idx: i }
+                            "
+                        ></ng-container>
+                        <!-- ボタンのデフォルト要素 -->
+                        <ng-container *ngIf="!customTableBtnContent">
+                            <td
+                                *ngIf="detailedly"
+                                class="app-index-td text-center app-table__small app-sm-link fixed d-flex align-items-center justify-content-center"
+                                (click)="onClickDetail(data)"
+                            >
+                                <span class="app-icon app-icon-detail"></span>
+                            </td>
+                            <td
+                                *ngIf="updatable"
+                                class="app-index-td app-table__small app-sm-link text-center fixed d-flex align-items-center justify-content-center"
+                                [ngClass]="{ disable: editIconHidden(data) }"
+                                (click)="onClickEdit(data)"
+                            >
+                                <span
+                                  ><i
+                                      *ngIf="!editIconHidden(data)"
+                                      class="app-icon app-icon-edit"
+                                  ></i
+                                ></span>
+                            </td>
+                            <td
+                                *ngIf="deletable"
+                                class="app-index-td app-table__small app-sm-link text-center fixed d-flex align-items-center justify-content-center"
+                                [ngClass]="{ disable: deleteIconHidden(data) }"
+                                (click)="onClickDelete(data)"
+                            >
+                                <span>
+                                    <i *ngIf="!deleteIconHidden(data)"
+                                       class="app-icon app-icon-dustbox"
+                                    >
+                                    </i>
+                                </span>
+                            </td>
+                        </ng-container>
+                        <!-- ボタンのカスタム要素 -->
+                        <ng-container
+                            *ngTemplateOutlet="
+                              customTableBtnContent;
+                              context: { data: data, visibleBtn: visibleBtn }
+                            "
+                        ></ng-container>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="fixedThList && scrollableThList">
+        <div class="app-split-table-wrapper">
+            <div class="table-wrapper fixed">
+                <table class="app-table table table-bordered"
+                  appChangeTableHeight
+                  [collapsed]="collapsed">
+                    <thead #fixedHeader
+                        class="app-table-thead"
+                        [ngClass]="thClass">
+                        <tr>
+                            <th *ngIf="selectable" class="app-index-th th-check">
+                                <input
+                                    type="checkbox"
+                                    class="app-input-checkbox"
+                                    [disabled]="checkAllDisabled"
+                                    (click)="toggleCheckAll()"
+                                    id="check-icon-all">
+                                <label class="app-input-checkbox__label" for="check-icon-all">
+                                    <i class="fa"></i>1
+                                </label>
+                            </th>
+                            <ng-container *ngIf="!customFixedTableThContent">
+                                <ng-container *ngFor="let title of fixedThList">
+                                    <th
+                                        *ngIf="title.displayable"
+                                        class="th-{{title.shortName}} app-index-th"
+                                        [ngClass]="{'disable-sort': !title.sortable}"
+                                        appSortingLabel
+                                        [(sortingParams)]="sortingParams"
+                                        [labelName]="title.name"
+                                        [sortableThList]="sortableThList"
+                                        (sort)="onClickSortingLabel($event)">
+                                        {{title.label}}
+                                    </th>
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngTemplateOutlet="customFixedTableThContent"></ng-container>
+                            <!-- ボタンタイトルのデフォルト要素 -->
+                            <th *ngIf="detailedly" class="fixed">{{labels.header_detail}}</th>
+                            <th *ngIf="updatable" class="fixed">{{labels.header_edit}}</th>
+                            <th *ngIf="deletable" class="fixed">{{labels.header_delete}}</th>
+                        </tr>
+                    </thead>
+                    <tbody class="app-table-tbody" #fixedBody #fixedScrollArea
+                        (appScrollLoad)="onScroll($event)"
+                        [lists]="lists"
+                        [params]="pageParams"
+                        [ngClass]="{
+                          'empty-loading': this.lists.originList.length === 0 && this.isFetching,
+                          'before-init': !isCarTableReady
+                        }">
+                        <tr *ngFor="let data of lists.visibleList; let i = index"
+                            [attr.data-index]="i">
+                            <td *ngIf="selectable"
+                                [ngClass]="{'disable': checkBoxHidden(data)}"
+                                class="text-center td-check app-sm-link">
+                                <input
+                                    (appTableCheckbox)="onChange($event)"
+                                    (toggleClick)="onCheckSelect($event)"
+                                    [selectedList]="selectedList"
+                                    [checked]="checkedItems[checkId(data)]"
+                                    id="check-icon-{{i}}"
+                                    value="{{checkId(data)}}"
+                                    type="checkbox"
+                                    class="app-input-checkbox">
+                                <label class="app-input-checkbox__label" [ngClass]="{'hidden': checkBoxHidden(data)}" for="check-icon-{{i}}">
+                                    <i class="fa"></i>
+                                </label>
+                            </td>
+                            <!-- データ行のデフォルト要素 -->
+                            <ng-container *ngIf="!customFixedTableRowContent">
+                                <ng-container *ngFor="let title of fixedThList">
+                                    <td *ngIf="title.displayable" class="td-{{title.shortName}} app-index-td">{{data[title.dataKey || title.name]}}</td>
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngTemplateOutlet="customFixedTableRowContent; context: {data: data, title: title, idx: i}"></ng-container>
+                            <td *ngIf="detailedly" class="app-index-td text-center app-table__small app-sm-link fixed" (click)="onClickDetail(data)">
+                                <span class="app-icon app-icon-detail"></span>
+                            </td>
+                            <td *ngIf="updatable" class="app-index-td app-table__small app-sm-link text-center fixed" [ngClass]="{'disable': editIconHidden(data)}" (click)="onClickEdit(data)">
+                                <span><i *ngIf="!editIconHidden(data)" class="app-icon app-icon-edit"></i></span>
+                            </td>
+                            <td *ngIf="deletable" class="app-index-td app-table__small app-sm-link text-center fixed" [ngClass]="{'disable': deleteIconHidden(data)}" (click)="onClickDelete(data)">
+                                <span><i *ngIf="!deleteIconHidden(data)" class="app-icon app-icon-dustbox"></i></span>
+                            </td>
+
+                            <td *ngIf="multiLineThList" class="hidden-columns">
+                                <ul class="hidden-columns-container">
+                                    <li *ngFor="let title of multiLineThList">
+                                        <ul>
+                                            <li *ngFor="let d of formatMultiLineData(data[title.dataKey || title.name])" [ngStyle]="hiddenItemStyles">
+                                                {{ d }}
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-wrapper scrollable" #scrollableTableWrapper >
+                <table class="app-table table"
+                    appChangeTableHeight
+                    [collapsed]="collapsed">
+                    <thead #scrollableHeader
+                        class="app-table-thead"
+                        [ngClass]="thClass">
+                        <tr>
+                            <ng-container *ngIf="!customTableThContent">
+                                <ng-container *ngFor="let title of scrollableThList">
+                                    <th
+                                        *ngIf="title.displayable"
+                                        class="th-{{title.shortName}} app-index-th"
+                                        [ngClass]="{'disable-sort': !title.sortable}"
+                                        appSortingLabel
+                                        [(sortingParams)]="sortingParams"
+                                        [labelName]="title.name"
+                                        [sortableThList]="sortableThList"
+                                        (sort)="onClickSortingLabel($event)">
+                                        {{title.label}}
+                                    </th>
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngTemplateOutlet="customTableThContent"></ng-container>
+                        </tr>
+                    </thead>
+                    <tbody class="app-table-tbody" #scrollableBody #scrollableScrollArea
+                        [ngClass]="{
+                          'empty-loading': this.lists.originList.length === 0 && this.isFetching,
+                          'before-init': !isCarTableReady
+                        }"
+                        appChangeTableHeight
+                        [collapsed]="collapsed">
+                        <tr *ngFor="let data of lists.visibleList; let i = index">
+                            <ng-container *ngIf="!customTableRowContent">
+                                <ng-container *ngFor="let title of scrollableThList">
+                                    <td *ngIf="title.displayable" class="td-{{title.shortName}} app-index-td">
+                                        <span>{{data[title.dataKey || title.name]}}</span>
+                                    </td>
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngTemplateOutlet="customTableRowContent; context: {data: data, title: title, idx: i}"></ng-container>
+
+                            <td *ngIf="multiLineThList" class="hidden-columns">
+                                <ul class="hidden-columns-container">
+                                    <li *ngFor="let title of multiLineThList">
+                                        <ul>
+                                            <li *ngFor="let d of formatMultiLineData(data[title.dataKey || title.name])" [ngStyle]="hiddenItemStyles">
+                                                {{ d }}
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+    <div *ngIf="lists.originList.length === 0 && !isFetching">
+        <p
+            class="empty-list-message"
+            appChangeTableHeight
+            [collapsed]="collapsed"
+        >
+            {{ emptyListMessageStr || labels.empty_list_message }}
+        </p>
+    </div>
+    <div class="loading-wrapper" [hidden]="isCarTableReady && !isFetching">
+        <i class="loading-indicator"></i>
+    </div>
+</div>

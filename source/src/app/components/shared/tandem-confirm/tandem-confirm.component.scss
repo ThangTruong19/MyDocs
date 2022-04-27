@@ -1,0 +1,20 @@
+.app-form-table-tbody {
+    .app-form-table__head {
+        &.wide {
+            width: 30%;
+        }
+
+        .app-form-table__label {
+            word-break: break-word;
+            word-wrap: break-word;
+        }
+    }
+
+    .app-form-table__value {
+        p {
+            word-break: break-word;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+    }
+}

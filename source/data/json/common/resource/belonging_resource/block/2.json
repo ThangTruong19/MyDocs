@@ -1,0 +1,27 @@
+[
+  {
+    "path": "field_no",
+    "name": "車両属性NO",
+    "help": "車両属性NOのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "12",
+        "value": "12",
+        "kind": "D"
+      },
+      {
+        "key": "22",
+        "value": "22",
+        "kind": "D"
+      },
+      {
+        "key": "32",
+        "value": "32",
+        "kind": "D"
+      }
+    ]
+  }
+]

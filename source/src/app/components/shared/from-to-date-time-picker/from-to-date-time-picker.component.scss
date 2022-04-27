@@ -1,0 +1,20 @@
+.date-time-range {
+    display: flex;
+    align-items: flex-end;
+    margin-right: -15px;
+
+    .separator {
+        margin: 0 10px 15px 5px;
+        flex-shrink: 0;
+    }
+
+    .date-picker-wrapper {
+        position: relative;
+        width: 40.7%;
+        padding-right: 15px;
+    }
+
+    .date-content {
+        padding-left: 0;
+    }
+}

@@ -1,0 +1,47 @@
+<div *ngIf="displayable" class="date-range">
+    <div class="date-picker-wrapper">
+        <app-search-date-picker
+            #dateFrom
+            class="date-content"
+            [id]="fromId"
+            [itemName]="from"
+            [itemParams]="params"
+            [itemResource]="resource"
+            [itemLabel]="labels"
+            [showLabel]="fromShowLabel"
+            [beginningWday]="beginningWday"
+            [enableDateRange]="fromDateRange"
+            [dateFormat]="dateFormat"
+            [futureDateSelectable]="futureDateSelectable"
+            [timeZone]="timeZone"
+            [initialBaseDay]="fromBaseDay"
+            [display]="fromDisplay"
+            [required]="required"
+            (selectDate)="handleSelectFromDate($event)"
+        >
+        </app-search-date-picker>
+    </div>
+    <p class="separator"> - </p>
+    <div class="date-picker-wrapper">
+        <app-search-date-picker
+            #dateTo
+            class="date-content"
+            [id]="toId"
+            [itemName]="to"
+            [itemParams]="params"
+            [itemResource]="resource"
+            [itemLabel]="labels"
+            [enableDateRange]="toDateRange"
+            [showLabel]="toShowLabel"
+            [dateFormat]="dateFormat"
+            [beginningWday]="beginningWday"
+            [futureDateSelectable]="futureDateSelectable"
+            [timeZone]="timeZone"
+            [initialBaseDay]="toBaseDay"
+            [display]="toDisplay"
+            [required]="required"
+            (selectDate)="handleSelectToDate($event)"
+        >
+        </app-search-date-picker>
+    </div>
+</div>

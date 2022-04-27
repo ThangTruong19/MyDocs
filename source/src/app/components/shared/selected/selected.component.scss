@@ -1,0 +1,24 @@
+@import "../../../../assets/styles/_variable.scss";
+
+.app-select {
+    margin: 0.25rem 0;
+}
+
+.horizontal {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    label {
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
+    ng-select {
+        width: 150px;
+    }
+}
+
+.highlight {
+    color: $fontRed;
+}

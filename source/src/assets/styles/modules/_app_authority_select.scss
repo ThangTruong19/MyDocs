@@ -1,0 +1,11 @@
+.select-authority {
+  color: $app-main-color;
+  text-decoration: none;
+  border-bottom: 1px solid $app-main-color;
+  padding-bottom: 2px;
+
+  &:hover {
+    color: $app-main-color;
+    opacity: 0.6;
+  }
+}

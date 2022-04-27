@@ -1,0 +1,10 @@
+<div [hidden]="!isShowDialog">
+    <div class="error_dialog">
+        <!-- エラーメッセージ -->
+        <div class="error_dialog_message">{{errorMessage}}</div>
+        <!-- 閉じるボタン -->
+        <div class="error_dialog_close">
+            <button class="glyphicon glyphicon-remove dialog_close_style" (click)="closeDialog()"></button>
+        </div>
+    </div>
+</div>

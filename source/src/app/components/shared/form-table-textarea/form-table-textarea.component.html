@@ -1,0 +1,27 @@
+<td class="app-form-table__head" *ngIf="isVisible">
+    <label
+        class="app-form-table__label"
+        [ngClass]="{ 'app-form-table__required': required }"
+    >
+        {{ itemResource[itemName] && itemResource[itemName].name }}
+    </label>
+</td>
+<td [attr.colspan]="colspan" *ngIf="isVisible">
+    <p [hidden]="!notEditable">{{ viewData }}</p>
+    <div
+        [formGroup]="formGroup"
+        [hidden]="notEditable"
+        class="form-group"
+        [ngClass]="sizeClass"
+    >
+        <textarea
+            name="{{ name }}{{ number }}"
+            formControlName="{{ name }}"
+            (ngModelChange)="handleChange($event)"
+            maxlength="{{ maxLength }}"
+            class="app-textarea form-control"
+            [ngClass]="{ 'app-form-error': errorData | hasError: path }"
+        >
+        </textarea>
+    </div>
+</td>

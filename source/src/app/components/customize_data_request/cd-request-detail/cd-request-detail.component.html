@@ -1,0 +1,30 @@
+<section id="app-history-mgt-list" *ngIf="labels && resource && datePickerParams">
+    <div class="container-fluid">
+        <h2 class="app-page-title">{{ labels.title }}</h2>
+        <div class="app-content">
+            <!-- 一覧画面 -->
+            <ng-container>
+                <div id="app-cd-request-detail" *ngIf="labels && resource && datePickerParams">
+                    <div>
+                        <div class="tab" (click)="changeTab(0)" [ngClass]="{ 'active': activeTab == 0 }">{{labels.request_number_tab_title}}</div>
+                        <div class="tab" (click)="changeTab(1)" [ngClass]="{ 'active': activeTab == 1 }">{{labels.request_period_tab_title}}</div>
+                        <div class="tab" (click)="changeTab(2)" [ngClass]="{ 'active': activeTab == 2 }">{{labels.number_list_request_tab_title}}</div>
+                    </div>
+                    <div>
+                        <div *ngIf="activeTab == 0">{{labels.request_number_tab_title}}</div>
+                        <div *ngIf="activeTab == 1" class="app-cd-request-detail-content">
+                            <app-cd-request-period-tab
+                                [labels]="labels"
+                                [resource]="resource"
+                                [lists]="lists"
+                                [params]="params"
+                                [sortableThList]="sortableThList"
+                                [thList]="thList"></app-cd-request-period-tab>
+                        </div>
+                        <div *ngIf="activeTab == 2">{{labels.number_list_request_tab_title}}</div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</section>

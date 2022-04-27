@@ -1,0 +1,114 @@
+@import "../styles/icons";
+
+$_color_normal: #fff;
+$_bg_normal: transparent;
+$_bg_normal-hover: #403891;
+$_color_disabled: #3d418d;
+$_fontBlue: #294cae;
+
+:host {
+  color: #222;
+  &.is-opened {
+    display: block;
+  }
+  &.is-closed {
+    display: none;
+  }
+}
+
+.ConfigFlyout {
+  position: relative;
+  display: block;
+  height: 100%;
+  &_Body {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 260px;
+    padding: 20px 30px;
+    border-radius: 3px;
+    box-shadow: 0 1px 6px 1px rgba( 0, 0, 0, .2 );
+    background-color: #fff;
+    font-size: 12px;
+  }
+  // フォーム
+  &_Form {
+    color: #222;
+    label {
+      cursor: pointer;
+    }
+    // フォームの1項目
+    &Item {
+      display: block;
+      margin-top: 14px;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    &Label {
+      margin-bottom: 7px;
+      color: $_fontBlue;
+      font-size: 12px;
+    }
+    &Value {
+      display: flex;
+    }
+    // selectを囲む
+    &Select {
+      flex: 0 0 auto;
+      width: 100%;
+      select {
+        width: 100%;
+        height: 20px;
+      }
+    }
+    // input[type="radio"]を囲む
+    &Radio {
+      flex: 0 0 auto;
+      padding-right: 30px;
+      input[type="radio"] {
+      }
+    }
+    &Footer {
+      margin: 20px -30px -20px;
+      display: flex;
+      border-top: 1px solid #eee;
+      &Item {
+        flex: 0 0 50%;
+        width: 50%;
+        & + & {
+          border-left: 1px solid #eee;
+        }
+      }
+      &Button {
+        appearance: none;
+        display: block;
+        width: 100%;
+        height: 40px;
+        padding: 0;
+        border: 0;
+        background-image: none;
+        background-color: transparent;
+        text-decoration: none;
+        transition: all .2s;
+        cursor: pointer;
+      }
+      //Cancel
+      &CancelButton {
+        &:focus,
+        &:hover {
+          color: #999;
+          text-decoration: underline;
+        }
+      }
+      //OK
+      &SubmitButton {
+        &:focus,
+        &:hover {
+          color: #0060ff;
+          background-color: #e4f3fe;
+        }
+      }
+    }
+  }
+}

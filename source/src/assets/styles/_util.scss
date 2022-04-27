@@ -1,0 +1,14 @@
+@mixin ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin btnBorder($baseColor) {
+  border-color: darken($baseColor, 15%) !important;
+}
+
+@mixin input-edited() {
+  border-color: #3cba3d;
+  background-color: #f0fff0;
+}

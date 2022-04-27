@@ -1,0 +1,33 @@
+<nav id="app-sidemenu" [ngClass]="{ visible: isVisible }">
+    <a (click)="toggleMenuVisible($event)">
+      <i
+          class="app-icon"
+          [ngClass]="{
+              'app-icon-close': isVisible,
+              'app-icon-humberger': !isVisible
+          }"
+      ></i>
+    </a>
+
+    <ul *ngIf="navigationsSideMenu"
+        data-role="sidemenu"
+        dnd-sortable-container
+        [sortableData]="navigationsSideMenu"
+    >
+        <li *ngFor="let item of navigationsSideMenu; let i = index"
+            dnd-sortable
+            [sortableIndex]="i"
+            (dragstart)="onDragStart($event)"
+            (dragend)="onDragEnd($event)"
+        >
+            <app-sidemenu-item
+                [isLoading]="isLoading"
+                [item]="item"
+            ></app-sidemenu-item>
+        </li>
+    </ul>
+</nav>
+<div *ngIf="isVisible"
+    class="app-sidemenu-backdrop"
+    (click)="toggleMenuVisible($event)"
+></div>

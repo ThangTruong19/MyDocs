@@ -1,0 +1,126 @@
+  @import "/src/assets/styles/variable";
+
+
+  .flex-container {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .app-file-upload_component {
+    width: 45%;
+    max-width: 600px;
+
+    &.download {
+      .row {
+        margin: 15px -15px;
+      }
+    }
+
+    .panel {
+      background-color: #fff;
+      border-radius: 4px;
+    }
+
+    .panel-heading {
+      padding: 10px 15px;
+      color: #333;
+      border-color: #ddd;
+      border-bottom: 1px solid;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+
+      .panel-title {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    .app-multiple-select {
+      margin-bottom: 10px;
+    }
+
+    ol {
+      margin-bottom: 0;
+
+      li:last-child > p {
+        margin-bottom: 0;
+      }
+    }
+
+    .app-drop-box {
+      display: flex;
+      width: 100%;
+      height: 85px;
+      background: $app-drop-box-color;
+      border: 3px dashed #ddd;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .app-dragover {
+      border: 3px dashed $app-dragover-color;
+    }
+
+    .item-name {
+      margin-left: 20px;
+      line-height: 31px;
+    }
+  }
+
+  .has-error {
+    color: #ed2222;
+    background-color: $app-danger-color;
+  }
+
+  .upload-summary {
+    margin-top: 10px;
+  }
+
+  td {
+    position: relative;
+  }
+
+  .td-condition {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .fa + span {
+    position: absolute;
+    left: 30px;
+  }
+
+  .fa-check {
+    color: #5cc41f;
+  }
+
+  .download-description {
+    display: flex;
+    width: 100%;
+    margin: 8px 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    .box-index {
+      margin-right: 5px;
+    }
+
+    .index {
+      display: inline-block;
+      width: 21px;
+      color: #fff;
+      text-align: center;
+      background-color: #4f9eff;
+      border-radius: 50%;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+
+  .download-notice {
+    margin: 5px 0 0 15px;
+    font-weight: bold;
+  }

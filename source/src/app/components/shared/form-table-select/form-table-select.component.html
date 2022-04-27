@@ -1,0 +1,32 @@
+<td class="app-form-table__head" *ngIf="isVisible">
+    <label
+        class="app-form-table__label"
+        [ngClass]="{ 'app-form-table__required': required }"
+    >
+        {{ itemResource[itemName] && itemResource[itemName].name }}
+    </label>
+</td>
+<td [attr.colspan]="colspan" *ngIf="isVisible">
+    <p [hidden]="!notEditable">{{ viewData() }}</p>
+    <div [hidden]="notEditable" class="form-group app-input__small">
+        <ng-select
+            name="itemName"
+            [ngClass]="hasSearchResult ? '' : 'no-items'"
+            [items]="items"
+            [(ngModel)]="itemParams[itemName]"
+            [bindLabel]="'name'"
+            [bindValue]="'id'"
+            [clearable]="false"
+            [virtualScroll]="items.length > 100"
+            [dropdownPosition]="'bottom'"
+            (open)="handleOpen()"
+            (search)="handleSearch($event)"
+            (change)="onSelectItem($event)"
+            (close)="hasSearchResult = true"
+        >
+        <ng-template ng-label-tmp ng-option-tmp let-item="item">
+            <span [ngClass]="item.isHighlightItem ? 'highlight' : ''">{{ item.name }}</span>
+        </ng-template>
+        </ng-select>
+    </div>
+</td>

@@ -1,0 +1,186 @@
+[
+  {
+    "path": "X-Lang",
+    "name": "言語",
+    "help": "言語のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+          {
+            "key": "Czech",
+            "value": "cs",
+            "kind": "D",
+            "data_order": "1"
+        },
+        {
+            "key": "Danish",
+            "value": "da",
+            "kind": "D",
+            "data_order": "2"
+        },
+        {
+            "key": "Deutsch",
+            "value": "de",
+            "kind": "D",
+            "data_order": "3"
+        },
+        {
+            "key": "English",
+            "value": "en",
+            "kind": "D",
+            "data_order": "4"
+        },
+        {
+            "key": "Español",
+            "value": "es",
+            "kind": "D",
+            "data_order": "5"
+        },
+        {
+            "key": "Français(EU)",
+            "value": "fr",
+            "kind": "D",
+            "data_order": "6"
+        },
+        {
+            "key": "Italiano",
+            "value": "it",
+            "kind": "D",
+            "data_order": "7"
+        },
+        {
+            "key": "日本語",
+            "value": "ja",
+            "kind": "D",
+            "data_order": "8"
+        },
+        {
+            "key": "Dutch",
+            "value": "nl",
+            "kind": "D",
+            "data_order": "9"
+        },
+        {
+            "key": "NORSK",
+            "value": "no",
+            "kind": "D",
+            "data_order": "10"
+        },
+        {
+            "key": "POLSKI",
+            "value": "pl",
+            "kind": "D",
+            "data_order": "11"
+        },
+        {
+            "key": "Portuguese(Portugal)",
+            "value": "pt",
+            "kind": "D",
+            "data_order": "12"
+        },
+        {
+            "key": "ROMÂNĂ",
+            "value": "ro",
+            "kind": "D",
+            "data_order": "13"
+        },
+        {
+            "key": "Русский",
+            "value": "ru",
+            "kind": "D",
+            "data_order": "14"
+        }
+    ]
+  },
+  {
+    "path": "X-DateFormat",
+    "name": "日付形式",
+    "help": "日付形式のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "YYYY/MM/DD",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "MM/DD/YYYY",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "DD/MM/YYYY",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "X-DistanceUnit",
+    "name": "長さ単位",
+    "help": "長さ単位のヘルプ文言",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "METER",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "MILE",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "X-TemperatureUnit",
+    "name": "温度表記",
+    "help": "温度表記のヘルプ文言",
+    "type": 20,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "℃",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "°F",
+        "value": "1",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "X-CarDivision",
+    "name": "車両情報",
+    "help": "車両情報のヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "指定しない",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "建機のみ",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "フォークのみ",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  }
+]

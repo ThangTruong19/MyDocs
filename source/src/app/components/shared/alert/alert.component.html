@@ -1,0 +1,10 @@
+<div
+    class="app-alert-messages"
+    *ngIf="isAvailable"
+    [ngClass]="{ faded: !isVisible }"
+    (transitionend)="onEndAnimation()"
+>
+    <ngb-alert [type]="type" (close)="close()">
+        <p [innerHTML]="message"></p>
+    </ngb-alert>
+</div>

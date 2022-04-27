@@ -1,0 +1,420 @@
+@import "../styles/icons";
+
+$_header_bg_color: #0e1271;
+$_color_normal: #fff;
+$_bg_normal: transparent;
+$_bg_normal-hover: #403891;
+$_color_disabled: #3d418d;
+$_bg_disabled: $_bg_normal;
+$_fullWidth: 1024px;
+
+:host {
+  color: #222;
+  button, input, select, textarea {
+    font-size: 100%;
+    font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, '\30D2\30E9\30AE\30CE\89D2\30B4\20\50\72\6F\20\57\33', 'Hiragino Kaku Gothic Pro', '\30E1\30A4\30EA\30AA', Meiryo, '\FF2D\FF33\20\FF30\30B4\30B7\30C3\30AF', sans-serif;
+    line-height: 1.15;
+  }
+}
+
+//
+// 共通ヘッダ
+//
+.PageHeader{
+  position: relative;
+  z-index: 6;
+  min-width: $_fullWidth;
+  width: 100%;
+  background-color: $_header_bg_color;
+  color: $_color_normal;
+  font-size: 14px;
+  &_Inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-width: $_fullWidth;
+    margin: 0 auto;
+  }
+  &_Logo{
+    flex: 0 0 auto;
+    display: block;
+    appearance: none;
+    background: none;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    &Inner {
+      display: flex;
+      width: 150px;
+      height: 44px;
+      justify-content: center;
+      align-items: center;
+    }
+    &Img {
+      display: block;
+    }
+  }
+  &_Menu {
+    flex: 0 0 auto;
+    display: flex;
+    height: 44px;
+    padding-right: 10px;
+  }
+  &_User{
+    flex: 0 0 auto;
+    &Link {
+      appearance: none;
+      display: block;
+      padding: 0;
+      border: 0;
+      color: $_color_normal;
+      background-image: none;
+      background-color: $_bg_normal;
+      text-decoration: none;
+      transition: background-color .2s;
+      &:hover{
+        cursor: pointer;
+        background-color: $_bg_normal-hover;
+      }
+      &Inner {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        height: 44px;
+        padding: 10px;
+        [class*="Icon-"]::before {
+          flex: 0 0 auto;
+          color: inherit;
+          margin-left: 5px;
+        }
+      }
+      &[disabled],
+      &.is-disabled {
+        &, &:hover {
+          pointer-events: none;
+          color: $_color_disabled;
+          cursor: default;
+        }
+      }
+    }
+    &Icon {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 2px;
+      font-size: 16px;
+    }
+    &Name {
+    }
+  }
+  &_MenuItem{
+    flex: 0 0 auto;
+    height: 100%;
+    &Link {
+      appearance: none;
+      display: block;
+      padding: 0;
+      height: 100%;
+      border: 0;
+      color: $_color_normal;
+      background-image: none;
+      background-color: transparent;
+      text-decoration: none;
+      transition: background-color .2s;
+      &:hover{
+        cursor: pointer;
+        background-color: $_bg_normal-hover;
+      }
+      &Inner {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 10px;
+        height: 100%;
+      }
+      &[disabled],
+      &.is-disabled {
+        &, &:hover {
+          pointer-events: none;
+          color: $_color_disabled;
+          background-color: $_bg_disabled;
+          cursor: default;
+        }
+      }
+    }
+  }
+  &_MenuIconPlace {
+    flex: 0 0 auto;
+    display: block;
+    & [class*="Icon-"]::before {
+      display: block;
+      margin-top: 0;
+      margin-right: 5px;
+    }
+  }
+  &_MenuHomeIcon {
+    flex: 0 0 auto;
+    display: block;
+    & [class*="Icon-"]::before {
+      display: block;
+      margin-top: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+//
+// 設定呼び出しボタン
+//
+.ConfigFlyoutTrigger {
+  appearance: none;
+  display: block;
+  padding: 0;
+  height: 100%;
+  border: 0;
+  color: $_color_normal;
+  background-image: none;
+  background-color: transparent;
+  text-decoration: none;
+  transition: background-color .2s;
+  &:hover{
+    cursor: pointer;
+    background-color: $_bg_normal-hover;
+  }
+  &[disabled],
+  &.is-disabled {
+    &, &:hover {
+      pointer-events: none;
+      color: $_color_disabled;
+      background-color: transparent;
+      cursor: default;
+    }
+  }
+  &_Inner {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px;
+    height: 100%;
+  }
+  &_IconPlace {
+    flex: 0 0 auto;
+    display: block;
+    & [class*="Icon-"]::before {
+      display: block;
+      margin-top: 0;
+      margin-right: 5px;
+    }
+  }
+}
+
+//
+// ドロップダウンリンク
+//
+.Dropdown {
+  $C: &;
+  $_color_border: #eee;
+
+  position: relative;
+
+  &_Trigger {
+    appearance: none;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding: 10px;
+    color: $_color_normal;
+    text-decoration: none;
+    transition: background-color .2s;
+    border: 0;
+    background-image: none;
+    background-color: transparent;
+    cursor: pointer;
+    &:hover{
+      background-color: $_bg_normal-hover;
+    }
+    &Inner {
+      .Icon-cog::before {
+        color: inherit;
+        margin-right: 5px;
+      }
+      .Icon-down-dir::before {
+        color: inherit;
+        margin-left: 5px;
+      }
+    }
+    &[disabled],
+    &.is-disabled {
+      &, &:hover {
+        pointer-events: none;
+        color: $_color_disabled;
+        background-color: $_bg_disabled;
+        cursor: default;
+      }
+    }
+  }
+  &_Body {
+    position: absolute;
+    top: calc(100% + 3px);
+    display: table;
+    min-width: 250px;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px 1px rgba(0, 0, 0, .25);
+    background-color: #fff;
+    &.is-closed {
+      display: none;
+    }
+    &.is-opened {
+      display: table;
+    }
+  }
+  &_Items {
+  }
+  &_Heading {
+    display: flex;
+    font-size: 12px;
+    background-color: #f2f2f2;
+    color: #222;
+    padding: 0 10px;
+    &Icon {
+      flex: 0 0 auto;
+      margin-right: 5px;
+      & [class*="Icon-"]::before {
+        display: block;
+        margin: 0;
+      }
+    }
+    &Text {
+      flex: 0 0 auto;
+    }
+  }
+  &_Item {
+    $_elHeight: 41px;
+    $_color_default: #222;
+    //$_color_active: #0060ff;
+    $_color_disabled: #ccc;
+    $_bg_default: transparent;
+    $_bg_hover: #F2F2F2;
+    //$_bg_active: #e5f3ff;
+    //$_bg_selected-1: #f3f9eb;
+    //$_bg_selected-2: #fef4e8;
+
+    display: block;
+    text-decoration: none;
+    height: $_elHeight;
+    line-height: $_elHeight;
+    border-top: 1px solid #{$_color_border};
+    background-color: $_bg_default;
+    color: $_color_default;
+    font-size: 14px;
+    cursor: pointer;
+    &:first-child {
+      border-top: 0;
+    }
+    &:hover,
+    &:focus {
+      background-color: $_bg_hover;
+    }
+    &[disabled],
+    &.is-disabled {
+      &,
+      &:hover,
+      &:focus {
+        color: $_color_disabled;
+        cursor: default;
+        background-color: $_bg_default;
+      }
+    }
+  }
+  &_Text {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px 0 10px;
+    white-space: nowrap;
+  }
+  // ログインユーザー情報
+  &_LoginUserInfo {
+    $_color_default: #222;
+    $_bg_default: transparent;
+    $_bg_hover: #F2F2F2;
+
+    box-sizing: border-box;
+    appearance: none;
+    display: block;
+    width: 100%;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: $_color_border;
+    background-color: $_bg_default;
+    color: $_color_default;
+    font-size: 14px;
+    text-align: left;
+  }
+  &_LoginUserInfoText {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 15px 10px 0;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  // ログインしているメールアドレスとグループ名
+  &_LoginUserInfoOptionalTexts {
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    line-height: 1;
+  }
+  &_LoginUserInfoOptionalText {
+    display: block;
+    font-size: 12px;
+    color: #767676;
+    & + & {
+      margin-top: 5px;
+    }
+  }
+  // サインアウトボタン
+  &_SignoutContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 10px 10px;
+  }
+  &_SignoutButton {
+    appearance: none;
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background-image: none;
+    background-color: transparent;
+    font-size: 12px;
+    color: #767676;
+    cursor: pointer;
+    &:hover {
+      color: #0060ff;
+      text-decoration: underline;
+    }
+  }
+  &_SignoutButtonInner {
+    display: flex;
+    align-items: center;
+  }
+  &_SignoutButtonText {
+    display: block;
+    flex: 0 1 1;
+  }
+  &_SignoutButtonIcon {
+    display: block;
+    flex: 0 0 1;
+    &::before {
+      margin: 0;
+    }
+    .Dropdown_SignoutButton:hover &::before {
+      text-decoration: underline;
+    }
+  }
+}

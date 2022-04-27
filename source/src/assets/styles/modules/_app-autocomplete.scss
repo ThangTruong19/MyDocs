@@ -1,0 +1,42 @@
+.app-autocomplete {
+  &.ng-invalid:not(.ng-pristine) {
+    .completer-holder {
+      .app-input-text {
+        background-color: #f4dddd;
+        border-color: #f87272;
+      }
+    }
+  }
+
+  input:disabled {
+    background-color: $app-disable-color !important;
+    border-color: $app-darkgray-color !important;
+  }
+
+  .edit {
+    background-color: #eeffec;
+    border-color: #3c763d;
+  }
+}
+
+.autocomplete-dropdown {
+  position: absolute;
+  max-height: 225px;
+  overflow: auto;
+}
+
+.autocomplete-option {
+  display: block;
+  height: auto;
+  padding: 8px 5px;
+  background-color: #fff;
+
+  &:not(.not-found) {
+    cursor: pointer;
+
+    &.selected {
+      color: #fff;
+      background-color: #a5d8e5;
+    }
+  }
+}

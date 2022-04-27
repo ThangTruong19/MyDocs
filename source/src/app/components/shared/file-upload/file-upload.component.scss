@@ -1,0 +1,127 @@
+@import "../../../../assets/styles/variable";
+
+.app-file-upload-panel {
+    .panel {
+        border-radius: 4px;
+        background-color: #fff;
+    }
+
+    .panel-heading {
+        color: #333;
+        border-color: #ddd;
+        padding: 10px 15px;
+        border-bottom: 1px solid;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    .app-multiple-select {
+        margin-bottom: 10px;
+    }
+
+    ol {
+        margin-bottom: 0;
+
+        li:last-child>p {
+            margin-bottom: 0;
+        }
+    }
+
+    .app-drop-box {
+        background: $app-drop-box-color;
+        border: 3px dashed #ddd;
+        width: 100%;
+        height: 85px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .app-dragover {
+        border: 3px dashed $app-dragover-color;
+    }
+
+    .item-name,
+    .upload-error {
+        margin-left: 20px;
+        line-height: 31px;
+    }
+
+    .upload-error {
+        color: $app-error-color;
+    }
+}
+
+.batch-layout {
+    .panel-body {
+        padding: 15px;
+
+        .container {
+            .row {
+                margin-bottom: 10px;
+
+                >p {
+                    margin-bottom: 0;
+
+                    &.app-upload-attention {
+                        color: $fontRed;
+                    }
+                }
+            }
+        }
+    }
+
+    .app-input-file {
+        margin-bottom: 15px;
+
+        .app-icon {
+            font-size: 18px;
+            margin-right: 3px;
+        }
+    }
+
+    p {
+        margin-bottom: 10px;
+        font-size: 13px;
+    }
+
+    .app-panel-footer {
+        background-color: #fff;
+        margin: 0;
+        padding-bottom: 20px;
+    }
+}
+
+.index-layout {
+    .container {
+        padding: 10px;
+        margin-bottom: -5px;
+    }
+
+    .row {
+        &:not(:last-child) {
+            margin-bottom: 12px;
+        }
+    }
+}
+/*
+.app-input-file {
+    display: none;
+}
+*/
+.file-label {
+    margin: 0;
+}
+
+.app-input-file {
+    padding: 0;
+
+    .file-label {
+        padding: 0.5rem 1rem;
+    }
+}

@@ -1,0 +1,51 @@
+<div *ngIf="displayable" class="date-time-range">
+    <div class="date-picker-wrapper">
+        <app-search-date-time-picker
+            #dateTimeFrom
+            class="date-content"
+            [id]="fromId"
+            [itemName]="from"
+            [itemParams]="params"
+            [itemResource]="resource"
+            [itemLabel]="labels"
+            [showLabel]="fromShowLabel"
+            [beginningWday]="beginningWday"
+            [enableDateRange]="fromDateRange"
+            [dateFormat]="dateFormat"
+            [futureDateSelectable]="futureDateSelectable"
+            [timeZone]="timeZone"
+            [initialBaseDateTime]="fromBaseDateTime"
+            [display]="fromDisplay"
+            [required]="required"
+            [showSeconds]="showSeconds"
+            [showMilliseconds]="showMilliseconds"
+            (selectDateTime)="handleSelectFromDateTime($event)"
+        >
+        </app-search-date-time-picker>
+    </div>
+    <p class="separator"> - </p>
+    <div class="date-picker-wrapper">
+        <app-search-date-time-picker
+            #dateTimeTo
+            class="date-content"
+            [id]="toId"
+            [itemName]="to"
+            [itemParams]="params"
+            [itemResource]="resource"
+            [itemLabel]="labels"
+            [enableDateRange]="toDateRange"
+            [showLabel]="toShowLabel"
+            [dateFormat]="dateFormat"
+            [beginningWday]="beginningWday"
+            [futureDateSelectable]="futureDateSelectable"
+            [timeZone]="timeZone"
+            [initialBaseDateTime]="toBaseDateTime"
+            [display]="toDisplay"
+            [required]="required"
+            [showSeconds]="showSeconds"
+            [showMilliseconds]="showMilliseconds"
+            (selectDateTime)="handleSelectToDateTime($event)"
+        >
+        </app-search-date-time-picker>
+    </div>
+</div>

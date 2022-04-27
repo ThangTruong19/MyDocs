@@ -1,0 +1,9 @@
+[
+    {
+      "display_sequence_no": "1",
+      "name": "車両情報",
+      "path": "cars.car_identification",
+      "control_code": "1",
+      "display_code": "1"
+    }
+]

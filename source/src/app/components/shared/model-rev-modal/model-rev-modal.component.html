@@ -1,0 +1,96 @@
+<form
+    name="modelTypeForm"
+    *ngIf="labels && resource && resource.division_code && divisionList"
+>
+    <div class="form-group">
+        <div
+            class="radio-inline"
+            *ngFor="let opt of resource.model_select_type.values; let i = index"
+        >
+            <input
+                id="model-select-type-{{ i }}"
+                class="app-input-radio"
+                type="radio"
+                [(ngModel)]="params.modelSelectType"
+                (change)="onModelSelectTypeChange()"
+                name="modelSelectType"
+                [value]="opt.value"
+            />
+            <label class="app-input-radio__label" for="model-select-type-{{ i }}">
+                {{ opt.name }}
+            </label>
+        </div>
+    </div>
+    <ng-container *ngIf="params.modelSelectType === modelSelectType.select">
+        <div class="form-group row">
+            <label class="app-modal-form__label col-sm-3">{{
+                resource.division_code.name
+            }}</label>
+            <div class="col-sm-9 app-input__small">
+                <app-selected
+                    [itemName]="'division_code'"
+                    [itemParams]="params"
+                    [itemResource]="resource"
+                    [showLabel]="false"
+                    [emitInitialRefresh]="false"
+                    (onChangeSelectItem)="onDivisionChange($event)"
+                ></app-selected>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="app-modal-form__label col-sm-3">{{
+                labels.model_type_list
+            }}</label>
+            <div class="col-sm-9">
+                <input
+                    id="model-type-all"
+                    class="app-input-checkbox checkbox-with-label"
+                    type="checkbox"
+                    [checked]="isSelectedAll(params.division_code)"
+                    (change)="toggleSelectAll($event, params.division_code)"
+                />
+                <label class="app-input-checkbox__label" for="model-type-all">
+                    {{ labels.select_all }}
+                </label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <table class="app-form-table app-table-modal table table-bordered">
+                <thead class="app-table-thead-modal">
+                    <tr>
+                        <th class="app-index-th">{{ labels.model }}</th>
+                        <th class="app-index-th th-type_rev">{{ labels.type_rev }}</th>
+                        <th class="app-index-th th-ref"></th>
+                    </tr>
+                </thead>
+                <tbody class="app-form-table-tbody">
+                    <tr *ngFor="let division of divisionList[params.division_code]">
+                        <td class="app-form-table__value model-cell">
+                            <p>{{ division.model }}</p>
+                        </td>
+                        <td class="app-form-table__value app-table_rev-cell">
+                            <button
+                                type="button"
+                                class="btn app-button-rev"
+                                [ngClass]="getClassForDivision(d)"
+                                (click)="toggleDivisionSelection(d)"
+                                *ngFor="let d of division.divisions"
+                            >
+                                {{ d.type_rev }}
+                            </button>
+                        </td>
+                        <td class="text-center btn-cell">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="executeShowRefModal(division)"
+                            >
+                                {{ labels.refer }}
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+</form>

@@ -1,0 +1,130 @@
+[
+  {
+    "path": "configuration_group_id",
+    "name": "グループ",
+    "help": "グループのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "グループ1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "グループ2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "グループ3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+
+
+  {
+    "path": "user_account",
+    "name": "ユーザID(メールアドレス)",
+    "help": "ユーザID(メールアドレス)のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "user_label",
+    "name": "ユーザ名",
+    "help": "ユーザ名のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "phone_no",
+    "name": "電話番号",
+    "help": "電話番号のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+
+
+  {
+    "path": "belonging_group_id",
+    "name": "所属",
+    "help": "所属のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "所属1",
+        "value": "100001",
+        "kind": "D"
+      },
+      {
+        "key": "所属2",
+        "value": "100002",
+        "kind": "D"
+      },
+      {
+        "key": "所属3",
+        "value": "100003",
+        "kind": "D"
+      }
+    ]
+  },
+
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+
+]

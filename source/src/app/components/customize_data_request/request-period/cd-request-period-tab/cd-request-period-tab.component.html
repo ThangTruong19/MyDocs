@@ -1,0 +1,152 @@
+<div id="cd-request-period-tab" *ngIf="labels && resource && datePickerParams">
+    <div style="display: flex;">
+        <div class="col-6 no-pad" style="display: flex;">
+            <div class="col-6">
+                <label>{{resource.request_number_definition_id_kind.name}}</label>
+                <div style="display: flex;">
+                    <div class="col-6">
+                        <input
+                            name="request_type"
+                            id="request_period_kind_{{ resource.request_number_definition_id_kind.values[0].value }}"
+                            type="radio"
+                            class="app-input-radio"
+                            [ngModelOptions]="{ standalone: true }"
+                            [value]="resource.request_number_definition_id_kind.values[0].value"
+                            [(ngModel)]="request_period_kind" />
+                        <label for="request_period_kind_{{ resource.request_number_definition_id_kind.values[0].value }}" class="app-input-radio__label kind-attribute">
+                            {{resource.request_number_definition_id_kind.values[0].name}}
+                        </label>
+                    </div>
+                    <div class="col-6">
+                        <input
+                            name="request_type"
+                            id="request_period_kind_{{ resource.request_number_definition_id_kind.values[1].value }}"
+                            type="radio"
+                            class="app-input-radio"
+                            [ngModelOptions]="{ standalone: true }"
+                            [value]="resource.request_number_definition_id_kind.values[1].value"
+                            [(ngModel)]="request_period_kind" />
+                        <label for="request_period_kind_{{ resource.request_number_definition_id_kind.values[1].value }}" class="app-input-radio__label kind-main-info">
+                            {{resource.request_number_definition_id_kind.values[1].name}}
+                        </label>
+                    </div>
+                </div>
+                <!-- <app-select-type
+                    #requestMumberDefinitionIdKind
+                    name="request_number_definition_id_kind"
+                    [labels]="labels"
+                    [targets]="resource.request_number_definition_id_kind"
+                    (changed)="onChangeRequestNumber()"
+                  >
+                </app-select-type> -->
+            </div>
+            <div class="col-6">
+                <label class="required">{{resource.request_number_definition_ids.name}} <span>*</span></label>
+                <div class="col-12">
+                    <app-multiselect
+                        [options]="listSelections"
+                        [(selectedItems)]="selectedListItems"
+                        (changeItems)="onChangeItems()"
+                        [title]="resource.request_number_definition_ids.placeholder_text">
+                    </app-multiselect>
+                </div>
+                <div class="col-12 item-selected" *ngIf="selectedListItems.length > 0">
+                    <div *ngFor="let item of selectedListItems" class="item"> {{ item.name }}
+                        <i class="app-icon-close" (click)="onClickRemoveTag(item.value)"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div>
+                <div>
+                    <app-from-to-date-time-picker
+                        #fromToDatePicker
+                        [from]="'request_number_datetime_from_ymd'"
+                        [to]="'request_number_datetime_to_ymd'"
+                        [params]="params"
+                        [resource]="resource"
+                        [labels]="labels"
+                        [beginningWday]="beginningWday"
+                        [enableDateRange]="enableDateRange"
+                        [dateFormat]="dateFormat"
+                        [timeZone]="timeZone"
+                        [showSeconds]="true"
+                        [showMilliseconds]="true"
+                        [fromShowLabel]="true"
+                        [toShowLabel]="true"
+                    >
+                    </app-from-to-date-time-picker>
+                </div>
+                <div style="display: flex; margin-top: 10px;">
+                    <div class="col-6 no-pad">
+                        <label class="required">{{resource.car_data_amount_upper_limit_active_kind.name}} <span>*</span></label>
+                        <app-selected
+                            [showLabel]="false"
+                            [itemName]="'car_data_amount_upper_limit_active_kind'"
+                            [itemParams]="params"
+                            [itemResource]="resource">
+                        </app-selected>
+                    </div>
+                    <div class="col-6">
+                        <div class="col-12">
+                            <app-common-text
+                                [itemName]="'car_data_amount_upper_limit'"
+                                [itemParams]="params"
+                                [itemResource]="resource"
+                            >
+                            </app-common-text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="col-3">
+            <label><b>{{labels.request_car_result_detail}}</b></label>
+            <app-common-table
+                [lists]="lists"
+                [thList]="thList"
+                [sortableThList]="sortableThList"
+                [(sortingParams)]="sortingParams"
+                [labels]="labels">
+            </app-common-table>
+        </div>
+    </div>
+    <div class="app-control">
+        <button type="button" class="btn btn-primary btn-send" (click)="sendData()">{{labels.data_send_request_btn}}</button>
+        <button type="button" class="btn btn-primary" (click)="sendAppConfirm()">{{labels.current_customize_request_btn}}</button>
+        <!-- TODO -->
+        <button type="button" class="btn btn-primary" (click)="expectedTrafficConfirm()">通信量確認</button>
+        <button type="button" class="btn btn-primary" (click)="testRowspan()">カスタマイズデータ送信要求確認（送信番号指定）</button>
+    </div>
+</div>
+
+<ng-template #cdRequestPeriodComfirmModalContent>
+    <div class="model-header">
+        <p class="model-title">{{ labels.customize_request_confirm_message }}</p>
+    </div>
+    <app-cd-request-period-comfirm></app-cd-request-period-comfirm>
+</ng-template>
+
+<ng-template #cdCurrentRequestComfirmModalContent>
+    <div class="model-header">
+        <p class="model-title">{{ labels.current_request_confirm_message }}</p>
+    </div>
+    <app-cd-current-request-comfirm></app-cd-current-request-comfirm>
+</ng-template>
+<!-- TODO -->
+<ng-template #cdExpectedTrafficConfirmModalContent>
+    <div class="model-header">
+        <p class="model-title">{{ labels.expected_traffic_confirm_message }}</p>
+    </div>
+    <app-cd-expected-traffic-confirm></app-cd-expected-traffic-confirm>
+</ng-template>
+
+<ng-template #cdRequestNumberComfirmModalContent>
+    <div class="model-header">
+        <p class="model-title">{{ labels.expected_traffic_confirm_message }}</p>
+    </div>
+    <app-cd-request-number-comfirm></app-cd-request-number-comfirm>
+</ng-template>

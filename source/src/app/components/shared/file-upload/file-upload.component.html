@@ -1,0 +1,136 @@
+<div class="app-file-upload-panel">
+    <ng-container [ngSwitch]="layout">
+        <div class="batch-layout" *ngSwitchCase="'batch'">
+            <div class="app-panel panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        {{ labels.upload_title }}
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <div class="container">
+                        <div class="row">
+                            <p class="app-upload-desc">{{ labels.upload_description }}</p>
+                            <p *ngIf="labels.upload_attention" class="app-upload-attention">
+                                {{ labels.upload_attention }}
+                            </p>
+                        </div>
+                        <div class="row" *ngIf="conditionsContent">
+                            <ng-container
+                                *ngTemplateOutlet="conditionsContent"
+                            ></ng-container>
+                        </div>
+                        <div class="row">
+                            <div class="app-input-file btn btn-secondary">
+                                <label class="file-label">
+                                    {{ labels.select_file }}
+                                    <input
+                                        type="file"
+                                        ng2FileSelect
+                                        class="app-input-file"
+                                        [uploader]="uploader"
+                                        accept=".xlsx"
+                                    />
+                                </label>
+                            </div>
+                            <p class="item-name" *ngIf="!hasError">
+                                {{ currentItem && currentItem.name }}
+                            </p>
+                            <p class="upload-error" *ngIf="hasError">
+                                {{ labels.file_type_error }}
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div
+                                ng2FileDrop
+                                [ngClass]="{ 'app-dragover': hasDropZoneOver }"
+                                (fileOver)="fileOver($event)"
+                                [uploader]="uploader"
+                                (onFileDrop)="onChange($event)"
+                                accept=".xlsx"
+                                class="app-drop-box"
+                            >
+                                {{ labels.upload_area }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-panel-footer">
+                    <button
+                        (click)="uploadManually()"
+                        type="button"
+                        class="btn btn-primary"
+                        [disabled]="!currentItem"
+                    >
+                        {{ labels.upload }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="index-layout" *ngSwitchCase="'index'">
+            <app-app-accordion
+                [collapsed]="collapsed"
+                [useCustomHeader]="false"
+                [title]="labels.upload_title"
+                [isLoading]="isLoading"
+                [labels]="labels"
+            >
+                <div data-app-accordion-body class="panel-body">
+                    <div class="container">
+                        <div class="row">
+                            <p>{{ labels.upload_description }}</p>
+                        </div>
+                        <div class="row" *ngIf="conditionsContent">
+                            <ng-container
+                                *ngTemplateOutlet="conditionsContent"
+                            ></ng-container>
+                        </div>
+                        <div class="row">
+                            <div class="app-input-file btn btn-secondary">
+                                <label class="file-label">
+                                    {{ labels.select_file }}
+                                    <input
+                                        type="file"
+                                        ng2FileSelect
+                                        class="app-input-file"
+                                        [uploader]="uploader"
+                                        accept=".xlsx"
+                                    />
+                                </label>
+                            </div>
+                            <p class="item-name" *ngIf="!hasError">
+                                {{ currentItem && currentItem.name }}
+                            </p>
+                            <p class="upload-error" *ngIf="hasError">
+                                {{ labels.file_type_error }}
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div
+                                ng2FileDrop
+                                [ngClass]="{ 'app-dragover': hasDropZoneOver }"
+                                [uploader]="uploader"
+                                (fileOver)="fileOver($event)"
+                                (onFileDrop)="onChange($event)"
+                                accept=".xlsx"
+                                class="app-drop-box"
+                            >
+                                {{ labels.upload_area }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-panel-footer">
+                        <button
+                            (click)="uploadManually()"
+                            type="button"
+                            class="btn btn-primary"
+                            [disabled]="!currentItem"
+                        >
+                            {{ labels.upload }}
+                        </button>
+                    </div>
+                </div>
+            </app-app-accordion>
+        </div>
+    </ng-container>
+</div>

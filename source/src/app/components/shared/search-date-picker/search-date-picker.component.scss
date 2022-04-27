@@ -1,0 +1,25 @@
+.app-search-date-picker {
+    margin: 0.25rem 0;
+
+    .app-datepicker {
+        position: absolute;
+        top: 33px;
+        right: -25px;
+        width: 30px;
+        height: 30px;
+
+        &.no-label {
+            top: 5px;
+            right: -25px;
+        }
+
+        .app-icon {
+            position: absolute;
+            top: 49%;
+            left: 52%;
+            margin: -9px 0 0 -9px;
+            font-size: 18px;
+            color: #fff;
+        }
+    }
+}

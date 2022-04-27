@@ -1,0 +1,13 @@
+<common-time-picker
+    commonFlyout
+    [id]="id"
+    [attr-aria-controls]="id"
+    [labels]="timePickerLabels"
+    [params]="timePickerParams"
+    [showSeconds]="showSeconds"
+    [showMilliseconds]="showMilliseconds"
+    (hasOpened)="onOpened()"
+    (clickSetting)="onClickSetting($event)"
+    (clickClose)="onClickClose()"
+    [ngClass]="timePickerCssClass"
+></common-time-picker>

@@ -1,0 +1,89 @@
+<div id="app-cs-detail">
+    <div class="app-control">
+        <p>Response data: {{responseData}}</p>
+        <button type="button" class="btn btn-primary btn-send" (click)="openNewDialog()">New</button>
+    </div>
+    <div class="edit-area" style="margin-top: 20px;">
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="col-sm-2">Version: </label>
+                <select [(ngModel)]="versionInput">
+                    <option value="Ver.1">Ver.1</option>
+                    <option value="Ver.2">Ver.2</option>
+                    <option value="Ver.3">Ver.3</option>
+                    <option value="Ver.4">Ver.4</option>
+                    <option value="Ver.5">Ver.5</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="col-sm-2">Start Date: </label>
+                <input type="date" [(ngModel)]="startDateInput" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="col-sm-2">End Date: </label>
+                <input type="date" [(ngModel)]="endDateInput" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="col-sm-2">Enabled / Disabled: </label>
+                <label style="margin: 5px;">有効</label>
+                <input type="radio" value="有効" name="choice" [(ngModel)]="enabledInput" [checked]="enabledInput == '有効'" />
+                <label style="margin: 5px;">無効</label>
+                <input type="radio" value="無効" name="choice" [(ngModel)]="enabledInput"  [checked]="enabledInput == '無効'" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="col-sm-2">Priority: </label>
+                <label style="margin: 5px;">高</label>
+                <input type="radio" value="高" name="priority" [(ngModel)]="priorityInput" [checked]="priorityInput == '高'" />
+                <label style="margin: 5px;">中</label>
+                <input type="radio" value="中" name="priority" [(ngModel)]="priorityInput"  [checked]="priorityInput == '中'" />
+                <label style="margin: 5px;">低</label>
+                <input type="radio" value="低" name="priority" [(ngModel)]="priorityInput"  [checked]="priorityInput == '低'" />
+            </div>
+        </div>
+    </div>
+    <div class="app-control">
+        <p>Response data: {{responseData}}</p>
+        <button type="button" class="btn btn-primary btn-send" (click)="openEditDialog()">Edit</button>
+    </div>
+
+    <div class="app-control">
+        <button type="button" class="btn btn-primary btn-send" (click)="openGetRequestDialog()">Get Request</button>
+    </div>
+
+    <div class="app-control">
+        <app-common-table
+                [lists]="lists"
+                [thList]="thList"
+                [(sortingParams)]="sortingParams"
+                [mergeRows]="false"
+                [emptyListMessage]="'Empty'"
+                >
+            </app-common-table>
+    </div>
+
+    <!-- <div class="app-control">
+        <button type="button" class="btn btn-primary btn-send" (click)="openUpdateRequestConfirmDialog()">Update Request Confirm</button>
+    </div> -->
+
+</div>
+
+<ng-template #csNewModalContent>
+    <app-cs-new [carId]="selectedCarId" [resources]="data.resource"></app-cs-new>
+</ng-template>
+<ng-template #csEditModalContent>
+    <app-cs-edit [carId]="selectedCarId" [inputParams]="inputParams" [resources]="data.resource"></app-cs-edit>
+</ng-template>
+<ng-template #csGetRequestModalContent>
+    <app-cs-get-request></app-cs-get-request>
+</ng-template>
+<ng-template #csUpdateRequestConfirmModalContent>
+    <app-cs-update-request-confirm [tableData]="lists.visibleList" [labels]="labels"></app-cs-update-request-confirm>
+</ng-template>

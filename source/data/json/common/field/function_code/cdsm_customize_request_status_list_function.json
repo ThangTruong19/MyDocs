@@ -1,0 +1,100 @@
+[
+  {
+    "display_sequence_no": "1",
+    "name": "車両ID",
+    "path": "request_status.car_identification.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "車両種類",
+    "path": "request_status.car_identification.division_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "機種",
+    "path": "request_status.car_identification.model",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "型式",
+    "path": "request_status.car_identification.type_rev",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "機番",
+    "path": "request_status.car_identification.serial",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "カスタマイズ用途定義ID",
+    "path": "request_status.customize_usage_definitions.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "カスタマイズ用途定義",
+    "path": "request_status.customize_usage_definitions.name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "カスタマイズ定義ID",
+    "path": "request_status.customize_definitions.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "カスタマイズ定義",
+    "path": "request_status.customize_definitions.name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "要求種別",
+    "path": "request_status.request_status_information.api_code",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "11",
+    "name": "要求種別",
+    "path": "request_status.request_status_information.api_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "12",
+    "name": "ステータス",
+    "path": "request_status.request_status_information.status",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "13",
+    "name": "ステータス",
+    "path": "request_status.request_status_information.status_name",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "14",
+    "name": "要求日時",
+    "path": "request_status.request_status_information.request_datetime",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

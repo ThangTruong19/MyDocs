@@ -1,0 +1,33 @@
+<div class="app-menu-list">
+    <app-accordion
+        [collapsed]="true"
+        [useCustomHeader]="true"
+        [isLoading]="isLoading"
+    >
+        <h4
+            class="panel-heading"
+            data-app-accordion-header
+            (click)="toggleIsOpened()"
+        >
+            <div class="accordion-toggle panel-title">
+                <p>{{ item["name"] }}</p>
+                  <div class="float-right clearfix">
+                      <span
+                          [ngClass]="{
+                            'app-panel-open': isOpened,
+                            'app-panel-close': !isOpened
+                          }"
+                      ></span>
+                </div>
+            </div>
+        </h4>
+        <ul data-app-accordion-body>
+            <li *ngFor="let nav of item['functions']"
+                class="app-menu-list__item"
+                [ngClass]="{ 'app-menu-list_active': isActive(nav) }"
+            >
+                <a href="javascript:void(0)" (click)="handleClick(nav.options[0].value)" draggable="false">{{ nav["name"] }}</a>
+            </li>
+        </ul>
+    </app-accordion>
+</div>

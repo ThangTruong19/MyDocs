@@ -1,0 +1,63 @@
+<p class="time-difference-title">
+    {{ resource.car_management.time_difference_setting.name }}
+</p>
+<p></p>
+
+<div class="row row-select-type">
+    <div
+        class="list-select-type"
+        *ngFor="
+          let time_difference_setting of resource.car_management
+            .time_difference_setting.values
+        "
+    >
+      <input
+          name="select-type-{{ time_difference_setting.value }}"
+          class="app-input-radio"
+          type="radio"
+          id="time-differnce-setting-{{ time_difference_setting.value }}"
+          [value]="time_difference_setting.value"
+          [(ngModel)]="timeDifferenceSetting"
+          (change)="onChangeTimeDifferenceSetting()"
+      />
+      <label
+          for="time-differnce-setting-{{ time_difference_setting.value }}"
+          class="app-input-radio__label"
+      >
+          {{ time_difference_setting.name }}
+      </label>
+    </div>
+</div>
+
+<div class="time-difference-wrapper">
+    <div
+        class="time-difference app-input__small"
+        [hidden]="timeDifferenceSetting !== timeSettingConstant.select"
+    >
+        <div class="time-difference_block">
+            <app-selected
+                #timeDifferenceSelect
+                class="time-difference_select"
+                [itemName]="'time_difference'"
+                [itemParams]="timeDifference"
+                [itemResource]="resource.car_management"
+                [showLabel]="false"
+                (onChangeSelectItem)="onTimeDiffrenceChange()"
+            ></app-selected>
+            <span>{{ labels.hour }}</span>
+        </div>
+
+        <div class="time-difference_block">
+            <app-selected
+                #timeDifferenceMinuteSelect
+                class="time-difference_select"
+                [itemName]="'time_difference_minute'"
+                [itemParams]="timeDifference"
+                [itemResource]="resource.car_management"
+                [showLabel]="false"
+                (onChangeSelectItem)="onTimeDiffrenceChange()"
+            ></app-selected>
+            <span>{{ labels.minute }}</span>
+        </div>
+    </div>
+</div>

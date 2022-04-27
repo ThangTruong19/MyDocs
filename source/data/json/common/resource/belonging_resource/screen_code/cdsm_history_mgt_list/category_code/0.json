@@ -1,0 +1,22 @@
+[
+  {
+    "path": "operation_history.code",
+    "name": "小分類",
+    "help": "小分類のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "小分類1",
+        "value": "100001",
+        "kind": "D"
+      },
+      {
+        "key": "小分類2",
+        "value": "100002",
+        "kind": "D"
+      }
+    ]
+  }
+]

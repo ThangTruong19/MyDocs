@@ -1,0 +1,22 @@
+[
+  {
+    "path": "operation_history.customize_definition_id",
+    "name": "カスタマイズ定義",
+    "help": "カスタマイズ定義のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "カスタマイズ定義4",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "カスタマイズ定義5",
+        "value": "5",
+        "kind": "D"
+      }
+    ]
+  }
+]

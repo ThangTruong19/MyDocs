@@ -1,0 +1,69 @@
+<div class="app-search-date-time-picker" *ngIf="isVisible">
+
+    <label for="app-search-date-picker-{{ itemName }}" *ngIf="showLabel">{{
+        itemResource[itemName] && itemResource[itemName].name
+    }}</label>
+    <div style="white-space: nowrap;">
+    <input
+        commonFlyoutTrigger
+        [attr-aria-controls]="id"
+        name="itemName"
+        class="app-input-date-picker form-control"
+        style="width:45%!important"
+        [type]="'text'"
+        [ngModel]="displayDateLabel"
+        [disabled]="isDisabled"
+        readonly
+    />
+
+    <button
+        type="button"
+        class="app-datepicker"
+        commonFlyoutTrigger
+        [attr-aria-controls]="id"
+        [disabled]="isDisabled"
+        [ngClass]="{ 'no-label': !showLabel }"
+    >
+        <i class="app-icon app-icon-calendar"></i>
+    </button>
+
+    <input
+        commonFlyoutTrigger
+        [attr-aria-controls]="timePickerId"
+        name="itemName"
+        class="app-input-date-picker form-control"
+        style="width:45%!important;margin-left:10px"
+        [type]="'text'"
+        [ngModel]="displayTimeLabel"
+        [disabled]="isDisabled"
+        readonly
+    />
+    <div>
+
+    <app-date-picker
+        #datePicker
+        [id]="id"
+        [labels]="itemLabel"
+        [dateFormat]="dateFormat"
+        [timeZone]="timeZone"
+        [enableDateRange]="enableDateRange"
+        [initialBaseDay]="initialBaseDay || dateDisplay"
+        [beginningWday]="beginningWday"
+        [futureDateSelectable]="futureDateSelectable"
+        [isVisibleClearButton]="!required"
+        (selectDate)="onSelectDate($event)"
+    >
+    </app-date-picker>
+
+    <app-time-picker
+        #timePicker
+        [id]="timePickerId"
+        [labels]="itemLabel"
+        [initialBaseTime]="initialBaseTime || timeDisplay"
+        [showSeconds]="showSeconds"
+        [showMilliseconds]="showMilliseconds"
+        (selectTime)="onSelectTime($event)"
+    >
+    </app-time-picker>
+
+</div>

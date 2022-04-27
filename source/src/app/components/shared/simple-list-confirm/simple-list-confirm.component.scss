@@ -1,0 +1,108 @@
+@import "../../../../assets/styles/variable";
+
+%fixed-column {
+    flex-shrink: 0;
+}
+
+%narrow-column {
+    @extend %fixed-column;
+    width: 80px;
+}
+
+%wide-column {
+    @extend %fixed-column;
+    width: 240px;
+}
+
+.app-table-modal {
+    max-height: none;
+
+    thead {
+        border-top-width: 0;
+        border-bottom-width: 0;
+    }
+
+    tr:not(:last-child) {
+
+        th,
+        td {
+            border-bottom-width: 0;
+        }
+    }
+
+    tbody.app-form-table-tbody {
+        max-height: 400px;
+        overflow-y: scroll;
+
+        tr {
+            &.warning {
+                background-color: $app-danger-color;
+
+                td.warning-column {
+                    color: $fontRed;
+                }
+            }
+
+            &.has-warning-data {
+                background-color: #fff5d4;
+
+                .result {
+                    color: $app-warning-color;
+                }
+            }
+        }
+    }
+
+    .app-table-flex-cell-modal {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        th {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            &.fixed-column {
+                @extend %narrow-column;
+            }
+
+            &.wide-column {
+                @extend %wide-column;
+            }
+        }
+
+        td {
+            display: flex;
+            width: 100%;
+            justify-content: flex-start;
+            align-items: center;
+
+            &.fixed-column {
+                @extend %narrow-column;
+            }
+
+            &.wide-column {
+                @extend %wide-column;
+            }
+
+            .result {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+
+                .app-icon-check {
+                    color: $app-green-color;
+                }
+            }
+
+            p {
+                word-break: break-all;
+            }
+        }
+    }
+}

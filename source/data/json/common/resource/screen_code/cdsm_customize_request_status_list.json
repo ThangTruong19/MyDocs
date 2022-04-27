@@ -1,0 +1,232 @@
+[
+  {
+    "path": "car_identification.division_codes",
+    "name": "車両種類",
+    "help": "車両種類のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "車両種類0",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "車両種類1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "車両種類2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "car_identification.models",
+    "name": "機種",
+    "help": "機種のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "car_identification.type_revs",
+    "name": "型式",
+    "help": "型式のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "car_identification.serials",
+    "name": "機番",
+    "help": "機番のヘルプ文言",
+    "type": -10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": []
+  },
+  {
+    "path": "customize_usage_definition_id",
+    "name": "カスタマイズ用途定義",
+    "help": "カスタマイズ用途定義のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "カスタマイズ用途定義0",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "カスタマイズ用途定義1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "カスタマイズ用途定義2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "customize_definition_id",
+    "name": "カスタマイズ定義",
+    "help": "カスタマイズ定義のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "カスタマイズ定義0",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "カスタマイズ定義1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "カスタマイズ定義2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "request_status.api_code",
+    "name": "要求種別",
+    "help": "要求種別のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "要求種別0",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "要求種別1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "要求種別2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "request_status.status",
+    "name": "ステータス",
+    "help": "ステータスのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "ステータス0",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "ステータス1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "ステータス2",
+        "value": "2",
+        "kind": "D"
+      }
+    ]
+  },
+  {
+    "path": "request_status.request_registration_date_from",
+    "name": "要求日時",
+    "help": "要求日時のヘルプ文言",
+    "type": -40,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "request_status.request_registration_date_to",
+    "name": "要求日時",
+    "help": "要求日時のヘルプ文言",
+    "type": -40,
+    "memo": "",
+    "placeholder_text": "",
+    "items": []
+  },
+  {
+    "path": "X-Count",
+    "name": "表示件数",
+    "help": "表示件数グループのヘルプ文言",
+    "type": 10,
+    "memo": "",
+    "placeholder_text": "",
+    "items": [
+      {
+        "key": "10",
+        "value": "10",
+        "kind": "D"
+      },
+      {
+        "key": "20",
+        "value": "20",
+        "kind": "D"
+      },
+      {
+        "key": "40",
+        "value": "40",
+        "kind": "D"
+      },
+      {
+        "key": "50",
+        "value": "50",
+        "kind": "D"
+      },
+      {
+        "key": "100",
+        "value": "100",
+        "kind": "D"
+      }
+    ]
+  }
+]

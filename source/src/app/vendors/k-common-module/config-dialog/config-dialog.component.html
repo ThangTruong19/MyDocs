@@ -1,0 +1,93 @@
+<div class="ConfigFlyout">
+  <div class="ConfigFlyout_Body">
+
+    <form
+      class      ="ConfigFlyout_Form"
+      (ngSubmit) ="onSubmit($event, configForm)"
+      #configForm="ngForm"
+      novalidate
+    >
+      <label *ngIf="configItems?.locale" class="ConfigFlyout_FormItem">
+        <div class="ConfigFlyout_FormLabel">{{ labels?.localeHead }}</div>
+        <div class="ConfigFlyout_FormValue">
+          <div class="ConfigFlyout_FormSelect">
+            <select name="selectLocale" [(ngModel)]="configValues.locale">
+              <option *ngFor="let v of configItems?.locale" [value]="v.value">{{ v.label }}</option>
+            </select>
+          </div>
+        </div>
+      </label>
+
+      <label *ngIf="configItems?.dateFormat" class="ConfigFlyout_FormItem">
+        <div class="ConfigFlyout_FormLabel">{{ labels?.dateFormatHead }}</div>
+        <div class="ConfigFlyout_FormValue">
+          <div class="ConfigFlyout_FormSelect">
+            <select name="selectDateFormat" [(ngModel)]="configValues.dateFormat">
+              <option *ngFor="let v of configItems?.dateFormat" [value]="v.value">{{ v.label }}</option>
+            </select>
+          </div>
+        </div>
+      </label>
+
+      <div *ngIf="configItems?.distanceUnit" class="ConfigFlyout_FormItem">
+        <div class="ConfigFlyout_FormLabel">{{ labels?.distanceUnitHead }}</div>
+        <div class="ConfigFlyout_FormValue">
+          <label *ngFor="let v of configItems?.distanceUnit; trackBy: getTrackByDistanceUnit" class="ConfigFlyout_FormRadio">
+            <input type="radio" name="selectDistanceUnit" [(ngModel)]="configValues.distanceUnit" [value]="v.value">
+            <span>{{ v.label }}</span>
+          </label>
+        </div>
+      </div>
+
+      <div *ngIf="configItems?.temperatureUnit" class="ConfigFlyout_FormItem">
+        <div class="ConfigFlyout_FormLabel">{{ labels?.temperatureUnitHead }}</div>
+        <div class="ConfigFlyout_FormValue">
+          <label *ngFor="let v of configItems?.temperatureUnit; trackBy: getTrackByTemperatureUnit" class="ConfigFlyout_FormRadio">
+            <input type="radio" name="selectTemperatureUnit" [(ngModel)]="configValues.temperatureUnit" [value]="v.value">
+            <span>{{ v.label }}</span>
+          </label>
+        </div>
+      </div>
+
+      <label *ngIf="configItems?.carDivision" class="ConfigFlyout_FormItem">
+        <div class="ConfigFlyout_FormLabel">{{ labels?.carDivisionHead }}</div>
+        <div class="ConfigFlyout_FormValue">
+          <div class="ConfigFlyout_FormSelect">
+            <select name="selectCarDivision" [(ngModel)]="configValues.carDivision">
+              <option *ngFor="let v of configItems?.carDivision" [value]="v.value">{{ v.label }}</option>
+            </select>
+          </div>
+        </div>
+      </label>
+
+      <label *ngIf="configItems?.initialScreen" class="ConfigFlyout_FormItem">
+        <div class="ConfigFlyout_FormLabel">{{ labels?.initialScreenHead }}</div>
+        <div class="ConfigFlyout_FormValue">
+          <div class="ConfigFlyout_FormSelect">
+            <select name="selectInitialScreen" [(ngModel)]="configValues.initialScreen">
+              <option *ngFor="let v of configItems?.initialScreen" [value]="v.value">{{ v.label }}</option>
+            </select>
+          </div>
+        </div>
+      </label>
+
+      <div class="ConfigFlyout_FormFooter">
+        <div class="ConfigFlyout_FormFooterItem">
+          <button
+            (click)="cancel()"
+            type   ="button"
+            class  ="ConfigFlyout_FormFooterButton  ConfigFlyout_FormFooterCancelButton"
+          >{{ labels?.cancel }}</button>
+        </div>
+
+        <div class="ConfigFlyout_FormFooterItem">
+          <button
+            type ="submit"
+            class="ConfigFlyout_FormFooterButton  ConfigFlyout_FormFooterSubmitButton"
+          >{{ labels?.submit }}</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

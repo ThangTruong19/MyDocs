@@ -1,0 +1,309 @@
+<section id="app-history-mgt-list" *ngIf="labels && resource && datePickerParams">
+    <div class="container-fluid">
+      <h2 class="app-page-title">{{ labels.title }}</h2>
+      <div class="app-content">
+        <!-- 一覧画面 -->
+        <ng-container>
+          <!-- 検索アコーディオン -->
+          <app-accordion
+            [collapsed]="collapsed"
+            [useCustomHeader]="false"
+            [title]="labels.search_condition"
+            [labels]="labels"
+            (onChangeState)="changePanelState($event)"
+          >
+            <div data-app-accordion-body>
+              <div class="container app-search">
+                <div class="row">
+                  <app-common-text
+                    class="col-sm-3"
+                    [itemName]="'model'"
+                    [itemParams]="params"
+                    [itemResource]="resource.operation_history"
+                    [maxlength]="20"
+                  >
+                  </app-common-text>
+
+                  <app-common-text
+                    class="col-sm-3"
+                    [itemName]="'type_rev'"
+                    [itemParams]="params"
+                    [itemResource]="resource.operation_history"
+                    [maxlength]="15"
+                  >
+                  </app-common-text>
+
+                  <app-common-text
+                    class="col-sm-3"
+                    [itemName]="'serials'"
+                    [itemParams]="params"
+                    [itemResource]="resource.operation_history"
+                    [maxlength]="41"
+                  >
+                  </app-common-text>
+
+                  <app-selected
+                    class="col-sm-3"
+                    *ngIf="resource.operation_history.terminalModeType"
+                    [itemName]="'terminalModeType'"
+                    [itemParams]="params"
+                    [itemResource]="resource.operation_history"
+                    [emitInitialRefresh]="false"
+                    (onChangeSelectItem)="onCustomizeUsageDefinitionIdChange($event)"
+                  >
+                  </app-selected>
+
+                  <app-selected
+                    class="col-sm-3"
+                    *ngIf="resource.operation_history.transmission_type"
+                    [itemName]="'transmission_type'"
+                    [itemParams]="params"
+                    [itemResource]="resource.operation_history"
+                    [emitInitialRefresh]="false"
+                    (onChangeSelectItem)="onCategoryCodeChange($event)"
+                  >
+                  </app-selected>
+
+                  <!--<app-selected
+                    class="col-sm-3"
+                    *ngIf="resource.operation_history.code"
+                    [itemName]="'code'"
+                    [itemParams]="params"
+                    [itemResource]="resource.operation_history"
+                    [emitInitialRefresh]="false"
+                    (onChangeSelectItem)="onCategoryCodeChange($event)"
+                  >
+                  </app-selected>-->
+
+                  <app-selected
+                    class="col-sm-3"
+                    *ngIf="resource.operation_history.representativeDb"
+                    [itemName]="'representativeDb'"
+                    [itemParams]="params"
+                    [itemResource]="resource.operation_history"
+                  >
+                  </app-selected>
+
+                  <app-selected
+                    class="col-sm-3"
+                    *ngIf="resource.operation_history.client"
+                    [itemName]="'client'"
+                    [itemParams]="params"
+                    [itemResource]="resource.operation_history"
+                  >
+                  </app-selected>
+
+                  <app-selected
+                    #belongingCustomizeUsageDefinitionId
+                    class="col-sm-3"
+                    *ngIf="resource.operation_history.customize_definition_id"
+                    [itemName]="'customize_definition_id'"
+                    [itemParams]="params"
+                    [itemResource]="resource.operation_history"
+                  >
+                  </app-selected>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  <app-selected
+                    class="col-sm-3"
+                    *ngIf="resource.operation_history.changeStatus"
+                    [itemName]="'changeStatus'"
+                    [itemParams]="params"
+                    [itemResource]="resource.operation_history"
+                  >
+                  </app-selected>
+
+
+
+                  <!--<app-common-text
+                    class="col-sm-3"
+                    [itemName]="'search_keyword'"
+                    [itemParams]="params"
+                    [itemResource]="resource.operation_history"
+                    [maxlength]="2048"
+                  >
+                  </app-common-text>
+
+                  <app-from-to-date-picker
+                    class="col-sm-6"
+                    [from]="'date_from'"
+                    [to]="'date_to'"
+                    [params]="params"
+                    [resource]="resource.operation_history"
+                    [labels]="labels"
+                    [beginningWday]="beginningWday"
+                    [enableDateRange]="enableDateRange"
+                    [dateFormat]="_dateFormat"
+                    [timeZone]="timeZone"
+                    [fromDisplay]="'date_from_formatted'"
+                    [toDisplay]="'date_to_formatted'"
+                    [required]="true"
+                  >
+                  </app-from-to-date-picker>-->
+                </div>
+              </div>
+              <div class="app-panel-footer">
+                <button
+                  (click)="onClickSearch()"
+                  type="button"
+                  class="btn btn-primary search"
+                  style="float: center;"
+                >
+                  {{ labels.search }}
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  (click)="onDownloadOk($event)"
+                  [ngClass]="{ disable: candisable(data) }"
+                  style="float: right;"
+                >
+                  {{ labels.download_template }}
+                  <i class="app-icon app-icon-download"></i>
+                </button>
+              </div>
+            </div>
+          </app-accordion>
+
+          <!-- 一覧テーブル上部検索オプション欄 -->
+          <div class="app-table-options" [hidden]="count <= 0">
+            <app-pagination
+              [count]="count"
+              [params]="pageParams"
+              [labels]="labels"
+              [element]="pageCountEl"
+              (changeState)="onPaginationChange()"
+            >
+            </app-pagination>
+
+            <div class="table-option-buttons">
+              <!--<div class="popover-wrapper">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  (click)="onClickFieldSelect($event)"
+                >
+                  {{ labels.field_select }}
+                </button>
+                <app-popover
+                  [labels]="labels"
+                  [resource]="fieldResources"
+                  [fields]="fields"
+                  [title]="labels.field_select_title"
+                  [(isVisible)]="fieldSelectPopoverVisible"
+                  (ok)="onFieldSelectOk($event)"
+                >
+                </app-popover>
+              </div>-->
+              <!--<div class="popover-wrapper">
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  (click)="onClickDownloadAll($event)"
+                  [ngClass]="{ disable: giveashit(data) }"
+                >
+                  {{ labels.download_all }}
+                  <i class="app-icon app-icon-download"></i>
+                </button>
+                <app-popover
+                  [labels]="labels"
+                  [resource]="downloadFieldResources"
+                  [fields]="downloadFields"
+                  [title]="labels.download_select_title"
+                  [(isVisible)]="downloadPopoverVisible"
+                  [download]="true"
+                  [downloadType]="resource.file_content_type"
+                  (ok)="onDownloadOk($event)"
+                ></app-popover>
+              </div>-->
+              <div class="popover-wrapper">
+                <button
+                  type="button"
+                  class="btn button-redirect"
+                  (click)="handleClick()"
+                >
+                  {{ labels.send_data_request_link }}
+                </button>
+              </div>
+              <div class="popover-wrapper">
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  (click)="onClickDownloadAll($event)"
+                >
+                  {{ labels.setting_request_modal }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 一覧テーブル -->
+          <div class="app-table-wrapper">
+            <app-common-table
+              [customTableThContent]="customTableThContent"
+              [customTableRowContent]="customTableRowContent"
+              [lists]="lists"
+              [pageParams]="pageParams"
+              [thList]="thList"
+              [sortableThList]="sortableThList"
+              [(sortingParams)]="sortingParams"
+              [labels]="labels"
+              [collapsed]="collapsed"
+              [isFetching]="isFetching"
+              (sort)="onChangeSort($event)"
+            >
+            </app-common-table>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </section>
+
+  <ng-template #customTableThContent>
+    <ng-container *ngFor="let th of thList">
+      <th
+        *ngIf="th.displayable"
+        class="app-index-th th-{{ th.shortName }}"
+        appSortingLabel
+        [ngClass]="{ 'disable-sort': !th.sortable }"
+        [(sortingParams)]="sortingParams"
+        [labelName]="th.sortKey || th.name"
+        [sortableThList]="sortableThList"
+        (sort)="onChangeSort($event)"
+      >
+        <span>{{ th.label || labels[th.shortName] }}</span>
+      </th>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #customTableRowContent let-data="data" let-title="title">
+    <ng-container *ngFor="let title of thList">
+      <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
+        <td
+          class="td-{{ title.shortName }} app-index-td d-flex align-items-center"
+        >
+          <span>{{ data[title.name] }}</span>
+        </td>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+
+  <app-sidemenu [isLoading]="isLoading"></app-sidemenu>

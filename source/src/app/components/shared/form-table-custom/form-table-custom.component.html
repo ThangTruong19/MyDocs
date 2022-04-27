@@ -1,0 +1,14 @@
+<td class="app-form-table__head" *ngIf="!customHeader">
+    <label
+        class="app-form-table__label"
+        [ngClass]="{ 'app-form-table__required': required }"
+    >
+        {{ itemResource && itemResource[itemName] && itemResource[itemName].name }}
+    </label>
+</td>
+<td class="app-form-table__head" *ngIf="customHeader">
+    <ng-container *ngTemplateOutlet="customHeader"></ng-container>
+</td>
+<td [attr.colspan]="colspan">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+</td>

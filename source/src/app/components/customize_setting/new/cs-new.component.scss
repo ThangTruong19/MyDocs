@@ -1,0 +1,35 @@
+#app-cs-new {
+    border: 1px solid #ccc;
+    height: 500px;
+    .app-title {
+        margin: 0;
+        background: #2a4dae;
+        font-size: 14px;
+        color: #fff;
+        padding: 10px;
+        font-size: 18px;
+    }
+    .app-content {
+        padding: 20px;
+        .app-message {
+            margin-bottom: 20px;
+        }
+        .app-control {
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            .btn {
+                min-width: 100px;
+                margin-right: 10px;
+                border-radius: 4px;
+                padding: 10px;
+                &.btn-primary {
+                    background: #2a4dae;
+                }
+            }
+        }
+    }
+    .app-table-wrapper{
+        width: 820px !important;
+    }
+}

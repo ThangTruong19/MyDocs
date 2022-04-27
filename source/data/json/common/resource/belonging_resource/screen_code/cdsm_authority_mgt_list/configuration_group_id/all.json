@@ -1,0 +1,32 @@
+[
+  {
+    "path": "user.groups.belonging_group.identification.label",
+    "name": "所属",
+    "help": "所属のヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "すべて",
+        "value": "-99",
+        "kind": "D"
+      },
+      {
+        "key": "所属1",
+        "value": "100001",
+        "kind": "D"
+      },
+      {
+        "key": "所属2",
+        "value": "100002",
+        "kind": "D"
+      },
+      {
+        "key": "所属3",
+        "value": "100003",
+        "kind": "D"
+      }
+    ]
+  }
+]

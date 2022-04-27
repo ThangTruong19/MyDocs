@@ -1,0 +1,360 @@
+#### 共通
+
+#
+# x. リソース取得API
+#
+# 指定した画面コードと条件、言語に応じた画面要素の情報を取得する。
+# プルダウンメニューの内容作成等に利用する。
+#
+- request:
+    url: /v1/applications/views/resources/search
+    method: POST
+  response:
+    type: js
+    file: json/common/getResources.js
+
+#
+# x. アプリケーション機能取得API
+#
+# アプリケーション機能に関わる情報を取得する。
+# サイドメニュー / ダッシュボードの項目作成に使用する。
+#
+# @param screen_id
+- request:
+    url: /v1/applications/functions/search
+    method: POST
+  response:
+    type: js
+    file: json/common/cdsm/getFunctions.js
+
+#
+# x. ラベル取得API
+#
+# 指定したファイルIdと言語に応じたリソース言語情報を取得する。
+# 画面内の文言表示等に利用する。
+#
+# @param screen_code 半角英数字,半角アンダーバーで構成される画面名
+#
+- request:
+    url: /v1/applications/views/labels
+    method: GET
+  response:
+    type: js
+    file: json/common/cdsm/getLabels.js
+
+#
+# x. 実行可能API一覧取得API
+#
+# ユーザーが利用可能なAPI一覧を取得する。
+#
+- request:
+    url: /catalog
+    method: GET
+  response:
+    type: js
+    file: json/common/getCatalog.js
+
+#
+# x. 指定項目リソース取得API
+#
+# 指定項目リソースを取得する。
+#
+# @param function_code 半角英数字,半角アンダーバーで構成される機能名
+#
+- request:
+    url: /v1/applications/fields/resources
+    method: GET
+  response:
+    type: js
+    file: json/common/getFieldResources.js
+
+#
+# x. 指定項目取得API
+#
+# 設定済みの指定項目と外部アプリケーションの表示制御設定を取得する。
+# 取得した指定項目は一覧画面のテーブルヘッダなどに利用する。
+#
+# @param function_code 半角英数字、半角記号で構成される機能コード
+#
+- request:
+    url: /v1/applications/fields
+    method: GET
+  response:
+    type: js
+    file: json/common/getFields.js
+
+#
+# x. 指定項目更新API
+#
+# 指定項目を更新する。
+#
+- request:
+    url: /v1/applications/fields
+    method: PUT
+  response:
+    type: js
+    file: json/common/updateFields.js
+
+#
+# x. 検索条件取得API
+#
+# 指定した画面の検索条件を取得する。
+#
+- request:
+    url: /v1/applications/search_condition
+    method: GET
+  response:
+    type: js
+    file: json/common/getSearchCondition.js
+
+#
+# x. 検索条件更新API
+#
+# 指定した画面の検索条件を更新する。
+#
+- request:
+    url: /v1/applications/search_condition
+    method: PUT
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 検索条件初期化API
+#
+# 指定した画面の検索条件を初期化する。
+#
+- request:
+    url: /v1/applications/search_condition
+    method: DELETE
+  response:
+    status: 204
+    file: json/common/noContent.json
+
+#
+# x. 外部アプリ連携ログ出力 API (POST)
+#
+# 次世代KOMTRAXの業務APIを使用する外部アプリのログを格納する。
+#
+- request:
+    url: /v1/applications/extapplog
+    method: POST
+  response:
+    type: js
+    file: json/common/asyncNoContent.js
+
+#
+# x. ファイルダウンロード API
+#
+# ID で指定されたファイルをダウンロードする。
+#
+- request:
+    url: /v1/applications/files/:id
+    method: GET
+  response:
+    status: 200
+    header:
+      'Content-Type': 'application/octet-stream'
+      'Content-Disposition': 'attachment; filename*=utf-8''''sample.csv'
+    file: json/common/downloads/sample.csv
+
+
+#
+# x. 非同期処理結果取得 API
+#
+# 非同期処理の作成結果ファイル、または処理状態を取得する。
+#
+- request:
+    url: /v1/applications/asyncs/:id
+    method: GET
+  response:
+    type: js
+    file: json/common/getAsyncResult.js
+
+#
+# x. ユーザ設定取得 API (GET)
+#
+# ユーザ設定を取得する
+#
+- request:
+    url: /v1/user_settings
+    method: GET
+  response:
+    status: 200
+    file: json/common/cdsm/getUserSetting.json
+
+#
+# x. ユーザ設定更新 API (PUT)
+#
+# ユーザ設定を取得する
+#
+- request:
+    url: /v1/user_settings
+    method: PUT
+  response:
+    status: 200
+    file: json/common/cdsm/putUserSetting.json
+
+# x. ユーザ一覧取得 API (GET)
+#
+# ユーザ一覧を取得する。
+#
+- request:
+    url: /v1/users
+    method: GET
+  response:
+    type: js
+    file: json/cdsm/users/getUser.js
+
+#
+# x. ユーザ権限更新 API (PUT)
+#
+# ユーザ権限を更新する。
+#
+- request:
+    url: /v1/users/:id/authorities
+    method: PUT
+  response:
+    status: 200
+    file: json/cdsm/users/putAuthorities.json
+
+#
+# x. カスタマイズ操作履歴一覧取得 API (POST)
+#
+# カスタマイズ操作履歴の一覧を取得する
+#
+- request:
+    url: /v1/car/customizes/usage/definition/histories/search
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/history/postHistoryMgtList.js
+
+#
+# x. 操作履歴ファイル作成 API (POST)
+#
+# 操作履歴ファイルを作成する
+#
+- request:
+    url: /v1/applications/histories/search/file_create
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/histories/createFile.js
+
+#
+# x. カスタマイズ操作履歴ファイル作成 API (POST)
+#
+# カスタマイズ操作履歴ファイル作成を作成する
+#
+- request:
+    url: /v1/car/customizes/usage/definition/histories/search/file_create
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/history/createFile.js
+
+#
+# x. カスタマイズ要求ステータス一覧取得 API (POST)
+#
+# カスタマイズ要求ステータスの一覧を取得する
+#
+- request:
+    url: /v1/cars/customize_requests/status/search
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/customize_request_status/postCustomizeRequestStatusList.js
+
+#
+# x. 車両一覧取得 (POST)
+#
+# 車両一覧を取得する。
+#
+- request:
+    url: /v1/cars/search
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/site-management/postCars.js
+
+# x. カスタマイズ用途定義情報 (GET)
+#
+# カスタマイズ用途定義情報得する。
+#
+- request:
+    url: /v1/cars/:car_id/customize_definitions
+    method: GET
+  response:
+    type: js
+    file: json/cdsm/customize/customizeDefinitions.js
+
+# x. カスタマイズ設定取得要求 (GET)
+#
+# カスタマイズ設定取得要求得する。
+#
+- request:
+    url: /v1/cars/request_sets/customize_usage_definitions/m2s
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/customize/customizeUsageDefinitions.js
+
+#
+# x. 車両カスタマイズ用途定義詳細取得 (POST)
+#
+# リクエストキーを取得する。
+#
+- request:
+    url: /v1/cars/customize_usage_definition_details
+    method: GET
+  response:
+    type: js
+    file: json/cdsm/customize/customizeUsageDefinitionDetails.js
+
+#
+# x. カスタマイズデータ送信要求（期間指定） (POST)
+#
+# リクエストキーを取得する。
+#
+- request:
+    url: /v1/cars/requests/customize_data/period/m2s
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/car/postPeriod.js
+
+#
+# x. 車両カスタマイズ用途定義詳細取得 API (GET)
+#
+# 車両カスタマイズ用途定義詳細を取得する
+#
+- request:
+    url: /v1/cars/:car_id/customize_usage_definition_details
+    method: GET
+  response:
+    type: js
+    file: json/cdsm/customize_setting/getCustomizeUsageDefinitionDetails.js
+
+# x. Not Found
+#
+# 上記以外のリクエストはNot Found。
+#
+- request:
+    url: /v1/*
+    method: GET
+  response:
+    status: 404
+    file: json/common/notFound.json
+
+#
+# x. カスタマイズ操作履歴一覧取得 API (POST)
+#
+# カスタマイズ操作履歴の一覧を取得する
+#
+- request:
+    url: /v1/car/search
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/car/postCarMgtList.js

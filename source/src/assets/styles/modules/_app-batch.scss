@@ -1,0 +1,28 @@
+#app-car-batch {
+  .app-order-list {
+    counter-reset: li; /* Initiate a counter */
+    padding: 0; /* Remove the default left padding */
+    list-style: none; /* Disable the normal item numbering */
+
+    li {
+      position: relative; /* Create a positioning context */
+      padding-left: 30px;
+
+      &:before {
+        content: counter(li); /* Use the counter as content */
+        counter-increment: li; /* Increment the counter by 1 */
+        position: absolute;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        left: 0;
+        background: #8cc7fa;
+        border-radius: 50%;
+        line-height: 20px;
+        text-align: center;
+        font-size: 13px;
+        color: #fff;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.ui-select-toggle {
+  position: static !important;
+  border-right: 29px solid $app-darkgray-color;
+  overflow: hidden;
+  > .caret {
+    color: white;
+  }
+}
+
+.ui-select-bootstrap > .ui-select-choices {
+  width: auto !important;
+  min-width: 100%;
+}
