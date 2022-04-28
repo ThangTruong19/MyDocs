@@ -9,7 +9,9 @@ import {
 import * as moment from 'moment';
 import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { DateFormat } from 'app/constants/date-format';
-import { SearchDatePickerComponent } from 'app/components/shared/search-date-picker/search-date-picker.component';
+import {
+    SearchDatePickerComponent
+} from 'app/components/shared/search-date-picker/search-date-picker.component';
 
 import { Labels } from 'app/types/common';
 
@@ -43,6 +45,7 @@ export class FromToDatePickerComponent implements OnInit {
     @Input() public fromDisplay?: string;
     @Input() public toDisplay?: string;
     @Input() public required?: boolean;
+
     @Output() public selectFrom: EventEmitter<string> = new EventEmitter();
     @Output() public selectTo: EventEmitter<string> = new EventEmitter();
 
@@ -54,12 +57,12 @@ export class FromToDatePickerComponent implements OnInit {
     public fromTodayButtonDisabled = false;
     public toTodayButtonDisabled = false;
 
-    constructor(private datepickerService: DatePickerService) { }
+    constructor(private datePickerService: DatePickerService) { }
 
     ngOnInit(): void {
         this.displayable =
             this.resource[this.from] != null && this.resource[this.to] != null;
-        this.enableDateRange = this.datepickerService.parseDateRange(
+        this.enableDateRange = this.datePickerService.parseDateRange(
             this.enableDateRange
         );
 
@@ -92,7 +95,7 @@ export class FromToDatePickerComponent implements OnInit {
         );
 
         if (this.toBaseDay == null || this.toBaseDay.length === 0) {
-            const compareValues: moment.Moment[] = [this.datepickerService.toMoment()];
+            const compareValues: moment.Moment[] = [this.datePickerService.toMoment()];
 
             if (this.fromBaseDay != null && this.fromBaseDay.length > 0) {
                 compareValues.push(moment(this.fromBaseDay, DateFormat.hyphen));
@@ -115,7 +118,7 @@ export class FromToDatePickerComponent implements OnInit {
         );
 
         if (this.fromBaseDay == null || this.fromBaseDay.length === 0) {
-            const compareValues: moment.Moment[] = [this.datepickerService.toMoment()];
+            const compareValues: moment.Moment[] = [this.datePickerService.toMoment()];
 
             if (this.toBaseDay != null && this.toBaseDay.length > 0) {
                 compareValues.push(moment(this.toBaseDay, DateFormat.hyphen));
@@ -131,7 +134,7 @@ export class FromToDatePickerComponent implements OnInit {
         const newRange: string[] = [...dateRange];
 
         if (dateTo != null && dateTo.length > 0) {
-            newRange[1] = this.datepickerService
+            newRange[1] = this.datePickerService
                 .toMoment(dateTo, true)
                 .format('YYYYMMDD');
         }
@@ -143,11 +146,12 @@ export class FromToDatePickerComponent implements OnInit {
         const newRange: string[] = [...dateRange];
 
         if (dateFrom != null && dateFrom.length > 0) {
-            newRange[0] = this.datepickerService
+            newRange[0] = this.datePickerService
                 .toMoment(dateFrom, true)
                 .format('YYYYMMDD');
         }
 
         return newRange;
     }
+
 }

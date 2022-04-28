@@ -32,11 +32,12 @@ export class EntranceService {
     /**
      * nextに代入するためのURLを生成する
      */
-     public buildNextUrl(url: string): string {
+    public buildNextUrl(url: string): string {
         const base: HTMLBaseElement = document.querySelector('base');
 
         return base
             ? base.href.replace(/\/$/, '') + `/${url.replace(/^\//, '')}`
             : url;
     }
+
 }

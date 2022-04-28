@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, Temp
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { SelectTypeComponent } from 'app/components/shared/select-type/select-type.component';
-import { DateFormat } from 'app/constants/date-format';
+import { DateFormat, DateTimeFormat } from 'app/constants/date-format';
 import { UserSettingService } from 'app/services/api/user-setting.service';
 import { CdRequestPeriodTabService } from 'app/services/customize_data_request/request-period/cd-request-period-tab/cd-request-period-tab.service';
 import { CdRequestPeriodComfirmService } from 'app/services/customize_data_request/request-period/request-period-comfirm/cd-request-period-comfirm.service';
@@ -26,7 +26,7 @@ export class CdRequestPeriodTabComponent implements OnInit {
   @ViewChild('cdExpectedTrafficConfirmModalContent', { static: false }) cdExpectedTrafficConfirmModalContent: TemplateRef<null>;
   @ViewChild('cdRequestNumberComfirmModalContent', { static: false }) cdRequestNumberComfirmModalContent: TemplateRef<null>;
 
-  @ViewChild('requestMumberDefinitionIdKind', { static: false })  requestMumberDefinitionIdKind: SelectTypeComponent;
+  @ViewChild('requestMumberDefinitionIdKind', { static: false }) requestMumberDefinitionIdKind: SelectTypeComponent;
 
   modalResource: any;
   @Input() labels: any;
@@ -358,22 +358,26 @@ export class CdRequestPeriodTabComponent implements OnInit {
 
     _.set(
       this.params,
-      'request_number_datetime_from_ymd',
-      today.clone().subtract(1, 'month').format(DateFormat.hyphen)
+      'request_number_datetime_from',
+      today.clone().format(DateTimeFormat.slashDateTimeMilliseconds)
     );
     _.set(
       this.params,
-      'request_number_datetime_from_ymd_formatted',
+      'request_number_datetime_from_formatted',
       today
-        .clone()
-        .subtract(1, 'month')
-        .format(this.datePickerService.inputDateFormat(this.dateFormat))
+        .clone().format(this.datePickerService.inputDateFormat(this.dateFormat))
     );
-    _.set(this.params, 'request_number_datetime_to_ymd', today.format(DateFormat.hyphen));
+    _.set(this.params, 'request_number_datetime_to', today
+      .add(23, 'hours')
+      .add(59, 'minutes')
+      .add(59, 'seconds')
+      .add(999, 'milliseconds')
+      .format(DateTimeFormat.slashDateTimeMilliseconds));
     _.set(
       this.params,
-      'request_number_datetime_to_ymd_formatted',
-      today.format(this.datePickerService.inputDateFormat(this.dateFormat))
+      'request_number_datetime_to_formatted',
+      today
+        .format(this.datePickerService.inputDateFormat(this.dateFormat))
     );
   }
 
@@ -413,7 +417,7 @@ export class CdRequestPeriodTabComponent implements OnInit {
    * 要求種別変更時コールバック
    */
   onChangeRequestNumber(): void {
-    const params = this.requestMumberDefinitionIdKind.getSelectedParam() ;
+    const params = this.requestMumberDefinitionIdKind.getSelectedParam();
     console.log("params", params);
   }
 }

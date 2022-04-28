@@ -14,6 +14,7 @@ import { AppDatePickerComponent } from 'app/components/shared/date-picker/date-p
 import { AppTimePickerComponent } from 'app/components/shared/time-picker/time-picker.component';
 import { Labels } from 'app/types/common';
 import { TimePickerParams } from 'app/types/calendar';
+import { TimePickerService } from 'app/services/shared/time-picker.service';
 
 type Moment = moment.Moment;
 
@@ -67,7 +68,6 @@ export class SearchDateTimePickerComponent implements OnInit {
     public initialBaseDay: string;
     public initialBaseTime: string;
 
-
     public get displayDateLabel(): string {
 
         if (
@@ -90,8 +90,8 @@ export class SearchDateTimePickerComponent implements OnInit {
         } else {
             return '';
         }
-
     }
+
     public get displayTimeLabel(): string {
 
         if (
@@ -100,7 +100,6 @@ export class SearchDateTimePickerComponent implements OnInit {
         ) {
             return '';
         }
-
 
         const itemParamVal: string = this.itemParams[this.itemName];
         const splitItemParams: string[] = itemParamVal.split(this.DATE_TIME_SEPARATOR);
@@ -112,13 +111,7 @@ export class SearchDateTimePickerComponent implements OnInit {
             }
             return this.timeDisplay;
         } else if (splitItemParams.length > 0) {
-            if (this.showMilliseconds) {
-                this.timeDisplay = '00:00:00.000';
-            } else if (this.showSeconds) {
-                this.timeDisplay = '00:00:00';
-            } else {
-                this.timeDisplay = '00:00';
-            }
+            this.timeDisplay = this.timePickerService.getInitTimeValue(this.showSeconds, this.showMilliseconds);
             return this.timeDisplay;
         } else {
             return '';
@@ -126,7 +119,8 @@ export class SearchDateTimePickerComponent implements OnInit {
     }
 
     constructor(
-        private datePickerService: DatePickerService
+        private datePickerService: DatePickerService,
+        private timePickerService: TimePickerService
     ) { }
 
     public ngOnInit(): void {
@@ -166,7 +160,7 @@ export class SearchDateTimePickerComponent implements OnInit {
      * @param timeParams 選択済日付
      */
     public onSelectTime(timeParams: TimePickerParams) {
-        this.timeDisplay = timeParams.times;
+        this.timeDisplay = timeParams.selectedTime;
         const dateTime: string = this.getDateTimeDisplay(this.dateDisplay, this.timeDisplay);
         this.itemParams[this.itemName] = dateTime;
         this.selectDateTime.emit(this.itemParams[this.itemName]);

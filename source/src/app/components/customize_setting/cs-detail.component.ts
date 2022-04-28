@@ -14,7 +14,6 @@ import * as _ from 'lodash';
 import { AbstractIndexComponent } from '../shared/abstract-component/abstract-index.component';
 import { CsNewComponent } from './new/cs-new.component';
 import { CsEditComponent } from './edit/cs-edit.component';
-import { CsUpdateRequestConfirmComponent } from './update-request-confirm/cs-update-request-confirm.component';
 
 @Component({
   selector: 'app-cs-detail',
@@ -26,10 +25,8 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
   @ViewChild('csNewModalContent', { static: false }) csNewModalContent: TemplateRef<null>;
   @ViewChild('csEditModalContent', { static: false }) csEditModalContent: TemplateRef<null>;
   @ViewChild('csGetRequestModalContent', { static: false }) csGetRequestModalContent: TemplateRef<null>;
-  @ViewChild('csUpdateRequestConfirmModalContent', { static: false }) csUpdateRequestConfirmModalContent: TemplateRef<null>;
   @ViewChild(CsNewComponent) newChildComponent: CsNewComponent;
   @ViewChild(CsEditComponent) editChildComponent: CsEditComponent;
-  @ViewChild(CsUpdateRequestConfirmComponent) updateRequestConfirm: CsUpdateRequestConfirmComponent;
 
   fields: Fields;
   fixedThList: TableHeader[];
@@ -269,5 +266,4 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
       }
     );
   }
-
 }

@@ -97,34 +97,12 @@ module.exports = function (args) {
         options: [],
         functions: [
           {
-            code: 'cdsm_tos_link',
-            name: '使用許諾契約書',
-            options: [
-              {
-                key: 'link',
-                value: '/entrance/tos',
-              },
-            ],
-            functions: [],
-          },
-          {
             code: 'cdsm_group_switch_link',
             name: 'グループ変更',
             options: [
               {
                 key: 'link',
                 value: '/entrance/group/switch',
-              },
-            ],
-            functions: [],
-          },
-          {
-            code: 'cdsm_faq_link',
-            name: 'FAQ',
-            options: [
-              {
-                key: 'link',
-                value: 'https://google.com',
               },
             ],
             functions: [],
@@ -147,24 +125,6 @@ module.exports = function (args) {
         name: '環境設定',
         options: [],
         functions: [
-          {
-            code: 'cdsm_start_page_function',
-            name: '初期表示ページ',
-            options: [],
-            functions: [
-              {
-                "code": "cdsm_home_link",
-                "options": [
-                    {
-                        "value": "/",
-                        "key": "link"
-                    }
-                ],
-                "name": "ホーム",
-                "functions": []
-              }
-            ],
-          },
         ],
       },
       {

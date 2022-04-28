@@ -111,8 +111,4 @@ export abstract class AbstractFormTableTextComponent implements OnInit {
         this._setViewData();
     }
 
-    private _checkErrorOccurrence(errorData: any, path: string): boolean {
-        return _.some(errorData, data => _.includes(data.keys, path));
-    }
-
 }

@@ -108,7 +108,7 @@ export class FormTableDateTimePickerComponent extends AbstractFormTableTextCompo
      * @param timeParams 選択済日付
      */
     public onSelectTime(timeParams: TimePickerParams) {
-        this.timeDisplay = timeParams.times;
+        this.timeDisplay = timeParams.selectedTime;
         const dateTime: string = this.getDateTimeDisplay(this.dateDisplay, this.timeDisplay);
         this.itemParams[this.itemName] = dateTime;
         this.ref.detectChanges();

@@ -74,7 +74,6 @@ export class PopoverComponent implements OnInit {
         if (val == null) {
             return;
         }
-        this._fields = val;
         val.forEach((f: any) => {
             if (parseInt(f.display_code, 10) > parseInt(DisplayCode.none, 10)) {
                 this.checkedItems[f.path] = true;
@@ -103,8 +102,6 @@ export class PopoverComponent implements OnInit {
     private el: HTMLElement;
     private _downloadTypes: any;
     private _resource: any;
-    private _fields: any;
-    private mimeType = MimeType;
 
     public get okButtonEnabled(): boolean {
         return some(this.checkedItems, v => v);
@@ -115,7 +112,7 @@ export class PopoverComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        document.body.addEventListener('click', e => {
+        document.body.addEventListener('click', (e: MouseEvent) => {
             if (!this.el.parentElement.contains(<Node>e.target)) {
                 this.isVisible = false;
             }

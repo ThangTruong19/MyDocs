@@ -26,10 +26,11 @@ export interface ModalOption {
 
 @Injectable()
 export class ModalService {
-    CLOSE_TIMEOUT = 300;
 
-    modalRef: NgbModalRef;
-    modalStack: NgbModalRef[] = [];
+    private readonly CLOSE_TIMEOUT = 300;
+
+    private modalRef: NgbModalRef;
+    private modalStack: NgbModalRef[] = [];
     private _currentScrollY: number;
     private _enableOk: boolean;
 

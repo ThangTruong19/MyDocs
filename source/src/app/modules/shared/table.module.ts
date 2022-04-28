@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppCommonTableComponent } from 'app/components/shared/common-table/common-table.component';
 import { ScrollLoadDirective } from 'app/directives/scroll-load/scroll-load.directive';
-//import { ChangeTableHeightDirective } from 'app/directives/change-table-height/change-table-height.directive';
+import { ChangeTableHeightDirective } from 'app/directives/change-table-height/change-table-height.directive';
 import { TableCheckboxDirective } from 'app/directives/table-checkbox/table-checkbox.directive';
 import { SortingLabelDirective } from 'app/directives/sorting-label/sorting-label.directive';
+
 @NgModule({
     declarations: [
         AppCommonTableComponent,
         ScrollLoadDirective,
-        //  ChangeTableHeightDirective,
+        ChangeTableHeightDirective,
         TableCheckboxDirective,
         SortingLabelDirective,
     ],

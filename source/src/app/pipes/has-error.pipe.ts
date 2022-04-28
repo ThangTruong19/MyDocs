@@ -1,7 +1,6 @@
 import { some, includes } from 'lodash';
 import { Pipe, PipeTransform } from '@angular/core';
-
-import { ErrorData } from '../types/error-data';
+import { ErrorData } from 'app/types/error-data';
 
 @Pipe({
     name: 'hasError',

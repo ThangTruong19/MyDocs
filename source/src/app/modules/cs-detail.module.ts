@@ -8,6 +8,9 @@ import { CsNewComponent } from "app/components/customize_setting/new/cs-new.comp
 import { CustomizeSettingService } from "app/services/customize_setting/customize-setting.service";
 import { CsDetailService } from 'app/services/customize_setting/cs-detail.service';
 import { AppCommonModule } from "./shared/app-common.module";
+import { CsUpdateRequestConfirmComponent } from "app/components/customize_setting/update-request-confirm/cs-update-request-confirm.component";
+import { CsImmediateUpdateRequestConfirmComponent } from "app/components/customize_setting/immediate-update-request-confirm/cs-immediate-update-request-confirm.component";
+import { CsRequestResendConfirmComponent } from "app/components/customize_setting/request-resend-confirm/cs-request-resend-confirm.component";
 
 @NgModule({
     imports: [
@@ -19,7 +22,10 @@ import { AppCommonModule } from "./shared/app-common.module";
         CsDetailComponent,
         CsNewComponent,
         CsEditComponent,
-        CsGetRequestComponent
+        CsGetRequestComponent,
+        CsUpdateRequestConfirmComponent,
+        CsImmediateUpdateRequestConfirmComponent,
+        CsRequestResendConfirmComponent
     ],
     providers: [
         CustomizeSettingService,

@@ -1,0 +1,10 @@
+#app-cs-immediate-update-request-confirm {
+    .row{
+        .continuous_kind{
+            margin-top: 5px;
+        }
+        label[for=stop], label[for=continue] {
+            padding: 0px 5px;
+        }
+    }
+}

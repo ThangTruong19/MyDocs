@@ -6,7 +6,7 @@ import { SearchDateTimePickerComponent } from 'app/components/shared/search-date
 import { CommonTimePickerComponent } from 'app/components/shared/time-picker/common-time-picker.component';
 import { AppTimePickerComponent } from 'app/components/shared/time-picker/time-picker.component';
 import { DatePickerModule } from 'app/modules/shared/date-picker.module';
-import { DatePickerService } from 'app/services/shared/date-picker.service';
+import { TimePickerService } from 'app/services/shared/time-picker.service';
 
 @NgModule({
     declarations: [
@@ -23,6 +23,6 @@ import { DatePickerService } from 'app/services/shared/date-picker.service';
         CommonTimePickerComponent,
         AppTimePickerComponent,
     ],
-    providers: [DatePickerService],
+    providers: [TimePickerService],
 })
 export class TimePickerModule { }

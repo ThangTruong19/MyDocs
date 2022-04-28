@@ -1,9 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Navigation } from 'app/types/navigation';
-import { NavigationService } from 'app/services/shared/navigation.service';
 import { flatten } from 'lodash';
 import * as $ from 'jquery';
+import { Navigation } from 'app/types/navigation';
+import { NavigationService } from 'app/services/shared/navigation.service';
 
 @Component({
     selector: 'app-sidemenu',
@@ -21,9 +21,12 @@ export class SidemenuComponent {
         return this.navigationService.navigationsSideMenu;
     }
 
-    constructor(private navigationService: NavigationService) { }
+    constructor(
+        private navigationService: NavigationService
+    ) {
+    }
 
-    public toggleMenuVisible($event: Event): void {
+    public toggleMenuVisible(): void {
         this.isVisible = !this.isVisible;
     }
 
@@ -40,10 +43,10 @@ export class SidemenuComponent {
 
     }
 
-    public onDragEnd($event: Event): void {
+    public onDragEnd(): void {
         $('.app-sidemenu-ghost').remove();
 
-        const ref = this.navigationService.navigationsSideMenu;
+        const ref: Navigation[] = this.navigationService.navigationsSideMenu;
         this.navigationService.saveNavigationOrder(ref);
         this.orderChanged.emit();
     }
@@ -56,12 +59,11 @@ export class SidemenuComponent {
     styleUrls: ['./sidemenu.component.scss'],
 })
 export class SideMenuItemComponent {
-    operations: object;
+
+    @Input() public item: any;
+    @Input() public isLoading: boolean;
+
     public isOpened = false;
-
-    @Input() item: any;
-
-    @Input() isLoading: boolean;
 
     constructor(
         private route: ActivatedRoute,

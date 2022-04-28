@@ -1,5 +1,5 @@
 <nav id="app-sidemenu" [ngClass]="{ visible: isVisible }">
-    <a (click)="toggleMenuVisible($event)">
+    <a href="javascript:void(0)" (click)="toggleMenuVisible()">
       <i
           class="app-icon"
           [ngClass]="{
@@ -18,7 +18,7 @@
             dnd-sortable
             [sortableIndex]="i"
             (dragstart)="onDragStart($event)"
-            (dragend)="onDragEnd($event)"
+            (dragend)="onDragEnd()"
         >
             <app-sidemenu-item
                 [isLoading]="isLoading"
@@ -29,5 +29,5 @@
 </nav>
 <div *ngIf="isVisible"
     class="app-sidemenu-backdrop"
-    (click)="toggleMenuVisible($event)"
+    (click)="toggleMenuVisible()"
 ></div>

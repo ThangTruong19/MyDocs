@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { CommonMonthPickerMonth } from 'app/vendors/k-common-module/interfaces';
-
 import {
     DateTimeFormatKind,
     YearMonthFormat,
 } from 'app/constants/date-format';
 import { Calendar } from 'app/constants/calendar';
-
-import { CalendarService } from './calendar.service';
+import { CalendarService } from 'app/services/shared/calendar.service';
 
 type Moment = moment.Moment;
 

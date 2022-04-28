@@ -20,7 +20,7 @@ export interface TimePickerParams {
     minutes: string;
     seconds: string;
     milliseconds: string;
-    times: string;
+    selectedTime: string;
 }
 
 export interface TimePickerLabels {

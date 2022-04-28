@@ -22,6 +22,7 @@
                     [itemName]="'configuration_group_id'"
                     [itemParams]="params"
                     [itemResource]="resource"
+                    [emitInitialRefresh]="false"
                     >
                  </app-selected>
 
@@ -119,85 +120,88 @@
             [customTableThContent]="customTableThContent"
             [customTableRowContent]="customTableRowContent"
             [lists]="lists"
+            [params]="params"
             [pageParams]="pageParams"
+            [sortingParams]="sortingParams"
             [thList]="thList"
             [sortableThList]="sortableThList"
-            [(sortingParams)]="sortingParams"
             [labels]="labels"
             [collapsed]="collapsed"
             [isFetching]="isFetching"
             (sort)="onChangeSort($event)"
             >
+            <ng-template #customTableThContent>
+              <ng-container *ngFor="let th of thList">
+                <th
+                  *ngIf="th.displayable"
+                  class="app-index-th th-{{ th.shortName }}"
+                  appSortingLabel
+                  [ngClass]="{ 'disable-sort': !th.sortable }"
+                  [(sortingParams)]="sortingParams"
+                  [labelName]="th.sortKey || th.name"
+                  [sortableThList]="sortableThList"
+                  (sort)="onChangeSort($event)"
+                >
+                  <span>{{ th.label || labels[th.shortName] }}</span>
+                </th>
+              </ng-container>
+            </ng-template>
+            <ng-template #customTableRowContent let-data="data" let-idx="idx" let-title="title" >
+              <ng-container *ngFor="let title of thList"  [ngSwitch]="title.name">
+                <ng-container *ngIf="title.displayable">
+
+                 <td
+                 *ngSwitchCase="'users.group.granted_role.name'"
+                      class="td-{{
+                        title.shortName
+                      }} app-index-td d-flex align-items-center select-authority-cell"
+                    >
+                  <app-authority-select
+                    [authorities]="authorities"
+                    [labels]="labels"
+                    [selectedUser]="data"
+                    [selectedAuthorities]="selectedAuthorities"
+                    [customSelectButtons]="customSelectButtons"
+                    [defaultAuthorities]="defaultAuthorities"
+                    [selectedAuthorities]="selectedAuthorities"
+                    [customSelectButtons]="customSelectButtons"
+                    [customSelectedAuthorities]="customSelectedAuthorities"
+                    [allowUnselectedAuthorities]="true"
+                    (select)="onCloseAuthoritySelectModal($event, data)"
+                  ></app-authority-select>
+                  <span>
+                    <a
+                      class="select-authority"
+                      href="javascript:void(0)"
+                      (click)="onClickSelect(data, idx)"
+                    >
+                   {{ data | at: 'users.group.granted_role.name' }}
+                   </a>
+                   </span>
+                  </td>
+                  <td
+                  *ngSwitchCase="'users.group.configuration_groups.label'"
+                  class="td-{{
+                    title.shortName
+                  }} app-index-td d-flex align-items-center"
+                >
+                {{ data | at: 'users.group.configuration_groups.label' }}
+                  </td>
+                  <td
+                  *ngSwitchDefault
+                    class="td-{{ title.shortName }} app-index-td d-flex align-items-center"
+                  >
+                    <span>{{ data[title.name] }}</span>
+                  </td>
+                </ng-container>
+              </ng-container>
+            </ng-template>
             </app-common-table>
           </div>
         </ng-container>
       </div>
     </div>
   </section>
-
-  <ng-template #customTableThContent>
-    <ng-container *ngFor="let th of thList">
-      <th
-        *ngIf="th.displayable"
-        class="app-index-th th-{{ th.shortName }}"
-        appSortingLabel
-        [ngClass]="{ 'disable-sort': !th.sortable }"
-        [(sortingParams)]="sortingParams"
-        [labelName]="th.sortKey || th.name"
-        [sortableThList]="sortableThList"
-        (sort)="onChangeSort($event)"
-      >
-        <span>{{ th.label || labels[th.shortName] }}</span>
-      </th>
-    </ng-container>
-  </ng-template>
-
-  <ng-template #customTableRowContent let-data="data" let-title="title" let-idx="idx">
-    <ng-container *ngFor="let title of thList">
-      <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
-        <td
-        *ngSwitchCase="'users.group.configuration_groups.label'"
-        class="td-{{
-          title.shortName
-        }} app-index-td d-flex align-items-center"
-      >
-      {{ data | at: 'users.group.configuration_groups.label' }}
-        </td>
-       <td
-       *ngSwitchCase="'users.group.granted_role.name'"
-            class="td-{{
-              title.shortName
-            }} app-index-td d-flex align-items-center select-authority-cell"
-          >
-        <app-authority-select
-          [authorities]="authorities"
-          [labels]="labels"
-          [selectedUser]="data"
-          [selectedAuthorities]="selectedAuthorities"
-          [customSelectButtons]="customSelectButtons"
-          [customSelectedAuthorities]="customSelectedAuthorities"
-          [allowUnselectedAuthorities]="true"
-          (select)="onCloseAuthoritySelectModal($event, data)"
-        ></app-authority-select>
-        <span>
-          <a
-            class="select-authority"
-            href="javascript:void(0)"
-            (click)="onClickSelect(data, idx)"
-          >
-         {{ data | at: 'users.group.granted_role.name' }}
-         </a>
-         </span>
-        </td>
-        <td
-        *ngSwitchDefault
-          class="td-{{ title.shortName }} app-index-td d-flex align-items-center"
-        >
-          <span>{{ data[title.name] }}</span>
-        </td>
-      </ng-container>
-    </ng-container>
-  </ng-template>
 
   <app-alert></app-alert>
 

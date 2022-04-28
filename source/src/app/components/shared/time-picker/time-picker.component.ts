@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import * as $ from 'jquery';
 import { TimePickerLabels, TimePickerParams } from 'app/types/calendar';
 import { Labels } from 'app/types/common';
+import { TimePickerService } from 'app/services/shared/time-picker.service';
 
 @Component({
     selector: 'app-time-picker',
@@ -24,13 +25,14 @@ export class AppTimePickerComponent implements OnInit {
 
     @Output() public selectTime: EventEmitter<TimePickerParams> = new EventEmitter<TimePickerParams>();
     @Output() public hasOpened = new EventEmitter<void>();
+
     public timePickerParams: TimePickerParams;
     public timePickerCssClass: string;
-
     public timePickerLabels: TimePickerLabels;
 
     constructor(
-        private elementRef: ElementRef
+        private elementRef: ElementRef,
+        private timePickerService: TimePickerService
     ) {
     }
 
@@ -54,7 +56,7 @@ export class AppTimePickerComponent implements OnInit {
             closeButton: this.labels._common.close
         };
 
-        this.timePickerParams = this.initTimePickerParams();
+        this.timePickerParams = this.timePickerService.getInitTimePickerParams(this.showSeconds, this.showMilliseconds);
     }
 
     /**
@@ -62,7 +64,7 @@ export class AppTimePickerComponent implements OnInit {
      */
     public onOpened(): void {
         const initTime: string = this.initialBaseTime;
-        this.timePickerParams = this.initTimePickerParams();
+        this.timePickerParams = this.timePickerService.getInitTimePickerParams(this.showSeconds, this.showMilliseconds);
 
         if (initTime) {
             const initTimes: string[] = initTime.split(/:|\./);
@@ -72,25 +74,10 @@ export class AppTimePickerComponent implements OnInit {
                     minutes: initTimes[1],
                     seconds: this.showSeconds ? initTimes[2]: '',
                     milliseconds: this.showMilliseconds ? initTimes[3]: '',
-                    times: ''
+                    selectedTime: ''
                 }
             }
         }
-    }
-
-    /**
-     * 時刻の初期値を設定する。
-     * @returns 時刻情報
-     */
-    private initTimePickerParams(): TimePickerParams {
-        const timePickerParams: TimePickerParams = {
-            hours: '00',
-            minutes: '00',
-            seconds: this.showSeconds ? '00': '',
-            milliseconds: this.showMilliseconds ? '000': '',
-            times: ''
-        };
-        return timePickerParams;
     }
 
     /**
@@ -98,14 +85,7 @@ export class AppTimePickerComponent implements OnInit {
      * @param timeParams
      */
     public onClickSetting(timeParams: TimePickerParams) {
-        if (this.showMilliseconds) {
-            timeParams.times = timeParams.hours + ':' + timeParams.minutes + ':' + timeParams.seconds + '.' + timeParams.milliseconds;
-        } else if (this.showSeconds) {
-            timeParams.times = timeParams.hours + ':' + timeParams.minutes + ':' + timeParams.seconds;
-        } else {
-            timeParams.times = timeParams.hours + ':' + timeParams.minutes;
-        }
-
+        this.timePickerService.setSelectedTime(timeParams, this.showSeconds, this.showMilliseconds);
         this.selectTime.emit(timeParams);
     }
 

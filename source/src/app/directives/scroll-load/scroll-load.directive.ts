@@ -25,9 +25,9 @@ export class ScrollLoadDirective {
     // 最下部スクロール感知用イベント設置
     @HostListener('scroll', ['$event'])
     public onScroll($event: Event): void {
-        const tbodyEl = <HTMLTableElement>$event.target;
+        const tbodyEl: HTMLTableElement = <HTMLTableElement>$event.target;
         // const tbodyEl = $event.srcElement;
-        const remaining =
+        const remaining: number =
             tbodyEl.scrollHeight - (tbodyEl.clientHeight + tbodyEl.scrollTop);
 
         // スクロール位置が規定以下 or 最後のスクロール位置未満 or 最後のスクロールも合わせて最下部にある場合
@@ -40,7 +40,12 @@ export class ScrollLoadDirective {
         }
         this.lastRemaining = remaining;
 
-        const scrollAmount = {
+        const scrollAmount: {
+            top: number;
+            left: number;
+            width: number;
+            height: number;
+        } = {
             top: tbodyEl.scrollTop,
             left: tbodyEl.scrollLeft,
             width: tbodyEl.scrollWidth,
@@ -54,7 +59,7 @@ export class ScrollLoadDirective {
             return;
         }
 
-        const pageCount = parseInt(this.params.pageCount, 10);
+        const pageCount: number = parseInt(this.params.pageCount, 10);
         // 取得したデータが表示件数未満の場合は自動ロードしない
         if (
             this.lists.visibleList.length < pageCount &&
@@ -66,7 +71,7 @@ export class ScrollLoadDirective {
     }
 
     private _concatList() {
-        const _p = this.params;
+        const _p: any = this.params;
         let endIndex: number;
         // 取得データの総件数が自動ロード開始位置+自動ロード数未満の場合、取得終了位置を総件数とする
         if (

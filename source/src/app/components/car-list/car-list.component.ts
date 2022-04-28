@@ -50,6 +50,10 @@ export class CarListComponent extends AbstractIndexComponent {
   datePickerLabels: Labels;
   override commaSeparated: string[] = ['serials'];
 
+  selectedList: any[] = [];
+  checkedItems: boolean[] = [];
+  checkAll: boolean = false;
+
   constructor(
     navigationService: NavigationService,
     title: Title,
@@ -83,6 +87,12 @@ export class CarListComponent extends AbstractIndexComponent {
       params,
       this.requestHeaderParams
     );
+
+    this.selectedList = res.result_data.operation_histories;
+    for (let i = 1; i <= this.selectedList.length; i++) {
+      this.checkedItems[i] = this.checkAll;
+    }
+
     const list = this._formatList(
       res.result_data.operation_histories,
       this.thList
@@ -172,13 +182,11 @@ export class CarListComponent extends AbstractIndexComponent {
    */
   async onDownloadOk(event: any): Promise<void> {
     await this.api.updateField(
-      FunctionCodeConst.HISTORY_MGT_LIST_DOWNLOAD_FUNCTION,
-      // event.fields
+      FunctionCodeConst.CAR_LIST_FUNCTION,
       this.fields
     );
     await this._downloadTemplate(
       this.fields.map((f: { path: string }) => f.path),
-      // event.fileType
       MimeType.excel
     );
   }
@@ -338,8 +346,6 @@ export class CarListComponent extends AbstractIndexComponent {
     // this.downloadPopoverVisible = false;
     // console.log(this.fields.terminalModeType);
 
-    //<i class="kba-icon kba-icon-edit"></i>
-
     return true;
   }
 
@@ -347,4 +353,25 @@ export class CarListComponent extends AbstractIndexComponent {
     this.router.navigated = false;
     this.router.navigateByUrl("/customize_data_request");
   }
+
+  public handleEditClick(): void {
+    this.router.navigated = false;
+    this.router.navigateByUrl("/customize_setting");
+  }
+
+  toggleCheckAll() {
+    this.checkAll = !this.checkAll;
+    for (let i = 0; i <= this.selectedList.length; i++) {
+      this.checkedItems[i] = this.checkAll;
+    }
+  }
+
+    /**
+   * 選択チェックボックス変更時コールバック
+   * @param value 値
+   */
+    onCheckSelect(checked: boolean, index: any): void {
+        this.checkedItems[index] = !checked;
+    }
+
 }

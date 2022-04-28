@@ -1,11 +1,7 @@
 import * as moment from 'moment';
 import { reduce } from 'lodash';
 import { Injectable } from '@angular/core';
-
 import { CommonDatePickerDay } from 'app/vendors/k-common-module/interfaces';
-
-import { DatePickerParams } from 'app/types/calendar';
-
 import {
     DateTimeFormatKind,
     DateFormat,
@@ -13,11 +9,9 @@ import {
     DateTimeFormat,
 } from 'app/constants/date-format';
 import { Calendar } from 'app/constants/calendar';
-
-import { CalendarService } from './calendar.service';
+import { CalendarService } from 'app/services/shared/calendar.service';
 
 type Moment = moment.Moment;
-type MomentUnitOfTimeStartOf = moment.unitOfTime.StartOf;
 
 /**
  * 日次カレンダー用のサービス

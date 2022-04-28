@@ -1,5 +1,12 @@
 [
   {
+    "display_sequence_no": "1",
+    "name": "huh?",
+    "path": "operation_histories.checkbox",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
     "display_sequence_no": "2",
     "name": "機種",
     "path": "operation_histories.model",

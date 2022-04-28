@@ -37,4 +37,5 @@ export abstract class AbstractRegisterComponent
      * 初期表示のためのデータを取得します。
      */
     protected abstract _fetchDataForInitialize(): Promise<any>;
+
 }

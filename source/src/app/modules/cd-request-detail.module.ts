@@ -13,6 +13,7 @@ import { CdRequestPeriodTabService } from 'app/services/customize_data_request/r
 import { CdRequestPeriodComfirmService } from 'app/services/customize_data_request/request-period/request-period-comfirm/cd-request-period-comfirm.service';
 import { CdCurrentRequestComfirmComponent } from 'app/components/customize_data_request/request-period/current-request-comfirm/cd-current-request-comfirm/cd-current-request-comfirm.component';
 import { CdRequestDetailService } from 'app/services/customize_data_request/cd-request-detail/cd-request-detail.service';
+import { CdNumberListRequestTabComponent } from 'app/components/customize_data_request/number-list-request/cd-number-list-request-tab/cd-number-list-request-tab.component';
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import { CdRequestDetailService } from 'app/services/customize_data_request/cd-r
         CdRequestNumberComfirmComponent,
         CdRequestPeriodComfirmComponent,
         CdCurrentRequestComfirmComponent,
+        CdNumberListRequestTabComponent,
     ],
     providers: [
         DatePickerService,

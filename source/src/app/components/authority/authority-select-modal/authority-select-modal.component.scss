@@ -1,0 +1,48 @@
+@import "../../../../assets/styles/variable";
+
+$n: 4; //1行当たりのカラム数
+$m: 10px; //カラム左右のマージン
+
+.KBA-authority-select-modal-authorities {
+  margin: 0 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.authorities {
+  display: flex;
+  flex-direction: row;
+  margin: 15px 0;
+  max-height: 400px;
+  overflow-y: auto;
+
+  .importance-area {
+    width: 100px;
+    background: linear-gradient(to bottom, #ff5969, #383dff);
+  }
+
+  .authority-row {
+    &:last-child {
+      .authority {
+        padding-bottom: 15px;
+      }
+    }
+  }
+
+  .authority-content {
+    .authority {
+      padding: 15px 15px 0;
+
+      label {
+        margin-bottom: 1px;
+        font-weight: normal;
+        width: 100%;
+      }
+    }
+  }
+}

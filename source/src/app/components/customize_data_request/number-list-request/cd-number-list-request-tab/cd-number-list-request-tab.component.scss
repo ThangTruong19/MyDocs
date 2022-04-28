@@ -1,0 +1,57 @@
+@import "../../../../vendors/k-common-module/styles/icons";
+@import "../../../../../assets/styles/_variable.scss";
+#cd-number-list-request-tab {
+    margin-top: 20px;
+    .item-selected {
+        padding: 5px;
+        .item {
+            border: 1px solid #ccc;
+            display: inline-block;
+            border-radius: 18px;
+            width: 115px;
+            background: #fff;
+            padding: 5px 10px;
+            margin-right: 5px;
+        }
+    }
+    .content {
+        margin-top: 100px;
+    }
+    .required {
+        color: $fontRed;
+    }
+    .app-icon-close {
+        line-height: 30px;
+        color: $fontRed;
+        float: right;
+        line-height: 20px;
+        cursor: pointer;
+    }
+    .app-control {
+        margin-top: 20px;
+        text-align: center;
+        .btn {
+            min-width: 100px;
+            margin-right: 10px;
+            border-radius: 4px;
+            padding: 10px;
+            &.btn-primary {
+                background: #2a4dae;
+            }
+        }
+        .btn-send {
+            margin-right: 100px;
+            width: 200px;
+        }
+    }
+    .no-pad {
+        padding: 0;
+    }
+}
+
+.model-header {
+    padding: 10px 0;
+    .model-title {
+        font-weight: bold;
+    }
+}

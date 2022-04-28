@@ -336,16 +336,29 @@
     type: js
     file: json/cdsm/customize_setting/getCustomizeUsageDefinitionDetails.js
 
-# x. Not Found
 #
-# 上記以外のリクエストはNot Found。
+# x. 車両カスタマイズ用途定義更新要求 (POST)
+#
+# リクエストキーを返却する。
 #
 - request:
-    url: /v1/*
-    method: GET
+    url: /v1/cars/requests/customize_usage_definitions/s2m
+    method: POST
   response:
-    status: 404
-    file: json/common/notFound.json
+    type: js
+    file: json/cdsm/customize/customizeUsageDefinitionUpdate.js
+
+#
+# x. 車両カスタマイズ用途定義更新要求 (POST)
+#
+# リクエストキーを返却する。
+#
+- request:
+    url: /v1/cars/requests/customize_settings_retry/s2m
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/customize/customizeSettingRequestResend.js
 
 #
 # x. カスタマイズ操作履歴一覧取得 API (POST)
@@ -358,3 +371,14 @@
   response:
     type: js
     file: json/cdsm/car/postCarMgtList.js
+
+# x. Not Found
+#
+# 上記以外のリクエストはNot Found。
+#
+- request:
+    url: /v1/*
+    method: GET
+  response:
+    status: 404
+    file: json/common/notFound.json

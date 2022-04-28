@@ -24,4 +24,5 @@ export class DateTimeFormat {
     static slash = 'YYYY/MM/DD HH:mm:ss';
     static slashMonthFirst = 'MM/DD/YYYY HH:mm:ss';
     static slashDayFirst = 'DD/MM/YYYY HH:mm:ss';
+    static slashDateTimeMilliseconds = 'YYYY/MM/DD HH:mm:ss.SSS';
 }

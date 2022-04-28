@@ -14,8 +14,8 @@ export class AbstractCheckboxDirective {
 
     @HostListener('change', ['$event'])
     public onChange($event: Event): void {
-        const targetElement = <HTMLInputElement>$event.target;
-        const value = targetElement.value;
+        const targetElement: HTMLInputElement = <HTMLInputElement>$event.target;
+        const value: string = targetElement.value;
         if (targetElement.checked) {
             if (this.selectedList != null) {
                 this.selectedList.push(value);

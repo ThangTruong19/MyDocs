@@ -178,8 +178,8 @@ export class AccordionComponent implements OnInit {
      * アニメーションに必要な情報を計算します。
      */
     private _calculateAnimationStyle(): void {
-        const accordionBody = this.el.querySelector('.app-panel-body');
-        const height = accordionBody.getBoundingClientRect().height;
+        const accordionBody: Element = this.el.querySelector('.app-panel-body');
+        const height: number = accordionBody.getBoundingClientRect().height;
         this.contentHeight = `${height}px`;
         this.transitionDuration = `${Math.pow(
             height,
@@ -227,4 +227,5 @@ export class AccordionHeaderComponent {
             ? this.labels.accordion_open
             : this.labels.accordion_close;
     }
+
 }

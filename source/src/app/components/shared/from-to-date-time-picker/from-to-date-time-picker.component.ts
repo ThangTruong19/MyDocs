@@ -10,7 +10,9 @@ import * as moment from 'moment';
 import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { DateFormat } from 'app/constants/date-format';
 import { Labels } from 'app/types/common';
-import { SearchDateTimePickerComponent } from 'app/components/shared/search-date-time-picker/search-date-time-picker.component';
+import {
+    SearchDateTimePickerComponent
+} from 'app/components/shared/search-date-time-picker/search-date-time-picker.component';
 
 @Component({
     selector: 'app-from-to-date-time-picker',
@@ -56,12 +58,15 @@ export class FromToDateTimePickerComponent implements OnInit {
     public fromTodayButtonDisabled = false;
     public toTodayButtonDisabled = false;
 
-    constructor(private datepickerService: DatePickerService) { }
+    constructor(
+        private datePickerService: DatePickerService
+    ) {
+    }
 
     ngOnInit(): void {
         this.displayable =
             this.resource[this.from] != null && this.resource[this.to] != null;
-        this.enableDateRange = this.datepickerService.parseDateRange(
+        this.enableDateRange = this.datePickerService.parseDateRange(
             this.enableDateRange
         );
 
@@ -94,7 +99,7 @@ export class FromToDateTimePickerComponent implements OnInit {
         );
 
         if (this.toBaseDateTime == null || this.toBaseDateTime.length === 0) {
-            const compareValues: moment.Moment[] = [this.datepickerService.toMoment()];
+            const compareValues: moment.Moment[] = [this.datePickerService.toMoment()];
 
             if (this.fromBaseDateTime != null && this.fromBaseDateTime.length > 0) {
                 compareValues.push(moment(this.fromBaseDateTime, DateFormat.hyphen));
@@ -117,7 +122,7 @@ export class FromToDateTimePickerComponent implements OnInit {
         );
 
         if (this.fromBaseDateTime == null || this.fromBaseDateTime.length === 0) {
-            const compareValues: moment.Moment[] = [this.datepickerService.toMoment()];
+            const compareValues: moment.Moment[] = [this.datePickerService.toMoment()];
 
             if (this.toBaseDateTime != null && this.toBaseDateTime.length > 0) {
                 compareValues.push(moment(this.toBaseDateTime, DateFormat.hyphen));
@@ -134,7 +139,7 @@ export class FromToDateTimePickerComponent implements OnInit {
 
         if (dateTimeTo != null && dateTimeTo.length > 0) {
             const dateTimeFormat: string = this.getDateTimeFormat();
-            newRange[1] = this.datepickerService
+            newRange[1] = this.datePickerService
                 .toMoment(dateTimeTo, true)
                 .format(dateTimeFormat);
         }
@@ -147,7 +152,7 @@ export class FromToDateTimePickerComponent implements OnInit {
 
         if (dateTimeFrom != null && dateTimeFrom.length > 0) {
             const dateTimeFormat: string = this.getDateTimeFormat();
-            newRange[0] = this.datepickerService
+            newRange[0] = this.datePickerService
                 .toMoment(dateTimeFrom, true)
                 .format(dateTimeFormat);
         }
@@ -155,6 +160,9 @@ export class FromToDateTimePickerComponent implements OnInit {
         return newRange;
     }
 
+    /**
+     * 時刻フォーマットを取得する。
+     */
     private getDateTimeFormat(): string {
         let dateTimeFormat: string;
         if (this.showMilliseconds) {

@@ -1,4 +1,3 @@
-window.appVersion = 'exe.0.0.0001';
 window.settings = {
   protocol: 'https',
   hostname: '#{apiHostName}#',

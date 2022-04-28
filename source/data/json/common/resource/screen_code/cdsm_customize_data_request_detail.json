@@ -1,4 +1,5 @@
-[{
+[
+    {
         "path": "request_period_customize_definition_id",
         "name": "カスタマイズ定義",
         "help": "request_period_customize_definition_id",
@@ -8,36 +9,18 @@
         "items": []
     },
     {
-        "path": "request_period_date_from_ymd",
+        "path": "request_period_date_from",
         "name": "期間",
-        "help": "request_period_date_from_ymd",
+        "help": "request_period_date_from",
         "type": 0,
         "memo": "",
         "placeholder_text": "",
         "items": []
     },
     {
-        "path": "request_period_date_from_hms",
+        "path": "request_period_date_to",
         "name": "期間",
-        "help": "request_period_date_from_hms",
-        "type": 0,
-        "memo": "",
-        "placeholder_text": "",
-        "items": []
-    },
-    {
-        "path": "request_period_date_to_ymd",
-        "name": "期間",
-        "help": "request_period_date_to_ymd",
-        "type": 0,
-        "memo": "",
-        "placeholder_text": "",
-        "items": []
-    },
-    {
-        "path": "request_period_date_to_hms",
-        "name": "期間",
-        "help": "request_period_date_to_hms",
+        "help": "request_period_date_to",
         "type": 0,
         "memo": "",
         "placeholder_text": "",
@@ -50,7 +33,8 @@
         "type": 10,
         "memo": "",
         "placeholder_text": "",
-        "items": [{
+        "items": [
+            {
                 "key": "用途定義単位",
                 "value": "1",
                 "kind": "D"
@@ -69,7 +53,8 @@
         "type": 10,
         "memo": "",
         "placeholder_text": "選択してください",
-        "items": [{
+        "items": [
+            {
                 "key": "用途定義A",
                 "value": "1",
                 "kind": "D"
@@ -82,36 +67,18 @@
         ]
     },
     {
-        "path": "request_number_datetime_from_ymd",
+        "path": "request_number_datetime_from",
         "name": "開始日",
-        "help": "request_period_satat_date_ymd",
+        "help": "request_number_datetime_from",
         "type": 10,
         "memo": "",
         "placeholder_text": "",
         "items": []
     },
     {
-        "path": "request_number_datetime_from_hms",
-        "name": "開始日",
-        "help": "request_period_satat_date_hms",
-        "type": 10,
-        "memo": "",
-        "placeholder_text": "",
-        "items": []
-    },
-    {
-        "path": "request_number_datetime_to_ymd",
+        "path": "request_number_datetime_to",
         "name": "終了日",
-        "help": "request_number_datetime_to_ymd",
-        "type": 10,
-        "memo": "",
-        "placeholder_text": "",
-        "items": []
-    },
-    {
-        "path": "request_number_datetime_to_hms",
-        "name": "終了日",
-        "help": "request_number_datetime_to_hms",
+        "help": "request_number_datetime_to",
         "type": 10,
         "memo": "",
         "placeholder_text": "",
@@ -124,7 +91,8 @@
         "type": 10,
         "memo": "",
         "placeholder_text": "",
-        "items": [{
+        "items": [
+            {
                 "key": "ON",
                 "value": "1",
                 "kind": "D"
@@ -152,7 +120,8 @@
         "type": 10,
         "memo": "",
         "placeholder_text": "",
-        "items": [{
+        "items": [
+            {
                 "key": "用途定義単位",
                 "value": "1",
                 "kind": "D"
@@ -171,7 +140,8 @@
         "type": 10,
         "memo": "",
         "placeholder_text": "選択してください",
-        "items": [{
+        "items": [
+            {
                 "key": "用途定義A",
                 "value": "1",
                 "kind": "D"
@@ -184,36 +154,18 @@
         ]
     },
     {
-        "path": "send_number_list_request_datetime_from_ymd",
+        "path": "send_number_list_request_datetime_from",
         "name": "開始日",
-        "help": "send_number_list_request_datetime_from_ymd",
+        "help": "send_number_list_request_datetime_from",
         "type": 10,
         "memo": "",
         "placeholder_text": "",
         "items": []
     },
     {
-        "path": "send_number_list_request_datetime_from_hms",
-        "name": "開始日",
-        "help": "send_number_list_request_datetime_from_hms",
-        "type": 10,
-        "memo": "",
-        "placeholder_text": "",
-        "items": []
-    },
-    {
-        "path": "send_number_list_request_datetime_to_ymd",
+        "path": "send_number_list_request_datetime_to",
         "name": "終了日",
-        "help": "send_number_list_request_datetime_to_ymd",
-        "type": 10,
-        "memo": "",
-        "placeholder_text": "",
-        "items": []
-    },
-    {
-        "path": "send_number_list_request_datetime_to_hms",
-        "name": "終了日",
-        "help": "send_number_list_request_datetime_to_hms",
+        "help": "send_number_list_request_datetime_to",
         "type": 10,
         "memo": "",
         "placeholder_text": "",

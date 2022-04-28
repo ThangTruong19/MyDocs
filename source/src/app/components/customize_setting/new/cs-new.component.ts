@@ -73,6 +73,7 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
     customize_usage_definition_version: ""
   };
   isInitialize: boolean = true;
+  displayDefinitionName: string = '';
 
   constructor(
     nav: NavigationService,
@@ -92,6 +93,9 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
     this._searchParams.customize_usage_definition_id = (this.customizeDefinitionName as any).itemParams.regist_customize_usage_definition_name;
     this._searchParams.customize_usage_definition_version = (this.customizeDefinitionVersion as any).itemParams.regist_customize_usage_definition_version;
     this.fetchCustomizeSettingData();
+    (this.customizeDefinitionName as any).items.forEach((element :any) => {
+      if(element.id == this.params.regist_customize_usage_definition_name) this.displayDefinitionName = element.name;
+    })
     this.isInitialize = false;
   }
 
@@ -124,13 +128,13 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
       this.params,
       'customize_setting.edit_start_date_ymd',
       this.datePickerService.toMoment().format(
-        DateFormat.hyphen
+        DateFormat.slash
       ));
     _.set(
       this.params,
       'customize_setting.edit_end_date_ymd',
       this.datePickerService.toMoment().add(1, 'month').format(
-        DateFormat.hyphen
+        DateFormat.slash
       ));
 
     const today = this.datePickerService.toMoment();
@@ -155,6 +159,9 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
     if(!this.isInitialize){
       this._searchParams.customize_usage_definition_id = data;
       this.fetchCustomizeSettingData();
+      (this.customizeDefinitionName as any).items.forEach((element :any) => {
+        if(element.id == this.params.regist_customize_usage_definition_name) this.displayDefinitionName = element.name;
+      })
     }
   }
 

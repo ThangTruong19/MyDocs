@@ -17,4 +17,5 @@ export abstract class AbstractModalContentComponent {
     public displayData(responseData: any, path: string): string {
         return get(responseData, path.replace(this.prefixWord, ''));
     }
+
 }

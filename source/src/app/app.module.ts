@@ -65,6 +65,9 @@ import { AuthoritySelectComponent } from './components/authority/authority-selec
         CustomizeSettingUploadService,
         CarListService,
     ],
+    exports:[
+        AuthoritySelectComponent
+    ],
     bootstrap: [AppIndexComponent]
 })
 export class AppModule { }

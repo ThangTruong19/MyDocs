@@ -1,11 +1,10 @@
 import * as _ from 'lodash';
-import { Component, ChangeDetectorRef, ViewChild, TemplateRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, TemplateRef, ViewChildren, QueryList, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 import { Fields, Labels, TableHeader } from 'app/types/common';
 
-import { ProcessingType } from 'app/constants/download';
 import { FunctionCodeConst } from 'app/constants/api/function-code-const';
 
 import { AbstractIndexComponent } from 'app/components/shared/abstract-component/abstract-index.component';
@@ -27,23 +26,22 @@ import { AuthoritySelectComponent } from './authority-select/authority-select.co
   templateUrl: './authority-mgt-list.component.html',
   styleUrls: ['./authority-mgt-list.component.scss']
 })
-export class AuthorityMgtListComponent extends AbstractIndexComponent {
+export class AuthorityMgtListComponent extends AbstractIndexComponent
+implements OnInit,AfterViewInit  {
 
   @ViewChild('deleteModalContent', { static: false })
   deleteModalContent: TemplateRef<null>;
   @ViewChild('belongingGroupId', { static: false })
   belongingGroupSelectComponent: SelectedComponent;
-  @ViewChild('roleSelectComponent', { static: false })
-  roleSelectComponent: SelectedComponent;
   @ViewChildren(AuthoritySelectComponent)
   authoritySelectComponentList: QueryList<AuthoritySelectComponent>;
+
 
   override params: UserIndexParams;
   deleteParams: UserDeleteParams;
   authoritiesUpdateParams: AuthoritiesUpdateParams;
+  override thList: TableHeader[];
   fields: Fields
-  downloadFields: Fields;
-  downloadFieldResources: Fields;
   fieldSelectPopoverVisible = false;
   downloadPopoverVisible = false;
   _dateFormat = '';
@@ -61,20 +59,24 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent {
     router: Router,
     ref: ChangeDetectorRef,
     header: CommonHeaderService,
-    protected userService: UserService,
-    protected api: ApiService,
-    protected override modalService: ModalService,
-    protected alertService: AlertService,
-    protected userSettingService: UserSettingService
+    private userService: UserService,
+    private api: ApiService,
+    modalService: ModalService,
+    private alertService: AlertService,
+    private userSettingService: UserSettingService
   ) {
     super(navigationService, title, router, ref, header);
   }
 
+  ngAfterViewInit(): void {
+    console.log(this.authoritySelectComponentList); // -> 値が入ってる
+  }
   /**
    * 現在のパラメータを一覧取得APIに引き渡し、一覧画面に表示するリストを取得する
    * @param sort_key ソートキー
    */
   async fetchList(sort_key?: string) {
+    console.log(this.authoritySelectComponentList)
     this.requestHeaderParams['X-Sort'] = sort_key || '';
     this.isFetching = true;
 
@@ -82,6 +84,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent {
       this.searchParams,
       this.requestHeaderParams
     );
+
     const list = this._formatList(
       res.result_data.users,
       this.thList
@@ -89,6 +92,8 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent {
     this._fillLists(res.result_header, list);
     this.isFetching = false;
     this._afterFetchList();
+    console.log(this.belongingGroupSelectComponent)
+    console.log(this.authoritySelectComponentList)
   }
   override _formatListAdditional(data: any): void {
     // グループ
@@ -129,8 +134,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent {
   async onClickSelect(user: any, index: number) {
 
     console.log(user)
-    console.log(this)
-    console.log(this.authoritySelectComponentList)
+    console.log(this.authoritySelectComponentList.toArray()[index])
     const authoritySelect = this.authoritySelectComponentList.toArray()[index];
     console.log(authoritySelect)
     authoritySelect.reset();
@@ -232,6 +236,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent {
   //  * 初期化 API を呼ぶ
   //  */
   protected async _fetchDataForInitialize(): Promise<void> {
+    console.log(this)
     const res = await this.userService.fetchInitData();
     this.initialize(res);
     this.labels = res.label;

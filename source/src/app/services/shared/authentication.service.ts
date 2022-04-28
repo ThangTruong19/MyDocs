@@ -6,15 +6,15 @@ import { AuthenticationStatus } from 'app/constants/authentication-status';
 import { environment } from 'environments/environment';
 import { AuthData } from 'app/types/auth-data';
 
-
 /**
  * ログインユーザ情報のサービス
  */
 @Injectable()
 export class AuthenticationService implements CanActivate, CanActivateChild {
+
     private azureAdAuthenticationInfo = (window as any).settings
         .azureAdAuthenticationInfo;
-
+    private appCode = (window as any).settings.azureAdAuthenticationInfo.clientId;
     private azureAdAuthentication: AzureAdAuthentication;
 
     private token: string | null = null;
@@ -57,9 +57,7 @@ export class AuthenticationService implements CanActivate, CanActivateChild {
      */
     public authentication(): Promise<boolean> {
         if (environment.settings.skipAuthentication) {
-            this.currentUserId = 'DevUser001';
-            this.currentUserName = 'DevUser001';
-            this.token = 'dummy123';
+            this.setDummyUserData();
             return Promise.resolve(true);
         }
 
@@ -74,7 +72,7 @@ export class AuthenticationService implements CanActivate, CanActivateChild {
                         this.currentUserId = null;
                         this.currentUserName = null;
                     } else if (this.currentUserId == null) {
-                        const { userId, userName } = await this._getUserAttribute(res.data);
+                        const { userId, userName } = await this.getUserAttribute(res.data);
                         this.currentUserId = userId;
                         this.currentUserName = userName;
                     }
@@ -102,14 +100,13 @@ export class AuthenticationService implements CanActivate, CanActivateChild {
         return this.azureAdAuthentication;
     }
 
-
     /**
      * ユーザーの属性値を取得する
      */
-    private _getUserAttribute(
+    private getUserAttribute(
         token: string
     ): Promise<{ userId: string; userName: string }> {
-        const _window = window as any;
+        const _window: any = window as any;
         const userIdKey: string = _window.settings.azureAdAttributeKeyUserId;
         const userNameKey: string = _window.settings.azureAdAttributeKeyUserName;
 
@@ -121,6 +118,19 @@ export class AuthenticationService implements CanActivate, CanActivateChild {
                 })
                 .catch(err => reject(err));
         });
+    }
+
+    private setDummyUserData(): void {
+        if (!this.token) {
+            this.currentUserId = 'DevUser001';
+            this.currentUserName = 'DevUser001';
+            this.token = 'dummy123';
+
+            if (!environment.settings.useEntranceForDevelop) {
+                const dummyGroupId = '2';
+                localStorage.setItem(`group_id.${this.appCode}`, dummyGroupId);
+            }
+        }
     }
 
 }

@@ -279,30 +279,77 @@
 
   <ng-template #customTableThContent>
     <ng-container *ngFor="let th of thList">
-      <th
-        *ngIf="th.displayable"
-        class="app-index-th th-{{ th.shortName }}"
-        appSortingLabel
-        [ngClass]="{ 'disable-sort': !th.sortable }"
-        [(sortingParams)]="sortingParams"
-        [labelName]="th.sortKey || th.name"
-        [sortableThList]="sortableThList"
-        (sort)="onChangeSort($event)"
-      >
-        <span>{{ th.label || labels[th.shortName] }}</span>
-      </th>
+      <ng-container *ngIf="th.displayable && th.shortName !== 'operation_histories_checkbox'; else checkboxContent">
+        <th
+          class="app-index-th th-{{ th.shortName }}"
+          appSortingLabel
+          [ngClass]="{ 'disable-sort': !th.sortable }"
+          [(sortingParams)]="sortingParams"
+          [labelName]="th.sortKey || th.name"
+          [sortableThList]="sortableThList"
+          (sort)="onChangeSort($event)"
+        >
+          <span>{{ th.label || labels[th.shortName] }}</span>
+        </th>
+      </ng-container>
+
+      <ng-template #checkboxContent>
+        <th class="app-index-th fixed th-check">
+          <input
+              type="checkbox"
+              class="app-input-checkbox"
+              [disabled]="checkAllDisabled"
+              id="check-icon-all"
+              (click)="toggleCheckAll()"
+              [checked]="checkAll"
+          />
+          <label class="app-input-checkbox__label" for="check-icon-all">
+              <i class="fa"></i>
+          </label>
+        </th>
+      </ng-template>
     </ng-container>
   </ng-template>
 
   <ng-template #customTableRowContent let-data="data" let-title="title">
     <ng-container *ngFor="let title of thList">
-      <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
-        <td
-          class="td-{{ title.shortName }} app-index-td d-flex align-items-center"
-        >
+      <ng-container [ngSwitch]="title.name" *ngIf="title.displayable && title.shortName !== 'operation_histories_customize_definition_label' && title.shortName !== 'operation_histories_checkbox'; else editContent">
+        <td class="td-{{ title.shortName }} app-index-td d-flex align-items-center">
           <span>{{ data[title.name] }}</span>
         </td>
       </ng-container>
+      <ng-template #editContent>
+        <ng-container *ngIf="title.displayable && title.shortName !== 'operation_histories_checkbox'; else checkContent">
+          <!--<td class="td-{{ title.shortName }} app-index-td d-flex align-items-center">-->
+          <td style="display: grid; width: 100%;text-align:center;align-items: center;">
+            <i class="app-icon app-icon-edit" (click)="handleEditClick()"></i>
+          </td>
+        </ng-container>
+      </ng-template>
+
+      <ng-template #checkContent>
+        <td
+          *ngIf="selectable"
+          class="app-sm-link fixed d-flex justify-content-center td-check"
+        >
+          <input
+              (appTableCheckbox)="onChange($event)"
+              (toggleClick)="onCheckSelect($event)"
+              (click)="onCheckSelect(checkedItems[data[title.name]], data[title.name])"
+              [selectedList]="selectedList"
+              [checked]="checkedItems[data[title.name]]"
+              id="check-icon-{{ data[title.name] }}"
+              type="checkbox"
+              class="app-input-checkbox"
+          />
+          <label
+              class="app-input-checkbox__label"
+              for="check-icon-{{ data[title.name] }}"
+          >
+              <i class="fa"></i>
+          </label>
+        </td>
+      </ng-template>
     </ng-container>
   </ng-template>
 

@@ -4,7 +4,8 @@ import { ModelSelectType } from 'app/constants/flag';
 
 @Injectable()
 export class ModelRevService {
-    modelSelectType = ModelSelectType;
+
+    private modelSelectType = ModelSelectType;
 
     constructor() { }
 

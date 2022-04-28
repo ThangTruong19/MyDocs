@@ -57,22 +57,6 @@
     <div class="app-control">
         <button type="button" class="btn btn-primary btn-send" (click)="openGetRequestDialog()">Get Request</button>
     </div>
-
-    <div class="app-control">
-        <app-common-table
-                [lists]="lists"
-                [thList]="thList"
-                [(sortingParams)]="sortingParams"
-                [mergeRows]="false"
-                [emptyListMessage]="'Empty'"
-                >
-            </app-common-table>
-    </div>
-
-    <!-- <div class="app-control">
-        <button type="button" class="btn btn-primary btn-send" (click)="openUpdateRequestConfirmDialog()">Update Request Confirm</button>
-    </div> -->
-
 </div>
 
 <ng-template #csNewModalContent>
@@ -83,7 +67,4 @@
 </ng-template>
 <ng-template #csGetRequestModalContent>
     <app-cs-get-request></app-cs-get-request>
-</ng-template>
-<ng-template #csUpdateRequestConfirmModalContent>
-    <app-cs-update-request-confirm [tableData]="lists.visibleList" [labels]="labels"></app-cs-update-request-confirm>
 </ng-template>

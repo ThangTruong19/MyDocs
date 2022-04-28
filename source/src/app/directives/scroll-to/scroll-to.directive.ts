@@ -34,20 +34,20 @@ export class ScrollToDirective implements AfterViewInit {
             return;
         }
 
-        const offsetTop = isNull(this.scrollTarget)
+        const offsetTop: number = isNull(this.scrollTarget)
             ? this.el.nativeElement.offsetTop
             : this.el.offsetTop;
         if (isNull(this.scrollArea)) {
             $('html, body').animate({ scrollTop: offsetTop + this.offset }, 'slow');
         } else {
-            const scrollAreaEl = <HTMLInputElement>(
+            const scrollAreaEl: HTMLInputElement = <HTMLInputElement>(
                 document.body.querySelector(`${this.scrollArea}`)
             );
             if (isNull(scrollAreaEl)) {
                 return;
             }
 
-            const scrollTop = offsetTop - scrollAreaEl.offsetTop + this.offset;
+            const scrollTop: number = offsetTop - scrollAreaEl.offsetTop + this.offset;
             if (scrollAreaEl.scrollTop !== scrollTop) {
                 $(`${this.scrollArea}`).animate({ scrollTop: scrollTop }, 'slow');
             }

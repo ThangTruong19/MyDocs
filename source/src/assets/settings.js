@@ -1,4 +1,3 @@
-window.appVersion = 'exe.0.0.0001';
 window.settings = {
   skipAuthentication: true, // ローカル開発用の設定追加（AzureAD認証機能スキップ設定）
   useEntranceForDevelop: false, // ローカル開発用の追加（開発用のダミーのエントランス機能を有効にする）

@@ -38,6 +38,7 @@ function createData(i) {
   var moment = require('moment');
 
   data = {
+    checkbox: i,
     datetime: '代理店A',
     group_id: '17929',
     group_label: '顧客A',

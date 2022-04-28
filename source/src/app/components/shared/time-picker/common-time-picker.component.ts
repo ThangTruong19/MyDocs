@@ -1,4 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Input,
+    Output,
+    EventEmitter,
+    AfterContentInit,
+    OnDestroy,
+    ChangeDetectionStrategy
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { FlyoutService } from 'app/vendors/k-common-module/flyout/flyout.service';
@@ -10,7 +19,7 @@ import { TimePickerLabels, TimePickerParams } from 'app/types/calendar';
     styleUrls: ['./common-time-picker.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
 })
-export class CommonTimePickerComponent implements OnInit, OnDestroy, AfterViewInit {
+export class CommonTimePickerComponent implements OnInit, OnDestroy, AfterContentInit {
 
     private static readonly MAX_TIME: { HOURS: number; MINUTES: number; SECONDS: number; MILLISECONDS: number; } = {
         HOURS: 24,
@@ -22,13 +31,6 @@ export class CommonTimePickerComponent implements OnInit, OnDestroy, AfterViewIn
     public readonly TIME_ARROW: { BACK: string; FORWORD: string; } = {
         BACK: 'back',
         FORWORD: 'forword'
-    };
-
-    public readonly TIME_PART_TYPE: { HOURS: string; MINUTES: string; SECONDS: string; MILLISECONDS: string; } = {
-        HOURS: 'HOURS',
-        MINUTES: 'MINUTES',
-        SECONDS: 'SECONDS',
-        MILLISECONDS: 'MILLISECONDS'
     };
 
     public readonly TIME_PLACEHOLDER: { HOURS: string; MINUTES: string; SECONDS: string; MILLISECONDS: string; } = {
@@ -48,9 +50,9 @@ export class CommonTimePickerComponent implements OnInit, OnDestroy, AfterViewIn
     @Input() public secondsStep = 1;
     @Input() public millisecondsStep = 1;
 
-    @Output() hasOpened: EventEmitter<void> = new EventEmitter<void>();
-    @Output() clickSetting: EventEmitter<TimePickerParams> = new EventEmitter<TimePickerParams>();
-    @Output() clickClose: EventEmitter<void> = new EventEmitter<void>();
+    @Output() public hasOpened: EventEmitter<void> = new EventEmitter<void>();
+    @Output() public clickSetting: EventEmitter<TimePickerParams> = new EventEmitter<TimePickerParams>();
+    @Output() public clickClose: EventEmitter<void> = new EventEmitter<void>();
 
     public timePickerCssClass: string;
     public isDisabledSettingButton: boolean;
@@ -63,29 +65,41 @@ export class CommonTimePickerComponent implements OnInit, OnDestroy, AfterViewIn
     public isSecondsInputError: boolean;
     public isMillisecondsInputError: boolean;
 
-    private subscriptions = [] as Subscription[];
+    private subscriptions: Subscription[] = [];
 
     constructor(
         private flyoutService: FlyoutService
     ) {
     }
 
+    /**
+     * 初期処理を行う。
+     */
     ngOnInit(): void {
         if (this.showMilliseconds) {
             this.showSeconds = true;
         }
     }
 
-    ngAfterViewInit(): void {
+    /**
+     * 初期処理を行う。(※FlyoutService 読み込み後)
+     */
+    ngAfterContentInit(): void {
         this.subscriptions.push(
             this.flyoutService.getOpened$(this.id).subscribe((_: boolean) => this.onOpened()),
         );
     }
 
+    /**
+     * オブジェクトの破棄処理を行う。
+     */
     ngOnDestroy(): void {
         this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
     }
 
+    /**
+     * 画面表示時の処理を行う。
+     */
     private onOpened(): void {
         this.isDisabledSettingButton = false;
         this.isDisabledHoursArrow = false;
@@ -101,7 +115,7 @@ export class CommonTimePickerComponent implements OnInit, OnDestroy, AfterViewIn
     }
 
     public onClickSetting(): void {
-        if (this.isValidAll()) {
+        if (this.validateAll()) {
             this.clickSetting.emit(this.params);
             this.closeFlyout();
         }
@@ -136,49 +150,8 @@ export class CommonTimePickerComponent implements OnInit, OnDestroy, AfterViewIn
             CommonTimePickerComponent.MAX_TIME.MILLISECONDS, this.millisecondsStep);
     }
 
-    public onChangeTime(partType: string): void {
-
-        if (partType === this.TIME_PART_TYPE.HOURS) {
-            this.isHoursInputError = false;
-            this.isDisabledHoursArrow = false;
-            if (this.isValidHours()) {
-                this.isValidAll();
-            } else {
-                this.isHoursInputError = true;
-                this.isDisabledHoursArrow = true;
-                this.isDisabledSettingButton = true;
-            }
-        } else if (partType === this.TIME_PART_TYPE.MINUTES) {
-            this.isMinutesInputError = false;
-            this.isDisabledMinutesArrow = false;
-            if (this.isValidMinutes()) {
-                this.isValidAll();
-            } else {
-                this.isMinutesInputError = true;
-                this.isDisabledMinutesArrow = true;
-                this.isDisabledSettingButton = true;
-            }
-        } else if (partType === this.TIME_PART_TYPE.SECONDS) {
-            this.isSecondsInputError = false;
-            this.isDisabledSecondsArrow = false;
-            if (this.isValidSeconds()) {
-                this.isValidAll();
-            } else {
-                this.isSecondsInputError = true;
-                this.isDisabledSecondsArrow = true;
-                this.isDisabledSettingButton = true;
-            }
-        } else if (partType === this.TIME_PART_TYPE.MILLISECONDS) {
-            this.isMillisecondsInputError = false;
-            this.isDisabledMillisecondsArrow = false;
-            if (this.isValidMilliseconds()) {
-                this.isValidAll();
-            } else {
-                this.isMillisecondsInputError = true;
-                this.isDisabledMillisecondsArrow = true;
-                this.isDisabledSettingButton = true;
-            }
-        }
+    public onChangeTime(): void {
+        this.validateAll();
     }
 
     public getNextTime(paramTime: string, directionType: string, maxTime: number, step: number): string {
@@ -204,8 +177,12 @@ export class CommonTimePickerComponent implements OnInit, OnDestroy, AfterViewIn
         return timeNum.toString().padStart(maxTime.toString().length, '0');
     }
 
-    private isValidAll(): boolean {
-        if (this.isValidHours() && this.isValidMinutes() && this.isValidSeconds() && this.isValidMilliseconds()) {
+    private validateAll(): boolean {
+        const isValidHours: boolean = this.validateHours()
+        const isValidMinutes: boolean = this.validateMinutes();
+        const isValidSeconds: boolean = this.validateSeconds();
+        const isValidMilliseconds: boolean = this.validateMilliseconds();
+        if (isValidHours && isValidMinutes && isValidSeconds && isValidMilliseconds) {
             this.isDisabledSettingButton = false;
             return true;
         } else {
@@ -214,27 +191,65 @@ export class CommonTimePickerComponent implements OnInit, OnDestroy, AfterViewIn
         }
     }
 
-    private isValidHours(): boolean {
-        return this.isTimeFormat(this.params.hours, CommonTimePickerComponent.MAX_TIME.HOURS);
+    private validateHours(): boolean {
+        this.isHoursInputError = false;
+        this.isDisabledHoursArrow = false;
+
+        let isValid: boolean = this.isTimeFormat(this.params.hours, CommonTimePickerComponent.MAX_TIME.HOURS);
+
+        if (!isValid) {
+            this.isHoursInputError = true;
+            this.isDisabledHoursArrow = true;
+        }
+
+        return isValid;
     }
 
-    private isValidMinutes(): boolean {
-        return this.isTimeFormat(this.params.minutes, CommonTimePickerComponent.MAX_TIME.MINUTES);
+    private validateMinutes(): boolean {
+        this.isMinutesInputError = false;
+        this.isDisabledMinutesArrow = false;
+
+        let isValid: boolean = this.isTimeFormat(this.params.minutes, CommonTimePickerComponent.MAX_TIME.MINUTES);
+
+        if (!isValid) {
+            this.isMinutesInputError = true;
+            this.isDisabledMinutesArrow = true;
+        }
+
+        return isValid;
     }
 
-    private isValidSeconds(): boolean {
+    private validateSeconds(): boolean {
+        this.isSecondsInputError = false;
+        this.isDisabledSecondsArrow = false;
+
         let isValid: boolean = true;
         if (this.showSeconds) {
             isValid = this.isTimeFormat(this.params.seconds, CommonTimePickerComponent.MAX_TIME.SECONDS);
         }
+
+        if (!isValid) {
+            this.isSecondsInputError = true;
+            this.isDisabledSecondsArrow = true;
+        }
+
         return isValid;
     }
 
-    private isValidMilliseconds(): boolean {
+    private validateMilliseconds(): boolean {
+        this.isMillisecondsInputError = false;
+        this.isDisabledMillisecondsArrow = false;
+
         let isValid: boolean = true;
         if (this.showMilliseconds) {
             isValid = this.isTimeFormat(this.params.milliseconds, CommonTimePickerComponent.MAX_TIME.MILLISECONDS);
         }
+
+        if (!isValid) {
+            this.isMillisecondsInputError = true;
+            this.isDisabledMillisecondsArrow = true;
+        }
+
         return isValid;
     }
 

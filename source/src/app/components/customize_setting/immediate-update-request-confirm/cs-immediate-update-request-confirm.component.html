@@ -1,0 +1,19 @@
+<div id="app-cs-immediate-update-request-confirm" *ngIf="labels">
+    <div class="row" style="padding: 5px 5px 5px 10px;">
+        <p>{{labels.customize_update_request_message}}</p>
+    </div>
+    <div class="row" style="margin-left: 2px;">
+        <input type="radio" id="continue" class="continuous_kind" value="1" [(ngModel)]="isContinued" [checked]="isContinued == '1'">
+        <label for="continue">継続有り</label>
+        <input type="radio" id="stop" class="continuous_kind" value="0" [(ngModel)]="isContinued" [checked]="isContinued == '0'">
+        <label for="stop">継続無し</label>
+    </div>
+    <app-common-table
+        [lists]="lists"
+        [thList]="thList"
+        [(sortingParams)]="sortingParams"
+        [mergeRows]="false"
+        [emptyListMessage]="'Empty'"
+        >
+    </app-common-table>
+</div>

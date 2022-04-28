@@ -1,23 +1,27 @@
 import { Injector, ErrorHandler, Injectable, NgZone } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import * as _ from 'lodash';
-
+import { environment } from 'environments/environment';
+import { Error } from 'app/constants/error';
+import { Resource, Resources } from 'app/types/common';
+import { LogKindConst } from 'app/constants/api/log-kind-const';
 import { AlertService } from 'app/services/shared/alert.service';
 import { ApiService } from 'app/services/api/api.service';
-import { LogKindConst } from 'app/constants/api/log-kind-const';
-
-import { Error } from 'app/constants/error';
-import { environment } from 'environments/environment';
 import { ComponentRefService } from 'app/services/shared/component-ref.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
-    lastErrors: string[] = [];
-    errorsCount = 3;
 
-    constructor(private injector: Injector, private ngZone: NgZone) { }
+    private lastErrors: string[] = [];
+    private errorsCount = 3;
 
-    handleError(error: any) {
+    constructor(
+        private injector: Injector,
+        private ngZone: NgZone
+    ) {
+    }
+
+    handleError(error: any): void {
         this.ngZone.run(() => {
             if (error.rejection != null) {
                 return this.handleError(error.rejection);
@@ -56,8 +60,8 @@ export class GlobalErrorHandler implements ErrorHandler {
      * @param code エラーコード
      */
     protected _getAppCode(code: string) {
-        const now = +new Date();
-        const rand = _.padStart(Math.floor(Math.random() * 100000).toString(), 5, '0');
+        const now: number = +new Date();
+        const rand: string = _.padStart(Math.floor(Math.random() * 100000).toString(), 5, '0');
         return `APPCD-${code}_${now}_${rand}`;
     }
 
@@ -65,7 +69,7 @@ export class GlobalErrorHandler implements ErrorHandler {
      * エラーを処理する
      * @param error エラー
      * @param errorConstant エラー定数
-     * @param potions オプション
+     * @param options オプション
      * @param additionalMessage 追加メッセージ（500系エラー用）
      */
     protected _handleError(
@@ -76,7 +80,7 @@ export class GlobalErrorHandler implements ErrorHandler {
             postLog: true,
         },
         additionalMessage: string = ''
-    ) {
+    ): void {
         this.ngZone.run(() => {
             if (error.stack != null) {
                 if (this.lastErrors.includes(error.stack)) {
@@ -90,11 +94,11 @@ export class GlobalErrorHandler implements ErrorHandler {
                 }
             }
 
-            const alertService = this.injector.get(AlertService);
-            const apiService = this.injector.get(ApiService);
-            const complied = _.template(errorConstant.message + additionalMessage + '(${appCode})');
-            const appCode = this._getAppCode(errorConstant.code);
-            const message = _.truncate(
+            const alertService: AlertService = this.injector.get(AlertService);
+            const apiService: ApiService  = this.injector.get(ApiService);
+            const complied: _.TemplateExecutor = _.template(errorConstant.message + additionalMessage + '(${appCode})');
+            const appCode: string = this._getAppCode(errorConstant.code);
+            const message: string = _.truncate(
                 (`${appCode} ${errorConstant.message}` + error.stack
                     ? `\n${error.stack}`
                     : ''
@@ -111,18 +115,18 @@ export class GlobalErrorHandler implements ErrorHandler {
             componentRef.isFetching = false;
 
             if (options.showAlert !== false) {
-                const componentResource = componentRef.resource;
-                const initialResource = apiService.initialResouce;
+                const componentResource: Resources = componentRef.resource;
+                const initialResource: Resources = apiService.initialResouce;
                 let errorMessage: string | string[] = '';
 
                 if (error.error_data) {
                     errorMessage = _.uniq(
                         error.error_data.map((errorData: any) => {
                             let mes: string = errorData.message;
-                            const target = mes.match(/{{.+?}}/g) || [];
+                            const target: RegExpMatchArray = mes.match(/{{.+?}}/g) || [];
                             target.forEach(t => {
-                                const key = t.slice(2, -2);
-                                const resource =
+                                const key: string = t.slice(2, -2);
+                                const resource: Resources & Resource =
                                     _.get(componentResource, key) || _.get(initialResource, key);
 
                                 if (resource != null && resource.name != null) {
@@ -145,7 +149,7 @@ export class GlobalErrorHandler implements ErrorHandler {
                     }
                 }, 1000);
 
-                const spinner = document.querySelector('.app-spinner-upload')
+                const spinner: Element = document.querySelector('.app-spinner-upload')
                 if (spinner) {
                     spinner.remove();
                 }
@@ -170,7 +174,8 @@ export class GlobalErrorHandler implements ErrorHandler {
      * APIのエラーレスポンスを処理する
      * @param res エラー
      */
-    private async _handleErrorResponse(res: HttpErrorResponse) {
+    private async _handleErrorResponse(res: HttpErrorResponse): Promise<void> {
+
         const { url, status } = res;
 
         if (!url) {
@@ -183,8 +188,8 @@ export class GlobalErrorHandler implements ErrorHandler {
         if (error == null) {
             error_data = null;
         } else if (error instanceof Blob) {
-            const json = await new Promise<string>((resolve) => {
-                const reader = new FileReader();
+            const json: string = await new Promise<string>((resolve) => {
+                const reader: FileReader = new FileReader();
                 reader.onload = () => {
                     setTimeout(() => {
                         resolve(reader.result as string);
@@ -197,14 +202,17 @@ export class GlobalErrorHandler implements ErrorHandler {
             error_data = error.error_data;
         }
 
-        const apiService = this.injector.get(ApiService);
-        const catalogApiUrl = apiService.getCatalogApiUrl();
-        const logApiUrl = apiService.getLogApiUrl();
-        const errorObj = {
+        const apiService: ApiService = this.injector.get(ApiService);
+        const catalogApiUrl: string = apiService.getCatalogApiUrl();
+        const logApiUrl: string = apiService.getLogApiUrl();
+        const errorObj: {
+            error_data: any[];
+            status: number;
+        } = {
             error_data,
             status,
         };
-        const additionalMessage = Error.apiErrorMessages[status] || '';
+        const additionalMessage: string = Error.apiErrorMessages[status] || '';
 
         switch (url) {
             case catalogApiUrl:
@@ -221,4 +229,5 @@ export class GlobalErrorHandler implements ErrorHandler {
                 break;
         }
     }
+
 }

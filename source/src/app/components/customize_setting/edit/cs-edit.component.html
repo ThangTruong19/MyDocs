@@ -39,7 +39,7 @@
                   [labels]="labels"
                   [beginningWday]="beginningWday"
                   [enableDateRange]="enableDateRange"
-                  [dateFormat]="dateFormat"
+                  [dateFormat]="_dateFormat"
                   [timeZone]="timeZone"
                   [fromShowLabel]="true"
                   [toShowLabel]="true"
@@ -71,7 +71,7 @@
         </div>
 
         <div class="row" style="margin-top: 15px;">
-            <p>{{labels.customize_definition_detail}}</p>
+            <p>{{labels.customize_definition_detail}}<br/>{{inputParams.regist_customize_usage_definition_name}}</p>
         </div>
 
         <div class="row" style="margin-top: 5px; text-align: center;">

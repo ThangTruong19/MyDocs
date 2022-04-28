@@ -28,7 +28,6 @@ export class AppTrimDirective implements OnInit {
      * エレメントの値「value」から前後スペースを除外します。
      */
     private trimText(txt: string): void {
-        // const txt: string = <string>$(this.el.nativeElement).val();
         if(txt) {
             const trimed = txt.trim();
             if (txt !== trimed) {

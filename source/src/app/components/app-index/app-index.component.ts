@@ -10,6 +10,16 @@ import { CommonHeaderService } from 'app/services/shared/common-header.service';
 import { ComponentRefService } from 'app/services/shared/component-ref.service';
 import { EntranceService } from 'app/services/shared/entrance.service';
 
+/**
+ * メインフレーム
+ *
+ * ※以下の順序でURLに対応する各Componentが呼び出される。
+ *   1. 画面表示URLを実行。
+ *   2. index.htmlが呼ばれる。
+ *   3. app-index.component.tsが呼ばれる。
+ *   4. app-index.component.htmlが呼ばれる。(router-outlet タグが読み込まれる。)
+ *   5. app-routing.module.tsに記述されているrouterの設定により、URLに対応するComponentが呼ばれる。
+ */
 @Component({
     selector: 'app-index',
     templateUrl: './app-index.component.html'
@@ -57,12 +67,6 @@ export class AppIndexComponent implements OnInit {
                         localStorage.setItem(`group_id.${this.appCode}`, params.group_id);
                     }
                 });
-
-                if (environment.settings.skipAuthentication
-                    && !environment.settings.useEntranceForDevelop) {
-                    localStorage.setItem(`group_id.${this.appCode}`, '2'); // TODO:
-                }
-
             }
 
             // 認証後、groupId がない場合強制的にエントランス画面へ
@@ -88,6 +92,7 @@ export class AppIndexComponent implements OnInit {
      */
     private outputAppVersion(): void {
         console.log((window as any).appVersion);
+        console.log((window as any).appVendorVersion);
         console.log(commonModuleVersion);
         console.log(authModuleVersion);
     }

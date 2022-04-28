@@ -1,9 +1,6 @@
 import * as _ from 'lodash';
-import { Dictionary } from 'lodash';
 import { Injectable } from '@angular/core';
-
 import { CommonConfig } from 'app/vendors/k-common-module/interfaces';
-
 import {
     SettingParams,
     SettingParamsItem,

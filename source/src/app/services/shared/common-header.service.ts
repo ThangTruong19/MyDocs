@@ -1,5 +1,5 @@
-import { map, reduce, get } from 'lodash';
 import { Injectable } from '@angular/core';
+import { map, reduce, get } from 'lodash';
 import {
     CommonConfig,
     ConfigItems,
@@ -21,9 +21,21 @@ import { AuthData } from 'app/types/auth-data';
 
 @Injectable()
 export class CommonHeaderService {
-    managementItems: HeaderItem[];
-    labels: Labels = {};
-    paramsMap: { [key: string]: string } = {
+
+    public managementItems: HeaderItem[];
+    public labels: Labels = {};
+    public logoPath = '';
+    public configItems: ConfigItems;
+    public configValues: CommonConfig;
+    public configLabels: ConfigLabels;
+    public userItems: UserItems;
+    public isLoggedIn = true;
+    public links: {
+        [id: string]: string;
+    } = {};
+    public homeIconLink: string;
+    public signOutLink: string;
+    private paramsMap: { [key: string]: string } = {
         temperatureUnit: 'temperature_unit_code',
         dateFormat: 'date_format_code',
         carDivision: 'division_display_kind',
@@ -31,17 +43,6 @@ export class CommonHeaderService {
         distanceUnit: 'distance_unit_code',
         initialScreen: 'default_page_url',
     };
-    logoPath = '';
-    configItems: ConfigItems;
-    configValues: CommonConfig;
-    configLabels: ConfigLabels;
-    userItems: UserItems;
-    isLoggedIn = true;
-    links: {
-        [id: string]: string;
-    } = {};
-    homeIconLink: string;
-    signOutLink: string;
 
     public get isHome(): boolean {
         return location.href.replace(location.search, '') === this.homeIconLink;
@@ -62,7 +63,6 @@ export class CommonHeaderService {
     public async setHeader(labels: Labels, resource: Resources, functions: Navigation[]): Promise<void> {
         this.setLabels(labels);
         this.setConfigResource(labels, resource, functions);
-        // this._setHeaderFunctions(functions);
         this.homeIconLink = this._getHomeIconLink(functions);
         this.signOutLink = this._getSignOutLink(functions);
         this.userItems = this._getUserItems(functions);
@@ -223,33 +223,6 @@ export class CommonHeaderService {
     private _getConfigItemValues(resourceItem: any): FormItem[] {
         return map(resourceItem.values, v => ({ label: v.name, value: v.value }));
     }
-
-    // /**
-    //  * 管理の選択データを作成する
-    //  * @param funcs 機能項目
-    //  */
-    // private _setHeaderFunctions(funcs: Navigation[]): void {
-    //     const headerFunctions: Navigation = funcs.find(
-    //         func =>
-    //             FunctionCodeConst.ADMIN_MENU_FUNCTION && func.code === FunctionCodeConst.ADMIN_MENU_FUNCTION
-    //     );
-    //     if (!headerFunctions || !headerFunctions.functions) {
-    //         return;
-    //     }
-    //     this.managementItems = headerFunctions.functions
-    //         .filter(el => el.code !== 'cdsm_admin_menu_link' || (el.functions && el.functions.length))
-    //         .map(item => {
-    //             const link = get(item, 'options[0].value');
-    //             if (link) {
-    //                 this.links[item.code] = link;
-    //             }
-    //             return {
-    //                 id: item.code,
-    //                 label: item.name,
-    //                 isEnabled: true,
-    //             };
-    //         });
-    // }
 
     /**
      * ヘッダのユーザのタブの内容を取得する

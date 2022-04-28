@@ -1,0 +1,46 @@
+<form name="authoritySelectForm">
+  <div class="KBA-authority-select-modal-authorities">
+    <div class="button-area">
+      <div class="select-all">
+        <input
+          type="checkbox"
+          class="KBA-input-checkbox checkbox-with-label"
+          id="check-icon-all"
+          (click)="toggleCheckAll()"
+          [(checked)]="checkAll"
+        />
+        <label for="check-icon-all" class="KBA-input-checkbox__label">
+          {{ labels.select_all }}
+        </label>
+      </div>
+    </div>
+    <table class="authorities">
+      <tbody class="authority-content">
+        <ng-container *ngFor="let authority of authorities; let i = index">
+          <tr class="authority-row">
+            <td
+              class="importance-area"
+              [attr.rowspan]="authorities.length"
+              *ngIf="i === 0"
+            ></td>
+            <td class="authority">
+              <input
+                (appKbaAuthoritySelectCheckbox)="onChange($event)"
+                (toggleClick)="onCheckSelect($event)"
+                [selectedList]="evacuateSelectedAuthorities"
+                [checked]="isChecked(authority.value)"
+                id="check-icon-{{ i }}"
+                value="{{ authority.value }}"
+                type="checkbox"
+                class="KBA-input-checkbox checkbox-with-label"
+              />
+              <label class="KBA-input-checkbox__label" for="check-icon-{{ i }}">
+                {{ authority.name }}
+              </label>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</form>

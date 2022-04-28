@@ -115,7 +115,7 @@ labels:
 
   - id: 20
     description: 確認メッセージ
-    name: acustomize_update_request_messageaa
+    name: customize_update_request_message
     ja: 以下のカスタマイズ設定について、車両への設定更新を要求しますか？
     en:
 

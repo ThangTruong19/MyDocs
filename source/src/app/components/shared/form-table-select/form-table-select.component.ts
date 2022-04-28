@@ -23,16 +23,18 @@ import { NgDropdownPanelComponent } from '@ng-select/ng-select/lib/ng-dropdown-p
 export class FormTableSelectComponent implements OnInit {
 
     @ViewChild(NgSelectComponent, { static: false }) public select: NgSelectComponent;
+
     @Input() public itemName: string;
     @Input() public display: string;
     @Input() public itemParams: any = {};
     @Input() public notEditable: boolean;
     @Input() public required: boolean;
     @Input() public colspan: number;
-    @Output() public onChange: EventEmitter<any> = new EventEmitter<any>();
-    @Output() public open: EventEmitter<void> = new EventEmitter<void>();
     @Input() public emitInitialRefresh = true;
     @Input() public itemResource: Resources;
+
+    @Output() public onChange: EventEmitter<any> = new EventEmitter<any>();
+    @Output() public open: EventEmitter<void> = new EventEmitter<void>();
 
     public get isVisible(): boolean {
         return this.items.length > 0;
@@ -43,7 +45,6 @@ export class FormTableSelectComponent implements OnInit {
     public dropdownWidth: number | null = null;
     private initialItem: SelectItem;
     private dropdownActualWidth: number | null = null;
-    private viewVal: SelectItem[] = [];
 
     constructor(private ref: ChangeDetectorRef) { }
 
@@ -56,7 +57,6 @@ export class FormTableSelectComponent implements OnInit {
             return;
         }
 
-        this.viewVal = [this.initialItem];
         this.itemParams[this.itemName] = this.initialItem.id;
 
         if (this.emitInitialRefresh) {
@@ -81,7 +81,6 @@ export class FormTableSelectComponent implements OnInit {
      * @param value 選択項目
      */
     public onSelectItem(value: SelectItem): void {
-        this.viewVal = [value];
         this.onChange.emit(value.id);
     }
 
@@ -152,7 +151,6 @@ export class FormTableSelectComponent implements OnInit {
                 : this.items[0];
 
         if (item != null) {
-            this.viewVal = [item];
             this.itemParams[this.itemName] = item.id;
             return;
         }
@@ -184,7 +182,6 @@ export class FormTableSelectComponent implements OnInit {
         ) {
             this.itemParams[this.itemName] = this.items[0] ? this.items[0].id : (this.itemParams[this.itemName] || null);
         }
-        this.viewVal = [this.items.find(item => item.id === this.itemParams[this.itemName])];
 
         if (emitChangeEvent) {
             this.onChange.emit(this.itemParams[this.itemName]);

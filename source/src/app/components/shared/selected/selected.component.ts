@@ -45,7 +45,6 @@ export class SelectedComponent implements OnInit {
     private initialItem: SelectItem;
     private dropdownWidth: number | null = null;
     private dropdownActualWidth: number | null = null;
-    private viewVal: SelectItem[] = [];
 
     public get isVisible(): boolean {
         return this.itemParams != null && this.items.length > 0;
@@ -68,8 +67,6 @@ export class SelectedComponent implements OnInit {
         if (this.initialItem == null) {
             return;
         }
-
-        this.viewVal = [this.initialItem];
 
         if (this.initialItem != null) {
             this.itemParams[this.itemName] = this.initialItem.id;
@@ -107,7 +104,6 @@ export class SelectedComponent implements OnInit {
         ) {
             this.itemParams[this.itemName] = this.items[0] ? this.items[0].id : (this.itemParams[this.itemName] || null);
         }
-        this.viewVal = [this.items.find(item => item.id === this.itemParams[this.itemName])];
 
         if (emitChangeEvent) {
             this.onChangeSelectItem.emit(this.itemParams[this.itemName]);
@@ -120,7 +116,6 @@ export class SelectedComponent implements OnInit {
      * @param value 選択項目
      */
     public onSelectItem(value: SelectItem): void {
-        this.viewVal = [value];
         this.onChangeSelectItem.emit(value.id);
     }
 
@@ -190,7 +185,6 @@ export class SelectedComponent implements OnInit {
                 : this.items[0];
 
         if (item != null) {
-            this.viewVal = [item];
             this.itemParams[this.itemName] = item.id;
         }
     }

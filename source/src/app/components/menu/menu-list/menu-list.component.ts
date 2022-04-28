@@ -11,6 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavigationService } from 'app/services/shared/navigation.service';
 import { Navigation } from 'app/types/navigation';
 
+/**
+ * 管理メニュー
+ */
 @Component({
     selector: 'app-menu-list',
     templateUrl: './menu-list.component.html'

@@ -130,4 +130,5 @@ export abstract class AbstractModalContentWithPaginationComponent
     protected _getSearchParams<T>(params: T): T {
         return _.clone(params);
     }
+
 }

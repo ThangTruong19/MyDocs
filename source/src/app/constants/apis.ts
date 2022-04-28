@@ -26,6 +26,8 @@ export const Apis = {
     postCarsCustomizeRequestsStatusSearch: 'KOM-00110170',
     postCustomizeUsageDefinitionRequest: 'KOM-00110120',
     getCars_carId_CustomizeUsageDefinitionDetails: 'KOM-00110181',
+    postCustomizeUsageDefinitionUpdateRequest: 'KOM-00110130',
+    postCustomizeSettingRequestResend: 'KOM-00110XXX',
     getExampleFileCreate: 'KOM-xxxxxxx1',
     postExampleCommaTest: 'KOM-xxxxxxx2',
     postExampleUpload: 'KOM-xxxxxxx3',

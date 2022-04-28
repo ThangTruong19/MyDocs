@@ -463,14 +463,9 @@ export class ApiService {
                 ) {
                     this.initialResouce = _.merge(this.initialResouce, result);
                 }
-                console.log('come on');console.log(res.result_data);
+
                 return this.resource.parse(res.result_data);
-            },
-            // catchError((e: any) =>{
-            //   //do your processing here
-            //   alert(e);
-            //   return null;
-            // }),
+            }
             )
         );
     }
@@ -970,7 +965,7 @@ export class ApiService {
     }
 
     /**
-     * API をコール可能であるか判定します。
+     * API をコール可能であるか判定する。
      * @param config API の url
      */
     private _isCallable(config: any): boolean {
@@ -1005,7 +1000,7 @@ export class ApiService {
     }
 
     /**
-     * API へのリクエスト時のパラメータのうち、値が空でない有効なパラメータのみを選択し返します。
+     * API へのリクエスト時のパラメータのうち、値が空でない有効なパラメータのみを選択し返す。
      * @param params リクエストパラメータ
      * @param exclusionKey 除外対象キー
      */
@@ -1065,7 +1060,7 @@ export class ApiService {
     }
 
     /**
-     * 共通のリクエストヘッダを設定します。
+     * 共通のリクエストヘッダを設定する。
      * @param opt リクエストオプション
      */
     private _requestHeaders(opt: any): { [key: string]: string } {

@@ -25,7 +25,6 @@ export class SortingLabelDirective implements OnInit {
     @Output() sort: EventEmitter<any> = new EventEmitter();
 
     private hostElement: HTMLElement;
-    private sortByAsc: boolean;
     private sortingType: SortingType;
 
     constructor(ref: ElementRef) {

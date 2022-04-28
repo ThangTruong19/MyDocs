@@ -90,15 +90,31 @@ export class CustomizeSettingService {
    * 車両カスタマイズ用途定義更新要求
    * @param params リクエストパラメータ
    */
-  //  postCustomUsageDefinitionUpdateRequest(params: any): Promise<any>{
-  //   return new Promise((resolve, reject) => {
-  //     this.api.requestHandler(
-  //       'postCustomDefinitionUpdateRequest',
-  //       this.api.post(Apis.postCustomizeUsageDefinitionUpdateRequest, params)
-  //       .subscribe(res => {
-  //         resolve(res);
-  //       })
-  //     );
-  //   })
-  // }
+   postCustomUsageDefinitionUpdateRequest(params: any): Promise<any>{
+    return new Promise((resolve, reject) => {
+      this.api.requestHandler(
+        'postCustomDefinitionUpdateRequest',
+        this.api.post(Apis.postCustomizeUsageDefinitionUpdateRequest, params)
+        .subscribe(res => {
+          resolve(res);
+        })
+      );
+    })
+  }
+
+  /**
+   * 車両カスタマイズ設定要求再送
+   * @param params リクエストパラメータ
+   */
+  postCutomSettingRequestResend(params: any): Promise<any>{
+    return new Promise((resolve, reject) => {
+      this.api.requestHandler(
+        'postCutomSettingRequestResend',
+        this.api.post(Apis.postCustomizeSettingRequestResend, params)
+        .subscribe(res => {
+          resolve(res);
+        })
+      );
+    })
+  }
 }
