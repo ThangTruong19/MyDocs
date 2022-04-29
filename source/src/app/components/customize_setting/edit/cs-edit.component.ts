@@ -46,6 +46,7 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
   datePickerParams: Object;
   isDelete: boolean = false;
 
+  // Table's header definition
   fields : Fields = [
     {
       "display_sequence_no": "1",
@@ -97,18 +98,27 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
     super(nav, title, router, cdRef, header, modal);
   }
 
+  /**
+   * Fetching list data for the table in the screen
+   */
   protected async fetchList(): Promise<any> {
+    // Setting the request parameters before calling API
     this._searchParams.customize_usage_definition_id = this.inputParams.regist_customize_usage_definition_id;
     this._searchParams.customize_usage_definition_version = (this.customizeDefinitionVersion as any).itemParams.regist_customize_usage_definition_version;
+    // Call & fetch data from API
     this.fetchCustomizeSettingData();
     this.isInitialize = false;
   }
 
+  /**
+   * Fetching labels, resources to be displayed in the screen
+   */
   protected async _fetchDataForInitialize(): Promise<any> {
     this.labels = this.resources.label;
     this.resource = this.resources.resource;
     this.params = _.clone(this.inputParams);
     this.initialize(this.resources);
+    // TODO: Setting the default selected option for a combobox[優先度] = '低' (Still in Q&A)
     _.set(this.params,'regist_priority_name','low');
     this._initializeDatePicker();
   }
@@ -131,27 +141,42 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
     this.datePickerService.initialize(datePickerParams);
   }
 
+  /**
+   * Refresh table's data in case the dropdown [バージョン] changes its value
+   * @param data New selected option of the dropdown
+   */
   refreshCustomizeDefinitionVersion(data: any){
     if(!this.isInitialize){
+      // Setting the request parameters before calling API
       this._searchParams.customize_usage_definition_version = data;
+      // Call & fetch data from API
       this.fetchCustomizeSettingData();
     }
   }
 
+  /**
+   * Get list data from the API
+   */
   async fetchCustomizeSettingData() : Promise<any>{
     this.thList = this._createThList(this.fields);
     this.thList.forEach(element => {
       element.formatKey = 'customize_definition.' + element.formatKey;
     });
     this._searchParams.car_id = this.carId;
+    // Call & fetch data from API
     const res = await this.customSettingService.fetchCustomizeSettingList(
       this._searchParams,
       this.requestHeaderParams
     );
+    // Format the acquired data to be displayed in the table
     const formatted = this._formatList(res.result_data.customize_definitions, this.thList);
     this._fillLists(res.result_header, formatted);
   }
 
+  /**
+   * Hide/Show 「開始日・終了日・有効/無効・優先度」based on the selected value of a combobox [要求種別]
+   * @param The selected value of a combobox [要求種別] (更新/削除)
+   */
   changeRequestType(data: any): void{
     if(data === 'update'){
       this.isDelete = false;

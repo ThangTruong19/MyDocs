@@ -1,0 +1,183 @@
+[
+    {
+        "path": "request_period_customize_definition_id",
+        "name": "カスタマイズ定義",
+        "help": "request_period_customize_definition_id",
+        "type": 0,
+        "memo": "カスタマイズ定義リスト",
+        "placeholder_text": "",
+        "items": []
+    },
+    {
+        "path": "request_period_date_from",
+        "name": "期間",
+        "help": "request_period_date_from",
+        "type": 0,
+        "memo": "",
+        "placeholder_text": "",
+        "items": []
+    },
+    {
+        "path": "request_period_date_to",
+        "name": "期間",
+        "help": "request_period_date_to",
+        "type": 0,
+        "memo": "",
+        "placeholder_text": "",
+        "items": []
+    },
+    {
+        "path": "request_number_definition_id_kind",
+        "name": "要求種別",
+        "help": "request_number_definition_id_kind",
+        "type": 10,
+        "memo": "",
+        "placeholder_text": "",
+        "items": [
+            {
+                "key": "用途定義単位",
+                "value": "1",
+                "kind": "D"
+            },
+            {
+                "key": "定義単位",
+                "value": "2",
+                "kind": "D"
+            }
+        ]
+    },
+    {
+        "path": "request_number_definition_ids",
+        "name": "カスタマイズ用途定義名",
+        "help": "request_number_definition_ids",
+        "type": 10,
+        "memo": "",
+        "placeholder_text": "選択してください",
+        "items": [
+            {
+                "key": "用途定義A",
+                "value": "1",
+                "kind": "D"
+            },
+            {
+                "key": "用途定義B",
+                "value": "2",
+                "kind": "D"
+            }
+        ]
+    },
+    {
+        "path": "request_number_datetime_from",
+        "name": "開始日",
+        "help": "request_number_datetime_from",
+        "type": 10,
+        "memo": "",
+        "placeholder_text": "",
+        "items": []
+    },
+    {
+        "path": "request_number_datetime_to",
+        "name": "終了日",
+        "help": "request_number_datetime_to",
+        "type": 10,
+        "memo": "",
+        "placeholder_text": "",
+        "items": []
+    },
+    {
+        "path": "car_data_amount_upper_limit_active_kind",
+        "name": "通信量上限設定",
+        "help": "car_data_amount_upper_limit_active_kind",
+        "type": 10,
+        "memo": "",
+        "placeholder_text": "",
+        "items": [
+            {
+                "key": "ON",
+                "value": "1",
+                "kind": "D"
+            },
+            {
+                "key": "OFF",
+                "value": "2",
+                "kind": "D"
+            }
+        ]
+    },
+    {
+        "path": "car_data_amount_upper_limit",
+        "name": "通信量上限(KB)",
+        "help": "car_data_amount_upper_limit",
+        "type": 10,
+        "memo": "",
+        "placeholder_text": "",
+        "items": []
+    },
+    {
+        "path": "send_number_list_request_definition_id_kind",
+        "name": "要求種別",
+        "help": "send_number_list_request_definition_id_kind",
+        "type": 10,
+        "memo": "",
+        "placeholder_text": "",
+        "items": [
+            {
+                "key": "用途定義単位",
+                "value": "1",
+                "kind": "D"
+            },
+            {
+                "key": "定義単位",
+                "value": "2",
+                "kind": "D"
+            }
+        ]
+    },
+    {
+        "path": "send_number_list_request_definition_ids",
+        "name": "カスタマイズ用途定義名",
+        "help": "send_number_list_request_definition_ids",
+        "type": 10,
+        "memo": "",
+        "placeholder_text": "選択してください",
+        "items": [
+            {
+                "key": "用途定義A",
+                "value": "1",
+                "kind": "D"
+            },
+            {
+                "key": "用途定義B",
+                "value": "2",
+                "kind": "D"
+            }
+        ]
+    },
+    {
+        "path": "send_number_list_request_datetime_from",
+        "name": "開始日",
+        "help": "send_number_list_request_datetime_from",
+        "type": 10,
+        "memo": "",
+        "placeholder_text": "",
+        "items": []
+    },
+    {
+        "path": "send_number_list_request_datetime_to",
+        "name": "終了日",
+        "help": "send_number_list_request_datetime_to",
+        "type": 10,
+        "memo": "",
+        "placeholder_text": "",
+        "items": []
+    },
+    {
+        "path": "X-Count",
+        "name": "表示件数",
+        "help": "X-Count",
+        "type": 10,
+        "memo": "",
+        "placeholder_text": "",
+        "items": []
+    }
+]

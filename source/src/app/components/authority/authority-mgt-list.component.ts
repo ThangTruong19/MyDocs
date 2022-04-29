@@ -27,7 +27,7 @@ import { AuthoritySelectComponent } from './authority-select/authority-select.co
   styleUrls: ['./authority-mgt-list.component.scss']
 })
 export class AuthorityMgtListComponent extends AbstractIndexComponent
-implements OnInit,AfterViewInit  {
+implements OnInit  {
 
   @ViewChild('deleteModalContent', { static: false })
   deleteModalContent: TemplateRef<null>;
@@ -68,15 +68,11 @@ implements OnInit,AfterViewInit  {
     super(navigationService, title, router, ref, header);
   }
 
-  ngAfterViewInit(): void {
-    console.log(this.authoritySelectComponentList); // -> 値が入ってる
-  }
   /**
    * 現在のパラメータを一覧取得APIに引き渡し、一覧画面に表示するリストを取得する
    * @param sort_key ソートキー
    */
   async fetchList(sort_key?: string) {
-    console.log(this.authoritySelectComponentList)
     this.requestHeaderParams['X-Sort'] = sort_key || '';
     this.isFetching = true;
 
@@ -92,8 +88,6 @@ implements OnInit,AfterViewInit  {
     this._fillLists(res.result_header, list);
     this.isFetching = false;
     this._afterFetchList();
-    console.log(this.belongingGroupSelectComponent)
-    console.log(this.authoritySelectComponentList)
   }
   override _formatListAdditional(data: any): void {
     // グループ
@@ -133,10 +127,8 @@ implements OnInit,AfterViewInit  {
  */
   async onClickSelect(user: any, index: number) {
 
-    console.log(user)
-    console.log(this.authoritySelectComponentList.toArray()[index])
     const authoritySelect = this.authoritySelectComponentList.toArray()[index];
-    console.log(authoritySelect)
+
     authoritySelect.reset();
     await this._authorities(user);
     authoritySelect.onClickSelect();
@@ -155,9 +147,6 @@ implements OnInit,AfterViewInit  {
       ScreenCodeConst.AUTHORITY_MGT_LIST_CODE,
       param
     );
-    console.log(this)
-    console.log(res)
-    console.log(res.user.group.granted_authority_ids.values)
     this.authorities = res.user.group.granted_authority_ids.values;
     this.selectedAuthorities = _.map(
       _.get(user, 'users.group.granted_authorities'),
@@ -236,7 +225,6 @@ implements OnInit,AfterViewInit  {
   //  * 初期化 API を呼ぶ
   //  */
   protected async _fetchDataForInitialize(): Promise<void> {
-    console.log(this)
     const res = await this.userService.fetchInitData();
     this.initialize(res);
     this.labels = res.label;

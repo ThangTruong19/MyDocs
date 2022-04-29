@@ -37,6 +37,7 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
   timeZone : string;
   datePickerParams: Object;
 
+  // Table's header definition
   fields : Fields = [
     {
       "display_sequence_no": "1",
@@ -89,9 +90,14 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
     super(nav, title, router, cdRef, header, modal);
   }
 
+  /**
+   * Fetching list data for the table in the screen
+   */
   protected async fetchList(): Promise<any> {
+    // Setting the request parameters before calling API
     this._searchParams.customize_usage_definition_id = (this.customizeDefinitionName as any).itemParams.regist_customize_usage_definition_name;
     this._searchParams.customize_usage_definition_version = (this.customizeDefinitionVersion as any).itemParams.regist_customize_usage_definition_version;
+    // Call & fetch data from API
     this.fetchCustomizeSettingData();
     (this.customizeDefinitionName as any).items.forEach((element :any) => {
       if(element.id == this.params.regist_customize_usage_definition_name) this.displayDefinitionName = element.name;
@@ -99,10 +105,14 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
     this.isInitialize = false;
   }
 
+  /**
+   * Fetching labels, resources to be displayed in the screen
+   */
   protected async _fetchDataForInitialize(): Promise<any> {
     this.labels = this.resources.label;
     this.resource = this.resources.resource;
     this.initialize(this.resources);
+    // TODO: Setting the default selected option for a combobox[優先度] = '低' (Still in Q&A)
     _.set(this.params,'regist_priority_name','low');
     this._initializeDatePicker();
   }
@@ -155,9 +165,15 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
     );
   }
 
-  refreshCustomizeDefinitionName(data: any){
+  /**
+   * Refresh table's data in case the dropdown [カスタマイズ用途定義名] changes its value
+   * @param data New selected option of the dropdown
+   */
+  refreshCustomizeDefinitionName(data: any): void{
     if(!this.isInitialize){
+      // Setting the request parameters before calling API
       this._searchParams.customize_usage_definition_id = data;
+      // Call & fetch data from API
       this.fetchCustomizeSettingData();
       (this.customizeDefinitionName as any).items.forEach((element :any) => {
         if(element.id == this.params.regist_customize_usage_definition_name) this.displayDefinitionName = element.name;
@@ -165,23 +181,34 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
     }
   }
 
-  refreshCustomizeDefinitionVersion(data: any){
+  /**
+   * Refresh table's data in case the dropdown [バージョン] changes its value
+   * @param data New selected option of the dropdown
+   */
+  refreshCustomizeDefinitionVersion(data: any): void{
     if(!this.isInitialize){
+      // Setting the request parameters before calling API
       this._searchParams.customize_usage_definition_version = data;
+      // Call & fetch data from API
       this.fetchCustomizeSettingData();
     }
   }
 
+  /**
+   * Get list data from the API
+   */
   async fetchCustomizeSettingData() : Promise<any>{
     this.thList = this._createThList(this.fields);
     this.thList.forEach(element => {
       element.formatKey = 'customize_definition.' + element.formatKey;
     });
     this._searchParams.car_id = this.carId;
+    // Call & fetch data from API
     const res = await this.customSettingService.fetchCustomizeSettingList(
       this._searchParams,
       this.requestHeaderParams
     );
+    // Format the acquired data to be displayed in the table
     const formatted = this._formatList(res.result_data.customize_definitions, this.thList);
     this._fillLists(res.result_header, formatted);
   }

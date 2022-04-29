@@ -23,7 +23,10 @@ export class FunctionCodeConst {
     public static CS_EXPECTED_TRAFFIC_CONFIRM_LISTFUNCTION = 'flm_car_mgt_list_function';
     public static CS_EXPECTED_TRAFFIC_CONFIRM_LISTDOWNLOADFUNCTION = 'flm_car_mgt_list_download_function';
 
-    /** 送信要求（期間単位）*/
+    /** 送信要求（期間単位）タブ */
     public static CDSM_CUSTOMIZE_DATA_REQUEST_PERIOD_TAB = 'cdsm_customize_data_request_period_tab';
+
+    /** 送信番号一覧要求タブ */
+    public static CDSM_CUSTOMIZE_DATA_NUMBER_LIST_REQUEST_TAB = 'cdsm_customize_data_number_list_request_tab';
 
 }

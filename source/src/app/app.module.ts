@@ -31,13 +31,11 @@ import { CustomizeSettingUploadService } from 'app/services/customize-setting-up
 import { CarListService } from 'app/services/car-list/car-list.service';
 import { UrlService } from 'app/services/shared/url.service';
 import { GlobalErrorHandler } from 'app/handler/global-error-hanler';
-import { AuthoritySelectComponent } from './components/authority/authority-select/authority-select.component';
 
 @NgModule({
     declarations: [
         AppIndexComponent,
         MenuComponent,
-        AuthoritySelectComponent,
     ],
     imports: [
         AppCommonModule,
@@ -64,9 +62,6 @@ import { AuthoritySelectComponent } from './components/authority/authority-selec
         },
         CustomizeSettingUploadService,
         CarListService,
-    ],
-    exports:[
-        AuthoritySelectComponent
     ],
     bootstrap: [AppIndexComponent]
 })

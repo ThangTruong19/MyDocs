@@ -105,13 +105,29 @@
     <div class="content">
         <div class="col-3">
             <label><b>{{labels.request_car_result_detail}}</b></label>
-            <app-common-table
+            <!-- <app-common-table
                 [lists]="lists"
                 [thList]="thList"
                 [sortableThList]="sortableThList"
                 [(sortingParams)]="sortingParams"
                 [labels]="labels">
+            </app-common-table> -->
+            <app-common-table
+                [lists]="lists"
+                [thList]="thList"
+                [sortableThList]="sortableThList"
+                [(sortingParams)]="sortingParams"
+                [labels]="labels"
+                [customTableRowContent]="customTableRowContent">
+                <ng-template #customTableRowContent let-data="data">
+                    <ng-container *ngFor="let title of thList">
+                      <td *ngIf="title.displayable">
+                        <span>{{ data[title.name].name }}</span>
+                      </td>
+                    </ng-container>
+                </ng-template>
             </app-common-table>
+
         </div>
     </div>
     <div class="app-control">

@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { AbstractIndexComponent } from 'app/components/shared/abstract-component/abstract-index.component';
 import { SelectTypeComponent } from 'app/components/shared/select-type/select-type.component';
 import { DateFormat, DateTimeFormat } from 'app/constants/date-format';
 import { UserSettingService } from 'app/services/api/user-setting.service';
@@ -11,6 +12,7 @@ import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { ModalService } from 'app/services/shared/modal.service';
 import { MonthPickerService } from 'app/services/shared/month-picker.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
+import { Fields } from 'app/types/common';
 import * as _ from 'lodash';
 import { Moment } from 'moment';
 
@@ -19,7 +21,7 @@ import { Moment } from 'moment';
   templateUrl: './cd-request-period-tab.component.html',
   styleUrls: ['./cd-request-period-tab.component.scss']
 })
-export class CdRequestPeriodTabComponent implements OnInit {
+export class CdRequestPeriodTabComponent extends AbstractIndexComponent implements OnInit {
 
   @ViewChild('cdRequestPeriodComfirmModalContent', { static: false }) cdRequestPeriodComfirmModalContent: TemplateRef<null>;
   @ViewChild('cdCurrentRequestComfirmModalContent', { static: false }) cdCurrentRequestComfirmModalContent: TemplateRef<null>;
@@ -29,12 +31,14 @@ export class CdRequestPeriodTabComponent implements OnInit {
   @ViewChild('requestMumberDefinitionIdKind', { static: false }) requestMumberDefinitionIdKind: SelectTypeComponent;
 
   modalResource: any;
-  @Input() labels: any;
-  @Input() resource: any;
-  @Input() lists: any;
-  @Input() params: any;
-  @Input() thList: any;
-  @Input() sortableThList: string[] = [];
+  // @Input() labels: any;
+  // @Input() resource: any;
+  @Input() override lists: any;
+  @Input() override params: any;
+  @Input() override thList: any;
+  // @Input() sortableThList: string[] = [];
+
+  thListModal: any = [];
 
   initParams = {
     "definition_id_kind": "0",
@@ -53,8 +57,9 @@ export class CdRequestPeriodTabComponent implements OnInit {
   request_period_kind: string = "1";
   listSelections: any = [];
   selectedListItems: any = [];
-
+  fields: Fields;
   initResource: any;
+
   // thList = [
   //   {
   //     label: '車両情報',
@@ -62,10 +67,10 @@ export class CdRequestPeriodTabComponent implements OnInit {
   //     displayable: true,
   //   },
   // ];
-  sortingParams = {
-    sort: '',
-    sortLabel: '',
-  };
+  // sortingParams = {
+  //   sort: '',
+  //   sortLabel: '',
+  // };
 
   monthlyParams: { year_month_from: Moment; year_month_to: Moment } = {
     year_month_from: this.datePickerService.toMoment(),
@@ -77,7 +82,7 @@ export class CdRequestPeriodTabComponent implements OnInit {
   };
 
   beginningWday: number;
-  dateFormat: string;
+  _dateFormat: string;
   timeZone: string;
   enableDateRange: string[];
   monthPickerFromDateRange: string[];
@@ -92,47 +97,95 @@ export class CdRequestPeriodTabComponent implements OnInit {
     nav: NavigationService,
     title: Title,
     header: CommonHeaderService,
-    ref: ChangeDetectorRef,
     router: Router,
-    private modalService: ModalService,
-    private cdRef: ChangeDetectorRef,
+    override modalService: ModalService,
+    cdRef: ChangeDetectorRef,
     private cdRequestPeriodTabService: CdRequestPeriodTabService,
     private cdRequestPeriodComfirmService: CdRequestPeriodComfirmService,
     protected userSettingService: UserSettingService,
     private datePickerService: DatePickerService,
     private monthPickerService: MonthPickerService,) {
+    super(nav, title, router, cdRef, header);
+  }
 
+  protected async fetchList(sort_key?: string): Promise<any> {
+    // throw new Error('Method not implemented.');
+  }
+  protected async _fetchDataForInitialize(): Promise<any> {
+    const res = await this.cdRequestPeriodTabService.fetchCarInitData();
+    this.initialize(res);
+    this.params = _.cloneDeep(this.initParams);
+    this.labels = res.label;
+    this.initResource = res.resource;
+    this.resource = _.cloneDeep(this.initResource);
+    this._setTitle();
+    this._afterInitialize();
+    this._updateFields(res.fields);
+    console.log("res", res);
+  }
+
+  protected async _afterInitialize(): Promise<any> {
+    const datePickerConfig = this.userSettingService.getDatePickerConfig();
+    this.beginningWday = datePickerConfig.first_day_of_week_kind;
+    const _window = window as any;
+    this.enableDateRange = _window.settings.datePickerRange.car;
+    // this.enableDateRange = this.datePickerService.parseDateRange(_window.settings.datePickerRange.other);
+
+    let dateFormat = datePickerConfig.date_format_code;
+    this.timeZone = datePickerConfig.time_difference;
+
+    this.listSelections = this.resource.request_number_definition_ids.values;
+    this.datePickerParams = {
+      timeZone: this.timeZone,
+      dateFormat: dateFormat,
+    };
+    this.datePickerService.initialize(this.datePickerParams);
+    this._datePickerInitialize();
+    // this.lists.originList = ['columnName1', 'columnName2'];
+    // this.lists.visibleList = this.lists.originList;
+  }
+
+  /**
+ * 指定項目を更新
+ * @param fields 指定項目
+ */
+  protected _updateFields(fields: any): void {
+    this.fields = fields;
+    this.thListModal = this._createThList(fields);
+    this.sortableThList = this.sortableThLists(this.thListModal);
+    this._reflectXFields(fields);
+    console.log("cd-request-period-tab:thListModal" , this.thListModal);
   }
 
   placeholder: string = '';
 
-  ngOnInit(): void {
-    this.listSelections = this.resource.request_number_definition_ids.values;
-    this.placeholder = this.resource.request_number_definition_ids.placeholder_text;
-    console.log('labels', this.labels);
-    console.log('resource', this.resource);
-    console.log('lists', this.lists);
+  // ngOnInit(): void {
+  //   this.listSelections = this.resource.request_number_definition_ids.values;
+  //   this.placeholder = this.resource.request_number_definition_ids.placeholder_text;
+  //   console.log('labels', this.labels);
+  //   console.log('resource', this.resource);
+  //   console.log('lists', this.lists);
 
-    const _window = window as any;
-    this.datePickerParams = {
-      dateFormat: this.dateFormat,
-      timeZone: this.timeZone,
-    };
-    this.datePickerService.initialize(this.datePickerParams);
-    this.monthPickerService.initialize(this.datePickerParams);
-    this.enableDateRange = this.datePickerService.parseDateRange(_window.settings.datePickerRange.other);
+  //   const _window = window as any;
+  //   this.datePickerParams = {
+  //     dateFormat: this.dateFormat,
+  //     timeZone: this.timeZone,
+  //   };
+  //   this.datePickerService.initialize(this.datePickerParams);
+  //   this.monthPickerService.initialize(this.datePickerParams);
+  //   this.enableDateRange = this.datePickerService.parseDateRange(_window.settings.datePickerRange.other);
 
-    // this._refreshMonthPickerDateRange();
-    // this._refreshDatePickerDateRange();
-    this._datePickerInitialize();
+  //   // this._refreshMonthPickerDateRange();
+  //   // this._refreshDatePickerDateRange();
+  //   this._datePickerInitialize();
 
-    // this.lists.originList = [{
-    //   columnName1: 'PC200-8-1234',
-    // }, {
-    //   columnName1: 'PC200-8-1111',
-    // }];
-    // this.lists.visibleList = this.lists.originList;
-  }
+  //   // this.lists.originList = [{
+  //   //   columnName1: 'PC200-8-1234',
+  //   // }, {
+  //   //   columnName1: 'PC200-8-1111',
+  //   // }];
+  //   // this.lists.visibleList = this.lists.originList;
+  // }
 
   onChangeItems(): void {
     this.changed.emit();
@@ -218,11 +271,11 @@ export class CdRequestPeriodTabComponent implements OnInit {
   getDateString(date: Moment) {
     console.log("getDateString", this.datePickerService.getInputText(
       date,
-      this.datePickerService.inputDateFormat(this.dateFormat)
+      this.datePickerService.inputDateFormat(this._dateFormat)
     ));
     return this.datePickerService.getInputText(
       date,
-      this.datePickerService.inputDateFormat(this.dateFormat)
+      this.datePickerService.inputDateFormat(this._dateFormat)
     );
   }
 
@@ -344,12 +397,12 @@ export class CdRequestPeriodTabComponent implements OnInit {
     this.beginningWday = datePickerConfig.first_day_of_week_kind;
     const _window = window as any;
     this.enableDateRange = _window.settings.datePickerRange.other;
-    this.dateFormat = datePickerConfig.date_format_code;
+    this._dateFormat = datePickerConfig.date_format_code;
     this.timeZone = datePickerConfig.time_difference;
 
     this.datePickerParams = {
       timeZone: this.timeZone,
-      dateFormat: this.dateFormat,
+      dateFormat: this._dateFormat,
     };
 
     this.datePickerService.initialize(this.datePickerParams);
@@ -365,7 +418,7 @@ export class CdRequestPeriodTabComponent implements OnInit {
       this.params,
       'request_number_datetime_from_formatted',
       today
-        .clone().format(this.datePickerService.inputDateFormat(this.dateFormat))
+        .clone().format(this.datePickerService.inputDateFormat(this._dateFormat))
     );
     _.set(this.params, 'request_number_datetime_to', today
       .add(23, 'hours')
@@ -377,7 +430,7 @@ export class CdRequestPeriodTabComponent implements OnInit {
       this.params,
       'request_number_datetime_to_formatted',
       today
-        .format(this.datePickerService.inputDateFormat(this.dateFormat))
+        .format(this.datePickerService.inputDateFormat(this._dateFormat))
     );
   }
 

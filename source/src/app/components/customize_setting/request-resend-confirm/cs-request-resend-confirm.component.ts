@@ -12,6 +12,7 @@ export class CsRequestResendConfirmComponent implements OnInit {
   @Input()
   public labels: Object;
 
+  // Table's header definition
   thList: Object[] = [
     {
       label: "ID",

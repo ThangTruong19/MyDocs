@@ -62,8 +62,8 @@
                 <div>
                     <app-from-to-date-time-picker
                         #fromToDatePicker
-                        [from]="'request_number_datetime_from'"
-                        [to]="'request_number_datetime_to'"
+                        [from]="'send_number_list_request_datetime_from'"
+                        [to]="'send_number_list_request_datetime_to'"
                         [params]="params"
                         [resource]="resource"
                         [labels]="labels"
@@ -89,12 +89,30 @@
                 [thList]="thList"
                 [sortableThList]="sortableThList"
                 [(sortingParams)]="sortingParams"
-                [labels]="labels">
+                [labels]="labels"
+                [customTableRowContent]="customTableRowContent">
+                <ng-template #customTableRowContent let-data="data">
+                    <ng-container *ngFor="let title of thList">
+                      <td *ngIf="title.displayable">
+                        <span>{{ data[title.name].name }}</span>
+                      </td>
+                    </ng-container>
+                  </ng-template>
             </app-common-table>
         </div>
     </div>
-    <!-- <div class="app-control">
-        <button type="button" class="btn btn-primary btn-send" (click)="sendData()">{{labels.data_send_request_btn}}</button>
-        <button type="button" class="btn btn-primary" (click)="sendAppConfirm()">{{labels.current_customize_request_btn}}</button>
-    </div> -->
+    <div class="app-control">
+        <button type="button" class="btn btn-primary btn-send" (click)="openDialogNumberListRequestComfirm()">{{labels.number_list_request_tab_title}}</button>
+    </div>
 </div>
+
+<ng-template #cdNumberListRequestComfirmModalContent>
+    <div class="model-header">
+        <p class="model-title">{{labels.send_number_request_confirm_message}}</p>
+    </div>
+    <app-cd-number-list-request-confirm
+        [labels]="labels"
+        [lists]="lists"
+        [thListModal]="thListModal">
+    </app-cd-number-list-request-confirm>
+</ng-template>

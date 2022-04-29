@@ -106,12 +106,73 @@ export class CdRequestDetailComponent extends AbstractIndexComponent implements 
     };
     this.datePickerService.initialize(this.datePickerParams);
 
-    this.listCars.originList = [{
-      'cars.car_identification': 'PC200-8-1234',
-    }, {
-      'cars.car_identification': 'PC200-8-1111',
-    }];
-    this.listCars.visibleList = this.listCars.originList;
+    // TODO
+    // this.listCars.originList = [{
+    //   'cars.car_identification': 'PC200-8-1234',
+    // }, {
+    //   'cars.car_identification': 'PC200-8-1111',
+    // }];
+
+    this.listCars.originList = [
+      {
+        "cars.car_identification": {
+          "id": "1",
+          "model": "D85PX",
+          "type_rev": "15E0",
+          "serial": "A12345",
+          "division_code": "0001"
+        },
+        "communication_channel": {
+          "id": "1",
+          "code": "0",
+          "name": "ORBCOMM"
+        },
+        "terminal_mode": {
+          "kind": "1",
+          "name": "次世代"
+        },
+        "customer": {
+          "id": "12345",
+          "label": "顧客A",
+          "label_english": "Customer A"
+        },
+        "support_distributor": {
+          "id": "401",
+          "label": "コマツ東京C",
+          "label_english": "KOMATSU Tokyo C"
+        },
+        "customize_usage_definitions": [
+          {
+            "id": "1234567",
+            "name": "カスタマイズ定義A",
+            "version": "1.00",
+            "setting_change_status": "1",
+            "setting_change_status_name": "設定中",
+            "customize_definitions": [
+              {
+                "id": "1234567",
+                "name": "カスタマイズ定義A",
+                "version": "1.00",
+                "access_level": {
+                  "id": "1",
+                  "code": "0",
+                  "name": "開発者"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ];
+    this.thList = [
+      {
+        label: '車両情報',
+        name: 'cars.car_identification',
+        displayable: true,
+      }
+    ];
+
+    this.listCars.visibleList = this.getVisibleList(this.listCars.originList);
 
     this.lists = this.listCars;
   }
@@ -140,11 +201,23 @@ export class CdRequestDetailComponent extends AbstractIndexComponent implements 
    * @param fields 指定項目
    */
   protected _updateFields(fields: any): void {
-    this.fields = fields;
-    this.thList = this._createThList(fields);
-    this.sortableThList = this.sortableThLists(this.thList);
-    this._reflectXFields(fields);
-    console.log(this.thList);
+    // this.fields = fields;
+    // this.thList = this._createThList(fields);
+    // this.sortableThList = this.sortableThLists(this.thList);
+    // this._reflectXFields(fields);
+    // console.log("cd-request-detail: thList", this.thList);
+  }
+
+  getVisibleList(originList: any): any {
+    let result: any = [];
+    if (originList.length > 0) {
+      for (var carItem of originList) {
+        let item: any = carItem;
+        item["cars.car_identification"].name = carItem["cars.car_identification"].model + '-' + carItem["cars.car_identification"].serial + '-' + carItem["cars.car_identification"].type_rev;
+        result.push(item);
+      }
+    }
+    return result;
   }
 
 }

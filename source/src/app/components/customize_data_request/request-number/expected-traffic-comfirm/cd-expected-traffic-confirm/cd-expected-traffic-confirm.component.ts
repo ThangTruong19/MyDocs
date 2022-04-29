@@ -18,11 +18,7 @@ export class CdExpectedTrafficConfirmComponent implements OnInit {
     visibleList: [] as any[],
     originList: [] as any[],
   };
-  compiledResultCountMessage: (src: {
-    total: number;
-    success: number;
-    fail: number;
-  }) => string;
+
   thList = [
     {
       label: '車両',

@@ -23,4 +23,11 @@ export class ScreenCodeConst {
     public static readonly CS_EXPECTED_TRAFFIC_CONFIRM_LIST = 'flm_car_mgt_list';
 
     public static readonly CDSM_CUSTOMIZE_DATA_REQUEST_DETAIL = 'cdsm_customize_data_request_detail';
+
+    // 送信要求（期間単位）タブ
+    public static readonly CDSM_REQUEST_PERIOD_TAB = 'cdsm_request_period_tab';
+    // 送信番号一覧要求タブ
+    public static readonly CDSM_SEND_NUMBER_LIST_REQUEST_TAB = 'cdsm_send_number_list_request_tab';
+
+
 }

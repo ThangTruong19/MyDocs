@@ -7,7 +7,7 @@ import { ScreenCodeConst } from "app/constants/api/screen-code-const";
 import { FunctionCodeConst } from "app/constants/api/function-code-const";
 
 @Injectable()
-export class CdRequestPeriodTabService {
+export class CdNumberListRequestTabService {
     constructor(private api: ApiService, private resource: ResourceService) {}
 
     /**
@@ -16,11 +16,9 @@ export class CdRequestPeriodTabService {
    * @return {Object} 初期パラメータ群
    */
     fetchCarInitData(opt?: any): Promise<any> {
-        this.api.currentScreenCode = ScreenCodeConst.CDSM_REQUEST_PERIOD_TAB;
-        return this.api.callApisForInitialize(ScreenCodeConst.CDSM_REQUEST_PERIOD_TAB, 'fetchCarInitData', {
-            fields: () => this.api.fetchFields(FunctionCodeConst.CDSM_CUSTOMIZE_DATA_REQUEST_PERIOD_TAB),
-            fieldResources: () =>
-                this.api.fetchFieldResources(FunctionCodeConst.CDSM_CUSTOMIZE_DATA_REQUEST_PERIOD_TAB),
+        this.api.currentScreenCode = ScreenCodeConst.CDSM_SEND_NUMBER_LIST_REQUEST_TAB;
+        return this.api.callApisForInitialize(ScreenCodeConst.CDSM_SEND_NUMBER_LIST_REQUEST_TAB, 'fetchCarInitData', {
+            fields: () => this.api.fetchFields(FunctionCodeConst.CDSM_CUSTOMIZE_DATA_NUMBER_LIST_REQUEST_TAB),
         });
     }
 

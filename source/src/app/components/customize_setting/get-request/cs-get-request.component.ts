@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cs-get-request',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cs-get-request.component.scss']
 })
 export class CsGetRequestComponent implements OnInit {
+  @Input()
+  public labels: Object;
 
   constructor() { }
 
