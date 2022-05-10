@@ -56,6 +56,13 @@
                         >
                             <span>カスタマイズ設定入力内容破棄確認</span>
                         </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-send"
+                            (click)="onClickCustomSettingRequestResendDialog()"
+                        >
+                            <span>カスタマイズ設定要求再送確認</span>
+                        </button>
                     </div>
                     <!-- 一覧テーブル上部検索オプション欄 -->
                     <div class="app-table-options" [hidden]="count <= 0">

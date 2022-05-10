@@ -108,6 +108,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
   @ViewChild('csGetRequestModalContent', { static: false }) csGetRequestModalContent: TemplateRef<null>;
   @ViewChild('csUpdateRequestConfirmModalContent', { static: false }) csUpdateRequestConfirmModalContent: TemplateRef<null>;
   @ViewChild('csImmediateUpdateRequestConfirmModalContent', { static: false }) csImmediateUpdateRequestConfirmModalContent: TemplateRef<null>;
+  @ViewChild('csRequestResendConfirmModalContent', { static: false }) csRequestResendConfirmModalContent: TemplateRef<null>;
   @ViewChild('csInputDataCancelConfirmModalContent', { static: false }) csInputDataCancelConfirmModalContent: TemplateRef<null>;
   @ViewChild(CsNewComponent) newChildComponent: CsNewComponent;
   @ViewChild(CsEditComponent) editChildComponent: CsEditComponent;
@@ -481,7 +482,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           let customUsageDef : any[] = [];
           this.selectedData.forEach(element => {
             customUsageDef.push({
-              "customize_usage_definition_id": element["customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_id"],
+              "customize_usage_definition_id": element["customize_usage_definitions.customize_usage_definition.customize_usage_definition_id"],
               "version": element["customize_usage_definitions.customize_usage_definition.customize_usage_definition_version"],
               "request_kind": "2",
               "priority": element["customize_usage_definitions.customize_usage_definition.priority"],
@@ -555,7 +556,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           let customUsageDef : any[] = [];
           this.selectedData.forEach(element => {
             customUsageDef.push({
-              "customize_usage_definition_id": element["customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_id"],
+              "customize_usage_definition_id": element["customize_usage_definitions.customize_usage_definition.customize_usage_definition_id"],
               "version": element["customize_usage_definitions.customize_usage_definition.customize_usage_definition_version"],
               "request_kind": "2",
               "priority": element["customize_usage_definitions.customize_usage_definition.priority"],
@@ -746,6 +747,56 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
               console.log("RES", res);
             })
         },
+      },
+      {
+        size: 'lg',
+      }
+    );
+  }
+
+  onClickCustomSettingRequestResendDialog(){
+    this.lists.originList.forEach(
+      (item: any) => {
+        this.selectedList.forEach(element => {
+          if(item[this.checkIdName] == element) this.selectedData.push(item);
+        })
+      }
+    );
+
+    this.modalService.open(
+      {
+        title: this.labels.confirmation_title,
+        labels: this.labels,
+        content: this.csRequestResendConfirmModalContent,
+        closeBtnLabel: this.labels.cancel,
+        okBtnLabel: this.labels.ok_btn,
+        ok: () => {
+          let distinctDefinitionId : any[] = [];
+          this.selectedData.forEach(element => {
+            if(distinctDefinitionId.indexOf(element["customize_usage_definitions.customize_usage_definition.customize_usage_definition_id"]) == -1){
+              distinctDefinitionId.push(element["customize_usage_definitions.customize_usage_definition.customize_usage_definition_id"]);
+            }
+
+          })
+          let customUsageDef : any[] = [];
+          distinctDefinitionId.forEach(element => {
+            customUsageDef.push({
+              "customize_definition_id": element
+            })
+          })
+          const requestParam = {
+            "car_id": this.carId,
+            "customize_definition": customUsageDef
+          }
+          this.customSettingService.postCutomSettingRequestResend(requestParam)
+            .then(res => {
+              console.log("RES", res);
+            })
+          this.selectedData = [];
+        },
+        ng: () => {
+          this.selectedData = [];
+        }
       },
       {
         size: 'lg',
