@@ -7,7 +7,6 @@ import {
     ElementRef,
 } from '@angular/core';
 import { some, filter } from 'lodash';
-import { MimeType } from 'app/constants/mime-types';
 import { DisplayCode } from 'app/constants/display-code';
 import { Labels } from 'app/types/common';
 
@@ -59,7 +58,7 @@ export class PopoverComponent implements OnInit {
             return;
         }
 
-        const filteredVal = val.map((resource: any) => ({
+        const filteredVal: any = val.map((resource: any) => ({
             ...resource,
             name: resource.name.replace(/##/g, ''),
         }));

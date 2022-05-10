@@ -5,6 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { AbstractBaseComponent } from 'app/components/shared/abstract-component/abstract-base.component';
+import { SelectedComponent } from 'app/components/shared/selected/selected.component';
 import * as _ from 'lodash';
 
 @Component({
@@ -16,8 +18,10 @@ export class AuthoritySelectModalComponent implements OnInit {
   @Input() authorities: any[];
   @Input() labels: any;
   @Input() selectedAuthorities: any[];
+  @Input() selectedKinds: any;
   @Output() check: EventEmitter<any> = new EventEmitter<any>();
   @Output() checkedAll: EventEmitter<any> = new EventEmitter<any>();
+
 
   checkAll = false;
   evacuateSelectedAuthorities: any[] = [];

@@ -325,6 +325,30 @@
     file: json/cdsm/car/postPeriod.js
 
 #
+# x. 送信番号一覧送信要求 (POST)
+#
+# リクエストキーを取得する。
+#
+- request:
+    url: /v1/cars/requests/send_no_list/m2s
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/car/postSendNoList.js
+
+#
+# x. 車両カスタマイズ用途定義一覧取得 (POST)
+#
+#
+#
+- request:
+    url: /v1/cars/customize_usage_definitions/search
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/car/postCustomizeUsageDefinitions.js
+
+#
 # x. 車両カスタマイズ用途定義詳細取得 API (GET)
 #
 # 車両カスタマイズ用途定義詳細を取得する

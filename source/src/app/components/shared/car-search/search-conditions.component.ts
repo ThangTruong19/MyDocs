@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import * as _ from 'lodash';
-import { Resource } from 'app/types/common';
+import { Resource, Resources } from 'app/types/common';
+
 @Component({
     selector: 'app-search-conditions',
     templateUrl: './search-conditions.component.html',
@@ -9,7 +10,7 @@ import { Resource } from 'app/types/common';
 export class SearchConditionsComponent {
 
     @Input() public params: any;
-    @Input() public resource: any;
+    @Input() public resource: Resources;
     @Input() public selectorKeys: {
         supportDistributor?: string;
         subGroup?: string;
@@ -27,8 +28,8 @@ export class SearchConditionsComponent {
      * 検索条件のパスの一覧
      */
     public get searchConditionPaths(): string[] {
-        const paths = this._getNestedKeys(this.params);
-        const selectorPaths = _.values(this.selectorKeys);
+        const paths: string[] = this._getNestedKeys(this.params);
+        const selectorPaths: string[] = _.values(this.selectorKeys);
 
         return _.uniq(paths.concat(selectorPaths));
     }
@@ -39,14 +40,14 @@ export class SearchConditionsComponent {
      */
     public paramsValue(path: string): string {
         const selKeys: any = <any>this.selectorKeys;
-        const selectedParams = this.selectedParams
+        const selectedParams: _.Dictionary<string[]> = this.selectedParams
             ? _.mapKeys(
                 this.selectedParams,
                 (_val: string[], key: string) => selKeys[key]
             )
             : {};
-        const res = _.get(this.resource, path);
-        const value = _.get({ ...this.params, ...selectedParams }, path);
+        const res: any = _.get(this.resource, path);
+        const value: any = _.get({ ...this.params, ...selectedParams }, path);
 
         if (res == null) {
             return null;
@@ -97,7 +98,7 @@ export class SearchConditionsComponent {
      * @param path パス
      */
     public resourceName(path: string): string {
-        const res = _.get(this.resource, path);
+        const res: any = _.get(this.resource, path);
 
         if (res && path === 'car_management.time_difference') {
             return this.resource.car_management.time_difference_setting.name;
@@ -115,7 +116,7 @@ export class SearchConditionsComponent {
      * @param value 値
      */
     private _getResourceValueName(path: string, value: string): string {
-        const res = _.get(this.resource, path);
+        const res: any = _.get(this.resource, path);
         if (res) {
             const v = _.find(res.values, item => item.value === value);
             return v ? v.name : '';

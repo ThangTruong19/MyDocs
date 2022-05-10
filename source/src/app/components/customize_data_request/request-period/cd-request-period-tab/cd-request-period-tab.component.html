@@ -85,7 +85,8 @@
                             [showLabel]="false"
                             [itemName]="'car_data_amount_upper_limit_active_kind'"
                             [itemParams]="params"
-                            [itemResource]="resource">
+                            [itemResource]="resource"
+                            (onChangeSelectItem)="changeLimitActiveKind($event)">
                         </app-selected>
                     </div>
                     <div class="col-6">
@@ -122,7 +123,7 @@
                 <ng-template #customTableRowContent let-data="data">
                     <ng-container *ngFor="let title of thList">
                       <td *ngIf="title.displayable">
-                        <span>{{ data[title.name].name }}</span>
+                        <span>{{ printInfoCar(data) }}</span>
                       </td>
                     </ng-container>
                 </ng-template>
@@ -143,14 +144,22 @@
     <div class="model-header">
         <p class="model-title">{{ labels.customize_request_confirm_message }}</p>
     </div>
-    <app-cd-request-period-comfirm></app-cd-request-period-comfirm>
+    <app-cd-request-period-comfirm
+        [data]="data"
+        [thList]="thListCustomizeDataRequest"
+        [labels]="labels"
+    ></app-cd-request-period-comfirm>
 </ng-template>
 
 <ng-template #cdCurrentRequestComfirmModalContent>
     <div class="model-header">
         <p class="model-title">{{ labels.current_request_confirm_message }}</p>
     </div>
-    <app-cd-current-request-comfirm></app-cd-current-request-comfirm>
+    <app-cd-current-request-comfirm
+        [data]="data"
+        [thList]="thListCurrentRequestComfirm"
+        [labels]="labels"
+    ></app-cd-current-request-comfirm>
 </ng-template>
 <!-- TODO -->
 <ng-template #cdExpectedTrafficConfirmModalContent>

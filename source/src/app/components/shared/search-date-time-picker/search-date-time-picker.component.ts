@@ -12,7 +12,7 @@ import { DateFormat } from 'app/constants/date-format';
 import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { AppDatePickerComponent } from 'app/components/shared/date-picker/date-picker.component';
 import { AppTimePickerComponent } from 'app/components/shared/time-picker/time-picker.component';
-import { Labels } from 'app/types/common';
+import { Labels, Resources } from 'app/types/common';
 import { TimePickerParams } from 'app/types/calendar';
 import { TimePickerService } from 'app/services/shared/time-picker.service';
 
@@ -36,7 +36,7 @@ export class SearchDateTimePickerComponent implements OnInit {
 
     @Input() public itemName: string;
     @Input() public itemParams: any;
-    @Input() public itemResource: any;
+    @Input() public itemResource: Resources;
     @Input() public itemLabel: Labels;
     @Input() public display: string;
     @Input() public showLabel = true;

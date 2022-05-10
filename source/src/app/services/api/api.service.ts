@@ -465,8 +465,7 @@ export class ApiService {
                 }
 
                 return this.resource.parse(res.result_data);
-            }
-            )
+            })
         );
     }
 

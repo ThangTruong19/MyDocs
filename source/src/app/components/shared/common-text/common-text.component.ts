@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Resources } from 'app/types/common';
 import * as _ from 'lodash';
 
 @Component({
@@ -8,7 +9,7 @@ import * as _ from 'lodash';
 })
 export class AppCommonTextComponent implements OnInit {
 
-    @Input() public itemResource: any;
+    @Input() public itemResource: Resources;
     @Input() public itemName: string;
     @Input() public itemParams: string;
     @Input() public maxlength: number;

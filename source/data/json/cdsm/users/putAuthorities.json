@@ -11,7 +11,8 @@
           "granted_authorities": [
             {
               "name": "参照のみ",
-              "id": "1234567"
+              "id": "1234567",
+              "kind": "1234567"
             }
           ],
           "granted_role": {

@@ -1,15 +1,24 @@
 <form name="authoritySelectForm">
-  <div class="KBA-authority-select-modal-authorities">
+  <div class="authority-select-modal-authorities" *ngIf="labels">
+  <div class="row">
+    <app-selected
+      class="col-sm-3"
+      [itemName]="'access_level'"
+      [itemResource]="selectedKinds"
+      [emitInitialRefresh]="false"
+      >
+    </app-selected>
+  </div>
     <div class="button-area">
       <div class="select-all">
         <input
           type="checkbox"
-          class="KBA-input-checkbox checkbox-with-label"
+          class="app-input-checkbox checkbox-with-label"
           id="check-icon-all"
           (click)="toggleCheckAll()"
           [(checked)]="checkAll"
         />
-        <label for="check-icon-all" class="KBA-input-checkbox__label">
+        <label for="check-icon-all" class="app-input-checkbox__label">
           {{ labels.select_all }}
         </label>
       </div>
@@ -25,16 +34,16 @@
             ></td>
             <td class="authority">
               <input
-                (appKbaAuthoritySelectCheckbox)="onChange($event)"
+                (appAuthoritySelectCheckbox)="onChange($event)"
                 (toggleClick)="onCheckSelect($event)"
                 [selectedList]="evacuateSelectedAuthorities"
                 [checked]="isChecked(authority.value)"
                 id="check-icon-{{ i }}"
                 value="{{ authority.value }}"
                 type="checkbox"
-                class="KBA-input-checkbox checkbox-with-label"
+                class="app-input-checkbox checkbox-with-label"
               />
-              <label class="KBA-input-checkbox__label" for="check-icon-{{ i }}">
+              <label class="app-input-checkbox__label" for="check-icon-{{ i }}">
                 {{ authority.name }}
               </label>
             </td>

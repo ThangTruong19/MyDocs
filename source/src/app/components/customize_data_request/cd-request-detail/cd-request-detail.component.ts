@@ -51,7 +51,32 @@ export class CdRequestDetailComponent extends AbstractIndexComponent implements 
     },
   };
   _searchParams: any = {
-    "car_id": 1
+    "car_identification": {
+      "models": [
+        "D85PX"
+      ],
+      "type_revs": [
+        "15E0"
+      ],
+      "serials": [
+        "A12345",
+        "A00001>A00005"
+      ]
+    },
+    "communication_channel_codes": [
+      "0"
+    ],
+    "terminal_mode_kind": "0",
+    "customer_ids": [
+      "601"
+    ],
+    "support_distributor_ids": [
+      "401"
+    ],
+    "customize_usage_definition_ids": [
+      "1"
+    ],
+    "setting_change_status": "1"
   };
   listSelections: any = [];
 
@@ -67,13 +92,15 @@ export class CdRequestDetailComponent extends AbstractIndexComponent implements 
   datePickerParams: any;
 
   async fetchList(sort_key?: string): Promise<any> {
-    this.requestHeaderParams['X-Sort'] = sort_key || '';
+    // this.requestHeaderParams['X-Sort'] = sort_key || '';
     this.isFetching = true;
     const p = _.cloneDeep(this._searchParams);
     const res = await this.cdRequestDetailService.fetchCarIndexList(
       p,
-      this.requestHeaderParams
     );
+    this.lists.originList = res.result_data.cars;
+    this.lists.visibleList = this.lists.originList;
+    this.isFetching = false;
     console.log("fetchList", res);
   }
   protected async _fetchDataForInitialize(): Promise<void> {
@@ -106,68 +133,10 @@ export class CdRequestDetailComponent extends AbstractIndexComponent implements 
     };
     this.datePickerService.initialize(this.datePickerParams);
 
-    // TODO
-    // this.listCars.originList = [{
-    //   'cars.car_identification': 'PC200-8-1234',
-    // }, {
-    //   'cars.car_identification': 'PC200-8-1111',
-    // }];
-
-    this.listCars.originList = [
-      {
-        "cars.car_identification": {
-          "id": "1",
-          "model": "D85PX",
-          "type_rev": "15E0",
-          "serial": "A12345",
-          "division_code": "0001"
-        },
-        "communication_channel": {
-          "id": "1",
-          "code": "0",
-          "name": "ORBCOMM"
-        },
-        "terminal_mode": {
-          "kind": "1",
-          "name": "次世代"
-        },
-        "customer": {
-          "id": "12345",
-          "label": "顧客A",
-          "label_english": "Customer A"
-        },
-        "support_distributor": {
-          "id": "401",
-          "label": "コマツ東京C",
-          "label_english": "KOMATSU Tokyo C"
-        },
-        "customize_usage_definitions": [
-          {
-            "id": "1234567",
-            "name": "カスタマイズ定義A",
-            "version": "1.00",
-            "setting_change_status": "1",
-            "setting_change_status_name": "設定中",
-            "customize_definitions": [
-              {
-                "id": "1234567",
-                "name": "カスタマイズ定義A",
-                "version": "1.00",
-                "access_level": {
-                  "id": "1",
-                  "code": "0",
-                  "name": "開発者"
-                }
-              }
-            ]
-          }
-        ]
-      }
-    ];
     this.thList = [
       {
         label: '車両情報',
-        name: 'cars.car_identification',
+        name: 'car_identification',
         displayable: true,
       }
     ];

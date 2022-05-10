@@ -19,7 +19,7 @@
                     class="col-sm-3"
                     [itemName]="'model'"
                     [itemParams]="params"
-                    [itemResource]="resource.operation_history"
+                    [itemResource]="resource.car_search"
                     [maxlength]="20"
                   >
                   </app-common-text>
@@ -28,7 +28,7 @@
                     class="col-sm-3"
                     [itemName]="'type_rev'"
                     [itemParams]="params"
-                    [itemResource]="resource.operation_history"
+                    [itemResource]="resource.car_search"
                     [maxlength]="15"
                   >
                   </app-common-text>
@@ -37,147 +37,96 @@
                     class="col-sm-3"
                     [itemName]="'serials'"
                     [itemParams]="params"
-                    [itemResource]="resource.operation_history"
+                    [itemResource]="resource.car_search"
                     [maxlength]="41"
                   >
                   </app-common-text>
 
                   <app-selected
                     class="col-sm-3"
-                    *ngIf="resource.operation_history.terminalModeType"
+                    *ngIf="resource.car_search.terminalModeType"
                     [itemName]="'terminalModeType'"
                     [itemParams]="params"
-                    [itemResource]="resource.operation_history"
+                    [itemResource]="resource.car_search"
                     [emitInitialRefresh]="false"
-                    (onChangeSelectItem)="onCustomizeUsageDefinitionIdChange($event)"
+                    (onChangeSelectItem)="disableButtonsHandler($event)"
                   >
                   </app-selected>
 
                   <app-selected
                     class="col-sm-3"
-                    *ngIf="resource.operation_history.transmission_type"
+                    *ngIf="resource.car_search.transmission_type"
                     [itemName]="'transmission_type'"
                     [itemParams]="params"
-                    [itemResource]="resource.operation_history"
+                    [itemResource]="resource.car_search"
                     [emitInitialRefresh]="false"
-                    (onChangeSelectItem)="onCategoryCodeChange($event)"
+                    (onChangeSelectItem)="disableButtonHandler($event)"
                   >
                   </app-selected>
 
-                  <!--<app-selected
-                    class="col-sm-3"
-                    *ngIf="resource.operation_history.code"
-                    [itemName]="'code'"
-                    [itemParams]="params"
-                    [itemResource]="resource.operation_history"
-                    [emitInitialRefresh]="false"
-                    (onChangeSelectItem)="onCategoryCodeChange($event)"
-                  >
-                  </app-selected>-->
-
                   <app-selected
                     class="col-sm-3"
-                    *ngIf="resource.operation_history.representativeDb"
+                    *ngIf="resource.car_search.representativeDb"
                     [itemName]="'representativeDb'"
                     [itemParams]="params"
-                    [itemResource]="resource.operation_history"
+                    [itemResource]="resource.car_search"
                   >
                   </app-selected>
 
                   <app-selected
                     class="col-sm-3"
-                    *ngIf="resource.operation_history.client"
+                    *ngIf="resource.car_search.client"
                     [itemName]="'client'"
                     [itemParams]="params"
-                    [itemResource]="resource.operation_history"
+                    [itemResource]="resource.car_search"
                   >
                   </app-selected>
 
                   <app-selected
-                    #belongingCustomizeUsageDefinitionId
                     class="col-sm-3"
-                    *ngIf="resource.operation_history.customize_definition_id"
-                    [itemName]="'customize_definition_id'"
-                    [itemParams]="params"
-                    [itemResource]="resource.operation_history"
-                  >
-                  </app-selected>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                  <app-selected
-                    class="col-sm-3"
-                    *ngIf="resource.operation_history.changeStatus"
+                    *ngIf="resource.car_search.changeStatus"
                     [itemName]="'changeStatus'"
                     [itemParams]="params"
-                    [itemResource]="resource.operation_history"
+                    [itemResource]="resource.car_search"
                   >
                   </app-selected>
 
-
-
-                  <!--<app-common-text
-                    class="col-sm-3"
-                    [itemName]="'search_keyword'"
-                    [itemParams]="params"
-                    [itemResource]="resource.operation_history"
-                    [maxlength]="2048"
-                  >
-                  </app-common-text>
-
-                  <app-from-to-date-picker
+                  <app-select-type
+                    *ngIf="resource.car_search.customize_definition_id"
+                    #subGroupSelect
                     class="col-sm-6"
-                    [from]="'date_from'"
-                    [to]="'date_to'"
-                    [params]="params"
-                    [resource]="resource.operation_history"
+                    name="user_permission_sub_group_ids"
                     [labels]="labels"
-                    [beginningWday]="beginningWday"
-                    [enableDateRange]="enableDateRange"
-                    [dateFormat]="_dateFormat"
-                    [timeZone]="timeZone"
-                    [fromDisplay]="'date_from_formatted'"
-                    [toDisplay]="'date_to_formatted'"
-                    [required]="true"
+                    [targets]="resource.car_search.customize_definition_id"
                   >
-                  </app-from-to-date-picker>-->
+                  </app-select-type>
                 </div>
               </div>
               <div class="app-panel-footer">
+                <a
+                  href="javascript:void(0)"
+                  (click)="onClickReset()"
+                  class="btn btn-link"
+                >
+                  {{ labels.reset }}
+                </a>
                 <button
                   (click)="onClickSearch()"
                   type="button"
                   class="btn btn-primary search"
-                  style="float: center;"
                 >
-                  {{ labels.search }}
+                {{ labels.search }}
                 </button>
+
                 <button
-                  type="button"
-                  class="btn btn-warning"
-                  (click)="onDownloadOk($event)"
-                  [ngClass]="{ disable: candisable(data) }"
-                  style="float: right;"
+                type="button"
+                class="btn btn-warning"
+                (click)="onDownloadOk($event)"
+                [disabled]="checkAllDisabled"
+                style="position: absolute; right: 7px;"
                 >
                   {{ labels.download_template }}
-                  <i class="app-icon app-icon-download"></i>
+                <i class="app-icon app-icon-download"></i>
                 </button>
               </div>
             </div>
@@ -195,49 +144,11 @@
             </app-pagination>
 
             <div class="table-option-buttons">
-              <!--<div class="popover-wrapper">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  (click)="onClickFieldSelect($event)"
-                >
-                  {{ labels.field_select }}
-                </button>
-                <app-popover
-                  [labels]="labels"
-                  [resource]="fieldResources"
-                  [fields]="fields"
-                  [title]="labels.field_select_title"
-                  [(isVisible)]="fieldSelectPopoverVisible"
-                  (ok)="onFieldSelectOk($event)"
-                >
-                </app-popover>
-              </div>-->
-              <!--<div class="popover-wrapper">
-                <button
-                  type="button"
-                  class="btn btn-warning"
-                  (click)="onClickDownloadAll($event)"
-                  [ngClass]="{ disable: giveashit(data) }"
-                >
-                  {{ labels.download_all }}
-                  <i class="app-icon app-icon-download"></i>
-                </button>
-                <app-popover
-                  [labels]="labels"
-                  [resource]="downloadFieldResources"
-                  [fields]="downloadFields"
-                  [title]="labels.download_select_title"
-                  [(isVisible)]="downloadPopoverVisible"
-                  [download]="true"
-                  [downloadType]="resource.file_content_type"
-                  (ok)="onDownloadOk($event)"
-                ></app-popover>
-              </div>-->
               <div class="popover-wrapper">
                 <button
                   type="button"
                   class="btn button-redirect"
+                  [disabled]="checkAllDisabled"
                   (click)="handleClick()"
                 >
                   {{ labels.send_data_request_link }}
@@ -247,7 +158,8 @@
                 <button
                   type="button"
                   class="btn btn-warning"
-                  (click)="onClickDownloadAll($event)"
+                  [disabled]="isDisabled"
+                  (click)="onClickSelect(data, idx)"
                 >
                   {{ labels.setting_request_modal }}
                 </button>
@@ -298,7 +210,6 @@
           <input
               type="checkbox"
               class="app-input-checkbox"
-              [disabled]="checkAllDisabled"
               id="check-icon-all"
               (click)="toggleCheckAll()"
               [checked]="checkAll"
@@ -320,7 +231,6 @@
       </ng-container>
       <ng-template #editContent>
         <ng-container *ngIf="title.displayable && title.shortName !== 'operation_histories_checkbox'; else checkContent">
-          <!--<td class="td-{{ title.shortName }} app-index-td d-flex align-items-center">-->
           <td style="display: grid; width: 100%;text-align:center;align-items: center;">
             <i class="app-icon app-icon-edit" (click)="handleEditClick()"></i>
           </td>
@@ -351,6 +261,10 @@
         </td>
       </ng-template>
     </ng-container>
+  </ng-template>
+
+  <ng-template #resetModalContent>
+    <p class="app-modal-message">{{ labels.reset_modal_body }}</p>
   </ng-template>
 
   <app-sidemenu [isLoading]="isLoading"></app-sidemenu>

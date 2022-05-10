@@ -1,31 +1,6 @@
 #app-request-period-comfirm {
-    width: 100%;
-    .app-title {
-        margin: 0;
-        background: #2a4dae;
-        font-size: 14px;
-        color: #fff;
-        padding: 10px;
-        font-size: 18px;
-    }
-    .app-content {
-        .app-message {
-            margin-bottom: 20px;
-            color: red;
-            font-weight: bold;
-        }
-        .app-control {
-            margin-top: 20px;
-            text-align: center;
-            .btn {
-                min-width: 100px;
-                margin-right: 10px;
-                border-radius: 4px;
-                padding: 10px;
-                &.btn-primary {
-                    background: #2a4dae;
-                }
-            }
-        }
+    td {
+        width: 122px;
+        vertical-align: top;
     }
 }

@@ -1,70 +1,125 @@
-<div id="app-cs-detail">
-    <div class="app-control">
-        <p>Response data: {{responseData}}</p>
-        <button type="button" class="btn btn-primary btn-send" (click)="openNewDialog()">New</button>
-    </div>
-    <div class="edit-area" style="margin-top: 20px;">
-        <div class="row">
-            <div class="col-sm-6">
-                <label class="col-sm-2">Version: </label>
-                <select [(ngModel)]="versionInput">
-                    <option value="Ver.1">Ver.1</option>
-                    <option value="Ver.2">Ver.2</option>
-                    <option value="Ver.3">Ver.3</option>
-                    <option value="Ver.4">Ver.4</option>
-                    <option value="Ver.5">Ver.5</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <label class="col-sm-2">Start Date: </label>
-                <input type="date" [(ngModel)]="startDateInput" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <label class="col-sm-2">End Date: </label>
-                <input type="date" [(ngModel)]="endDateInput" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <label class="col-sm-2">Enabled / Disabled: </label>
-                <label style="margin: 5px;">有効</label>
-                <input type="radio" value="有効" name="choice" [(ngModel)]="enabledInput" [checked]="enabledInput == '有効'" />
-                <label style="margin: 5px;">無効</label>
-                <input type="radio" value="無効" name="choice" [(ngModel)]="enabledInput"  [checked]="enabledInput == '無効'" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <label class="col-sm-2">Priority: </label>
-                <label style="margin: 5px;">高</label>
-                <input type="radio" value="高" name="priority" [(ngModel)]="priorityInput" [checked]="priorityInput == '高'" />
-                <label style="margin: 5px;">中</label>
-                <input type="radio" value="中" name="priority" [(ngModel)]="priorityInput"  [checked]="priorityInput == '中'" />
-                <label style="margin: 5px;">低</label>
-                <input type="radio" value="低" name="priority" [(ngModel)]="priorityInput"  [checked]="priorityInput == '低'" />
-            </div>
-        </div>
-    </div>
-    <div class="app-control">
-        <p>Response data: {{responseData}}</p>
-        <button type="button" class="btn btn-primary btn-send" (click)="openEditDialog()">Edit</button>
-    </div>
+<section id="app-cs-detail" *ngIf="labels && resource">
+    <div class="container-fluid">
+        <h2 class="app-page-title">{{ labels.title }}</h2>
+        <div class="app-content">
+            <!-- 一覧画面 -->
+            <ng-container>
+                <div class="container">
+                    <label
+                        >{{ labels.maker_model_type_rev_serial }} {{ model }}-
+                        {{ typeRev }}-{{ serial }}
+                    </label>
+                    <!-- TODO: -->
+                    <div class="app-control">
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-send"
+                            (click)="onClickAdd()"
+                        >
+                            <span>追加</span>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-send"
+                            (click)="onClickDiscardAll()"
+                        >
+                            <span>編集内容破棄</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-send">
+                            <span>設定取得要求</span>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-send"
+                            (click)="onClickUpdateRequest()"
+                        >
+                            <span>設定更新要求</span>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-send"
+                            (click)="onClickImmediateUpdateRequest()"
+                        >
+                            <span>設定即時更新要求</span>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-send"
+                            (click)="openGetRequestDialog()"
+                        >
+                            <span>カスタマイズ設定取得要求</span>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-send"
+                            (click)="openInputDataCancelConfirmDialog()"
+                        >
+                            <span>カスタマイズ設定入力内容破棄確認</span>
+                        </button>
+                    </div>
+                    <!-- 一覧テーブル上部検索オプション欄 -->
+                    <div class="app-table-options" [hidden]="count <= 0">
+                        <app-pagination
+                            [count]="count"
+                            [params]="pageParams"
+                            [labels]="labels"
+                            [element]="pageCountEl"
+                            (changeState)="onPaginationChange()"
+                        >
+                        </app-pagination>
+                    </div>
 
-    <div class="app-control">
-        <button type="button" class="btn btn-primary btn-send" (click)="openGetRequestDialog()">Get Request</button>
+                    <!-- 一覧テーブル -->
+                    <div class="app-table-wrapper">
+                        <app-common-table
+                            [checkBoxHiddenFunction]="checkBoxHiddenFunction"
+                            [checkBoxDefaultHiddenFunction]="
+                                checkBoxDefaultHiddenFunction
+                            "
+                            [labels]="labels"
+                            [collapsed]="collapsed"
+                            [lists]="lists"
+                            [pageParams]="pageParams"
+                            [thList]="thList"
+                            [(sortingParams)]="sortingParams"
+                            [sortableThList]="sortableThList"
+                            [selectable]="selectable"
+                            [isFetching]="isFetching"
+                            [checkIdName]="checkIdName"
+                            [checkedItems]="checkedItems"
+                            [checkAll]="checkAll"
+                            (sort)="onChangeSort($event)"
+                        >
+                        </app-common-table>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
     </div>
-</div>
-
-<ng-template #csNewModalContent>
-    <app-cs-new [carId]="selectedCarId" [resources]="data.resource"></app-cs-new>
-</ng-template>
-<ng-template #csEditModalContent>
-    <app-cs-edit [carId]="selectedCarId" [inputParams]="inputParams" [resources]="data.resource"></app-cs-edit>
-</ng-template>
-<ng-template #csGetRequestModalContent>
-    <app-cs-get-request [labels]="labels"></app-cs-get-request>
-</ng-template>
+    <ng-template #csNewModalContent>
+        <app-cs-new [carId]="carId" [resources]="data.resource"></app-cs-new>
+    </ng-template>
+    <ng-template #csEditModalContent>
+        <app-cs-edit
+            [carId]="carId"
+            [inputParams]="inputParams"
+            [resources]="data.resource"
+        ></app-cs-edit>
+    </ng-template>
+    <ng-template #csUpdateRequestConfirmModalContent>
+        <app-cs-update-request-confirm [labels]="labels" [tableData]="selectedData" [initThLst]="thList"></app-cs-update-request-confirm>
+    </ng-template>
+    <ng-template #csImmediateUpdateRequestConfirmModalContent>
+        <app-cs-immediate-update-request-confirm [labels]="labels" [tableData]="selectedData" [initThLst]="thList"></app-cs-immediate-update-request-confirm>
+    </ng-template>
+    <ng-template #csRequestResendConfirmModalContent>
+        <app-cs-request-resend-confirm [labels]="labels" [tableData]="selectedData" [initThLst]="thList"></app-cs-request-resend-confirm>
+    </ng-template>
+    <ng-template #csGetRequestModalContent>
+        <app-cs-get-request [labels]="labels"></app-cs-get-request>
+    </ng-template>
+    <ng-template #csInputDataCancelConfirmModalContent>
+        <app-cs-input-data-cancel-confirm [labels]="labels"></app-cs-input-data-cancel-confirm>
+    </ng-template>
+</section>
+<app-sidemenu [isLoading]="isLoading"></app-sidemenu>

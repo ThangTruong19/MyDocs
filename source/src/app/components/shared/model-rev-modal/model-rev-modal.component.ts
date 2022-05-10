@@ -18,7 +18,7 @@ import {
     sortBy,
 } from 'lodash';
 import { ModelRevService } from 'app/services/shared/model-rev.service';
-import { Labels } from 'app/types/common';
+import { Labels, Resources } from 'app/types/common';
 
 interface DivisionList {
     [divisionCode: string]: {
@@ -54,7 +54,7 @@ interface ModelRevParams {
 export class ModelRevModalComponent implements OnInit {
 
     @Input() public labels: Labels;
-    @Input() public resource: any;
+    @Input() public resource: Resources;
     @Input() public params: ModelRevParams;
     // モーダル再表示時に読み込みを行わないよう親コンポーネントで管理を行う
     @Input() public divisionList: DivisionList;

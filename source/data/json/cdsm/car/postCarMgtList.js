@@ -43,7 +43,7 @@ function createData(i) {
     group_id: '17929',
     group_label: '顧客A',
     group_label_english: 'IT distributor',
-    user_label: 'KOMTRAX標準',
+    user_label: 'KOMTRAX標準\n\nhuh??',
     category_code: 'LOCK1',
     code: '201839',
     category_name: 'ロック操作',

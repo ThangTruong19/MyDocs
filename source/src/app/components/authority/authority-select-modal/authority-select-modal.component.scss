@@ -1,9 +1,9 @@
-@import "../../../../assets/styles/variable";
+@import "../../../../../src/assets/styles/_variable.scss";
 
 $n: 4; //1行当たりのカラム数
 $m: 10px; //カラム左右のマージン
 
-.KBA-authority-select-modal-authorities {
+.authority-select-modal-authorities {
   margin: 0 15px;
   display: flex;
   flex-direction: column;

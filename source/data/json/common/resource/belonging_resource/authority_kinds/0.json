@@ -1,0 +1,27 @@
+[
+  {
+    "path": "authority_kinds",
+    "name": "権限区分",
+    "help": "権限区分のヘルプ文言（OPA側）",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "アクセスレベル1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "アクセスレベル2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "アクセスレベル3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  }
+]

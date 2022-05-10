@@ -27,7 +27,7 @@ import { AuthoritySelectComponent } from './authority-select/authority-select.co
   styleUrls: ['./authority-mgt-list.component.scss']
 })
 export class AuthorityMgtListComponent extends AbstractIndexComponent
-implements OnInit  {
+  implements OnInit {
 
   @ViewChild('deleteModalContent', { static: false })
   deleteModalContent: TemplateRef<null>;
@@ -35,7 +35,6 @@ implements OnInit  {
   belongingGroupSelectComponent: SelectedComponent;
   @ViewChildren(AuthoritySelectComponent)
   authoritySelectComponentList: QueryList<AuthoritySelectComponent>;
-
 
   override params: UserIndexParams;
   deleteParams: UserDeleteParams;
@@ -52,6 +51,7 @@ implements OnInit  {
   override commaSeparated: string[] = ['serials'];
   selectedAuthorities: any[] = [];
   authorities: any = [];
+  selectedKinds: any;
 
   constructor(
     navigationService: NavigationService,
@@ -81,46 +81,41 @@ implements OnInit  {
       this.requestHeaderParams
     );
 
-    const list = this._formatList(
-      res.result_data.users,
-      this.thList
-    );
-    this._fillLists(res.result_header, list);
+    // const list = this._formatList(
+    //   res.result_data.users,
+    //   this.thList
+    // );
+    this._fillLists(res.result_header, res.result_data.users);
     this.isFetching = false;
     this._afterFetchList();
   }
-  override _formatListAdditional(data: any): void {
-    // グループ
-    data.group.configuration_groups.label = data.group.configuration_groups[0].label
-  }
 
-
-   /**
-   * 権限選択モーダルが閉じられた際のコールバック
-   * @param selectedAuthorities 選択済み権限情報
-   * @param user ユーザ情報
-   */
-    onCloseAuthoritySelectModal(selectedAuthorities: any, user: any) {
-      const userId = _.get(user, 'identification.id');
-      this.authoritiesUpdateParams = {
-        user: {
-          group: {
-            belonging_group_id: _.get(
-              user,
-              'group.belonging_group.identification.id'
-            ),
-            granted_authority_ids: selectedAuthorities,
-          },
-          update_datetime: _.get(user, 'identification.update_datetime'),
+  /**
+  * 権限選択モーダルが閉じられた際のコールバック
+  * @param selectedAuthorities 選択済み権限情報
+  * @param user ユーザ情報
+  */
+  onCloseAuthoritySelectModal(selectedAuthorities: any, user: any) {
+    const userId = _.get(user, 'identification.id');
+    this.authoritiesUpdateParams = {
+      user: {
+        group: {
+          belonging_group_id: _.get(
+            user,
+            'group.belonging_group.identification.id'
+          ),
+          granted_authority_ids: selectedAuthorities,
         },
-      };
-      // this.userService
-      //   .updateAuthorities(userId, this.authoritiesUpdateParams)
-      //   .then(res => {
-      //     this.fetchList(this.sortingParams['sort']);
-      //     this.alertService.show(this.labels.authority_update_finish_message);
-      //   });
-    }
+        update_datetime: _.get(user, 'identification.update_datetime'),
+      },
+    };
+    this.userService
+      .updateAuthorities(userId, this.authoritiesUpdateParams)
+      .then(res => {
+        this.fetchList(this.sortingParams['sort']);
+        this.alertService.show(this.labels.authority_update_finish_message);
+      });
+  }
   /**
  * 権限リンク押下コールバック
  * @param user ユーザ情報
@@ -141,7 +136,7 @@ implements OnInit  {
    */
   private async _authorities(user: any): Promise<any> {
     const param = {
-      granted_role_id: _.get(user, 'users.group.granted_role.id'),
+      granted_role_id: _.get(user, 'group.granted_role.id'),
     };
     const res = await this.userService.fetchGrantedAuthorityIdsByRoleId(
       ScreenCodeConst.AUTHORITY_MGT_LIST_CODE,
@@ -149,11 +144,34 @@ implements OnInit  {
     );
     this.authorities = res.user.group.granted_authority_ids.values;
     this.selectedAuthorities = _.map(
-      _.get(user, 'users.group.granted_authorities'),
+      _.get(user, 'group.granted_authorities'),
       'id'
     );
+
+    this.accessLevelSet(user)
+  }
+
+  /**
+   * 権限区分/アクセスレベルのプルダウン表示設定
+   */
+  accessLevelSet(user: any){
+    // 権限区分
+    const kinds = _.map(
+      _.get(user, 'group.granted_authorities'),
+      'kind'
+    );
+    var authority_kind = [{}]
+    for (var i = 0; i < kinds.length; i++) {
+      let j = { name: kinds[i] }
+      console.log(j)
+      authority_kind[i] = j
+    }
+    const kind_value = { name:"アクセスレベル" ,values: authority_kind }
+    this.selectedKinds = { access_level: kind_value }
+
     this.safeDetectChanges();
   }
+
   /**
    * 検索ボタン押下時の処理
    * 現在のパラメータを更新してリストを取得する
@@ -221,6 +239,13 @@ implements OnInit  {
     this.fetchList(this.sortingParams['sort']);
   }
 
+  /**
+   * 文字列のリムーブ
+   */
+  removeStr(str: string, remove: string) {
+    return str.replace(remove, "")
+  }
+
   // /**
   //  * 初期化 API を呼ぶ
   //  */
@@ -236,7 +261,6 @@ implements OnInit  {
     this._updateFields(res.fields);
     this.updatable = res.updatable;
     this.deletable = res.deletable;
-
     const groupId = this.exists('configuration_group_id')
       ? this.resource.configuration_group_id.values[0].value
       : this.api.getGroupId();
@@ -273,7 +297,6 @@ implements OnInit  {
     this.sortableThList = this.sortableThLists(this.thList);
     this._setXFields(xFields);
   }
-
 
   /**
    * 初期検索前の処理
@@ -320,7 +343,7 @@ implements OnInit  {
    * モーダルに表示されるユーザーのデータを作成する
    * @param user ユーザーデータ
    */
-   private _createModalListVal(user: any) {
+  private _createModalListVal(user: any) {
     const listData = user;
     listData.groups = user.groups[0];
     listData.groups.granted_authority_names = _.map(

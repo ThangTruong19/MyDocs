@@ -1,10 +1,10 @@
+import { Component, EventEmitter, Input, Output, OnInit, DoCheck } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import * as _ from 'lodash';
-import { Component, EventEmitter, Input, Output, OnInit, DoCheck } from '@angular/core';
-import { Subject } from 'rxjs';
-import { FormControl, Validators } from '@angular/forms';
-import { UserSettingService } from 'app/services/api/user-setting.service';
 import { Labels } from 'app/types/common';
+import { UserSettingService } from 'app/services/api/user-setting.service';
 
 @Component({
     selector: 'app-pagination',
@@ -130,7 +130,7 @@ export class PaginationComponent implements OnInit, DoCheck {
      */
     public buildOptions(): void {
         this.options = [];
-        _.times(Math.ceil(this.count / this.params.pageCount), n => {
+        _.times(Math.ceil(this.count / this.params.pageCount), (n: number) => {
             this.options.push(n + 1);
         });
         this.pageLength = this.options.length;

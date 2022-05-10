@@ -1,6 +1,7 @@
 import { Input, Output, OnInit, EventEmitter, Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import * as _ from 'lodash';
+import { Resources } from 'app/types/common';
 
 @Component({ template: '' })
 export abstract class AbstractFormTableTextComponent implements OnInit {
@@ -8,7 +9,7 @@ export abstract class AbstractFormTableTextComponent implements OnInit {
     @Input() public formGroup: FormGroup;
     @Input() public itemName: string;
     @Input() public itemParams: any;
-    @Input() public itemResource: any;
+    @Input() public itemResource: Resources;
     @Input() public itemLabel: any;
     @Input() public display: string;
     @Input() public notEditable: boolean;
@@ -39,7 +40,7 @@ export abstract class AbstractFormTableTextComponent implements OnInit {
             this._setInitExtra();
 
             if (!this.notEditable) {
-                const control = this.formGroup.get(this.name);
+                const control: AbstractControl = this.formGroup.get(this.name);
 
                 if (control != null) {
                     control.setValue(this.itemParams[this.itemName]);
@@ -93,7 +94,7 @@ export abstract class AbstractFormTableTextComponent implements OnInit {
      * 初期状態のセット
      */
     private _setInitItems(): void {
-        let value;
+        let value: string;
         if (_.isEmpty(this.itemParams[this.itemName])) {
             value = '';
         } else {
@@ -103,7 +104,7 @@ export abstract class AbstractFormTableTextComponent implements OnInit {
             ? this.itemName
             : this.itemName + this.number;
         if (!this.notEditable) {
-            const fc = this.required
+            const fc: FormControl = this.required
                 ? new FormControl(value, Validators.required)
                 : new FormControl();
             this.formGroup.addControl(this.name, fc);

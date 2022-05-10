@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AbstractIndexComponent } from 'app/components/shared/abstract-component/abstract-index.component';
@@ -12,10 +12,13 @@ import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { ModalService } from 'app/services/shared/modal.service';
 import { MonthPickerService } from 'app/services/shared/month-picker.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
-import { Fields } from 'app/types/common';
+import { Fields, TableOptions } from 'app/types/common';
 import * as _ from 'lodash';
 import { Moment } from 'moment';
 
+/**
+ * 送信要求（期間単位）タブ
+ */
 @Component({
   selector: 'app-cd-request-period-tab',
   templateUrl: './cd-request-period-tab.component.html',
@@ -29,7 +32,7 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
   @ViewChild('cdRequestNumberComfirmModalContent', { static: false }) cdRequestNumberComfirmModalContent: TemplateRef<null>;
 
   @ViewChild('requestMumberDefinitionIdKind', { static: false }) requestMumberDefinitionIdKind: SelectTypeComponent;
-
+  @ViewChild('fromToDatePicker') fromToDatePicker: ElementRef;
   modalResource: any;
   // @Input() labels: any;
   // @Input() resource: any;
@@ -51,14 +54,18 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     "request_route_kind": "0",
     "datetime_from": "2020-02-29T00:00:00.000Z",
     "datetime_to": "2020-02-29T00:00:00.000Z",
-    "car_data_amount_upper_limit": "1234567890"
+    "car_data_amount_upper_limit": ""
   };
 
   request_period_kind: string = "1";
+  car_data_amount_upper_limit_active_kind: string = "1";
   listSelections: any = [];
   selectedListItems: any = [];
   fields: Fields;
   initResource: any;
+  data: any = [];
+  thListCustomizeDataRequest: any = [];
+  thListCurrentRequestComfirm: any = [];
 
   // thList = [
   //   {
@@ -154,7 +161,7 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     this.thListModal = this._createThList(fields);
     this.sortableThList = this.sortableThLists(this.thListModal);
     this._reflectXFields(fields);
-    console.log("cd-request-period-tab:thListModal" , this.thListModal);
+    console.log("cd-request-period-tab:thListModal", this.thListModal);
   }
 
   placeholder: string = '';
@@ -215,7 +222,26 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
    * データ送信要求 ボタン押下
    */
   sendData(): void {
-    console.log("params", this.params);
+
+    this.setData();
+    console.log("data", this.data);
+
+    this.thListCustomizeDataRequest = [];
+    // let thList = this._createThList(this.fields);
+    const opt: TableOptions = {
+      columnStyles: [
+        'width:20%', 'width:10%', 'width:10%'
+        , 'width:10%', 'width:10%', 'width:20%'
+        , 'width:20%'
+      ]
+    };
+    let thList = this._createThList(this.fields, opt);
+    console.log("this.thListCustomizeDataRequest", thList);
+
+    for (let i = 0; i < thList.length - 3; i++) {
+      this.thListCustomizeDataRequest.push(thList[i]);
+    }
+
     this.modalService.open(
       {
         title: this.labels.confirm_title,
@@ -242,6 +268,16 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
    * 現在カスタマイズ送信要求確認 ボタン押下
    */
   sendAppConfirm(): void {
+
+    this.setDataCurrent();
+    let thList = this._createThList(this.fields);
+    console.log("this.thListCustomizeDataRequest", thList);
+
+    this.thListCurrentRequestComfirm = [];
+    for (let i = 7; i < thList.length; i++) {
+      this.thListCurrentRequestComfirm.push(thList[i]);
+    }
+
     this.modalService.open(
       {
         title: this.labels.confirm_title,
@@ -472,5 +508,47 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
   onChangeRequestNumber(): void {
     const params = this.requestMumberDefinitionIdKind.getSelectedParam();
     console.log("params", params);
+  }
+
+  printInfoCar(data: any): string {
+    let result = data.car_identification.model + "-" + data.car_identification.type_rev + "-" + data.car_identification.serial;
+    return result;
+  }
+
+  changeLimitActiveKind(data: any): void {
+    console.log("changeRequestType", data);
+    this.car_data_amount_upper_limit_active_kind = data;
+  }
+
+  setData(): void {
+    this.data = [];
+
+    for (let item of this.lists.visibleList) {
+      console.log("item", item);
+      let car: any = {};
+      car["request_period.car.kind"] = this.request_period_kind;
+      car["request_period.car.customize_usage_definition"] = this.selectedListItems;
+      car["request_period.car.start_date"] = this.params['request_number_datetime_from'];
+      car["request_period.car.end_date"] = this.params['request_number_datetime_to'];
+      car["request_period.car.data_amount_upper_limit_active_kind"] = this.car_data_amount_upper_limit_active_kind;
+      car["request_period.car.data_amount_upper_limit"] = this.params['car_data_amount_upper_limit'];
+      let model_type_rev_serial = item.car_identification.model + "-" + item.car_identification.type_rev + "-" + item.car_identification.serial;
+      car["request_number.cars.car_identification.model_type_rev_serial"] = model_type_rev_serial;
+      this.data.push(car);
+    }
+  }
+
+  setDataCurrent(): void {
+    this.data = [];
+
+    for (let item of this.lists.visibleList) {
+      console.log("item", item);
+      let car: any = {};
+      car["current_customize_request.car.kind"] = this.request_period_kind;
+      car["current_customize_request.car.customize_usage_definition"] = this.selectedListItems;
+      let model_type_rev_serial = item.car_identification.model + "-" + item.car_identification.type_rev + "-" + item.car_identification.serial;
+      car["current_customize_request.car.id"] = model_type_rev_serial;
+      this.data.push(car);
+    }
   }
 }

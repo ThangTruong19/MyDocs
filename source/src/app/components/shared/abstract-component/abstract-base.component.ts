@@ -10,11 +10,10 @@ import * as $ from 'jquery';
 import * as _ from 'lodash';
 import { ErrorData } from 'app/types/error-data';
 import { DisplayCode } from 'app/constants/display-code';
-import { ModalValues, Resource, ResourceValue, TableHeader } from 'app/types/common';
+import { Field, Fields, Labels, ModalValues, Resource, Resources, ResourceValue, TableHeader, TableOptions } from 'app/types/common';
 import { FormTableSelectComponent } from 'app/components/shared/form-table-select/form-table-select.component';
-import { SelectedComponent } from '../selected/selected.component';
+import { SelectedComponent } from 'app/components/shared/selected/selected.component';
 import { NavigationService } from 'app/services/shared/navigation.service';
-import { AlertService } from 'app/services/shared/alert.service';
 import { Navigation } from 'app/types/navigation';
 import { FormTableTextComponent } from 'app/components/shared/form-table-text/form-table-text.component';
 import { FormTableTextareaComponent } from 'app/components/shared/form-table-textarea/form-table-textarea.component';
@@ -35,7 +34,7 @@ export abstract class AbstractBaseComponent implements OnDestroy {
     @ViewChildren(FormTableTextComponent) public formTableTextComponents: QueryList<FormTableTextComponent>;
     @ViewChildren(FormTableTextareaComponent) public formTableTextareaComponents: QueryList<FormTableTextareaComponent>;
 
-    public onLoadEvent: EventEmitter<any> = new EventEmitter();
+    public onLoadEvent: EventEmitter<any> = new EventEmitter<any>();
     public isLoading: boolean;
     public labels: any;
     public resource: any;
@@ -106,7 +105,7 @@ export abstract class AbstractBaseComponent implements OnDestroy {
      * @param checkValues valuesが空でないかをチェックする
      */
     public exists(path: string, checkValues = false): boolean {
-        const resource = _.get(this.resource, path);
+        const resource: Resources & Resource = _.get(this.resource, path);
 
         return resource != null && (!checkValues || resource.values.length > 0);
     }
@@ -117,7 +116,7 @@ export abstract class AbstractBaseComponent implements OnDestroy {
      */
     public buildPath(...paths: string[]): string {
         return paths.reduce(
-            (temp, path) =>
+            (temp: any[], path: string) =>
                 isNaN(+path)
                     ? [temp.concat([path]).join('.')]
                     : [`${temp[0]}[${path}]`],
@@ -155,9 +154,9 @@ export abstract class AbstractBaseComponent implements OnDestroy {
             if (!value) {
                 return false;
             }
-            const isObject =
+            const isObject: boolean =
                 Object.prototype.toString.call(value) === '[object Object]';
-            const hasKeys = !!Object.keys(value).length;
+            const hasKeys: boolean = !!Object.keys(value).length;
             return !_.isArray(value) && !_.isBuffer(value) && isObject && hasKeys;
         };
         return Object.assign(
@@ -182,9 +181,9 @@ export abstract class AbstractBaseComponent implements OnDestroy {
         if (!value) {
             return '';
         }
-        const sign = value[0];
-        const hour = +value.slice(1, 3);
-        const minute = value.slice(3);
+        const sign: string = value[0];
+        const hour: number = +value.slice(1, 3);
+        const minute: string[] = value.slice(3);
 
         return `${sign}${hour}:${minute}`;
     }
@@ -228,10 +227,10 @@ export abstract class AbstractBaseComponent implements OnDestroy {
      */
     protected _replacePath(message: string, keys: string[]): string {
         let result = message;
-        const target = message.match(/{{.+?}}/g) || [];
+        const target: RegExpMatchArray = message.match(/{{.+?}}/g) || [];
         target.forEach((t: string) => {
             const key: string = t.slice(2, -2);
-            const resource = _.get(this.resource, key);
+            const resource: Resources & Resource = _.get(this.resource, key);
 
             if (resource != null) {
                 result = result.replace(t, resource.name);
@@ -278,9 +277,9 @@ export abstract class AbstractBaseComponent implements OnDestroy {
      * @param value 値
      */
     protected _getResourceValueName(path: string, value: string): string {
-        const res = _.get(this.resource, path);
+        const res: Resources & Resource = _.get(this.resource, path);
         if (res) {
-            const v = _.find(res.values, item => item.value === value);
+            const v: ResourceValue = _.find(res.values, item => item.value === value);
             return v ? v.name : '';
         } else {
             return '';
@@ -290,10 +289,9 @@ export abstract class AbstractBaseComponent implements OnDestroy {
     /**
      * エラー内容をアラート表示し、エラー状態にセットする。
      * @param error エラーレスポンスの内容
-     * @param alertService アラートサービス
      */
-    protected _setError(error: any, alertService: AlertService): void {
-        const errorData = error.error ? error.error.error_data : null;
+    protected _setError(error: any): void {
+        const errorData: any = error.error ? error.error.error_data : null;
 
         if (errorData) {
             this.errorData = errorData;
@@ -314,8 +312,9 @@ export abstract class AbstractBaseComponent implements OnDestroy {
      * @param opt オプション
      * @return テーブルヘッダ情報
      */
-    protected _createThList(fieldItems: any[], opt?: any): any {
-        const scroll = opt && opt.scrollable;
+    protected _createThList(fieldItems: Fields, opt?: TableOptions): any {
+        const scroll: any = opt && opt.scrollable;
+        const columnStyles: string[] = opt && opt.columnStyles;
         const initialValue: any = scroll
             ? {
                 scrollable: [],
@@ -323,12 +322,12 @@ export abstract class AbstractBaseComponent implements OnDestroy {
             }
             : [];
 
-        return _.chain(fieldItems)
-            .sortBy(item => +item.display_sequence_no)
+        const thList: any = _.chain(fieldItems)
+            .sortBy((item: Field) => +item.display_sequence_no)
             .concat(
                 opt && opt.noOptionTableColumn ? [] : this._getOptionalTableColumn()
             )
-            .reduce((result, item) => {
+            .reduce((result: any, item: Field) => {
                 if (scroll) {
                     switch (item.control_code) {
                         case this.controlCodeType.scrollable:
@@ -344,6 +343,19 @@ export abstract class AbstractBaseComponent implements OnDestroy {
                 return result;
             }, initialValue)
             .value();
+
+        if (thList && columnStyles) {
+            Object.keys(thList).forEach((index: any) => {
+                let style: string = null;
+                if (index in columnStyles) {
+                    style = columnStyles[index];
+                }
+                thList[index].columnStyle = style
+                index++;
+            });
+        }
+
+        return thList;
     }
 
     /**
@@ -354,8 +366,8 @@ export abstract class AbstractBaseComponent implements OnDestroy {
      * @param fieldItems 指定項目データ
      * @return X-Fields用データ
      */
-    protected _createXFields(fieldItems: any): string[] {
-        return _.map(fieldItems, field => field.path);
+    protected _createXFields(fieldItems: Fields): string[] {
+        return _.map(fieldItems, (field: Field) => field.path);
     }
 
     /**

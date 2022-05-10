@@ -135,6 +135,7 @@ function createData(i) {
       authority = {
         id: String(role_id + j),
         name: authority_label + labelNum,
+        kind: "アクセスレベル" + labelNum,
       };
       data['group']['granted_authorities'].push(authority);
     }

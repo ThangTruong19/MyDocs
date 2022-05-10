@@ -93,25 +93,25 @@ export class UserService {
    * @param {Object} params APIパラメータ
    * @return {Object} 応答本文
    */
-//   updateAuthorities(
-//     userId: string,
-//     params: AuthoritiesUpdateParams
-//   ): Promise<any> {
-//     return new Promise((resolve, reject) => {
-//       this.api.requestHandler(
-//         'updateAuthorities',
-//         this.api
-//           .put(
-//             {
-//               apiId: Apis.putUsers_userId_Authorities,
-//               params: [userId],
-//             },
-//             params
-//           )
-//           .subscribe(res => resolve(res))
-//       );
-//     });
-//   }
+  updateAuthorities(
+    userId: string,
+    params: AuthoritiesUpdateParams
+  ): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.api.requestHandler(
+        'updateAuthorities',
+        this.api
+          .put(
+            {
+              apiId: Apis.putUsers_userId_Authorities,
+              params: [userId],
+            },
+            params
+          )
+          .subscribe(res => resolve(res))
+      );
+    });
+  }
  /**
    * グループの選択値が変更された場合、それに対応した所属を取得してくる
    * @param screen_code 画面ID

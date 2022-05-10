@@ -29,6 +29,13 @@
   },
   {
     "display_sequence_no": "0",
+    "name": "権限区分",
+    "path": "users.group.granted_authorities.kind",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
     "name": "更新日時",
     "path": "users.identification.update_datetime",
     "control_code": "0",

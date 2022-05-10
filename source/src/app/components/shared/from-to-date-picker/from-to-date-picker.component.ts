@@ -13,7 +13,7 @@ import {
     SearchDatePickerComponent
 } from 'app/components/shared/search-date-picker/search-date-picker.component';
 
-import { Labels } from 'app/types/common';
+import { Labels, Resources } from 'app/types/common';
 
 @Component({
     selector: 'app-from-to-date-picker',
@@ -29,7 +29,7 @@ export class FromToDatePickerComponent implements OnInit {
     public dateTo: SearchDatePickerComponent;
 
     @Input() public params: any;
-    @Input() public resource: any;
+    @Input() public resource: Resources;
     @Input() public labels: Labels;
     @Input() public from: string;
     @Input() public to: string;

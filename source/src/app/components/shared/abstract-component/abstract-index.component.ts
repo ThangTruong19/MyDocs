@@ -77,7 +77,7 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
     public detailModalValues: ModalValues;
     public deleteModalValues: ModalValues;
 
-    public lists: { visibleList: string[]; originList: string[] } = {
+    public lists: { visibleList: any[]; originList: any[] } = {
         visibleList: [],
         originList: []
     };
@@ -158,16 +158,16 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
 
     /**
      * ソート変更時の処理
-     * @param sort_key ソートキー
+     * @param sortKey ソートキー
      */
-    public onChangeSort(sort_key: string): void {
+    public onChangeSort(sortKey: string): void {
         if (this.paginationComponent) {
             this._reflectPageParams();
         } else {
             this._reflectAllPageParams();
         }
 
-        this.fetchList(sort_key);
+        this.fetchList(sortKey);
     }
 
     /**
@@ -259,7 +259,7 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
     /**
      * テーブル表示のためのデータを取得します。
      */
-    protected abstract fetchList(sort_key?: string): Promise<any>;
+    protected abstract fetchList(sortKey?: string): Promise<any>;
 
     /**
      * 初期表示のためのデータを取得します。

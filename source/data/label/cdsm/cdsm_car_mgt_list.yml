@@ -106,3 +106,33 @@ labels:
     name: setting_request_modal
     ja: 一括設定取得要求
     en:
+
+  - id: 19
+    description: リストから選択
+    name: choose_from_list
+    ja: リストから選択
+    en:
+
+  - id: 20
+    description: 入力内容をリセット
+    name: reset
+    ja: 入力内容をリセット
+    en:
+
+  - id: 21
+    description: リセット確認モーダルタイトル
+    name: reset_modal_title
+    ja: リセット確認メッセージ
+    en:
+
+  - id: 22
+    description: リセット確認モーダル本文
+    name: reset_modal_body
+    ja: 入力内容をリセットします。よろしいですか?
+    en:
+
+  - id: 23
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:

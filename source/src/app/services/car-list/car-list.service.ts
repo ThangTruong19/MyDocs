@@ -204,4 +204,20 @@ export class CarListService {
       );
     });
   }
+
+
+
+
+
+
+
+
+
+
+  /**
+   * 車両管理 オペ識別初期化の検索条件を初期化
+   */
+   initCarOperatorSearchCondition(): Promise<any> {
+    return this.api.initSearchCondition(ScreenCodeConst.operatorInitialize);
+  }
 }

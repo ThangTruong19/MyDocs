@@ -7,7 +7,7 @@
                 class="app-table table table-bordered"
             >
                 <thead class="app-table-thead" [ngClass]="thClass">
-                    <tr [ngClass]="{ 'app-table-flex-cell-merge-rows': mergeRows, 'app-table-flex-cell': !mergeRows }">
+                    <tr [ngClass]="getSimpleTableRowCss(isMergeRows)">
                         <th *ngIf="selectable" class="app-index-th fixed th-check">
                             <input
                                 type="checkbox"
@@ -27,6 +27,7 @@
                                     *ngIf="title.displayable"
                                     class="th-{{ title.shortName }} app-index-th"
                                     [ngClass]="{ 'disable-sort': !title.sortable }"
+                                    [style]="getColumnStyle(title)"
                                     appSortingLabel
                                     [(sortingParams)]="sortingParams"
                                     [labelName]="title.name"
@@ -68,8 +69,8 @@
                     class="app-table-tbody"
                 >
                     <tr
-                      *ngFor="let data of lists.visibleList; let i = index"
-                      [ngClass]="{ 'app-table-flex-cell-merge-rows': mergeRows, 'app-table-flex-cell': !mergeRows }"
+                        *ngFor="let data of lists.visibleList; let i = index"
+                        [ngClass]="getSimpleTableRowCss(isMergeRows)"
                     >
                         <td
                             *ngIf="selectable"
@@ -98,10 +99,13 @@
                         <ng-container *ngIf="!customTableRowContent">
                             <ng-container *ngFor="let title of thList">
                                 <td
-                                    *ngIf="title.displayable"
+                                    *ngIf="isDisplayDataRow(title, data, isMergeRows)"
                                     class="td-{{
-                                      title.shortName
-                                    }} app-index-td d-flex align-items-center"
+                                        title.shortName
+                                    }} app-index-td align-items-center"
+                                    [ngClass]="getSimpleTableDataColumnCss(isMergeRows)"
+                                    [style]="getColumnStyle(title)"
+                                    [attr.rowspan]="getDataRowspan(title, data, isMergeRows)"
                                 >
                                     <p>{{ data[title.dataKey || title.name] }}</p>
                                 </td>
@@ -189,6 +193,7 @@
                                         *ngIf="title.displayable"
                                         class="th-{{title.shortName}} app-index-th"
                                         [ngClass]="{'disable-sort': !title.sortable}"
+                                        [style]="getColumnStyle(title)"
                                         appSortingLabel
                                         [(sortingParams)]="sortingParams"
                                         [labelName]="title.name"
@@ -230,11 +235,20 @@
                                 <label class="app-input-checkbox__label" [ngClass]="{'hidden': checkBoxHidden(data)}" for="check-icon-{{i}}">
                                     <i class="fa"></i>
                                 </label>
+                                <label class="app-input-checkbox-default__label" [ngClass]="{'hidden': checkBoxDefaultHidden(data)}" for="check-icon-{{i}}">
+                                    <span>Default</span>
+                                </label>
                             </td>
                             <!-- データ行のデフォルト要素 -->
                             <ng-container *ngIf="!customFixedTableRowContent">
                                 <ng-container *ngFor="let title of fixedThList">
-                                    <td *ngIf="title.displayable" class="td-{{title.shortName}} app-index-td">{{data[title.dataKey || title.name]}}</td>
+                                    <td
+                                       *ngIf="isDisplayDataRow(title, data, isMergeRows)"
+                                       class="td-{{title.shortName}} app-index-td"
+                                       [style]="getColumnStyle(title)"
+                                       [attr.rowspan]="getDataRowspan(title, data, isMergeRows)">
+                                        {{data[title.dataKey || title.name]}}
+                                    </td>
                                 </ng-container>
                             </ng-container>
                             <ng-container *ngTemplateOutlet="customFixedTableRowContent; context: {data: data, title: title, idx: i}"></ng-container>
@@ -277,6 +291,7 @@
                                         *ngIf="title.displayable"
                                         class="th-{{title.shortName}} app-index-th"
                                         [ngClass]="{'disable-sort': !title.sortable}"
+                                        [style]="getColumnStyle(title)"
                                         appSortingLabel
                                         [(sortingParams)]="sortingParams"
                                         [labelName]="title.name"
@@ -299,7 +314,11 @@
                         <tr *ngFor="let data of lists.visibleList; let i = index">
                             <ng-container *ngIf="!customTableRowContent">
                                 <ng-container *ngFor="let title of scrollableThList">
-                                    <td *ngIf="title.displayable" class="td-{{title.shortName}} app-index-td">
+                                    <td
+                                        *ngIf="isDisplayDataRow(title, data, isMergeRows)"
+                                        class="td-{{title.shortName}} app-index-td"
+                                        [style]="getColumnStyle(title)"
+                                        [attr.rowspan]="getDataRowspan(title, data, isMergeRows)">
                                         <span>{{data[title.dataKey || title.name]}}</span>
                                     </td>
                                 </ng-container>

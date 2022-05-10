@@ -9,7 +9,7 @@ import {
 import * as moment from 'moment';
 import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { DateFormat } from 'app/constants/date-format';
-import { Labels } from 'app/types/common';
+import { Labels, Resources } from 'app/types/common';
 import {
     SearchDateTimePickerComponent
 } from 'app/components/shared/search-date-time-picker/search-date-time-picker.component';
@@ -28,7 +28,7 @@ export class FromToDateTimePickerComponent implements OnInit {
     public dateTimeTo: SearchDateTimePickerComponent;
 
     @Input() public params: any;
-    @Input() public resource: any;
+    @Input() public resource: Resources;
     @Input() public labels: Labels;
     @Input() public from: string;
     @Input() public to: string;

@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import * as _ from 'lodash';
 import { SelectedComponent } from 'app/components/shared/selected/selected.component';
+import { Labels, Resources } from 'app/types/common';
 
 @Component({
     selector: 'app-time-difference',
@@ -38,8 +39,8 @@ export class TimeDifferenceComponent {
             this._reflectTimeDifference(v);
         }
     }
-    @Input() public resource: any;
-    @Input() public labels: { [key: string]: string };
+    @Input() public resource: Resources;
+    @Input() public labels: Labels;
     @Output() public changeTimeDifference: EventEmitter<string> = new EventEmitter<
         string
     >();

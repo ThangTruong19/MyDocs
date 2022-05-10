@@ -24,7 +24,7 @@ export class AuthoritySelectComponent  {
   @Input() labels: any;
   @Input() defaultAuthorities: any[] = [];
   @Input() selectedAuthorities: any[] = [];
-  @Input() selectedUser = {};
+  @Input() selectedKinds: any;
   @Input() customSelectButtons: any;
   @Input() customSelectedAuthorities: any;
   @Input() allowUnselectedAuthorities = false;

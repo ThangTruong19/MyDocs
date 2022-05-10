@@ -1,186 +1,199 @@
-<section id="app-customize-request-status-list" *ngIf="labels && resource && datePickerParams">
-  <div class="container-fluid">
-    <h2 class="app-page-title">{{ labels.title }}</h2>
-    <div class="app-content">
-      <!-- 一覧画面 -->
-      <ng-container>
-        <!-- 検索アコーディオン -->
-        <app-accordion
-          [collapsed]="collapsed"
-          [useCustomHeader]="false"
-          [title]="labels.search_condition"
-          [labels]="labels"
-          (onChangeState)="changePanelState($event)"
-        >
-          <div data-app-accordion-body>
-            <div class="container app-search">
-              <div class="row">
-                <app-selected
-                  class="col-sm-3"
-                  *ngIf="resource.car_identification.division_codes"
-                  [itemName]="'division_codes'"
-                  [itemParams]="params"
-                  [itemResource]="resource.car_identification"
+<section
+    id="app-customize-request-status-list"
+    *ngIf="labels && resource && datePickerParams"
+>
+    <div class="container-fluid">
+        <h2 class="app-page-title">{{ labels.title }}</h2>
+        <div class="app-content">
+            <!-- 一覧画面 -->
+            <ng-container>
+                <!-- 検索アコーディオン -->
+                <app-accordion
+                    [collapsed]="collapsed"
+                    [useCustomHeader]="false"
+                    [title]="labels.search_condition"
+                    [labels]="labels"
+                    (onChangeState)="changePanelState($event)"
                 >
-                </app-selected>
+                    <div data-app-accordion-body>
+                        <div class="container app-search">
+                            <div class="row">
+                                <app-selected
+                                    class="col-sm-3"
+                                    *ngIf="
+                                        resource.car_identification
+                                            .division_codes
+                                    "
+                                    [itemName]="'division_codes'"
+                                    [itemParams]="params"
+                                    [itemResource]="resource.car_identification"
+                                >
+                                </app-selected>
 
-                <app-common-text
-                  class="col-sm-3"
-                  [itemName]="'models'"
-                  [itemParams]="params"
-                  [itemResource]="resource.car_identification"
-                  [maxlength]="20"
-                >
-                </app-common-text>
+                                <app-common-text
+                                    class="col-sm-3"
+                                    [itemName]="'models'"
+                                    [itemParams]="params"
+                                    [itemResource]="resource.car_identification"
+                                    [maxlength]="20"
+                                >
+                                </app-common-text>
 
-                <app-common-text
-                  class="col-sm-3"
-                  [itemName]="'type_revs'"
-                  [itemParams]="params"
-                  [itemResource]="resource.car_identification"
-                  [maxlength]="15"
-                  >
-                </app-common-text>
+                                <app-common-text
+                                    class="col-sm-3"
+                                    [itemName]="'type_revs'"
+                                    [itemParams]="params"
+                                    [itemResource]="resource.car_identification"
+                                    [maxlength]="15"
+                                >
+                                </app-common-text>
 
-                <app-common-text
-                  class="col-sm-3"
-                  [itemName]="'serials'"
-                  [itemParams]="params"
-                  [itemResource]="resource.car_identification"
-                  [maxlength]="41"
-                >
-                </app-common-text>
+                                <app-common-text
+                                    class="col-sm-3"
+                                    [itemName]="'serials'"
+                                    [itemParams]="params"
+                                    [itemResource]="resource.car_identification"
+                                    [maxlength]="41"
+                                >
+                                </app-common-text>
 
-                <app-selected
-                  class="col-sm-3"
-                  *ngIf="resource.customize_usage_definition_id"
-                  [itemName]="'customize_usage_definition_id'"
-                  [itemParams]="params"
-                  [itemResource]="resource"
-                  [emitInitialRefresh]="false"
-                  (onChangeSelectItem)="onCustomizeUsageDefinitionIdChange($event)"
-                >
-                </app-selected>
+                                <app-selected
+                                    class="col-sm-3"
+                                    *ngIf="
+                                        resource.customize_usage_definition_id
+                                    "
+                                    [itemName]="'customize_usage_definition_id'"
+                                    [itemParams]="params"
+                                    [itemResource]="resource"
+                                    [emitInitialRefresh]="false"
+                                    (onChangeSelectItem)="
+                                        onCustomizeUsageDefinitionIdChange(
+                                            $event
+                                        )
+                                    "
+                                >
+                                </app-selected>
 
-                <app-selected
-                  #belongingCustomizeUsageDefinitionId
-                  class="col-sm-3"
-                  *ngIf="resource.customize_definition_id"
-                  [itemName]="'customize_definition_id'"
-                  [itemParams]="params"
-                  [itemResource]="resource"
-                >
-                </app-selected>
+                                <app-selected
+                                    #belongingCustomizeUsageDefinitionId
+                                    class="col-sm-3"
+                                    *ngIf="resource.customize_definition_id"
+                                    [itemName]="'customize_definition_id'"
+                                    [itemParams]="params"
+                                    [itemResource]="resource"
+                                >
+                                </app-selected>
 
-                <app-selected
-                class="col-sm-3"
-                *ngIf="resource.request_status.api_code"
-                [itemName]="'api_code'"
-                [itemParams]="params"
-                [itemResource]="resource.request_status"
-                >
-                </app-selected>
+                                <app-selected
+                                    class="col-sm-3"
+                                    *ngIf="resource.request_status.api_code"
+                                    [itemName]="'api_code'"
+                                    [itemParams]="params"
+                                    [itemResource]="resource.request_status"
+                                >
+                                </app-selected>
 
-                <app-selected
-                  class="col-sm-3"
-                  *ngIf="resource.request_status.status"
-                  [itemName]="'status'"
-                  [itemParams]="params"
-                  [itemResource]="resource.request_status"
-                >
-                </app-selected>
+                                <app-selected
+                                    class="col-sm-3"
+                                    *ngIf="resource.request_status.status"
+                                    [itemName]="'status'"
+                                    [itemParams]="params"
+                                    [itemResource]="resource.request_status"
+                                >
+                                </app-selected>
 
-                <app-from-to-date-time-picker
-                  #fromToDatePicker
-                  class="col-sm-12"
-                  [from]="'request_registration_date_from'"
-                  [to]="'request_registration_date_to'"
-                  [params]="params"
-                  [resource]="resource.request_status"
-                  [labels]="labels"
-                  [beginningWday]="beginningWday"
-                  [enableDateRange]="enableDateRange"
-                  [dateFormat]="dateFormat"
-                  [timeZone]="timeZone"
-                  [showSeconds]="true"
-                  [showMilliseconds]="false"
-                >
-                </app-from-to-date-time-picker>
-              </div>
-            </div>
-            <div class="app-panel-footer">
-              <button
-                (click)="onClickSearch()"
-                type="button"
-                class="btn btn-primary search"
-              >
-                {{ labels.search }}
-              </button>
-            </div>
-          </div>
-        </app-accordion>
+                                <app-from-to-date-time-picker
+                                    #fromToDatePicker
+                                    class="col-sm-12"
+                                    [from]="'request_registration_date_from'"
+                                    [to]="'request_registration_date_to'"
+                                    [params]="params"
+                                    [resource]="resource.request_status"
+                                    [labels]="labels"
+                                    [beginningWday]="beginningWday"
+                                    [enableDateRange]="enableDateRange"
+                                    [dateFormat]="dateFormat"
+                                    [timeZone]="timeZone"
+                                    [showSeconds]="true"
+                                    [showMilliseconds]="false"
+                                >
+                                </app-from-to-date-time-picker>
+                            </div>
+                        </div>
+                        <div class="app-panel-footer">
+                            <button
+                                (click)="onClickSearch()"
+                                type="button"
+                                class="btn btn-primary search"
+                            >
+                                {{ labels.search }}
+                            </button>
+                        </div>
+                    </div>
+                </app-accordion>
 
-        <!-- 一覧テーブル上部検索オプション欄 -->
-        <div class="app-table-options" [hidden]="count <= 0">
-          <app-pagination
-            [count]="count"
-            [params]="pageParams"
-            [labels]="labels"
-            [element]="pageCountEl"
-            (changeState)="onPaginationChange()"
-          >
-          </app-pagination>
+                <!-- 一覧テーブル上部検索オプション欄 -->
+                <div class="app-table-options" [hidden]="count <= 0">
+                    <app-pagination
+                        [count]="count"
+                        [params]="pageParams"
+                        [labels]="labels"
+                        [element]="pageCountEl"
+                        (changeState)="onPaginationChange()"
+                    >
+                    </app-pagination>
+                </div>
+
+                <!-- 一覧テーブル -->
+                <div class="app-table-wrapper">
+                    <app-common-table
+                        [lists]="lists"
+                        [pageParams]="pageParams"
+                        [thList]="thList"
+                        [sortableThList]="sortableThList"
+                        [(sortingParams)]="sortingParams"
+                        [labels]="labels"
+                        [collapsed]="collapsed"
+                        [isFetching]="isFetching"
+                        [mergeColumns]="mergeColumns"
+                        (sort)="onChangeSort($event)"
+                    >
+                    </app-common-table>
+                </div>
+            </ng-container>
         </div>
-
-        <!-- 一覧テーブル -->
-        <div class="app-table-wrapper">
-          <app-common-table
-            [customTableThContent]="customTableThContent"
-            [customTableRowContent]="customTableRowContent"
-            [lists]="lists"
-            [pageParams]="pageParams"
-            [thList]="thList"
-            [sortableThList]="sortableThList"
-            [(sortingParams)]="sortingParams"
-            [labels]="labels"
-            [collapsed]="collapsed"
-            [isFetching]="isFetching"
-            (sort)="onChangeSort($event)"
-          >
-          </app-common-table>
-        </div>
-      </ng-container>
     </div>
-  </div>
 </section>
 
 <ng-template #customTableThContent>
-  <ng-container *ngFor="let th of thList">
-    <th
-      *ngIf="th.displayable"
-      class="app-index-th th-{{ th.shortName }}"
-      appSortingLabel
-      [ngClass]="{ 'disable-sort': !th.sortable }"
-      [(sortingParams)]="sortingParams"
-      [labelName]="th.sortKey || th.name"
-      [sortableThList]="sortableThList"
-      (sort)="onChangeSort($event)"
-    >
-      <span>{{ th.label || labels[th.shortName] }}</span>
-    </th>
-  </ng-container>
+    <ng-container *ngFor="let th of thList">
+        <th
+            *ngIf="th.displayable"
+            class="app-index-th th-{{ th.shortName }}"
+            appSortingLabel
+            [ngClass]="{ 'disable-sort': !th.sortable }"
+            [(sortingParams)]="sortingParams"
+            [labelName]="th.sortKey || th.name"
+            [sortableThList]="sortableThList"
+            (sort)="onChangeSort($event)"
+        >
+            <span>{{ th.label || labels[th.shortName] }}</span>
+        </th>
+    </ng-container>
 </ng-template>
 
 <ng-template #customTableRowContent let-data="data" let-title="title">
-  <ng-container *ngFor="let title of thList">
-    <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
-      <td
-        class="td-{{ title.shortName }} app-index-td d-flex align-items-center"
-      >
-        <span>{{ data[title.name] }}</span>
-      </td>
+    <ng-container *ngFor="let title of thList">
+        <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
+            <td
+                class="td-{{
+                    title.shortName
+                }} app-index-td d-flex align-items-center"
+            >
+                <span>{{ data[title.name] }}</span>
+            </td>
+        </ng-container>
     </ng-container>
-  </ng-container>
 </ng-template>
 
 <app-sidemenu [isLoading]="isLoading"></app-sidemenu>

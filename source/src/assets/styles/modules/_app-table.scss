@@ -473,6 +473,13 @@ $TABLE_LG_HEIGHT: 660px;
           max-width: 100%;
         }
       }
+      &.merge-col-d-flex {
+        > p,
+        span {
+          display: inline-block;
+          max-width: 100%;
+        }
+      }
       .app-icon-edit,
       .app-icon-dustbox,
       .app-icon-detail,
@@ -521,13 +528,11 @@ $TABLE_LG_HEIGHT: 660px;
     flex-wrap: nowrap;
 
     th {
-      width: 100%;
       overflow-x: hidden;
       align-items: center;
       justify-content: center;
     }
     td {
-      width: 100%;
       overflow-x: hidden;
       word-break: break-all;
       word-wrap: break-word;

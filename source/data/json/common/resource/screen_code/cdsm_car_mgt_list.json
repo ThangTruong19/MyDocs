@@ -1,6 +1,6 @@
 [
   {
-    "path": "operation_history.model",
+    "path": "car_search.model",
     "name": "機種",
     "help": "機種のヘルプ文言",
     "type": -10,
@@ -9,7 +9,7 @@
     "items": []
   },
   {
-    "path": "operation_history.type_rev",
+    "path": "car_search.type_rev",
     "name": "型式",
     "help": "型式のヘルプ文言",
     "type": -10,
@@ -18,7 +18,7 @@
     "items": []
   },
   {
-    "path": "operation_history.serials",
+    "path": "car_search.serials",
     "name": "機番",
     "help": "機番のヘルプ文言",
     "type": -10,
@@ -27,7 +27,7 @@
     "items": []
   },
   {
-    "path": "operation_history.terminalModeType",
+    "path": "car_search.terminalModeType",
     "name": "端末モード区分",
     "help": "端末モード区分のヘルプ文言",
     "type": 10,
@@ -62,7 +62,7 @@
     ]
   },
   {
-    "path": "operation_history.transmission_type",
+    "path": "car_search.transmission_type",
     "name": "通信機種",
     "help": "通信機種のヘルプ文言",
     "type": 10,
@@ -97,7 +97,7 @@
     ]
   },
   {
-    "path": "operation_history.representativeDb",
+    "path": "car_search.representativeDb",
     "name": "担当DB",
     "help": "担当DBのヘルプ文言",
     "type": 10,
@@ -122,7 +122,7 @@
     ]
   },
   {
-    "path": "operation_history.client",
+    "path": "car_search.client",
     "name": "顧客",
     "help": "顧客のヘルプ文言",
     "type": 10,
@@ -152,7 +152,7 @@
     ]
   },
   {
-    "path": "operation_history.customize_definition_id",
+    "path": "car_search.customize_definition_id",
     "name": "カスタマイズ用途定義",
     "help": "カスタマイズ定義のヘルプ文言",
     "type": 10,
@@ -182,7 +182,7 @@
     ]
   },
   {
-    "path": "operation_history.changeStatus",
+    "path": "car_search.changeStatus",
     "name": "変更状態",
     "help": "変更状態のヘルプ文言",
     "type": 10,
@@ -209,7 +209,7 @@
 
 
   {
-    "path": "operation_history.search_keyword",
+    "path": "car_search.search_keyword",
     "name": "内容(フリーワード)",
     "help": "内容(フリーワード)のヘルプ文言",
     "type": -10,
@@ -218,7 +218,7 @@
     "items": []
   },
   {
-    "path": "operation_history.date_from",
+    "path": "car_search.date_from",
     "name": "履歴日付",
     "help": "履歴日付のヘルプ文言",
     "type": -42,
@@ -227,7 +227,7 @@
     "items": []
   },
   {
-    "path": "operation_history.date_to",
+    "path": "car_search.date_to",
     "name": "履歴日付",
     "help": "履歴日付のヘルプ文言",
     "type": -41,

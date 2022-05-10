@@ -3510,6 +3510,16 @@
           "http_method": "POST"
         },
         {
+          "api_id": "KOM-2xxxxxxx",
+          "url": "{protocol}://{hostname}/v1/cars/requests/send_no_list/m2s",
+          "http_method": "POST"
+        },
+        {
+          "api_id": "KOM-00110070",
+          "url": "{protocol}://{hostname}/v1/cars/customize_usage_definitions/search",
+          "http_method": "POST"
+        },
+        {
           "api_id": "KOM-00110170",
           "url": "{protocol}://{hostname}/v1/cars/customize_requests/status/search",
           "http_method": "POST"

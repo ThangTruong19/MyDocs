@@ -11,7 +11,7 @@ import * as moment from 'moment';
 import { DateFormat } from 'app/constants/date-format';
 import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { AppDatePickerComponent } from 'app/components/shared/date-picker/date-picker.component';
-import { Labels } from 'app/types/common';
+import { Labels, Resources } from 'app/types/common';
 
 type Moment = moment.Moment;
 
@@ -28,7 +28,7 @@ export class SearchDatePickerComponent implements OnInit {
 
     @Input() public itemName: string;
     @Input() public itemParams: any;
-    @Input() public itemResource: any;
+    @Input() public itemResource: Resources;
     @Input() public itemLabel: Labels;
     @Input() public display: string;
     @Input() public showLabel = true;

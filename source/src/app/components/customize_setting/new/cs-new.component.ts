@@ -13,6 +13,34 @@ import { NavigationService } from 'app/services/shared/navigation.service';
 import { Fields, Resources } from 'app/types/common';
 import * as _ from 'lodash';
 
+// モーダルからの返却値
+interface CustomizeUsageDefinitionResponseData {
+  customize_usage_definition_id?: string;
+  customize_usage_definition_name?: string;
+  customize_usage_definition_version?: number;
+  start_date?: string;
+  end_date?: string;
+  priority_name?: string;
+  customize_definitions?: CustomizeDefinitionResponseData[]
+}
+interface CustomizeDefinitionResponseData {
+  customize_definition_id?: string;
+  customize_definition_name?: string;
+  assumption_data_value?: number;
+  active_name?: string;
+  latest_operation_code_name?: string;
+  status_name?: string;
+  start_date?: string;
+  end_date?: string;
+  first_receive_datetime?: string;
+  latest_receive_datetime?: string;
+  aggregation_condition_name?: string;
+  send_condition_name?: string;
+}
+
+/**
+ * カスタマイズ設定追加
+ */
 @Component({
   selector: 'app-cs-new',
   templateUrl: './cs-new.component.html',
@@ -23,6 +51,9 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
   public carId: string;
   @Input()
   public resources: Resources;
+
+  private apiResult: any;
+  public modalResponse: CustomizeUsageDefinitionResponseData;
 
   @ViewChild('customizeDefinitionName') customizeDefinitionName: ElementRef;
   @ViewChild('customizeDefinitionVersion') customizeDefinitionVersion: ElementRef;
@@ -204,12 +235,53 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
     });
     this._searchParams.car_id = this.carId;
     // Call & fetch data from API
-    const res = await this.customSettingService.fetchCustomizeSettingList(
+    this.apiResult = await this.customSettingService.fetchCustomizeSettingList(
       this._searchParams,
       this.requestHeaderParams
     );
     // Format the acquired data to be displayed in the table
-    const formatted = this._formatList(res.result_data.customize_definitions, this.thList);
-    this._fillLists(res.result_header, formatted);
+    const formatted = this._formatList(this.apiResult.result_data.customize_definitions, this.thList);
+    this._fillLists(this.apiResult.result_header, formatted);
+  }
+
+  /**
+   * Closing dialog callback function
+   */
+  public closeNewDialog(): void {
+    this.modalResponse = {
+      customize_usage_definition_id: '',
+      customize_usage_definition_name: (this.customizeDefinitionName as any).items.filter((element: { id: any; }) => element.id == this.params.regist_customize_usage_definition_name)[0].name,
+      customize_usage_definition_version: this.params.regist_customize_usage_definition_version,
+      start_date: this.datePickerService.convertDateString(this.params.customize_setting.edit_start_date_ymd, DateFormat.hyphen, DateFormat.slash),
+      end_date: this.datePickerService.convertDateString(this.params.customize_setting.edit_end_date_ymd, DateFormat.hyphen, DateFormat.slash),
+      priority_name: this.params.regist_priority_name,
+      customize_definitions: this._formatListData(this.apiResult.result_data.customize_definitions)
+    }
+  }
+
+  /**
+   * Format list data to be displayed in the caller screen
+   * @param List data to be formatted
+   * @returns The formatted list data
+   */
+  private _formatListData(list: any[]): any[]{
+    let resultLst: any[] = [];
+    list.forEach(element => {
+      resultLst.push({
+        customize_definition_id: element.customize_definition.customize_definition_id,
+        customize_definition_name : element.customize_definition.customize_definition_name,
+        assumption_data_value : element.customize_definition.assumption_data_value,
+        active_name : element.customize_definition.active_name,
+        latest_operation_code_name : element.customize_definition.latest_operation_code_name,
+        status_name : element.customize_definition.status_name,
+        start_date : element.customize_definition.start_date,
+        end_date : element.customize_definition.end_date,
+        first_receive_datetime : element.customize_definition.first_receive_datetime,
+        latest_receive_datetime : element.customize_definition.last_receive_datetime,
+        aggregation_condition_name : element.customize_definition.aggregation_condition_name,
+        send_condition_name : element.customize_definition.send_condition_name,
+      })
+    });
+    return resultLst;
   }
 }

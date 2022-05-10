@@ -255,7 +255,7 @@ export class CommonTimePickerComponent implements OnInit, OnDestroy, AfterConten
 
     private isTimeFormat(time: string, maxTime: number): boolean {
         if (time) {
-            const timeNum = Number(time);
+            const timeNum: number = Number(time);
             if (!isNaN(timeNum) && timeNum >= 0 && timeNum <= maxTime
                 && time.length == maxTime.toString().length) {
                 return true;

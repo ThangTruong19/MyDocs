@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AbstractIndexComponent } from 'app/components/shared/abstract-component/abstract-index.component';
 import { DateFormat, DateTimeFormat } from 'app/constants/date-format';
 import { UserSettingService } from 'app/services/api/user-setting.service';
+import { CdNumberListRequestComfirmService } from 'app/services/customize_data_request/number-list-request/cd-number-list-request-confirm/cd-request-period-comfirm.service';
 import { CdNumberListRequestTabService } from 'app/services/customize_data_request/number-list-request/cd-number-list-request-tab/cd-number-list-request-tab.service';
 import { CommonHeaderService } from 'app/services/shared/common-header.service';
 import { DatePickerService } from 'app/services/shared/date-picker.service';
@@ -44,9 +45,8 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
       "D85PX-15E0-A12345"
     ],
     "request_route_kind": "0",
-    "datetime_from": "2020-02-29T00:00:00.000Z",
-    "datetime_to": "2020-02-29T00:00:00.000Z",
-    "car_data_amount_upper_limit": "1234567890"
+    "datetime_from": "2020-02-29T00:00:00Z",
+    "datetime_to": "2020-02-29T00:00:00Z"
   };
 
   request_period_kind: string = "1";
@@ -54,6 +54,7 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
   selectedListItems: any = [];
   fields: Fields;
   initResource: any;
+  data: any = [];
 
   // sortingParams = {
   //   sort: '',
@@ -89,6 +90,7 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
     override modalService: ModalService,
     cdRef: ChangeDetectorRef,
     private cdNumberListRequestTabService: CdNumberListRequestTabService,
+    private cdNumberListRequestComfirmService: CdNumberListRequestComfirmService,
     protected userSettingService: UserSettingService,
     private datePickerService: DatePickerService,
     private monthPickerService: MonthPickerService,) {
@@ -97,7 +99,7 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
   }
 
   protected async fetchList(sort_key?: string): Promise<any> {
-    // throw new Error('Method not implemented.');
+
   }
   protected async _fetchDataForInitialize(): Promise<any> {
     const res = await this.cdNumberListRequestTabService.fetchCarInitData();
@@ -216,6 +218,7 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
    * 送信番号一覧要求確認 ボタン押下
    */
   openDialogNumberListRequestComfirm(): void {
+    this.setData();
     console.log("params", this.params);
     this.modalService.open(
       {
@@ -226,6 +229,11 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
         okBtnLabel: this.labels.ok_btn,
         ok: () => {
           console.log("OK");
+          this.cdNumberListRequestComfirmService
+            .ok(this.initParams)
+            .then(res => {
+              console.log("RES", res);
+            });
         },
       },
       {
@@ -234,4 +242,39 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
     );
   }
 
+  printInfoCar(data: any): string {
+    let result = data.car_identification.model + "-" + data.car_identification.type_rev + "-" + data.car_identification.serial;
+    return result;
+  }
+
+  onChangeItems(): void {
+    this.changed.emit();
+    console.log(this.listSelections);
+  }
+
+  /**
+   * 選択済みタグの x ボタン押下時の処理
+   * @param id 選択済みタグに紐づけられた ID
+   */
+  onClickRemoveTag(value: number) {
+    this.selectedListItems = this.selectedListItems.filter(
+      (item: any) => item.value !== value
+    );
+    this.changed.emit();
+  }
+
+  setData(): void {
+    this.data = [];
+    for (let item of this.lists.visibleList) {
+      let car: any = {};
+      car["number_list_request.car.kind"] = this.request_period_kind;
+      car["number_list_request.car.customize_usage_definition"] = this.selectedListItems;
+      car["number_list_request.car.start_date"] = this.params['send_number_list_request_datetime_from'];
+      car["number_list_request.car.end_date"] = this.params['send_number_list_request_datetime_to'];
+
+      let model_type_rev_serial = item.car_identification.model + "-" + item.car_identification.type_rev + "-" + item.car_identification.serial;
+      car["number_list_request.cars.car_identification.model_type_rev_serial"] = model_type_rev_serial;
+      this.data.push(car);
+    }
+  }
 }

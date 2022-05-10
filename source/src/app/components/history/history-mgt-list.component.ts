@@ -85,7 +85,6 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
       this.thList
     );
     this._fillLists(res.result_header, list);
-    console.log(list)
     this.isFetching = false;
     this._afterFetchList();
   }

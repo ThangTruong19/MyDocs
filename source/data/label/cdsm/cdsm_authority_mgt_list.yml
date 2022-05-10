@@ -20,11 +20,11 @@ labels:
   - id: 4
     description: 閉じる
     name: close
-    ja: 閉じる
+    ja: キャンセル
     en:
 
   - id: 5
-    description: アコーディオンを開く
+    description: 開く
     name: accordion_open
     ja: 開く
     en:
@@ -54,49 +54,91 @@ labels:
     en:
 
   - id: 10
-    description: 検索結果0件時の一覧表示
-    name: empty_list_message
-    ja: 該当するユーザが見つかりませんでした。
+    description: 削除
+    name: delete
+    ja: 削除
     en:
 
   - id: 11
-    description: ダウンロード
-    name: download_all
-    ja: ダウンロード
+    description: 変更
+    name: header_edit
+    ja: 変更
     en:
 
   - id: 12
-    description: 表示項目設定
-    name: field_select
-    ja: 表示項目設定
+    description: ユーザ削除確認モーダル本文
+    name: delete_modal_title
+    ja: 以下のユーザ情報を削除します。よろしいですか?
     en:
 
   - id: 13
-    description: 表示項目設定
-    name: field_select_title
-    ja: 表示項目設定
+    description: 完了メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
     en:
 
-  - id: 14
+  - id: 23
+    description: 検索結果0件時の一覧表示
+    name: empty_list_message
+    ja: 該当するユーザーが見つかりませんでした。
+    en:
+
+  - id: 24
     description: 全選択/解除
     name: select_all
     ja: 全選択/解除
     en:
 
-  - id: 15
-    description: アコーディオンを閉じる
-    name: accordion_close
-    ja: 閉じる
+  - id: 25
+    description: 選択モーダルタイトル
+    name: select_modal_title
+    ja: 権限を選択してください
     en:
 
-  - id: 16
+  - id: 26
+    description: 反映するボタン
+    name: reflect_btn
+    ja: 反映する
+    en:
+
+  - id: 27
+    description: 権限更新完了メッセージ
+    name: authority_update_finish_message
+    ja: 権限更新処理が完了しました。
+    en:
+
+  - id: 28
     description: OK
     name: ok_btn
     ja: OK
     en:
 
-  - id: 17
-    description: 項目選択
-    name: download_select_title
-    ja: 項目選択
+  - id: 29
+    description: 全選択/解除
+    name: select_all
+    ja: 全選択/解除
+    en:
+
+  - id: 30
+    description: 表示項目設定
+    name: field_select
+    ja: 表示項目設定
+    en:
+
+  - id: 31
+    description: 表示項目選択
+    name: field_select_title
+    ja: 表示項目設定
+    en:
+
+  - id: 1001
+    description: アコーディオンを閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 1002
+    description: テーブルヘッダの削除
+    name: header_delete
+    ja: 削除
     en:

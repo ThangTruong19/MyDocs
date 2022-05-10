@@ -12,8 +12,8 @@ import {
     OnDestroy,
 } from '@angular/core';
 import * as _ from 'lodash';
-
-import { Labels, TableHeader } from 'app/types/common';
+import { Labels, TableHeader, TableMergeColumn } from 'app/types/common';
+import { CommonTableService } from 'app/services/shared/common-table.service';
 
 @Component({
     selector: 'app-common-table',
@@ -33,14 +33,17 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
     @Input() public requestHeaderParams: any;
     @Input() public sortingParams: any;
     @Input() public labels: Labels;
-    @Input() public lists: any;
-    @Input() public thList: any[];
+    @Input() public lists: { visibleList: any[]; originList: any[] } = {
+        visibleList: [],
+        originList: []
+    };
+    @Input() public thList: TableHeader[];
     @Input() public selectedList: any[];
     @Input() public sortableThList: any[];
     @Input() public emptyListMessage: string;
     @Input() public thClass: string;
     @Input() public tbodyElement: HTMLElement | null;
-    @Input() public mergeRows = false;
+    @Input() public mergeColumns: TableMergeColumn[] = [];
 
     // 横スクロール可能テーブルで使用
     @Input() set fixedThList(val: TableHeader[]) {
@@ -85,6 +88,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
     @Input() public hiddenItemStyles: { [key: string]: string } = {};
 
     @Input() public checkBoxHiddenFunction: Function;
+    @Input() public checkBoxDefaultHiddenFunction: Function;
     @Input() public editIconHiddenFunction: Function;
     @Input() public deleteIconHiddenFunction: Function;
 
@@ -110,6 +114,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
         );
     }
 
+    public isMergeRows = false;
     public isCarTableReady = true;
     public multiLineThList: TableHeader[] = [];
     public emptyListMessageStr: string;
@@ -142,7 +147,8 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
     private _fixedThList: TableHeader[];
 
     constructor(
-        private elRef: ElementRef
+        private elRef: ElementRef,
+        private commonTableService: CommonTableService
     ) {
     }
 
@@ -159,8 +165,16 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
                 this.updateCheckAll();
             }
 
+            this.isMergeRows = false;
             if (this.lists.originList.length === 0) {
                 this.isCarTableReady = true;
+            } else if (this.mergeColumns
+                && this.mergeColumns.length > 0
+                && this.lists.visibleList
+                && this.lists.visibleList.length > 0) {
+
+                this.isMergeRows = true;
+                this.setMergeColumns();
             }
         }
     }
@@ -191,7 +205,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
         this.updateCheckAll();
     }
 
-    public updateCheckAll(): void {
+    private updateCheckAll(): void {
         const targetItems: any = this.lists.originList.filter(
             (item: any) => !this.checkBoxHidden(item)
         );
@@ -208,6 +222,95 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
             repCheckAll.disabled = this.checkAllDisabled;
         }
     }
+
+    private setMergeColumns(): void {
+
+        this.mergeColumns.forEach(( merge: TableMergeColumn) => {
+
+            const mergeRowData: { [key: string]: number } = {};
+            let rowIndex = 0;
+            const groupByRows: _.Dictionary<any> = _.groupBy(this.lists.visibleList, (data: any) => {
+
+                let groupValue: string = null;
+                if (merge.groupByColumns && merge.groupByColumns.length > 0) {
+                    merge.groupByColumns.forEach((groupByColumn: string) => {
+                        let columnVal: string = data[groupByColumn];
+                        if (!columnVal) {
+                            columnVal = 'null';
+                        }
+                        if (!groupValue) {
+                            groupValue = columnVal;
+                        } else {
+                            groupValue += '|@@@|' + columnVal;
+                        }
+                    });
+                }
+
+                if (!groupValue) {
+                    groupValue = data[merge.targetColumn];
+                } else {
+                    groupValue += '|@@@|' + data[merge.targetColumn];
+                }
+                if (!data.view) {
+                    data.view = {};
+                }
+                if (!data.view.displayNoneRow) {
+                    data.view.displayNoneRow = {};
+                }
+                data.view.displayNoneRow[merge.targetColumn] =  true;
+
+                if (!(groupValue in mergeRowData)) {
+                    mergeRowData[groupValue] = rowIndex;
+                }
+
+                rowIndex++;
+
+                return groupValue;
+            });
+
+            Object.keys(groupByRows).forEach((groupByKey: string) => {
+                const index: number = mergeRowData[groupByKey];
+                const dt: any = this.lists.visibleList[index];
+                if (!dt.view) {
+                    dt.view = {};
+                }
+
+                if (!dt.view.rowspan) {
+                    dt.view.rowspan = { };
+                }
+                const groupRow: any = groupByRows[groupByKey];
+                dt.view.rowspan[merge.targetColumn] = groupRow.length;
+
+                if (!dt.view.displayNoneRow) {
+                    dt.view.displayNoneRow = {};
+                }
+                dt.view.displayNoneRow[merge.targetColumn] = false;
+            });
+
+        });
+
+    }
+
+    public isDisplayDataRow(tableHeader: TableHeader, listData: any, isMergeRows: boolean): boolean {
+        return this.commonTableService.isDisplayDataRow(tableHeader, listData, isMergeRows);
+    }
+
+    public getDataRowspan(tableHeader: TableHeader, listData: any, isMergeRows: boolean): string {
+        return this.commonTableService.getDataRowspan(tableHeader, listData, isMergeRows);
+    }
+
+    public getColumnStyle(tableHeader: TableHeader): string {
+        return this.commonTableService.getColumnStyle(tableHeader);
+    }
+
+    public getSimpleTableRowCss(isMergeRows: boolean): string {
+        return this.commonTableService.getSimpleTableRowCss(isMergeRows);
+    }
+
+    public getSimpleTableDataColumnCss(isMergeRows: boolean): string {
+        return this.commonTableService.getSimpleTableDataColumnCss(isMergeRows);
+    }
+
 
     /**
      * 親側の onClickDetail() を呼ぶための emit を実行する
@@ -247,8 +350,8 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * 親側の fetchList() を呼ぶための emit を実行する
      */
-    public onClickSortingLabel(sort_key: string): void {
-        this.sort.emit(sort_key);
+    public onClickSortingLabel(sortKey: string): void {
+        this.sort.emit(sortKey);
     }
 
     /**
@@ -297,6 +400,17 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
             return this.checkBoxHiddenFunction(data);
         } else {
             return false;
+        }
+    }
+
+    /**
+     * 親側の checkBoxDefaultHidden() を呼び出す
+     */
+    public checkBoxDefaultHidden(data: any): boolean {
+        if (this.checkBoxDefaultHiddenFunction && (typeof this.checkBoxDefaultHiddenFunction === 'function')) {
+            return this.checkBoxDefaultHiddenFunction(data);
+        } else {
+            return true;
         }
     }
 
@@ -361,17 +475,17 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
             scrollElement: HTMLElement;
             headerElement: HTMLElement;
         }[] = [
-            {
-                identifier: 'fixed',
-                scrollElement: this.fixedScrollArea.nativeElement,
-                headerElement: this.fixedHeader.nativeElement,
-            },
-            {
-                identifier: 'scrollable',
-                scrollElement: this.scrollableScrollArea.nativeElement,
-                headerElement: this.scrollableHeader.nativeElement,
-            },
-        ];
+                {
+                    identifier: 'fixed',
+                    scrollElement: this.fixedScrollArea.nativeElement,
+                    headerElement: this.fixedHeader.nativeElement,
+                },
+                {
+                    identifier: 'scrollable',
+                    scrollElement: this.scrollableScrollArea.nativeElement,
+                    headerElement: this.scrollableHeader.nativeElement,
+                },
+            ];
 
         map.forEach((item: { identifier: string, scrollElement: HTMLElement, headerElement: HTMLElement }, index: number) => {
             const other: {
@@ -398,10 +512,11 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
         listener: (e: Event) => void;
         timeout: any;
     } {
-        const listener = (e: Event) => {
+        const listener: (e: Event) => void = (e: Event) => {
             const target: HTMLElement = e.target as HTMLElement;
             const scrollLsitenersKey: 'fixed' | 'scrollable' = other.identifier === 'fixed' ? 'fixed' : 'scrollable';
-            const otherListener = this.scrollLsiteners[scrollLsitenersKey];
+            const otherListener: { timeout: NodeJS.Timeout, listener: (e: Event) => void } | null
+                = this.scrollLsiteners[scrollLsitenersKey];
             other.scrollElement.removeEventListener('scroll', otherListener.listener);
             other.scrollElement.scrollTop = target.scrollTop;
             self.headerElement.scrollLeft = target.scrollLeft;
@@ -434,7 +549,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
      * @param columns 複数行の表示となる列
      */
     private _createMultiLineThList(columns: string[]): TableHeader[] {
-        return columns.map(name => ({
+        return columns.map((name: string) => ({
             name,
             label: name,
             sortable: false,
@@ -471,8 +586,13 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
                     bodyCell.style.minWidth = null;
                 }
 
-                if (headerCell && cellWidth) { headerCell.style.minWidth = cellWidth + 'px'; }
-                if (bodyCell && cellWidth) { bodyCell.style.minWidth = cellWidth + 'px'; }
+                if (headerCell && cellWidth) {
+                    headerCell.style.minWidth = cellWidth + 'px';
+                }
+
+                if (bodyCell && cellWidth) {
+                    bodyCell.style.minWidth = cellWidth + 'px';
+                }
 
                 if (refresh) {
                     this.isCarTableReady = true;
@@ -487,7 +607,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
      * @param body テーブルボディの参照
      */
     private _getCells(header: ElementRef, body: ElementRef
-        ): { headerCells: HTMLElement[], bodyCells: HTMLElement[] } {
+    ): { headerCells: HTMLElement[], bodyCells: HTMLElement[] } {
         const headerCells: HTMLElement[] = _.flatten(Array.from(
             header.nativeElement.querySelectorAll('th')
         ).map((headerCell: any) => {

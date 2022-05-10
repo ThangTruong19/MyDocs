@@ -6,6 +6,7 @@ import { AppCommonModule } from 'app/modules/shared/app-common.module';
 import { AuthorityMgtListComponent } from 'app/components/authority/authority-mgt-list.component';
 import { UserService } from 'app/services/shared/user.service';
 import { AuthoritySelectComponent } from 'app/components/authority/authority-select/authority-select.component';
+import { AuthoritySelectModalComponent } from 'app/components/authority/authority-select-modal/authority-select-modal.component';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import { AuthoritySelectComponent } from 'app/components/authority/authority-sel
     ],
     declarations: [
         AuthorityMgtListComponent,
-        AuthoritySelectComponent
+        AuthoritySelectComponent,
+        AuthoritySelectModalComponent
     ],
     providers: [
         UserService

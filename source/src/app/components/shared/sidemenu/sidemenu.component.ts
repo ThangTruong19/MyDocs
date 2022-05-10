@@ -60,7 +60,7 @@ export class SidemenuComponent {
 })
 export class SideMenuItemComponent {
 
-    @Input() public item: any;
+    @Input() public item: Navigation;
     @Input() public isLoading: boolean;
 
     public isOpened = false;
@@ -76,10 +76,10 @@ export class SideMenuItemComponent {
         this.isOpened = !this.isOpened;
     }
 
-    public isActive(nav: any): boolean {
+    public isActive(nav: Navigation): boolean {
         const path: string = flatten(
-            this.route.pathFromRoot.map((route: any) => route.url['value'])
-        )
+                this.route.pathFromRoot.map((route: ActivatedRoute) => (<any>route.url)['value'])
+            )
             .map(urlSegment => urlSegment.path)
             .filter((val: string) => val.length)
             .join('/');

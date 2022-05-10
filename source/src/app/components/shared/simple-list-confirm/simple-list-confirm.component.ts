@@ -1,5 +1,5 @@
-import * as _ from 'lodash';
 import { Component, Input } from '@angular/core';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-simple-list-confirm',

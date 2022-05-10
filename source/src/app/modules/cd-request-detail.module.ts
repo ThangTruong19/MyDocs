@@ -16,6 +16,7 @@ import { CdRequestDetailService } from 'app/services/customize_data_request/cd-r
 import { CdNumberListRequestTabComponent } from 'app/components/customize_data_request/number-list-request/cd-number-list-request-tab/cd-number-list-request-tab.component';
 import { CdNumberListRequestConfirmComponent } from 'app/components/customize_data_request/number-list-request/cd-number-list-request-confirm/cd-number-list-request-confirm.component';
 import { CdNumberListRequestTabService } from 'app/services/customize_data_request/number-list-request/cd-number-list-request-tab/cd-number-list-request-tab.service';
+import { CdNumberListRequestComfirmService } from 'app/services/customize_data_request/number-list-request/cd-number-list-request-confirm/cd-request-period-comfirm.service';
 
 @NgModule({
     imports: [
@@ -39,6 +40,7 @@ import { CdNumberListRequestTabService } from 'app/services/customize_data_reque
         CdRequestPeriodTabService,
         CdRequestPeriodComfirmService,
         CdNumberListRequestTabService,
+        CdNumberListRequestComfirmService,
     ],
 })
 export class CdRequestDetailModule { }

@@ -45,14 +45,26 @@ export interface TableHeader {
     displayable?: boolean;
     shortName?: string;
     dataKey?: string;
+    columnStyle?: string;
 
     // 各画面で使用する独自パラメータ用
     [key: string]: any;
 }
 
+export interface TableMergeColumn {
+    groupByColumns: string[];
+    targetColumn: string;
+}
+
+export interface TableOptions {
+    columnStyles?: string[];
+    scrollable?: boolean;
+    noOptionTableColumn?: boolean;
+}
+
 export interface ModalValues {
     requestHeaderParams: any;
-    listDesc: any[];
+    listDesc: any;
     listVal: any;
 }
 

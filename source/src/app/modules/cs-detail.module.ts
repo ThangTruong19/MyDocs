@@ -11,6 +11,7 @@ import { AppCommonModule } from "./shared/app-common.module";
 import { CsUpdateRequestConfirmComponent } from "app/components/customize_setting/update-request-confirm/cs-update-request-confirm.component";
 import { CsImmediateUpdateRequestConfirmComponent } from "app/components/customize_setting/immediate-update-request-confirm/cs-immediate-update-request-confirm.component";
 import { CsRequestResendConfirmComponent } from "app/components/customize_setting/request-resend-confirm/cs-request-resend-confirm.component";
+import { CsInputDataCancelConfirmComponent } from "app/components/customize_setting/input-data-cancel-confirm/cs-input-data-cancel-confirm.component";
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { CsRequestResendConfirmComponent } from "app/components/customize_settin
         CsGetRequestComponent,
         CsUpdateRequestConfirmComponent,
         CsImmediateUpdateRequestConfirmComponent,
-        CsRequestResendConfirmComponent
+        CsRequestResendConfirmComponent,
+        CsInputDataCancelConfirmComponent
     ],
     providers: [
         CustomizeSettingService,

@@ -17,6 +17,8 @@ export class ScreenCodeConst {
     public static readonly CAR_MGT_LIST_CODE = 'cdsm_car_mgt_list';
     public static readonly CAR_MGT_DETAIL = 'cdsm_car_mgt_detail';
 
+    public static readonly operatorInitialize = 'cdsm_car_mgt_list_initialize';
+
     public static readonly APP_HOME_URL = '/';
 
     // 想定通信量確認

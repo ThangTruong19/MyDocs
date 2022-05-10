@@ -22,8 +22,8 @@ export class ModalComponent extends AbstractModalComponent {
     @Input() public hasOk: boolean;
     @Input() public showCloseBtn: boolean;
 
-    private hostElement: HTMLElement;
-    private isIE: boolean;
+    protected hostElement: HTMLElement;
+    protected isIE: boolean;
 
     constructor(activeModal: NgbActiveModal, elRef: ElementRef) {
         super(activeModal);

@@ -1,6 +1,12 @@
-<div class="app-request-period-comfirm">
+<div id="app-request-period-comfirm">
     <div>
-        <app-common-table [lists]="lists" [thList]="thList" [(sortingParams)]="sortingParams">
+        <app-common-table
+            [lists]="lists"
+            [thList]="thList"
+            [(sortingParams)]="sortingParams"
+            [labels]="labels"
+            [isFetching]="isFetching"
+            [mergeColumns]="mergeColumns">
         </app-common-table>
     </div>
 </div>

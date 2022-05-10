@@ -224,6 +224,12 @@
   }
 }
 
+.app-input-checkbox-default__label {
+  &.hidden {
+    display: none;
+  }
+}
+
 .app-input-text,
 .app-textarea {
   &.not-found,

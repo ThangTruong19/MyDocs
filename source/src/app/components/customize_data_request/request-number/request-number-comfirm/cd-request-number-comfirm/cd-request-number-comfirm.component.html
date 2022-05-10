@@ -1,5 +1,5 @@
 <div id="app-number-comfirm">
-    <app-common-table [lists]="lists" [thList]="thList" [(sortingParams)]="sortingParams" [customTableRowContent]="customTableRowContent" [mergeRows]="true">
+    <app-common-table [lists]="lists" [thList]="thList" [(sortingParams)]="sortingParams" [customTableRowContent]="customTableRowContent">
         <ng-template #customTableRowContent let-data="data" let-rowgroup="rowgroup" let-rowspan="rowspan">
             <td *ngIf="data['columnName1Rowspan'] > 0" [attr.rowspan]="data['columnName1Rowspan']">
                 <span>AA</span>

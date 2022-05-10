@@ -1,8 +1,9 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { SelectItem } from 'app/types/select-item';
 import { NgSelectComponent } from '@ng-select/ng-select';
+import { NgDropdownPanelComponent } from '@ng-select/ng-select/lib/ng-dropdown-panel.component';
 import * as _ from 'lodash';
 import timeout from 'app/utils/timeout';
+import { SelectItem } from 'app/types/select-item';
 
 @Component({
     selector: 'app-multiselect',
@@ -26,7 +27,7 @@ export class MultiselectComponent {
     constructor(private ref: ChangeDetectorRef) { }
 
     public handleChangeSelection(items: SelectItem[]): void {
-        this.selectedItemsChange.emit(items.sort((a, b) => (a.id > b.id ? 1 : -1)));
+        this.selectedItemsChange.emit(items.sort((a: SelectItem, b: SelectItem) => (a.id > b.id ? 1 : -1)));
         this.changeItems.emit();
     }
 
@@ -38,7 +39,7 @@ export class MultiselectComponent {
         this.hasSearchResult = true;
 
         this.ref.detectChanges();
-        const panel = this.select.dropdownPanel;
+        const panel: NgDropdownPanelComponent = this.select.dropdownPanel;
         const {
             width,
             position,

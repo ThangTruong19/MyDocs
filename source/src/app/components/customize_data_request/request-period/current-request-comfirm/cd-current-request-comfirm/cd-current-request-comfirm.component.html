@@ -1,6 +1,31 @@
-<div class="app-request-period-comfirm">
+<div id="app-current-request-comfirm">
     <div>
-        <app-common-table [lists]="lists" [thList]="thList" [(sortingParams)]="sortingParams">
+        <!-- <app-common-table
+            [lists]="lists"
+            [thList]="thList"
+            [(sortingParams)]="sortingParams"
+            [labels]="labels"
+            [customTableMergeRowContent]="customTableMergeRowContent">
+            <ng-template #customTableMergeRowContent let-data="data">
+                <tr *ngFor="let item of data; let i = index">
+                    <td>{{ item['request_number.cars.car_identification.model_type_rev_serial'] }}</td>
+                    <td *ngIf="i == 0" [attr.rowspan]="data.length">
+                        {{ item['request_period.car.kind'] == '1' ? '用途定義単位' : '定義単位' }}</td>
+                    <td *ngIf="i == 0" [attr.rowspan]="data.length">
+                        <span *ngIf="item['request_period.car.customize_usage_definition'].length > 0">
+                            <span *ngFor="let child of item['request_period.car.customize_usage_definition']">
+                                {{ child.name }} <br />
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+            </ng-template>
+        </app-common-table> -->
+        <app-common-table
+            [lists]="lists"
+            [thList]="thList"
+            [(sortingParams)]="sortingParams"
+            [labels]="labels">
         </app-common-table>
     </div>
 </div>

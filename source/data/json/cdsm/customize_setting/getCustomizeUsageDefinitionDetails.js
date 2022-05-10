@@ -11,7 +11,7 @@ module.exports = function (args) {
     ? 0
     : parseInt(args.header['x-count']);
   var sort = args.header['x-sort'] || 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_id';
-  var TOTAL = isNaN(args.header['x-count']) ? 1 : 100;
+  var TOTAL = isNaN(args.header['x-count']) ? 1 : 5;
   var loopEnd =
     TOTAL > from + count - 1 && count !== 0 ? from + count - 1 : TOTAL;
   var listMock = {
@@ -71,6 +71,54 @@ function createData(i) {
           send_condition_id: "1",
           send_condition_name: "1時間毎",
           customize_access_level: "1",
+          customize_access_level_name: "開発者"
+        },
+        {
+          customize_definition_id: "2",
+          customize_definition_name: "KOMTRAXデータ v2.0",
+          customize_definition_version: 2,
+          priority: "2",
+          priority_name: "low",
+          active_kind: "2",
+          active_name: "有効",
+          latest_operation_code: "2",
+          latest_operation_code_name: "追加",
+          status: "20",
+          status_name: "送信中",
+          assumption_data_value: 2022000,
+          start_date: "2017/12/30",
+          end_date: "2017/12/30",
+          first_receive_datetime: "2017/02/01 23:59:59",
+          latest_receive_datetime: "2017/05/23 23:59:59",
+          aggregation_condition_id: "2",
+          aggregation_condition_name: "20分毎",
+          send_condition_id: "2",
+          send_condition_name: "2時間毎",
+          customize_access_level: "2",
+          customize_access_level_name: "開発者"
+        },
+        {
+          customize_definition_id: "3",
+          customize_definition_name: "KOMTRAXデータ v3.0",
+          customize_definition_version: 3,
+          priority: "3",
+          priority_name: "low",
+          active_kind: "3",
+          active_name: "有効",
+          latest_operation_code: "3",
+          latest_operation_code_name: "追加",
+          status: "30",
+          status_name: "送信中",
+          assumption_data_value: 2022000,
+          start_date: "2017/12/30",
+          end_date: "2017/12/30",
+          first_receive_datetime: "2017/02/01 23:59:59",
+          latest_receive_datetime: "2017/05/23 23:59:59",
+          aggregation_condition_id: "3",
+          aggregation_condition_name: "30分毎",
+          send_condition_id: "3",
+          send_condition_name: "3時間毎",
+          customize_access_level: "3",
           customize_access_level_name: "開発者"
         }
       ]

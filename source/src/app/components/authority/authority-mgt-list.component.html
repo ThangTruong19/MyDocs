@@ -15,7 +15,6 @@
             <div data-app-accordion-body>
               <div class="container app-search">
                 <div class="row">
-
                 <app-selected
                     class="col-sm-3"
                     *ngIf="resource.configuration_group_id"
@@ -159,11 +158,9 @@
                   <app-authority-select
                     [authorities]="authorities"
                     [labels]="labels"
-                    [selectedUser]="data"
+                    [resource]="resource"
                     [selectedAuthorities]="selectedAuthorities"
-                    [customSelectButtons]="customSelectButtons"
-                    [defaultAuthorities]="defaultAuthorities"
-                    [selectedAuthorities]="selectedAuthorities"
+                    [selectedKinds]="selectedKinds"
                     [customSelectButtons]="customSelectButtons"
                     [customSelectedAuthorities]="customSelectedAuthorities"
                     [allowUnselectedAuthorities]="true"
@@ -175,7 +172,7 @@
                       href="javascript:void(0)"
                       (click)="onClickSelect(data, idx)"
                     >
-                   {{ data | at: 'users.group.granted_role.name' }}
+                   {{ data | at: 'group.granted_role.name' }}
                    </a>
                    </span>
                   </td>
@@ -185,13 +182,13 @@
                     title.shortName
                   }} app-index-td d-flex align-items-center"
                 >
-                {{ data | at: 'users.group.configuration_groups.label' }}
+                {{ data | at: 'group.configuration_groups[0].label' }}
                   </td>
                   <td
                   *ngSwitchDefault
                     class="td-{{ title.shortName }} app-index-td d-flex align-items-center"
                   >
-                    <span>{{ data[title.name] }}</span>
+                    <span>{{ data | at: removeStr(title.name,"users.") }}</span>
                   </td>
                 </ng-container>
               </ng-container>

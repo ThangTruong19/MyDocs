@@ -23,7 +23,7 @@ export class SelectTypeComponent implements OnChanges {
     @Input() public targets: any;
     @Input() public labels: Labels;
 
-    @Output() public changed: EventEmitter<any> = new EventEmitter();
+    @Output() public changed: EventEmitter<void> = new EventEmitter<void>();
 
     public selectedOption: 'all' | 'non' | 'selections';
     public targetInfo: ListSelection = {};
