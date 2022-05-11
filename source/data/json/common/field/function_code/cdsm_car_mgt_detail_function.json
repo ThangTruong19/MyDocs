@@ -1,128 +1,16 @@
 [
-  {
-    "display_sequence_no": "1",
-    "name": "ID(用途定義)",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_usage_definition_id",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "2",
-    "name": "カスタマイズ用途定義",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "3",
-    "name": "バージョン",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_usage_definition_version",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "4",
-    "name": "開始日（カスタマイズ用途定義）",
-    "path": "customize_usage_definitions.customize_usage_definition.start_date",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "5",
-    "name": "終了日（カスタマイズ用途定義）",
-    "path": "customize_usage_definitions.customize_usage_definition.end_date",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "6",
-    "name": "ID（定義）",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_id",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "7",
-    "name": "カスタマイズ定義",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "8",
-    "name": "優先度",
-    "path": "customize_usage_definitions.customize_usage_definition.priority_name",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "9",
-    "name": "想定通信量",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "10",
-    "name": "有効/無効",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.active_name",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "11",
-    "name": "最新設定種別",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.latest_operation_code_name",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "12",
-    "name": "ステータス",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.status_name",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "13",
-    "name": "開始日（カスタマイズ定義）",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.start_date",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "14",
-    "name": "終了日（カスタマイズ定義）",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.end_date",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "15",
-    "name": "初回受信日時",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.first_receive_datetime",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "16",
-    "name": "最新受信日時",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.latest_receive_datetime",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "17",
-    "name": "カスタマイズ集計条件名",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.aggregation_condition_name",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
-    "display_sequence_no": "18",
-    "name": "カスタマイズ送信条件名",
-    "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.send_condition_name",
-    "control_code": "1",
-    "display_code": "1"
-  }
+    {
+        "display_sequence_no": "1",
+        "name": "ID(用途定義)",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_usage_definition_id",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "2",
+        "name": "ID（定義）",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_id",
+        "control_code": "0",
+        "display_code": "1"
+    }
 ]

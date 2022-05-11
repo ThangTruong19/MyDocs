@@ -66,6 +66,18 @@
 .app-icon-upload:before {
   content: "\E00E";
 }
+.app-icon-add:before {
+  content: "\EA0A";
+}
+.app-icon-discard:before {
+  content: "\E965";
+}
+.app-icon-acquisition-request:before {
+  content: "\E9C2";
+}
+.app-icon-update-request:before {
+  content: "\E9C3";
+}
 
 @font-face {
   font-family: "app-extra-icon";

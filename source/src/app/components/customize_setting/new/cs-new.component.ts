@@ -144,7 +144,11 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
     this.resource = this.resources.resource;
     this.initialize(this.resources);
     // TODO: Setting the default selected option for a combobox[優先度] = '低' (Still in Q&A)
-    _.set(this.params,'regist_priority_name','low');
+    if(this.resource.regist_priority_control_flg.values[0].value){
+      _.set(this.params,'regist_priority_name','high');
+    }else{
+      _.set(this.params,'regist_priority_name','low');
+    }
     this._initializeDatePicker();
   }
 
@@ -167,13 +171,13 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
 
     _.set(
       this.params,
-      'customize_setting.edit_start_date_ymd',
+      'regist_start_date',
       this.datePickerService.toMoment().format(
         DateFormat.slash
       ));
     _.set(
       this.params,
-      'customize_setting.edit_end_date_ymd',
+      'regist_end_date',
       this.datePickerService.toMoment().add(1, 'month').format(
         DateFormat.slash
       ));
@@ -182,7 +186,7 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
 
     _.set(
       this.params,
-      'customize_setting.date_from_formatted',
+      'date_from_formatted',
       today
         .clone()
         .subtract(1, 'month')
@@ -191,7 +195,7 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
     _.set(this.params, 'date_to', today.format(DateFormat.hyphen));
     _.set(
       this.params,
-      'customize_setting.date_to_formatted',
+      'date_to_formatted',
       today.format(this.datePickerService.inputDateFormat(this._dateFormat))
     );
   }
@@ -252,8 +256,8 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit{
       customize_usage_definition_id: '',
       customize_usage_definition_name: (this.customizeDefinitionName as any).items.filter((element: { id: any; }) => element.id == this.params.regist_customize_usage_definition_name)[0].name,
       customize_usage_definition_version: this.params.regist_customize_usage_definition_version,
-      start_date: this.datePickerService.convertDateString(this.params.customize_setting.edit_start_date_ymd, DateFormat.hyphen, DateFormat.slash),
-      end_date: this.datePickerService.convertDateString(this.params.customize_setting.edit_end_date_ymd, DateFormat.hyphen, DateFormat.slash),
+      start_date: this.datePickerService.convertDateString(this.params.regist_start_date, DateFormat.hyphen, DateFormat.slash),
+      end_date: this.datePickerService.convertDateString(this.params.regist_end_date, DateFormat.hyphen, DateFormat.slash),
       priority_name: this.params.regist_priority_name,
       customize_definitions: this._formatListData(this.apiResult.result_data.customize_definitions)
     }

@@ -18,7 +18,7 @@ export class AuthoritySelectModalComponent implements OnInit {
   @Input() authorities: any[];
   @Input() labels: any;
   @Input() selectedAuthorities: any[];
-  @Input() selectedKinds: any;
+  @Input() resource: any;
   @Output() check: EventEmitter<any> = new EventEmitter<any>();
   @Output() checkedAll: EventEmitter<any> = new EventEmitter<any>();
 

@@ -190,3 +190,27 @@ labels:
     name: retry_label
     ja: 再送
     en:
+
+  - id: 33
+    description: デフォルト
+    name: default
+    ja: デフォルト
+    en:
+
+  - id: 34
+    description: 追加
+    name: add
+    ja: 追加
+    en:
+
+  - id: 35
+    description: 変更
+    name: edit
+    ja: 変更
+    en:
+
+  - id: 36
+    description: 削除
+    name: delete
+    ja: 削除
+    en:

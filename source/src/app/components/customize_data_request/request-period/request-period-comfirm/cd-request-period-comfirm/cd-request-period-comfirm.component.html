@@ -3,10 +3,86 @@
         <app-common-table
             [lists]="lists"
             [thList]="thList"
+            [sortableThList]="sortableThList"
             [(sortingParams)]="sortingParams"
             [labels]="labels"
-            [isFetching]="isFetching"
-            [mergeColumns]="mergeColumns">
+            [customTableRowContent]="customTableRowContent"
+            >
+            <ng-template #customTableRowContent let-data="data" let-title="title">
+                <ng-container *ngFor="let title of thList">
+                    <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
+                        <!-- 車両 -->
+                        <td *ngIf="title.name == 'request_number.cars.car_identification.model_type_rev_serial'"
+                            class="td-{{
+                                title.shortName
+                            }} app-index-td d-flex align-items-center"
+                            style="width: 18%;"
+                        >
+                            <span>{{ data[title.name] }}</span>
+                        </td>
+                        <!-- 通信量上限設定 -->
+                        <td *ngIf="title.name == 'request_period.car.data_amount_upper_limit_active_kind'"
+                            class="td-{{
+                                title.shortName
+                            }} app-index-td d-flex align-items-center"
+                            style="width: 10%;"
+                        >
+                            <span>{{ data[title.name] == '1' ? '有効': '無効'}}</span>
+                        </td>
+                        <!-- 上限通信量[KB] -->
+                        <td *ngIf="title.name == 'request_period.car.data_amount_upper_limit'"
+                            class="td-{{
+                                title.shortName
+                            }} app-index-td d-flex align-items-center"
+                            style="width: 10%;"
+                        >
+                            <span>{{ data[title.name] }}</span>
+                        </td>
+                        <!-- 要求単位 -->
+                        <td *ngIf="title.name == 'request_period.car.kind'"
+                            class="td-{{
+                                title.shortName
+                            }} app-index-td d-flex align-items-center"
+                            style="width: 12%;"
+                        >
+                            <span>{{ data[title.name] == '1' ? '用途定義単位' : '定義単位' }}</span>
+                        </td>
+                        <!-- カスタマイズ用途定義 -->
+                        <td *ngIf="title.name == 'request_period.car.customize_usage_definition'"
+                            class="td-{{
+                                title.shortName
+                            }} app-index-td d-flex align-items-center"
+                            style="width: 12%; padding: 0!important;"
+                        >
+                            <span *ngIf="data[title.name].length > 0">
+                                <span *ngFor="let child of data[title.name]; let idx = index"
+                                    style="padding: 2px 6px;"
+                                    [ngClass]="idx > 0 ? 'border':''">
+                                    {{ child.name }} <br />
+                                </span>
+                            </span>
+                        </td>
+                        <!-- 開始日 -->
+                        <td *ngIf="title.name == 'request_period.car.start_date'"
+                            class="td-{{
+                                title.shortName
+                            }} app-index-td d-flex align-items-center"
+                            style="width: 19%;"
+                        >
+                            <span>{{ data[title.name] }}</span>
+                        </td>
+                        <!-- 終了日 -->
+                        <td *ngIf="title.name == 'request_period.car.end_date'"
+                            class="td-{{
+                                title.shortName
+                            }} app-index-td d-flex align-items-center"
+                            style="width: 19%;"
+                        >
+                            <span>{{ data[title.name] }}</span>
+                        </td>
+                    </ng-container>
+                </ng-container>
+            </ng-template>
         </app-common-table>
     </div>
 </div>

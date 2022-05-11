@@ -14,6 +14,7 @@ import {
 import * as _ from 'lodash';
 import { Labels, TableHeader, TableMergeColumn } from 'app/types/common';
 import { CommonTableService } from 'app/services/shared/common-table.service';
+import { isArray } from 'lodash';
 
 @Component({
     selector: 'app-common-table',
@@ -21,6 +22,9 @@ import { CommonTableService } from 'app/services/shared/common-table.service';
     styleUrls: ['./common-table.component.scss'],
 })
 export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
+
+    private static readonly MERGE_GROUP_KEY_SEPARATOR = '|@@@|';
+    private static readonly MERGE_FIXED_COLUMN_KEY = 'fixedColumn';
 
     @Input() public customTableRowContent: TemplateRef<any>;
     @Input() public customTableBtnContent: TemplateRef<any>;
@@ -235,13 +239,13 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
                 if (merge.groupByColumns && merge.groupByColumns.length > 0) {
                     merge.groupByColumns.forEach((groupByColumn: string) => {
                         let columnVal: string = data[groupByColumn];
-                        if (!columnVal) {
+                        if (!columnVal || (isArray(columnVal) && columnVal.length === 0)) {
                             columnVal = 'null';
                         }
                         if (!groupValue) {
                             groupValue = columnVal;
                         } else {
-                            groupValue += '|@@@|' + columnVal;
+                            groupValue += AppCommonTableComponent.MERGE_GROUP_KEY_SEPARATOR + columnVal;
                         }
                     });
                 }
@@ -249,7 +253,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
                 if (!groupValue) {
                     groupValue = data[merge.targetColumn];
                 } else {
-                    groupValue += '|@@@|' + data[merge.targetColumn];
+                    groupValue += AppCommonTableComponent.MERGE_GROUP_KEY_SEPARATOR + data[merge.targetColumn];
                 }
                 if (!data.view) {
                     data.view = {};
@@ -257,7 +261,11 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
                 if (!data.view.displayNoneRow) {
                     data.view.displayNoneRow = {};
                 }
-                data.view.displayNoneRow[merge.targetColumn] =  true;
+                data.view.displayNoneRow[merge.targetColumn] = true;
+
+                if (merge.isFixedColumnMerge) {
+                    data.view.displayNoneRow[AppCommonTableComponent.MERGE_FIXED_COLUMN_KEY] = true;
+                }
 
                 if (!(groupValue in mergeRowData)) {
                     mergeRowData[groupValue] = rowIndex;
@@ -276,7 +284,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
                 }
 
                 if (!dt.view.rowspan) {
-                    dt.view.rowspan = { };
+                    dt.view.rowspan = {};
                 }
                 const groupRow: any = groupByRows[groupByKey];
                 dt.view.rowspan[merge.targetColumn] = groupRow.length;
@@ -285,6 +293,11 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
                     dt.view.displayNoneRow = {};
                 }
                 dt.view.displayNoneRow[merge.targetColumn] = false;
+
+                if (merge.isFixedColumnMerge) {
+                    dt.view.displayNoneRow[AppCommonTableComponent.MERGE_FIXED_COLUMN_KEY] = false;
+                    dt.view.rowspan[AppCommonTableComponent.MERGE_FIXED_COLUMN_KEY] = groupRow.length;
+                }
             });
 
         });
@@ -311,6 +324,13 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
         return this.commonTableService.getSimpleTableDataColumnCss(isMergeRows);
     }
 
+    public isDisplayFixedDataRow(isDisplayColumn: boolean, listData: any, isMergeRows: boolean): boolean {
+        return this.commonTableService.isDisplayFixedDataRow(isDisplayColumn, listData, isMergeRows);
+    }
+
+    public getFixedDataRowspan(listData: any, isMergeRows: boolean): string {
+        return this.commonTableService.getFixedDataRowspan(listData, isMergeRows);
+    }
 
     /**
      * 親側の onClickDetail() を呼ぶための emit を実行する

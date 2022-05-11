@@ -11,6 +11,7 @@ import { AutocompleteComponent } from 'app/components/shared/autocomplete/autoco
 import { SearchConditionsComponent } from 'app/components/shared/car-search/search-conditions.component';
 import { TimeDifferenceComponent } from 'app/components/shared/car-search/time-difference.component';
 import { AppCommonTextComponent } from 'app/components/shared/common-text/common-text.component';
+import { AppCommonButtonComponent } from 'app/components/shared/common-button/common-button.component';
 import { DummyEntranceComponent } from 'app/components/shared/dummy-entrance/dummy-entrance.component';
 import { EntranceComponent } from 'app/components/shared/entrance/entrance.component';
 import { FormTableCustomComponent } from 'app/components/shared/form-table-custom/form-table-custom.component';
@@ -52,6 +53,7 @@ import { StorageService } from 'app/services/shared/storage.service';
 
 @NgModule({
     declarations: [
+        AppCommonButtonComponent,
         AppCommonTextComponent,
         AtPipe,
         AutocompleteComponent,
@@ -101,6 +103,7 @@ import { StorageService } from 'app/services/shared/storage.service';
     exports: [
         AccordionModule,
         AlertModule,
+        AppCommonButtonComponent,
         AppCommonTextComponent,
         AppFileUploadModule,
         AtPipe,

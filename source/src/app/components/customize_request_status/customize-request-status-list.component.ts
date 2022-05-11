@@ -5,7 +5,7 @@ import { Title } from '@angular/platform-browser';
 
 import { CustomizeRequestStatusListIndexParams } from 'app/types/customize-request-status-list';
 import { DatePickerParams } from 'app/types/calendar';
-import { Fields, Labels, TableHeader, TableMergeColumn, TableOptions } from 'app/types/common';
+import { Fields, Labels } from 'app/types/common';
 
 import { DateFormat } from 'app/constants/date-format';
 
@@ -43,8 +43,6 @@ export class CustomizeRequestStatusListComponent extends AbstractIndexComponent 
     'type_revs',
     'serials',
   ];
-
-  public mergeColumns: TableMergeColumn[] = [];
 
   constructor(
     navigationService: NavigationService,
@@ -96,13 +94,6 @@ export class CustomizeRequestStatusListComponent extends AbstractIndexComponent 
     this._fillLists(res.result_header, list);
     this.isFetching = false;
     this._afterFetchList();
-
-    this.mergeColumns = [
-      { groupByColumns: ['request_status.car_identification.model', 'request_status.car_identification.type_rev'],
-        targetColumn: 'request_status.car_identification.serial' },  // 「機番」列のマージ設定
-      { groupByColumns: ['request_status.request_status_information.status_name'],
-        targetColumn: 'request_status.request_status_information.status_name' }  // 「ステータス」列のマージ設定
-    ]
   }
 
   /**
@@ -159,14 +150,7 @@ export class CustomizeRequestStatusListComponent extends AbstractIndexComponent 
    */
   protected _updateFields(fields: any): void {
     this.fields = fields;
-    const opt: TableOptions = { columnStyles: [
-        'width:10%', 'width:5%', 'width:5%'
-        , 'width:5%', 'width:5%', 'width:5%'
-        , 'width:5%', 'width:15%', 'width:5%'
-        , 'width:20%', 'width:5%', 'width:5%', 'width:5%', 'width:5%'
-      ]};
-    this.thList = this._createThList(fields, opt);
-
+    this.thList = this._createThList(fields);
     this.sortableThList = this.sortableThLists(this.thList);
     this._reflectXFields(fields);
   }

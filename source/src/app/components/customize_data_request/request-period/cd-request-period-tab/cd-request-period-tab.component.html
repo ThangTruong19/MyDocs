@@ -72,7 +72,7 @@
                         [dateFormat]="dateFormat"
                         [timeZone]="timeZone"
                         [showSeconds]="true"
-                        [showMilliseconds]="true"
+                        [showMilliseconds]="false"
                         [fromShowLabel]="true"
                         [toShowLabel]="true"
                     >
@@ -115,11 +115,29 @@
             </app-common-table> -->
             <app-common-table
                 [lists]="lists"
-                [thList]="thList"
+                [thList]="thListModal"
                 [sortableThList]="sortableThList"
                 [(sortingParams)]="sortingParams"
                 [labels]="labels"
+                [customTableThContent]="customTableThContent"
                 [customTableRowContent]="customTableRowContent">
+                <ng-template #customTableThContent>
+                    <ng-container *ngFor="let th of thList">
+                        <th
+                            *ngIf="th.displayable"
+                            class="app-index-th th-{{ th.shortName }}"
+                            appSortingLabel
+                            [ngClass]="{ 'disable-sort': !th.sortable }"
+                            [(sortingParams)]="sortingParams"
+                            [labelName]="th.sortKey || th.name"
+                            [sortableThList]="sortableThList"
+                            (sort)="onChangeSort($event)"
+                        >
+                            <span>{{ th.label || labels[th.shortName] }}</span>
+                        </th>
+                    </ng-container>
+                </ng-template>
+
                 <ng-template #customTableRowContent let-data="data">
                     <ng-container *ngFor="let title of thList">
                       <td *ngIf="title.displayable">

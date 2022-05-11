@@ -1,0 +1,11 @@
+<span class="app-cmn-btn" (mouseenter)="displayToolTip(true)" (mouseleave)="displayToolTip(false)">
+    <button class="app-cmn-btn-mini-fab app-cmn-btn-button-base app-cmn-btn-accent"
+        [style]="getCommonBtnStyle()" [attr.disabled]="disabled ? true : null">
+        <span class="app-cmn-btn-button-wrapper">
+            <span class="notranslate app-cmn-btn-material-icons app-cmn-btn-icon-no-color app-cmn-btn-icon" [ngClass]="getButtonIconClass()"></span>
+        </span>
+        <div class="app-cmn-btn-button-ripple app-cmn-btn-ripple app-cmn-btn-button-ripple-round"></div>
+        <div class="app-cmn-btn-button-focus-overlay"></div>
+    </button>
+    <div class="app-cmn-btn-tooltip" [ngClass]="tooltipCss">{{tooltipLabel}}</div>
+</span>

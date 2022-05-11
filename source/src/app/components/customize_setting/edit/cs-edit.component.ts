@@ -53,13 +53,13 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
   public resources: Resources;
   @Input()
   public inputParams = {
-    regist_customize_usage_definition_version: '',
-    edit_start_date_ymd: '',
-    edit_end_date_ymd: '',
-    regist_active_name: '',
-    regist_priority_name: '',
-    regist_customize_usage_definition_name: '',
-    regist_customize_usage_definition_id: ''
+    edit_customize_usage_definition_version: '',
+    edit_start_date: '',
+    edit_end_date: '',
+    edit_active_name: '',
+    edit_priority_name: '',
+    edit_customize_usage_definition_name: '',
+    edit_customize_usage_definition_id: ''
 };
 
   private apiResult: any;
@@ -136,7 +136,7 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
    */
   protected async fetchList(): Promise<any> {
     // Setting the request parameters before calling API
-    this._searchParams.customize_usage_definition_id = this.inputParams.regist_customize_usage_definition_id;
+    this._searchParams.customize_usage_definition_id = this.inputParams.edit_customize_usage_definition_id;
     this._searchParams.customize_usage_definition_version = (this.customizeDefinitionVersion as any).itemParams.regist_customize_usage_definition_version;
     // Call & fetch data from API
     this.fetchCustomizeSettingData();
@@ -224,11 +224,11 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
    public closeEditDialog(): void {
     this.modalResponse = {
       customize_usage_definition_id: '',
-      customize_usage_definition_name: this.params.regist_customize_usage_definition_name,
-      customize_usage_definition_version: this.params.regist_customize_usage_definition_version,
-      start_date: this.datePickerService.convertDateString(this.params.edit_start_date_ymd, DateFormat.hyphen, DateFormat.slash),
-      end_date: this.datePickerService.convertDateString(this.params.edit_end_date_ymd, DateFormat.hyphen, DateFormat.slash),
-      priority_name: this.params.regist_priority_name,
+      customize_usage_definition_name: this.params.edit_customize_usage_definition_name,
+      customize_usage_definition_version: this.params.edit_customize_usage_definition_version,
+      start_date: this.datePickerService.convertDateString(this.params.edit_start_date, DateFormat.hyphen, DateFormat.slash),
+      end_date: this.datePickerService.convertDateString(this.params.edit_end_date, DateFormat.hyphen, DateFormat.slash),
+      priority_name: this.params.edit_priority_name,
       edit_mode: this.params.edit_customize_edit_kind,
       customize_definitions: this._formatListData(this.apiResult.result_data.customize_definitions)
     }

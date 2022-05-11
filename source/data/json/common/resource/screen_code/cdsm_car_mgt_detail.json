@@ -1,5 +1,30 @@
 [
     {
+      "path": "regist_customize_usage_definition_name",
+      "name": "カスタマイズ用途定義名",
+      "help": "カスタマイズ用途定義名",
+      "type": 10,
+      "memo": "",
+      "placeholder_text": "",
+      "items": [
+        {
+          "key": "Definiton Name 01",
+          "value": "1",
+          "kind": "D"
+        },
+        {
+          "key": "Definiton Name 02",
+          "value": "2",
+          "kind": "D"
+        },
+        {
+          "key": "Definiton Name 03",
+          "value": "3",
+          "kind": "D"
+        }
+      ]
+    },
+    {
       "path": "regist_customize_usage_definition_version",
       "name": "バージョン",
       "help": "version",
@@ -33,6 +58,24 @@
           "kind": "D"
         }
       ]
+    },
+    {
+      "path": "regist_start_date",
+      "name": "開始日",
+      "help": "startDate",
+      "type": 10,
+      "memo": "",
+      "placeholder_text": "",
+      "items": []
+    },
+    {
+      "path": "regist_end_date",
+      "name": "終了日",
+      "help": "toDate",
+      "type": 10,
+      "memo": "",
+      "placeholder_text": "",
+      "items": []
     },
     {
       "path": "regist_active_name",
@@ -80,44 +123,60 @@
       ]
     },
     {
-      "path": "edit_start_date_ymd",
-      "name": "開始日",
-      "help": "startDate",
-      "type": 10,
-      "memo": "",
-      "placeholder_text": "",
-      "items": []
-    },
-    {
-      "path": "edit_end_date_ymd",
-      "name": "終了日",
-      "help": "toDate",
-      "type": 10,
-      "memo": "",
-      "placeholder_text": "",
-      "items": []
-    },
-    {
-      "path": "regist_customize_usage_definition_name",
-      "name": "カスタマイズ用途定義名",
-      "help": "カスタマイズ用途定義名",
+      "path": "regist_priority_control_flg",
+      "name": "優先度",
+      "help": "priority_control_flg",
       "type": 10,
       "memo": "",
       "placeholder_text": "",
       "items": [
         {
-          "key": "Definiton Name 01",
-          "value": "1",
+          "key": "InitFlg",
+          "value": false,
           "kind": "D"
+        }
+      ]
+    },
+    {
+      "path": "edit_customize_usage_definition_name",
+      "name": "カスタマイズ用途定義名",
+      "help": "カスタマイズ用途定義名",
+      "type": 10,
+      "memo": "",
+      "placeholder_text": "",
+      "items": []
+    },
+    {
+      "path": "edit_customize_usage_definition_version",
+      "name": "バージョン",
+      "help": "version",
+      "type": 10,
+      "memo": "",
+      "placeholder_text": "",
+      "items": [
+        {
+          "key": "Ver.1",
+          "value": "1",
+          "kind": "A"
         },
         {
-          "key": "Definiton Name 02",
+          "key": "Ver.2",
           "value": "2",
           "kind": "D"
         },
         {
-          "key": "Definiton Name 03",
+          "key": "Ver.3",
           "value": "3",
+          "kind": "D"
+        },
+        {
+          "key": "Ver.4",
+          "value": "4",
+          "kind": "D"
+        },
+        {
+          "key": "Ver.5",
+          "value": "5",
           "kind": "D"
         }
       ]
@@ -138,6 +197,89 @@
         {
           "key": "削除",
           "value": "delete",
+          "kind": "D"
+        }
+      ]
+    },
+    {
+      "path": "edit_start_date",
+      "name": "開始日",
+      "help": "startDate",
+      "type": 10,
+      "memo": "",
+      "placeholder_text": "",
+      "items": []
+    },
+    {
+      "path": "edit_end_date",
+      "name": "終了日",
+      "help": "toDate",
+      "type": 10,
+      "memo": "",
+      "placeholder_text": "",
+      "items": []
+    },
+    {
+      "path": "edit_active_name",
+      "name": "有効/無効",
+      "help": "accessible",
+      "type": 10,
+      "memo": "",
+      "placeholder_text": "",
+      "items": [
+        {
+          "key": "有効",
+          "value": "enabled",
+          "kind": "D"
+        },
+        {
+          "key": "無効",
+          "value": "disabled",
+          "kind": "D"
+        }
+      ]
+    },
+    {
+      "path": "edit_priority_name",
+      "name": "優先度",
+      "help": "priority_level",
+      "type": 10,
+      "memo": "",
+      "placeholder_text": "",
+      "items": [
+        {
+          "key": "高",
+          "value": "high",
+          "kind": "D"
+        },
+        {
+          "key": "中",
+          "value": "medium",
+          "kind": "D"
+        },
+        {
+          "key": "低",
+          "value": "low",
+          "kind": "D"
+        }
+      ]
+    },
+    {
+      "path": "continuous_kind",
+      "name": "継続有無",
+      "help": "continuous_kind",
+      "type": 10,
+      "memo": "",
+      "placeholder_text": "",
+      "items": [
+        {
+          "key": "継続有り",
+          "value": "1",
+          "kind": "D"
+        },
+        {
+          "key": "継続無し",
+          "value": "0",
           "kind": "D"
         }
       ]

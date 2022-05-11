@@ -59,4 +59,28 @@ export class CommonTableService {
         }
     }
 
+    public isDisplayFixedDataRow(isDisplayColumn: boolean, listData: any, isMergeRows: boolean): boolean {
+        if (isDisplayColumn) {
+            if (!isMergeRows) {
+                return true;
+            } else if (isMergeRows && listData.view && listData.view.displayNoneRow
+                && listData.view.displayNoneRow.fixedColumn) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public getFixedDataRowspan(listData: any, isMergeRows: boolean): string {
+        if (isMergeRows && listData.view && listData.view.rowspan
+            && listData.view.rowspan.fixedColumn) {
+            return listData.view.rowspan.fixedColumn;
+        } else {
+            return null;
+        }
+    }
+
 }

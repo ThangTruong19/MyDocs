@@ -31,7 +31,7 @@ function createData(count) {
         "id": i.toString(),
         "model": "D85PX",
         "type_rev": "15E0",
-        "serial": "A12345",
+        "serial": "A1234" + i,
         "division_code": "0001"
       },
       "communication_channel": {

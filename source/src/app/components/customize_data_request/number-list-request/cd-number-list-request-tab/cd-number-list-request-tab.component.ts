@@ -11,7 +11,7 @@ import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { ModalService } from 'app/services/shared/modal.service';
 import { MonthPickerService } from 'app/services/shared/month-picker.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
-import { Fields } from 'app/types/common';
+import { Fields, TableOptions } from 'app/types/common';
 import * as _ from 'lodash';
 import { Moment } from 'moment';
 
@@ -131,8 +131,6 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
     };
     this.datePickerService.initialize(this.datePickerParams);
     this._datePickerInitialize();
-    // this.lists.originList = ['columnName1', 'columnName2'];
-    // this.lists.visibleList = this.lists.originList;
   }
 
   /**
@@ -141,7 +139,12 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
    */
   protected _updateFields(fields: any): void {
     this.fields = fields;
-    this.thListModal = this._createThList(fields);
+    const opt: TableOptions = {
+      columnStyles: [
+        'width:20%', 'width:20%', 'width:20%', 'width:20%', 'width:20%',
+      ]
+    };
+    this.thListModal = this._createThList(fields, opt);
     this.sortableThList = this.sortableThLists(this.thListModal);
     this._reflectXFields(fields);
     console.log(this.thListModal);
@@ -192,7 +195,7 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
     _.set(
       this.params,
       'send_number_list_request_datetime_from',
-      today.clone().format(DateTimeFormat.slashDateTimeMilliseconds)
+      today.clone().format(DateTimeFormat.slash)
     );
     _.set(
       this.params,
@@ -204,8 +207,7 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
       .add(23, 'hours')
       .add(59, 'minutes')
       .add(59, 'seconds')
-      .add(999, 'milliseconds')
-      .format(DateTimeFormat.slashDateTimeMilliseconds));
+      .format(DateTimeFormat.slash));
     _.set(
       this.params,
       'send_number_list_request_datetime_to_formatted',

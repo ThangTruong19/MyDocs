@@ -39,7 +39,6 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
   @Input() override lists: any;
   @Input() override params: any;
   @Input() override thList: any;
-  // @Input() sortableThList: string[] = [];
 
   thListModal: any = [];
 
@@ -66,18 +65,6 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
   data: any = [];
   thListCustomizeDataRequest: any = [];
   thListCurrentRequestComfirm: any = [];
-
-  // thList = [
-  //   {
-  //     label: '車両情報',
-  //     name: 'columnName1',
-  //     displayable: true,
-  //   },
-  // ];
-  // sortingParams = {
-  //   sort: '',
-  //   sortLabel: '',
-  // };
 
   monthlyParams: { year_month_from: Moment; year_month_to: Moment } = {
     year_month_from: this.datePickerService.toMoment(),
@@ -148,8 +135,6 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     };
     this.datePickerService.initialize(this.datePickerParams);
     this._datePickerInitialize();
-    // this.lists.originList = ['columnName1', 'columnName2'];
-    // this.lists.visibleList = this.lists.originList;
   }
 
   /**
@@ -227,12 +212,11 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     console.log("data", this.data);
 
     this.thListCustomizeDataRequest = [];
-    // let thList = this._createThList(this.fields);
     const opt: TableOptions = {
       columnStyles: [
-        'width:20%', 'width:10%', 'width:10%'
-        , 'width:10%', 'width:10%', 'width:20%'
-        , 'width:20%'
+        'width:18%', 'width:10%', 'width:10%'
+        , 'width:12%', 'width:12%', 'width:19%'
+        , 'width:19%'
       ]
     };
     let thList = this._createThList(this.fields, opt);
@@ -268,13 +252,21 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
    * 現在カスタマイズ送信要求確認 ボタン押下
    */
   sendAppConfirm(): void {
-
     this.setDataCurrent();
-    let thList = this._createThList(this.fields);
+    const opt: TableOptions = {
+      columnStyles: [
+        'width:35%', 'width:30%', 'width:35%'
+      ]
+    };
+    let fields: any = [];
+    for (let i = 7; i < this.fields.length; i++) {
+      fields.push(this.fields[i]);
+    }
+    let thList = this._createThList(fields, opt);
     console.log("this.thListCustomizeDataRequest", thList);
 
     this.thListCurrentRequestComfirm = [];
-    for (let i = 7; i < thList.length; i++) {
+    for (let i = 0; i < thList.length; i++) {
       this.thListCurrentRequestComfirm.push(thList[i]);
     }
 
@@ -295,7 +287,7 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
         },
       },
       {
-        size: 'lg',
+        size: 'sm',
       }
     );
   }
@@ -366,40 +358,6 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
   }
 
   /**
-   * 日付の選択範囲を初期化する
-   */
-  private _refreshDatePickerDateRange() {
-    const initialDate = this._getInitialDate();
-    const enableDateRange = _.cloneDeep(this.enableDateRange);
-
-    if (
-      this.datePickerFromDateRange == null &&
-      this.datePickerToDateRange == null
-    ) {
-      this.datePickerFromDateRange = [
-        enableDateRange[0],
-        initialDate.date_to.format(DateFormat.params),
-      ];
-      this.datePickerToDateRange = [
-        initialDate.date_from.format(DateFormat.params),
-        enableDateRange[1],
-      ];
-    } else {
-      this.datePickerFromDateRange[0] = enableDateRange[0];
-      this.datePickerFromDateRange[1] = initialDate.date_to.format(
-        DateFormat.params
-      );
-      this.datePickerToDateRange[0] = initialDate.date_from.format(
-        DateFormat.params
-      );
-      this.datePickerToDateRange[1] = this.datePickerService
-        .toMoment()
-        .format(DateFormat.params);
-    }
-    console.log("this.datePickerFromDateRange", this.datePickerFromDateRange);
-  }
-
-  /**
   * 初期表示時の年月を取得する
   */
   private _getInitialYearMonth() {
@@ -412,16 +370,6 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
         .toMoment()
         .set({ date: 1 })
         .subtract(1, 'month'),
-    };
-  }
-
-  /**
-   * 初期表示時の年月日を取得する
-   */
-  private _getInitialDate() {
-    return {
-      date_from: this.datePickerService.toMoment().subtract(1, 'month'),
-      date_to: this.datePickerService.toMoment().subtract(1, 'day'),
     };
   }
 
@@ -448,7 +396,7 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     _.set(
       this.params,
       'request_number_datetime_from',
-      today.clone().format(DateTimeFormat.slashDateTimeMilliseconds)
+      today.clone().format(DateTimeFormat.slash)
     );
     _.set(
       this.params,
@@ -460,8 +408,7 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
       .add(23, 'hours')
       .add(59, 'minutes')
       .add(59, 'seconds')
-      .add(999, 'milliseconds')
-      .format(DateTimeFormat.slashDateTimeMilliseconds));
+      .format(DateTimeFormat.slash));
     _.set(
       this.params,
       'request_number_datetime_to_formatted',
@@ -522,9 +469,7 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
 
   setData(): void {
     this.data = [];
-
     for (let item of this.lists.visibleList) {
-      console.log("item", item);
       let car: any = {};
       car["request_period.car.kind"] = this.request_period_kind;
       car["request_period.car.customize_usage_definition"] = this.selectedListItems;
@@ -540,9 +485,7 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
 
   setDataCurrent(): void {
     this.data = [];
-
     for (let item of this.lists.visibleList) {
-      console.log("item", item);
       let car: any = {};
       car["current_customize_request.car.kind"] = this.request_period_kind;
       car["current_customize_request.car.customize_usage_definition"] = this.selectedListItems;

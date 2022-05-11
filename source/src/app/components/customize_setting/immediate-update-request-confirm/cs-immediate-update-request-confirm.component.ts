@@ -37,7 +37,7 @@ export class CsImmediateUpdateRequestConfirmComponent implements OnInit {
     sortLabel: ''
   };
 
-  public isContinued: string = "1";
+  public isContinued: string = "";
   thList: TableHeader[] = [];
   public mergeColumns: TableMergeColumn[] = [];
   public isFetching = false;

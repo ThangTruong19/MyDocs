@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TableHeader, TableMergeColumn } from 'app/types/common';
 
 /**
  * 現在カスタマイズ送信要求確認モーダル
@@ -23,6 +24,7 @@ export class CdCurrentRequestComfirmComponent implements OnInit {
     sort: '',
     sortLabel: '',
   };
+  sortableThList: string[] = [];
 
   constructor() { }
 

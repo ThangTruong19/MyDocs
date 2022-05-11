@@ -1,6 +1,11 @@
 #app-current-request-comfirm {
     td {
-        width: 284px;
         vertical-align: top;
+    }
+    .border {
+        display: block;
+        width: 100%;
+        height: 25px;
+        border-top: 1px solid #ddd;
     }
 }

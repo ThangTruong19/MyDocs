@@ -3,12 +3,12 @@
         <div class="row">
             <div class="col-sm-3" style="margin-top: 4px;">
                 <p>{{labels.custom_usage_definition_name}}</p>
-                <label style="margin-top: 10px;">{{inputParams.regist_customize_usage_definition_name}}</label>
+                <label style="margin-top: 10px;">{{inputParams.edit_customize_usage_definition_name}}</label>
             </div>
             <app-selected
                 #customizeDefinitionVersion
                 class="col-sm-3"
-                [itemName]="'regist_customize_usage_definition_version'"
+                [itemName]="'edit_customize_usage_definition_version'"
                 [itemParams]="params"
                 [showLabel]="true"
                 [itemResource]="resource"
@@ -32,8 +32,8 @@
             <app-from-to-date-picker
                   #fromToDatePicker
                   class="col-sm-6"
-                  [from]="'edit_start_date_ymd'"
-                  [to]="'edit_end_date_ymd'"
+                  [from]="'edit_start_date'"
+                  [to]="'edit_end_date'"
                   [params]="params"
                   [resource]="resource"
                   [labels]="labels"
@@ -52,7 +52,7 @@
             <app-selected
                 #isEnabled
                 class="col-sm-3"
-                [itemName]="'regist_active_name'"
+                [itemName]="'edit_active_name'"
                 [itemParams]="params"
                 [showLabel]="true"
                 [itemResource]="resource"
@@ -62,7 +62,7 @@
             <app-selected
                 #priority
                 class="col-sm-3"
-                [itemName]="'regist_priority_name'"
+                [itemName]="'edit_priority_name'"
                 [itemParams]="params"
                 [showLabel]="true"
                 [itemResource]="resource"
@@ -71,7 +71,7 @@
         </div>
 
         <div class="row" style="margin-top: 15px;">
-            <p>{{labels.customize_definition_detail}}<br/>{{inputParams.regist_customize_usage_definition_name}}</p>
+            <p>{{labels.customize_definition_detail}}<br/>{{inputParams.edit_customize_usage_definition_name}}</p>
         </div>
 
         <div class="row" style="margin-top: 5px; text-align: center;">

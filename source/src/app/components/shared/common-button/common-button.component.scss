@@ -1,0 +1,176 @@
+.app-cmn-btn-mini-fab {
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0px 10px 0px 0px;
+    min-width: 64px;
+    line-height: 36px;
+    border-radius: 4px;
+    overflow: visible;
+    transform: translate3d(0, 0, 0);
+    transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    min-width: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
+}
+
+.app-cmn-btn-fab.app-cmn-btn-accent,
+.app-cmn-btn-flat-button.app-cmn-btn-accent,
+.app-cmn-btn-mini-fab.app-cmn-btn-accent,
+.app-cmn-btn-raised-button.app-cmn-btn-accent {
+    color: rgba(0, 0, 0, .87);
+}
+
+.app-cmn-btn-fab:not([class*=app-cmn-btn-elevation-z]),
+.app-cmn-btn-mini-fab:not([class*=app-cmn-btn-elevation-z]) {
+    box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
+}
+
+.app-cmn-btn-mini-fab[disabled] {
+    box-shadow: 0 0 0 0 rgb(0 0 0 / 20%), 0 0 0 0 rgb(0 0 0 / 14%), 0 0 0 0 rgb(0 0 0 / 12%);
+    color: rgba(0,0,0,.26);
+    background-color: rgba(0,0,0,.12);
+}
+
+.app-cmn-btn-mini-fab .app-cmn-btn-button-wrapper {
+    padding: 8px 0;
+    display: inline-block;
+    line-height: 24px;
+}
+
+.app-cmn-btn-button .app-cmn-btn-button-wrapper>*,
+.app-cmn-btn-fab .app-cmn-btn-button-wrapper>*,
+.app-cmn-btn-flat-button .app-cmn-btn-button-wrapper>*,
+.app-cmn-btn-icon-button .app-cmn-btn-button-wrapper>*,
+.app-cmn-btn-mini-fab .app-cmn-btn-button-wrapper>*,
+.app-cmn-btn-raised-button .app-cmn-btn-button-wrapper>*,
+.app-cmn-btn-stroked-button .app-cmn-btn-button-wrapper>* {
+    vertical-align: middle;
+}
+
+
+.app-cmn-btn-material-icons {
+    font-family: 'Material Icons';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}
+
+.app-cmn-btn-button-focus-overlay,
+.app-cmn-btn-button-ripple.app-cmn-btn-ripple {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.app-cmn-btn-button-ripple-round {
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.app-cmn-btn-ripple {
+    overflow: hidden;
+    position: relative;
+}
+
+.app-cmn-btn-button-focus-overlay {
+    opacity: 0;
+    transition: opacity .2s cubic-bezier(.35, 0, .25, 1), background-color .2s cubic-bezier(.35, 0, .25, 1);
+}
+
+.app-cmn-btn-button-focus-overlay,
+.app-cmn-btn-button-ripple.app-cmn-btn-ripple {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.app-cmn-btn-button-focus-overlay {
+    background: #000;
+}
+
+.app-cmn-btn-tooltip {
+    position: absolute;
+    padding: 5px;
+    font-size: 12px;
+    line-height: 1.6em;
+    color: #ffffff;
+    border-radius: 5px;
+    background: #000000;
+    opacity: 0.5;
+    margin-top: -35px;
+    margin-left: -48px;
+}
+
+.app-cmn-btn-tooltip-display-none {
+    display: none;
+}
+
+.app-cmn-btn-tooltip:before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    left: 20%;
+    border: 15px solid transparent;
+    margin-left: -15px;
+}
+
+.app-cmn-btn-tooltip-display {
+    display: inline-block;
+}
+
+.app-cmn-btn-icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+
+    &::before {
+        position: absolute;
+        top: 50%;
+        left: 30%;
+        margin-top: -7px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-family: app-icon;
+        font-size: 16px;
+        line-height: 1;
+        vertical-align: text-bottom;
+    }
+}
+

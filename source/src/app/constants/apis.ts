@@ -29,7 +29,7 @@ export const Apis = {
     postCarCustomizesDefinitionSearch: 'KOM-00110111',
     postRequestsSearch: 'KOM-02000010',
     postCarsCustomizeRequestsStatusSearch: 'KOM-00110170',
-    postCustomizeUsageDefinitionRequest: 'KOM-00110120',
+    postCarsRequestSetsCustomizeUsageDefinitionsM2s: 'KOM-00110120',
     getCars_carId_CustomizeUsageDefinitionDetails: 'KOM-00110181',
     postCustomizeUsageDefinitionUpdateRequest: 'KOM-00110130',
     postCustomizeSettingRequestResend: 'KOM-00110XXX',

@@ -92,6 +92,37 @@
   },
 
   {
+    "path": "access_level",
+    "name": "アクセスレベル",
+    "help": "アクセスレベルのヘルプ文言",
+    "type": 10,
+    "placeholder_text": "",
+    "memo": "",
+    "items": [
+      {
+        "key": "アクセスレベル0",
+        "value": "0",
+        "kind": "D"
+      },
+      {
+        "key": "アクセスレベル1",
+        "value": "1",
+        "kind": "D"
+      },
+      {
+        "key": "アクセスレベル2",
+        "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "アクセスレベル3",
+        "value": "3",
+        "kind": "D"
+      }
+    ]
+  },
+
+  {
     "path": "X-Count",
     "name": "表示件数",
     "help": "表示件数グループのヘルプ文言",

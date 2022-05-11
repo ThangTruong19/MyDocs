@@ -54,6 +54,7 @@ export interface TableHeader {
 export interface TableMergeColumn {
     groupByColumns: string[];
     targetColumn: string;
+    isFixedColumnMerge?: boolean;
 }
 
 export interface TableOptions {

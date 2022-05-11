@@ -73,7 +73,7 @@
                         [ngClass]="getSimpleTableRowCss(isMergeRows)"
                     >
                         <td
-                            *ngIf="selectable"
+                            *ngIf="isDisplayFixedDataRow(selectable, data, isMergeRows)"
                             [ngClass]="{ disable: checkBoxHidden(data) }"
                             class="app-sm-link fixed d-flex justify-content-center td-check"
                         >
@@ -86,7 +86,8 @@
                               value="{{ checkId(data) }}"
                               type="checkbox"
                               class="app-input-checkbox"
-                          />
+                              [attr.rowspan]="getFixedDataRowspan(data, isMergeRows)"
+                        />
                           <label
                               class="app-input-checkbox__label"
                               [ngClass]="{ hidden: checkBoxHidden(data) }"
@@ -121,16 +122,18 @@
                         <!-- ボタンのデフォルト要素 -->
                         <ng-container *ngIf="!customTableBtnContent">
                             <td
-                                *ngIf="detailedly"
+                                *ngIf="isDisplayFixedDataRow(detailedly, data, isMergeRows)"
                                 class="app-index-td text-center app-table__small app-sm-link fixed d-flex align-items-center justify-content-center"
+                                [attr.rowspan]="getFixedDataRowspan(title, data, isMergeRows)"
                                 (click)="onClickDetail(data)"
                             >
                                 <span class="app-icon app-icon-detail"></span>
                             </td>
                             <td
-                                *ngIf="updatable"
+                                *ngIf="isDisplayFixedDataRow(updatable, data, isMergeRows)"
                                 class="app-index-td app-table__small app-sm-link text-center fixed d-flex align-items-center justify-content-center"
                                 [ngClass]="{ disable: editIconHidden(data) }"
+                                [attr.rowspan]="getFixedDataRowspan(title, data, isMergeRows)"
                                 (click)="onClickEdit(data)"
                             >
                                 <span
@@ -141,9 +144,10 @@
                                 ></span>
                             </td>
                             <td
-                                *ngIf="deletable"
+                                *ngIf="isDisplayFixedDataRow(deletable, data, isMergeRows)"
                                 class="app-index-td app-table__small app-sm-link text-center fixed d-flex align-items-center justify-content-center"
                                 [ngClass]="{ disable: deleteIconHidden(data) }"
+                                [attr.rowspan]="getFixedDataRowspan(title, data, isMergeRows)"
                                 (click)="onClickDelete(data)"
                             >
                                 <span>
@@ -220,7 +224,7 @@
                         }">
                         <tr *ngFor="let data of lists.visibleList; let i = index"
                             [attr.data-index]="i">
-                            <td *ngIf="selectable"
+                            <td *ngIf="isDisplayFixedDataRow(selectable, data, isMergeRows)"
                                 [ngClass]="{'disable': checkBoxHidden(data)}"
                                 class="text-center td-check app-sm-link">
                                 <input
@@ -228,6 +232,7 @@
                                     (toggleClick)="onCheckSelect($event)"
                                     [selectedList]="selectedList"
                                     [checked]="checkedItems[checkId(data)]"
+                                    [attr.rowspan]="getFixedDataRowspan(data, isMergeRows)"
                                     id="check-icon-{{i}}"
                                     value="{{checkId(data)}}"
                                     type="checkbox"
@@ -252,13 +257,24 @@
                                 </ng-container>
                             </ng-container>
                             <ng-container *ngTemplateOutlet="customFixedTableRowContent; context: {data: data, title: title, idx: i}"></ng-container>
-                            <td *ngIf="detailedly" class="app-index-td text-center app-table__small app-sm-link fixed" (click)="onClickDetail(data)">
+                            <td *ngIf="isDisplayFixedDataRow(detailedly, data, isMergeRows)"
+                               class="app-index-td text-center app-table__small app-sm-link fixed"
+                               [attr.rowspan]="getFixedDataRowspan(title, data, isMergeRows)"
+                               (click)="onClickDetail(data)">
                                 <span class="app-icon app-icon-detail"></span>
                             </td>
-                            <td *ngIf="updatable" class="app-index-td app-table__small app-sm-link text-center fixed" [ngClass]="{'disable': editIconHidden(data)}" (click)="onClickEdit(data)">
+                            <td *ngIf="isDisplayFixedDataRow(updatable, data, isMergeRows)"
+                                class="app-index-td app-table__small app-sm-link text-center fixed"
+                                [ngClass]="{'disable': editIconHidden(data)}"
+                                [attr.rowspan]="getFixedDataRowspan(title, data, isMergeRows)"
+                                (click)="onClickEdit(data)">
                                 <span><i *ngIf="!editIconHidden(data)" class="app-icon app-icon-edit"></i></span>
                             </td>
-                            <td *ngIf="deletable" class="app-index-td app-table__small app-sm-link text-center fixed" [ngClass]="{'disable': deleteIconHidden(data)}" (click)="onClickDelete(data)">
+                            <td *ngIf="isDisplayFixedDataRow(deletable, data, isMergeRows)"
+                                class="app-index-td app-table__small app-sm-link text-center fixed"
+                                [ngClass]="{'disable': deleteIconHidden(data)}"
+                                [attr.rowspan]="getFixedDataRowspan(title, data, isMergeRows)"
+                                (click)="onClickDelete(data)">
                                 <span><i *ngIf="!deleteIconHidden(data)" class="app-icon app-icon-dustbox"></i></span>
                             </td>
 
