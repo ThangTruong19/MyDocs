@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
@@ -22,6 +22,7 @@ import { UserSettingService } from 'app/services/api/user-setting.service';
 import { MimeType } from 'app/constants/mime-types';
 import { CustomizeSettingUploadService } from 'app/services/customize-setting-upload/customize-setting-upload.service';
 import { CarTemplateCreateParams } from 'app/types/car';
+import { Apis } from 'app/constants/apis';
 
 @Component({
   selector: 'cdsm_customize_setting_upload',
@@ -29,6 +30,9 @@ import { CarTemplateCreateParams } from 'app/types/car';
   styleUrls: ['./cs-upload.component.scss'],
 })
 export class CsUploadComponent extends AbstractIndexComponent {
+
+  @ViewChild('uploadResultModalContent', { static: false })
+  uploadResultModalContent: TemplateRef<null>;
 
   datePickerParams: DatePickerParams;
   fields: Fields;
@@ -43,6 +47,16 @@ export class CsUploadComponent extends AbstractIndexComponent {
   excludeSearchParams: string[] = ['date_from_formatted', 'date_to_formatted'];
   datePickerLabels: Labels;
   override commaSeparated: string[] = ['serials'];
+
+  // TODO: アップロードパスまだわからないのであとで対応
+  // uploadPath = Apis.postCarsManagementSearch;
+  uploadPath = Apis.postOperatorsUpload;
+  listVal: any;
+  compiledResultCountMessage: (src: {
+    total: number;
+    success: number;
+    fail: number;
+  }) => string;
 
   constructor(
     navigationService: NavigationService,
@@ -106,6 +120,25 @@ export class CsUploadComponent extends AbstractIndexComponent {
     this.downloadFields = res.downloadFields;
     this.downloadFieldResources = res.downloadFieldResources;
     this._datePickerInitialize();
+
+
+
+
+    // TODO: 仮データ削除
+    this.requestHeaderParams['X-Sort'] = '';
+      const params: HistoryMgtListIndexParams = {
+        customize_operation_history: _.omit(
+          this.searchParams,
+          this.excludeSearchParams
+        )
+      };
+      const tmp = await this.csUploadService.fetchUploadResultList(
+        params,
+        this.requestHeaderParams
+      );
+      console.log('josea');
+      console.log(tmp);
+      // this.listVal = tmp;
   }
 
   /**
@@ -203,6 +236,151 @@ export class CsUploadComponent extends AbstractIndexComponent {
       // }
     }
 
+    /**
+     * アップロード後の処理
+     * @param res API のレスポンス
+     */
+    // onUploadEnd(res: any) {
+    //   this._hideLoadingSpinner();
+    //   // this._updateResultModalData(res);
+    //   this.modalService.open(
+    //     {
+    //       title: this.labels.result_modal_title,
+    //       labels: this.labels,
+    //       content: this.uploadResultModalContent,
+    //     },
+    //     {
+    //       size: 'lg',
+    //     }
+    //   );
+    // }
+
+    /**
+   * アップロード後の処理
+   * @param res API のレスポンス
+   */
+  onUploadEnd(res: any) {
+    this._hideLoadingSpinner();
+    this._updateResultModalData(res);
+    this.modalService.open(
+      {
+        title: this.labels.result_modal_title,
+        labels: this.labels,
+        content: this.uploadResultModalContent,
+      },
+      {
+        size: 'lg',
+      }
+    );
+  }
+
+    /**
+     * アップロード失敗時の処理
+     * @param error エラー
+     */
+    onUploadFail(error: any) {
+      this._hideLoadingSpinner();
+    }
+
+    /**
+   * アップロード結果モーダルのデータを更新
+   * @param res API レスポンス
+   */
+  private _updateResultModalData(res: any) {
+    let errorsLength;
+    [this.listVal, errorsLength] = this._formatUploadResultData(res.responses); console.log('watttt');console.log(this.listVal);
+    // this.resultCountMessage = this.compiledResultCountMessage({
+    //   total: this.listVal.length,
+    //   success: this.listVal.length - errorsLength,
+    //   fail: errorsLength,
+    // });
+  }
+
+  /**
+   * アップロード結果を整形する
+   * @param res API レスポンス
+   */
+   private _formatUploadResultData(res: any) {
+    let errorsLength = 0;
+    let result: any,
+      showLabel = false;
+
+    const list = res.map((r: any) => {
+      result = { result: { type: 'result', success: true }, message: '' };
+
+      [
+        'customer_label',
+        'operator.code',
+        'operator.current_label.label',
+      ].forEach(path => {
+        const value = _.get(r.request, path);
+        if (
+          path === 'operator.current_label.label' &&
+          value &&
+          _.get(this.resource, 'operator_label')
+        ) {
+          showLabel = true;
+        }
+        result[path] = value;
+      });
+
+      if (r.error_data) {
+        result.message = _.map(r.error_data, e => e.message);
+        result.result = { type: 'result', success: false };
+        result['css_class'] = 'warning';
+        errorsLength++;
+      }
+
+      return result;
+    });
+    this.thList = this._getThList(showLabel);
+
+    return [list, errorsLength];
+  }
+
+    /**
+   * リクエスト情報（アップロードしたExcel）をもとに結果モーダルのヘッダを作成
+   */
+     private _getThList(showLabel: any) {
+      return _.flatten([
+        {
+          label: this.labels.result,
+          name: 'result',
+          displayable: true,
+        },
+        this._createThListContent(showLabel),
+        {
+          label: this.labels.result_detail,
+          name: 'message',
+          displayable: true,
+        },
+      ]);
+    }
+
+    private _createThListContent(showLabel: any) {
+      const thList = [
+        {
+          label: this.labels.customer_label,
+          name: 'customer_label',
+          displayable: true,
+        },
+        {
+          label: this.labels.operator_id,
+          name: 'operator.code',
+          displayable: true,
+        },
+      ];
+
+      if (showLabel) {
+        thList.push({
+          label: this.resource.operator_label.name,
+          name: 'operator.current_label.label',
+          displayable: true,
+        });
+      }
+
+      return thList;
+    }
 
 
 }

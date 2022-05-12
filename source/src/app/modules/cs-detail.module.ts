@@ -12,6 +12,7 @@ import { CsUpdateRequestConfirmComponent } from "app/components/customize_settin
 import { CsImmediateUpdateRequestConfirmComponent } from "app/components/customize_setting/immediate-update-request-confirm/cs-immediate-update-request-confirm.component";
 import { CsRequestResendConfirmComponent } from "app/components/customize_setting/request-resend-confirm/cs-request-resend-confirm.component";
 import { CsInputDataCancelConfirmComponent } from "app/components/customize_setting/input-data-cancel-confirm/cs-input-data-cancel-confirm.component";
+import { CsExpectedTrafficConfirmComponent } from "app/components/customize_setting/expected-traffic-confirm/cs-expected-traffic-confirm.component";
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { CsInputDataCancelConfirmComponent } from "app/components/customize_sett
         CsUpdateRequestConfirmComponent,
         CsImmediateUpdateRequestConfirmComponent,
         CsRequestResendConfirmComponent,
-        CsInputDataCancelConfirmComponent
+        CsInputDataCancelConfirmComponent,
+        CsExpectedTrafficConfirmComponent
     ],
     providers: [
         CustomizeSettingService,

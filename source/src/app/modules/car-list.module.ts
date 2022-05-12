@@ -12,6 +12,8 @@ import { AuthoritySelectComponent } from 'app/components/authority/authority-sel
 import { AuthoritySelectModalComponent } from 'app/components/authority/authority-select-modal/authority-select-modal.component';
 import { CsGetRequestComponent } from 'app/components/customize_setting/get-request/cs-get-request.component';
 
+import { CsDetailService } from 'app/services/customize_setting/cs-detail.service';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -22,7 +24,8 @@ import { CsGetRequestComponent } from 'app/components/customize_setting/get-requ
         // CsGetRequestComponent
     ],
     providers: [
-        CarListService
+        CarListService,
+        CsDetailService
     ],
 })
 export class CarListModule { }

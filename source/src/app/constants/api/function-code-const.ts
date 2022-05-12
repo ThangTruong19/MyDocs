@@ -20,6 +20,8 @@ export class FunctionCodeConst {
     public static readonly CAR_MGT_DETAIL_FUNCTION = 'cdsm_car_mgt_detail_function';
     public static readonly CUSTOMIZE_SETTING_GET_REQ_FUNCTION = 'cdsm_customize_setting_get_request_function';
 
+    public static readonly CUSTOMIZE_SETTING_UPLOAD_LIST_FUNCTION = 'cdsm_customize_setting_update_list_function';
+
     /** 想定通信量確認 */
     public static CS_EXPECTED_TRAFFIC_CONFIRM_LISTFUNCTION = 'flm_car_mgt_list_function';
     public static CS_EXPECTED_TRAFFIC_CONFIRM_LISTDOWNLOADFUNCTION = 'flm_car_mgt_list_download_function';

@@ -16,10 +16,6 @@ export class AppCommonButtonComponent implements OnInit {
 
     public tooltipCss: string;
 
-    constructor(
-    ) {
-    }
-
     ngOnInit(): void {
         this.displayToolTip(false);
     }
@@ -37,7 +33,7 @@ export class AppCommonButtonComponent implements OnInit {
     }
 
     public displayToolTip(isToolTipDisplay: boolean): void {
-        if (this.tooltipLabel && isToolTipDisplay) {
+        if (isToolTipDisplay && this.tooltipLabel) {
             this.tooltipCss = 'app-cmn-btn-tooltip-display';
         } else {
             this.tooltipCss = 'app-cmn-btn-tooltip-display-none';

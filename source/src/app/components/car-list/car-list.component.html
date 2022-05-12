@@ -155,12 +155,26 @@
                 </button>
               </div>
               <div class="popover-wrapper">
-                <button
+                <!--<button
                   type="button"
                   class="btn btn-warning"
                   [disabled]="isDisabled"
                   (click)="onClickSelect(data, idx)"
+                >-->
+                <!--<button
+                  type="button"
+                  class="btn btn-warning"
+                  [disabled]="isDisabled"
+                  (click)="onClickInit()"
+                >-->
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  [disabled]="isDisabled"
+                  (click)="openCsGetRequestDialog()"
                 >
+
+
                   {{ labels.setting_request_modal }}
                 </button>
               </div>
@@ -175,12 +189,9 @@
               [lists]="lists"
               [pageParams]="pageParams"
               [thList]="thList"
-              [sortableThList]="sortableThList"
-              [(sortingParams)]="sortingParams"
               [labels]="labels"
               [collapsed]="collapsed"
               [isFetching]="isFetching"
-              (sort)="onChangeSort($event)"
             >
             </app-common-table>
           </div>
@@ -268,3 +279,32 @@
   </ng-template>
 
   <app-sidemenu [isLoading]="isLoading"></app-sidemenu>
+
+<!-- リセット -->
+<ng-template #resetModalContent>
+  <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
+</ng-template>
+
+<!-- 初期化 -->
+<ng-template #initModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="initModalValues.listDesc"
+    [val]="initModalValues.listVal"
+  >
+  </app-kba-simple-list-confirm>
+</ng-template>
+
+<!-- 結果 -->
+<ng-template #resultModalContent>
+  <app-kba-simple-list-confirm
+    [desc]="resultDesc"
+    [val]="resultVal"
+    [warningColumns]="'all'"
+  >
+  </app-kba-simple-list-confirm>
+  <p class="result-count-message">{{ resultCountMessage }}</p>
+</ng-template>
+
+<ng-template #csGetRequestModalContent>
+  <app-cs-get-request [labels]="labels"></app-cs-get-request>
+</ng-template>

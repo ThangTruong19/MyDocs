@@ -406,3 +406,31 @@
   response:
     status: 404
     file: json/common/notFound.json
+
+
+
+- request:
+    url: /v1/cars/management/search
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/car/postCarsTesting.js
+
+- request:
+    url: /v1/cs_upload/temp/uploadResult
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/cs_upload/tempUploadResult.js
+
+#
+# x. オペレータIDファイルアップロード
+#
+# オペレータIDファイルをアップロードする。
+#
+- request:
+    url: /v1/operators/upload
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/cs_upload/upload.js

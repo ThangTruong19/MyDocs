@@ -285,6 +285,21 @@
       ]
     },
     {
+      "path": "edit_priority_control_flg",
+      "name": "優先度",
+      "help": "priority_control_flg",
+      "type": 10,
+      "memo": "",
+      "placeholder_text": "",
+      "items": [
+        {
+          "key": "InitFlg",
+          "value": true,
+          "kind": "D"
+        }
+      ]
+    },
+    {
       "path": "X-Count",
       "name": "表示件数",
       "help": "表示件数グループのヘルプ文言",

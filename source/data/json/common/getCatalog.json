@@ -3573,6 +3573,11 @@
           "api_id": "KOM-xxxxxx10",
           "url": "{protocol}://{hostname}/v1/car/search",
           "http_method": "POST"
+        },
+        {
+          "api_id": "TMP-xxxxxxx1",
+          "url": "{protocol}://{hostname}/v1/cs_upload/temp/uploadResult",
+          "http_method": "POST"
         }
       ]
     }

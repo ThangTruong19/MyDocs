@@ -136,3 +136,27 @@ labels:
     name: cancel
     ja: キャンセル
     en:
+
+  - id: 99
+    description: 初期化確認モーダルタイトル
+    name: car_operator_init
+    ja: カスタマイズの一括登録／一括変更が完了しました。
+    en:
+
+  - id: 100
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:
+
+  - id: 101
+    description: オブジェクトタイトル
+    name: confirmation_title
+    ja: 確認
+    en:
+
+  - id: 102
+    description: 確認メッセージ
+    name: customize_get_request_message
+    ja: 車両にカスタマイズ設定取得を要求しますか？
+    en:

@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+/**
+ * カスタマイズ設定取得要求
+ */
 @Component({
   selector: 'app-cs-get-request',
   templateUrl: './cs-get-request.component.html',
@@ -11,7 +14,7 @@ export class CsGetRequestComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {alert('ok?');
   }
 
 }

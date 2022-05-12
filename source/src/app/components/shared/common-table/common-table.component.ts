@@ -118,6 +118,10 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
         );
     }
 
+    public get tblFunctions(): { [key: string]: Function } {
+        return this.commonTableFunctions;
+    }
+
     public isMergeRows = false;
     public isCarTableReady = true;
     public multiLineThList: TableHeader[] = [];
@@ -149,6 +153,21 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
 
     // ngOnInitのタイミングで捕捉できなくなったためsetterで監視を行う
     private _fixedThList: TableHeader[];
+
+    private commonTableFunctions: { [key: string]: Function } = {
+        isDisplayDataRow: (tableHeader: TableHeader, listData: any) =>
+            this.commonTableService.isDisplayDataRow(tableHeader, listData, this.isMergeRows),
+        getDataRowspan: (tableHeader: TableHeader, listData: any) =>
+            this.commonTableService.getDataRowspan(tableHeader, listData, this.isMergeRows),
+        getColumnStyle: (tableHeader: TableHeader) =>
+            this.commonTableService.getColumnStyle(tableHeader),
+        isDisplayFixedDataRow: (listData: any) =>
+            this.commonTableService.isDisplayFixedDataRow(listData, this.isMergeRows),
+        getFixedDataRowspan: (listData: any) =>
+            this.commonTableService.getFixedDataRowspan(listData, this.isMergeRows),
+        getSimpleTableDataColumnCss: () =>
+            this.commonTableService.getSimpleTableDataColumnCss(this.isMergeRows)
+    }
 
     constructor(
         private elRef: ElementRef,
@@ -229,7 +248,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
 
     private setMergeColumns(): void {
 
-        this.mergeColumns.forEach(( merge: TableMergeColumn) => {
+        this.mergeColumns.forEach((merge: TableMergeColumn) => {
 
             const mergeRowData: { [key: string]: number } = {};
             let rowIndex = 0;
@@ -304,32 +323,8 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
 
     }
 
-    public isDisplayDataRow(tableHeader: TableHeader, listData: any, isMergeRows: boolean): boolean {
-        return this.commonTableService.isDisplayDataRow(tableHeader, listData, isMergeRows);
-    }
-
-    public getDataRowspan(tableHeader: TableHeader, listData: any, isMergeRows: boolean): string {
-        return this.commonTableService.getDataRowspan(tableHeader, listData, isMergeRows);
-    }
-
-    public getColumnStyle(tableHeader: TableHeader): string {
-        return this.commonTableService.getColumnStyle(tableHeader);
-    }
-
-    public getSimpleTableRowCss(isMergeRows: boolean): string {
-        return this.commonTableService.getSimpleTableRowCss(isMergeRows);
-    }
-
-    public getSimpleTableDataColumnCss(isMergeRows: boolean): string {
-        return this.commonTableService.getSimpleTableDataColumnCss(isMergeRows);
-    }
-
-    public isDisplayFixedDataRow(isDisplayColumn: boolean, listData: any, isMergeRows: boolean): boolean {
-        return this.commonTableService.isDisplayFixedDataRow(isDisplayColumn, listData, isMergeRows);
-    }
-
-    public getFixedDataRowspan(listData: any, isMergeRows: boolean): string {
-        return this.commonTableService.getFixedDataRowspan(listData, isMergeRows);
+    public getSimpleTableRowCss(): string {
+        return this.commonTableService.getSimpleTableRowCss(this.isMergeRows);
     }
 
     /**
@@ -412,11 +407,19 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
         return _.get(data, key);
     }
 
+    public formatMultiLineData(data: string | string[]): string | string[] {
+        if (data == null) {
+            return [];
+        }
+
+        return !Array.isArray(data) ? data.split('\n') : data;
+    }
+
     /**
      * 親側の checkBoxHidden() を呼び出す
      */
     public checkBoxHidden(data: any): boolean {
-        if (this.checkBoxHiddenFunction && (typeof this.checkBoxHiddenFunction === 'function')) {
+        if (this.isFunction(this.checkBoxHiddenFunction)) {
             return this.checkBoxHiddenFunction(data);
         } else {
             return false;
@@ -427,7 +430,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
      * 親側の checkBoxDefaultHidden() を呼び出す
      */
     public checkBoxDefaultHidden(data: any): boolean {
-        if (this.checkBoxDefaultHiddenFunction && (typeof this.checkBoxDefaultHiddenFunction === 'function')) {
+        if (this.isFunction(this.checkBoxDefaultHiddenFunction)) {
             return this.checkBoxDefaultHiddenFunction(data);
         } else {
             return true;
@@ -438,7 +441,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
      * 親側の editIconHidden() を呼び出す
      */
     public editIconHidden(data: any): boolean {
-        if (this.editIconHiddenFunction && (typeof this.editIconHiddenFunction === 'function')) {
+        if (this.isFunction(this.editIconHiddenFunction)) {
             return this.editIconHiddenFunction(data);
         } else {
             return false;
@@ -449,19 +452,19 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
      * 親側の deleteIconHidden() を呼び出す
      */
     public deleteIconHidden(data: any): boolean {
-        if (this.deleteIconHiddenFunction && (typeof this.deleteIconHiddenFunction === 'function')) {
+        if (this.isFunction(this.deleteIconHiddenFunction)) {
             return this.deleteIconHiddenFunction(data);
         } else {
             return false;
         }
     }
 
-    public formatMultiLineData(data: string | string[]): string | string[] {
-        if (data == null) {
-            return [];
+    private isFunction(targetFunction: any): boolean {
+        if (targetFunction && (typeof targetFunction === 'function')) {
+            return true;
+        } else {
+            return false;
         }
-
-        return !Array.isArray(data) ? data.split('\n') : data;
     }
 
     /**

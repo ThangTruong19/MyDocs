@@ -29,10 +29,7 @@ export const Apis = {
     postCarCustomizesDefinitionSearch: 'KOM-00110111',
     postRequestsSearch: 'KOM-02000010',
     postCarsCustomizeRequestsStatusSearch: 'KOM-00110170',
-    postCarsRequestSetsCustomizeUsageDefinitionsM2s: 'KOM-00110120',
     getCars_carId_CustomizeUsageDefinitionDetails: 'KOM-00110181',
-    postCustomizeUsageDefinitionUpdateRequest: 'KOM-00110130',
-    postCustomizeSettingRequestResend: 'KOM-00110XXX',
     getExampleFileCreate: 'KOM-xxxxxxx1',
     postExampleCommaTest: 'KOM-xxxxxxx2',
     postExampleUpload: 'KOM-xxxxxxx3',
@@ -41,6 +38,9 @@ export const Apis = {
     postExampleSearchFileCreate: 'KOM-xxxxxxx6',
     getExampleUpload_fileRequestId_: 'KOM-xxxxxxx7',
     postCustomizeDataRequestDetail: 'KOM-00110070',
+    postCarsRequestSetsCustomizeUsageDefinitionsM2s: 'KOM-00110120',
+    postCarsRequestsCustomizeUsageDefinitionsS2m: 'KOM-00110130',
+    postCarsRequestsCustomizeSettingsRetryS2m: 'KOM-00110XXX',
     // TODO:
     postCarCustomizesUsageDefinitionHistoriesSearch: 'KOM-xxxxxxx8',
     postCarCustomizesUsageDefinitionHistoriesSearchFileCreate: 'KOM-xxxxxxx9',
@@ -48,4 +48,8 @@ export const Apis = {
     postSendNoList: 'KOM-2xxxxxxx',
     getCarsManagementTemplateCreate: 'KOM-00103071',
     postCarSearch: 'KOM-xxxxxx10',
+
+    postOperatorsUpload: 'KOM-01300030',
+    postCarsManagementSearch: 'KOM-00101100',
+    getTemporaryUploadResult: 'TMP-xxxxxxx1',
 };

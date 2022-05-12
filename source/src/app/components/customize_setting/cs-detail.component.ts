@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, DoCheck, TemplateRef, ViewChild, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CsDetailService } from 'app/services/customize_setting/cs-detail.service';
@@ -13,7 +13,6 @@ import * as _ from 'lodash';
 import { AbstractIndexComponent } from '../shared/abstract-component/abstract-index.component';
 import { CsNewComponent } from './new/cs-new.component';
 import { CsEditComponent } from './edit/cs-edit.component';
-import { CommonTableService } from 'app/services/shared/common-table.service';
 import { CsImmediateUpdateRequestConfirmComponent } from './immediate-update-request-confirm/cs-immediate-update-request-confirm.component';
 
 interface Format {
@@ -65,6 +64,42 @@ interface CustomizeDefinition {
   customize_access_level_name?: string;
 }
 
+interface RequestHeaderParams {
+  'X-Lang'?: string;
+  'X-AppCode'?: string;
+  'X-GroupId'?: string;
+  'X-DateFormat'?: string;
+  'X-ScreenCode'?: string;
+  'X-WebApiKey'?: string;
+}
+
+interface KOM00110130 {
+  car_id?: string;
+  request_route_kind?: string;
+  instant_kind?: string;
+  continuous_kind?: string;
+  customize_usage_definition?: KOM00110130_CustomizeUsageDefinition[]
+}
+
+interface KOM00110130_CustomizeUsageDefinition {
+  customize_usage_definition_id?: string;
+  version?: string;
+  request_kind?: string;
+  priority?: string;
+  date_to?: string;
+  date_from?: string;
+  // TODO:
+  active_kind?: string;
+}
+
+interface KOM00110XXX {
+  car_id?: string;
+  customize_definition: KOM00110XXX_CustomizeDefinition[]
+}
+interface KOM00110XXX_CustomizeDefinition {
+  customize_definition_id?: string;
+}
+
 enum Status {
   送信中 = '10',
   送信済 = '20',
@@ -107,8 +142,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
 
   statusKey = 'customize_usage_definitions.customize_usage_definition.customize_definitions.status'
   customizeUsageDefinitionIdKey = 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'
-  editStatusKey = 'edit_status'
-  editStatusNameKey = 'edit_status_name'
 
   checkIdName = 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'
   checkedItems: { [key: string]: boolean } = {};
@@ -132,22 +165,18 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
   typeRev: string;
   serial: string;
 
-  data = {
-    resource: {}
-  };
-
+  resources: {}
   tableData: any[] = []
 
-  // TODO:
   inputParams = {
     edit_customize_usage_definition_id: '',
-    edit_customize_usage_definition_version: 0,
+    edit_customize_usage_definition_version: '',
     edit_customize_usage_definition_name: '',
     edit_start_date: '',
     edit_end_date: '',
     edit_priority_name: '',
     // TODO:
-    // active_name: '',
+    edit_active_name: '',
   };
 
   public mergeColumns: TableMergeColumn[] = [];
@@ -163,9 +192,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     private customSettingService: CustomizeSettingService,
     private csDetailService: CsDetailService,
     protected userSettingService: UserSettingService,
-    protected datePickerService: DatePickerService,
-    private commonTableService: CommonTableService) {
+    protected datePickerService: DatePickerService) {
     super(nav, title, router, cdRef, header, modal);
+  }
+
+  ngDoCheck(): void {
+    this.disabled = !Object.values(this.checkedItems).some(item => item)
   }
 
   /**
@@ -183,25 +215,26 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
       const item = _.get(cur, 'customize_usage_definition')
       const contents = _.get(cur, 'customize_usage_definition.customize_definitions').map((cur: any) => {
         return {
-          'customize_usage_definition': {
-            'customize_usage_definition_id': item.customize_usage_definition_id,
-            'customize_usage_definition_name': item.customize_usage_definition_name,
-            'customize_usage_definition_version': item.customize_usage_definition_version,
-            'start_date': item.start_date,
-            'end_date': item.end_date,
-            'customize_definitions': {
-              'customize_definition_id': cur.customize_definition_id,
-              'customize_definition_name': cur.customize_definition_name,
-              'assumption_data_value': cur.assumption_data_value,
-              'active_name': cur.active_name,
-              'latest_operation_code_name': cur.latest_operation_code_name,
-              'status_name': cur.status_name,
-              'start_date': cur.start_date,
-              'end_date': cur.end_date,
-              'first_receive_datetime': cur.first_receive_datetime,
-              'latest_receive_datetime': cur.latest_receive_datetime,
-              'aggregation_condition_name': cur.aggregation_condition_name,
-              'send_condition_name': cur.send_condition_name
+          customize_usage_definition: {
+            customize_usage_definition_id: item.customize_usage_definition_id,
+            customize_usage_definition_name: item.customize_usage_definition_name,
+            customize_usage_definition_version: item.customize_usage_definition_version,
+            start_date: item.start_date,
+            end_date: item.end_date,
+            priority_name: item.priority_name,
+            customize_definitions: {
+              customize_definition_id: cur.customize_definition_id,
+              customize_definition_name: cur.customize_definition_name,
+              assumption_data_value: cur.assumption_data_value,
+              active_name: cur.active_name,
+              latest_operation_code_name: cur.latest_operation_code_name,
+              status_name: cur.status_name,
+              start_date: cur.start_date,
+              end_date: cur.end_date,
+              first_receive_datetime: cur.first_receive_datetime,
+              latest_receive_datetime: cur.latest_receive_datetime,
+              aggregation_condition_name: cur.aggregation_condition_name,
+              send_condition_name: cur.send_condition_name
             }
           }
         }
@@ -209,7 +242,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
       acc.push(...contents)
       return acc
     }, [])
-    console.log(data)
     const list = this._formatList(
       data,
       this.thList
@@ -220,36 +252,36 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
 
     // マージ列の設定
     this.mergeColumns = [
-      // {
-      //   groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
-      //   targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_id',
-      //   isFixedColumnMerge: true
-      // }
-      // {
-      //   groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
-      //   targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_id',
-      //   isFixedColumnMerge: false
-      // }
-      // {
-      //   groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_id'],
-      //   targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_id',
-      //   isFixedColumnMerge: true
-      // }
-      // {
-      //   groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_id'],
-      //   targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_id',
-      //   isFixedColumnMerge: false
-      // }
-      // {
-      //   groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
-      //   targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_id',
-      //   isFixedColumnMerge: true
-      // }
-      // {
-      //   groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
-      //   targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_id',
-      //   isFixedColumnMerge: false
-      // }
+      {
+        groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
+        targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_id',
+        isFixedColumnMerge: true
+      },
+      {
+        groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
+        targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_name',
+        isFixedColumnMerge: true
+      },
+      {
+        groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
+        targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_version',
+        isFixedColumnMerge: true
+      },
+      {
+        groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
+        targetColumn: 'customize_usage_definitions.customize_usage_definition.start_date',
+        isFixedColumnMerge: true
+      },
+      {
+        groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
+        targetColumn: 'customize_usage_definitions.customize_usage_definition.end_date',
+        isFixedColumnMerge: true
+      },
+      {
+        groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
+        targetColumn: 'customize_usage_definitions.customize_usage_definition.priority_name',
+        isFixedColumnMerge: true
+      }
     ]
   }
 
@@ -260,10 +292,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    */
   override  _fillLists(resultHeader: any, resultData: any) {
     super._fillLists(resultHeader, resultData);
+    const originList = this.setStatus(this.lists.originList, EditStatus.デフォルト)
     this.lists.initialOriginList =
-      _.cloneDeep(this.setStatus(this.lists.originList, EditStatus.デフォルト));
+      _.cloneDeep(originList);
+    const visibleList = this.setStatus(this.lists.visibleList, EditStatus.デフォルト)
     this.lists.initialVisibleList =
-      _.cloneDeep(this.setStatus(this.lists.visibleList, EditStatus.デフォルト));
+      _.cloneDeep(visibleList);
   }
 
   /**
@@ -274,8 +308,8 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    */
   setStatus(list: any[], editStatus: any, editStatusName = '') {
     list.forEach(data => {
-      _.set(data, this.editStatusKey, editStatus)
-      _.set(data, this.editStatusNameKey, editStatusName)
+      _.set(data, 'edit_status', editStatus)
+      _.set(data, 'edit_status_name', editStatusName)
     })
     return list
   }
@@ -301,7 +335,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     this.resource = res.resource;
     this._setTitle();
     this._updateFields(res.fields);
-    this.data["resource"] = res;
+    this.resources = res;
   }
 
   /**
@@ -314,26 +348,26 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     const xFields = this._createXFields(fields);
     this.sortableThList = this.sortableThLists(this.thList);
     this._setXFields(xFields);
-    // const opt: TableOptions = {
-    //   scrollable: true,
-    //   columnStyles: [
-    //     'width:2%', 'width:2%', 'width:2%'
-    //     , 'width:5%', 'width:5%', 'width:5%'
-    //     , 'width:5%', 'width:5%', 'width:5%'
-    //     , 'width:5%', 'width:5%', 'width:5%'
-    //     , 'width:5%', 'width:5%', 'width:5%'
-    //     , 'width:5%', 'width:5%', 'width:5%'
-    //     , 'width:5%', 'width:5%', 'width:5%'
-    //     , 'width:2%', 'width:2%'
-    //   ]
-    // }
     const opt: TableOptions = {
       scrollable: true,
       columnStyles: [
-        'width:10%', 'width:10%', 'width:30%'
-        , 'width:30%', 'width:10%', 'width:10%'
+        'width:2%', 'width:2%', 'width:2%'
+        , 'width:5%', 'width:5%', 'width:5%'
+        , 'width:5%', 'width:5%', 'width:5%'
+        , 'width:5%', 'width:5%', 'width:5%'
+        , 'width:5%', 'width:5%', 'width:5%'
+        , 'width:5%', 'width:5%', 'width:5%'
+        , 'width:5%', 'width:5%', 'width:5%'
+        , 'width:2%', 'width:2%'
       ]
     }
+    // const opt: TableOptions = {
+    //   scrollable: true,
+    //   columnStyles: [
+    //     'width:10%', 'width:10%', 'width:30%'
+    //     , 'width:30%', 'width:10%', 'width:10%'
+    //   ]
+    // }
     const thLists = this._createThList(fields, opt);
     this.fixedThList = thLists.fixed;
     this.scrollableThList = thLists.scrollable;
@@ -345,7 +379,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    * @return true:非表示/false:表示
    */
   checkBoxHiddenFunction(data: any): boolean {
-    return data[this.editStatusKey] === EditStatus.デフォルト;
+    return data['edit_status'] === EditStatus.デフォルト;
   }
 
   /**
@@ -354,7 +388,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    * @return true:非表示/false:表示
    */
   checkBoxDefaultHiddenFunction(data: any): boolean {
-    return data[this.editStatusKey] !== EditStatus.デフォルト
+    return data['edit_status'] !== EditStatus.デフォルト
   }
 
   /**
@@ -363,7 +397,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    * @return true:非表示/false:表示
    */
   public discardIconHiddenFunction(data: any): boolean {
-    return data[this.editStatusKey] === EditStatus.デフォルト
+    return data['edit_status'] === EditStatus.デフォルト
   }
 
   /**
@@ -423,16 +457,23 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
   }
 
   /**
+   * 再送ボタン押下コールバック
+   *
+   * @param data 対象データ
+   */
+  onClickRetry(data: any) {
+    this.openCsRequestResendConfirmDialog(data)
+  }
+
+  /**
    * 編集内容全破棄ボタン押下コールバック
    */
   onClickDiscardAll() {
-    // TODO:
-    // this.openDiscardAllDialog();
+    // TODO: Dialog
     this.lists.originList = _.cloneDeep(this.lists.initialOriginList);
     this.lists.visibleList = _.cloneDeep(this.lists.initialVisibleList);
     this.checkedItems = {}
     this.checkAll = false
-    this.disabled = !Object.keys(this.checkedItems).length
   }
 
   openCsNewDialog() {
@@ -454,6 +495,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 'customize_usage_definition_version': this.newChildComponent.modalResponse.customize_usage_definition_version,
                 'start_date': this.newChildComponent.modalResponse.start_date,
                 'end_date': this.newChildComponent.modalResponse.end_date,
+                'priority_name' : this.newChildComponent.modalResponse.priority_name,
                 'customize_definitions': {
                   'customize_definition_id': cur.customize_definition_id,
                   'customize_definition_name': cur.customize_definition_name,
@@ -491,7 +533,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           this.checkAll =
             targetItems.length > 0 &&
             targetItems.every((item: any) => this.checkedItems[_.get(item, this.checkIdName)]);
-          this.disabled = !Object.keys(this.checkedItems).length
         },
       },
       {
@@ -509,7 +550,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
 
     this.inputParams.edit_customize_usage_definition_id = content.customize_usage_definition.customize_usage_definition_id
     this.inputParams.edit_customize_usage_definition_name = content.customize_usage_definition.customize_usage_definition_name
-    this.inputParams.edit_customize_usage_definition_version = content.customize_usage_definition.customize_usage_definition_version
+    this.inputParams.edit_customize_usage_definition_version = String(content.customize_usage_definition.customize_usage_definition_version)
     this.inputParams.edit_start_date = content.customize_usage_definition.start_date
     this.inputParams.edit_end_date = content.customize_usage_definition.end_date
     this.inputParams.edit_priority_name = content.customize_usage_definition.priority_name
@@ -531,6 +572,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 'customize_usage_definition_version': this.editChildComponent.modalResponse.customize_usage_definition_version,
                 'start_date': this.editChildComponent.modalResponse.start_date,
                 'end_date': this.editChildComponent.modalResponse.end_date,
+                'priority_name' : this.editChildComponent.modalResponse.priority_name,
                 'customize_definitions': {
                   'customize_definition_id': cur.customize_definition_id,
                   'customize_definition_name': cur.customize_definition_name,
@@ -586,7 +628,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           this.checkAll =
             targetItems.length > 0 &&
             targetItems.every((item: any) => this.checkedItems[_.get(item, this.checkIdName)]);
-          this.disabled = !Object.keys(this.checkedItems).length
         },
       },
       {
@@ -604,6 +645,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         closeBtnLabel: this.labels.cancel,
         okBtnLabel: this.labels.ok_btn,
         ok: () => {
+          const requestHeaderParams: RequestHeaderParams = {}
           const params =
           {
             cars: [
@@ -613,10 +655,10 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
               }
             ]
           }
-          this.customSettingService.postCarsRequestSetsCustomizeUsageDefinitionsM2s(params)
+          this.csDetailService.postCarsRequestSetsCustomizeUsageDefinitionsM2s(params, requestHeaderParams)
             .then(res => {
               // TODO:
-              console.log("RES", res);
+              console.log("postCarsRequestSetsCustomizeUsageDefinitionsM2s", res);
             })
         },
       },
@@ -627,10 +669,11 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
   }
 
   openCsUpdateRequestConfirmDialog() {
-    const items = Object.keys(this.checkedItems)
-    this.tableData = this.lists.originList.filter(
+    const keys = Object.keys(this.checkedItems)
+    this.tableData = this.lists.visibleList.filter(
       (item: any) => {
-        return items.includes(String(item[this.customizeUsageDefinitionIdKey]))
+        const id = item[this.customizeUsageDefinitionIdKey]
+        return keys.includes(String(id))
       }
     )
     this.modalService.open(
@@ -641,33 +684,44 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         closeBtnLabel: this.labels.cancel,
         okBtnLabel: this.labels.ok_btn,
         ok: () => {
-          let customUsageDef : any[] = [];
-          this.tableData.forEach(element => {
-            customUsageDef.push({
-              "customize_usage_definition_id": element["customize_usage_definitions.customize_usage_definition.customize_usage_definition_id"],
-              "version": element["customize_usage_definitions.customize_usage_definition.customize_usage_definition_version"],
-              "request_kind": "2",
-              "priority": element["customize_usage_definitions.customize_usage_definition.priority"],
-              "date_to": element["customize_usage_definitions.customize_usage_definition.end_date"],
-              "date_from": element["customize_usage_definitions.customize_usage_definition.start_date"],
-              "active_kind": element["customize_usage_definitions.customize_usage_definition.customize_definitions.active_kind"]
+          const requestHeaderParams: RequestHeaderParams = {}
+          const customizeUsageDefinitions: KOM00110130_CustomizeUsageDefinition[]
+            = this.tableData.map(data => {
+              return {
+                customize_usage_definition_id: data['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
+                version: String(data['customize_usage_definitions.customize_usage_definition.customize_usage_definition_version']),
+                request_kind: "2",
+                priority: data['customize_usage_definitions.customize_usage_definition.priority'],
+                date_to: data['customize_usage_definitions.customize_usage_definition.end_date'],
+                date_from: data['customize_usage_definitions.customize_usage_definition.start_date'],
+                active_kind: data['customize_usage_definitions.customize_usage_definition.active_kind']
+              }
             })
-          })
-          const requestParam = {
-            "car_id": this.carId,
-            "request_route_kind": "0",
-            "instant_kind": "0",
-            "continuous_kind": "0", // Still Q&A
-            "customize_usage_definition": customUsageDef
+          const params: KOM00110130 =
+          {
+            car_id: this.carId,
+            request_route_kind: "0",
+            instant_kind: "0",
+            // TODO: continuous_kind
+            customize_usage_definition: customizeUsageDefinitions
           }
-          this.customSettingService.postCustomUsageDefinitionUpdateRequest(requestParam)
+          this.csDetailService.postCarsRequestsCustomizeUsageDefinitionsS2m(params, requestHeaderParams)
             .then(res => {
-              console.log("RES", res);
+              this.pageParams.pageNo = 1
+              this.pageParams.dispPageNo = 1
+              this._reflectPageParams()
+              this.fetchList(this.sortingParams['sort']);
+              this.checkedItems = {}
+              this.checkAll = false
+              // TODO:
+              console.log("postCarsRequestsCustomizeUsageDefinitionsS2m", res);
+            }).catch(() => {
+              throw Error('更新に失敗しました。');
             })
-          this.tableData = [];
+          this.tableData = []
         },
-        ng: () => {
-          this.tableData = [];
+        close: () => {
+          this.tableData = []
         }
       },
       {
@@ -677,12 +731,14 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
   }
 
   openCsImmediateUpdateRequestConfirmDialog() {
-    const items = Object.keys(this.checkedItems)
-    this.tableData = this.lists.originList.filter(
+    const keys = Object.keys(this.checkedItems)
+    this.tableData = this.lists.visibleList.filter(
       (item: any) => {
-        return items.includes(String(item[this.customizeUsageDefinitionIdKey]))
+        const id = item[this.customizeUsageDefinitionIdKey]
+        return keys.includes(String(id))
       }
     )
+
     this.modalService.open(
       {
         title: this.labels.confirmation_title,
@@ -691,33 +747,44 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         closeBtnLabel: this.labels.cancel,
         okBtnLabel: this.labels.ok_btn,
         ok: () => {
-          let customUsageDef : any[] = [];
-          this.tableData.forEach(element => {
-            customUsageDef.push({
-              "customize_usage_definition_id": element["customize_usage_definitions.customize_usage_definition.customize_usage_definition_id"],
-              "version": element["customize_usage_definitions.customize_usage_definition.customize_usage_definition_version"],
-              "request_kind": "2",
-              "priority": element["customize_usage_definitions.customize_usage_definition.priority"],
-              "date_to": element["customize_usage_definitions.customize_usage_definition.end_date"],
-              "date_from": element["customize_usage_definitions.customize_usage_definition.start_date"],
-              "active_kind": element["customize_usage_definitions.customize_usage_definition.customize_definitions.active_kind"]
+          const requestHeaderParams: RequestHeaderParams = {}
+          const customizeUsageDefinitions: KOM00110130_CustomizeUsageDefinition[]
+            = this.tableData.map(data => {
+              return {
+                customize_usage_definition_id: data['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
+                version: String(data['customize_usage_definitions.customize_usage_definition.customize_usage_definition_version']),
+                request_kind: "2",
+                priority: data['customize_usage_definitions.customize_usage_definition.priority'],
+                date_to: data['customize_usage_definitions.customize_usage_definition.end_date'],
+                date_from: data['customize_usage_definitions.customize_usage_definition.start_date'],
+                active_kind: data['customize_usage_definitions.customize_usage_definition.active_kind']
+              }
             })
-          })
-          const requestParam = {
-            "car_id": this.carId,
-            "request_route_kind": "0",
-            "instant_kind": "1",
+          const params: KOM00110130 =
+          {
+            car_id: this.carId,
+            request_route_kind: "0",
+            instant_kind: "1",
             "continuous_kind": this.csImmediateUpdateRequestConfirmComponent.isContinued,
-            "customize_usage_definition": customUsageDef
+            customize_usage_definition: customizeUsageDefinitions
           }
-          this.customSettingService.postCustomUsageDefinitionUpdateRequest(requestParam)
+          this.csDetailService.postCarsRequestsCustomizeUsageDefinitionsS2m(params, requestHeaderParams)
             .then(res => {
-              console.log("RES", res);
+              this.pageParams.pageNo = 1
+              this.pageParams.dispPageNo = 1
+              this._reflectPageParams()
+              this.fetchList(this.sortingParams['sort']);
+              this.checkedItems = {}
+              this.checkAll = false
+              // TODO:
+              console.log("postCarsRequestsCustomizeUsageDefinitionsS2m", res);
+            }).catch(() => {
+              throw Error('更新に失敗しました。');
             })
-          this.tableData = [];
+          this.tableData = []
         },
-        ng: () => {
-          this.tableData = [];
+        close: () => {
+          this.tableData = []
         }
       },
       {
@@ -735,19 +802,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         closeBtnLabel: this.labels.cancel,
         okBtnLabel: this.labels.ok_btn,
         ok: () => {
-          const params =
-          {
-            cars: [
-              {
-                car_id: this.carId,
-              }
-            ]
-          }
-          this.customSettingService.postCarsRequestSetsCustomizeUsageDefinitionsM2s(params)
-            .then(res => {
-              console.log("RES", res);
-          })
-
           const origin = this.lists.originList.find(origin => {
             return data[this.customizeUsageDefinitionIdKey]
               === origin[this.customizeUsageDefinitionIdKey]
@@ -781,14 +835,13 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
             this.lists.visibleList.splice(visibleListIndex, 1);
           }
 
-          this.checkedItems[origin[this.checkIdName]] = false;
+          delete this.checkedItems[origin[this.checkIdName]]
           const targetItems: any = this.lists.originList.filter(
             (item: any) => !this.checkBoxHiddenFunction(item)
           );
           this.checkAll =
             targetItems.length > 0 &&
             targetItems.every((item: any) => this.checkedItems[_.get(item, this.checkIdName)]);
-          this.disabled = !Object.keys(this.checkedItems).length
         },
       },
       {
@@ -796,7 +849,8 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
       }
     );
   }
-  openCsRequestResendConfirmDialog() {
+  openCsRequestResendConfirmDialog(data: any) {
+    this.tableData.push(data)
     this.modalService.open(
       {
         title: this.labels.confirmation_title,
@@ -805,55 +859,38 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         closeBtnLabel: this.labels.cancel,
         okBtnLabel: this.labels.ok_btn,
         ok: () => {
-        },
-      },
-      {
-        size: 'lg',
-      }
-    );
-  }
-
-  onClickCustomSettingRequestResendDialog(){
-    const items = Object.keys(this.checkedItems)
-    this.tableData = this.lists.originList.filter(
-      (item: any) => {
-        return items.includes(String(item[this.customizeUsageDefinitionIdKey]))
-      }
-    )
-
-    this.modalService.open(
-      {
-        title: this.labels.confirmation_title,
-        labels: this.labels,
-        content: this.csRequestResendConfirmModalContent,
-        closeBtnLabel: this.labels.cancel,
-        okBtnLabel: this.labels.ok_btn,
-        ok: () => {
-          let distinctDefinitionId : any[] = [];
-          this.tableData.forEach(element => {
-            if(distinctDefinitionId.indexOf(element["customize_usage_definitions.customize_usage_definition.customize_usage_definition_id"]) == -1){
-              distinctDefinitionId.push(element["customize_usage_definitions.customize_usage_definition.customize_usage_definition_id"]);
-            }
-
-          })
-          let customUsageDef : any[] = [];
-          distinctDefinitionId.forEach(element => {
-            customUsageDef.push({
-              "customize_definition_id": element
+          const requestHeaderParams: RequestHeaderParams = {}
+          const customizeDefinitions: KOM00110XXX_CustomizeDefinition[]
+            = this.tableData.map(data => {
+              return {
+                customize_definition_id: data['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
+              }
             })
-          })
-          const requestParam = {
-            "car_id": this.carId,
-            "customize_definition": customUsageDef
+          const params: KOM00110XXX =
+          {
+            car_id: this.carId,
+            customize_definition: customizeDefinitions
           }
-          this.customSettingService.postCutomSettingRequestResend(requestParam)
+          this.csDetailService.postCarsRequestsCustomizeSettingsRetryS2m(params, requestHeaderParams)
             .then(res => {
-              console.log("RES", res);
+              this.tableData.forEach((data) => {
+                delete this.checkedItems[data[this.checkIdName]]
+              })
+              const targetItems: any = this.lists.originList.filter(
+                (item: any) => !this.checkBoxHiddenFunction(item)
+              );
+              this.checkAll =
+                targetItems.length > 0 &&
+                targetItems.every((item: any) => this.checkedItems[_.get(item, this.checkIdName)]);
+              // TODO:
+              console.log("postCarsRequestsCustomizeSettingsRetryS2m", res);
+            }).catch(() => {
+              throw Error('再送に失敗しました。');
             })
-          this.tableData = [];
+          this.tableData = []
         },
-        ng: () => {
-          this.tableData = [];
+        close: () => {
+          this.tableData = []
         }
       },
       {
@@ -862,23 +899,4 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     );
   }
 
-  public isDisplayDataRow(tableHeader: TableHeader, listData: any, isMergeRows: boolean): boolean {
-    return this.commonTableService.isDisplayDataRow(tableHeader, listData, isMergeRows);
-  }
-
-  public getDataRowspan(tableHeader: TableHeader, listData: any, isMergeRows: boolean): string {
-    return this.commonTableService.getDataRowspan(tableHeader, listData, isMergeRows);
-  }
-
-  public getColumnStyle(tableHeader: TableHeader): string {
-    return this.commonTableService.getColumnStyle(tableHeader);
-  }
-
-  public isDisplayFixedDataRow(isDisplayColumn: boolean, listData: any, isMergeRows: boolean): boolean {
-    return this.commonTableService.isDisplayFixedDataRow(isDisplayColumn, listData, isMergeRows);
-  }
-
-  public getFixedDataRowspan(listData: any, isMergeRows: boolean): string {
-    return this.commonTableService.getFixedDataRowspan(listData, isMergeRows);
-  }
 }

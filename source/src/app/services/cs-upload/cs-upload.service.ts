@@ -24,8 +24,9 @@ export class CsUploadService {
       ScreenCodeConst.CUSTOMIZE_SETTING_UPLOAD_CODE,
       'fetchIndexInitData',
       {
+        // テーブルヘッダー取得
         fields: () =>
-          this.api.fetchFields(FunctionCodeConst.HISTORY_MGT_LIST_FUNCTION),
+          this.api.fetchFields(FunctionCodeConst.CUSTOMIZE_SETTING_UPLOAD_LIST_FUNCTION),
         fieldResources: () =>
           this.api.fetchFieldResources(
             FunctionCodeConst.HISTORY_MGT_LIST_FUNCTION
@@ -145,6 +146,35 @@ export class CsUploadService {
             (res) => resolve(res),
             (error) => reject(error)
           )
+      );
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  fetchUploadResultList(
+    params: HistoryMgtListIndexParams,
+    requestHeaderParams: RequestHeaderParams
+  ): Promise<Api> {
+    return new Promise((resolve) => {
+      this.api.requestHandler(
+        'fetchIndexList',
+        this.api
+          .post(
+            Apis.getTemporaryUploadResult,
+            params,
+            { cache: false, request_header: requestHeaderParams }
+          )
+        .subscribe((res) => resolve(res))
       );
     });
   }

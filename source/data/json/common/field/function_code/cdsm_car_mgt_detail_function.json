@@ -1,15 +1,148 @@
 [
     {
-        "display_sequence_no": "1",
+        "display_sequence_no": "",
         "name": "ID(用途定義)",
         "path": "customize_usage_definitions.customize_usage_definition.customize_usage_definition_id",
         "control_code": "1",
         "display_code": "1"
     },
     {
-        "display_sequence_no": "2",
+        "display_sequence_no": "",
+        "name": "カスタマイズ用途定義",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "バージョン",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_usage_definition_version",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "開始日（カスタマイズ用途定義）",
+        "path": "customize_usage_definitions.customize_usage_definition.start_date",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "終了日（カスタマイズ用途定義）",
+        "path": "customize_usage_definitions.customize_usage_definition.end_date",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
         "name": "ID（定義）",
         "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_id",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "カスタマイズ定義",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "優先度",
+        "path": "customize_usage_definitions.customize_usage_definition.priority",
+        "control_code": "0",
+        "display_code": "0"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "優先度",
+        "path": "customize_usage_definitions.customize_usage_definition.priority_name",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "想定通信量",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "有効/無効",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.active_name",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "有効/無効",
+        "path": "customize_usage_definitions.customize_usage_definition.active_kind",
+        "control_code": "0",
+        "display_code": "0"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "最新設定種別",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.latest_operation_code_name",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "ステータス",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.status",
+        "control_code": "0",
+        "display_code": "0"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "ステータス",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.status_name",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "開始日（カスタマイズ定義）",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.start_date",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "終了日（カスタマイズ定義）",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.end_date",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "初回受信日時",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.first_receive_datetime",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "最新受信日時",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.latest_receive_datetime",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "カスタマイズ集計条件名",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.aggregation_condition_name",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "カスタマイズ送信条件名",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.send_condition_name",
         "control_code": "0",
         "display_code": "1"
     }

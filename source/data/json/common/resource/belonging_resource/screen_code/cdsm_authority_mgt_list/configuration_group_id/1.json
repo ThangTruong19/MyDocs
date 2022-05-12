@@ -1,6 +1,6 @@
 [
   {
-    "path": "user.groups.belonging_group.identification.label",
+    "path": "belonging_group_id",
     "name": "所属",
     "help": "所属のヘルプ文言",
     "type": 10,
@@ -8,14 +8,19 @@
     "memo": "",
     "items": [
       {
-        "key": "所属1",
-        "value": "100001",
-        "kind": "D"
+        "key": "グループ1の代理店",
+        "value": "R0003",
+        "kind": "DD"
       },
       {
-        "key": "所属2",
-        "value": "100002",
-        "kind": "D"
+        "key": "グループ1の顧客",
+        "value": "R0004",
+        "kind": "DC"
+      },
+      {
+        "key": "グループ1のサブグループ",
+        "value": "R0005",
+        "kind": "DS"
       }
     ]
   }

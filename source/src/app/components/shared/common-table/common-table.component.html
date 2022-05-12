@@ -7,7 +7,7 @@
                 class="app-table table table-bordered"
             >
                 <thead class="app-table-thead" [ngClass]="thClass">
-                    <tr [ngClass]="getSimpleTableRowCss(isMergeRows)">
+                    <tr [ngClass]="getSimpleTableRowCss()">
                         <th *ngIf="selectable" class="app-index-th fixed th-check">
                             <input
                                 type="checkbox"
@@ -27,7 +27,7 @@
                                     *ngIf="title.displayable"
                                     class="th-{{ title.shortName }} app-index-th"
                                     [ngClass]="{ 'disable-sort': !title.sortable }"
-                                    [style]="getColumnStyle(title)"
+                                    [style]="tblFunctions.getColumnStyle(title)"
                                     appSortingLabel
                                     [(sortingParams)]="sortingParams"
                                     [labelName]="title.name"
@@ -39,7 +39,9 @@
                             </ng-container>
                         </ng-container>
                         <ng-container
-                            *ngTemplateOutlet="customTableThContent"
+                            *ngTemplateOutlet="customTableThContent;
+                                context: { tblFunctions: tblFunctions }
+                            "
                         ></ng-container>
                         <!-- ボタンタイトルのデフォルト要素 -->
                         <ng-container *ngIf="!customTableThBtnContent">
@@ -70,12 +72,13 @@
                 >
                     <tr
                         *ngFor="let data of lists.visibleList; let i = index"
-                        [ngClass]="getSimpleTableRowCss(isMergeRows)"
+                        [ngClass]="getSimpleTableRowCss()"
                     >
                         <td
-                            *ngIf="isDisplayFixedDataRow(selectable, data, isMergeRows)"
+                            *ngIf="selectable && tblFunctions.isDisplayFixedDataRow(data)"
                             [ngClass]="{ disable: checkBoxHidden(data) }"
                             class="app-sm-link fixed d-flex justify-content-center td-check"
+                            [attr.rowspan]="tblFunctions.getFixedDataRowspan(data)"
                         >
                           <input
                               (appTableCheckbox)="onChange($event)"
@@ -86,7 +89,6 @@
                               value="{{ checkId(data) }}"
                               type="checkbox"
                               class="app-input-checkbox"
-                              [attr.rowspan]="getFixedDataRowspan(data, isMergeRows)"
                         />
                           <label
                               class="app-input-checkbox__label"
@@ -100,13 +102,13 @@
                         <ng-container *ngIf="!customTableRowContent">
                             <ng-container *ngFor="let title of thList">
                                 <td
-                                    *ngIf="isDisplayDataRow(title, data, isMergeRows)"
+                                    *ngIf="tblFunctions.isDisplayDataRow(title, data)"
                                     class="td-{{
                                         title.shortName
                                     }} app-index-td align-items-center"
-                                    [ngClass]="getSimpleTableDataColumnCss(isMergeRows)"
-                                    [style]="getColumnStyle(title)"
-                                    [attr.rowspan]="getDataRowspan(title, data, isMergeRows)"
+                                    [ngClass]="tblFunctions.getSimpleTableDataColumnCss()"
+                                    [style]="tblFunctions.getColumnStyle(title)"
+                                    [attr.rowspan]="tblFunctions.getDataRowspan(title, data)"
                                 >
                                     <p>{{ data[title.dataKey || title.name] }}</p>
                                 </td>
@@ -116,24 +118,23 @@
                         <ng-container
                             *ngTemplateOutlet="
                               customTableRowContent;
-                              context: { data: data, title: title, idx: i }
-                            "
+                              context: { data: data, title: title, idx: i, tblFunctions: tblFunctions }"
                         ></ng-container>
                         <!-- ボタンのデフォルト要素 -->
                         <ng-container *ngIf="!customTableBtnContent">
                             <td
-                                *ngIf="isDisplayFixedDataRow(detailedly, data, isMergeRows)"
+                                *ngIf="detailedly && tblFunctions.isDisplayFixedDataRow(data)"
                                 class="app-index-td text-center app-table__small app-sm-link fixed d-flex align-items-center justify-content-center"
-                                [attr.rowspan]="getFixedDataRowspan(title, data, isMergeRows)"
+                                [attr.rowspan]="tblFunctions.getFixedDataRowspan(title, data)"
                                 (click)="onClickDetail(data)"
                             >
                                 <span class="app-icon app-icon-detail"></span>
                             </td>
                             <td
-                                *ngIf="isDisplayFixedDataRow(updatable, data, isMergeRows)"
+                                *ngIf="updatable && tblFunctions.isDisplayFixedDataRow(data)"
                                 class="app-index-td app-table__small app-sm-link text-center fixed d-flex align-items-center justify-content-center"
                                 [ngClass]="{ disable: editIconHidden(data) }"
-                                [attr.rowspan]="getFixedDataRowspan(title, data, isMergeRows)"
+                                [attr.rowspan]="tblFunctions.getFixedDataRowspan(title, data)"
                                 (click)="onClickEdit(data)"
                             >
                                 <span
@@ -144,10 +145,10 @@
                                 ></span>
                             </td>
                             <td
-                                *ngIf="isDisplayFixedDataRow(deletable, data, isMergeRows)"
+                                *ngIf="deletable && tblFunctions.isDisplayFixedDataRow(data)"
                                 class="app-index-td app-table__small app-sm-link text-center fixed d-flex align-items-center justify-content-center"
                                 [ngClass]="{ disable: deleteIconHidden(data) }"
-                                [attr.rowspan]="getFixedDataRowspan(title, data, isMergeRows)"
+                                [attr.rowspan]="tblFunctions.getFixedDataRowspan(title, data)"
                                 (click)="onClickDelete(data)"
                             >
                                 <span>
@@ -162,7 +163,7 @@
                         <ng-container
                             *ngTemplateOutlet="
                               customTableBtnContent;
-                              context: { data: data, visibleBtn: visibleBtn }
+                              context: { data: data, visibleBtn: visibleBtn, tblFunctions: tblFunctions }
                             "
                         ></ng-container>
                     </tr>
@@ -197,7 +198,7 @@
                                         *ngIf="title.displayable"
                                         class="th-{{title.shortName}} app-index-th"
                                         [ngClass]="{'disable-sort': !title.sortable}"
-                                        [style]="getColumnStyle(title)"
+                                        [style]="tblFunctions.getColumnStyle(title)"
                                         appSortingLabel
                                         [(sortingParams)]="sortingParams"
                                         [labelName]="title.name"
@@ -207,7 +208,10 @@
                                     </th>
                                 </ng-container>
                             </ng-container>
-                            <ng-container *ngTemplateOutlet="customFixedTableThContent"></ng-container>
+                            <ng-container
+                                *ngTemplateOutlet="customFixedTableThContent;
+                                context: { tblFunctions: tblFunctions }"
+                            ></ng-container>
                             <!-- ボタンタイトルのデフォルト要素 -->
                             <th *ngIf="detailedly" class="fixed">{{labels.header_detail}}</th>
                             <th *ngIf="updatable" class="fixed">{{labels.header_edit}}</th>
@@ -224,15 +228,15 @@
                         }">
                         <tr *ngFor="let data of lists.visibleList; let i = index"
                             [attr.data-index]="i">
-                            <td *ngIf="isDisplayFixedDataRow(selectable, data, isMergeRows)"
+                            <td *ngIf="selectable && tblFunctions.isDisplayFixedDataRow(data)"
                                 [ngClass]="{'disable': checkBoxHidden(data)}"
-                                class="text-center td-check app-sm-link">
+                                class="text-center td-check app-sm-link"
+                                [attr.rowspan]="tblFunctions.getFixedDataRowspan(data)">
                                 <input
                                     (appTableCheckbox)="onChange($event)"
                                     (toggleClick)="onCheckSelect($event)"
                                     [selectedList]="selectedList"
                                     [checked]="checkedItems[checkId(data)]"
-                                    [attr.rowspan]="getFixedDataRowspan(data, isMergeRows)"
                                     id="check-icon-{{i}}"
                                     value="{{checkId(data)}}"
                                     type="checkbox"
@@ -241,39 +245,42 @@
                                     <i class="fa"></i>
                                 </label>
                                 <label class="app-input-checkbox-default__label" [ngClass]="{'hidden': checkBoxDefaultHidden(data)}" for="check-icon-{{i}}">
-                                    <span>Default</span>
+                                    <span>{{labels.default_body_label}}</span>
                                 </label>
                             </td>
                             <!-- データ行のデフォルト要素 -->
                             <ng-container *ngIf="!customFixedTableRowContent">
                                 <ng-container *ngFor="let title of fixedThList">
                                     <td
-                                       *ngIf="isDisplayDataRow(title, data, isMergeRows)"
+                                       *ngIf="tblFunctions.isDisplayDataRow(title, data)"
                                        class="td-{{title.shortName}} app-index-td"
-                                       [style]="getColumnStyle(title)"
-                                       [attr.rowspan]="getDataRowspan(title, data, isMergeRows)">
+                                       [style]="tblFunctions.getColumnStyle(title)"
+                                       [attr.rowspan]="tblFunctions.getDataRowspan(title, data)">
                                         {{data[title.dataKey || title.name]}}
                                     </td>
                                 </ng-container>
                             </ng-container>
-                            <ng-container *ngTemplateOutlet="customFixedTableRowContent; context: {data: data, title: title, idx: i}"></ng-container>
-                            <td *ngIf="isDisplayFixedDataRow(detailedly, data, isMergeRows)"
+                            <ng-container
+                                *ngTemplateOutlet="customFixedTableRowContent;
+                                context: {data: data, title: title, idx: i, tblFunctions: tblFunctions }">
+                            </ng-container>
+                            <td *ngIf="detailedly && tblFunctions.isDisplayFixedDataRow(data)"
                                class="app-index-td text-center app-table__small app-sm-link fixed"
-                               [attr.rowspan]="getFixedDataRowspan(title, data, isMergeRows)"
+                               [attr.rowspan]="tblFunctions.getFixedDataRowspan(title, data)"
                                (click)="onClickDetail(data)">
                                 <span class="app-icon app-icon-detail"></span>
                             </td>
-                            <td *ngIf="isDisplayFixedDataRow(updatable, data, isMergeRows)"
+                            <td *ngIf="updatable && tblFunctions.isDisplayFixedDataRow(data)"
                                 class="app-index-td app-table__small app-sm-link text-center fixed"
                                 [ngClass]="{'disable': editIconHidden(data)}"
-                                [attr.rowspan]="getFixedDataRowspan(title, data, isMergeRows)"
+                                [attr.rowspan]="tblFunctions.getFixedDataRowspan(title, data)"
                                 (click)="onClickEdit(data)">
                                 <span><i *ngIf="!editIconHidden(data)" class="app-icon app-icon-edit"></i></span>
                             </td>
-                            <td *ngIf="isDisplayFixedDataRow(deletable, data, isMergeRows)"
+                            <td *ngIf="deletable && tblFunctions.isDisplayFixedDataRow(data)"
                                 class="app-index-td app-table__small app-sm-link text-center fixed"
                                 [ngClass]="{'disable': deleteIconHidden(data)}"
-                                [attr.rowspan]="getFixedDataRowspan(title, data, isMergeRows)"
+                                [attr.rowspan]="tblFunctions.getFixedDataRowspan(title, data)"
                                 (click)="onClickDelete(data)">
                                 <span><i *ngIf="!deleteIconHidden(data)" class="app-icon app-icon-dustbox"></i></span>
                             </td>
@@ -307,7 +314,7 @@
                                         *ngIf="title.displayable"
                                         class="th-{{title.shortName}} app-index-th"
                                         [ngClass]="{'disable-sort': !title.sortable}"
-                                        [style]="getColumnStyle(title)"
+                                        [style]="tblFunctions.getColumnStyle(title)"
                                         appSortingLabel
                                         [(sortingParams)]="sortingParams"
                                         [labelName]="title.name"
@@ -317,7 +324,10 @@
                                     </th>
                                 </ng-container>
                             </ng-container>
-                            <ng-container *ngTemplateOutlet="customTableThContent"></ng-container>
+                            <ng-container
+                                *ngTemplateOutlet="customTableThContent;
+                                context: { tblFunctions: tblFunctions }"
+                            ></ng-container>
                         </tr>
                     </thead>
                     <tbody class="app-table-tbody" #scrollableBody #scrollableScrollArea
@@ -333,13 +343,17 @@
                                     <td
                                         *ngIf="isDisplayDataRow(title, data, isMergeRows)"
                                         class="td-{{title.shortName}} app-index-td"
-                                        [style]="getColumnStyle(title)"
-                                        [attr.rowspan]="getDataRowspan(title, data, isMergeRows)">
+                                        [style]="tblFunctions.getColumnStyle(title)"
+                                        [attr.rowspan]="tblFunctions.getDataRowspan(title, data, isMergeRows)">
                                         <span>{{data[title.dataKey || title.name]}}</span>
                                     </td>
                                 </ng-container>
                             </ng-container>
-                            <ng-container *ngTemplateOutlet="customTableRowContent; context: {data: data, title: title, idx: i}"></ng-container>
+                            <ng-container
+                                *ngTemplateOutlet="customTableRowContent;
+                                context: {data: data, title: title, idx: i,
+                                isMergeRows: isMergeRows, tblFunctions: tblFunctions}">
+                            </ng-container>
 
                             <td *ngIf="multiLineThList" class="hidden-columns">
                                 <ul class="hidden-columns-container">

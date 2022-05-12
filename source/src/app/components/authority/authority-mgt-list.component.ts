@@ -148,27 +148,6 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
       'id'
     );
 
-    this.accessLevelSet(user)
-  }
-
-  /**
-   * 権限区分/アクセスレベルのプルダウン表示設定
-   */
-  accessLevelSet(user: any){
-    // 権限区分
-    const kinds = _.map(
-      _.get(user, 'group.granted_authorities'),
-      'kind'
-    );
-    var authority_kind = [{}]
-    for (var i = 0; i < kinds.length; i++) {
-      let j = { name: kinds[i] }
-      console.log(j)
-      authority_kind[i] = j
-    }
-    const kind_value = { name:"アクセスレベル" ,values: authority_kind }
-    this.selectedKinds = { access_level: kind_value }
-
     this.safeDetectChanges();
   }
 

@@ -51,4 +51,77 @@ export class CsDetailService {
       }
     );
   }
+
+  /**
+  * 車両カスタマイズ用途定義一括取得要求API呼び出し
+ * @param params パラメータ
+ * @param headerParams ヘッダ情報
+  */
+  postCarsRequestSetsCustomizeUsageDefinitionsM2s(
+    params: any,
+    requestHeaderParams: any
+  ) {
+    return new Promise((resolve, reject) => {
+      this.api.requestHandler(
+        'postCarsRequestSetsCustomizeUsageDefinitionsM2s',
+        this.api.post(Apis.postCarsRequestSetsCustomizeUsageDefinitionsM2s, params, {
+          cache: false,
+          request_header: requestHeaderParams,
+        })
+          .subscribe(
+            (res) => resolve(res),
+            (error) => reject(error)
+          )
+      );
+    })
+  }
+
+  /**
+   * 車両カスタマイズ用途定義更新要求API呼び出し
+   * @param params パラメータ
+   * @param headerParams ヘッダ情報
+   */
+  postCarsRequestsCustomizeUsageDefinitionsS2m(
+    params: any,
+    requestHeaderParams: any
+  ) {
+    return new Promise((resolve, reject) => {
+      this.api.requestHandler(
+        'postCarsRequestsCustomizeUsageDefinitionsS2m',
+        this.api
+          .post(Apis.postCarsRequestsCustomizeUsageDefinitionsS2m, params, {
+            cache: false,
+            request_header: requestHeaderParams,
+          })
+          .subscribe(
+            (res) => resolve(res),
+            (error) => reject(error)
+          )
+      );
+    });
+  }
+
+  /**
+  * 車両カスタマイズ設定要求再送API呼び出し
+   * @param params パラメータ
+   * @param headerParams ヘッダ情報
+  */
+  postCarsRequestsCustomizeSettingsRetryS2m(
+    params: any,
+    requestHeaderParams: any
+  ) {
+    return new Promise((resolve, reject) => {
+      this.api.requestHandler(
+        'postCarsRequestsCustomizeSettingsRetryS2m',
+        this.api.post(Apis.postCarsRequestsCustomizeSettingsRetryS2m, params, {
+          cache: false,
+          request_header: requestHeaderParams,
+        })
+          .subscribe(
+            (res) => resolve(res),
+            (error) => reject(error)
+          )
+      );
+    })
+  }
 }

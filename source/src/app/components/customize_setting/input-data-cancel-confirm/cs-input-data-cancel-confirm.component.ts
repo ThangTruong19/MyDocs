@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+/**
+ * カスタマイズ設定入力内容破棄確認
+ */
 @Component({
   selector: 'app-cs-input-data-cancel-confirm',
   templateUrl: './cs-input-data-cancel-confirm.component.html',

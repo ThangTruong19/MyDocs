@@ -29,6 +29,20 @@ import { OperatorInitSearchParams } from 'app/types/car';
 import { SelectTypeComponent } from 'app/components/shared/select-type/select-type.component';
 import { CustomizeSettingService } from 'app/services/customize_setting/customize-setting.service';
 
+import { KbaModalService } from 'app/services/customize-setting-upload/upload-result/app-modal.service';
+import { ModalValues } from 'app/types/common'
+
+import { CsDetailService } from 'app/services/customize_setting/cs-detail.service';
+
+interface RequestHeaderParams {
+  'X-Lang'?: string;
+  'X-AppCode'?: string;
+  'X-GroupId'?: string;
+  'X-DateFormat'?: string;
+  'X-ScreenCode'?: string;
+  'X-WebApiKey'?: string;
+}
+
 @Component({
   selector: 'app-car-mgt-list',
   templateUrl: './car-list.component.html',
@@ -49,6 +63,11 @@ export class CarListComponent extends AbstractIndexComponent {
     selectors: QueryList<SelectedComponent>;
     @ViewChildren(SelectTypeComponent)
     selectTypers: QueryList<SelectTypeComponent>;
+
+    @ViewChild('initModalContent', { static: false })
+    initModalContent: TemplateRef<null>;
+
+    @ViewChild('csGetRequestModalContent', { static: false }) csGetRequestModalContent: TemplateRef<null>;
 
     datePickerParams: DatePickerParams;
     fields: Fields;
@@ -76,6 +95,9 @@ export class CarListComponent extends AbstractIndexComponent {
     otherThanNextGenValue = '3'; // TODO:
     iridiumValue = '3'; // TODO:
 
+    showCloseBtn: boolean = true;
+    initModalValues: ModalValues;
+
     initParams: OperatorInitSearchParams = {
       common: {
         support_distributor: {},
@@ -93,6 +115,9 @@ export class CarListComponent extends AbstractIndexComponent {
       car_management: {},
     };
 
+    carId: string;
+
+
     constructor(
       navigationService: NavigationService,
       title: Title,
@@ -105,6 +130,9 @@ export class CarListComponent extends AbstractIndexComponent {
       protected alertService: AlertService,
       protected datePickerService: DatePickerService,
       protected userSettingService: UserSettingService
+
+      ,protected tempModalService: KbaModalService = null
+      ,private csDetailService: CsDetailService
     ) {
       super(navigationService, title, router, ref, header);
     }
@@ -196,7 +224,7 @@ export class CarListComponent extends AbstractIndexComponent {
      */
     protected async _fetchDataForInitialize(): Promise<void> {
       const res: any = await this.carListService.fetchIndexInitData();
-      this.initialize(res);
+      this.initialize(res); console.log('labels');console.log(res.label);
       this.labels = res.label;
       this.resource = res.resource;
       this._setTitle();
@@ -207,6 +235,8 @@ export class CarListComponent extends AbstractIndexComponent {
       this.downloadFields = res.downloadFields;
       this.downloadFieldResources = res.downloadFieldResources;
       this._datePickerInitialize();
+
+      this.initModalValues = this._getModalValues(res.initFields);
     }
 
     /**
@@ -420,5 +450,144 @@ export class CarListComponent extends AbstractIndexComponent {
     // await this._authorities(user);
     authoritySelect.onClickSelect();
 
+  }
+
+
+
+
+
+
+
+
+
+
+
+  /**
+   * 設定取得要求ボタン押下コールバック
+   */
+  openCsGetRequestDialog() { console.log('child');console.log(this.csGetRequestModalContent);
+    this.modalService.open(
+      {
+        title: this.labels.confirmation_title,
+        labels: this.labels,
+        content: this.csGetRequestModalContent,
+        closeBtnLabel: this.labels.cancel,
+        okBtnLabel: this.labels.ok_btn,
+        ok: () => {
+          const requestHeaderParams: RequestHeaderParams = {}
+          const params =
+          {
+            cars: [
+              {
+                car_id: this.carId,
+                request_route_kind: '0'
+              }
+            ]
+          }
+          this.csDetailService.postCarsRequestSetsCustomizeUsageDefinitionsM2s(params, requestHeaderParams)
+            .then(res => {
+              // TODO:
+              console.log("postCarsRequestSetsCustomizeUsageDefinitionsM2s", res);
+            })
+        },
+      },
+      {
+        size: 'lg',
+      }
+    );
+  }
+
+
+
+
+
+  test: { [key: string]: boolean } = {['2']:true};
+  get selectedMystery() { //console.log('mystery no');console.log(this.test);
+  return _.map(this.test, (value, key) =>
+    value ? key : null
+  ).filter(Boolean);
+}
+
+  // TODO:
+  /**
+   * temporary カスタマイズ一括設定アップロード結果確認(モーダル)
+   */
+   async onClickInit(): Promise<void> {
+    // const carList = await this.carService.fetchCarIndexList(
+    //   { common: { car_identification: { car_ids: this.selectedList } } },
+    //   this.initModalValues.requestHeaderParams
+    // );
+    // this.initModalValues.listVal = this._formatList(
+    //   carList.result_data.cars,
+    //   this.initModalValues.listDesc
+    // );
+
+    // const carList = await this.carService.fetchCarIndexList(
+    //   { common: { car_identification: { car_ids: this.selectedList } } },
+    //   this.initModalValues.requestHeaderParams
+    // );console.log('header');console.log(this.initModalValues.requestHeaderParams);
+
+    // const params: HistoryMgtListIndexParams = {
+    //   customize_operation_history: _.omit(
+    //     this.searchParams,
+    //     this.excludeSearchParams
+    //   )
+    // };
+    // const res = await this.carListService.fetchIndexList(
+    //   params,
+    //   this.requestHeaderParams
+    // );console.log('header');console.log(this.requestHeaderParams);
+
+  //   const testing = new Map<string, string>([
+  //     ["0", "2"]
+  // ]);
+      // const testing =
+      // ["0", "2"];
+  //     const testing: { [key: string]: boolean } = {['2']:true};
+  // console.log('testing');console.log(testing);
+
+  console.log('fook this');console.log(this.selectedMystery);
+
+    const carList = await this.carListService.fetchCarIndexList(
+      { common: { car_identification: { car_ids: this.selectedMystery } } },
+      this.initModalValues.requestHeaderParams
+    );console.log('header');console.log(this.initModalValues.requestHeaderParams);
+
+    this.initModalValues.listVal = this._formatList(
+      // carList.result_data.operation_histories,
+      carList.result_data.cars,
+      // this.thList
+      this.initModalValues.listDesc
+    );
+
+    console.log('wealth');
+    console.log(this.initModalValues.listVal);
+
+    this.tempModalService.open({
+      title: this.labels.car_operator_init,
+      labels: this.labels,
+      content: this.initModalContent,//list,//null,//this.initModalContent,
+      closeBtnLabel: this.labels.cancel,
+      ok: () => {
+        // this.operatorService
+        //   .disableOperatorIdentification({ car_id: this.selectedList })
+        //   .then(res => {
+        //     this._resultModalOpen(
+        //       this.labels.init_result_label,
+        //       this.initModalValues.listDesc,
+        //       this.initModalValues.listVal,
+        //       res['responses'],
+        //       () => {
+        //         this.pageParams.pageNo = 1;
+        //         this.pageParams.dispPageNo = 1;
+        //         this._reflectPageParams();
+        //         this.fetchList(this.sortingParams['sort']);
+        //         this.checkedItems = {};
+        //       },
+        //       { size: 'lg' }
+        //     );
+        //   });
+      },
+    });
   }
 }

@@ -10,282 +10,309 @@ import { CommonHeaderService } from 'app/services/shared/common-header.service';
 import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { ModalService } from 'app/services/shared/modal.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
-import { Fields, Resources } from 'app/types/common';
+import { Fields, Resources, TableHeader } from 'app/types/common';
 import * as _ from 'lodash';
 
 // モーダルからの返却値
 interface CustomizeUsageDefinitionResponseData {
-  customize_usage_definition_id?: string;
-  customize_usage_definition_name?: string;
-  customize_usage_definition_version?: number;
-  start_date?: string;
-  end_date?: string;
-  priority_name?: string;
-  customize_definitions?: CustomizeDefinitionResponseData[]
+    customize_usage_definition_id?: string;
+    customize_usage_definition_name?: string;
+    customize_usage_definition_version?: number;
+    start_date?: string;
+    end_date?: string;
+    priority_name?: string;
+    customize_definitions?: CustomizeDefinitionResponseData[]
 }
 interface CustomizeDefinitionResponseData {
-  customize_definition_id?: string;
-  customize_definition_name?: string;
-  assumption_data_value?: number;
-  active_name?: string;
-  latest_operation_code_name?: string;
-  status_name?: string;
-  start_date?: string;
-  end_date?: string;
-  first_receive_datetime?: string;
-  latest_receive_datetime?: string;
-  aggregation_condition_name?: string;
-  send_condition_name?: string;
+    customize_definition_id?: string;
+    customize_definition_name?: string;
+    assumption_data_value?: number;
+    active_name?: string;
+    latest_operation_code_name?: string;
+    status_name?: string;
+    start_date?: string;
+    end_date?: string;
+    first_receive_datetime?: string;
+    latest_receive_datetime?: string;
+    aggregation_condition_name?: string;
+    send_condition_name?: string;
 }
 
 /**
  * カスタマイズ設定追加
  */
 @Component({
-  selector: 'app-cs-new',
-  templateUrl: './cs-new.component.html',
-  styleUrls: ['./cs-new.component.scss']
+    selector: 'app-cs-new',
+    templateUrl: './cs-new.component.html',
+    styleUrls: ['./cs-new.component.scss']
 })
-export class CsNewComponent extends AbstractIndexComponent implements OnInit{
-  @Input()
-  public carId: string;
-  @Input()
-  public resources: Resources;
+export class CsNewComponent extends AbstractIndexComponent implements OnInit {
+    @Input()
+    public carId: string;
+    @Input()
+    public resources: Resources;
+    @Input()
+    public initThLst: TableHeader[];
 
-  private apiResult: any;
-  public modalResponse: CustomizeUsageDefinitionResponseData;
+    private apiResult: any;
+    public modalResponse: CustomizeUsageDefinitionResponseData;
 
-  @ViewChild('customizeDefinitionName') customizeDefinitionName: ElementRef;
-  @ViewChild('customizeDefinitionVersion') customizeDefinitionVersion: ElementRef;
-  @ViewChild('fromToDatePicker') fromToDatePicker: ElementRef;
-  @ViewChild('isEnabled') isEnabled: ElementRef;
-  @ViewChild('priority') priority: ElementRef;
+    @ViewChild('customizeDefinitionName') customizeDefinitionName: ElementRef;
+    @ViewChild('customizeDefinitionVersion') customizeDefinitionVersion: ElementRef;
+    @ViewChild('fromToDatePicker') fromToDatePicker: ElementRef;
+    @ViewChild('isEnabled') isEnabled: ElementRef;
+    @ViewChild('priority') priority: ElementRef;
 
-  // デートピッカー関連
-  beginningWday : number;
-  enableDateRange : string[];
-  _dateFormat : string;
-  timeZone : string;
-  datePickerParams: Object;
+    // デートピッカー関連
+    beginningWday: number;
+    enableDateRange: string[];
+    _dateFormat: string;
+    timeZone: string;
+    datePickerParams: Object;
 
-  // Table's header definition
-  fields : Fields = [
-    {
-      "display_sequence_no": "1",
-      "name": "カスタマイズ定義名",
-      "path": "customize_definition.customize_definition_name",
-      "control_code": "1",
-      "display_code": "1"
-    },
-    {
-      "display_sequence_no": "2",
-      "name": "想定通信容量(byte/月)",
-      "path": "customize_definition.assumption_data_value",
-      "control_code": "1",
-      "display_code": "1"
-    },
-    {
-      "display_sequence_no": "3",
-      "name": "カスタマイズ集計条件名",
-      "path": "customize_definition.aggregation_condition_name",
-      "control_code": "1",
-      "display_code": "1"
-    },
-    {
-      "display_sequence_no": "4",
-      "name": "カスタマイズ送信条件名",
-      "path": "customize_definition.send_condition_name",
-      "control_code": "1",
-      "display_code": "1"
-  }];
+    // Table's header definition
+    lstColumnName = [
+        'customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name',
+        'customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value',
+        'customize_usage_definitions.customize_usage_definition.customize_definitions.aggregation_condition_name',
+        'customize_usage_definitions.customize_usage_definition.customize_definitions.send_condition_name'
+    ];
 
-  _searchParams = {
-    car_id: "",
-    customize_usage_definition_id: "",
-    customize_usage_definition_version: ""
-  };
-  isInitialize: boolean = true;
-  displayDefinitionName: string = '';
-
-  constructor(
-    nav: NavigationService,
-    title: Title,
-    header: CommonHeaderService,
-    router: Router,
-    private modal: ModalService,
-    private cdRef: ChangeDetectorRef,
-    private customSettingService: CustomizeSettingService,
-    protected userSettingService: UserSettingService,
-    protected datePickerService: DatePickerService,
-  ) {
-    super(nav, title, router, cdRef, header, modal);
-  }
-
-  /**
-   * Fetching list data for the table in the screen
-   */
-  protected async fetchList(): Promise<any> {
-    // Setting the request parameters before calling API
-    this._searchParams.customize_usage_definition_id = (this.customizeDefinitionName as any).itemParams.regist_customize_usage_definition_name;
-    this._searchParams.customize_usage_definition_version = (this.customizeDefinitionVersion as any).itemParams.regist_customize_usage_definition_version;
-    // Call & fetch data from API
-    this.fetchCustomizeSettingData();
-    (this.customizeDefinitionName as any).items.forEach((element :any) => {
-      if(element.id == this.params.regist_customize_usage_definition_name) this.displayDefinitionName = element.name;
-    })
-    this.isInitialize = false;
-  }
-
-  /**
-   * Fetching labels, resources to be displayed in the screen
-   */
-  protected async _fetchDataForInitialize(): Promise<any> {
-    this.labels = this.resources.label;
-    this.resource = this.resources.resource;
-    this.initialize(this.resources);
-    // TODO: Setting the default selected option for a combobox[優先度] = '低' (Still in Q&A)
-    if(this.resource.regist_priority_control_flg.values[0].value){
-      _.set(this.params,'regist_priority_name','high');
-    }else{
-      _.set(this.params,'regist_priority_name','low');
-    }
-    this._initializeDatePicker();
-  }
-
-  /**
-   * デートピッカーを初期化する
-   */
-   private _initializeDatePicker(): void {
-    const datePickerConfig = this.userSettingService.getDatePickerConfig();
-    this.beginningWday = datePickerConfig.first_day_of_week_kind;
-    const _window = window as any;
-    this.enableDateRange = _window.settings.datePickerRange.other;
-    this._dateFormat = datePickerConfig.date_format_code;
-    this.timeZone = datePickerConfig.time_difference;
-
-    let datePickerParams = {
-      timeZone: this.timeZone,
-      dateFormat: this._dateFormat,
+    _searchParams = {
+        car_id: "",
+        customize_usage_definition_id: "",
+        customize_usage_definition_version: ""
     };
-    this.datePickerService.initialize(datePickerParams);
+    isInitialize: boolean = true;
+    displayDefinitionName: string = '';
 
-    _.set(
-      this.params,
-      'regist_start_date',
-      this.datePickerService.toMoment().format(
-        DateFormat.slash
-      ));
-    _.set(
-      this.params,
-      'regist_end_date',
-      this.datePickerService.toMoment().add(1, 'month').format(
-        DateFormat.slash
-      ));
-
-    const today = this.datePickerService.toMoment();
-
-    _.set(
-      this.params,
-      'date_from_formatted',
-      today
-        .clone()
-        .subtract(1, 'month')
-        .format(this.datePickerService.inputDateFormat(this._dateFormat))
-    );
-    _.set(this.params, 'date_to', today.format(DateFormat.hyphen));
-    _.set(
-      this.params,
-      'date_to_formatted',
-      today.format(this.datePickerService.inputDateFormat(this._dateFormat))
-    );
-  }
-
-  /**
-   * Refresh table's data in case the dropdown [カスタマイズ用途定義名] changes its value
-   * @param data New selected option of the dropdown
-   */
-  refreshCustomizeDefinitionName(data: any): void{
-    if(!this.isInitialize){
-      // Setting the request parameters before calling API
-      this._searchParams.customize_usage_definition_id = data;
-      // Call & fetch data from API
-      this.fetchCustomizeSettingData();
-      (this.customizeDefinitionName as any).items.forEach((element :any) => {
-        if(element.id == this.params.regist_customize_usage_definition_name) this.displayDefinitionName = element.name;
-      })
+    constructor(
+        nav: NavigationService,
+        title: Title,
+        header: CommonHeaderService,
+        router: Router,
+        private modal: ModalService,
+        private cdRef: ChangeDetectorRef,
+        private customSettingService: CustomizeSettingService,
+        protected userSettingService: UserSettingService,
+        protected datePickerService: DatePickerService,
+    ) {
+        super(nav, title, router, cdRef, header, modal);
     }
-  }
 
-  /**
-   * Refresh table's data in case the dropdown [バージョン] changes its value
-   * @param data New selected option of the dropdown
-   */
-  refreshCustomizeDefinitionVersion(data: any): void{
-    if(!this.isInitialize){
-      // Setting the request parameters before calling API
-      this._searchParams.customize_usage_definition_version = data;
-      // Call & fetch data from API
-      this.fetchCustomizeSettingData();
+    /**
+     * Fetching list data for the table in the screen
+     */
+    protected async fetchList(): Promise<any> {
+        // Setting the request parameters before calling API
+        this._searchParams.customize_usage_definition_id = (this.customizeDefinitionName as any).itemParams.regist_customize_usage_definition_name;
+        this._searchParams.customize_usage_definition_version = (this.customizeDefinitionVersion as any).itemParams.regist_customize_usage_definition_version;
+        // Call & fetch data from API
+        this.fetchCustomizeSettingData();
+        (this.customizeDefinitionName as any).items.forEach((element: any) => {
+            if (element.id == this.params.regist_customize_usage_definition_name) this.displayDefinitionName = element.name;
+        })
+        this.isInitialize = false;
     }
-  }
 
-  /**
-   * Get list data from the API
-   */
-  async fetchCustomizeSettingData() : Promise<any>{
-    this.thList = this._createThList(this.fields);
-    this.thList.forEach(element => {
-      element.formatKey = 'customize_definition.' + element.formatKey;
-    });
-    this._searchParams.car_id = this.carId;
-    // Call & fetch data from API
-    this.apiResult = await this.customSettingService.fetchCustomizeSettingList(
-      this._searchParams,
-      this.requestHeaderParams
-    );
-    // Format the acquired data to be displayed in the table
-    const formatted = this._formatList(this.apiResult.result_data.customize_definitions, this.thList);
-    this._fillLists(this.apiResult.result_header, formatted);
-  }
+    /**
+     * Fetching labels, resources to be displayed in the screen
+     */
+    protected async _fetchDataForInitialize(): Promise<any> {
+        this.labels = this.resources.label;
+        this.resource = this.resources.resource;
+        this.initialize(this.resources);
 
-  /**
-   * Closing dialog callback function
-   */
-  public closeNewDialog(): void {
-    this.modalResponse = {
-      customize_usage_definition_id: '',
-      customize_usage_definition_name: (this.customizeDefinitionName as any).items.filter((element: { id: any; }) => element.id == this.params.regist_customize_usage_definition_name)[0].name,
-      customize_usage_definition_version: this.params.regist_customize_usage_definition_version,
-      start_date: this.datePickerService.convertDateString(this.params.regist_start_date, DateFormat.hyphen, DateFormat.slash),
-      end_date: this.datePickerService.convertDateString(this.params.regist_end_date, DateFormat.hyphen, DateFormat.slash),
-      priority_name: this.params.regist_priority_name,
-      customize_definitions: this._formatListData(this.apiResult.result_data.customize_definitions)
+        if (this.resource.regist_priority_control_flg.values[0].value) {
+            _.set(this.params, 'regist_priority_name', 'high');
+        } else {
+            _.set(this.params, 'regist_priority_name', 'low');
+        }
+        this._initializeDatePicker();
+
+        this.thList = [];
+        this.initThLst.forEach((element: TableHeader) => {
+            this.lstColumnName.forEach((name: string) => {
+                if (name === element.name) this.thList.push(element);
+            })
+        });
+
+        // FORMAT TABLE
+        this.thList.forEach((element: TableHeader) => {
+            switch (element.name) {
+                case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
+                    element.id = 1;
+                    element.label = "カスタマイズ定義名";
+                    element.columnStyle = "width:25%"
+                    break;
+                case "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value":
+                    element.id = 2;
+                    element.label = "想定通信容量(byte/月)";
+                    element.columnStyle = "width:25%"
+                    break;
+                case "customize_usage_definitions.customize_usage_definition.customize_definitions.aggregation_condition_name":
+                    element.id = 3;
+                    element.columnStyle = "width:25%"
+                    break;
+                case "customize_usage_definitions.customize_usage_definition.customize_definitions.send_condition_name":
+                    element.id = 4;
+                    element.columnStyle = "width:25%"
+                    break;
+            }
+        })
+
+        this.thList.sort((afterCol, beforeCol) => {
+            if (afterCol.id > beforeCol.id) {
+                return 1;
+            } else {
+                return -1;
+            }
+        })
     }
-  }
 
-  /**
-   * Format list data to be displayed in the caller screen
-   * @param List data to be formatted
-   * @returns The formatted list data
-   */
-  private _formatListData(list: any[]): any[]{
-    let resultLst: any[] = [];
-    list.forEach(element => {
-      resultLst.push({
-        customize_definition_id: element.customize_definition.customize_definition_id,
-        customize_definition_name : element.customize_definition.customize_definition_name,
-        assumption_data_value : element.customize_definition.assumption_data_value,
-        active_name : element.customize_definition.active_name,
-        latest_operation_code_name : element.customize_definition.latest_operation_code_name,
-        status_name : element.customize_definition.status_name,
-        start_date : element.customize_definition.start_date,
-        end_date : element.customize_definition.end_date,
-        first_receive_datetime : element.customize_definition.first_receive_datetime,
-        latest_receive_datetime : element.customize_definition.last_receive_datetime,
-        aggregation_condition_name : element.customize_definition.aggregation_condition_name,
-        send_condition_name : element.customize_definition.send_condition_name,
-      })
-    });
-    return resultLst;
-  }
+    /**
+     * デートピッカーを初期化する
+     */
+    private _initializeDatePicker(): void {
+        const datePickerConfig = this.userSettingService.getDatePickerConfig();
+        this.beginningWday = datePickerConfig.first_day_of_week_kind;
+        const _window = window as any;
+        this.enableDateRange = _window.settings.datePickerRange.other;
+        this._dateFormat = datePickerConfig.date_format_code;
+        this.timeZone = datePickerConfig.time_difference;
+
+        let datePickerParams = {
+            timeZone: this.timeZone,
+            dateFormat: this._dateFormat,
+        };
+        this.datePickerService.initialize(datePickerParams);
+
+        _.set(
+            this.params,
+            'regist_start_date',
+            this.datePickerService.toMoment().format(
+                DateFormat.slash
+            ));
+        _.set(
+            this.params,
+            'regist_end_date',
+            this.datePickerService.toMoment().add(1, 'month').format(
+                DateFormat.slash
+            ));
+
+        const today = this.datePickerService.toMoment();
+
+        _.set(
+            this.params,
+            'date_from_formatted',
+            today
+                .clone()
+                .subtract(1, 'month')
+                .format(this.datePickerService.inputDateFormat(this._dateFormat))
+        );
+        _.set(this.params, 'date_to', today.format(DateFormat.hyphen));
+        _.set(
+            this.params,
+            'date_to_formatted',
+            today.format(this.datePickerService.inputDateFormat(this._dateFormat))
+        );
+    }
+
+    /**
+     * Refresh table's data in case the dropdown [カスタマイズ用途定義名] changes its value
+     * @param data New selected option of the dropdown
+     */
+    refreshCustomizeDefinitionName(data: any): void {
+        if (!this.isInitialize) {
+            // Setting the request parameters before calling API
+            this._searchParams.customize_usage_definition_id = data;
+            // Call & fetch data from API
+            this.fetchCustomizeSettingData();
+            (this.customizeDefinitionName as any).items.forEach((element: any) => {
+                if (element.id == this.params.regist_customize_usage_definition_name) this.displayDefinitionName = element.name;
+            })
+        }
+    }
+
+    /**
+     * Refresh table's data in case the dropdown [バージョン] changes its value
+     * @param data New selected option of the dropdown
+     */
+    refreshCustomizeDefinitionVersion(data: any): void {
+        if (!this.isInitialize) {
+            // Setting the request parameters before calling API
+            this._searchParams.customize_usage_definition_version = data;
+            // Call & fetch data from API
+            this.fetchCustomizeSettingData();
+        }
+    }
+
+    /**
+     * Get list data from the API
+     */
+    async fetchCustomizeSettingData(): Promise<any> {
+        this._searchParams.car_id = this.carId;
+        // Call & fetch data from API
+        this.apiResult = await this.customSettingService.fetchCustomizeSettingList(
+            this._searchParams,
+            this.requestHeaderParams
+        );
+        // Format the acquired data to be displayed in the table
+        let contents = (this.apiResult.result_data.customize_definitions as any[]).map((cur: any) => {
+            return {
+                customize_usage_definition: {
+                    customize_definitions: {
+                        customize_definition_name: cur.customize_definition.customize_definition_name,
+                        assumption_data_value: cur.customize_definition.assumption_data_value,
+                        aggregation_condition_name: cur.customize_definition.aggregation_condition_name,
+                        send_condition_name: cur.customize_definition.send_condition_name,
+                    }
+                }
+            }
+        })
+
+        const formatted = this._formatList(contents, this.thList);
+        this._fillLists(this.apiResult.result_header, formatted);
+    }
+
+    /**
+     * Closing dialog callback function
+     */
+    public closeNewDialog(): void {
+        this.modalResponse = {
+            customize_usage_definition_id: '',
+            customize_usage_definition_name: (this.customizeDefinitionName as any).items.filter((element: { id: any; }) => element.id == this.params.regist_customize_usage_definition_name)[0].name,
+            customize_usage_definition_version: this.params.regist_customize_usage_definition_version,
+            start_date: this.datePickerService.convertDateString(this.params.regist_start_date, DateFormat.hyphen, DateFormat.slash),
+            end_date: this.datePickerService.convertDateString(this.params.regist_end_date, DateFormat.hyphen, DateFormat.slash),
+            priority_name: this.params.regist_priority_name,
+            customize_definitions: this._formatListData(this.apiResult.result_data.customize_definitions)
+        }
+    }
+
+    /**
+     * Format list data to be displayed in the caller screen
+     * @param List data to be formatted
+     * @returns The formatted list data
+     */
+    private _formatListData(list: any[]): any[] {
+        let resultLst: any[] = [];
+        list.forEach(element => {
+            resultLst.push({
+                customize_definition_id: element.customize_definition.customize_definition_id,
+                customize_definition_name: element.customize_definition.customize_definition_name,
+                assumption_data_value: element.customize_definition.assumption_data_value,
+                active_name: element.customize_definition.active_name,
+                latest_operation_code_name: element.customize_definition.latest_operation_code_name,
+                status_name: element.customize_definition.status_name,
+                start_date: element.customize_definition.start_date,
+                end_date: element.customize_definition.end_date,
+                first_receive_datetime: element.customize_definition.first_receive_datetime,
+                latest_receive_datetime: element.customize_definition.last_receive_datetime,
+                aggregation_condition_name: element.customize_definition.aggregation_condition_name,
+                send_condition_name: element.customize_definition.send_condition_name,
+            })
+        });
+        return resultLst;
+    }
 }

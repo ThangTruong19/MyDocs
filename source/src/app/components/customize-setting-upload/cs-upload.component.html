@@ -73,6 +73,16 @@
         </div>
       </div>
 
+      <ng-template #uploadResultModalContent>
+        <app-simple-list-confirm
+          [desc]="thList"
+          [val]="listVal"
+          [warningColumns]="'all'"
+        >
+        </app-simple-list-confirm>
+        <p class="result-count-message">{{ resultCountMessage }}</p>
+      </ng-template>
+
 
     </div>
   </section>

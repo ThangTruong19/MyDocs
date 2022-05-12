@@ -1,17 +1,26 @@
 [
   {
-    "path": "user.groups.belonging_group.identification.label",
+    "path": "belonging_group_id",
     "name": "所属",
     "help": "所属のヘルプ文言",
     "type": 10,
     "placeholder_text": "",
     "memo": "",
     "items": [
-
       {
-        "key": "所属3",
-        "value": "100003",
-        "kind": "D"
+        "key": "グループ3の代理店",
+        "value": "R0003",
+        "kind": "DD"
+      },
+      {
+        "key": "グループ3の顧客",
+        "value": "R0004",
+        "kind": "DC"
+      },
+      {
+        "key": "グループ3のサブグループ",
+        "value": "R0005",
+        "kind": "DS"
       }
     ]
   }

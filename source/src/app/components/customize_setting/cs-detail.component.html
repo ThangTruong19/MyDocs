@@ -13,48 +13,61 @@
                     <div class="app-control">
                         <button
                             type="button"
-                            class="btn btn-primary btn-send"
+                            class="btn"
+                            title="追加"
                             (click)="onClickAdd()"
                         >
-                            <span>追加</span>
+                            <span>
+                                <i class="app-icon app-icon-add"> </i>
+                            </span>
                         </button>
                         <button
                             type="button"
-                            class="btn btn-primary btn-send"
+                            class="btn"
+                            title="編集内容破棄"
                             [disabled]="disabled"
                             (click)="onClickDiscardAll()"
                         >
-                            <span>編集内容破棄</span>
+                            <span>
+                                <i class="app-icon app-icon-discard"> </i>
+                            </span>
                         </button>
                         <button
                             type="button"
-                            class="btn btn-primary btn-send"
+                            class="btn"
+                            title="設定取得要求"
                             (click)="onClickGetRequest()"
                         >
-                            <span>設定取得要求</span>
+                            <span>
+                                <i
+                                    class="app-icon app-icon-acquisition-request"
+                                >
+                                </i>
+                            </span>
                         </button>
                         <button
                             type="button"
-                            class="btn btn-primary btn-send"
+                            class="btn"
+                            title="設定更新要求"
                             [disabled]="disabled"
                             (click)="onClickUpdateRequest()"
                         >
-                            <span>設定更新要求</span>
+                            <span>
+                                <i class="app-icon app-icon-update-request">
+                                </i>
+                            </span>
                         </button>
                         <button
                             type="button"
-                            class="btn btn-primary btn-send"
+                            class="btn"
+                            title="設定即時更新要求"
                             [disabled]="disabled"
                             (click)="onClickImmediateUpdateRequest()"
                         >
-                            <span>設定即時更新要求</span>
-                        </button>
-                        <button
-                            type="button"
-                            class="btn btn-primary btn-send"
-                            (click)="onClickCustomSettingRequestResendDialog()"
-                        >
-                            <span>カスタマイズ設定要求再送確認</span>
+                            <span>
+                                <i class="app-icon app-icon-update-request">
+                                </i>
+                            </span>
                         </button>
                     </div>
                     <!-- 一覧テーブル上部検索オプション欄 -->
@@ -97,10 +110,11 @@
                             [checkIdName]="checkIdName"
                             [checkedItems]="checkedItems"
                             [checkAll]="checkAll"
-                            [mergeColumns]="mergeColumns"
+
                             (sort)="onChangeSort($event)"
                         >
-
+                        <!-- TODO: -->
+                        <!-- [mergeColumns]="mergeColumns" -->
                             <ng-template #customFixedTableThContent>
                                 <th class="fixed">{{ labels.edit_label }}</th>
                                 <th class="fixed">
@@ -128,24 +142,17 @@
                             <ng-template
                                 #customFixedTableRowContent
                                 let-data="data"
+                                let-tblFunctions="tblFunctions"
                             >
                                 <!-- TODO: 判定条件、メソッド等 -->
                                 <td
                                     *ngIf="
-                                        isDisplayFixedDataRow(
-                                            true,
-                                            data,
-                                            isMergeRows
+                                        tblFunctions.isDisplayFixedDataRow(
+                                            data
                                         )
                                     "
                                     class="app-index-td app-table__small app-sm-link text-center fixed"
-                                    [attr.rowspan]="
-                                        getFixedDataRowspan(
-                                            title,
-                                            data,
-                                            isMergeRows
-                                        )
-                                    "
+                                    [attr.rowspan]="tblFunctions.getFixedDataRowspan(data)"
                                     (click)="onClickEdit(data)"
                                 >
                                     <span>
@@ -154,18 +161,14 @@
                                 </td>
                                 <td
                                     *ngIf="
-                                        isDisplayFixedDataRow(
-                                            true,
-                                            data,
-                                            isMergeRows
+                                        tblFunctions.isDisplayFixedDataRow(
+                                            data
                                         )
                                     "
                                     class="app-index-td app-table__small text-center fixed"
                                     [attr.rowspan]="
-                                        getFixedDataRowspan(
-                                            title,
-                                            data,
-                                            isMergeRows
+                                        tblFunctions.getFixedDataRowspan(
+                                            data
                                         )
                                     "
                                 >
@@ -176,21 +179,19 @@
                                 <ng-container *ngFor="let title of fixedThList">
                                     <td
                                         *ngIf="
-                                            isDisplayDataRow(
+                                            tblFunctions.isDisplayDataRow(
                                                 title,
-                                                data,
-                                                isMergeRows
+                                                data
                                             )
                                         "
                                         class="td-{{
                                             title.shortName
                                         }} app-index-td"
-                                        [style]="getColumnStyle(title)"
+                                        [style]="tblFunctions.getColumnStyle(title)"
                                         [attr.rowspan]="
-                                            getDataRowspan(
+                                            tblFunctions.getDataRowspan(
                                                 title,
-                                                data,
-                                                isMergeRows
+                                                data
                                             )
                                         "
                                     >
@@ -228,27 +229,28 @@
                                     {{ labels.retry_label }}
                                 </th>
                             </ng-template>
-                            <ng-template #customTableRowContent let-data="data">
+                            <ng-template #customTableRowContent
+                                let-data="data"
+                                let-tblFunctions="tblFunctions"
+                            >
                                 <ng-container
                                     *ngFor="let title of scrollableThList"
                                 >
                                     <td
                                         *ngIf="
-                                            isDisplayDataRow(
+                                            tblFunctions.isDisplayDataRow(
                                                 title,
-                                                data,
-                                                isMergeRows
+                                                data
                                             )
                                         "
                                         class="td-{{
                                             title.shortName
                                         }} app-index-td"
-                                        [style]="getColumnStyle(title)"
+                                        [style]="tblFunctions.getColumnStyle(title)"
                                         [attr.rowspan]="
-                                            getDataRowspan(
+                                            tblFunctions.getDataRowspan(
                                                 title,
-                                                data,
-                                                isMergeRows
+                                                data
                                             )
                                         "
                                     >
@@ -260,10 +262,8 @@
                                 <!-- TODO: 判定条件、メソッド等 -->
                                 <td
                                     *ngIf="
-                                        isDisplayFixedDataRow(
-                                            true,
-                                            data,
-                                            isMergeRows
+                                        tblFunctions.isDisplayFixedDataRow(
+                                            data
                                         )
                                     "
                                     class="app-index-td app-table__small app-sm-link text-center fixed"
@@ -272,10 +272,8 @@
                                     }"
                                     (click)="onClickDiscard(data)"
                                     [attr.rowspan]="
-                                        getFixedDataRowspan(
-                                            title,
-                                            data,
-                                            isMergeRows
+                                        tblFunctions.getFixedDataRowspan(
+                                            data
                                         )
                                     "
                                 >
@@ -284,29 +282,25 @@
                                             *ngIf="
                                                 !discardIconHiddenFunction(data)
                                             "
-                                            class="app-icon app-icon-dustbox"
+                                            class="app-icon app-icon-discard"
                                         >
                                         </i>
                                     </span>
                                 </td>
                                 <td
                                     *ngIf="
-                                        isDisplayFixedDataRow(
-                                            true,
-                                            data,
-                                            isMergeRows
+                                        tblFunctions.isDisplayFixedDataRow(
+                                            data
                                         )
                                     "
                                     class="app-index-td app-table__small app-sm-link text-center fixed"
                                     [ngClass]="{
                                         disable: retryIconHiddenFunction(data)
                                     }"
-                                    (click)="onClickDiscard(data)"
+                                    (click)="onClickRetry(data)"
                                     [attr.rowspan]="
-                                        getFixedDataRowspan(
-                                            title,
-                                            data,
-                                            isMergeRows
+                                        tblFunctions.getFixedDataRowspan(
+                                            data
                                         )
                                     "
                                 >
@@ -315,7 +309,7 @@
                                             *ngIf="
                                                 !retryIconHiddenFunction(data)
                                             "
-                                            class="app-icon app-icon-dustbox"
+                                            class="app-icon app-icon-discard"
                                         >
                                         </i>
                                     </span>
@@ -328,13 +322,14 @@
         </div>
     </div>
     <ng-template #csNewModalContent>
-        <app-cs-new [carId]="carId" [resources]="data.resource"></app-cs-new>
+        <app-cs-new [carId]="carId" [resources]="resources" [initThLst]="this.thList"></app-cs-new>
     </ng-template>
     <ng-template #csEditModalContent>
         <app-cs-edit
             [carId]="carId"
             [inputParams]="inputParams"
-            [resources]="data.resource"
+            [resources]="resources"
+            [initThLst]="this.thList"
         ></app-cs-edit>
     </ng-template>
     <ng-template #csGetRequestModalContent>
@@ -344,7 +339,7 @@
         <app-cs-update-request-confirm
             [labels]="labels"
             [tableData]="tableData"
-            [initThLst]="thList"
+            [initThLst]="this.thList"
         >
         </app-cs-update-request-confirm>
     </ng-template>
@@ -352,7 +347,7 @@
         <app-cs-immediate-update-request-confirm
             [labels]="labels"
             [tableData]="tableData"
-            [initThLst]="thList"
+            [initThLst]="this.thList"
         >
         </app-cs-immediate-update-request-confirm>
     </ng-template>
@@ -364,7 +359,8 @@
         <app-cs-request-resend-confirm
             [labels]="labels"
             [tableData]="tableData"
-            [initThLst]="thList">
+            [initThLst]="this.thList"
+        >
         </app-cs-request-resend-confirm>
     </ng-template>
 </section>

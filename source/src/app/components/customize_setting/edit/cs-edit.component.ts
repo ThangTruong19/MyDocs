@@ -9,7 +9,7 @@ import { CommonHeaderService } from 'app/services/shared/common-header.service';
 import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { ModalService } from 'app/services/shared/modal.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
-import { Fields, Resources } from 'app/types/common';
+import { Fields, Resources, TableHeader } from 'app/types/common';
 import * as _ from 'lodash';
 
 // モーダルからの返却値
@@ -52,6 +52,8 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
   @Input()
   public resources: Resources;
   @Input()
+  public initThLst: TableHeader[];
+  @Input()
   public inputParams = {
     edit_customize_usage_definition_version: '',
     edit_start_date: '',
@@ -60,7 +62,7 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
     edit_priority_name: '',
     edit_customize_usage_definition_name: '',
     edit_customize_usage_definition_id: ''
-};
+  };
 
   private apiResult: any;
   public modalResponse: CustomizeUsageDefinitionResponseData;
@@ -72,43 +74,20 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
   @ViewChild('priority') priority: ElementRef;
 
   // デートピッカー関連
-  beginningWday : number;
-  enableDateRange : string[];
-  _dateFormat : string;
-  timeZone : string;
+  beginningWday: number;
+  enableDateRange: string[];
+  _dateFormat: string;
+  timeZone: string;
   datePickerParams: Object;
   isDelete: boolean = false;
 
   // Table's header definition
-  fields : Fields = [
-    {
-      "display_sequence_no": "1",
-      "name": "カスタマイズ定義名",
-      "path": "customize_definition.customize_definition_name",
-      "control_code": "1",
-      "display_code": "1"
-    },
-    {
-      "display_sequence_no": "2",
-      "name": "想定通信容量(byte/月)",
-      "path": "customize_definition.assumption_data_value",
-      "control_code": "1",
-      "display_code": "1"
-    },
-    {
-      "display_sequence_no": "3",
-      "name": "カスタマイズ集計条件名",
-      "path": "customize_definition.aggregation_condition_name",
-      "control_code": "1",
-      "display_code": "1"
-    },
-    {
-      "display_sequence_no": "4",
-      "name": "カスタマイズ送信条件名",
-      "path": "customize_definition.send_condition_name",
-      "control_code": "1",
-      "display_code": "1"
-  }];
+  lstColumnName = [
+    'customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name',
+    'customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value',
+    'customize_usage_definitions.customize_usage_definition.customize_definitions.aggregation_condition_name',
+    'customize_usage_definitions.customize_usage_definition.customize_definitions.send_condition_name'
+  ];
 
   _searchParams = {
     car_id: "",
@@ -151,15 +130,58 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
     this.resource = this.resources.resource;
     this.params = _.clone(this.inputParams);
     this.initialize(this.resources);
-    // TODO: Setting the default selected option for a combobox[優先度] = '低' (Still in Q&A)
-    //_.set(this.params,'regist_priority_name','low');
+
+    if (this.resource.edit_priority_control_flg.values[0].value) {
+      _.set(this.params, 'edit_priority_name', 'high');
+    } else {
+      _.set(this.params, 'edit_priority_name', 'low');
+    }
     this._initializeDatePicker();
+
+    this.thList = [];
+    this.initThLst.forEach((element: TableHeader) => {
+      this.lstColumnName.forEach((name: string) => {
+        if (name === element.name) this.thList.push(element);
+      })
+    });
+
+    // FORMAT TABLE
+    this.thList.forEach((element: TableHeader) => {
+      switch (element.name) {
+        case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
+          element.id = 1;
+          element.label = "カスタマイズ定義名";
+          element.columnStyle = "width:25%"
+          break;
+        case "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value":
+          element.id = 2;
+          element.label = "想定通信容量(byte/月)";
+          element.columnStyle = "width:25%"
+          break;
+        case "customize_usage_definitions.customize_usage_definition.customize_definitions.aggregation_condition_name":
+          element.id = 3;
+          element.columnStyle = "width:25%"
+          break;
+        case "customize_usage_definitions.customize_usage_definition.customize_definitions.send_condition_name":
+          element.id = 4;
+          element.columnStyle = "width:25%"
+          break;
+      }
+    })
+
+    this.thList.sort((afterCol, beforeCol) => {
+      if (afterCol.id > beforeCol.id) {
+        return 1;
+      } else {
+        return -1;
+      }
+    })
   }
 
   /**
    * デートピッカーを初期化する
    */
-   private _initializeDatePicker(): void {
+  private _initializeDatePicker(): void {
     const datePickerConfig = this.userSettingService.getDatePickerConfig();
     this.beginningWday = datePickerConfig.first_day_of_week_kind;
     const _window = window as any;
@@ -178,8 +200,8 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
    * Refresh table's data in case the dropdown [バージョン] changes its value
    * @param data New selected option of the dropdown
    */
-  refreshCustomizeDefinitionVersion(data: any){
-    if(!this.isInitialize){
+  refreshCustomizeDefinitionVersion(data: any) {
+    if (!this.isInitialize) {
       // Setting the request parameters before calling API
       this._searchParams.customize_usage_definition_version = data;
       // Call & fetch data from API
@@ -190,11 +212,7 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
   /**
    * Get list data from the API
    */
-  async fetchCustomizeSettingData() : Promise<any>{
-    this.thList = this._createThList(this.fields);
-    this.thList.forEach(element => {
-      element.formatKey = 'customize_definition.' + element.formatKey;
-    });
+  async fetchCustomizeSettingData(): Promise<any> {
     this._searchParams.car_id = this.carId;
     // Call & fetch data from API
     this.apiResult = await this.customSettingService.fetchCustomizeSettingList(
@@ -202,7 +220,20 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
       this.requestHeaderParams
     );
     // Format the acquired data to be displayed in the table
-    const formatted = this._formatList(this.apiResult.result_data.customize_definitions, this.thList);
+    let contents = (this.apiResult.result_data.customize_definitions as any[]).map((cur: any) => {
+      return {
+        customize_usage_definition: {
+          customize_definitions: {
+            customize_definition_name: cur.customize_definition.customize_definition_name,
+            assumption_data_value: cur.customize_definition.assumption_data_value,
+            aggregation_condition_name: cur.customize_definition.aggregation_condition_name,
+            send_condition_name: cur.customize_definition.send_condition_name,
+          }
+        }
+      }
+    })
+
+    const formatted = this._formatList(contents, this.thList);
     this._fillLists(this.apiResult.result_header, formatted);
   }
 
@@ -210,10 +241,10 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
    * Hide/Show 「開始日・終了日・有効/無効・優先度」based on the selected value of a combobox [要求種別]
    * @param The selected value of a combobox [要求種別] (更新/削除)
    */
-  changeRequestType(data: any): void{
-    if(data === 'update'){
+  changeRequestType(data: any): void {
+    if (data === 'update') {
       this.isDelete = false;
-    }else{
+    } else {
       this.isDelete = true;
     }
   }
@@ -221,7 +252,7 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
   /**
    * Closing dialog callback function
    */
-   public closeEditDialog(): void {
+  public closeEditDialog(): void {
     this.modalResponse = {
       customize_usage_definition_id: '',
       customize_usage_definition_name: this.params.edit_customize_usage_definition_name,
@@ -239,22 +270,22 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
    * @param List data to be formatted
    * @returns The formatted list data
    */
-  private _formatListData(list: any[]): any[]{
+  private _formatListData(list: any[]): any[] {
     let resultLst: any[] = [];
     list.forEach(element => {
       resultLst.push({
         customize_definition_id: element.customize_definition.customize_definition_id,
-        customize_definition_name : element.customize_definition.customize_definition_name,
-        assumption_data_value : element.customize_definition.assumption_data_value,
-        active_name : element.customize_definition.active_name,
-        latest_operation_code_name : element.customize_definition.latest_operation_code_name,
-        status_name : element.customize_definition.status_name,
-        start_date : element.customize_definition.start_date,
-        end_date : element.customize_definition.end_date,
-        first_receive_datetime : element.customize_definition.first_receive_datetime,
-        latest_receive_datetime : element.customize_definition.last_receive_datetime,
-        aggregation_condition_name : element.customize_definition.aggregation_condition_name,
-        send_condition_name : element.customize_definition.send_condition_name,
+        customize_definition_name: element.customize_definition.customize_definition_name,
+        assumption_data_value: element.customize_definition.assumption_data_value,
+        active_name: element.customize_definition.active_name,
+        latest_operation_code_name: element.customize_definition.latest_operation_code_name,
+        status_name: element.customize_definition.status_name,
+        start_date: element.customize_definition.start_date,
+        end_date: element.customize_definition.end_date,
+        first_receive_datetime: element.customize_definition.first_receive_datetime,
+        latest_receive_datetime: element.customize_definition.last_receive_datetime,
+        aggregation_condition_name: element.customize_definition.aggregation_condition_name,
+        send_condition_name: element.customize_definition.send_condition_name,
       })
     });
     return resultLst;

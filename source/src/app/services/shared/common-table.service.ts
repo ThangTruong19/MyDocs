@@ -4,11 +4,12 @@ import { TableHeader } from 'app/types/common';
 @Injectable()
 export class CommonTableService {
 
-    public isDisplayDataRow(tableHeader: TableHeader, listData: any, isMergeRows: boolean): boolean {
+    public isDisplayDataRow(tableHeader: TableHeader, listData: any,
+        isMergeRows: boolean): boolean {
         if (tableHeader.displayable) {
             if (!isMergeRows) {
                 return true;
-            } else if((isMergeRows && !(listData.view && listData.view.displayNoneRow
+            } else if ((isMergeRows && !(listData.view && listData.view.displayNoneRow
                 && listData.view.displayNoneRow[tableHeader.dataKey || tableHeader.name]))) {
                 return true;
             } else {
@@ -19,7 +20,8 @@ export class CommonTableService {
         }
     }
 
-    public getDataRowspan(tableHeader: TableHeader, listData: any, isMergeRows: boolean): string {
+    public getDataRowspan(tableHeader: TableHeader, listData: any,
+        isMergeRows: boolean): string {
         if (tableHeader.displayable) {
             if (isMergeRows && listData.view && listData.view.rowspan) {
                 return listData.view.rowspan[tableHeader.dataKey || tableHeader.name];
@@ -59,16 +61,12 @@ export class CommonTableService {
         }
     }
 
-    public isDisplayFixedDataRow(isDisplayColumn: boolean, listData: any, isMergeRows: boolean): boolean {
-        if (isDisplayColumn) {
-            if (!isMergeRows) {
-                return true;
-            } else if (isMergeRows && listData.view && listData.view.displayNoneRow
-                && listData.view.displayNoneRow.fixedColumn) {
-                return true;
-            } else {
-                return false;
-            }
+    public isDisplayFixedDataRow(listData: any, isMergeRows: boolean): boolean {
+        if (!isMergeRows) {
+            return true;
+        } else if (isMergeRows && !(listData.view && listData.view.displayNoneRow
+            && listData.view.displayNoneRow.fixedColumn)) {
+            return true;
         } else {
             return false;
         }

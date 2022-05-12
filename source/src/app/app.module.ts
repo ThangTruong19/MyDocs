@@ -32,6 +32,9 @@ import { CarListService } from 'app/services/car-list/car-list.service';
 import { UrlService } from 'app/services/shared/url.service';
 import { GlobalErrorHandler } from 'app/handler/global-error-hanler';
 
+// TODO: 削除
+import { KbaModalService } from 'app/services/customize-setting-upload/upload-result/app-modal.service';
+
 @NgModule({
     declarations: [
         AppIndexComponent,
@@ -62,6 +65,8 @@ import { GlobalErrorHandler } from 'app/handler/global-error-hanler';
         },
         CustomizeSettingUploadService,
         CarListService,
+
+        KbaModalService,
     ],
     bootstrap: [AppIndexComponent]
 })

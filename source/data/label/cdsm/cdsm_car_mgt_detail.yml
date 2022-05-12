@@ -193,7 +193,7 @@ labels:
 
   - id: 33
     description: デフォルト
-    name: default
+    name: default_body_label
     ja: デフォルト
     en:
 
