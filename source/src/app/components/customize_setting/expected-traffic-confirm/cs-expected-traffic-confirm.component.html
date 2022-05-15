@@ -6,6 +6,36 @@
         <div class="row">
             <p id="vehicle-info">PC200-8-1234 (PlaceHolder)</p>
         </div>
+        <div class="row" style="margin-top: 20px;">
+            <p class="table-label">{{labels.regular_call_customize_data}}</p>
+            <app-common-table
+                [lists]="lists1"
+                [thList]="thList1"
+                [pageParams]="pageParams"
+                [(sortingParams)]="sortingParams"
+                [labels]="labels"
+                [isFetching]="isFetching"
+                [collapsed]="collapsed"
+                [mergeColumns]="mergeColumns1"
+                [emptyListMessage]="'Empty'"
+                >
+            </app-common-table>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <p class="table-label">{{labels.other_customize_data}}</p>
+            <app-common-table
+                [lists]="lists2"
+                [thList]="thList2"
+                [pageParams]="pageParams"
+                [(sortingParams)]="sortingParams"
+                [labels]="labels"
+                [collapsed]="collapsed"
+                [isFetching]="isFetching"
+                [mergeColumns]="mergeColumns2"
+                [emptyListMessage]="'Empty'"
+                >
+            </app-common-table>
+        </div>
 
     </div>
 </div>

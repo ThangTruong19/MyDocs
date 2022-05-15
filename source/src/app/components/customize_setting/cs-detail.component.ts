@@ -130,6 +130,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
   @ViewChild('csImmediateUpdateRequestConfirmModalContent', { static: false }) csImmediateUpdateRequestConfirmModalContent: TemplateRef<null>;
   @ViewChild('csInputDataCancelConfirmModalContent', { static: false }) csInputDataCancelConfirmModalContent: TemplateRef<null>;
   @ViewChild('csRequestResendConfirmModalContent', { static: false }) csRequestResendConfirmModalContent: TemplateRef<null>;
+  @ViewChild('csExpectedTrafficConfirmModalContent', { static: false }) csExpectedTrafficConfirmModalContent: TemplateRef<null>;
   @ViewChild(CsNewComponent) newChildComponent: CsNewComponent;
   @ViewChild(CsEditComponent) editChildComponent: CsEditComponent;
   @ViewChild(CsImmediateUpdateRequestConfirmComponent) csImmediateUpdateRequestConfirmComponent: CsImmediateUpdateRequestConfirmComponent;
@@ -892,6 +893,29 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         close: () => {
           this.tableData = []
         }
+      },
+      {
+        size: 'lg',
+      }
+    );
+  }
+
+  onClickExpectedTrafficConfirm(){
+    const keys = Object.keys(this.checkedItems)
+    this.tableData = this.lists.visibleList.filter(
+      (item: any) => {
+        const id = item[this.customizeUsageDefinitionIdKey]
+        return keys.includes(String(id))
+      }
+    )
+
+    this.modalService.open(
+      {
+        title: '想定通信量確認',
+        labels: this.labels,
+        content: this.csExpectedTrafficConfirmModalContent,
+        closeBtnLabel: this.labels.cancel,
+        okBtnLabel: this.labels.ok_btn,
       },
       {
         size: 'lg',

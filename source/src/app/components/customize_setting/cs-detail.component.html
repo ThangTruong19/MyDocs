@@ -69,6 +69,13 @@
                                 </i>
                             </span>
                         </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            [disabled]="disabled"
+                            (click)="onClickExpectedTrafficConfirm()">
+                            <span>想定通信量確認</span>
+                        </button>
                     </div>
                     <!-- 一覧テーブル上部検索オプション欄 -->
                     <div class="app-table-options" [hidden]="count <= 0">
@@ -362,6 +369,14 @@
             [initThLst]="this.thList"
         >
         </app-cs-request-resend-confirm>
+    </ng-template>
+    <ng-template #csExpectedTrafficConfirmModalContent>
+        <app-cs-expected-traffic-confirm
+            [labels]="labels"
+            [tableData]="tableData"
+            [initThLst]="this.thList"
+        >
+        </app-cs-expected-traffic-confirm>
     </ng-template>
 </section>
 <app-sidemenu [isLoading]="isLoading"></app-sidemenu>
