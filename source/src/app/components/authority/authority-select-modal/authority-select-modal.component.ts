@@ -7,6 +7,9 @@ import {
 } from '@angular/forms';
 import { AbstractBaseComponent } from 'app/components/shared/abstract-component/abstract-base.component';
 import { SelectedComponent } from 'app/components/shared/selected/selected.component';
+import { ScreenCodeConst } from 'app/constants/api/screen-code-const';
+import { UserService } from 'app/services/shared/user.service';
+import { UserIndexParams } from 'app/types/user';
 import * as _ from 'lodash';
 
 @Component({
@@ -19,9 +22,16 @@ export class AuthoritySelectModalComponent implements OnInit {
   @Input() labels: any;
   @Input() selectedAuthorities: any[];
   @Input() resource: any;
+  @Input() data: any;
+  @Input() accessLevel: any;
   @Output() check: EventEmitter<any> = new EventEmitter<any>();
   @Output() checkedAll: EventEmitter<any> = new EventEmitter<any>();
 
+  constructor(
+    private userService: UserService,
+  ) {
+
+  }
 
   checkAll = false;
   evacuateSelectedAuthorities: any[] = [];
@@ -79,5 +89,29 @@ export class AuthoritySelectModalComponent implements OnInit {
    */
   isChecked(value: any) {
     return _.includes(this.evacuateSelectedAuthorities, value);
+  }
+
+  /**
+   * アクセスレベル変更時コールバック
+   * @param value 値
+   */
+  async onKindChange(value: any, user: any) {
+
+    const param = {
+      granted_role_id: _.get(user, 'group.granted_role.id'),
+    }
+    const res = await this.userService.fetchGrantedAuthorityIdsByRoleId(
+      ScreenCodeConst.AUTHORITY_MGT_LIST_CODE,
+      param
+    );
+    this.authorities = []
+    const listAuthorities = res.user.group.granted_authority_ids.values;
+
+    // this.authoritiesとユーザのアクセスレベルを比較して、不適合のものを削除する
+    for (var i = 0; i < listAuthorities.length; i++) {
+      if (listAuthorities[i].kind == value) {
+        this.authorities.push(listAuthorities[i])
+      }
+    }
   }
 }

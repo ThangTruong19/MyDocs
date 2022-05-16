@@ -5,7 +5,7 @@
     <p class="app-table-pagination-count float-left">{{ replacePageCount() }}</p>
     <div class="app-table-pagination-move float-right">
         <p *ngIf="showNumberOfDisplay">{{ labels.number_of_display }}</p>
-        <div class="app-select" *ngIf="showNumberOfDisplay">
+        <div class="app-pagination-select" *ngIf="showNumberOfDisplay">
             <select
                 [(ngModel)]="params.pageCount"
                 (ngModelChange)="onChangePageCount()"

@@ -1,7 +1,6 @@
 import { isArray, map } from 'lodash';
 import { Injectable } from '@angular/core';
 import { ErrorData } from 'app/types/error-data';
-import * as $ from 'jquery';
 
 type AlertType = 'success' | 'info' | 'warning' | 'danger';
 
@@ -28,6 +27,20 @@ export class AlertService {
 
     public get type(): string {
         return this._type;
+    }
+
+    public get typeCss(): string {
+        if (this._type === 'success') {
+            return 'alert-success';
+        } else if (this._type === 'info') {
+            return 'alert-info';
+        } else if (this._type === 'warning') {
+            return 'alert-warning';
+        } else if (this._type === 'danger') {
+            return 'alert-danger';
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -95,12 +108,6 @@ export class AlertService {
             requestAnimationFrame(() => {
                 this._isVisible = true;
             });
-
-            const closeBtn: JQuery<HTMLElement> = $('.btn-close');
-            if (closeBtn.length) {
-                closeBtn.addClass('close');
-                closeBtn.html('×');
-            }
 
             const _window = window as any;
             if (!this.manual) {

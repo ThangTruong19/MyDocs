@@ -88,13 +88,22 @@ export class AppIndexComponent implements OnInit {
     }
 
     /**
-     * アプリのバージョンをコンソール上に表示する。
+     * アプリのバージョンのログを表示する。
      */
     private outputAppVersion(): void {
-        console.log((window as any).appVersion);
-        console.log((window as any).appVendorVersion);
-        console.log(commonModuleVersion);
-        console.log(authModuleVersion);
+        this.outputVersionLog((window as any).appVersion);
+        this.outputVersionLog((window as any).appVendorVersion);
+        this.outputVersionLog(commonModuleVersion);
+        this.outputVersionLog(authModuleVersion);
+    }
+
+    /**
+     * アプリのバージョンのログをコンソール上に表示する。
+     */
+    private outputVersionLog(version: string): void {
+        if (version) {
+            console.log(version);
+        }
     }
 
     /**

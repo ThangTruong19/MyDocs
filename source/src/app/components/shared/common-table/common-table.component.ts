@@ -166,7 +166,11 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
         getFixedDataRowspan: (listData: any) =>
             this.commonTableService.getFixedDataRowspan(listData, this.isMergeRows),
         getSimpleTableDataColumnCss: () =>
-            this.commonTableService.getSimpleTableDataColumnCss(this.isMergeRows)
+            this.commonTableService.getSimpleTableDataColumnCss(this.isMergeRows),
+        getArrayColumnData: (data: any, pathName: string) =>
+            this.commonTableService.getArrayColumnData(data, pathName),
+        getLastColumnPathName: (pathName: string) =>
+            this.commonTableService.getLastColumnPathName(pathName)
     }
 
     constructor(

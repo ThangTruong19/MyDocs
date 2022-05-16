@@ -23,15 +23,8 @@ import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { UserSettingService } from 'app/services/api/user-setting.service';
 
 import { MimeType } from 'app/constants/mime-types';
-import { AuthoritySelectComponent } from 'app/components/authority/authority-select/authority-select.component';
-
 import { OperatorInitSearchParams } from 'app/types/car';
 import { SelectTypeComponent } from 'app/components/shared/select-type/select-type.component';
-import { CustomizeSettingService } from 'app/services/customize_setting/customize-setting.service';
-
-import { KbaModalService } from 'app/services/customize-setting-upload/upload-result/app-modal.service';
-import { ModalValues } from 'app/types/common'
-
 import { CsDetailService } from 'app/services/customize_setting/cs-detail.service';
 
 interface RequestHeaderParams {
@@ -54,18 +47,12 @@ export class CarListComponent extends AbstractIndexComponent {
     @ViewChild('belongingCustomizeUsageDefinitionId', { static: false })
     belongingCustomizeUsageDefinitionId: SelectedComponent;
 
-    @ViewChildren(AuthoritySelectComponent)
-    authoritySelectComponentList: QueryList<AuthoritySelectComponent>;
-
     @ViewChild('resetModalContent', { static: false })
     resetModalContent: TemplateRef<null>;
     @ViewChildren(SelectedComponent)
     selectors: QueryList<SelectedComponent>;
     @ViewChildren(SelectTypeComponent)
     selectTypers: QueryList<SelectTypeComponent>;
-
-    @ViewChild('initModalContent', { static: false })
-    initModalContent: TemplateRef<null>;
 
     @ViewChild('csGetRequestModalContent', { static: false }) csGetRequestModalContent: TemplateRef<null>;
 
@@ -96,7 +83,6 @@ export class CarListComponent extends AbstractIndexComponent {
     iridiumValue = '3'; // TODO:
 
     showCloseBtn: boolean = true;
-    initModalValues: ModalValues;
 
     initParams: OperatorInitSearchParams = {
       common: {
@@ -131,7 +117,6 @@ export class CarListComponent extends AbstractIndexComponent {
       protected datePickerService: DatePickerService,
       protected userSettingService: UserSettingService
 
-      ,protected tempModalService: KbaModalService = null
       ,private csDetailService: CsDetailService
     ) {
       super(navigationService, title, router, ref, header);
@@ -178,32 +163,6 @@ export class CarListComponent extends AbstractIndexComponent {
       this.fetchList(this.sortingParams['sort']);
     }
 
-  /**
-   * 対象画面のプルダウン変更時の処理
-   * @param value 対象画面
-   */
-  // handleAppCodeChange(value: any) { }
-
-  /**
-   * 大分類変更時の処理
-   * @param value 選択値
-   */
-  // async onCategoryCodeChange(value: any) {
-  //   // const res = await this.carListService.fetchBelongingCategoryCode(value);
-  //   const res = await this.carListService.fetchAllDropdownSelection(value);
-  //   console.log('throw breaks');console.log(res);
-
-  //   _.set(
-  //     this.resource,
-  //     'operation_history.code',
-  //     _.get(res, 'operation_history.code')
-  //   );
-  //   if (this.belongingCategoryCode) {
-  //     this.belongingCategoryCode.reset();
-  //     this.belongingCategoryCode.refresh();
-  //   }
-  // }
-
     /**
      * ダウンロードOKボタン押下時の処理
      * @param event イベント
@@ -224,7 +183,7 @@ export class CarListComponent extends AbstractIndexComponent {
      */
     protected async _fetchDataForInitialize(): Promise<void> {
       const res: any = await this.carListService.fetchIndexInitData();
-      this.initialize(res); console.log('labels');console.log(res.label);
+      this.initialize(res);
       this.labels = res.label;
       this.resource = res.resource;
       this._setTitle();
@@ -235,8 +194,6 @@ export class CarListComponent extends AbstractIndexComponent {
       this.downloadFields = res.downloadFields;
       this.downloadFieldResources = res.downloadFieldResources;
       this._datePickerInitialize();
-
-      this.initModalValues = this._getModalValues(res.initFields);
     }
 
     /**
@@ -438,34 +395,10 @@ export class CarListComponent extends AbstractIndexComponent {
       }
     }
 
-          /**
- * 権限リンク押下コールバック
- * @param user ユーザ情報
- */
-  async onClickSelect(user: any, index: number) {
-
-    const authoritySelect = this.authoritySelectComponentList.toArray()[1];
-
-    // authoritySelect.reset();
-    // await this._authorities(user);
-    authoritySelect.onClickSelect();
-
-  }
-
-
-
-
-
-
-
-
-
-
-
   /**
    * 設定取得要求ボタン押下コールバック
    */
-  openCsGetRequestDialog() { console.log('child');console.log(this.csGetRequestModalContent);
+  openCsGetRequestDialog() {
     this.modalService.open(
       {
         title: this.labels.confirmation_title,
@@ -495,99 +428,5 @@ export class CarListComponent extends AbstractIndexComponent {
         size: 'lg',
       }
     );
-  }
-
-
-
-
-
-  test: { [key: string]: boolean } = {['2']:true};
-  get selectedMystery() { //console.log('mystery no');console.log(this.test);
-  return _.map(this.test, (value, key) =>
-    value ? key : null
-  ).filter(Boolean);
-}
-
-  // TODO:
-  /**
-   * temporary カスタマイズ一括設定アップロード結果確認(モーダル)
-   */
-   async onClickInit(): Promise<void> {
-    // const carList = await this.carService.fetchCarIndexList(
-    //   { common: { car_identification: { car_ids: this.selectedList } } },
-    //   this.initModalValues.requestHeaderParams
-    // );
-    // this.initModalValues.listVal = this._formatList(
-    //   carList.result_data.cars,
-    //   this.initModalValues.listDesc
-    // );
-
-    // const carList = await this.carService.fetchCarIndexList(
-    //   { common: { car_identification: { car_ids: this.selectedList } } },
-    //   this.initModalValues.requestHeaderParams
-    // );console.log('header');console.log(this.initModalValues.requestHeaderParams);
-
-    // const params: HistoryMgtListIndexParams = {
-    //   customize_operation_history: _.omit(
-    //     this.searchParams,
-    //     this.excludeSearchParams
-    //   )
-    // };
-    // const res = await this.carListService.fetchIndexList(
-    //   params,
-    //   this.requestHeaderParams
-    // );console.log('header');console.log(this.requestHeaderParams);
-
-  //   const testing = new Map<string, string>([
-  //     ["0", "2"]
-  // ]);
-      // const testing =
-      // ["0", "2"];
-  //     const testing: { [key: string]: boolean } = {['2']:true};
-  // console.log('testing');console.log(testing);
-
-  console.log('fook this');console.log(this.selectedMystery);
-
-    const carList = await this.carListService.fetchCarIndexList(
-      { common: { car_identification: { car_ids: this.selectedMystery } } },
-      this.initModalValues.requestHeaderParams
-    );console.log('header');console.log(this.initModalValues.requestHeaderParams);
-
-    this.initModalValues.listVal = this._formatList(
-      // carList.result_data.operation_histories,
-      carList.result_data.cars,
-      // this.thList
-      this.initModalValues.listDesc
-    );
-
-    console.log('wealth');
-    console.log(this.initModalValues.listVal);
-
-    this.tempModalService.open({
-      title: this.labels.car_operator_init,
-      labels: this.labels,
-      content: this.initModalContent,//list,//null,//this.initModalContent,
-      closeBtnLabel: this.labels.cancel,
-      ok: () => {
-        // this.operatorService
-        //   .disableOperatorIdentification({ car_id: this.selectedList })
-        //   .then(res => {
-        //     this._resultModalOpen(
-        //       this.labels.init_result_label,
-        //       this.initModalValues.listDesc,
-        //       this.initModalValues.listVal,
-        //       res['responses'],
-        //       () => {
-        //         this.pageParams.pageNo = 1;
-        //         this.pageParams.dispPageNo = 1;
-        //         this._reflectPageParams();
-        //         this.fetchList(this.sortingParams['sort']);
-        //         this.checkedItems = {};
-        //       },
-        //       { size: 'lg' }
-        //     );
-        //   });
-      },
-    });
   }
 }

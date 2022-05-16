@@ -116,26 +116,30 @@ function createData(i) {
     var num = i % 9;
     for (var j = 1; j <= num + 1; j = j + 2) {
       var labelNum = '';
+      var access_level = '';
       switch (j) {
         case 1:
         case 4:
         case 7:
           labelNum = ('000' + j).slice(-4);
+          access_level = 0;
           break;
         case 2:
         case 5:
         case 8:
           labelNum = ('00000' + j).slice(-6);
+          access_level = 4;
           break;
         case 3:
         case 6:
         case 9:
           labelNum = ('00' + j).slice(-2);
+          access_level = 5;
       }
       authority = {
         id: String(role_id + j),
         name: authority_label + labelNum,
-        kind: "アクセスレベル" + labelNum,
+        kind: access_level
       };
       data['group']['granted_authorities'].push(authority);
     }

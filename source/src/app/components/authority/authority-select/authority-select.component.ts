@@ -25,6 +25,8 @@ export class AuthoritySelectComponent  {
   @Input() defaultAuthorities: any[] = [];
   @Input() selectedAuthorities: any[] = [];
   @Input() resource: any;
+  @Input() data: any;
+  @Input() accessLevel: any;
   @Input() customSelectButtons: any;
   @Input() customSelectedAuthorities: any;
   @Input() allowUnselectedAuthorities = false;
@@ -83,6 +85,7 @@ export class AuthoritySelectComponent  {
     }, {
       size: 'lg',
     });
+    console.log(this)
   }
 
   isValid(): boolean {

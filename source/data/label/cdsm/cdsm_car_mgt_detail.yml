@@ -13,8 +13,8 @@ labels:
 
   - id: 3
     description: 説明表示
-    name: maker_model_type_rev_serial
-    ja: メーカ-機種-型式-機番：
+    name: model_type_rev_serial
+    ja: 機種-型式-機番：
     en:
 
   - id: 4
@@ -126,91 +126,121 @@ labels:
     en:
 
   - id: 22
+    description: エラーメッセージ
+    name: customize_update_immediate_reflection_request_err
+    ja: 即時反映要求不可能なデータが含まれています。
+    en:
+
+  - id: 23
     description: 説明表示
     name: customize_update_request_caution_message
     ja: ※複数のカスタマイズ用途定義に含まれるカスタマイズ定義の場合、実際に設定される開始日・終了日が表示と異なる場合があります。
     en:
 
-  - id: 23
+  - id: 24
     description: 説明表示
     name: estimated_traffic_caution_message
     ja: 衛星通信の車両のため、通信費が大きくなる可能性があります。
     en:
 
-  - id: 24
+  - id: 25
     description: 説明表示
     name: regular_call_customize_data
     ja: ・定期発信カスタマイズデータ
     en:
 
-  - id: 25
+  - id: 26
     description: 説明表示
     name: other_customize_data
     ja: ・その他カスタマイズデータ
     en:
 
-  - id: 26
+  - id: 27
+    description: 説明表示
+    name: customize_definition_name_label
+    ja: カスタマイズ用途定義名
+    en:
+
+  - id: 28
+    description: テーブルヘッダ
+    name: edit_header_label
+    ja: 編集
+    en:
+
+  - id: 29
+    description: テーブルヘッダ
+    name: edit_status_header_label
+    ja: 編集状態
+    en:
+
+  - id: 30
+    description: テーブルヘッダ
+    name: discard_header_label
+    ja: 編集内容破棄
+    en:
+
+  - id: 31
+    description: テーブルヘッダ
+    name: retry_header_label
+    ja: 再送
+    en:
+
+  - id: 32
+    description: テーブルボディ
+    name: default_body_label
+    ja: デフォルト
+    en:
+
+  - id: 33
+    description: テーブルボディ
+    name: regist_body_label
+    ja: 追加
+    en:
+
+  - id: 34
+    description: テーブルボディ
+    name: edit_body_label
+    ja: 変更
+    en:
+
+  - id: 35
+    description: テーブルボディ
+    name: delete_body_label
+    ja: 削除
+    en:
+
+  - id: 36
+    description: テーブルヘッダ
+    name: id_header_label
+    ja: ID
+    en:
+
+  - id: 37
+    description: テーブルヘッダ
+    name: customize_detail_header_label
+    ja: カスタマイズメニュー詳細
+    en:
+
+  - id: 38
+    description: テーブルヘッダ
+    name: start_date_header_label
+    ja: 開始日
+    en:
+
+  - id: 39
+    description: テーブルヘッダ
+    name: end_date_header_label
+    ja: 終了日
+    en:
+
+  - id: 40
     description: ボタン
     name: cancel
     ja: キャンセル
     en:
 
-  - id: 27
+  - id: 41
     description: ボタン
     name: ok_btn
     ja: OK
-    en:
-
-  - id: 28
-    description: カスタマイズ用途定義名
-    name: custom_usage_definition_name
-    ja: カスタマイズ用途定義名
-    en:
-
-  - id: 29
-    description: 編集
-    name: edit_label
-    ja: 編集
-    en:
-
-  - id: 30
-    description: 編集状態
-    name: edit_status_label
-    ja: 編集状態
-    en:
-
-  - id: 31
-    description: 編集内容破棄
-    name: discard_label
-    ja: 編集内容破棄
-    en:
-
-  - id: 32
-    description: 再送
-    name: retry_label
-    ja: 再送
-    en:
-
-  - id: 33
-    description: デフォルト
-    name: default_body_label
-    ja: デフォルト
-    en:
-
-  - id: 34
-    description: 追加
-    name: add
-    ja: 追加
-    en:
-
-  - id: 35
-    description: 変更
-    name: edit
-    ja: 変更
-    en:
-
-  - id: 36
-    description: 削除
-    name: delete
-    ja: 削除
     en:

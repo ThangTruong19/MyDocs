@@ -50,6 +50,6 @@ export const Apis = {
     postCarSearch: 'KOM-xxxxxx10',
 
     postOperatorsUpload: 'KOM-01300030',
-    postCarsManagementSearch: 'KOM-00101100',
+    // postCarsManagementSearch: 'KOM-00101100',
     getTemporaryUploadResult: 'TMP-xxxxxxx1',
 };

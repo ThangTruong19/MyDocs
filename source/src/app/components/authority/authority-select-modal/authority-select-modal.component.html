@@ -3,9 +3,11 @@
   <div class="row">
     <app-selected
       class="col-sm-3"
-      [itemName]="'access_level'"
+      [itemName]="'authority_kinds'"
+      [itemParams]="accessLevel"
       [itemResource]="resource"
       [emitInitialRefresh]="false"
+      (onChangeSelectItem)="onKindChange($event,data)"
       >
     </app-selected>
   </div>

@@ -98,6 +98,7 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit {
         protected datePickerService: DatePickerService,
     ) {
         super(nav, title, router, cdRef, header, modal);
+        this.shouldDestroyNavigation = false;
     }
 
     /**

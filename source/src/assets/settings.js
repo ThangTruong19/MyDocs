@@ -29,4 +29,5 @@ window.settings = {
     information: ['-10y', '10y'],
     other: ['-10y', '']
   },
+  notificationDisplayTime: 3000,
 };

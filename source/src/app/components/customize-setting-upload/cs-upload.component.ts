@@ -3,7 +3,6 @@ import { Component, ChangeDetectorRef, ViewChild, TemplateRef } from '@angular/c
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { HistoryMgtListIndexParams } from 'app/types/history-mgt-list';
 import { DatePickerParams } from 'app/types/calendar';
 import { Fields, Labels } from 'app/types/common';
 
@@ -48,8 +47,6 @@ export class CsUploadComponent extends AbstractIndexComponent {
   datePickerLabels: Labels;
   override commaSeparated: string[] = ['serials'];
 
-  // TODO: アップロードパスまだわからないのであとで対応
-  // uploadPath = Apis.postCarsManagementSearch;
   uploadPath = Apis.postOperatorsUpload;
   listVal: any;
   compiledResultCountMessage: (src: {
@@ -120,25 +117,6 @@ export class CsUploadComponent extends AbstractIndexComponent {
     this.downloadFields = res.downloadFields;
     this.downloadFieldResources = res.downloadFieldResources;
     this._datePickerInitialize();
-
-
-
-
-    // TODO: 仮データ削除
-    this.requestHeaderParams['X-Sort'] = '';
-      const params: HistoryMgtListIndexParams = {
-        customize_operation_history: _.omit(
-          this.searchParams,
-          this.excludeSearchParams
-        )
-      };
-      const tmp = await this.csUploadService.fetchUploadResultList(
-        params,
-        this.requestHeaderParams
-      );
-      console.log('josea');
-      console.log(tmp);
-      // this.listVal = tmp;
   }
 
   /**
@@ -240,39 +218,20 @@ export class CsUploadComponent extends AbstractIndexComponent {
      * アップロード後の処理
      * @param res API のレスポンス
      */
-    // onUploadEnd(res: any) {
-    //   this._hideLoadingSpinner();
-    //   // this._updateResultModalData(res);
-    //   this.modalService.open(
-    //     {
-    //       title: this.labels.result_modal_title,
-    //       labels: this.labels,
-    //       content: this.uploadResultModalContent,
-    //     },
-    //     {
-    //       size: 'lg',
-    //     }
-    //   );
-    // }
-
-    /**
-   * アップロード後の処理
-   * @param res API のレスポンス
-   */
-  onUploadEnd(res: any) {
-    this._hideLoadingSpinner();
-    this._updateResultModalData(res);
-    this.modalService.open(
-      {
-        title: this.labels.result_modal_title,
-        labels: this.labels,
-        content: this.uploadResultModalContent,
-      },
-      {
-        size: 'lg',
-      }
-    );
-  }
+    onUploadEnd(res: any) {
+      this._hideLoadingSpinner();
+      this._updateResultModalData(res);
+      this.modalService.open(
+        {
+          title: this.labels.result_modal_title,
+          labels: this.labels,
+          content: this.uploadResultModalContent,
+        },
+        {
+          size: 'lg',
+        }
+      );
+    }
 
     /**
      * アップロード失敗時の処理
@@ -288,7 +247,7 @@ export class CsUploadComponent extends AbstractIndexComponent {
    */
   private _updateResultModalData(res: any) {
     let errorsLength;
-    [this.listVal, errorsLength] = this._formatUploadResultData(res.responses); console.log('watttt');console.log(this.listVal);
+    [this.listVal, errorsLength] = this._formatUploadResultData(res.responses);
     // this.resultCountMessage = this.compiledResultCountMessage({
     //   total: this.listVal.length,
     //   success: this.listVal.length - errorsLength,
@@ -303,37 +262,53 @@ export class CsUploadComponent extends AbstractIndexComponent {
    private _formatUploadResultData(res: any) {
     let errorsLength = 0;
     let result: any,
-      showLabel = false;
+      isError = false;
 
     const list = res.map((r: any) => {
       result = { result: { type: 'result', success: true }, message: '' };
 
       [
-        'customer_label',
+        'response_code',
+        'change_type',
+        'brand',
+        'type',
+        'model',
+        'serial_number',
+        'customize_usage_definition_label',
+        'version',
+        'priority',
+        'start_day',
+        'end_day',
+        'time_before_effect',
+        'error_msg',
+
+        /* 'customer_label',
         'operator.code',
-        'operator.current_label.label',
+        'operator.current_label.label',*/
       ].forEach(path => {
         const value = _.get(r.request, path);
-        if (
-          path === 'operator.current_label.label' &&
-          value &&
-          _.get(this.resource, 'operator_label')
-        ) {
-          showLabel = true;
+        // if (
+        //   path === 'operator.current_label.label' &&
+        //   value &&
+        //   _.get(this.resource, 'operator_label')
+        // ) {
+        //   showLabel = true;
+        // }
+
+        if (path === 'response_code' && value == '400') {
+          isError = true;
         }
         result[path] = value;
       });
 
-      if (r.error_data) {
-        result.message = _.map(r.error_data, e => e.message);
+      if (isError) {
         result.result = { type: 'result', success: false };
         result['css_class'] = 'warning';
-        errorsLength++;
       }
 
       return result;
     });
-    this.thList = this._getThList(showLabel);
+    this.thList = this._getThList(isError);
 
     return [list, errorsLength];
   }
@@ -341,46 +316,83 @@ export class CsUploadComponent extends AbstractIndexComponent {
     /**
    * リクエスト情報（アップロードしたExcel）をもとに結果モーダルのヘッダを作成
    */
-     private _getThList(showLabel: any) {
+     private _getThList(isError: boolean) {
+
+      if (isError) {
+        return [{
+          label: this.labels.error_msg,
+          name: 'error_msg',
+          displayable: true,
+        }];
+      }
+
       return _.flatten([
-        {
+        /*{
           label: this.labels.result,
           name: 'result',
           displayable: true,
-        },
-        this._createThListContent(showLabel),
+        },*/
         {
-          label: this.labels.result_detail,
-          name: 'message',
+          label: this.labels.change_type,
+          name: 'change_type',
           displayable: true,
         },
+        {
+          label: this.labels.brand,
+          name: 'brand',
+          displayable: true,
+        },
+        {
+          label: this.labels.type,
+          name: 'type',
+          displayable: true,
+        },
+        {
+          label: this.labels.model,
+          name: 'model',
+          displayable: true,
+        },
+        {
+          label: this.labels.serial_number,
+          name: 'serial_number',
+          displayable: true,
+        },
+        {
+          label: this.labels.customize_usage_definition_label,
+          name: 'customize_usage_definition_label',
+          displayable: true,
+        },
+        {
+          label: this.labels.version,
+          name: 'version',
+          displayable: true,
+        },
+        {
+          label: this.labels.priority,
+          name: 'priority',
+          displayable: true,
+        },
+        {
+          label: this.labels.start_day,
+          name: 'start_day',
+          displayable: true,
+        },
+        {
+          label: this.labels.end_day,
+          name: 'end_day',
+          displayable: true,
+        },
+        {
+          label: this.labels.time_before_effect,
+          name: 'time_before_effect',
+          displayable: true,
+        },
+        // this._createThListContent(showLabel),
+        // {
+        //   label: this.labels.result_detail,
+        //   name: 'message',
+        //   displayable: true,
+        // },
       ]);
     }
-
-    private _createThListContent(showLabel: any) {
-      const thList = [
-        {
-          label: this.labels.customer_label,
-          name: 'customer_label',
-          displayable: true,
-        },
-        {
-          label: this.labels.operator_id,
-          name: 'operator.code',
-          displayable: true,
-        },
-      ];
-
-      if (showLabel) {
-        thList.push({
-          label: this.resource.operator_label.name,
-          name: 'operator.current_label.label',
-          displayable: true,
-        });
-      }
-
-      return thList;
-    }
-
-
 }

@@ -1,9 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TableHeader, TableMergeColumn } from 'app/types/common';
 import * as _ from 'lodash';
-import { resourceUsage } from 'process';
-import { stringify } from 'querystring';
-import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-cs-expected-traffic-confirm',
@@ -21,6 +18,8 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
   dataTable1: any[];
   dataTable2: any[];
 
+  originalThList1: TableHeader[] = [];
+  originalThList2: TableHeader[] = [];
   thList1: TableHeader[] = [];
   thList2: TableHeader[] = [];
 
@@ -32,7 +31,7 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
   ];
 
   totalTraffic : TableHeader = {
-    columnStyle: "width: 15%; text-align: center;",
+    columnStyle: "width: 20%; text-align: center;",
     confirmKey: null,
     dataKey: null,
     displayable: true,
@@ -47,7 +46,7 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
   }
 
   difference: TableHeader = {
-    columnStyle: "width: 15%; text-align: center;",
+    columnStyle: "width: 10%; text-align: center;",
     confirmKey: null,
     dataKey: null,
     displayable: true,
@@ -83,39 +82,22 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // TODO: Setting data for the 2 table (Q&A)
-    this.dataTable1 = this.tableData.slice(0,3);
-    this.dataTable2 = this.tableData.slice(3);
 
-    let totalTraffic = this._calculateTotalTraffic();
-    let difference = this._calculateDifference(totalTraffic);
-    this.dataTable1.forEach(element => {
-      _.set(element,'customize_usage_total_traffic',totalTraffic);
-      _.set(element,'customize_usage_difference',difference);
-    })
-
-    // TODO: Setting data for column [通信量]
-    this.dataTable2.forEach(element => {
-      element['customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value'] = "XX + YY";
-    })
-
-    this.thList1 = this.initThLst.map((element: TableHeader) => {
+    this.originalThList1 = this.initThLst.map((element: TableHeader) => {
       return Object.assign({},element);
     });
-    this.thList2 = this.initThLst.map((element: TableHeader) => {
+    this.originalThList2 = this.initThLst.map((element: TableHeader) => {
       return Object.assign({},element);
     });
 
-    this.thList1.forEach((element: TableHeader) => {
-      if(!this.lstColumnName.includes(element.name)){
-        let index = this.thList1.indexOf(element);
-        this.thList1.splice(index,1);
+    this.originalThList1.forEach((element: TableHeader) => {
+      if(this.lstColumnName.includes(element.name)){
+        this.thList1.push(element);
       }
     })
-    this.thList2.forEach((element: TableHeader) => {
-      if(!this.lstColumnName.includes(element.name)){
-        let index = this.thList2.indexOf(element);
-        this.thList2.splice(index,1);
+    this.originalThList2.forEach((element: TableHeader) => {
+      if(this.lstColumnName.includes(element.name)){
+        this.thList2.push(element);
       }
     })
     this.thList1.push(this.totalTraffic);
@@ -127,17 +109,17 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
         case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name":
           element.id = 1;
           element.label = "カスタマイズ用途定義"
-          element.columnStyle = "width:30%; text-align: center;"
+          element.columnStyle = "width:20%; text-align: center;"
           break;
         case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
           element.id = 2;
           element.label = "カスタマイズ定義"
-          element.columnStyle = "width:20%; text-align: center;"
+          element.columnStyle = "width:15%; text-align: center;"
           break;
         case "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value":
           element.id = 3;
           element.label = "通信量[byte/月]"
-          element.columnStyle = "width:20%; text-align: center;"
+          element.columnStyle = "width:15%; text-align: center;"
           break;
       }
     })
@@ -147,14 +129,17 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
         case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name":
           element.id = 1;
           element.label = "カスタマイズ用途定義"
+          element.columnStyle = "width:30%; text-align: center;"
           break;
         case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
           element.id = 2;
           element.label = "カスタマイズ定義"
+          element.columnStyle = "width:22%; text-align: center;"
           break;
         case "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value":
           element.id = 3;
           element.label = "通信量"
+          element.columnStyle = "width:34%; text-align: center;"
           break;
       }
     })
@@ -175,6 +160,44 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
       }
     })
 
+    const data = this.tableData.reduce((acc: any, cur: any) => {
+      const contents = _.get(cur, 'customize_usage_definitions.customize_usage_definition.customize_definitions').map((element: any) => {
+          return {
+              customize_usage_definition: {
+                  customize_usage_definition_name: cur['customize_usage_definitions.customize_usage_definition.customize_usage_definition_name'],
+                  customize_definitions: {
+                      customize_definition_name: element.customize_definition_name,
+                      assumption_data_value: element.assumption_data_value,
+                  }
+              }
+          }
+      })
+      acc.push(...contents)
+      return acc
+  }, [])
+
+  // TODO: Setting data for the 2 table (Q&A)
+  this.dataTable1 = this._formatList(
+      data,
+      this.thList1
+  )
+  this.dataTable2 = this._formatList(
+    data,
+    this.thList2
+  )
+
+  let totalTraffic = this._calculateTotalTraffic();
+  let difference = this._calculateDifference(totalTraffic);
+  this.dataTable1.forEach(element => {
+    _.set(element,'customize_usage_total_traffic',totalTraffic);
+    _.set(element,'customize_usage_difference',difference);
+  })
+
+  // TODO: Setting data for column [通信量]
+  this.dataTable2.forEach(element => {
+    element['customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value'] = "XX + YY";
+  })
+
     _.set(this.lists1, 'originList', this.dataTable1);
     _.set(this.lists1, 'visibleList', this.dataTable1);
     _.set(this.lists2, 'originList', this.dataTable2);
@@ -187,11 +210,11 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
         targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_name'
       },
       {
-        groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_name'],
+        groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_total_traffic'],
         targetColumn: 'customize_usage_total_traffic'
       },
       {
-        groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_name'],
+        groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_difference'],
         targetColumn: 'customize_usage_difference'
       }
     ]
@@ -223,5 +246,24 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
     result = totalTraffic - totalAssumption;
     return Math.round(result * 100)/100;
   }
+
+  private _formatList(listBody: any[], thList: TableHeader[]): any {
+    return listBody.map(data => {
+        return _.reduce(
+            thList,
+            (result: any, th: TableHeader) => {
+                if (!th.optional) {
+                    result[th.name] = this._listDisplayData(data, th);
+                }
+                return result;
+            },
+            {}
+        );
+    });
+}
+
+private _listDisplayData(data: any, th: TableHeader): any {
+    return _.get(data, th.formatKey);
+}
 
 }

@@ -5,9 +5,19 @@
 }
 
 .app-modal {
-  .table-bordered td,
-  .table-bordered th {
+
+  .table-bordered {
     border: 1px solid #ddd;
+
+    td,
+    th {
+      display: table-cell;
+      width: auto;
+      min-height: calc(1.5rem + 12px);
+      // white-space: nowrap !important;
+      border: 0 !important;
+      box-shadow: -1px -1px 0px 0px #ddd inset;
+    }
   }
 
   .form-group {

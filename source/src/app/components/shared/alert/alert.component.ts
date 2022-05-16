@@ -16,6 +16,10 @@ export class AlertComponent {
         return this.alertService.type;
     }
 
+    public get alertMessagesCss(): string {
+        return this.alertService.typeCss;
+    }
+
     public get message(): string {
         return this.alertService.message;
     }

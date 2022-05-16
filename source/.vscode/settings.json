@@ -17,8 +17,8 @@
     },
     "prettier.tabWidth": 4,
     "workbench.colorCustomizations": {
-        "activityBar.background": "#c06448",
-        "titleBar.activeBackground": "#a74629",
+        "activityBar.background": "#48c096",
+        "titleBar.activeBackground": "#48c096",
         "titleBar.activeForeground": "#FBFCFE"
     },
     "projectNameInStatusBar.template": "HTML_CDSM",

@@ -171,3 +171,16 @@ input[type="file"],
 .modal-app-picker {
   z-index:3210 !important;
 }
+
+.divider-column-border {
+  border-top: solid thin;
+  border-top-color: #dddddd;
+}
+
+.divider-column {
+  padding: 6px;
+}
+
+.padding-none {
+  padding: 0px !important;
+}

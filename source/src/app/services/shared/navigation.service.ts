@@ -35,10 +35,10 @@ export class NavigationService {
             (category: Navigation) => category.code === environment.settings.navigation.sideMenu
         );
 
-        this.navigationsMenu = this._omitEmpty(
+        this.navigationsMenu = this.omitEmpty(
             menu && menu.functions ? menu.functions : null
         );
-        this.navigationsSideMenu = this._omitEmpty(
+        this.navigationsSideMenu = this.omitEmpty(
             sideMenu && sideMenu.functions ? sideMenu.functions : null
         );
 
@@ -71,13 +71,13 @@ export class NavigationService {
      * ナビゲーションを再構築します。
      */
     public refresh() {
-        const order = this._loadNavigationOrder();
+        const order: string[] = this.loadNavigationOrder();
 
-        this.navigationsMenu = this._constructNavigationsFromOrder(
+        this.navigationsMenu = this.constructNavigationsFromOrder(
             order,
             this.navigationsMenu
         );
-        this.navigationsSideMenu = this._constructNavigationsFromOrder(
+        this.navigationsSideMenu = this.constructNavigationsFromOrder(
             order,
             this.navigationsSideMenu
         );
@@ -86,7 +86,7 @@ export class NavigationService {
     /**
      * ナビゲーションの並び順を localStorage から取得します。
      */
-    private _loadNavigationOrder(): string[] {
+    private loadNavigationOrder(): string[] {
         const storageData = this.storage.get(this.orderKey);
 
         if (storageData == null) {
@@ -101,7 +101,7 @@ export class NavigationService {
      * @param order ナビゲーションの並び順
      * @param navigations 並べ替えられる前のナビゲーション
      */
-    private _constructNavigationsFromOrder(
+    private constructNavigationsFromOrder(
         order: string[],
         navigations: Navigation[]
     ): Navigation[] | null {
@@ -114,7 +114,7 @@ export class NavigationService {
             return navigations;
         }
 
-        if (this._isNavigationChange(order, navigations)) {
+        if (this.isNavigationChange(order, navigations)) {
             this.storage.delete(this.orderKey);
             return navigations;
         }
@@ -132,11 +132,11 @@ export class NavigationService {
      * @param navigations 並べ替えられる前のナビゲーション
      * @return true 食い違いがある / false 食い違いがない
      */
-    private _isNavigationChange(order: any, navigations: any): boolean {
+    private isNavigationChange(order: any, navigations: any): boolean {
         return xor(order, navigations.map((nav: any) => nav.code)).length > 0;
     }
 
-    private _omitEmpty(navigations: any) {
+    private omitEmpty(navigations: any) {
         if (navigations == null) {
             return null;
         }

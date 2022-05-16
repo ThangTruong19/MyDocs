@@ -6,15 +6,19 @@
             <ng-container>
                 <div class="container">
                     <label
-                        >{{ labels.maker_model_type_rev_serial }} {{ model }}-
-                        {{ typeRev }}-{{ serial }}
+                        >{{ labels.model_type_rev_serial }}
+                        {{ model }}
+                        -
+                        {{ typeRev }}
+                        -
+                        {{ serial }}
                     </label>
                     <!-- TODO: -->
                     <div class="app-control">
                         <button
                             type="button"
                             class="btn"
-                            title="追加"
+                            [title]="labels.addition"
                             (click)="onClickAdd()"
                         >
                             <span>
@@ -24,7 +28,7 @@
                         <button
                             type="button"
                             class="btn"
-                            title="編集内容破棄"
+                            [title]="labels.discard_all_edits"
                             [disabled]="disabled"
                             (click)="onClickDiscardAll()"
                         >
@@ -35,7 +39,7 @@
                         <button
                             type="button"
                             class="btn"
-                            title="設定取得要求"
+                            [title]="labels.setting_acquisition_request"
                             (click)="onClickGetRequest()"
                         >
                             <span>
@@ -48,7 +52,7 @@
                         <button
                             type="button"
                             class="btn"
-                            title="設定更新要求"
+                            [title]="labels.setting_update_request"
                             [disabled]="disabled"
                             (click)="onClickUpdateRequest()"
                         >
@@ -60,7 +64,7 @@
                         <button
                             type="button"
                             class="btn"
-                            title="設定即時更新要求"
+                            [title]="labels.immediate_setting_update_request"
                             [disabled]="disabled"
                             (click)="onClickImmediateUpdateRequest()"
                         >
@@ -117,15 +121,16 @@
                             [checkIdName]="checkIdName"
                             [checkedItems]="checkedItems"
                             [checkAll]="checkAll"
-
                             (sort)="onChangeSort($event)"
                         >
-                        <!-- TODO: -->
-                        <!-- [mergeColumns]="mergeColumns" -->
+                            <!-- TODO: -->
+                            <!-- [mergeColumns]="mergeColumns" -->
                             <ng-template #customFixedTableThContent>
-                                <th class="fixed">{{ labels.edit_label }}</th>
                                 <th class="fixed">
-                                    {{ labels.edit_status_label }}
+                                    {{ labels.edit_header_label }}
+                                </th>
+                                <th class="fixed">
+                                    {{ labels.edit_status_header_label }}
                                 </th>
                                 <ng-container *ngFor="let title of fixedThList">
                                     <th
@@ -153,13 +158,8 @@
                             >
                                 <!-- TODO: 判定条件、メソッド等 -->
                                 <td
-                                    *ngIf="
-                                        tblFunctions.isDisplayFixedDataRow(
-                                            data
-                                        )
-                                    "
                                     class="app-index-td app-table__small app-sm-link text-center fixed"
-                                    [attr.rowspan]="tblFunctions.getFixedDataRowspan(data)"
+                                    [style]="getTblRowHeight(data)"
                                     (click)="onClickEdit(data)"
                                 >
                                     <span>
@@ -167,17 +167,7 @@
                                     </span>
                                 </td>
                                 <td
-                                    *ngIf="
-                                        tblFunctions.isDisplayFixedDataRow(
-                                            data
-                                        )
-                                    "
                                     class="app-index-td app-table__small text-center fixed"
-                                    [attr.rowspan]="
-                                        tblFunctions.getFixedDataRowspan(
-                                            data
-                                        )
-                                    "
                                 >
                                     <span>
                                         {{ data["edit_status_name"] }}
@@ -194,13 +184,6 @@
                                         class="td-{{
                                             title.shortName
                                         }} app-index-td"
-                                        [style]="tblFunctions.getColumnStyle(title)"
-                                        [attr.rowspan]="
-                                            tblFunctions.getDataRowspan(
-                                                title,
-                                                data
-                                            )
-                                        "
                                     >
                                         <span>{{
                                             data[title.dataKey || title.name]
@@ -230,13 +213,14 @@
                                     </th>
                                 </ng-container>
                                 <th class="fixed">
-                                    {{ labels.discard_label }}
+                                    {{ labels.discard_header_label }}
                                 </th>
                                 <th class="fixed">
-                                    {{ labels.retry_label }}
+                                    {{ labels.retry_header_label }}
                                 </th>
                             </ng-template>
-                            <ng-template #customTableRowContent
+                            <ng-template
+                                #customTableRowContent
                                 let-data="data"
                                 let-tblFunctions="tblFunctions"
                             >
@@ -252,37 +236,31 @@
                                         "
                                         class="td-{{
                                             title.shortName
-                                        }} app-index-td"
-                                        [style]="tblFunctions.getColumnStyle(title)"
-                                        [attr.rowspan]="
-                                            tblFunctions.getDataRowspan(
-                                                title,
-                                                data
-                                            )
-                                        "
+                                        }} app-index-td padding-none"
+                                        [style]="getTblRowHeight(data)"
                                     >
-                                        <span>{{
-                                            data[title.dataKey || title.name]
-                                        }}</span>
+                                        <ng-container *ngIf="!isArrayColumnData(title.name)">
+                                            <span class="divider-column">{{
+                                                data[title.dataKey || title.name]
+                                            }}</span>
+                                        </ng-container>
+                                        <ng-container *ngIf="isArrayColumnData(title.name)">
+                                            <ng-container *ngFor="let rec of tblFunctions.getArrayColumnData(data, title.name); let subIndex = index">
+                                                <div [ngClass]="{'divider-column-border': subIndex > 0}">
+                                                    <span class="divider-column">{{rec[tblFunctions.getLastColumnPathName(title.name)]}}</span>
+                                                </div>
+                                            </ng-container>
+                                        </ng-container>
                                     </td>
                                 </ng-container>
                                 <!-- TODO: 判定条件、メソッド等 -->
                                 <td
-                                    *ngIf="
-                                        tblFunctions.isDisplayFixedDataRow(
-                                            data
-                                        )
-                                    "
                                     class="app-index-td app-table__small app-sm-link text-center fixed"
                                     [ngClass]="{
                                         disable: discardIconHiddenFunction(data)
                                     }"
                                     (click)="onClickDiscard(data)"
-                                    [attr.rowspan]="
-                                        tblFunctions.getFixedDataRowspan(
-                                            data
-                                        )
-                                    "
+                                    [style]="getTblRowHeight(data)"
                                 >
                                     <span>
                                         <i
@@ -295,28 +273,18 @@
                                     </span>
                                 </td>
                                 <td
-                                    *ngIf="
-                                        tblFunctions.isDisplayFixedDataRow(
-                                            data
-                                        )
-                                    "
                                     class="app-index-td app-table__small app-sm-link text-center fixed"
                                     [ngClass]="{
                                         disable: retryIconHiddenFunction(data)
                                     }"
                                     (click)="onClickRetry(data)"
-                                    [attr.rowspan]="
-                                        tblFunctions.getFixedDataRowspan(
-                                            data
-                                        )
-                                    "
                                 >
                                     <span>
                                         <i
                                             *ngIf="
                                                 !retryIconHiddenFunction(data)
                                             "
-                                            class="app-icon app-icon-discard"
+                                            class="app-icon app-icon-update-request"
                                         >
                                         </i>
                                     </span>
@@ -329,7 +297,11 @@
         </div>
     </div>
     <ng-template #csNewModalContent>
-        <app-cs-new [carId]="carId" [resources]="resources" [initThLst]="this.thList"></app-cs-new>
+        <app-cs-new
+            [carId]="carId"
+            [resources]="resources"
+            [initThLst]="this.thList"
+        ></app-cs-new>
     </ng-template>
     <ng-template #csEditModalContent>
         <app-cs-edit
@@ -379,4 +351,7 @@
         </app-cs-expected-traffic-confirm>
     </ng-template>
 </section>
+
+<app-alert></app-alert>
+
 <app-sidemenu [isLoading]="isLoading"></app-sidemenu>

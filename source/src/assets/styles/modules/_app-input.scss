@@ -18,15 +18,38 @@
 }
 
 .app-select {
-  .ui-select-toggle {
-    border-color: $app-darkgray-color;
-  }
-}
-
-.app-select {
   position: relative;
   display: inline-block;
   width: 100%;
+
+  .ui-select-toggle {
+    border-color: $app-darkgray-color;
+  }
+
+  > select {
+    position: relative;
+    width: 100%;
+    appearance: none;
+    text-indent: 0.01px;
+    text-overflow: "";
+    background: transparent;
+    border: 1px solid $app-darkgray-color;
+    border-right: 34px solid $app-darkgray-color;
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+}
+
+.app-pagination-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
+  .ui-select-toggle {
+    border-color: $app-darkgray-color;
+  }
 
   > select {
     position: relative;
@@ -55,7 +78,6 @@
     border-top: 10px solid #fff;
     border-right: 5px solid transparent;
     border-left: 5px solid transparent;
-    visibility: hidden;
   }
 }
 

@@ -14,7 +14,7 @@ export class CsGetRequestComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {alert('ok?');
+  ngOnInit(): void {
   }
 
 }

@@ -42,7 +42,9 @@
       [labels]="labels"
       [authorities]="authorities"
       [selectedAuthorities]="evacuateSelectedAuthorities"
+      [data]="data"
       [resource]="resource"
+      [accessLevel]="accessLevel"
       (check)="authorityChecked($event)"
       (checkedAll)="toggleCheckAll($event)"
     ></app-authority-select-modal>

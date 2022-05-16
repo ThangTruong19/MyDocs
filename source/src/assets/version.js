@@ -8,7 +8,7 @@
  */
 
 // コマツ管理のバージョン
-window.appVersion = 'cdms.0.0.1';
+window.appVersion = 'cdsm.0.0.1';
 
 // 開発ベンダ管理のバージョン
 window.appVendorVersion = "exe.0.0.0001";

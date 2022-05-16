@@ -81,4 +81,28 @@ export class CommonTableService {
         }
     }
 
+    public getArrayColumnData(data: any, pathName: string): any[] {
+        let fetchData: any = data;
+        const splitPathName = pathName.split('.');
+        for (let i = 0; splitPathName.length; i++) {
+            const path: string = splitPathName[i];
+            fetchData = fetchData[path];
+            if (!fetchData) {
+                return [];
+            } else if ((fetchData && Array.isArray(fetchData))) {
+                return fetchData;
+            }
+        }
+        return [];
+    }
+
+    public getLastColumnPathName(pathName: string): string {
+        const index = pathName.lastIndexOf('.');
+        if (index != -1) {
+            return pathName.substring(index + 1);
+        } else {
+            return pathName;
+        }
+    }
+
 }

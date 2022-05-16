@@ -34,6 +34,10 @@
       top: 0;
       right: 5px;
       color: #333;
+
+      &::after {
+        content: "×";
+      }
     }
 
     p {
@@ -61,7 +65,4 @@
       opacity: 0;
     }
   }
-}
-
-.alert-dismissible .close {
 }

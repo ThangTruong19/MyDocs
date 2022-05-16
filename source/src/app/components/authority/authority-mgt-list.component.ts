@@ -50,8 +50,9 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
   excludeSearchParams: string[] = ['date_from_formatted', 'date_to_formatted'];
   override commaSeparated: string[] = ['serials'];
   selectedAuthorities: any[] = [];
+  authorityKinds: any[] = [];
   authorities: any = [];
-  selectedKinds: any;
+  accessLevel: any;
 
   constructor(
     navigationService: NavigationService,
@@ -142,13 +143,31 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
       ScreenCodeConst.AUTHORITY_MGT_LIST_CODE,
       param
     );
-    this.authorities = res.user.group.granted_authority_ids.values;
+    this.authorities = []
+    const listAuthorities = res.user.group.granted_authority_ids.values
     this.selectedAuthorities = _.map(
       _.get(user, 'group.granted_authorities'),
       'id'
     );
 
+    // 設定されている権限のアクセスレベルを取得
+    this.authorityKinds = _.map(
+      _.get(user, 'group.granted_authorities'),
+      'kind'
+    );
+
+    this.authoritiesKindList(this.authorityKinds[0],listAuthorities)
+
     this.safeDetectChanges();
+  }
+
+  authoritiesKindList(autyorityKinds: string,listAuthorities:any){
+    // this.authoritiesとユーザのアクセスレベルを比較して、適合するものだけを取得する
+    for (var i = 0; i < listAuthorities.length; i++) {
+      if(listAuthorities[i].kind == this.authorityKinds[0]){
+        this.authorities.push(listAuthorities[i])
+      }
+    }
   }
 
   /**

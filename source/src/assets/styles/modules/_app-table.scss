@@ -71,7 +71,7 @@ $TABLE_LG_HEIGHT: 660px;
         width: 80px;
       }
 
-      .app-select {
+      .app-pagination-select {
         width: auto;
       }
 
@@ -255,8 +255,8 @@ $TABLE_LG_HEIGHT: 660px;
 
   .app-table-thead {
     background: $app-sub-color;
-    border-top: 1px solid #ddd;
-    border-bottom: 2px solid #ddd;
+   // border-top: 1px solid #ddd;
+   // border-bottom: 2px solid #ddd;
     width: 100%;
     flex-direction: column;
     align-items: stretch;
@@ -283,7 +283,7 @@ $TABLE_LG_HEIGHT: 660px;
       font-weight: normal;
       vertical-align: middle;
       border-bottom-width: 0px;
-      padding: 6px !important;
+      padding: 6px;
 
       span,
       li {
@@ -417,7 +417,7 @@ $TABLE_LG_HEIGHT: 660px;
       border-top: 0;
       vertical-align: middle;
       border-top: 1px solid transparent;
-      padding: 6px !important;
+      padding: 6px;
       &:not(:last-child) {
         border-right: 0;
       }

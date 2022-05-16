@@ -155,26 +155,12 @@
                 </button>
               </div>
               <div class="popover-wrapper">
-                <!--<button
-                  type="button"
-                  class="btn btn-warning"
-                  [disabled]="isDisabled"
-                  (click)="onClickSelect(data, idx)"
-                >-->
-                <!--<button
-                  type="button"
-                  class="btn btn-warning"
-                  [disabled]="isDisabled"
-                  (click)="onClickInit()"
-                >-->
                 <button
                   type="button"
                   class="btn btn-warning"
                   [disabled]="isDisabled"
                   (click)="openCsGetRequestDialog()"
                 >
-
-
                   {{ labels.setting_request_modal }}
                 </button>
               </div>
@@ -283,15 +269,6 @@
 <!-- リセット -->
 <ng-template #resetModalContent>
   <p class="KBA-modal-message">{{ labels.reset_modal_body }}</p>
-</ng-template>
-
-<!-- 初期化 -->
-<ng-template #initModalContent>
-  <app-kba-simple-list-confirm
-    [desc]="initModalValues.listDesc"
-    [val]="initModalValues.listVal"
-  >
-  </app-kba-simple-list-confirm>
 </ng-template>
 
 <!-- 結果 -->

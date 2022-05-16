@@ -65,14 +65,16 @@ export abstract class AbstractBaseComponent implements OnDestroy {
         const thisComp: any = <any>this;
         if (
             thisComp.hasOwnProperty('modalService') &&
-            thisComp['modalService'].close &&
-            typeof thisComp['modalService'].close === 'function'
+            thisComp['modalService'] &&
+            thisComp['modalService'].closeAll &&
+            typeof thisComp['modalService'].closeAll === 'function'
         ) {
             thisComp['modalService'].closeAll();
         }
 
         if (
             thisComp.hasOwnProperty('alertService') &&
+            thisComp['alertService'] &&
             thisComp['alertService'].close &&
             typeof thisComp['alertService'].close === 'function'
         ) {

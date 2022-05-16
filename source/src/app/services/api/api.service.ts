@@ -810,10 +810,9 @@ export class ApiService {
      * @return Observable オブジェクト
      */
     private _call(config: any, opt?: any): Observable<Api> {
-        if (!this._isCallable(config)) {
-            console.log(config);
-            console.log('実行不可能なAPIです。');
-        }
+        // if (!this._isCallable(config)) {
+        //     console.log('実行不可能なAPIです。[ url=' + config.url + ' ]');
+        // }
 
         return from(this.authService.authentication()).pipe(
             concatMap(() => {

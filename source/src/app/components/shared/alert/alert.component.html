@@ -4,7 +4,8 @@
     [ngClass]="{ faded: !isVisible }"
     (transitionend)="onEndAnimation()"
 >
-    <ngb-alert [type]="type" (close)="close()">
+    <div class="alert show fade alert-dismissible" [ngClass]="alertMessagesCss">
         <p [innerHTML]="message"></p>
-    </ngb-alert>
+        <button type="button" class="btn-close close" (click)="close()"></button>
+    </div>
 </div>

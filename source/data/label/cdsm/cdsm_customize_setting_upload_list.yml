@@ -134,7 +134,7 @@ labels:
   - id: 23
     description: アップロード結果モーダルタイトル
     name: result_modal_title
-    ja: アップロードが完了しました
+    ja: カスタマイズの一括登録/一括変更が完了しました。
     en:
 
   - id: 24
@@ -149,7 +149,7 @@ labels:
     ja: '${total} 件中 成功${success}件 失敗${fail}件'
     en:
 
-  - id: 26
+  - id: 1026
     description: 結果
     name: result
     ja: 結果
@@ -255,4 +255,76 @@ labels:
     description: リストから選択
     name: choose_from_list
     ja: リストから選択
+    en:
+
+  - id: 101
+    description: 変更種別
+    name: change_type
+    ja: 変更種別
+    en:
+
+  - id: 102
+    description: メーカ
+    name: brand
+    ja: メーカ
+    en:
+
+  - id: 103
+    description: 機種
+    name: type
+    ja: 機種
+    en:
+
+  - id: 104
+    description: 型式
+    name: model
+    ja: 型式
+    en:
+
+  - id: 105
+    description: 機番
+    name: serial_number
+    ja: 機番
+    en:
+
+  - id: 106
+    description: カスタマイズ用途定義
+    name: customize_usage_definition_label
+    ja: カスタマイズ用途定義
+    en:
+
+  - id: 107
+    description: バージョン
+    name: version
+    ja: バージョン
+    en:
+
+  - id: 108
+    description: 優先度
+    name: priority
+    ja: 優先度
+    en:
+
+  - id: 109
+    description: 開始日
+    name: start_day
+    ja: 開始日
+    en:
+
+  - id: 110
+    description: 終了日
+    name: end_day
+    ja: 終了日
+    en:
+
+  - id: 111
+    description: 即時反映
+    name: time_before_effect
+    ja: 即時反映
+    en:
+
+  - id: 112
+    description: エラー内容
+    name: error_msg
+    ja: エラー内容
     en:
