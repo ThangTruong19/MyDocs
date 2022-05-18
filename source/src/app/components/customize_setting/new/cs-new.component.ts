@@ -10,7 +10,7 @@ import { CommonHeaderService } from 'app/services/shared/common-header.service';
 import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { ModalService } from 'app/services/shared/modal.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
-import { Fields, Resources, TableHeader } from 'app/types/common';
+import { Resources, TableHeader } from 'app/types/common';
 import * as _ from 'lodash';
 
 // モーダルからの返却値
@@ -20,22 +20,34 @@ interface CustomizeUsageDefinitionResponseData {
     customize_usage_definition_version?: number;
     start_date?: string;
     end_date?: string;
-    priority_name?: string;
     customize_definitions?: CustomizeDefinitionResponseData[]
 }
 interface CustomizeDefinitionResponseData {
     customize_definition_id?: string;
     customize_definition_name?: string;
     assumption_data_value?: number;
+    priority?: string;
+    priority_name?: string;
+    active_kind?: string;
     active_name?: string;
+    latest_operation_code?: string;
     latest_operation_code_name?: string;
+    status?: string;
     status_name?: string;
     start_date?: string;
     end_date?: string;
     first_receive_datetime?: string;
     latest_receive_datetime?: string;
+    aggregation_condition_id?: string;
     aggregation_condition_name?: string;
+    send_condition_id?: string;
     send_condition_name?: string;
+    customize_access_level?: string;
+    customize_access_level_name?: string;
+    aggregation_opportunity_kind?: string;
+    send_opportunity_kind?: string;
+    assumption_data_value_header?: number;
+    process_type?: string;
 }
 
 /**
@@ -52,7 +64,7 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit {
     @Input()
     public resources: Resources;
     @Input()
-    public initThLst: TableHeader[];
+    public initThList: TableHeader[];
 
     private apiResult: any;
     public modalResponse: CustomizeUsageDefinitionResponseData;
@@ -69,14 +81,6 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit {
     _dateFormat: string;
     timeZone: string;
     datePickerParams: Object;
-
-    // Table's header definition
-    lstColumnName = [
-        'customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name',
-        'customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value',
-        'customize_usage_definitions.customize_usage_definition.customize_definitions.aggregation_condition_name',
-        'customize_usage_definitions.customize_usage_definition.customize_definitions.send_condition_name'
-    ];
 
     _searchParams = {
         car_id: "",
@@ -131,44 +135,27 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit {
         }
         this._initializeDatePicker();
 
-        this.thList = [];
-        this.initThLst.forEach((element: TableHeader) => {
-            this.lstColumnName.forEach((name: string) => {
-                if (name === element.name) this.thList.push(element);
-            })
-        });
+        this.thList = this.initThList;
 
         // FORMAT TABLE
         this.thList.forEach((element: TableHeader) => {
             switch (element.name) {
                 case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
-                    element.id = 1;
-                    element.label = "カスタマイズ定義名";
                     element.columnStyle = "width:25%"
                     break;
                 case "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value":
-                    element.id = 2;
-                    element.label = "想定通信容量(byte/月)";
                     element.columnStyle = "width:25%"
                     break;
                 case "customize_usage_definitions.customize_usage_definition.customize_definitions.aggregation_condition_name":
-                    element.id = 3;
                     element.columnStyle = "width:25%"
                     break;
                 case "customize_usage_definitions.customize_usage_definition.customize_definitions.send_condition_name":
-                    element.id = 4;
                     element.columnStyle = "width:25%"
                     break;
             }
         })
 
-        this.thList.sort((afterCol, beforeCol) => {
-            if (afterCol.id > beforeCol.id) {
-                return 1;
-            } else {
-                return -1;
-            }
-        })
+        this.sortableThList = this.sortableThLists(this.thList)
     }
 
     /**
@@ -286,7 +273,6 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit {
             customize_usage_definition_version: this.params.regist_customize_usage_definition_version,
             start_date: this.datePickerService.convertDateString(this.params.regist_start_date, DateFormat.hyphen, DateFormat.slash),
             end_date: this.datePickerService.convertDateString(this.params.regist_end_date, DateFormat.hyphen, DateFormat.slash),
-            priority_name: this.params.regist_priority_name,
             customize_definitions: this._formatListData(this.apiResult.result_data.customize_definitions)
         }
     }
@@ -303,15 +289,28 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit {
                 customize_definition_id: element.customize_definition.customize_definition_id,
                 customize_definition_name: element.customize_definition.customize_definition_name,
                 assumption_data_value: element.customize_definition.assumption_data_value,
-                active_name: element.customize_definition.active_name,
-                latest_operation_code_name: element.customize_definition.latest_operation_code_name,
+                active_kind: this.params.regist_active_name,
+                active_name: (this.isEnabled as any).items.filter((element: { id: any; }) => element.id == this.params.regist_active_name)[0].name,
+                latest_operation_code: element.customize_definition.latest_operation_code,
+                latest_operation_code_name: "-",
+                status: element.customize_definition.status,
                 status_name: element.customize_definition.status_name,
                 start_date: element.customize_definition.start_date,
                 end_date: element.customize_definition.end_date,
                 first_receive_datetime: element.customize_definition.first_receive_datetime,
                 latest_receive_datetime: element.customize_definition.last_receive_datetime,
+                aggregation_condition_id: element.customize_definition.aggregation_condition_id,
                 aggregation_condition_name: element.customize_definition.aggregation_condition_name,
+                send_condition_id: element.customize_definition.send_condition_id,
                 send_condition_name: element.customize_definition.send_condition_name,
+                customize_access_level: element.customize_definition.customize_access_level,
+                customize_access_level_name: element.customize_definition.customize_access_level_name,
+                priority: (this.priority as any).items.filter((element: { id: any; }) => element.id == this.params.regist_priority_name)[0].id,
+                priority_name: (this.priority as any).items.filter((element: { id: any; }) => element.id == this.params.regist_priority_name)[0].name,
+                aggregation_opportunity_kind: element.customize_definition.aggregation_opportunity_kind,
+                send_opportunity_kind: element.customize_definition.send_opportunity_kind,
+                assumption_data_value_header: element.customize_definition.assumption_data_value_header,
+                process_type: element.customize_definition.process_type
             })
         });
         return resultLst;

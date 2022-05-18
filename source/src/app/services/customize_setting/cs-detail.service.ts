@@ -53,8 +53,22 @@ export class CsDetailService {
       ScreenCodeConst.CAR_MGT_DETAIL,
       'fetchIndexInitData',
       {
-        fields: () =>
-          this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION)
+        csDetailFields: () =>
+          this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION, "1"),
+        csUpdateRequestConfirmFields: () =>
+          this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION, "2"),
+        csImmediateUpdateRequestConfirmFields: () =>
+          this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION, "2"),
+        csRequestResendConfirmFields: () =>
+          this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION, "2"),
+        csNewFields: () =>
+          this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION, "3"),
+        csEditFields: () =>
+          this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION, "3"),
+        csExpectedTrafficConfirmFields1: () =>
+          this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION, "5"),
+        csExpectedTrafficConfirmFields2: () =>
+          this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION, "4"),
       }
     )
   }

@@ -13,8 +13,6 @@ export interface CustomizeUsageDefinitionContent {
     priority_name?: string
     use_kind?: string
     use_name?: string
-    active_kind?: string
-    active_name?: string
     customize_definitions?: CustomizeDefinition[]
 }
 
@@ -31,16 +29,23 @@ export interface CustomizeDefinition {
     status?: string
     status_name?: string
     assumption_data_value?: number
+    assumption_data_value_header?: number
     start_date?: string
     end_date?: string
     first_receive_datetime?: string
     latest_receive_datetime?: string
     aggregation_condition_id?: string
     aggregation_condition_name?: string
+    aggregation_opportunity_kind?: string
+    aggregation_opportunity_kind_name?: string
     send_condition_id?: string
     send_condition_name?: string
+    send_opportunity_kind?: string
+    send_opportunity_kind_name?: string
     customize_access_level?: string
     customize_access_level_name?: string
+    process_type?: string
+    process_type_name?: string
 }
 
 // TODO:

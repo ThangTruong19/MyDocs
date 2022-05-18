@@ -87,12 +87,12 @@ export class CommonTableService {
         for (let i = 0; splitPathName.length; i++) {
             const path: string = splitPathName[i];
             fetchData = fetchData[path];
-            if (!fetchData) {
+            if (!fetchData) {//console.log('or here?');
                 return [];
             } else if ((fetchData && Array.isArray(fetchData))) {
                 return fetchData;
             }
-        }
+        }//console.log('here?');
         return [];
     }
 

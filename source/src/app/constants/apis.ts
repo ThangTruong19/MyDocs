@@ -46,7 +46,6 @@ export const Apis = {
     postCarCustomizesUsageDefinitionHistoriesSearchFileCreate: 'KOM-xxxxxxx9',
     postRequestPeriodComfirm: 'KOM-1xxxxxxx',
     postSendNoList: 'KOM-2xxxxxxx',
-    getCarsManagementTemplateCreate: 'KOM-00103071',
     postCarSearch: 'KOM-xxxxxx10',
 
     postOperatorsUpload: 'KOM-01300030',

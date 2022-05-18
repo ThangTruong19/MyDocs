@@ -144,27 +144,29 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
       param
     );
     this.authorities = []
-    const listAuthorities = res.user.group.granted_authority_ids.values
+    let listAuthorities = res.user.group.granted_authority_ids.values
     this.selectedAuthorities = _.map(
       _.get(user, 'group.granted_authorities'),
       'id'
     );
 
     // 設定されている権限のアクセスレベルを取得
-    this.authorityKinds = _.map(
-      _.get(user, 'group.granted_authorities'),
-      'kind'
-    );
-
-    this.authoritiesKindList(this.authorityKinds[0],listAuthorities)
+    let accessKind
+    for (let i = 0; i < listAuthorities.length; i++) {
+      if (this.selectedAuthorities.indexOf(listAuthorities[i].value) != -1) {
+        accessKind = listAuthorities[i].kind
+        break;
+      }
+    }
+    this.authoritiesKindList(accessKind, listAuthorities)
 
     this.safeDetectChanges();
   }
 
-  authoritiesKindList(autyorityKinds: string,listAuthorities:any){
+  authoritiesKindList(accessKind: string, listAuthorities: any) {
     // this.authoritiesとユーザのアクセスレベルを比較して、適合するものだけを取得する
-    for (var i = 0; i < listAuthorities.length; i++) {
-      if(listAuthorities[i].kind == this.authorityKinds[0]){
+    for (let i = 0; i < listAuthorities.length; i++) {
+      if (listAuthorities[i].kind == accessKind) {
         this.authorities.push(listAuthorities[i])
       }
     }

@@ -139,14 +139,14 @@ export class CarListComponent extends AbstractIndexComponent {
         params,
         this.requestHeaderParams
       );
-
-      this.selectedList = res.result_data.operation_histories;
-      for (let i = 1; i <= this.selectedList.length; i++) {
-        this.checkedItems[i] = this.checkAll;
-      }
-
+      console.log('Big Problem');console.log(res);
+      this.selectedList = res.result_data.car_list;
+      // for (let i = 1; i <= this.selectedList.length; i++) {
+      //   this.checkedItems[i] = this.checkAll;
+      // }
+      console.log('thlist');console.log(this.thList);
       const list = this._formatList(
-        res.result_data.operation_histories,
+        res.result_data.cars,
         this.thList
       );
       this._fillLists(res.result_header, list);
@@ -307,9 +307,20 @@ export class CarListComponent extends AbstractIndexComponent {
     /**
      * 一括設定取得要求へ遷移
      */
-    public handleEditClick(): void {
+    public handleEditClick(event: any): void {console.log('seriously');console.log(event);
       this.router.navigated = false;
-      this.router.navigateByUrl("/customize_setting");
+      // this.router.navigateByUrl("/customize_setting");
+      this.router.navigate(
+        ["/customize_setting"],
+        {
+          queryParams: {
+            carId: '1',
+            model: '1',
+            typeRev: '1',
+            serial: '1'
+          }
+        }
+      )
     }
 
     /**
@@ -327,7 +338,7 @@ export class CarListComponent extends AbstractIndexComponent {
       * 選択チェックボックス変更時コールバック
       * @param value 値
       */
-    onCheckSelect(checked: boolean, index: any): void {
+    onCheckSelect(checked: boolean, index: any, data: any, titlename: any): void { console.log('oh ah ah ah ah');console.log(data);console.log(titlename);
         this.checkedItems[index] = !checked;
     }
 
@@ -429,4 +440,20 @@ export class CarListComponent extends AbstractIndexComponent {
       }
     );
   }
+
+
+
+
+    private arrayColumnPaths: string[] = [
+      'cars.customize_usage_definitions'
+    ];
+
+    /**
+     * 対象列が配列形式かどうかを判断する。
+     * @param pathName 対象列のパス名
+     * @returns true：配列、false：配列ではない。
+     */
+     public isArrayColumnData(pathName: string): boolean {
+      return this.arrayColumnPaths.indexOf(pathName) !== -1
+    }
 }

@@ -188,7 +188,7 @@
 
   <ng-template #customTableThContent>
     <ng-container *ngFor="let th of thList">
-      <ng-container *ngIf="th.displayable && th.shortName !== 'operation_histories_checkbox'; else checkboxContent">
+      <ng-container *ngIf="th.displayable && th.shortName !== 'cars_checkbox'; else checkboxContent">
         <th
           class="app-index-th th-{{ th.shortName }}"
           appSortingLabel
@@ -219,22 +219,21 @@
     </ng-container>
   </ng-template>
 
-  <ng-template #customTableRowContent let-data="data" let-title="title">
+  <ng-template #customTableRowContent let-data="data" let-title="title" let-tblFunctions="tblFunctions">
     <ng-container *ngFor="let title of thList">
-      <ng-container [ngSwitch]="title.name" *ngIf="title.displayable && title.shortName !== 'operation_histories_customize_definition_label' && title.shortName !== 'operation_histories_checkbox'; else editContent">
+      <ng-container [ngSwitch]="title.name" *ngIf="title.displayable && title.shortName !== 'cars_customize_definition_label' && title.shortName !== 'cars_checkbox' && title.shortName !== 'cars_user_label';">
         <td class="td-{{ title.shortName }} app-index-td d-flex align-items-center">
           <span>{{ data[title.name] }}</span>
         </td>
       </ng-container>
-      <ng-template #editContent>
-        <ng-container *ngIf="title.displayable && title.shortName !== 'operation_histories_checkbox'; else checkContent">
-          <td style="display: grid; width: 100%;text-align:center;align-items: center;">
-            <i class="app-icon app-icon-edit" (click)="handleEditClick()"></i>
-          </td>
-        </ng-container>
-      </ng-template>
 
-      <ng-template #checkContent>
+      <ng-container *ngIf="title.displayable && title.shortName == 'cars_customize_definition_label';">
+        <td style="display: grid; width: 100%;text-align:center;align-items: center;">
+          <i class="app-icon app-icon-edit" (click)="handleEditClick($event)"></i>
+        </td>
+      </ng-container>
+
+      <ng-container *ngIf="title.displayable && title.shortName == 'cars_checkbox';">
         <td
           *ngIf="selectable"
           class="app-sm-link fixed d-flex justify-content-center td-check"
@@ -242,7 +241,7 @@
           <input
               (appTableCheckbox)="onChange($event)"
               (toggleClick)="onCheckSelect($event)"
-              (click)="onCheckSelect(checkedItems[data[title.name]], data[title.name])"
+              (click)="onCheckSelect(checkedItems[data[title.name]], data[title.name], data, title.name)"
               [selectedList]="selectedList"
               [checked]="checkedItems[data[title.name]]"
               id="check-icon-{{ data[title.name] }}"
@@ -256,7 +255,17 @@
               <i class="fa"></i>
           </label>
         </td>
-      </ng-template>
+      </ng-container>
+
+      <ng-container *ngIf="title.displayable && title.shortName == 'cars_customize_usage_definitions' && isArrayColumnData(title.name)">
+        <ng-container *ngFor="let rec of tblFunctions.getArrayColumnData(data, title.name); let subIndex = index">
+            <div [ngClass]="{'divider-column-border': subIndex > 0}">
+                <span class="divider-column">{{rec[tblFunctions.getLastColumnPathName(title.name + '.name')]}}</span>
+            </div>
+            <!--<span>{{ data[title.name] }}</span>-->
+        </ng-container>
+      </ng-container>
+
     </ng-container>
   </ng-template>
 

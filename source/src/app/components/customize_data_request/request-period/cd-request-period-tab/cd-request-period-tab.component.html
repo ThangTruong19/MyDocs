@@ -11,6 +11,7 @@
                             type="radio"
                             class="app-input-radio"
                             [ngModelOptions]="{ standalone: true }"
+                            (change)="changeRequestType()"
                             [value]="resource.request_number_definition_id_kind.values[0].value"
                             [(ngModel)]="request_period_kind" />
                         <label for="request_period_kind_{{ resource.request_number_definition_id_kind.values[0].value }}" class="app-input-radio__label kind-attribute">
@@ -24,6 +25,7 @@
                             type="radio"
                             class="app-input-radio"
                             [ngModelOptions]="{ standalone: true }"
+                            (change)="changeRequestType()"
                             [value]="resource.request_number_definition_id_kind.values[1].value"
                             [(ngModel)]="request_period_kind" />
                         <label for="request_period_kind_{{ resource.request_number_definition_id_kind.values[1].value }}" class="app-input-radio__label kind-main-info">
@@ -41,7 +43,7 @@
                 </app-select-type> -->
             </div>
             <div class="col-6">
-                <label class="required">{{resource.request_number_definition_ids.name}} <span>*</span></label>
+                <label class="required"> {{request_period_kind == '1' ? resource.request_number_usage_definition_ids.name : resource.request_number_definition_ids.name}} <span>*</span></label>
                 <div class="col-12">
                     <app-multiselect
                         [options]="listSelections"
@@ -153,8 +155,8 @@
         <button type="button" class="btn btn-primary btn-send" (click)="sendData()">{{labels.data_send_request_btn}}</button>
         <button type="button" class="btn btn-primary" (click)="sendAppConfirm()">{{labels.current_customize_request_btn}}</button>
         <!-- TODO -->
-        <button type="button" class="btn btn-primary" (click)="expectedTrafficConfirm()">通信量確認</button>
-        <button type="button" class="btn btn-primary" (click)="testRowspan()">カスタマイズデータ送信要求確認（送信番号指定）</button>
+        <!-- <button type="button" class="btn btn-primary" (click)="expectedTrafficConfirm()">通信量確認</button>
+        <button type="button" class="btn btn-primary" (click)="testRowspan()">カスタマイズデータ送信要求確認（送信番号指定）</button> -->
     </div>
 </div>
 
@@ -166,6 +168,8 @@
         [data]="data"
         [thList]="thListCustomizeDataRequest"
         [labels]="labels"
+        [resource]="resource"
+        [listSelections]="listSelections"
     ></app-cd-request-period-comfirm>
 </ng-template>
 
@@ -177,6 +181,8 @@
         [data]="data"
         [thList]="thListCurrentRequestComfirm"
         [labels]="labels"
+        [resource]="resource"
+        [listSelections]="listSelections"
     ></app-cd-current-request-comfirm>
 </ng-template>
 <!-- TODO -->

@@ -34,8 +34,6 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     @ViewChild('requestMumberDefinitionIdKind', { static: false }) requestMumberDefinitionIdKind: SelectTypeComponent;
     @ViewChild('fromToDatePicker') fromToDatePicker: ElementRef;
     modalResource: any;
-    // @Input() labels: any;
-    // @Input() resource: any;
     @Input() override lists: any;
     @Input() override params: any;
     @Input() override thList: any;
@@ -123,12 +121,12 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
         this.beginningWday = datePickerConfig.first_day_of_week_kind;
         const _window = window as any;
         this.enableDateRange = _window.settings.datePickerRange.car;
-        // this.enableDateRange = this.datePickerService.parseDateRange(_window.settings.datePickerRange.other);
 
         let dateFormat = datePickerConfig.date_format_code;
         this.timeZone = datePickerConfig.time_difference;
 
-        this.listSelections = this.resource.request_number_definition_ids.values;
+        this.listSelections = this.request_period_kind == '1' ? this.resource.request_number_usage_definition_ids.values : this.resource.request_number_definition_ids.values;
+
         this.datePickerParams = {
             timeZone: this.timeZone,
             dateFormat: dateFormat,
@@ -138,9 +136,9 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     }
 
     /**
-   * 指定項目を更新
-   * @param fields 指定項目
-   */
+     * 指定項目を更新
+     * @param fields 指定項目
+     */
     protected _updateFields(fields: any): void {
         this.fields = fields;
         this.thListModal = this._createThList(fields);
@@ -150,34 +148,6 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     }
 
     placeholder: string = '';
-
-    // ngOnInit(): void {
-    //   this.listSelections = this.resource.request_number_definition_ids.values;
-    //   this.placeholder = this.resource.request_number_definition_ids.placeholder_text;
-    //   console.log('labels', this.labels);
-    //   console.log('resource', this.resource);
-    //   console.log('lists', this.lists);
-
-    //   const _window = window as any;
-    //   this.datePickerParams = {
-    //     dateFormat: this.dateFormat,
-    //     timeZone: this.timeZone,
-    //   };
-    //   this.datePickerService.initialize(this.datePickerParams);
-    //   this.monthPickerService.initialize(this.datePickerParams);
-    //   this.enableDateRange = this.datePickerService.parseDateRange(_window.settings.datePickerRange.other);
-
-    //   // this._refreshMonthPickerDateRange();
-    //   // this._refreshDatePickerDateRange();
-    //   this._datePickerInitialize();
-
-    //   // this.lists.originList = [{
-    //   //   columnName1: 'PC200-8-1234',
-    //   // }, {
-    //   //   columnName1: 'PC200-8-1111',
-    //   // }];
-    //   // this.lists.visibleList = this.lists.originList;
-    // }
 
     onChangeItems(): void {
         this.changed.emit();
@@ -214,9 +184,9 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
         this.thListCustomizeDataRequest = [];
         const opt: TableOptions = {
             columnStyles: [
-                'width:18%', 'width:10%', 'width:10%'
-                , 'width:12%', 'width:12%', 'width:19%'
-                , 'width:19%'
+                'width:17%', 'width:13%', 'width:13%'
+                , 'width:11%', 'width:16%', 'width:16%'
+                , 'width:16%'
             ]
         };
         let thList = this._createThList(this.fields, opt);
@@ -243,7 +213,7 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
                 },
             },
             {
-                size: 'lg',
+                size: 'xl',
             }
         );
     }
@@ -308,10 +278,10 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     }
 
     /**
-    * デートピッカー選択時のコールバック
-    * @param path パス
-    * @param date 選択された日
-    */
+     * デートピッカー選択時のコールバック
+     * @param path パス
+     * @param date 選択された日
+     */
     handleSelectDate(path: string, date: Moment) {
         console.log("date", date);
     }
@@ -325,41 +295,8 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     }
 
     /**
-     * 日付の選択範囲を初期化する
+     * 初期表示時の年月を取得する
      */
-    private _refreshMonthPickerDateRange() {
-        const initialYearMonth = this._getInitialYearMonth();
-        const enableDateRange = _.cloneDeep(this.enableDateRange);
-
-        if (
-            this.monthPickerFromDateRange == null &&
-            this.monthPickerToDateRange == null
-        ) {
-            this.monthPickerFromDateRange = [
-                enableDateRange[0],
-                initialYearMonth.year_month_to.format(DateFormat.params),
-            ];
-            this.monthPickerToDateRange = [
-                initialYearMonth.year_month_from.format(DateFormat.params),
-                enableDateRange[1],
-            ];
-        } else {
-            this.monthPickerFromDateRange[0] = enableDateRange[0];
-            this.monthPickerFromDateRange[1] = initialYearMonth.year_month_to.format(
-                DateFormat.params
-            );
-            this.monthPickerToDateRange[0] = initialYearMonth.year_month_from.format(
-                DateFormat.params
-            );
-            this.monthPickerToDateRange[1] = this.datePickerService
-                .toMoment()
-                .format(DateFormat.params);
-        }
-    }
-
-    /**
-    * 初期表示時の年月を取得する
-    */
     private _getInitialYearMonth() {
         return {
             year_month_from: this.datePickerService
@@ -457,13 +394,17 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
         console.log("params", params);
     }
 
+    /**
+     * 機種"-"型式(小変形含む)"-"機番を表示
+     * @param data
+     * @returns string
+     */
     printInfoCar(data: any): string {
         let result = data.car_identification.model + "-" + data.car_identification.type_rev + "-" + data.car_identification.serial;
         return result;
     }
 
     changeLimitActiveKind(data: any): void {
-        console.log("changeRequestType", data);
         this.car_data_amount_upper_limit_active_kind = data;
     }
 
@@ -493,5 +434,13 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
             car["current_customize_request.car.id"] = model_type_rev_serial;
             this.data.push(car);
         }
+    }
+
+    /**
+     * ラジオボタン切り替え時にラベル・プルダウンの切り替えを行う。
+     */
+    changeRequestType(): void {
+        this.selectedListItems = [];
+        this.listSelections = this.request_period_kind == '1' ? this.resource.request_number_usage_definition_ids.values : this.resource.request_number_definition_ids.values;
     }
 }

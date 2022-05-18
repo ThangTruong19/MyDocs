@@ -210,27 +210,27 @@ labels:
     en:
 
   - id: 36
-    description: テーブルヘッダ
-    name: id_header_label
-    ja: ID
+    description: テーブルボディ
+    name: assumption_data_value_kb_body_label
+    ja: "[KB] +"
     en:
 
   - id: 37
-    description: テーブルヘッダ
-    name: customize_detail_header_label
-    ja: カスタマイズメニュー詳細
+    description: テーブルボディ
+    name: assumption_data_value_number_body_label
+    ja: [KB/件]
     en:
 
   - id: 38
-    description: テーブルヘッダ
-    name: start_date_header_label
-    ja: 開始日
+    description: テーブルボディ
+    name: assumption_data_value_monthly_body_label
+    ja: [KB/月]
     en:
 
   - id: 39
-    description: テーブルヘッダ
-    name: end_date_header_label
-    ja: 終了日
+    description: メッセージ
+    name: finish_message
+    ja: 処理が完了しました。
     en:
 
   - id: 40

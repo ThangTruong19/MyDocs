@@ -1,0 +1,72 @@
+[
+    {
+      "display_sequence_no": "1",
+      "name": "車両",
+      "path": "request_number.cars.car_identification.model_type_rev_serial",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "2",
+      "name": "通信量上限設定",
+      "path": "request_period.car.data_amount_upper_limit_active_kind",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "3",
+      "name": "上限通信量[KB]",
+      "path": "request_period.car.data_amount_upper_limit",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "4",
+      "name": "要求単位",
+      "path": "request_period.car.kind",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "5",
+      "name": "カスタマイズ用途定義",
+      "path": "request_period.car.customize_usage_definition",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "5",
+      "name": "開始日",
+      "path": "request_period.car.start_date",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "6",
+      "name": "終了日",
+      "path": "request_period.car.end_date",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "7",
+      "name": "車両",
+      "path": "current_customize_request.car.id",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "8",
+      "name": "要求単位",
+      "path": "current_customize_request.car.kind",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "9",
+      "name": "カスタマイズ用途定義",
+      "path": "current_customize_request.car.customize_usage_definition",
+      "control_code": "1",
+      "display_code": "1"
+    }
+]

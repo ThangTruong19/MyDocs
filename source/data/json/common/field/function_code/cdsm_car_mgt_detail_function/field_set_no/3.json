@@ -1,0 +1,30 @@
+[
+    {
+        "display_sequence_no": "1",
+        "name": "カスタマイズ定義名",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "2",
+        "name": "想定通信量（byte/月）",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "3",
+        "name": "カスタマイズ集計条件名",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.aggregation_condition_name",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "4",
+        "name": "カスタマイズ送信条件名",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.send_condition_name",
+        "control_code": "1",
+        "display_code": "1"
+    }
+]

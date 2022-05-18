@@ -20,8 +20,10 @@ import { UserSettingService } from 'app/services/api/user-setting.service';
 
 import { MimeType } from 'app/constants/mime-types';
 import { CustomizeSettingUploadService } from 'app/services/customize-setting-upload/customize-setting-upload.service';
-import { CarTemplateCreateParams } from 'app/types/car';
+import { CarTemplateCreateParams, CarMgtListFileCreateParams } from 'app/types/car';
 import { Apis } from 'app/constants/apis';
+
+import { ProcessingType } from 'app/constants/download';
 
 @Component({
   selector: 'cdsm_customize_setting_upload',
@@ -185,18 +187,51 @@ export class CsUploadComponent extends AbstractIndexComponent {
     async onClickDownload(): Promise<void> {
       this._showLoadingSpinner();
       try {
-        const fieldItems = await this.uploadService.fetchCarBatchDownloadFields();
-        const xFields = this._createXFields(fieldItems);
+        // const fieldItems = await this.uploadService.fetchCarBatchDownloadFields();
+        // const xFields = this._createXFields(fieldItems);alert('yo 4');
 
-        const res = await this.uploadService.templateCreate(
-          this._createTemplateCreateParams(),
-          xFields
+        // const res = await this.uploadService.templateCreate(
+        //   this._createTemplateCreateParams(),
+        //   xFields
+        // );
+        // alert('yo 5');
+        // await this.api.downloadFile(res.result_data.file_id, MimeType.excel);
+
+        await this._downloadTemplate(
+          this.fields.map((f: { path: string }) => f.path),
+          MimeType.excel
         );
-        await this.api.downloadFile(res.result_data.file_id, MimeType.excel);
       } finally {
         this._hideLoadingSpinner();
       }
     }
+
+    /**
+     * テンプレートダウンロード
+     * @param fields ダウンロード対象項目
+     * @param accept ダウンロード形式
+     */
+     protected async _downloadTemplate(fields: any, accept: any): Promise<void> {
+      const params: CarMgtListFileCreateParams = {
+        operation_history: _.omit(this.searchParams, this.excludeSearchParams),
+        file_create_condition: {
+          file_content_type: accept,
+          processing_type: ProcessingType.sync,
+        },
+      };
+      const header = _.cloneDeep(this.requestHeaderParams);
+      header['X-Sort'] = this.sortingParams['sort'];
+      header['X-Fields'] = fields;
+      this._showLoadingSpinner();
+      try {
+        const res: any = await this.uploadService.createFile(params, header);
+        await this.api.downloadFile(res.result_data.file_id, accept);
+      } finally {
+        this._hideLoadingSpinner();
+      }
+    }
+
+
 
     /**
      * 車両一括登録テンプレートファイル作成APIリクエストパラメータ作成

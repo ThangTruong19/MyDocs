@@ -65,6 +65,14 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
   fixedThList: TableHeader[]
   scrollableThList: TableHeader[]
 
+  csUpdateRequestConfirmThList: TableHeader[]
+  csImmediateUpdateRequestConfirmThList: TableHeader[]
+  csRequestResendConfirmThList: TableHeader[]
+  csNewThList: TableHeader[]
+  csEditThList: TableHeader[]
+  csExpectedTrafficConfirmThList1: TableHeader[]
+  csExpectedTrafficConfirmThList2: TableHeader[]
+
   statusKey = 'customize_usage_definitions.customize_usage_definition.customize_definitions.status'
   customizeUsageDefinitionIdKey = 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'
 
@@ -107,6 +115,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
   private arrayColumnPaths: string[] = [
     'customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_id',
     'customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name',
+    'customize_usage_definitions.customize_usage_definition.customize_definitions.priority_name',
     'customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value',
     'customize_usage_definitions.customize_usage_definition.customize_definitions.active_name',
     'customize_usage_definitions.customize_usage_definition.customize_definitions.latest_operation_code_name',
@@ -228,22 +237,32 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    * 初期化 API を呼ぶ
    */
   protected async _fetchDataForInitialize(): Promise<void> {
-    // TODO:
-    // this.activatedRoute.params.subscribe(params => (this.carId = params.carId))
-    // this.activatedRoute.params.subscribe(params => (this.model = params.model))
-    // this.activatedRoute.params.subscribe(params => (this.typeRev = params.typeRev))
-    // this.activatedRoute.params.subscribe(params => (this.serial = params.serial))
-    this.carId = `carId`
-    this.model = `Model`
-    this.typeRev = `TypeRev`
-    this.serial = `Serial`
+    this.activatedRoute.queryParams.subscribe(params => (console.log('queryParams', params)))
+    this.activatedRoute.queryParams.subscribe(params => (this.carId = params.carId))
+    this.activatedRoute.queryParams.subscribe(params => (this.model = params.model))
+    this.activatedRoute.queryParams.subscribe(params => (this.typeRev = params.typeRev))
+    this.activatedRoute.queryParams.subscribe(params => (this.serial = params.serial))
 
     const res: any = await this.csDetailService.fetchIndexInitData()
     this.initialize(res)
     this.labels = res.label
     this.resource = res.resource
     this._setTitle()
-    this._updateFields(res.fields)
+    this._updateFields(res.csDetailFields)
+    this.csUpdateRequestConfirmThList = this._createThList(res.csUpdateRequestConfirmFields)
+    this.csImmediateUpdateRequestConfirmThList = this._createThList(res.csImmediateUpdateRequestConfirmFields)
+    this.csRequestResendConfirmThList = this._createThList(res.csRequestResendConfirmFields)
+    this.csNewThList = this._createThList(res.csNewFields)
+    this.csEditThList = this._createThList(res.csEditFields)
+    this.csExpectedTrafficConfirmThList1 = this._createThList(res.csExpectedTrafficConfirmFields1)
+    this.csExpectedTrafficConfirmThList2 = this._createThList(res.csExpectedTrafficConfirmFields2)
+    console.log('csUpdateRequestConfirmThList', this.csUpdateRequestConfirmThList)
+    console.log('csImmediateUpdateRequestConfirmThList', this.csImmediateUpdateRequestConfirmThList)
+    console.log('csRequestResendConfirmThList', this.csRequestResendConfirmThList)
+    console.log('csNewThList', this.csNewThList)
+    console.log('csEditThList', this.csEditThList)
+    console.log('csExpectedTrafficConfirmThList1', this.csExpectedTrafficConfirmThList1)
+    console.log('csExpectedTrafficConfirmThList2', this.csExpectedTrafficConfirmThList2)
     this.resources = res
   }
 
@@ -338,7 +357,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
 
   /**
    * 編集内容破棄ボタン押下コールバック
-   *
    * @param data 対象データ
    */
   onClickDiscard(data: any) {
@@ -346,21 +364,23 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
   }
 
   /**
- * 編集内容全破棄ボタン押下コールバック
- */
+   * 編集内容全破棄ボタン押下コールバック
+   */
   onClickDiscardAll() {
     this.openCsInputDataCancelAllConfirmDialog()
   }
 
   /**
    * 再送ボタン押下コールバック
-   *
    * @param data 対象データ
    */
   onClickRetry(data: any) {
     this.openCsRequestResendConfirmDialog(data)
   }
 
+  /**
+   * 追加モーダル呼出し
+   */
   openCsNewDialog() {
     this.modalService.open(
       {
@@ -370,7 +390,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         closeBtnLabel: this.labels.cancel,
         okBtnLabel: this.labels.ok_btn,
         ok: () => {
-          const data = this.lists.originList[this.lists.originList.length - 1]
           this.newChildComponent.closeNewDialog()
           const contents: CustomizeUsageDefinition[] =
             [
@@ -378,7 +397,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 customize_usage_definition: this.newChildComponent.modalResponse
               }
             ]
-          contents[0].customize_usage_definition.customize_usage_definition_id = data[this.customizeUsageDefinitionIdKey] + 1;
           const list = this._formatList(
             contents,
             this.thList
@@ -404,6 +422,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           this.checkAll =
             targetItems.length > 0 &&
             targetItems.every((item: any) => this.checkedItems[_.get(item, this.checkIdName)])
+          console.log('newChildComponent', this.newChildComponent.modalResponse)
         },
       },
       {
@@ -412,12 +431,18 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     )
   }
 
+  /**
+   * 編集モーダル呼出し
+   * @param data 対象データ
+   */
   openCsEditDialog(data: any) {
     const content: CustomizeUsageDefinition = this.thList.reduce((acc, cur) => {
       const item = _.get(data, cur.name)
       _.set(acc, cur.formatKey, item)
       return acc
     }, {})
+    content.customize_usage_definition.customize_definitions
+      = _.get(data, 'customize_usage_definitions.customize_usage_definition.customize_definitions')
 
     this.inputParams.edit_customize_usage_definition_id = content.customize_usage_definition.customize_usage_definition_id
     this.inputParams.edit_customize_usage_definition_name = content.customize_usage_definition.customize_usage_definition_name
@@ -425,9 +450,8 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     this.inputParams.edit_start_date = content.customize_usage_definition.start_date
     this.inputParams.edit_end_date = content.customize_usage_definition.end_date
     this.inputParams.edit_priority_name = content.customize_usage_definition.priority_name
-    // TODO:
-    this.inputParams.edit_active_name = content.customize_usage_definition.active_name
-    console.log(this.inputParams)
+    this.inputParams.edit_active_name = content.customize_usage_definition.customize_definitions[0].active_name
+    console.log('inputParams', this.inputParams)
 
     this.modalService.open(
       {
@@ -437,7 +461,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         closeBtnLabel: this.labels.cancel,
         okBtnLabel: this.labels.ok_btn,
         ok: () => {
-          const data = this.lists.originList[this.lists.originList.length - 1]
           this.editChildComponent.closeEditDialog()
           const contents: CustomizeUsageDefinition[] =
             [
@@ -445,7 +468,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 customize_usage_definition: this.editChildComponent.modalResponse
               }
             ]
-          contents[0].customize_usage_definition.customize_usage_definition_id = data[this.customizeUsageDefinitionIdKey];
           const list = this._formatList(
             contents,
             this.thList
@@ -493,6 +515,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           this.checkAll =
             targetItems.length > 0 &&
             targetItems.every((item: any) => this.checkedItems[_.get(item, this.checkIdName)])
+          console.log('editChildComponent', this.editChildComponent.modalResponse)
         },
       },
       {
@@ -501,6 +524,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     )
   }
 
+  /**
+   * 設定取得要求モーダル呼出し
+   */
   openCsGetRequestDialog() {
     this.modalService.open(
       {
@@ -518,7 +544,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
             cars: cars,
             request_route_kind: '0'
           }
-          console.log(`設定取得 params`, params)
+          console.log(`params（設定取得）`, params)
           this.csDetailService.postCarsRequestSetsCustomizeUsageDefinitionsM2s(params, requestHeaderParams)
             .then(res => {
               // 一覧画面に表示するリスト設定
@@ -529,9 +555,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
               // チェックボックス設定
               this.checkedItems = {}
               this.checkAll = false
-              // TODO: メッセージ出力
-              this.alertService.show(`設定取得が完了しました。`, false, 'success')
-              console.log(`設定取得`, res)
+              // メッセージ出力
+              this.alertService.show(this.labels.finish_message, false, 'success')
+              console.log(`res（設定取得）`, res)
             }).catch((error) => {
               this._setError(error)
             })
@@ -543,6 +569,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     )
   }
 
+  /**
+   * 設定更新要求モーダル呼出し
+   */
   openCsUpdateRequestConfirmDialog() {
     const keys = Object.keys(this.checkedItems)
     this.tableData = this.lists.visibleList.filter(
@@ -570,7 +599,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 priority: data['customize_usage_definitions.customize_usage_definition.priority'],
                 date_to: data['customize_usage_definitions.customize_usage_definition.end_date'],
                 date_from: data['customize_usage_definitions.customize_usage_definition.start_date'],
-                // TODO:
                 active_kind: data['customize_usage_definitions.customize_usage_definition.active_kind']
               }
             })
@@ -579,10 +607,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
             car_id: this.carId,
             request_route_kind: `0`,
             instant_kind: `0`,
-            // TODO: continuous_kind
             customize_usage_definition: customizeUsageDefinitions
           }
-          console.log(`設定更新 params`, params)
+          console.log(`params（設定更新）`, params)
           this.csDetailService.postCarsRequestsCustomizeUsageDefinitionsS2m(params, requestHeaderParams)
             .then(res => {
               // 一覧画面に表示するリスト設定
@@ -593,9 +620,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
               // チェックボックス設定
               this.checkedItems = {}
               this.checkAll = false
-              // TODO: メッセージ出力
-              this.alertService.show(`設定更新が完了しました。`, false, 'success')
-              console.log(`設定更新 res`, res)
+              // メッセージ出力
+              this.alertService.show(this.labels.finish_message, false, 'success')
+              console.log(`res（設定更新）`, res)
             }).catch((error) => {
               this._setError(error)
             })
@@ -611,6 +638,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     )
   }
 
+  /**
+   * 設定即時更新要求モーダル呼出し
+   */
   openCsImmediateUpdateRequestConfirmDialog() {
     const keys = Object.keys(this.checkedItems)
     this.tableData = this.lists.visibleList.filter(
@@ -638,7 +668,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 priority: data['customize_usage_definitions.customize_usage_definition.priority'],
                 date_to: data['customize_usage_definitions.customize_usage_definition.end_date'],
                 date_from: data['customize_usage_definitions.customize_usage_definition.start_date'],
-                // TODO:
                 active_kind: data['customize_usage_definitions.customize_usage_definition.active_kind']
               }
             })
@@ -650,7 +679,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
             continuous_kind: this.csImmediateUpdateRequestConfirmComponent.isContinued,
             customize_usage_definition: customizeUsageDefinitions
           }
-          console.log(`設定即時更新 params`, params)
+          console.log(`params（設定即時更新）`, params)
           this.csDetailService.postCarsRequestsCustomizeUsageDefinitionsS2m(params, requestHeaderParams)
             .then(res => {
               // 一覧画面に表示するリスト設定
@@ -661,9 +690,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
               // チェックボックス設定
               this.checkedItems = {}
               this.checkAll = false
-              // TODO: メッセージ出力
-              this.alertService.show(`設定即時更新が完了しました。`, false, 'success')
-              console.log(`設定即時更新`, res)
+              // メッセージ出力
+              this.alertService.show(this.labels.finish_message, false, 'success')
+              console.log(`res（設定即時更新）`, res)
             }).catch((error) => {
               this._setError(error)
             })
@@ -679,6 +708,10 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     )
   }
 
+  /**
+   * 編集内容破棄モーダル呼出し
+   * @param data 対象データ
+   */
   openCsInputDataCancelConfirmDialog(data: any) {
     this.modalService.open(
       {
@@ -731,6 +764,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     )
   }
 
+  /**
+   * 編集内容全破棄モーダル呼出し
+   */
   openCsInputDataCancelAllConfirmDialog() {
     this.modalService.open(
       {
@@ -754,6 +790,10 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     )
   }
 
+  /**
+   * 再送モーダル呼出し
+   * @param data 対象データ
+   */
   openCsRequestResendConfirmDialog(data: any) {
     this.tableData.push(data)
     this.modalService.open(
@@ -777,7 +817,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
             car_id: this.carId,
             customize_definition: customizeDefinitions
           }
-          console.log(`再送 params`, params)
+          console.log(`params（再送）`, params)
           this.csDetailService.postCarsRequestsCustomizeSettingsRetryS2m(params, requestHeaderParams)
             .then((res) => {
               // 一覧画面に表示するリスト設定
@@ -792,9 +832,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
               this.checkAll =
                 targetItems.length > 0 &&
                 targetItems.every((item: any) => this.checkedItems[_.get(item, this.checkIdName)])
-              // TODO: メッセージ出力
-              this.alertService.show(`再送が完了しました。`, false, 'success')
-              console.log(`再送`, res)
+              // メッセージ出力
+              this.alertService.show(this.labels.finish_message, false, 'success')
+              console.log(`res（再送）`, res)
             }).catch((error) => {
               this._setError(error)
             })
@@ -810,7 +850,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     )
   }
 
-  onClickExpectedTrafficConfirm(){
+  onClickExpectedTrafficConfirm() {
     const keys = Object.keys(this.checkedItems)
     this.tableData = this.lists.visibleList.filter(
       (item: any) => {
@@ -818,6 +858,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         return keys.includes(String(id))
       }
     )
+    _.set(this.labels,'vehicleInfo',this.model + '-' + this.typeRev + '-' + this.serial);
 
     this.modalService.open(
       {

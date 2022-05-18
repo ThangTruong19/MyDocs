@@ -10,7 +10,7 @@ module.exports = function(args) {
         error_data: [
           {
             code: 'CCOM0404E',
-            message: 'Not Found',
+            message: path,
             keys: [],
           },
         ],

@@ -16,7 +16,7 @@
                             class="td-{{
                                 title.shortName
                             }} app-index-td d-flex align-items-center"
-                            style="width: 18%;"
+                            style="width: 17%;"
                         >
                             <span>{{ data[title.name] }}</span>
                         </td>
@@ -25,16 +25,16 @@
                             class="td-{{
                                 title.shortName
                             }} app-index-td d-flex align-items-center"
-                            style="width: 10%;"
+                            style="width: 13%;"
                         >
-                            <span>{{ data[title.name] == '1' ? '有効': '無効'}}</span>
+                            <span>{{ getDataAmountUpperLimitActiveKindName(data[title.name]) }}</span>
                         </td>
                         <!-- 上限通信量[KB] -->
                         <td *ngIf="title.name == 'request_period.car.data_amount_upper_limit'"
                             class="td-{{
                                 title.shortName
                             }} app-index-td d-flex align-items-center"
-                            style="width: 10%;"
+                            style="width: 13%;"
                         >
                             <span>{{ data[title.name] }}</span>
                         </td>
@@ -43,16 +43,16 @@
                             class="td-{{
                                 title.shortName
                             }} app-index-td d-flex align-items-center"
-                            style="width: 12%;"
+                            style="width: 11%;"
                         >
-                            <span>{{ data[title.name] == '1' ? '用途定義単位' : '定義単位' }}</span>
+                            <span>{{ getKind(data[title.name]) }}</span>
                         </td>
                         <!-- カスタマイズ用途定義 -->
                         <td *ngIf="title.name == 'request_period.car.customize_usage_definition'"
                             class="td-{{
                                 title.shortName
                             }} app-index-td d-flex align-items-center"
-                            style="width: 12%; padding: 0!important;"
+                            style="width: 16%; padding: 0!important;"
                         >
                             <span *ngIf="data[title.name].length > 0">
                                 <span *ngFor="let child of data[title.name]; let idx = index"
@@ -67,7 +67,7 @@
                             class="td-{{
                                 title.shortName
                             }} app-index-td d-flex align-items-center"
-                            style="width: 19%;"
+                            style="width: 16%;"
                         >
                             <span>{{ data[title.name] }}</span>
                         </td>
@@ -76,7 +76,7 @@
                             class="td-{{
                                 title.shortName
                             }} app-index-td d-flex align-items-center"
-                            style="width: 19%;"
+                            style="width: 16%;"
                         >
                             <span>{{ data[title.name] }}</span>
                         </td>

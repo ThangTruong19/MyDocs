@@ -41,6 +41,12 @@ export class AuthoritySelectModalComponent implements OnInit {
 
     if (this.selectedAuthorities.length === this.authorities.length) {
       this.checkAll = true;
+
+      for(let i=0; i<this.authorities.length;i++){
+        if(this.selectedAuthorities[i] != this.authorities[i].value){
+          this.checkAll = false;
+        }
+      }
     }
   }
 
@@ -96,6 +102,7 @@ export class AuthoritySelectModalComponent implements OnInit {
    * @param value 値
    */
   async onKindChange(value: any, user: any) {
+    this.checkAll = false;
 
     const param = {
       granted_role_id: _.get(user, 'group.granted_role.id'),

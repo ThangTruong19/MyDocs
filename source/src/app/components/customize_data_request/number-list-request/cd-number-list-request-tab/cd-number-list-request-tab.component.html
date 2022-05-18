@@ -11,6 +11,7 @@
                             type="radio"
                             class="app-input-radio"
                             [ngModelOptions]="{ standalone: true }"
+                            (change)="changeRequestType()"
                             [value]="resource.send_number_list_request_definition_id_kind.values[0].value"
                             [(ngModel)]="request_period_kind" />
                         <label for="request_period_kind_{{ resource.send_number_list_request_definition_id_kind.values[0].value }}" class="app-input-radio__label kind-attribute">
@@ -24,6 +25,7 @@
                             type="radio"
                             class="app-input-radio"
                             [ngModelOptions]="{ standalone: true }"
+                            (change)="changeRequestType()"
                             [value]="resource.send_number_list_request_definition_id_kind.values[1].value"
                             [(ngModel)]="request_period_kind" />
                         <label for="request_period_kind_{{ resource.send_number_list_request_definition_id_kind.values[1].value }}" class="app-input-radio__label kind-main-info">
@@ -41,7 +43,7 @@
                 </app-select-type> -->
             </div>
             <div class="col-6">
-                <label class="required">{{resource.send_number_list_request_definition_ids.name}} <span>*</span></label>
+                <label class="required">{{request_period_kind == '1' ? resource.send_number_list_request_usage_definition_ids.name : resource.send_number_list_request_definition_ids.name}} <span>*</span></label>
                 <div class="col-12">
                     <app-multiselect
                         [options]="listSelections"
@@ -113,6 +115,7 @@
     <app-cd-number-list-request-confirm
         [labels]="labels"
         [data]="data"
-        [thList]="thListModal">
+        [thList]="thListModal"
+        [resource]="resource">
     </app-cd-number-list-request-confirm>
 </ng-template>

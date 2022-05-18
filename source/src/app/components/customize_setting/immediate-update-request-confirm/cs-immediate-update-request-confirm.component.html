@@ -2,16 +2,22 @@
     <div class="row" id="request_message">
         <p>{{labels.customize_update_request_message}}</p>
     </div>
-    <div class="row" style="margin-left: 2px;">
-        <input type="radio" id="continue" class="continuous_kind" value="1" [(ngModel)]="isContinued" [checked]="isContinued == '1'">
-        <label for="continue">継続有り</label>
-        <input type="radio" id="stop" class="continuous_kind" value="0" [(ngModel)]="isContinued" [checked]="isContinued == '0'">
-        <label for="stop">継続無し</label>
+    <div class="row">
+        <div class="radio-group">
+            <input type="radio" id="continue" class="continuous_kind app-input-radio" [value]="continuousValue" [(ngModel)]="isContinued" [checked]="isContinued == '1'">
+            <label for="continue" class="app-input-radio__label">{{continuousLabel}}</label>
+        </div>
+        <div class="radio-group">
+            <input type="radio" id="stop" class="continuous_kind app-input-radio" [value]="discontinousValue" [(ngModel)]="isContinued" [checked]="isContinued == '0'">
+            <label for="stop" class="app-input-radio__label">{{discontinuousLabel}}</label>
+        </div>
     </div>
     <app-common-table
         [lists]="lists"
         [thList]="thList"
         [pageParams]="pageParams"
+        appSortingLabel
+        [sortableThList]="sortableThList"
         [(sortingParams)]="sortingParams"
         [labels]="labels"
         [collapsed]="collapsed"

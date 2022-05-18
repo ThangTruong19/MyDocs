@@ -39,7 +39,7 @@ function createData(i) {
 
   data = {
     customize_usage_definition: {
-      customize_usage_definition_id: i,
+      customize_usage_definition_id: String(i),
       customize_usage_definition_name: "KOMTRAX標準",
       customize_usage_definition_version: 1,
       start_date: "2017/12/30",

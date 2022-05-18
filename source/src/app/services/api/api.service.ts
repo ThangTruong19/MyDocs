@@ -147,12 +147,13 @@ export class ApiService {
      */
     public fetchFields(
         functionCode: string,
+        fieldSetNo: string = '1',
         opt?: any,
         searchParameters?: string
     ): Observable<Fields> {
         const params = {
             function_code: functionCode,
-            field_set_no: '1',
+            field_set_no: fieldSetNo,
             search_parameter: searchParameters,
         };
 

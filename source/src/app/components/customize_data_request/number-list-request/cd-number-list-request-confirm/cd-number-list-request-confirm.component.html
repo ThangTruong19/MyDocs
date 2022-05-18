@@ -25,7 +25,7 @@
                             }} app-index-td d-flex align-items-center"
                             style="width: 20%;"
                         >
-                            <span>{{ data[title.name] == '1' ? '用途定義単位' : '定義単位' }}</span>
+                            <span>{{ getKind(data[title.name]) }}</span>
                         </td>
                         <!-- カスタマイズ用途定義 -->
                         <td *ngIf="title.name == 'number_list_request.car.customize_usage_definition'"

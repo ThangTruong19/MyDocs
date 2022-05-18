@@ -4,7 +4,7 @@
             <p id="warning-msg">Warning message content</p>
         </div>
         <div class="row">
-            <p id="vehicle-info">PC200-8-1234 (PlaceHolder)</p>
+            <p id="vehicle-info">{{labels.vehicleInfo}}</p>
         </div>
         <div class="row" style="margin-top: 20px;">
             <p class="table-label">{{labels.regular_call_customize_data}}</p>
@@ -13,6 +13,8 @@
                 [lists]="lists1"
                 [thList]="thList1"
                 [pageParams]="pageParams"
+                appSortingLabel
+                [sortableThList]="sortableThList1"
                 [(sortingParams)]="sortingParams"
                 [labels]="labels"
                 [isFetching]="isFetching"
@@ -29,6 +31,8 @@
                 [lists]="lists2"
                 [thList]="thList2"
                 [pageParams]="pageParams"
+                appSortingLabel
+                [sortableThList]="sortableThList2"
                 [(sortingParams)]="sortingParams"
                 [labels]="labels"
                 [collapsed]="collapsed"

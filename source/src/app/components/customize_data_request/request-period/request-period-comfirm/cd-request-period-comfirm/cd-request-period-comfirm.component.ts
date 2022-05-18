@@ -15,7 +15,8 @@ export class CdRequestPeriodComfirmComponent implements OnInit {
     @Input() data: any;
     @Input() thList: any;
     @Input() labels: any;
-    // @Input() sortableThList: any;
+    @Input() resource: any;
+    @Input() listSelections: any;
 
     lists = {
         visibleList: [] as any[],
@@ -36,6 +37,7 @@ export class CdRequestPeriodComfirmComponent implements OnInit {
     ngOnInit(): void {
         console.log("data", this.data);
         console.log("thList", this.thList);
+        console.log("resource", this.resource);
 
         // if (this.data && this.data.length > 0) {
         //   for (let i = 0; i < this.data.length; i++) {
@@ -80,5 +82,37 @@ export class CdRequestPeriodComfirmComponent implements OnInit {
 
         this.lists.originList = this.data;
         this.lists.visibleList = this.lists.originList;
+    }
+
+    /**
+     * 通信量上限設定の名前を取得する
+     * @param value
+     * @returns 有効/無効
+     */
+    getDataAmountUpperLimitActiveKindName(value: string): string {
+        let result = "";
+        var item = _.filter(this.resource.car_data_amount_upper_limit_active_kind.values, function (o) {
+            if (o.value == value) return o;
+        });
+        if (item) {
+            result = item[0].name;
+        }
+        return result;
+    }
+
+    /**
+     * 要求種別の名前を取得する
+     * @param value
+     * @returns 用途定義単位/定義単位
+     */
+    getKind(value: string): string {
+        let result = "";
+        var item = _.filter(this.listSelections, function (o) {
+            if (o.value == value) return o;
+        });
+        if (item) {
+            result = item[0].name;
+        }
+        return result;
     }
 }

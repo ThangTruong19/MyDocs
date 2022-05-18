@@ -93,12 +93,12 @@
         "placeholder_text": "",
         "items": [
             {
-                "key": "ON",
+                "key": "有効",
                 "value": "1",
                 "kind": "D"
             },
             {
-                "key": "OFF",
+                "key": "無効",
                 "value": "2",
                 "kind": "D"
             }

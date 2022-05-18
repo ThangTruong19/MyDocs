@@ -22,7 +22,7 @@ import { TimePickerLabels, TimePickerParams } from 'app/types/calendar';
 export class CommonTimePickerComponent implements OnInit, OnDestroy, AfterContentInit {
 
     private static readonly MAX_TIME: { HOURS: number; MINUTES: number; SECONDS: number; MILLISECONDS: number; } = {
-        HOURS: 24,
+        HOURS: 23,
         MINUTES: 59,
         SECONDS: 59,
         MILLISECONDS: 999
@@ -162,16 +162,22 @@ export class CommonTimePickerComponent implements OnInit, OnDestroy, AfterConten
         if (directionType == this.TIME_ARROW.FORWORD) {
             timeNum += step;
             if (timeNum > maxTime) {
-                const remainder: number = timeNum - maxTime;
+                const remainder: number = timeNum - maxTime - step;
                 timeNum = 0;
                 timeNum += remainder;
+                if (timeNum < 0) {
+                    timeNum = 0;
+                }
             }
         } else {
             timeNum -= step;
             if (timeNum < 0) {
-                const remainder: number = timeNum * -1;
+                const remainder: number = timeNum + step;
                 timeNum = maxTime;
-                timeNum -= remainder;
+                timeNum += remainder;
+                if (timeNum > maxTime) {
+                    timeNum = maxTime;
+                }
             }
         }
         return timeNum.toString().padStart(maxTime.toString().length, '0');

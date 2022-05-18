@@ -1,0 +1,58 @@
+[
+    {
+        "display_sequence_no": "1",
+        "name": "ID",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_usage_definition_id",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "2",
+        "name": "カスタマイズ用途定義",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "3",
+        "name": "カスタマイズメニュー詳細",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "4",
+        "name": "有効/無効",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.active_name",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "5",
+        "name": "優先度",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.priority_name",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "6",
+        "name": "要求種別",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.latest_operation_code_name",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "7",
+        "name": "開始日",
+        "path": "customize_usage_definitions.customize_usage_definition.start_date",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "8",
+        "name": "終了日",
+        "path": "customize_usage_definitions.customize_usage_definition.end_date",
+        "control_code": "1",
+        "display_code": "1"
+    }
+]

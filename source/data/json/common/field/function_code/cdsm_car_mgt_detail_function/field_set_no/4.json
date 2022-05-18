@@ -1,0 +1,23 @@
+[
+    {
+        "display_sequence_no": "1",
+        "name": "カスタマイズ用途定義",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "2",
+        "name": "カスタマイズ定義",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "3",
+        "name": "通信量",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value",
+        "control_code": "1",
+        "display_code": "1"
+    }
+]

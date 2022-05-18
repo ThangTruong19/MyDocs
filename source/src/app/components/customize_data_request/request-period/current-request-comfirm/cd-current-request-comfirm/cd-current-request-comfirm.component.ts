@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TableHeader, TableMergeColumn } from 'app/types/common';
+import * as _ from 'lodash';
 
 /**
  * 現在カスタマイズ送信要求確認モーダル
@@ -14,6 +15,8 @@ export class CdCurrentRequestComfirmComponent implements OnInit {
     @Input() data: any;
     @Input() thList: any;
     @Input() labels: any;
+    @Input() resource: any;
+    @Input() listSelections: any;
 
     lists = {
         visibleList: [] as any[],
@@ -36,4 +39,19 @@ export class CdCurrentRequestComfirmComponent implements OnInit {
         this.lists.visibleList = this.lists.originList;
     }
 
+    /**
+     * 要求種別の名前を取得する
+     * @param value
+     * @returns 用途定義単位/定義単位
+     */
+    getKind(value: string): string {
+        let result = "";
+        var item = _.filter(this.listSelections, function (o) {
+            if (o.value == value) return o;
+        });
+        if (item) {
+            result = item[0].name;
+        }
+        return result;
+    }
 }

@@ -1,0 +1,128 @@
+[
+  {
+    "display_sequence_no": "0",
+    "name": "ユーザID##(メールアドレス)",
+    "path": "users.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "所属ID",
+    "path": "users.group.belonging_group.identification.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "ロールID",
+    "path": "users.group.granted_role.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "権限ID",
+    "path": "users.group.granted_authorities.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "権限区分",
+    "path": "users.group.granted_authorities.kind",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "更新日時",
+    "path": "users.identification.update_datetime",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "グループID",
+    "path": "users.group.configuration_groups.id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "0",
+    "name": "グループ種別ID",
+    "path": "users.group.configuration_groups.kind_id",
+    "control_code": "0",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "1",
+    "name": "ユーザID(メールアドレス)",
+    "path": "users.identification.account",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "2",
+    "name": "ユーザ名",
+    "path": "users.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "3",
+    "name": "ユーザ名##（英語）",
+    "path": "users.identification.label_english",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "4",
+    "name": "メールアドレス",
+    "path": "users.identification.email",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "5",
+    "name": "グループ",
+    "path": "users.group.configuration_groups.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "6",
+    "name": "所属",
+    "path": "users.group.belonging_group.identification.label",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "7",
+    "name": "所属(英語)",
+    "path": "users.group.belonging_group.identification.label_english",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "8",
+    "name": "電話番号",
+    "path": "users.attribute.phone_no",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "9",
+    "name": "所在地",
+    "path": "users.attribute.create_place",
+    "control_code": "1",
+    "display_code": "1"
+  },
+  {
+    "display_sequence_no": "10",
+    "name": "権限",
+    "path": "users.group.granted_role.name",
+    "control_code": "1",
+    "display_code": "1"
+  }
+]

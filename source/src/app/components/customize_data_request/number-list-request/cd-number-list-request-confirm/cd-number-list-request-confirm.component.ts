@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TableMergeColumn } from 'app/types/common';
+import * as _ from 'lodash';
 
 /**
  * 送信番号一覧要求確認モーダル
@@ -20,6 +21,7 @@ export class CdNumberListRequestConfirmComponent implements OnInit {
     @Input() data: any;
     @Input() labels: any;
     @Input() thList: any;
+    @Input() resource: any;
 
     sortingParams = {
         sort: '',
@@ -70,4 +72,19 @@ export class CdNumberListRequestConfirmComponent implements OnInit {
         this.lists.visibleList = this.lists.originList;
     }
 
+    /**
+     * 要求種別の名前を取得する
+     * @param value
+     * @returns 用途定義単位/定義単位
+     */
+    getKind(value: string): string {
+        let result = "";
+        var item = _.filter(this.resource.send_number_list_request_definition_id_kind.values, function (o) {
+            if (o.value == value) return o;
+        });
+        if (item) {
+            result = item[0].name;
+        }
+        return result;
+    }
 }

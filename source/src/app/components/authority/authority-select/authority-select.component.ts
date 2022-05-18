@@ -85,7 +85,6 @@ export class AuthoritySelectComponent  {
     }, {
       size: 'lg',
     });
-    console.log(this)
   }
 
   isValid(): boolean {

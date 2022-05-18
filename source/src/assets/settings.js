@@ -8,18 +8,13 @@ window.settings = {
   azureAdAuthenticationInfo: {
     clientId: 'ba1ef16c-d23b-4e03-b2bc-40239e3f37df',
     tenant: '13180b0c-ea10-4ef0-9d7c-f517a3fad178',
-    redirectUrl: 'http//localhost:4200/entrance',
-    logoutRedirectUrl: 'http//localhost:4200/',
-  },
-  datePickerRange: {
-    car: ['19800101', ''],
-    information: ['-10y', '10y'],
-    other: ['-10y', '']
+    redirectUrl: 'http://localhost:4200/entrance',
+    logoutRedirectUrl: 'http://localhost:4200/',
   },
   azureAdAttributeKeyUserName: 'extension_cb99840cc6854095a6e348b12ee93cb3_kmtx_display_name',
   azureAdAttributeKeyUserId: 'extension_cb99840cc6854095a6e348b12ee93cb3_kmtx_user_seq_id',
-  entranceUrl: 'http//localhost:4200/dummy/entrance/',
-  reconsentUrl: 'http//localhost:4200/dummy/entrance/tos/re-consent',
+  entranceUrl: 'http://localhost:4200/dummy/entrance/',
+  reconsentUrl: 'http://localhost:4200/dummy/entrance/tos/re-consent',
   autoLoadCount: {
     close: 20,
     open: 10

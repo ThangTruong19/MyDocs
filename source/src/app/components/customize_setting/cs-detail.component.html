@@ -13,34 +13,48 @@
                         -
                         {{ serial }}
                     </label>
-                    <!-- TODO: -->
                     <div class="app-control">
                         <button
+                            #add="ngbTooltip"
                             type="button"
-                            class="btn"
-                            [title]="labels.addition"
+                            class="btn btn-warning btn-circle btn-circle-sm m-1"
+                            placement="top"
+                            triggers="manual"
+                            [ngbTooltip]="labels.addition"
                             (click)="onClickAdd()"
+                            (mouseover)="add.open()"
+                            (mouseleave)="add.close()"
                         >
                             <span>
-                                <i class="app-icon app-icon-add"> </i>
+                                <i class="app-icon app-icon-add"></i>
                             </span>
                         </button>
                         <button
+                            #discardAll="ngbTooltip"
                             type="button"
-                            class="btn"
-                            [title]="labels.discard_all_edits"
+                            class="btn btn-warning btn-circle btn-circle-sm m-1"
+                            placement="top"
+                            triggers="manual"
+                            [ngbTooltip]="labels.discard_all_edits"
                             [disabled]="disabled"
                             (click)="onClickDiscardAll()"
+                            (mouseover)="discardAll.open()"
+                            (mouseleave)="discardAll.close()"
                         >
                             <span>
-                                <i class="app-icon app-icon-discard"> </i>
+                                <i class="app-icon app-icon-discard"></i>
                             </span>
                         </button>
                         <button
+                            #getRequest="ngbTooltip"
                             type="button"
-                            class="btn"
-                            [title]="labels.setting_acquisition_request"
+                            class="btn btn-warning btn-circle btn-circle-sm m-1"
+                            placement="top"
+                            triggers="manual"
+                            [ngbTooltip]="labels.setting_acquisition_request"
                             (click)="onClickGetRequest()"
+                            (mouseover)="getRequest.open()"
+                            (mouseleave)="getRequest.close()"
                         >
                             <span>
                                 <i
@@ -50,37 +64,51 @@
                             </span>
                         </button>
                         <button
+                            #updateRequest="ngbTooltip"
                             type="button"
-                            class="btn"
-                            [title]="labels.setting_update_request"
+                            class="btn btn-warning btn-circle btn-circle-sm m-1"
+                            placement="top"
+                            triggers="manual"
+                            [ngbTooltip]="labels.setting_update_request"
                             [disabled]="disabled"
                             (click)="onClickUpdateRequest()"
+                            (mouseover)="updateRequest.open()"
+                            (mouseleave)="updateRequest.close()"
                         >
                             <span>
-                                <i class="app-icon app-icon-update-request">
-                                </i>
+                                <i class="app-icon app-icon-update-request"></i>
                             </span>
                         </button>
                         <button
+                            #immediateUpdateRequest="ngbTooltip"
                             type="button"
-                            class="btn"
-                            [title]="labels.immediate_setting_update_request"
+                            class="btn btn-warning btn-circle btn-circle-sm m-1"
+                            placement="top"
+                            triggers="manual"
+                            [ngbTooltip]="
+                                labels.immediate_setting_update_request
+                            "
                             [disabled]="disabled"
                             (click)="onClickImmediateUpdateRequest()"
+                            (mouseover)="immediateUpdateRequest.open()"
+                            (mouseleave)="immediateUpdateRequest.close()"
                         >
                             <span>
-                                <i class="app-icon app-icon-update-request">
-                                </i>
+                                <i class="app-icon app-icon-update-request"></i>
                             </span>
                         </button>
                         <button
                             type="button"
-                            class="btn btn-primary"
+                            class="btn btn-primary ml-2"
                             [disabled]="disabled"
-                            (click)="onClickExpectedTrafficConfirm()">
-                            <span>想定通信量確認</span>
+                            (click)="onClickExpectedTrafficConfirm()"
+                        >
+                            <span>
+                                {{ labels.communication_charge_confirmation }}
+                            </span>
                         </button>
                     </div>
+                    <div class="app-control"></div>
                     <!-- 一覧テーブル上部検索オプション欄 -->
                     <div class="app-table-options" [hidden]="count <= 0">
                         <app-pagination
@@ -123,8 +151,6 @@
                             [checkAll]="checkAll"
                             (sort)="onChangeSort($event)"
                         >
-                            <!-- TODO: -->
-                            <!-- [mergeColumns]="mergeColumns" -->
                             <ng-template #customFixedTableThContent>
                                 <th class="fixed">
                                     {{ labels.edit_header_label }}
@@ -156,7 +182,6 @@
                                 let-data="data"
                                 let-tblFunctions="tblFunctions"
                             >
-                                <!-- TODO: 判定条件、メソッド等 -->
                                 <td
                                     class="app-index-td app-table__small app-sm-link text-center fixed"
                                     [style]="getTblRowHeight(data)"
@@ -239,21 +264,56 @@
                                         }} app-index-td padding-none"
                                         [style]="getTblRowHeight(data)"
                                     >
-                                        <ng-container *ngIf="!isArrayColumnData(title.name)">
-                                            <span class="divider-column">{{
-                                                data[title.dataKey || title.name]
-                                            }}</span>
+                                        <ng-container
+                                            *ngIf="
+                                                !isArrayColumnData(title.name)
+                                            "
+                                        >
+                                            <span class="divider-column"
+                                                >{{
+                                                    data[
+                                                        title.dataKey ||
+                                                            title.name
+                                                    ]
+                                                }}
+                                            </span>
                                         </ng-container>
-                                        <ng-container *ngIf="isArrayColumnData(title.name)">
-                                            <ng-container *ngFor="let rec of tblFunctions.getArrayColumnData(data, title.name); let subIndex = index">
-                                                <div [ngClass]="{'divider-column-border': subIndex > 0}">
-                                                    <span class="divider-column">{{rec[tblFunctions.getLastColumnPathName(title.name)]}}</span>
+                                        <ng-container
+                                            *ngIf="
+                                                isArrayColumnData(title.name)
+                                            "
+                                        >
+                                            <ng-container
+                                                *ngFor="
+                                                    let rec of tblFunctions.getArrayColumnData(
+                                                        data,
+                                                        title.name
+                                                    );
+                                                    let subIndex = index
+                                                "
+                                            >
+                                                <div
+                                                    [ngClass]="{
+                                                        'divider-column-border':
+                                                            subIndex > 0
+                                                    }"
+                                                >
+                                                    <span
+                                                        class="divider-column"
+                                                    >
+                                                        {{
+                                                            rec[
+                                                                tblFunctions.getLastColumnPathName(
+                                                                    title.name
+                                                                )
+                                                            ]
+                                                        }}
+                                                    </span>
                                                 </div>
                                             </ng-container>
                                         </ng-container>
                                     </td>
                                 </ng-container>
-                                <!-- TODO: 判定条件、メソッド等 -->
                                 <td
                                     class="app-index-td app-table__small app-sm-link text-center fixed"
                                     [ngClass]="{
@@ -300,7 +360,7 @@
         <app-cs-new
             [carId]="carId"
             [resources]="resources"
-            [initThLst]="this.thList"
+            [initThList]="this.csNewThList"
         ></app-cs-new>
     </ng-template>
     <ng-template #csEditModalContent>
@@ -308,7 +368,7 @@
             [carId]="carId"
             [inputParams]="inputParams"
             [resources]="resources"
-            [initThLst]="this.thList"
+            [initThList]="this.csEditThList"
         ></app-cs-edit>
     </ng-template>
     <ng-template #csGetRequestModalContent>
@@ -318,15 +378,16 @@
         <app-cs-update-request-confirm
             [labels]="labels"
             [tableData]="tableData"
-            [initThLst]="this.thList"
+            [initThList]="this.csUpdateRequestConfirmThList"
         >
         </app-cs-update-request-confirm>
     </ng-template>
     <ng-template #csImmediateUpdateRequestConfirmModalContent>
         <app-cs-immediate-update-request-confirm
             [labels]="labels"
+            [resources]="resources"
             [tableData]="tableData"
-            [initThLst]="this.thList"
+            [initThList]="this.csImmediateUpdateRequestConfirmThList"
         >
         </app-cs-immediate-update-request-confirm>
     </ng-template>
@@ -338,7 +399,7 @@
         <app-cs-request-resend-confirm
             [labels]="labels"
             [tableData]="tableData"
-            [initThLst]="this.thList"
+            [initThList]="this.csRequestResendConfirmThList"
         >
         </app-cs-request-resend-confirm>
     </ng-template>
@@ -346,7 +407,8 @@
         <app-cs-expected-traffic-confirm
             [labels]="labels"
             [tableData]="tableData"
-            [initThLst]="this.thList"
+            [initThList1]="this.csExpectedTrafficConfirmThList1"
+            [initThList2]="this.csExpectedTrafficConfirmThList2"
         >
         </app-cs-expected-traffic-confirm>
     </ng-template>

@@ -125,7 +125,8 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
         let dateFormat = datePickerConfig.date_format_code;
         this.timeZone = datePickerConfig.time_difference;
 
-        this.listSelections = this.resource.request_number_definition_ids.values;
+        this.listSelections = this.request_period_kind == '1' ? this.resource.send_number_list_request_usage_definition_ids.values : this.resource.send_number_list_request_definition_ids.values;
+
         this.datePickerParams = {
             timeZone: this.timeZone,
             dateFormat: dateFormat,
@@ -259,5 +260,13 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
             car["number_list_request.cars.car_identification.model_type_rev_serial"] = model_type_rev_serial;
             this.data.push(car);
         }
+    }
+
+    /**
+     * ラジオボタン切り替え時にラベル・プルダウンの切り替えを行う。
+     */
+    changeRequestType(): void {
+        this.selectedListItems = [];
+        this.listSelections = this.request_period_kind == '1' ? this.resource.send_number_list_request_usage_definition_ids.values : this.resource.send_number_list_request_definition_ids.values;
     }
 }

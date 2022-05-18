@@ -11,6 +11,7 @@ module.exports = function(data) {
   return new Promise(function(resolve) {
     if (data.query.function_code) {
       var functionCode = data.query.function_code;
+      var fieldSetNo = data.query.field_set_no;
       var searchParamaters =
         data.query.search_parameter && data.query.search_parameter.split(",");
 
@@ -18,14 +19,14 @@ module.exports = function(data) {
         PATH_BASE +
         (searchParamaters
           ? `search_paramaters/${functionCode}/${searchParamaters[0]}/${searchParamaters[1]}`
-          : "function_code/" + functionCode) +
+          : "function_code/" + functionCode + "/field_set_no/" + fieldSetNo) +
         ".json";
 
       readFile(path)
         .then(jsonData => {
-          if (fs.existsSync(TEMP_PATH + functionCode)) {
-            var paths = fs
-              .readFileSync(TEMP_PATH + functionCode, "utf8")
+          if (fs.existsSync(TEMP_PATH + functionCode+ '/' + fieldSetNo)) {
+              var paths = fs
+              .readFileSync(TEMP_PATH + functionCode + '/' + fieldSetNo, "utf8")
               .split(",");
 
             tmpJsonData = _.reduce(
