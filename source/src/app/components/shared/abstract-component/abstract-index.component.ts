@@ -57,12 +57,14 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
         pageNo: number;
         dispPageNo: number;
         pageCount: number;
+        pageAdditionalCount: number;
         autoLoadCount: any;
         lastIndexList: any;
     } = {
         pageNo: 1,
         dispPageNo: 1,
         pageCount: 10,
+        pageAdditionalCount: 0,
         autoLoadCount: this.autoLoadCountOpen,
         lastIndexList: this.autoLoadCountOpen
     };

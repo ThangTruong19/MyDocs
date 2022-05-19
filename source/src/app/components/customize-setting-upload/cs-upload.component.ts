@@ -280,9 +280,10 @@ export class CsUploadComponent extends AbstractIndexComponent {
    * アップロード結果モーダルのデータを更新
    * @param res API レスポンス
    */
-  private _updateResultModalData(res: any) {
+  private _updateResultModalData(res: any) { console.log('res');console.log(res);
     let errorsLength;
-    [this.listVal, errorsLength] = this._formatUploadResultData(res.responses);
+    // [this.listVal, errorsLength] = this._formatUploadResultData(res.responses);
+    [this.listVal, errorsLength] = this._formatUploadResultData(res.result_data.results);
     // this.resultCountMessage = this.compiledResultCountMessage({
     //   total: this.listVal.length,
     //   success: this.listVal.length - errorsLength,
@@ -303,25 +304,25 @@ export class CsUploadComponent extends AbstractIndexComponent {
       result = { result: { type: 'result', success: true }, message: '' };
 
       [
-        'response_code',
-        'change_type',
-        'brand',
+        // 'response_code',
+        'status',
+        // 'brand',
         'type',
         'model',
-        'serial_number',
-        'customize_usage_definition_label',
+        'serial',
+        'customize_definition',
         'version',
         'priority',
-        'start_day',
-        'end_day',
-        'time_before_effect',
-        'error_msg',
+        'start_datetime',
+        'end_datetime',
+        'instant_kind',
+        // 'error_msg',
 
         /* 'customer_label',
         'operator.code',
         'operator.current_label.label',*/
       ].forEach(path => {
-        const value = _.get(r.request, path);
+        const value = _.get(r.request, 'customize_usage_definition_info.' + path);
         // if (
         //   path === 'operator.current_label.label' &&
         //   value &&
@@ -330,10 +331,13 @@ export class CsUploadComponent extends AbstractIndexComponent {
         //   showLabel = true;
         // }
 
-        if (path === 'response_code' && value == '400') {
+        if (value) {
+          result[path] = value;
+        } else {
           isError = true;
+          const errorProperty = 'error_msg';
+          result[errorProperty] = _.get(r.request, errorProperty);
         }
-        result[path] = value;
       });
 
       if (isError) {
@@ -342,7 +346,7 @@ export class CsUploadComponent extends AbstractIndexComponent {
       }
 
       return result;
-    });
+    }); console.log('list');console.log(list);console.log('labels');console.log(this.labels);
     this.thList = this._getThList(isError);
 
     return [list, errorsLength];
@@ -368,8 +372,8 @@ export class CsUploadComponent extends AbstractIndexComponent {
           displayable: true,
         },*/
         {
-          label: this.labels.change_type,
-          name: 'change_type',
+          label: this.labels.status,
+          name: 'status',
           displayable: true,
         },
         {
@@ -388,13 +392,13 @@ export class CsUploadComponent extends AbstractIndexComponent {
           displayable: true,
         },
         {
-          label: this.labels.serial_number,
-          name: 'serial_number',
+          label: this.labels.serial,
+          name: 'serial',
           displayable: true,
         },
         {
-          label: this.labels.customize_usage_definition_label,
-          name: 'customize_usage_definition_label',
+          label: this.labels.customize_definition,
+          name: 'customize_definition',
           displayable: true,
         },
         {
@@ -408,18 +412,18 @@ export class CsUploadComponent extends AbstractIndexComponent {
           displayable: true,
         },
         {
-          label: this.labels.start_day,
-          name: 'start_day',
+          label: this.labels.start_datetime,
+          name: 'start_datetime',
           displayable: true,
         },
         {
-          label: this.labels.end_day,
-          name: 'end_day',
+          label: this.labels.end_datetime,
+          name: 'end_datetime',
           displayable: true,
         },
         {
-          label: this.labels.time_before_effect,
-          name: 'time_before_effect',
+          label: this.labels.instant_kind,
+          name: 'instant_kind',
           displayable: true,
         },
         // this._createThListContent(showLabel),

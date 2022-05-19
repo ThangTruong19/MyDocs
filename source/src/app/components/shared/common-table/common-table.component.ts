@@ -37,9 +37,10 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
     @Input() public requestHeaderParams: any;
     @Input() public sortingParams: any;
     @Input() public labels: Labels;
-    @Input() public lists: { visibleList: any[]; originList: any[] } = {
+    @Input() public lists: { visibleList: any[]; originList: any[]; hiddenList?: any[]; } = {
         visibleList: [],
-        originList: []
+        originList: [],
+        hiddenList: [],
     };
     @Input() public thList: TableHeader[];
     @Input() public selectedList: any[];
@@ -113,8 +114,8 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
 
     public get checkAllDisabled(): boolean {
         return (
-            this.lists.originList.filter((item: any) => !this.checkBoxHidden(item))
-                .length === 0
+            [...this.lists.originList, ...this.lists.hiddenList].filter((item: any) =>
+                !this.checkBoxHidden(item)).length === 0
         );
     }
 
@@ -233,9 +234,10 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     private updateCheckAll(): void {
-        const targetItems: any = this.lists.originList.filter(
-            (item: any) => !this.checkBoxHidden(item)
-        );
+        const targetItems: any =
+            [...this.lists.originList, ...this.lists.hiddenList].filter((item: any) =>
+                !this.checkBoxHidden(item)
+            );
         this.checkAll =
             targetItems.length > 0 &&
             targetItems.every((item: any) => this.checkedItems[this.checkId(item)]);
@@ -386,7 +388,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
      * チェックボックスの一括操作
      */
     public toggleCheckAll(): void {
-        _.each(this.lists.originList, item => {
+        _.each([...this.lists.originList, ...this.lists.hiddenList], item => {
             if (!this.checkBoxHidden(item)) {
                 // 全て文字列で格納するため、空文字列を加算
                 const val: string = this.checkId(item) + '';

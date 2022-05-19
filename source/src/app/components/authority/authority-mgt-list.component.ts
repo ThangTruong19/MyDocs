@@ -158,6 +158,11 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
         break;
       }
     }
+
+    if (accessKind == null) {
+      accessKind = "0"
+    }
+
     this.authoritiesKindList(accessKind, listAuthorities)
 
     this.safeDetectChanges();
@@ -170,6 +175,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
         this.authorities.push(listAuthorities[i])
       }
     }
+
   }
 
   /**
@@ -265,26 +271,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
       ? this.resource.configuration_group_id.values[0].value
       : this.api.getGroupId();
 
-    // await this.onGroupIdChange(groupId);
   }
-  /**
- * 初期化 API を呼ぶ
- */
-  // protected async _fetchDataForInitialize(): Promise<void> {
-  //   const res = await this.userService.fetchInitData();
-  //   //const res = await this.userService.fetchIndexInitData();
-  //   this.initialize(res);
-  //   this.labels = res.label;
-  //   this.resource = res.resource;
-  //   this._setTitle();
-  //   this.updatable = res.updatable;
-  //   this.deletable = res.deletable;
-  //   this._updateFields(res.fields);
-  //   this.fieldResources = res.fieldResources;
-  //   this.downloadFields = res.downloadFields;
-  //   this.downloadFieldResources = res.downloadFieldResources;
-  // }
-
 
   /**
    * 指定項目取得 API の結果を反映

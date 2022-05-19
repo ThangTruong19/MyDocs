@@ -259,7 +259,7 @@ labels:
 
   - id: 101
     description: 変更種別
-    name: change_type
+    name: status
     ja: 変更種別
     en:
 
@@ -289,7 +289,7 @@ labels:
 
   - id: 106
     description: カスタマイズ用途定義
-    name: customize_usage_definition_label
+    name: customize_definition
     ja: カスタマイズ用途定義
     en:
 
@@ -307,19 +307,19 @@ labels:
 
   - id: 109
     description: 開始日
-    name: start_day
+    name: start_datetime
     ja: 開始日
     en:
 
   - id: 110
     description: 終了日
-    name: end_day
+    name: end_datetime
     ja: 終了日
     en:
 
   - id: 111
     description: 即時反映
-    name: time_before_effect
+    name: instant_kind
     ja: 即時反映
     en:
 

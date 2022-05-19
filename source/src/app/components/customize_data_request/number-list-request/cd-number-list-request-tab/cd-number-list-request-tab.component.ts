@@ -36,18 +36,16 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
     // @Input() override sortableThList: string[] = [];
 
     thListModal: any = [];
+    definition_ids: string[] = [];
+    model_type_rev_serials: string[] = [];
 
     initParams = {
-        "definition_id_kind": "0",
-        "definition_ids": [
-            "1"
-        ],
-        "model_type_rev_serials": [
-            "D85PX-15E0-A12345"
-        ],
-        "request_route_kind": "0",
-        "datetime_from": "2020-02-29T00:00:00Z",
-        "datetime_to": "2020-02-29T00:00:00Z"
+        "definition_id_kind": "", // 定義ID種別
+        "definition_ids": this.definition_ids, // 定義ID
+        "model_type_rev_serials": this.model_type_rev_serials, // 機種-型式(小変形含む)-機番
+        "request_route_kind": "0", // 要求経路区分
+        "datetime_from": "", // 対象期間FROM
+        "datetime_to": "" // 対象期間TO
     };
 
     request_period_kind: string = "1";
@@ -213,8 +211,25 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
                 okBtnLabel: this.labels.ok_btn,
                 ok: () => {
                     console.log("OK");
+                    let param: any = {};
+                    let definition_ids: any = [];
+                    for (let item of this.selectedListItems) {
+                        definition_ids.push(item.value);
+                    }
+                    let model_type_rev_serials: any = [];
+                    for (let item of this.lists.visibleList) {
+                        let model_type_rev_serial = item.car_identification.model + "-" + item.car_identification.type_rev + "-" + item.car_identification.serial;
+                        model_type_rev_serials.push(model_type_rev_serial);
+                    }
+                    param.definition_id_kind = this.request_period_kind;
+                    param.definition_ids = definition_ids;
+                    param.model_type_rev_serials = model_type_rev_serials;
+                    param.request_route_kind = "0";
+
+                    console.log("param", param);
+
                     this.cdNumberListRequestComfirmService
-                        .ok(this.initParams)
+                        .ok(param)
                         .then(res => {
                             console.log("RES", res);
                         });

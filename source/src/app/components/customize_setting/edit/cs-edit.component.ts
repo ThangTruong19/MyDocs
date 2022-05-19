@@ -238,7 +238,7 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
    */
   public closeEditDialog(): void {
     this.modalResponse = {
-      customize_usage_definition_id: '',
+      customize_usage_definition_id: this.params.edit_customize_usage_definition_id,
       customize_usage_definition_name: this.params.edit_customize_usage_definition_name,
       customize_usage_definition_version: this.params.edit_customize_usage_definition_version,
       start_date: this.datePickerService.convertDateString(this.params.edit_start_date, DateFormat.hyphen, DateFormat.slash),

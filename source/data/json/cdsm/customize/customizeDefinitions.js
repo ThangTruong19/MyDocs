@@ -26,129 +26,34 @@ module.exports = function() {
 function createData(count) {
   const result = [];
 
-  result.push({
-    customize_definition : {
-      "customize_definition_id": 1,
-      "customize_definition_name": "KOMTRAXデータ 1" ,
-      "customize_definition_version": 1.01,
-      "assumption_data_value": 2022000,
-      "priority": "1",
-      "priority_name": "low",
-      "active_kind": "1",
-      "active_name": "有効",
-      "customize_access_level": 1,
-      "customize_access_level_name": "開発者",
-      "aggregation_condition_id": 1,
-      "aggregation_condition_name": "10分毎",
-      "aggregation_opportunity_kind": 1,
-      "send_opportunity_kind": 1,
-      "send_condition_id": 1,
-      "send_condition_name": "1時間毎",
-      "status": "10",
-      "status_name": "送信中",
-      "latest_operation_code": "1",
-      "latest_operation_code_name": "追加",
-      "start_date": "2017/12/30",
-      "end_date": "2017/12/30",
-      "first_receive_datetime": "2017/02/01 23:59:59",
-      "last_receive_datetime": "2017/05/23 23:59:59",
-      "assumption_data_value_header" : 1000,
-      "process_type" : "1"
-    },
-  });
-
-  result.push({
-    customize_definition : {
-      "customize_definition_id": 2,
-      "customize_definition_name": "KOMTRAXデータ 2" ,
-      "customize_definition_version": 2.01,
-      "assumption_data_value": 3022000,
-      "priority": "1",
-      "priority_name": "low",
-      "active_kind": "1",
-      "active_name": "有効",
-      "customize_access_level": 1,
-      "customize_access_level_name": "開発者",
-      "aggregation_condition_id": 2,
-      "aggregation_condition_name": "20分毎",
-      "aggregation_opportunity_kind": 1,
-      "send_opportunity_kind": 1,
-      "send_condition_id": 2,
-      "send_condition_name": "2時間毎",
-      "status": "10",
-      "status_name": "送信中",
-      "latest_operation_code": "1",
-      "latest_operation_code_name": "追加",
-      "start_date": "2017/12/30",
-      "end_date": "2017/12/30",
-      "first_receive_datetime": "2017/02/01 23:59:59",
-      "last_receive_datetime": "2017/05/23 23:59:59",
-      "assumption_data_value_header" : 1000,
-      "process_type" : "3"
-    },
-  });
-
-  result.push({
-    customize_definition : {
-      "customize_definition_id": 3,
-      "customize_definition_name": "KOMTRAXデータ 3" ,
-      "customize_definition_version": 3.01,
-      "assumption_data_value": 4022000,
-      "priority": "1",
-      "priority_name": "low",
-      "active_kind": "1",
-      "active_name": "有効",
-      "customize_access_level": 1,
-      "customize_access_level_name": "開発者",
-      "aggregation_condition_id": 1,
-      "aggregation_condition_name": "30分毎",
-      "aggregation_opportunity_kind": 1,
-      "send_opportunity_kind": 0,
-      "send_condition_id": 3,
-      "send_condition_name": "3時間毎",
-      "status": "10",
-      "status_name": "送信中",
-      "latest_operation_code": "1",
-      "latest_operation_code_name": "追加",
-      "start_date": "2017/12/30",
-      "end_date": "2017/12/30",
-      "first_receive_datetime": "2017/02/01 23:59:59",
-      "last_receive_datetime": "2017/05/23 23:59:59",
-      "assumption_data_value_header" : 1000,
-      "process_type" : "2"
-    },
-  });
-
-  result.push({
-    customize_definition : {
-      "customize_definition_id": 4,
-      "customize_definition_name": "KOMTRAXデータ 4" ,
-      "customize_definition_version": 3.01,
-      "assumption_data_value": 5022000,
-      "priority": "1",
-      "priority_name": "low",
-      "active_kind": "1",
-      "active_name": "有効",
-      "customize_access_level": 1,
-      "customize_access_level_name": "開発者",
-      "aggregation_condition_id": 1,
-      "aggregation_condition_name": "40分毎",
-      "aggregation_opportunity_kind": 0,
-      "send_opportunity_kind": 0,
-      "send_condition_id": 4,
-      "send_condition_name": "4時間毎",
-      "status": "10",
-      "status_name": "送信中",
-      "latest_operation_code": "1",
-      "latest_operation_code_name": "追加",
-      "start_date": "2017/12/30",
-      "end_date": "2017/12/30",
-      "first_receive_datetime": "2017/02/01 23:59:59",
-      "last_receive_datetime": "2017/05/23 23:59:59",
-      "assumption_data_value_header" : 1000,
-      "process_type" : "4"
-    },
-  });
+  for (var i = 1; i <= count; i++) {
+    result.push({
+      customize_definition : {
+        "customize_definition_id": i,
+        "customize_definition_name": "KOMTRAXデータ" + i,
+        "customize_definition_version": 1.01 + i,
+        "assumption_data_value": 2022000,
+        "priority": "1",
+        "priority_name": "low",
+        "active_kind": "1",
+        "active_name": "有効",
+        "customize_access_level": 1,
+        "customize_access_level_name": "開発者",
+        "aggregation_condition_id": 1,
+        "aggregation_condition_name": "10分毎",
+        "send_condition_id": 1,
+        "send_condition_name": "1時間毎",
+        "status": "10",
+        "status_name": "送信中",
+        "latest_operation_code": "1",
+        "latest_operation_code_name": "追加",
+        "start_date": "2017/12/30",
+        "end_date": "2017/12/30",
+        "first_receive_datetime": "2017/02/01 23:59:59",
+        "last_receive_datetime": "2017/05/23 23:59:59"
+      },
+    });
+  }
 
   return result;
 }

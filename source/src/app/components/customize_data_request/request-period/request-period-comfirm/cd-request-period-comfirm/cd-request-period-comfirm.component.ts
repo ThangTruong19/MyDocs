@@ -16,7 +16,6 @@ export class CdRequestPeriodComfirmComponent implements OnInit {
     @Input() thList: any;
     @Input() labels: any;
     @Input() resource: any;
-    @Input() listSelections: any;
 
     lists = {
         visibleList: [] as any[],
@@ -107,7 +106,7 @@ export class CdRequestPeriodComfirmComponent implements OnInit {
      */
     getKind(value: string): string {
         let result = "";
-        var item = _.filter(this.listSelections, function (o) {
+        var item = _.filter(this.resource.request_number_definition_id_kind.values, function (o) {
             if (o.value == value) return o;
         });
         if (item) {

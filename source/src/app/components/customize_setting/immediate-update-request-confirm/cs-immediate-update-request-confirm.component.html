@@ -2,7 +2,7 @@
     <div class="row" id="request_message">
         <p>{{labels.customize_update_request_message}}</p>
     </div>
-    <div class="row">
+    <div class="row" style="margin-bottom: 20px; margin-top: 10px;">
         <div class="radio-group">
             <input type="radio" id="continue" class="continuous_kind app-input-radio" [value]="continuousValue" [(ngModel)]="isContinued" [checked]="isContinued == '1'">
             <label for="continue" class="app-input-radio__label">{{continuousLabel}}</label>

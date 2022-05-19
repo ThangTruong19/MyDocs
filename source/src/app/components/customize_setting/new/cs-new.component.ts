@@ -44,10 +44,6 @@ interface CustomizeDefinitionResponseData {
     send_condition_name?: string;
     customize_access_level?: string;
     customize_access_level_name?: string;
-    aggregation_opportunity_kind?: string;
-    send_opportunity_kind?: string;
-    assumption_data_value_header?: number;
-    process_type?: string;
 }
 
 /**
@@ -268,7 +264,7 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit {
      */
     public closeNewDialog(): void {
         this.modalResponse = {
-            customize_usage_definition_id: '',
+            customize_usage_definition_id: this.params.regist_customize_usage_definition_name,
             customize_usage_definition_name: (this.customizeDefinitionName as any).items.filter((element: { id: any; }) => element.id == this.params.regist_customize_usage_definition_name)[0].name,
             customize_usage_definition_version: this.params.regist_customize_usage_definition_version,
             start_date: this.datePickerService.convertDateString(this.params.regist_start_date, DateFormat.hyphen, DateFormat.slash),
@@ -307,10 +303,6 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit {
                 customize_access_level_name: element.customize_definition.customize_access_level_name,
                 priority: (this.priority as any).items.filter((element: { id: any; }) => element.id == this.params.regist_priority_name)[0].id,
                 priority_name: (this.priority as any).items.filter((element: { id: any; }) => element.id == this.params.regist_priority_name)[0].name,
-                aggregation_opportunity_kind: element.customize_definition.aggregation_opportunity_kind,
-                send_opportunity_kind: element.customize_definition.send_opportunity_kind,
-                assumption_data_value_header: element.customize_definition.assumption_data_value_header,
-                process_type: element.customize_definition.process_type
             })
         });
         return resultLst;

@@ -59,7 +59,7 @@ export class ScrollLoadDirective {
             return;
         }
 
-        const pageCount: number = parseInt(this.params.pageCount, 10);
+        const pageCount: number = parseInt(this.params.pageCount + this.params.pageAdditionalCount, 10);
         // 取得したデータが表示件数未満の場合は自動ロードしない
         if (
             this.lists.visibleList.length < pageCount &&
@@ -75,10 +75,10 @@ export class ScrollLoadDirective {
         let endIndex: number;
         // 取得データの総件数が自動ロード開始位置+自動ロード数未満の場合、取得終了位置を総件数とする
         if (
-            parseInt(this.params.pageCount, 10) <
+            parseInt(this.params.pageCount + this.params.pageAdditionalCount, 10) <
             _p.lastIndexList + _p.autoLoadCount
         ) {
-            endIndex = parseInt(this.params.pageCount, 10);
+            endIndex = parseInt(this.params.pageCount + this.params.pageAdditionalCount, 10);
         } else {
             endIndex = _p.lastIndexList + _p.autoLoadCount;
         }

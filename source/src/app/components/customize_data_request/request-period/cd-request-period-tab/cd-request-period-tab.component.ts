@@ -39,23 +39,21 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     @Input() override thList: any;
 
     thListModal: any = [];
+    definition_ids: string[] = [];
+    model_type_rev_serials: string[] = [];
 
     initParams = {
-        "definition_id_kind": "0",
-        "definition_ids": [
-            "1"
-        ],
-        "model_type_rev_serials": [
-            "D85PX-15E0-A12345"
-        ],
-        "request_route_kind": "0",
-        "datetime_from": "2020-02-29T00:00:00.000Z",
-        "datetime_to": "2020-02-29T00:00:00.000Z",
-        "car_data_amount_upper_limit": ""
+        "definition_id_kind": "", // 定義ID種別
+        "definition_ids": this.definition_ids, // 定義ID
+        "model_type_rev_serials": this.model_type_rev_serials, // 機種-型式(小変形含む)-機番
+        "request_route_kind": "0", // 要求経路区分
+        "datetime_from": "", // 対象期間FROM
+        "datetime_to": "", // 対象期間TO
+        "data_amount_upper_limit": "" //車両毎データ量上限（単位：KB）
     };
 
     request_period_kind: string = "1";
-    car_data_amount_upper_limit_active_kind: string = "1";
+    data_amount_upper_limit_active_kind: string = "1";
     listSelections: any = [];
     selectedListItems: any = [];
     fields: Fields;
@@ -205,6 +203,25 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
                 okBtnLabel: this.labels.ok_btn,
                 ok: () => {
                     console.log("OK");
+                    this.resetParam();
+                    let definition_ids: any = [];
+                    for (let item of this.selectedListItems) {
+                        definition_ids.push(item.value);
+                    }
+                    let model_type_rev_serials: any = [];
+                    for (let item of this.lists.visibleList) {
+                        let model_type_rev_serial = item.car_identification.model + "-" + item.car_identification.type_rev + "-" + item.car_identification.serial;
+                        model_type_rev_serials.push(model_type_rev_serial);
+                    }
+                    this.initParams.definition_id_kind = this.request_period_kind;
+                    this.initParams.definition_ids = definition_ids;
+                    this.initParams.model_type_rev_serials = model_type_rev_serials;
+                    this.initParams.datetime_from = this.params['request_number_datetime_from'];
+                    this.initParams.datetime_to = this.params['request_number_datetime_to'];
+                    this.initParams.data_amount_upper_limit = this.params['car_data_amount_upper_limit'];
+
+                    console.log("this.params", this.initParams);
+
                     this.cdRequestPeriodComfirmService
                         .ok(this.initParams)
                         .then(res => {
@@ -249,8 +266,26 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
                 okBtnLabel: this.labels.ok_btn,
                 ok: () => {
                     console.log("OK");
+                    let param: any = {};
+
+                    let definition_ids: any = [];
+                    for (let item of this.selectedListItems) {
+                        definition_ids.push(item.value);
+                    }
+                    let model_type_rev_serials: any = [];
+                    for (let item of this.lists.visibleList) {
+                        let model_type_rev_serial = item.car_identification.model + "-" + item.car_identification.type_rev + "-" + item.car_identification.serial;
+                        model_type_rev_serials.push(model_type_rev_serial);
+                    }
+                    param.definition_id_kind = this.request_period_kind;
+                    param.definition_ids = definition_ids;
+                    param.model_type_rev_serials = model_type_rev_serials;
+                    param.request_route_kind = "0";
+
+                    console.log("param", param);
+
                     this.cdRequestPeriodComfirmService
-                        .ok(this.initParams)
+                        .ok(param)
                         .then(res => {
                             console.log("RES", res);
                         });
@@ -405,7 +440,7 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     }
 
     changeLimitActiveKind(data: any): void {
-        this.car_data_amount_upper_limit_active_kind = data;
+        this.data_amount_upper_limit_active_kind = data;
     }
 
     setData(): void {
@@ -416,7 +451,7 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
             car["request_period.car.customize_usage_definition"] = this.selectedListItems;
             car["request_period.car.start_date"] = this.params['request_number_datetime_from'];
             car["request_period.car.end_date"] = this.params['request_number_datetime_to'];
-            car["request_period.car.data_amount_upper_limit_active_kind"] = this.car_data_amount_upper_limit_active_kind;
+            car["request_period.car.data_amount_upper_limit_active_kind"] = this.data_amount_upper_limit_active_kind;
             car["request_period.car.data_amount_upper_limit"] = this.params['car_data_amount_upper_limit'];
             let model_type_rev_serial = item.car_identification.model + "-" + item.car_identification.type_rev + "-" + item.car_identification.serial;
             car["request_number.cars.car_identification.model_type_rev_serial"] = model_type_rev_serial;
@@ -442,5 +477,15 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     changeRequestType(): void {
         this.selectedListItems = [];
         this.listSelections = this.request_period_kind == '1' ? this.resource.request_number_usage_definition_ids.values : this.resource.request_number_definition_ids.values;
+    }
+
+    resetParam(): void {
+        this.initParams.definition_id_kind = "";
+        this.initParams.definition_ids = [];
+        this.initParams.model_type_rev_serials = [];
+        this.initParams.request_route_kind = "0";
+        this.initParams.datetime_from = "";
+        this.initParams.datetime_to = "";
+        this.initParams.data_amount_upper_limit = "";
     }
 }

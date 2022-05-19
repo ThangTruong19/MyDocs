@@ -9,17 +9,17 @@
       "items": [
         {
           "key": "Definiton Name 01",
-          "value": "1",
+          "value": "01",
           "kind": "D"
         },
         {
           "key": "Definiton Name 02",
-          "value": "2",
+          "value": "02",
           "kind": "D"
         },
         {
           "key": "Definiton Name 03",
-          "value": "3",
+          "value": "03",
           "kind": "D"
         }
       ]

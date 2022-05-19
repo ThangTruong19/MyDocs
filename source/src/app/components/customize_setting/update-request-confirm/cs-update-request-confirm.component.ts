@@ -52,7 +52,7 @@ export class CsUpdateRequestConfirmComponent implements OnInit {
                     element.columnStyle = "width:20%; text-align: center;"
                     break;
                 case "customize_usage_definitions.customize_usage_definition.customize_definitions.active_name":
-                    element.columnStyle = "width:9%; text-align: center;"
+                    element.columnStyle = "width:8%; text-align: center;"
                     break;
                 case "customize_usage_definitions.customize_usage_definition.customize_definitions.priority_name":
                     element.columnStyle = "width:9%; text-align: center;"
