@@ -416,13 +416,6 @@
     type: js
     file: json/cdsm/car/postCarsTesting.js
 
-- request:
-    url: /v1/cs_upload/temp/uploadResult
-    method: POST
-  response:
-    type: js
-    file: json/cdsm/cs_upload/tempUploadResult.js
-
 #
 # x. オペレータIDファイルアップロード
 #
@@ -434,3 +427,15 @@
   response:
     type: js
     file: json/cdsm/cs_upload/upload.js
+
+#
+# x. カスタマイズ操作履歴ファイル作成 API (POST)
+#
+# カスタマイズ操作履歴ファイル作成を作成する
+#
+- request:
+    url: /v1/cars/customizes_usage_definition/registration/template_create
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/history/createFile.js

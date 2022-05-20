@@ -3575,8 +3575,8 @@
           "http_method": "POST"
         },
         {
-          "api_id": "TMP-xxxxxxx1",
-          "url": "{protocol}://{hostname}/v1/cs_upload/temp/uploadResult",
+          "api_id": "KOM-xxxxxx11",
+          "url": "{protocol}://{hostname}/v1/cars/customizes_usage_definition/registration/template_create",
           "http_method": "POST"
         }
       ]

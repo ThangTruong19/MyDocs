@@ -9,8 +9,10 @@ module.exports = function(args) {
 
     if (hasError) {
       mock = {
-        request: {
-          error_msg: '[ACOM00' + (i % 10) + ']' + i + '行目、機種野形式に誤りがあります。' ,
+        error_data: {
+          "keys": [],
+          "message": '[ACOM00' + (i % 10) + ']' + i + '行目、機種野形式に誤りがあります。' ,
+          "code": 'ERR0000X'
         },
       };
     } else {

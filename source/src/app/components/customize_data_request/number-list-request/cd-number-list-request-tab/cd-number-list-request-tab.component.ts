@@ -175,7 +175,7 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
         _.set(
             this.params,
             'send_number_list_request_datetime_from',
-            today.clone().format(DateTimeFormat.slash)
+            today.subtract(1, 'days').clone().format(DateTimeFormat.slash)
         );
         _.set(
             this.params,
@@ -191,8 +191,7 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
         _.set(
             this.params,
             'send_number_list_request_datetime_to_formatted',
-            today
-                .format(this.datePickerService.inputDateFormat(this._dateFormat))
+            today.format(this.datePickerService.inputDateFormat(this._dateFormat))
         );
     }
 

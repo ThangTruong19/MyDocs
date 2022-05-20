@@ -100,7 +100,6 @@
                         <button
                             type="button"
                             class="btn btn-primary ml-2"
-                            [disabled]="disabled"
                             (click)="onClickExpectedTrafficConfirm()"
                         >
                             <span>
@@ -319,7 +318,11 @@
                                     [ngClass]="{
                                         disable: discardIconHiddenFunction(data)
                                     }"
-                                    (click)="onClickDiscard(data)"
+                                    (click)="
+                                        discardIconHiddenFunction(data)
+                                            ? $event.stopPropagation()
+                                            : onClickDiscard(data)
+                                    "
                                     [style]="getTblRowHeight(data)"
                                 >
                                     <span>
@@ -337,7 +340,11 @@
                                     [ngClass]="{
                                         disable: retryIconHiddenFunction(data)
                                     }"
-                                    (click)="onClickRetry(data)"
+                                    (click)="
+                                    retryIconHiddenFunction(data)
+                                        ? $event.stopPropagation()
+                                        : onClickRetry(data)
+                                "
                                 >
                                     <span>
                                         <i
@@ -406,7 +413,7 @@
     <ng-template #csExpectedTrafficConfirmModalContent>
         <app-cs-expected-traffic-confirm
             [labels]="labels"
-            [tableData]="tableData"
+            [resources]="resources"
             [initThList1]="this.csExpectedTrafficConfirmThList1"
             [initThList2]="this.csExpectedTrafficConfirmThList2"
         >

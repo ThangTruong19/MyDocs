@@ -9,6 +9,7 @@ import { ApiService } from 'app/services/api/api.service';
 import { ScreenCodeConst } from 'app/constants/api/screen-code-const';
 import { FunctionCodeConst } from 'app/constants/api/function-code-const';
 
+
 @Injectable()
 export class CsUploadService {
   datePickerScreenCode: string;
@@ -18,7 +19,7 @@ export class CsUploadService {
   /**
    * 作業履歴一覧の初期表示に必要な情報を取得
    */
-  fetchIndexInitData() {
+  fetchIndexInitData(requestHeaderParams: RequestHeaderParams) {
     this.api.currentScreenCode = ScreenCodeConst.CUSTOMIZE_SETTING_UPLOAD_CODE;
     return this.api.callApisForInitialize(
       ScreenCodeConst.CUSTOMIZE_SETTING_UPLOAD_CODE,
@@ -39,7 +40,8 @@ export class CsUploadService {
           this.api.fetchFieldResources(
             FunctionCodeConst.HISTORY_MGT_LIST_DOWNLOAD_FUNCTION
           ),
-      }
+      },
+      { request_header: requestHeaderParams }
     );
   }
 
@@ -150,32 +152,4 @@ export class CsUploadService {
     });
   }
 
-
-
-
-
-
-
-
-
-
-
-
-  fetchUploadResultList(
-    params: HistoryMgtListIndexParams,
-    requestHeaderParams: RequestHeaderParams
-  ): Promise<Api> {
-    return new Promise((resolve) => {
-      this.api.requestHandler(
-        'fetchIndexList',
-        this.api
-          .post(
-            Apis.getTemporaryUploadResult,
-            params,
-            { cache: false, request_header: requestHeaderParams }
-          )
-        .subscribe((res) => resolve(res))
-      );
-    });
-  }
 }

@@ -64,7 +64,7 @@ export class CustomizeSettingUploadService {
       this.api.requestHandler(
         'createFile',
         this.api
-          .post(Apis.postCarCustomizesUsageDefinitionHistoriesSearchFileCreate, params, {
+          .post(Apis.postCarsCustomizesUsageDefinitionRegistrationTemplateCreate, params, {
             cache: false,
             request_header: requestHeaderParams,
           })

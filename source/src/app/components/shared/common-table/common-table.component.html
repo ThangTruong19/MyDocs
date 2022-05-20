@@ -8,7 +8,7 @@
             >
                 <thead class="app-table-thead" [ngClass]="thClass">
                     <tr [ngClass]="getSimpleTableRowCss()">
-                        <th *ngIf="selectable" class="app-index-th fixed th-check">
+                        <th *ngIf="selectable" class="app-index-th fixed" [ngClass]="{'th-check': !isDisplayCheckBoxDefault()}">
                             <input
                                 type="checkbox"
                                 class="app-input-checkbox"
@@ -76,8 +76,8 @@
                     >
                         <td
                             *ngIf="selectable && tblFunctions.isDisplayFixedDataRow(data)"
-                            [ngClass]="{ disable: checkBoxHidden(data) }"
-                            class="app-sm-link fixed d-flex justify-content-center td-check"
+                            [ngClass]="{ disable: checkBoxHidden(data), 'td-check': !isDisplayCheckBoxDefault() }"
+                            class="app-sm-link fixed d-flex justify-content-center"
                             [attr.rowspan]="tblFunctions.getFixedDataRowspan(data)"
                         >
                           <input
@@ -181,11 +181,12 @@
                         class="app-table-thead"
                         [ngClass]="thClass">
                         <tr>
-                            <th *ngIf="selectable" class="app-index-th th-check">
+                            <th *ngIf="selectable" class="app-index-th">
                                 <input
                                     type="checkbox"
                                     class="app-input-checkbox"
                                     [disabled]="checkAllDisabled"
+                                    [ngClass]="{'th-check': !isDisplayCheckBoxDefault()}"
                                     (click)="toggleCheckAll()"
                                     id="check-icon-all">
                                 <label class="app-input-checkbox__label" for="check-icon-all">
@@ -229,8 +230,8 @@
                         <tr *ngFor="let data of lists.visibleList; let i = index"
                             [attr.data-index]="i">
                             <td *ngIf="selectable && tblFunctions.isDisplayFixedDataRow(data)"
-                                [ngClass]="{'disable': checkBoxHidden(data)}"
-                                class="text-center td-check app-sm-link"
+                                [ngClass]="{'disable': checkBoxHidden(data), 'td-check': !isDisplayCheckBoxDefault()}"
+                                class="text-center app-sm-link"
                                 [attr.rowspan]="tblFunctions.getFixedDataRowspan(data)">
                                 <input
                                     (appTableCheckbox)="onChange($event)"

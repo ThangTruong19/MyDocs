@@ -44,11 +44,10 @@ export const Apis = {
     // TODO:
     postCarCustomizesUsageDefinitionHistoriesSearch: 'KOM-xxxxxxx8',
     postCarCustomizesUsageDefinitionHistoriesSearchFileCreate: 'KOM-xxxxxxx9',
+    postCarsCustomizesUsageDefinitionRegistrationTemplateCreate: 'KOM-xxxxxx11',
     postRequestPeriodComfirm: 'KOM-1xxxxxxx',
     postSendNoList: 'KOM-2xxxxxxx',
     postCarSearch: 'KOM-xxxxxx10',
 
     postOperatorsUpload: 'KOM-01300030',
-    // postCarsManagementSearch: 'KOM-00101100',
-    getTemporaryUploadResult: 'TMP-xxxxxxx1',
 };

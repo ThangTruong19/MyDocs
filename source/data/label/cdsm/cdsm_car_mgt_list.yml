@@ -160,3 +160,9 @@ labels:
     name: customize_get_request_message
     ja: 車両にカスタマイズ設定取得を要求しますか？
     en:
+
+  - id: 103
+    description: 編集
+    name: header_edit
+    ja: 編集
+    en:

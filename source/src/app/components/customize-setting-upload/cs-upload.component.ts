@@ -107,7 +107,7 @@ export class CsUploadComponent extends AbstractIndexComponent {
    * 初期化 API を呼ぶ
    */
   protected async _fetchDataForInitialize(): Promise<void> {
-    const res: any = await this.csUploadService.fetchIndexInitData();
+    const res: any = await this.csUploadService.fetchIndexInitData(this.requestHeaderParams);
     this.initialize(res);
     this.labels = res.label;
     this.resource = res.resource;
@@ -280,9 +280,8 @@ export class CsUploadComponent extends AbstractIndexComponent {
    * アップロード結果モーダルのデータを更新
    * @param res API レスポンス
    */
-  private _updateResultModalData(res: any) { console.log('res');console.log(res);
+  private _updateResultModalData(res: any) {
     let errorsLength;
-    // [this.listVal, errorsLength] = this._formatUploadResultData(res.responses);
     [this.listVal, errorsLength] = this._formatUploadResultData(res.result_data.results);
     // this.resultCountMessage = this.compiledResultCountMessage({
     //   total: this.listVal.length,
@@ -304,9 +303,7 @@ export class CsUploadComponent extends AbstractIndexComponent {
       result = { result: { type: 'result', success: true }, message: '' };
 
       [
-        // 'response_code',
         'status',
-        // 'brand',
         'type',
         'model',
         'serial',
@@ -316,27 +313,15 @@ export class CsUploadComponent extends AbstractIndexComponent {
         'start_datetime',
         'end_datetime',
         'instant_kind',
-        // 'error_msg',
-
-        /* 'customer_label',
-        'operator.code',
-        'operator.current_label.label',*/
       ].forEach(path => {
         const value = _.get(r.request, 'customize_usage_definition_info.' + path);
-        // if (
-        //   path === 'operator.current_label.label' &&
-        //   value &&
-        //   _.get(this.resource, 'operator_label')
-        // ) {
-        //   showLabel = true;
-        // }
 
         if (value) {
           result[path] = value;
         } else {
           isError = true;
-          const errorProperty = 'error_msg';
-          result[errorProperty] = _.get(r.request, errorProperty);
+          const errorProperty = 'message';
+          result[errorProperty] = _.get(r.error_data, errorProperty);
         }
       });
 
@@ -346,7 +331,7 @@ export class CsUploadComponent extends AbstractIndexComponent {
       }
 
       return result;
-    }); console.log('list');console.log(list);console.log('labels');console.log(this.labels);
+    });
     this.thList = this._getThList(isError);
 
     return [list, errorsLength];
@@ -360,25 +345,15 @@ export class CsUploadComponent extends AbstractIndexComponent {
       if (isError) {
         return [{
           label: this.labels.error_msg,
-          name: 'error_msg',
+          name: 'message',
           displayable: true,
         }];
       }
 
       return _.flatten([
-        /*{
-          label: this.labels.result,
-          name: 'result',
-          displayable: true,
-        },*/
         {
           label: this.labels.status,
           name: 'status',
-          displayable: true,
-        },
-        {
-          label: this.labels.brand,
-          name: 'brand',
           displayable: true,
         },
         {
@@ -425,13 +400,7 @@ export class CsUploadComponent extends AbstractIndexComponent {
           label: this.labels.instant_kind,
           name: 'instant_kind',
           displayable: true,
-        },
-        // this._createThListContent(showLabel),
-        // {
-        //   label: this.labels.result_detail,
-        //   name: 'message',
-        //   displayable: true,
-        // },
+        }
       ]);
     }
 }

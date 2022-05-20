@@ -117,7 +117,7 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
   protected async fetchList(): Promise<any> {
     // Setting the request parameters before calling API
     this._searchParams.customize_usage_definition_id = this.inputParams.edit_customize_usage_definition_id;
-    this._searchParams.customize_usage_definition_version = (this.customizeDefinitionVersion as any).itemParams.regist_customize_usage_definition_version;
+    this._searchParams.customize_usage_definition_version = (this.customizeDefinitionVersion as any).itemParams.edit_customize_usage_definition_version;
     // Call & fetch data from API
     this.fetchCustomizeSettingData();
     this.isInitialize = false;
@@ -199,6 +199,7 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
   async fetchCustomizeSettingData(): Promise<any> {
     this._searchParams.car_id = this.carId;
     // Call & fetch data from API
+    this.requestHeaderParams['X-Sort'] = this.sortingParams['sort'] || '';
     this.apiResult = await this.customSettingService.fetchCustomizeSettingList(
       this._searchParams,
       this.requestHeaderParams

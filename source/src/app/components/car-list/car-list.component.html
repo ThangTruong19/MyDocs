@@ -178,6 +178,7 @@
               [labels]="labels"
               [collapsed]="collapsed"
               [isFetching]="isFetching"
+              [selectable]="selectable"
             >
             </app-common-table>
           </div>
@@ -187,8 +188,12 @@
   </section>
 
   <ng-template #customTableThContent>
-    <ng-container *ngFor="let th of thList">
-      <ng-container *ngIf="th.displayable && th.shortName !== 'cars_checkbox'; else checkboxContent">
+    <ng-container *ngFor="let th of thList; let thIdx = index">
+      <ng-container *ngIf="isEditColumn(thIdx)">
+        <th>{{ labels.header_edit }}</th>
+      </ng-container>
+
+      <ng-container *ngIf="th.displayable">
         <th
           class="app-index-th th-{{ th.shortName }}"
           appSortingLabel
@@ -216,55 +221,34 @@
           </label>
         </th>
       </ng-template>
+
     </ng-container>
   </ng-template>
 
-  <ng-template #customTableRowContent let-data="data" let-title="title" let-tblFunctions="tblFunctions">
-    <ng-container *ngFor="let title of thList">
-      <ng-container [ngSwitch]="title.name" *ngIf="title.displayable && title.shortName !== 'cars_customize_definition_label' && title.shortName !== 'cars_checkbox' && title.shortName !== 'cars_user_label';">
-        <td class="td-{{ title.shortName }} app-index-td d-flex align-items-center">
-          <span>{{ data[title.name] }}</span>
+  <ng-template #customTableRowContent
+    let-data="data"
+    let-title="title"
+    let-tblFunctions="tblFunctions">
+    <ng-container *ngFor="let title of thList; let thIdx = index">
+      <ng-container *ngIf="isEditColumn(thIdx)">
+        <td  class="padding-none" style="display: grid; width: 100%;text-align:center;align-items: center;">
+          <i *ngIf="isNextGen(data)" class="app-icon app-icon-edit" (click)="handleEditClick(data)"></i>
         </td>
       </ng-container>
-
-      <ng-container *ngIf="title.displayable && title.shortName == 'cars_customize_definition_label';">
-        <td style="display: grid; width: 100%;text-align:center;align-items: center;">
-          <i class="app-icon app-icon-edit" (click)="handleEditClick($event)"></i>
+      <ng-container [ngSwitch]="title.name" *ngIf="title.displayable && !isArrayColumnData(title.name)">
+        <td class="td-{{ title.shortName }} app-index-td d-flex align-items-center padding-none">
+          <span class="divider-column">{{ data[title.name] }}</span>
         </td>
       </ng-container>
-
-      <ng-container *ngIf="title.displayable && title.shortName == 'cars_checkbox';">
-        <td
-          *ngIf="selectable"
-          class="app-sm-link fixed d-flex justify-content-center td-check"
-        >
-          <input
-              (appTableCheckbox)="onChange($event)"
-              (toggleClick)="onCheckSelect($event)"
-              (click)="onCheckSelect(checkedItems[data[title.name]], data[title.name], data, title.name)"
-              [selectedList]="selectedList"
-              [checked]="checkedItems[data[title.name]]"
-              id="check-icon-{{ data[title.name] }}"
-              type="checkbox"
-              class="app-input-checkbox"
-          />
-          <label
-              class="app-input-checkbox__label"
-              for="check-icon-{{ data[title.name] }}"
-          >
-              <i class="fa"></i>
-          </label>
-        </td>
-      </ng-container>
-
-      <ng-container *ngIf="title.displayable && title.shortName == 'cars_customize_usage_definitions' && isArrayColumnData(title.name)">
+      <ng-container *ngIf="title.displayable && isArrayColumnData(title.name)">
+        <td class="td-{{ title.shortName }} app-index-td align-items-center padding-none">
         <ng-container *ngFor="let rec of tblFunctions.getArrayColumnData(data, title.name); let subIndex = index">
-            <div [ngClass]="{'divider-column-border': subIndex > 0}">
-                <span class="divider-column">{{rec[tblFunctions.getLastColumnPathName(title.name + '.name')]}}</span>
+            <div [ngClass]="{'divider-column-border': subIndex > 0}" class="divider-column">
+                <span>{{rec[tblFunctions.getLastColumnPathName(title.name)]}}</span>
             </div>
-            <!--<span>{{ data[title.name] }}</span>-->
         </ng-container>
-      </ng-container>
+        </td>
+    </ng-container>
 
     </ng-container>
   </ng-template>

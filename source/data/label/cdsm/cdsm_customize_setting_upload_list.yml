@@ -264,66 +264,60 @@ labels:
     en:
 
   - id: 102
-    description: メーカ
-    name: brand
-    ja: メーカ
-    en:
-
-  - id: 103
     description: 機種
     name: type
     ja: 機種
     en:
 
-  - id: 104
+  - id: 103
     description: 型式
     name: model
     ja: 型式
     en:
 
-  - id: 105
+  - id: 104
     description: 機番
     name: serial_number
     ja: 機番
     en:
 
-  - id: 106
+  - id: 105
     description: カスタマイズ用途定義
     name: customize_definition
     ja: カスタマイズ用途定義
     en:
 
-  - id: 107
+  - id: 106
     description: バージョン
     name: version
     ja: バージョン
     en:
 
-  - id: 108
+  - id: 107
     description: 優先度
     name: priority
     ja: 優先度
     en:
 
-  - id: 109
+  - id: 108
     description: 開始日
     name: start_datetime
     ja: 開始日
     en:
 
-  - id: 110
+  - id: 109
     description: 終了日
     name: end_datetime
     ja: 終了日
     en:
 
-  - id: 111
+  - id: 110
     description: 即時反映
     name: instant_kind
     ja: 即時反映
     en:
 
-  - id: 112
+  - id: 111
     description: エラー内容
     name: error_msg
     ja: エラー内容

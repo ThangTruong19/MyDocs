@@ -237,6 +237,7 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit {
     async fetchCustomizeSettingData(): Promise<any> {
         this._searchParams.car_id = this.carId;
         // Call & fetch data from API
+        this.requestHeaderParams['X-Sort'] = this.sortingParams['sort'] || '';
         this.apiResult = await this.customSettingService.fetchCustomizeSettingList(
             this._searchParams,
             this.requestHeaderParams

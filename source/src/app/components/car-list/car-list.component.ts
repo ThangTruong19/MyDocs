@@ -104,6 +104,12 @@ export class CarListComponent extends AbstractIndexComponent {
     carId: string;
 
 
+    private arrayColumnPaths: string[] = [
+      'cars.customize_usage_definitions.name',
+      'cars.customize_usage_definitions.setting_change_status',
+      'cars.customize_usage_definitions.setting_change_status_name',
+    ];
+
     constructor(
       navigationService: NavigationService,
       title: Title,
@@ -139,16 +145,20 @@ export class CarListComponent extends AbstractIndexComponent {
         params,
         this.requestHeaderParams
       );
-      console.log('Big Problem');console.log(res);
-      this.selectedList = res.result_data.car_list;
+      // TODO: initialize checkboxes
       // for (let i = 1; i <= this.selectedList.length; i++) {
       //   this.checkedItems[i] = this.checkAll;
       // }
-      console.log('thlist');console.log(this.thList);
       const list = this._formatList(
         res.result_data.cars,
         this.thList
       );
+      Object.keys(list).forEach((i: any) => {
+        if (!list[i].cars) {
+          list[i].cars = {}
+        }
+        list[i].cars.customize_usage_definitions = res.result_data.cars[i].customize_usage_definitions
+      })
       this._fillLists(res.result_header, list);
       this.isFetching = false;
       this._afterFetchList();
@@ -307,17 +317,16 @@ export class CarListComponent extends AbstractIndexComponent {
     /**
      * 一括設定取得要求へ遷移
      */
-    public handleEditClick(event: any): void {console.log('seriously');console.log(event);
+    public handleEditClick(data: any): void {
       this.router.navigated = false;
-      // this.router.navigateByUrl("/customize_setting");
       this.router.navigate(
         ["/customize_setting"],
         {
           queryParams: {
-            carId: '1',
-            model: '1',
-            typeRev: '1',
-            serial: '1'
+            carId: data['cars.car_identification.id'],
+            model: data['cars.car_identification.model'],
+            typeRev: data['cars.car_identification.type_rev'],
+            serial: data['cars.car_identification.serial']
           }
         }
       )
@@ -332,14 +341,6 @@ export class CarListComponent extends AbstractIndexComponent {
       for (let i = 0; i <= this.selectedList.length; i++) {
         this.checkedItems[i] = this.checkAll;
       }
-    }
-
-    /**
-      * 選択チェックボックス変更時コールバック
-      * @param value 値
-      */
-    onCheckSelect(checked: boolean, index: any, data: any, titlename: any): void { console.log('oh ah ah ah ah');console.log(data);console.log(titlename);
-        this.checkedItems[index] = !checked;
     }
 
     /**
@@ -441,19 +442,31 @@ export class CarListComponent extends AbstractIndexComponent {
     );
   }
 
+  /**
+   * 対象列が配列形式かどうかを判断する。
+   * @param pathName 対象列のパス名
+   * @returns true：配列、false：配列ではない。
+   */
+  public isArrayColumnData(pathName: string): boolean {
+    return this.arrayColumnPaths.indexOf(pathName) !== -1
+  }
 
+  /**
+   * 対象列が編集列かどうかを判断する。
+   * @param colIndex 対象列のindex
+   * @returns true：編集列、false：編集列ではない。
+   */
+  public isEditColumn(colIndex: number): boolean {
+    return colIndex === 4;
+  }
 
+  /**
+   * 次世代モードの車両のみボタンが表示される。
+   * @param data
+   * @returns
+   */
+  public isNextGen(data: any): boolean {
+    return data['cars.terminal_mode.name'] === '次世代';
+  }
 
-    private arrayColumnPaths: string[] = [
-      'cars.customize_usage_definitions'
-    ];
-
-    /**
-     * 対象列が配列形式かどうかを判断する。
-     * @param pathName 対象列のパス名
-     * @returns true：配列、false：配列ではない。
-     */
-     public isArrayColumnData(pathName: string): boolean {
-      return this.arrayColumnPaths.indexOf(pathName) !== -1
-    }
 }

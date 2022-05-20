@@ -40,42 +40,6 @@
         "key": "division_display_kind"
       },
       {
-        "value": "1",
-        "key": "map_magnification"
-      },
-      {
-        "value": "35.681101",
-        "key": "map_longitude"
-      },
-      {
-        "value": "139.767360",
-        "key": "map_latitude"
-      },
-      {
-        "value": "1",
-        "key": "customer_car_no_caption_display_kind"
-      },
-      {
-        "value": "1",
-        "key": "customer_label_caption_display_kind"
-      },
-      {
-        "value": "1",
-        "key": "model_type_serial_caption_display_kind"
-      },
-      {
-        "value": "1",
-        "key": "service_car_model_type_serial_caption_display_kind"
-      },
-      {
-        "value": "1",
-        "key": "service_man_label_caption_display_kind"
-      },
-      {
-        "value": "1",
-        "key": "landmark_label_caption_display_kind"
-      },
-      {
         "value": "",
         "key": "default_page_url"
       }

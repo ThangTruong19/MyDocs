@@ -6,7 +6,7 @@
         "key": "map_mode"
       },
       {
-        "value": "-1100",
+        "value": "+0900",
         "key": "time_difference"
       },
       {
@@ -38,42 +38,6 @@
       {
         "value": "0",
         "key": "division_display_kind"
-      },
-      {
-        "value": "10",
-        "key": "map_magnification"
-      },
-      {
-        "value": "139.767360",
-        "key": "map_longitude"
-      },
-      {
-        "value": "35.881101",
-        "key": "map_latitude"
-      },
-      {
-        "value": "1",
-        "key": "customer_car_no_caption_display_kind"
-      },
-      {
-        "value": "1",
-        "key": "customer_label_caption_display_kind"
-      },
-      {
-        "value": "1",
-        "key": "model_type_serial_caption_display_kind"
-      },
-      {
-        "value": "1",
-        "key": "service_car_model_type_serial_caption_display_kind"
-      },
-      {
-        "value": "1",
-        "key": "service_man_label_caption_display_kind"
-      },
-      {
-        "value": "1",
-        "key": "landmark_label_caption_display_kind"
       },
       {
         "value": "/",

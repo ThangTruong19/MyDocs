@@ -1,12 +1,5 @@
 [
   {
-    "display_sequence_no": "1",
-    "name": "チェックボックス",
-    "path": "cars.checkbox",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
     "display_sequence_no": "2",
     "name": "機種",
     "path": "cars.car_identification.model",
@@ -35,13 +28,6 @@
     "display_code": "1"
   },
   {
-    "display_sequence_no": "6",
-    "name": "編集",
-    "path": "cars.customize_definition_label",
-    "control_code": "1",
-    "display_code": "1"
-  },
-  {
     "display_sequence_no": "7",
     "name": "通信機種",
     "path": "cars.communication_channel.name",
@@ -65,7 +51,7 @@
   {
     "display_sequence_no": "10",
     "name": "カスタマイズ用途",
-    "path": "cars.customize_usage_definitions",
+    "path": "cars.customize_usage_definitions.name",
     "control_code": "1",
     "display_code": "1"
   },
@@ -79,8 +65,127 @@
   {
     "display_sequence_no": "12",
     "name": "変更状態",
-    "path": "cars.change_status",
+    "path": "cars.customize_usage_definitions.setting_change_status_name",
     "control_code": "1",
     "display_code": "1"
+  },
+  {
+    "display_sequence_no": "13",
+    "name": "車両ID",
+    "path": "cars.car_identification.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "14",
+    "name": "車種コード",
+    "path": "cars.car_identification.division_code",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "15",
+    "name": "通信機種ID",
+    "path": "cars.communication_channel.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "16",
+    "name": "通信機種類コード",
+    "path": "cars.communication_channel.code",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "17",
+    "name": "端末モード区分",
+    "path": "cars.terminal_mode.kind",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "18",
+    "name": "顧客ID",
+    "path": "cars.customer.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "19",
+    "name": "顧客名称(英語)",
+    "path": "cars.customer.label_english",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "20",
+    "name": "担当代理店ID",
+    "path": "cars.support_distributor.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "21",
+    "name": "担当代理店名称(英語)",
+    "path": "cars.support_distributor.label_english",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "22",
+    "name": "カスタマイズ用途定義ID",
+    "path": "cars.customize_usage_definitions.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "23",
+    "name": "カスタマイズ用途定義設定変更状態",
+    "path": "cars.customize_usage_definitions.setting_change_status",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "24",
+    "name": "カスタマイズ定義ID",
+    "path": "cars.customize_usage_definitions.customize_definitions.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "25",
+    "name": "カスタマイズ定義名称",
+    "path": "cars.customize_usage_definitions.customize_definitions.name",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "26",
+    "name": "カスタマイズ定義バージョン",
+    "path": "cars.customize_usage_definitions.customize_definitions.version",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "27",
+    "name": "カスタマイズアクセスレベルID",
+    "path": "cars.customize_usage_definitions.customize_definitions.access_level.id",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "28",
+    "name": "カスタマイズアクセスレベル",
+    "path": "cars.customize_usage_definitions.customize_definitions.access_level.code",
+    "control_code": "1",
+    "display_code": "0"
+  },
+  {
+    "display_sequence_no": "29",
+    "name": "カスタマイズアクセスレベル名称",
+    "path": "cars.customize_usage_definitions.customize_definitions.access_level.name",
+    "control_code": "1",
+    "display_code": "0"
   }
 ]

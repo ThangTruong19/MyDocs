@@ -17,12 +17,6 @@ export interface UserSettings {
     map_magnification: string;
     map_longitude: string;
     map_latitude: string;
-    customer_car_no_caption_display_kind?: string;
-    customer_label_caption_display_kind?: string;
-    model_type_serial_caption_display_kind?: string;
-    service_car_model_type_serial_caption_display_kind?: string;
-    service_man_label_caption_display_kind?: string;
-    landmark_label_caption_display_kind?: string;
     default_page_url?: string;
 }
 

@@ -115,7 +115,7 @@ export class UserSettingService {
     public getLang(): string {
         return this.userSettings && this.userSettings.lang_code
             ? this.userSettings.lang_code
-            : 'ja-JP';
+            : null;
     }
 
     /**

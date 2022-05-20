@@ -12,6 +12,7 @@ import {
     DateTimeFormat,
 } from 'app/constants/date-format';
 import { UserSettingService } from 'app/services/api/user-setting.service';
+import { Labels } from 'app/types/common';
 
 type Moment = moment.Moment;
 type MomentUnitOfTimeStartOf = moment.unitOfTime.StartOf;
@@ -91,7 +92,7 @@ export abstract class CalendarService {
      * 月のラベルを取得する
      * @param labels ラベル
      */
-    public getMonthLabels(labels: any): MonthLabels {
+    public getMonthLabels(labels: Labels): MonthLabels {
         return [
             labels._common.calendar_january,
             labels._common.calendar_february,
@@ -127,7 +128,7 @@ export abstract class CalendarService {
         const monthPattern = /(-?\d+)[Mm]/;
         const datePattern = /(-?\d+)[Dd]/;
 
-        return dateRange.map(date => {
+        return dateRange.map((date: string) => {
             if (absolutePattern.test(date)) {
                 return date;
             }

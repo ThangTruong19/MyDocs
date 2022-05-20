@@ -114,7 +114,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
 
     public get checkAllDisabled(): boolean {
         return (
-            [...this.lists.originList, ...this.lists.hiddenList].filter((item: any) =>
+            this.getListsDataArray().filter((item: any) =>
                 !this.checkBoxHidden(item)).length === 0
         );
     }
@@ -235,7 +235,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
 
     private updateCheckAll(): void {
         const targetItems: any =
-            [...this.lists.originList, ...this.lists.hiddenList].filter((item: any) =>
+            this.getListsDataArray().filter((item: any) =>
                 !this.checkBoxHidden(item)
             );
         this.checkAll =
@@ -249,6 +249,14 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
             )) != null
         ) {
             repCheckAll.disabled = this.checkAllDisabled;
+        }
+    }
+
+    private getListsDataArray(): any[] {
+        if (this.lists.hiddenList) {
+            return  [...this.lists.originList, ...this.lists.hiddenList];
+        } else {
+            return  [...this.lists.originList];
         }
     }
 
@@ -388,7 +396,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
      * チェックボックスの一括操作
      */
     public toggleCheckAll(): void {
-        _.each([...this.lists.originList, ...this.lists.hiddenList], item => {
+        _.each(this.getListsDataArray(), item => {
             if (!this.checkBoxHidden(item)) {
                 // 全て文字列で格納するため、空文字列を加算
                 const val: string = this.checkId(item) + '';
@@ -422,10 +430,16 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
+     */
+    public isDisplayCheckBoxDefault(): boolean {
+        return this.hasFunction(this.checkBoxDefaultHiddenFunction);
+    }
+
+    /**
      * 親側の checkBoxHidden() を呼び出す
      */
     public checkBoxHidden(data: any): boolean {
-        if (this.isFunction(this.checkBoxHiddenFunction)) {
+        if (this.hasFunction(this.checkBoxHiddenFunction)) {
             return this.checkBoxHiddenFunction(data);
         } else {
             return false;
@@ -436,7 +450,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
      * 親側の checkBoxDefaultHidden() を呼び出す
      */
     public checkBoxDefaultHidden(data: any): boolean {
-        if (this.isFunction(this.checkBoxDefaultHiddenFunction)) {
+        if (this.hasFunction(this.checkBoxDefaultHiddenFunction)) {
             return this.checkBoxDefaultHiddenFunction(data);
         } else {
             return true;
@@ -447,7 +461,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
      * 親側の editIconHidden() を呼び出す
      */
     public editIconHidden(data: any): boolean {
-        if (this.isFunction(this.editIconHiddenFunction)) {
+        if (this.hasFunction(this.editIconHiddenFunction)) {
             return this.editIconHiddenFunction(data);
         } else {
             return false;
@@ -458,14 +472,14 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
      * 親側の deleteIconHidden() を呼び出す
      */
     public deleteIconHidden(data: any): boolean {
-        if (this.isFunction(this.deleteIconHiddenFunction)) {
+        if (this.hasFunction(this.deleteIconHiddenFunction)) {
             return this.deleteIconHiddenFunction(data);
         } else {
             return false;
         }
     }
 
-    private isFunction(targetFunction: any): boolean {
+    private hasFunction(targetFunction: any): boolean {
         if (targetFunction && (typeof targetFunction === 'function')) {
             return true;
         } else {

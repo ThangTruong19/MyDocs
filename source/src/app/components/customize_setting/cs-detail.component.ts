@@ -102,7 +102,13 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     addList: any[]
     editList: any[]
     hiddenList: any[]
-  }
+  } = {
+      visibleList: [],
+      originList: [],
+      addList: [],
+      editList: [],
+      hiddenList: [],
+    }
 
   carId: string
   model: string
@@ -228,20 +234,23 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
       _.set(element, 'edit_status', EditStatus.デフォルト)
       _.set(element, 'edit_status_name', '')
     })
-    this.initialLists = _.cloneDeep(this.lists)
+    this.initialLists.originList = _.cloneDeep(this.lists.originList)
+    this.initialLists.visibleList = _.cloneDeep(this.lists.visibleList)
     const ids = this.lists.originList.map(element => element[this.customizeUsageDefinitionIdKey])
     this.lists.hiddenList = this.lists.editList.filter((element: any) =>
       !ids.includes(element[this.customizeUsageDefinitionIdKey])
     )
     // 追加項目設定
+    const addList = _.cloneDeep(this.lists.addList)
     if (this.lists.originList.length === this.lists.visibleList.length) {
-      this.lists.originList.push(...this.lists.addList)
-      this.lists.visibleList.push(...this.lists.addList)
+      this.lists.originList.push(...addList)
+      this.lists.visibleList.push(...addList)
     } else {
-      this.lists.originList.push(...this.lists.addList)
+      this.lists.originList.push(...addList)
     }
     // 編集項目設定
-    this.lists.editList.forEach(element => {
+    const editList = _.cloneDeep(this.lists.editList)
+    editList.forEach(element => {
       const originListIndex = this.lists.originList.findIndex(target =>
         element[this.customizeUsageDefinitionIdKey] === target[this.customizeUsageDefinitionIdKey]
       )
@@ -333,6 +342,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    */
   public retryIconHiddenFunction(data: any): boolean {
     return data[this.statusKey] === Status.送信失敗
+      || data['edit_status'] !== EditStatus.デフォルト
   }
 
   /**
@@ -473,7 +483,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     this.inputParams.edit_priority_name = content.customize_usage_definition.priority_name
     this.inputParams.edit_active_name = content.customize_usage_definition.customize_definitions[0].active_name
     console.log('inputParams', this.inputParams)
-
     this.modalService.open(
       {
         title: this.labels.edit_title,
@@ -875,19 +884,24 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     )
   }
 
+  // TODO:
   onClickExpectedTrafficConfirm() {
-    const keys = Object.keys(this.checkedItems)
-    this.tableData = this.lists.visibleList.filter(
-      (item: any) => {
-        const id = item[this.customizeUsageDefinitionIdKey]
+    const keys: String[] = []
+    Object.keys(this.checkedItems).forEach((key) => {
+      if (this.checkedItems[key]) keys.push(key)
+    });
+    this.tableData = [...this.lists.addList, ...this.lists.editList].filter(
+      (element: any) => {
+        const id = element[this.customizeUsageDefinitionIdKey]
         return keys.includes(String(id))
       }
     )
+    console.log("tableData", this.tableData)
     _.set(this.labels, 'vehicleInfo', this.model + '-' + this.typeRev + '-' + this.serial)
 
     this.modalService.open(
       {
-        title: '想定通信量確認',
+        title: this.labels.communication_charge_confirmation,
         labels: this.labels,
         content: this.csExpectedTrafficConfirmModalContent,
         closeBtnLabel: this.labels.cancel,

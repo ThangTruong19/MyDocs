@@ -368,7 +368,8 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
         _.set(
             this.params,
             'request_number_datetime_from',
-            today.clone().format(DateTimeFormat.slash)
+            today
+                .subtract(1, 'days').clone().format(DateTimeFormat.slash)
         );
         _.set(
             this.params,

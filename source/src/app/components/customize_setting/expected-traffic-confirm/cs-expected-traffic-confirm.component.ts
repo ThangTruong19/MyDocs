@@ -1,5 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { TableHeader, TableMergeColumn } from 'app/types/common';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { AbstractIndexComponent } from 'app/components/shared/abstract-component/abstract-index.component';
+import { UserSettingService } from 'app/services/api/user-setting.service';
+import { CsDetailService } from 'app/services/customize_setting/cs-detail.service';
+import { CustomizeSettingService } from 'app/services/customize_setting/customize-setting.service';
+import { CommonHeaderService } from 'app/services/shared/common-header.service';
+import { DatePickerService } from 'app/services/shared/date-picker.service';
+import { ModalService } from 'app/services/shared/modal.service';
+import { NavigationService } from 'app/services/shared/navigation.service';
+import { Resources, TableHeader, TableMergeColumn } from 'app/types/common';
 import * as _ from 'lodash';
 
 @Component({
@@ -7,11 +17,11 @@ import * as _ from 'lodash';
     templateUrl: './cs-expected-traffic-confirm.component.html',
     styleUrls: ['./cs-expected-traffic-confirm.component.scss']
 })
-export class CsExpectedTrafficConfirmComponent implements OnInit {
+export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent implements OnInit {
     @Input()
-    public tableData: any[];
+    public carId: string;
     @Input()
-    public labels: any;
+    public resources: Resources;
     @Input()
     public initThList1: TableHeader[];
     @Input()
@@ -22,6 +32,7 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
 
     thList1: TableHeader[] = [];
     thList2: TableHeader[] = [];
+    tableData: any[];
 
     public lists1: { visibleList: any[]; originList: any[] } = {
         visibleList: [],
@@ -33,68 +44,38 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
         originList: []
     };
 
-    public sortingParams: { sort: string; sortLabel: string; } = {
-        sort: '',
-        sortLabel: ''
-    };
     public sortableThList1: string[] = [];
     public sortableThList2: string[] = [];
 
     public mergeColumns1: TableMergeColumn[] = [];
     public mergeColumns2: TableMergeColumn[] = [];
-    public isFetching = false;
 
-    constructor() { }
+    constructor(
+        nav: NavigationService,
+        title: Title,
+        header: CommonHeaderService,
+        router: Router,
+        private modal: ModalService,
+        private cdRef: ChangeDetectorRef,
+        private customSettingService: CustomizeSettingService,
+        protected userSettingService: UserSettingService,
+        protected datePickerService: DatePickerService,
+        protected csDetailService: CsDetailService) {
+            super(nav, title, router, cdRef, header, modal);
+            this.shouldDestroyNavigation = false;
+    }
 
-    ngOnInit(): void {
-
-        this.thList1 = this.initThList1;
-        this.thList2 = this.initThList2;
-
-        // FORMAT TABLE
-        this.thList1.forEach((element: TableHeader) => {
-            switch (element.name) {
-                case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name":
-                    element.columnStyle = "width:20%; text-align: center;"
-                    break;
-                case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
-                    element.columnStyle = "width:15%; text-align: center;"
-                    break;
-                case "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value":
-                    element.columnStyle = "width:15%; text-align: center;"
-                    break;
-                case "customize_usage_total_traffic":
-                    element.columnStyle = "width:20%; text-align: center;"
-                    break;
-                case "customize_usage_difference":
-                    element.columnStyle = "width:10%; text-align: center;"
-                    break;
-            }
-        })
-
-        this.thList2.forEach((element: TableHeader) => {
-            switch (element.name) {
-                case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name":
-                    element.columnStyle = "width:30%; text-align: center;"
-                    break;
-                case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
-                    element.columnStyle = "width:22%; text-align: center;"
-                    break;
-                case "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value":
-                    element.columnStyle = "width:34%; text-align: center;"
-                    break;
-            }
-        })
-
-        this.sortableThList1 = this._sortableThLists(this.thList1);
-        this.sortableThList2 = this._sortableThLists(this.thList2);
-
-        const data = this.tableData.reduce((acc: any, cur: any) => {
-            const contents = _.get(cur, 'customize_usage_definitions.customize_usage_definition.customize_definitions').map((element: any) => {
+    protected async fetchList(sortKey?: string): Promise<any> {
+        this.requestHeaderParams['X-Sort'] = sortKey || ''
+        const res = await this.csDetailService.fetchIndexList(
+            this.carId,
+            this.requestHeaderParams
+        );
+        this.tableData = res.result_data.customize_usage_definitions.reduce((acc: any, cur: any) => {
+            const contents = _.get(cur, 'customize_usage_definition.customize_definitions').map((element: any) => {
                 return {
                     customize_usage_definition: {
-                        customize_usage_definition_name: cur['customize_usage_definitions.customize_usage_definition.customize_usage_definition_name'],
-                        edit_status_name: cur['edit_status_name'],
+                        customize_usage_definition_name: cur.customize_usage_definition.customize_usage_definition_name,
                         customize_definitions: {
                             customize_definition_name: element.customize_definition_name,
                             active_name: element.active_name,
@@ -115,7 +96,7 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
         let data2: any[] = [];
 
         // Split data for 2 tables: 定期配信カスタマイズデータ, その他カスタマイズデータ
-        data.forEach((element: any) => {
+        this.tableData.forEach((element: any) => {
             if(element.customize_usage_definition.customize_definitions.aggregation_opportunity_kind == '1'
                 && element.customize_usage_definition.customize_definitions.send_opportunity_kind == '1') {
                     data1.push(element);
@@ -189,13 +170,62 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
         ]
     }
 
+    protected async _fetchDataForInitialize(): Promise<any> {
+        this.labels = this.resources.label;
+        this.resource = this.resources.resource;
+        this.initialize(this.resources);
+
+        this.thList1 = this.initThList1;
+        this.thList2 = this.initThList2;
+
+        // FORMAT TABLE
+        this.thList1.forEach((element: TableHeader) => {
+            switch (element.name) {
+                case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name":
+                    element.columnStyle = "width:20%; text-align: center;"
+                    break;
+                case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
+                    element.columnStyle = "width:15%; text-align: center;"
+                    break;
+                case "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value":
+                    element.columnStyle = "width:15%; text-align: center;"
+                    break;
+                case "customize_usage_total_traffic":
+                    element.columnStyle = "width:20%; text-align: center;"
+                    break;
+                case "customize_usage_difference":
+                    element.columnStyle = "width:10%; text-align: center;"
+                    break;
+            }
+        })
+
+        this.thList2.forEach((element: TableHeader) => {
+            switch (element.name) {
+                case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name":
+                    element.columnStyle = "width:30%; text-align: center;"
+                    break;
+                case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
+                    element.columnStyle = "width:22%; text-align: center;"
+                    break;
+                case "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value":
+                    element.columnStyle = "width:34%; text-align: center;"
+                    break;
+            }
+        })
+
+        this.sortableThList1 = this.sortableThLists(this.thList1);
+        this.sortableThList2 = this.sortableThLists(this.thList2);
+    }
+
     private _calculateTotalTraffic(data: any[]): number {
         let result: number = 0;
         data.forEach(element => {
-            if (element.customize_usage_definition.edit_status_name != '削除' &&
-                element.customize_usage_definition.customize_definitions.active_name != '無効') {
-                result += element.customize_usage_definition.customize_definitions.assumption_data_value / 1024;
-            }
+            // TODO
+            // if (element.customize_usage_definition.edit_status_name != '削除' &&
+            //     element.customize_usage_definition.customize_definitions.active_name != '無効') {
+            //     result += element.customize_usage_definition.customize_definitions.assumption_data_value / 1024;
+            // }
+            result += element.customize_usage_definition.customize_definitions.assumption_data_value / 1024;
         })
         return Math.round(result * 100) / 100;
     }
@@ -210,41 +240,5 @@ export class CsExpectedTrafficConfirmComponent implements OnInit {
         return Math.round(result * 100) / 100;
     }
 
-    private _formatList(listBody: any[], thList: TableHeader[]): any {
-        return listBody.map(data => {
-            return _.reduce(
-                thList,
-                (result: any, th: TableHeader) => {
-                    if (!th.optional) {
-                        result[th.name] = this._listDisplayData(data, th);
-                    }
-                    return result;
-                },
-                {}
-            );
-        });
-    }
-
-    private _listDisplayData(data: any, th: TableHeader): any {
-        return _.get(data, th.formatKey);
-    }
-
-    /**
-         * ソート項目リストを返却します。
-         * @param thList テーブル項目リスト
-         * @return ソート項目リスト
-         */
-    private _sortableThLists(thList: TableHeader[]): string[] {
-        return _.reduce(
-            thList,
-            (array: any[], th: TableHeader) => {
-                if (th.sortable) {
-                    array.push(th.name);
-                }
-                return array;
-            },
-            []
-        );
-    }
 
 }
