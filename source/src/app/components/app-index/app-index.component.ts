@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { environment } from 'environments/environment';
-import { KOMATSU_VERSION as authModuleVersion } from 'app/vendors/ngk-azure-ad-authentication/komatsu-version';
-import { KOMATSU_VERSION as commonModuleVersion } from 'app/vendors/k-common-module/komatsu-version';
 import { ApiService } from 'app/services/api/api.service';
 import { AuthenticationService } from 'app/services/shared/authentication.service';
 import { CommonHeaderService } from 'app/services/shared/common-header.service';
 import { ComponentRefService } from 'app/services/shared/component-ref.service';
 import { EntranceService } from 'app/services/shared/entrance.service';
+import { StorageService } from 'app/services/shared/storage.service';
+import { LoggingService } from 'app/services/shared/logging.service';
+import { SettingsService } from 'app/services/shared/settings.service';
 
 /**
  * メインフレーム
@@ -28,16 +28,18 @@ export class AppIndexComponent implements OnInit {
 
     public isLoading: boolean;
     public subscription: Subscription;
-    public appCode = (window as any).settings.azureAdAuthenticationInfo.clientId;
 
     constructor(
         public header: CommonHeaderService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
-        private entranceService: EntranceService,
         private apiService: ApiService,
+        private authService: AuthenticationService,
         private componentRefService: ComponentRefService,
-        private authService: AuthenticationService
+        private entranceService: EntranceService,
+        private loggingService: LoggingService,
+        private settingsService: SettingsService,
+        private storageService: StorageService
     ) {
     }
 
@@ -49,22 +51,22 @@ export class AppIndexComponent implements OnInit {
      * 初期処理を行う。
      */
     private init(): void {
+
         this.isLoading = true;
 
-        this.outputAppVersion();
+        this.loggingService.outputVersionLog();
+
+        const isSkipAuthentication: boolean = this.settingsService.isSkipAuthentication();
 
         this.router.events.subscribe((event: any) => {
             if (
                 event instanceof NavigationStart &&
                 !event.url.includes('/entrance')
             ) {
-                localStorage.setItem(
-                    environment.settings.appPrefix + '-entrance-next',
-                    this.entranceService.buildNextUrl(event.url)
-                );
+                this.storageService.setEntranceNextUrl(this.entranceService.buildNextUrl(event.url));
                 this.activatedRoute.queryParams.subscribe((params: Params) => {
                     if (params.group_id) {
-                        localStorage.setItem(`group_id.${this.appCode}`, params.group_id);
+                        this.storageService.setGroupId(params.group_id);
                     }
                 });
             }
@@ -72,8 +74,8 @@ export class AppIndexComponent implements OnInit {
             // 認証後、groupId がない場合強制的にエントランス画面へ
             if (event instanceof NavigationEnd && !event.url.includes('/entrance')) {
                 if (
-                    !environment.settings.skipAuthentication &&
-                    !localStorage.getItem(`group_id.${this.appCode}`)
+                    !isSkipAuthentication &&
+                    !this.storageService.hasGroupId()
                 ) {
                     this.authService.authentication().then(() => {
                         this.entranceService.transitionEntrance();
@@ -85,25 +87,6 @@ export class AppIndexComponent implements OnInit {
                 document.body.className = '';
             }
         });
-    }
-
-    /**
-     * アプリのバージョンのログを表示する。
-     */
-    private outputAppVersion(): void {
-        this.outputVersionLog((window as any).appVersion);
-        this.outputVersionLog((window as any).appVendorVersion);
-        this.outputVersionLog(commonModuleVersion);
-        this.outputVersionLog(authModuleVersion);
-    }
-
-    /**
-     * アプリのバージョンのログをコンソール上に表示する。
-     */
-    private outputVersionLog(version: string): void {
-        if (version) {
-            console.log(version);
-        }
     }
 
     /**

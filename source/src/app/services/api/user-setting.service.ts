@@ -1,5 +1,5 @@
-import * as _ from 'lodash';
 import { Injectable } from '@angular/core';
+import * as _ from 'lodash';
 import { CommonConfig } from 'app/vendors/k-common-module/interfaces';
 import {
     SettingParams,
@@ -7,25 +7,28 @@ import {
     UserSettings,
     GroupSettings,
     MapParams,
+    UserSettingValues,
 } from 'app/types/user-setting';
 import { ConfigHeaderParams } from 'app/types/request';
-
 import { DistanceUnitCode } from 'app/constants/request-header-codes';
 
 @Injectable()
 export class UserSettingService {
-    userSettings: UserSettings = null;
-    groupSettings: GroupSettings = null;
+
+    private settings: UserSettingValues = {
+        userSettings: null,
+        groupSettings: null
+    }
 
     /**
      * すでにユーザ設定が取得済みかを返す
      */
     public isAlreadySet(): boolean {
-        return !_.isEmpty(this.userSettings) && !_.isEmpty(this.groupSettings);
+        return !_.isEmpty(this.settings.userSettings) && !_.isEmpty(this.settings.groupSettings);
     }
 
     public updateUserConfigValues(userSettings: SettingParamsItem[]): void {
-        this.userSettings = <UserSettings>_.reduce(
+        this.settings.userSettings = <UserSettings>_.reduce(
             userSettings,
             (result: any, setting: any) => {
                 result[setting.key] = setting.value;
@@ -36,7 +39,7 @@ export class UserSettingService {
     }
 
     public updateGroupConfigValues(groupSettings: SettingParamsItem[]): void {
-        this.groupSettings = <GroupSettings>_.reduce(
+        this.settings.groupSettings = <GroupSettings>_.reduce(
             groupSettings,
             (result: any, setting: any) => {
                 result[setting.key] = setting.value;
@@ -59,16 +62,16 @@ export class UserSettingService {
      * ユーザ設定値からリクエストヘッダを作成して返す
      */
     public getRequestHeaders(): ConfigHeaderParams {
-        if (_.isEmpty(this.userSettings)) {
+        if (_.isEmpty(this.settings.userSettings)) {
             return null;
         }
 
         const headers: ConfigHeaderParams = {
-            'X-Lang': this.userSettings.lang_code ? this.userSettings.lang_code : undefined,
-            'X-DateFormat': this.userSettings.date_format_code ? this.userSettings.date_format_code : undefined,
-            'X-DistanceUnit': this.userSettings.distance_unit_code ? this.userSettings.distance_unit_code : undefined,
-            'X-TemperatureUnit': this.userSettings.temperature_unit_code ? this.userSettings.temperature_unit_code : undefined,
-            'X-CarDivision': this.userSettings.division_display_kind ? this.userSettings.division_display_kind : undefined
+            'X-Lang': this.settings.userSettings.lang_code ? this.settings.userSettings.lang_code : undefined,
+            'X-DateFormat': this.settings.userSettings.date_format_code ? this.settings.userSettings.date_format_code : undefined,
+            'X-DistanceUnit': this.settings.userSettings.distance_unit_code ? this.settings.userSettings.distance_unit_code : undefined,
+            'X-TemperatureUnit': this.settings.userSettings.temperature_unit_code ? this.settings.userSettings.temperature_unit_code : undefined,
+            'X-CarDivision': this.settings.userSettings.division_display_kind ? this.settings.userSettings.division_display_kind : undefined
         };
         return headers;
 
@@ -79,12 +82,12 @@ export class UserSettingService {
      */
     public getConfigValues(): CommonConfig {
         return {
-            temperatureUnit: this.userSettings.temperature_unit_code,
-            dateFormat: this.userSettings.date_format_code,
-            carDivision: this.userSettings.division_display_kind,
-            locale: this.userSettings.lang_code,
-            distanceUnit: this.userSettings.distance_unit_code,
-            initialScreen: this.userSettings.default_page_url,
+            temperatureUnit: this.settings.userSettings.temperature_unit_code,
+            dateFormat: this.settings.userSettings.date_format_code,
+            carDivision: this.settings.userSettings.division_display_kind,
+            locale: this.settings.userSettings.lang_code,
+            distanceUnit: this.settings.userSettings.distance_unit_code,
+            initialScreen: this.settings.userSettings.default_page_url,
         };
     }
 
@@ -93,9 +96,9 @@ export class UserSettingService {
      */
     public getMapParams(): MapParams {
         return {
-            lat: this.userSettings.map_latitude,
-            lng: this.userSettings.map_longitude,
-            zoom: this.userSettings.map_magnification,
+            lat: this.settings.userSettings.map_latitude,
+            lng: this.settings.userSettings.map_longitude,
+            zoom: this.settings.userSettings.map_magnification,
             mapApplication: this.getMapApplication(),
         };
     }
@@ -104,8 +107,8 @@ export class UserSettingService {
      * マップ種別を返す
      */
     public getMapApplication(): string {
-        return this.groupSettings && this.groupSettings.map_mode
-            ? this.groupSettings.map_mode
+        return this.settings.groupSettings && this.settings.groupSettings.map_mode
+            ? this.settings.groupSettings.map_mode
             : '0';
     }
 
@@ -113,8 +116,8 @@ export class UserSettingService {
      * 言語設定を返す
      */
     public getLang(): string {
-        return this.userSettings && this.userSettings.lang_code
-            ? this.userSettings.lang_code
+        return this.settings.userSettings && this.settings.userSettings.lang_code
+            ? this.settings.userSettings.lang_code
             : null;
     }
 
@@ -122,7 +125,7 @@ export class UserSettingService {
      * 距離単位設定をラベルのnameで返す
      */
     public getDistanceUnit(): string {
-        return this.userSettings.distance_unit_code === DistanceUnitCode.meter
+        return this.settings.userSettings.distance_unit_code === DistanceUnitCode.meter
             ? 'kilometer'
             : 'mile';
     }
@@ -131,7 +134,7 @@ export class UserSettingService {
      * 液量体積の単位設定をラベルのnameで返す
      */
     public getVolumeUnit(): string {
-        return this.userSettings.distance_unit_code === DistanceUnitCode.meter
+        return this.settings.userSettings.distance_unit_code === DistanceUnitCode.meter
             ? 'liter'
             : 'gallon';
     }
@@ -145,9 +148,9 @@ export class UserSettingService {
         first_day_of_week_kind: number;
     } {
         return {
-            date_format_code: this.userSettings.date_format_code,
-            time_difference: this.groupSettings.time_difference,
-            first_day_of_week_kind: +this.groupSettings.first_day_of_week_kind,
+            date_format_code: this.settings.userSettings.date_format_code,
+            time_difference: this.settings.groupSettings.time_difference,
+            first_day_of_week_kind: +this.settings.groupSettings.first_day_of_week_kind,
         };
     }
 

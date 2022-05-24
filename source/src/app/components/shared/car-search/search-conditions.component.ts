@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import * as _ from 'lodash';
 import { Resource, Resources } from 'app/types/common';
+import { RequestParams } from 'app/types/request';
 
 @Component({
     selector: 'app-search-conditions',
@@ -9,7 +10,7 @@ import { Resource, Resources } from 'app/types/common';
 })
 export class SearchConditionsComponent {
 
-    @Input() public params: any;
+    @Input() public params: RequestParams;
     @Input() public resource: Resources;
     @Input() public selectorKeys: {
         supportDistributor?: string;

@@ -139,7 +139,7 @@ labels:
 
   - id: 24
     description: 説明表示
-    name: estimated_traffic_caution_message
+    name: customize_traffic_caution_message
     ja: 衛星通信の車両のため、通信費が大きくなる可能性があります。
     en:
 

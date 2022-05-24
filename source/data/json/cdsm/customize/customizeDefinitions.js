@@ -36,24 +36,19 @@ function createData(definitionId, definitionVersion) {
       "customize_definition_name": "KOMTRAXデータ1",
       "customize_definition_version": 1,
       "assumption_data_value": 2022000,
-      "priority": "1",
-      "priority_name": "low",
-      "active_kind": "1",
-      "active_name": "有効",
+      "assumption_data_value_header": 1234567890,
       "customize_access_level": 1,
       "customize_access_level_name": "開発者",
       "aggregation_condition_id": 1,
       "aggregation_condition_name": "10分毎",
+      "aggregation_opportunity_kind": "1",
+      "aggregation_opportunity_kind_name": "定期集計",
       "send_condition_id": 1,
       "send_condition_name": "1時間毎",
-      "status": "10",
-      "status_name": "送信中",
-      "latest_operation_code": "1",
-      "latest_operation_code_name": "追加",
-      "start_date": "2017/12/30",
-      "end_date": "2017/12/30",
-      "first_receive_datetime": "2017/02/01 23:59:59",
-      "last_receive_datetime": "2017/05/23 23:59:59"
+      "send_opportunity_kind": "1",
+      "send_opportunity_kind_name": "定期送信",
+      "process_type": "4",
+      "process_type_name": "スナップショット"
     },
   });
 
@@ -63,24 +58,19 @@ function createData(definitionId, definitionVersion) {
       "customize_definition_name": "KOMTRAXデータ2",
       "customize_definition_version": 1,
       "assumption_data_value": 3022000,
-      "priority": "1",
-      "priority_name": "low",
-      "active_kind": "1",
-      "active_name": "有効",
+      "assumption_data_value_header": 1234567890,
       "customize_access_level": 1,
       "customize_access_level_name": "開発者",
       "aggregation_condition_id": 1,
       "aggregation_condition_name": "20分毎",
+      "aggregation_opportunity_kind": "1",
+      "aggregation_opportunity_kind_name": "定期集計",
       "send_condition_id": 1,
       "send_condition_name": "2時間毎",
-      "status": "10",
-      "status_name": "送信中",
-      "latest_operation_code": "1",
-      "latest_operation_code_name": "追加",
-      "start_date": "2017/12/30",
-      "end_date": "2017/12/30",
-      "first_receive_datetime": "2017/02/01 23:59:59",
-      "last_receive_datetime": "2017/05/23 23:59:59"
+      "send_opportunity_kind": "1",
+      "send_opportunity_kind_name": "定期送信",
+      "process_type": "4",
+      "process_type_name": "スナップショット"
     },
   });
 
@@ -90,24 +80,19 @@ function createData(definitionId, definitionVersion) {
       "customize_definition_name": "KOMTRAXデータ3",
       "customize_definition_version": 1,
       "assumption_data_value": 4022000,
-      "priority": "1",
-      "priority_name": "low",
-      "active_kind": "1",
-      "active_name": "有効",
+      "assumption_data_value_header": 1234567890,
       "customize_access_level": 1,
       "customize_access_level_name": "開発者",
       "aggregation_condition_id": 1,
       "aggregation_condition_name": "30分毎",
+      "aggregation_opportunity_kind": "1",
+      "aggregation_opportunity_kind_name": "定期集計",
       "send_condition_id": 1,
       "send_condition_name": "3時間毎",
-      "status": "10",
-      "status_name": "送信中",
-      "latest_operation_code": "1",
-      "latest_operation_code_name": "追加",
-      "start_date": "2017/12/30",
-      "end_date": "2017/12/30",
-      "first_receive_datetime": "2017/02/01 23:59:59",
-      "last_receive_datetime": "2017/05/23 23:59:59"
+      "send_opportunity_kind": "1",
+      "send_opportunity_kind_name": "定期送信",
+      "process_type": "4",
+      "process_type_name": "スナップショット"
     },
   });
 
@@ -117,24 +102,19 @@ function createData(definitionId, definitionVersion) {
       "customize_definition_name": "KOMTRAXデータ4",
       "customize_definition_version": 1,
       "assumption_data_value": 2022000,
-      "priority": "1",
-      "priority_name": "low",
-      "active_kind": "1",
-      "active_name": "有効",
+      "assumption_data_value_header": 1234567890,
       "customize_access_level": 1,
       "customize_access_level_name": "開発者",
       "aggregation_condition_id": 1,
       "aggregation_condition_name": "10分毎",
+      "aggregation_opportunity_kind": "1",
+      "aggregation_opportunity_kind_name": "定期集計",
       "send_condition_id": 1,
       "send_condition_name": "1時間毎",
-      "status": "10",
-      "status_name": "送信中",
-      "latest_operation_code": "1",
-      "latest_operation_code_name": "追加",
-      "start_date": "2017/12/30",
-      "end_date": "2017/12/30",
-      "first_receive_datetime": "2017/02/01 23:59:59",
-      "last_receive_datetime": "2017/05/23 23:59:59"
+      "send_opportunity_kind": "1",
+      "send_opportunity_kind_name": "定期送信",
+      "process_type": "4",
+      "process_type_name": "スナップショット"
     },
   });
 
@@ -144,24 +124,19 @@ function createData(definitionId, definitionVersion) {
       "customize_definition_name": "KOMTRAXデータ5",
       "customize_definition_version": 1,
       "assumption_data_value": 3022000,
-      "priority": "1",
-      "priority_name": "low",
-      "active_kind": "1",
-      "active_name": "有効",
+      "assumption_data_value_header": 1234567890,
       "customize_access_level": 1,
       "customize_access_level_name": "開発者",
       "aggregation_condition_id": 1,
       "aggregation_condition_name": "20分毎",
+      "aggregation_opportunity_kind": "1",
+      "aggregation_opportunity_kind_name": "定期集計",
       "send_condition_id": 1,
       "send_condition_name": "2時間毎",
-      "status": "10",
-      "status_name": "送信中",
-      "latest_operation_code": "1",
-      "latest_operation_code_name": "追加",
-      "start_date": "2017/12/30",
-      "end_date": "2017/12/30",
-      "first_receive_datetime": "2017/02/01 23:59:59",
-      "last_receive_datetime": "2017/05/23 23:59:59"
+      "send_opportunity_kind": "1",
+      "send_opportunity_kind_name": "定期送信",
+      "process_type": "4",
+      "process_type_name": "スナップショット"
     },
   });
 
@@ -171,24 +146,19 @@ function createData(definitionId, definitionVersion) {
       "customize_definition_name": "KOMTRAXデータ6",
       "customize_definition_version": 1,
       "assumption_data_value": 3022000,
-      "priority": "1",
-      "priority_name": "low",
-      "active_kind": "1",
-      "active_name": "有効",
+      "assumption_data_value_header": 1234567890,
       "customize_access_level": 1,
       "customize_access_level_name": "開発者",
       "aggregation_condition_id": 1,
       "aggregation_condition_name": "20分毎",
+      "aggregation_opportunity_kind": "1",
+      "aggregation_opportunity_kind_name": "定期集計",
       "send_condition_id": 1,
       "send_condition_name": "2時間毎",
-      "status": "10",
-      "status_name": "送信中",
-      "latest_operation_code": "1",
-      "latest_operation_code_name": "追加",
-      "start_date": "2017/12/30",
-      "end_date": "2017/12/30",
-      "first_receive_datetime": "2017/02/01 23:59:59",
-      "last_receive_datetime": "2017/05/23 23:59:59"
+      "send_opportunity_kind": "1",
+      "send_opportunity_kind_name": "定期送信",
+      "process_type": "4",
+      "process_type_name": "スナップショット"
     },
   });
 
@@ -198,30 +168,25 @@ function createData(definitionId, definitionVersion) {
       "customize_definition_name": "KOMTRAXデータ7",
       "customize_definition_version": 1,
       "assumption_data_value": 4022000,
-      "priority": "1",
-      "priority_name": "low",
-      "active_kind": "1",
-      "active_name": "有効",
+      "assumption_data_value_header": 1234567890,
       "customize_access_level": 1,
       "customize_access_level_name": "開発者",
       "aggregation_condition_id": 1,
       "aggregation_condition_name": "50分毎",
+      "aggregation_opportunity_kind": "1",
+      "aggregation_opportunity_kind_name": "定期集計",
       "send_condition_id": 1,
       "send_condition_name": "5時間毎",
-      "status": "10",
-      "status_name": "送信中",
-      "latest_operation_code": "1",
-      "latest_operation_code_name": "追加",
-      "start_date": "2017/12/30",
-      "end_date": "2017/12/30",
-      "first_receive_datetime": "2017/02/01 23:59:59",
-      "last_receive_datetime": "2017/05/23 23:59:59"
+      "send_opportunity_kind": "1",
+      "send_opportunity_kind_name": "定期送信",
+      "process_type": "4",
+      "process_type_name": "スナップショット"
     },
   });
 
   // Return dummy data based on the value of [カスタマイズ用途定義名], [バージョン]
   switch(definitionId){
-    case "1":
+    case "101":
       switch(definitionVersion){
         case "1":
           result.push(initResult[0]);
@@ -250,7 +215,7 @@ function createData(definitionId, definitionVersion) {
           break;
       }
       break;
-    case "2":
+    case "102":
       switch(definitionVersion){
         case "1":
           result.push(initResult[0]);
@@ -279,7 +244,7 @@ function createData(definitionId, definitionVersion) {
           break;
       }
       break;
-    case "3":
+    case "103":
       switch(definitionVersion){
         case "1":
           result.push(initResult[1]);
@@ -307,6 +272,11 @@ function createData(definitionId, definitionVersion) {
           result.push(initResult[2]);
           break;
       }
+      break;
+    default:
+      result.push(initResult[0]);
+      result.push(initResult[1]);
+      result.push(initResult[2]);
       break;
   }
 

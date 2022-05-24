@@ -1,22 +1,14 @@
-
-
-import { ScreenCodeConst } from '../app/constants/api/screen-code-const';
-
+import { FunctionCodeConst } from 'app/constants/api/function-code-const';
+import { ScreenCodeConst } from 'app/constants/api/screen-code-const';
 
 export const environment = {
     production: true, // ローカル以外で実行する時のプロダクション・モード設定
     settings: {
         navigation: {
-            menu: 'cdsm_mgt_menu',
-            sideMenu: 'cdsm_side_menu',
+            menu: FunctionCodeConst.MENU_FUNCTION,
+            sideMenu: FunctionCodeConst.SIDE_MENU_FUNCTION
         },
-        commonHeaderScreenCode: 'cdsm_common',
-        userSearchModalScreenCode: '',
-        companySearchModalScreenCode: '',
-        userSearchModalFunctionCode: '',
-        companySearchModalFunctionCode: '',
-        appPrefix: 'cdsm',
-        useEntranceForDevelop: false,
-        skipAuthentication: false,
+        commonHeaderScreenCode: ScreenCodeConst.CDSM_COMMON_CODE,
+        appPrefix: 'cdsm'
     },
 };

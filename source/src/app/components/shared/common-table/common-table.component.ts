@@ -12,9 +12,10 @@ import {
     OnDestroy,
 } from '@angular/core';
 import * as _ from 'lodash';
-import { Labels, TableHeader, TableMergeColumn } from 'app/types/common';
+import { CheckboxValue, Labels, Lists, TableHeader, TableMergeColumn } from 'app/types/common';
 import { CommonTableService } from 'app/services/shared/common-table.service';
 import { isArray } from 'lodash';
+import { RequestParams } from 'app/types/request';
 
 @Component({
     selector: 'app-common-table',
@@ -32,19 +33,19 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
     @Input() public customTableThContent: TemplateRef<any>;
     @Input() public customFixedTableThContent: TemplateRef<any>;
     @Input() public customFixedTableRowContent: TemplateRef<any>;
-    @Input() public params: any;
+    @Input() public params: RequestParams;
     @Input() public pageParams: any;
     @Input() public requestHeaderParams: any;
     @Input() public sortingParams: any;
     @Input() public labels: Labels;
-    @Input() public lists: { visibleList: any[]; originList: any[]; hiddenList?: any[]; } = {
+    @Input() public lists: Lists = {
         visibleList: [],
         originList: [],
         hiddenList: [],
     };
     @Input() public thList: TableHeader[];
-    @Input() public selectedList: any[];
-    @Input() public sortableThList: any[];
+    @Input() public selectedList: string[];
+    @Input() public sortableThList: string[];
     @Input() public emptyListMessage: string;
     @Input() public thClass: string;
     @Input() public tbodyElement: HTMLElement | null;
@@ -71,7 +72,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
     @Input() public detailedly: boolean;
     @Input() public updatable: boolean;
     @Input() public deletable: boolean;
-    @Input() public set checkAll(val) {
+    @Input() public set checkAll(val: boolean) {
         this._checkAll = val;
         const check: HTMLInputElement = <HTMLInputElement>(
             document.getElementById('check-icon-all')
@@ -103,6 +104,8 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
     @Output() public sort: EventEmitter<any> = new EventEmitter<any>();
     @Output() public unlink: EventEmitter<any> = new EventEmitter<any>();
     @Output() public scroll: EventEmitter<any> = new EventEmitter<any>();
+    @Output() public changeSelect: EventEmitter<any> = new EventEmitter<any>();
+    @Output() public clickSelectAll: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     @ViewChild('fixedHeader', { static: false }) public fixedHeader: ElementRef;
     @ViewChild('scrollableHeader', { static: false }) public scrollableHeader: ElementRef;
@@ -208,7 +211,7 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        if (this.observer != null) {
+        if (this.observer) {
             this.observer.disconnect();
         }
     }
@@ -225,12 +228,15 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
 
     /**
      * 選択チェックボックス変更時コールバック
-     * @param value 値
+     * @param checkboxValue 値
      */
-    public onCheckSelect(value: string): void {
+    public onCheckSelect(checkboxValue: CheckboxValue): void {
+        const value: string = checkboxValue.value;
         this.checkedItems[value] = !this.checkedItems[value];
 
         this.updateCheckAll();
+
+        this.changeSelect.emit(checkboxValue);
     }
 
     private updateCheckAll(): void {
@@ -254,9 +260,9 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
 
     private getListsDataArray(): any[] {
         if (this.lists.hiddenList) {
-            return  [...this.lists.originList, ...this.lists.hiddenList];
+            return [...this.lists.originList, ...this.lists.hiddenList];
         } else {
-            return  [...this.lists.originList];
+            return [...this.lists.originList];
         }
     }
 
@@ -395,19 +401,25 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * チェックボックスの一括操作
      */
-    public toggleCheckAll(): void {
+    public toggleCheckAll(event: Event): void {
+        const targetElement: HTMLInputElement = <HTMLInputElement>event.target;
+        const isCheckAll: boolean = targetElement.checked;
+
         _.each(this.getListsDataArray(), item => {
             if (!this.checkBoxHidden(item)) {
                 // 全て文字列で格納するため、空文字列を加算
                 const val: string = this.checkId(item) + '';
-                if (!this.checkAll) {
+                if (isCheckAll) {
                     this.checkedItems[val] = true;
                 } else {
                     this.checkedItems[val] = false;
                 }
             }
         });
+
         this.updateCheckAll();
+
+        this.clickSelectAll.emit(isCheckAll);
     }
 
     /**

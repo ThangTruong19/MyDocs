@@ -13,11 +13,10 @@ import {
 import { ScreenCodeConst } from 'app/constants/api/screen-code-const'
 import { FunctionCodeConst } from 'app/constants/api/function-code-const'
 import { ApiService } from '../api/api.service'
-import { ResourceService } from 'app/services/api/resource.service'
 
 @Injectable()
 export class CsDetailService {
-  constructor(private api: ApiService, private resource: ResourceService) { }
+  constructor(private api: ApiService) { }
 
   /**
    * 一覧画面のリスト取得API呼び出し

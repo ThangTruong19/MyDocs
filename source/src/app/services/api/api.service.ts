@@ -11,24 +11,27 @@ import {
 } from 'rxjs';
 import { catchError, map, concatMap } from 'rxjs/operators';
 import * as _ from 'lodash';
+import { environment } from 'environments/environment';
 import { Api, ApiId, Resources, Labels, Fields, Field } from 'app/types/common';
 import { Apis } from 'app/constants/apis';
-import { ErrorData } from 'app/types/error-data';
-import { SettingParams } from 'app/types/user-setting';
-import { InitializeApiResult } from 'app/types/common';
-import { MimeType } from 'app/constants/mime-types';
-import { StatusCodes } from 'app/constants/status_codes';
-import { AuthenticationStatus } from 'app/constants/authentication-status';
-import { ErrorCodes } from 'app/constants/error_codes';
-import { ResourceService } from 'app/services/api/resource.service';
-import { UserSettingService } from 'app/services/api/user-setting.service';
-import { AuthenticationService } from 'app/services/shared/authentication.service';
-import { EntranceService } from 'app/services/shared/entrance.service';
-import { LogKindConst } from 'app/constants/api/log-kind-const';
-import { environment } from 'environments/environment';
-import { kmtMakerCode } from 'app/constants/car';
 import { AuthData } from 'app/types/auth-data';
+import { AuthenticationService } from 'app/services/shared/authentication.service';
+import { AuthenticationStatus } from 'app/constants/authentication-status';
+import { EntranceService } from 'app/services/shared/entrance.service';
+import { ErrorCodes } from 'app/constants/error_codes';
+import { ErrorData } from 'app/types/error-data';
+import { InitializeApiResult } from 'app/types/common';
+import { LogKindConst } from 'app/constants/api/log-kind-const';
+import { MimeType } from 'app/constants/mime-types';
+import { RequestConfig, RequestOptions, RequestParams } from 'app/types/request';
+import { ResourceService } from 'app/services/api/resource.service';
 import { SearchItems } from 'app/types/search';
+import { SettingParams } from 'app/types/user-setting';
+import { SettingsService } from 'app/services/shared/settings.service';
+import { StatusCodes } from 'app/constants/status_codes';
+import { StorageService } from 'app/services/shared/storage.service';
+import { UserSettingService } from 'app/services/api/user-setting.service';
+import { kmtMakerCode } from 'app/constants/car';
 
 interface CallableApi {
     api_id?: string;
@@ -64,7 +67,7 @@ export class ApiService {
     private userSettingsApiCache: Api;
     private catalogGroups: { [key: string]: any }[];
     private settings = (window as any).settings;
-    private appCode = this.settings.azureAdAuthenticationInfo.clientId;
+    private appCode: string;
     private queue: { [key: string]: Subscription } = {};
     private callableApis: CallableApi[];
 
@@ -74,8 +77,12 @@ export class ApiService {
         private userSettingService: UserSettingService,
         private authService: AuthenticationService,
         private entranceService: EntranceService,
+        private settingsService: SettingsService,
+        private storageService: StorageService,
         @Inject(DOCUMENT) private document: any
-    ) { }
+    ) {
+        this.appCode = this.settingsService.getAppCode();
+    }
 
     /*
      * ファイルアップロード処理
@@ -90,13 +97,13 @@ export class ApiService {
             })
         );
         formData.append('file', file, file.name);
-        const config = {
+        const config: RequestConfig = {
             method: 'POST',
             url: this._getApiUrl(path),
             params: formData,
         };
 
-        const opt = { isUpload: true } as any;
+        const opt: RequestOptions = { isUpload: true };
 
         if (screenCode) {
             opt.screenCode = screenCode;
@@ -116,7 +123,7 @@ export class ApiService {
         screenCode: string,
         handler: string,
         apis?: { [name: string]: (() => Observable<any>) | ApiId },
-        opt?: any
+        opt?: RequestOptions
     ): Promise<InitializeApiResult> {
         await this._prepareForInitialize();
         return this._initialize(screenCode, handler, apis, opt);
@@ -148,10 +155,10 @@ export class ApiService {
     public fetchFields(
         functionCode: string,
         fieldSetNo: string = '1',
-        opt?: any,
+        opt?: RequestOptions,
         searchParameters?: string
     ): Observable<Fields> {
-        const params = {
+        const params: RequestParams = {
             function_code: functionCode,
             field_set_no: fieldSetNo,
             search_parameter: searchParameters,
@@ -172,12 +179,12 @@ export class ApiService {
      */
     public fetchFieldsWithWordBreak(
         functionCode: string,
-        opt?: any,
+        opt?: RequestOptions,
         searchParameters?: string
     ): Observable<Fields> {
         const wordBreakMark = /##/g;
 
-        return this.fetchFields(functionCode, opt, searchParameters).pipe(map((fields: Fields) =>
+        return this.fetchFields(functionCode, '1', opt, searchParameters).pipe(map((fields: Fields) =>
             fields.map((field: Field) => ({
                 ...field,
                 name: field.name.replace(wordBreakMark, '\n'),
@@ -195,9 +202,9 @@ export class ApiService {
     public updateField(
         functionCode: string,
         fieldItems: any[],
-        opt?: any
+        opt?: RequestOptions
     ): Promise<Api> {
-        const params = {
+        const params: RequestParams = {
             function_code: functionCode,
             field_set: {
                 no: '1',
@@ -221,7 +228,7 @@ export class ApiService {
      * @param screenCode 画面コード
      * @param opt オプション
      */
-    public fetchSearchCondition(screenCode: string, opt?: any): Observable<SearchItems> {
+    public fetchSearchCondition(screenCode: string, opt?: RequestOptions): Observable<SearchItems> {
         return this.get(
             Apis.getApplicationsSearchCondition,
             { screen_code: screenCode, search_set_no: '1' },
@@ -242,9 +249,9 @@ export class ApiService {
     public updateSearchCondition(
         screenCode: string,
         searchItems: SearchItems,
-        opt?: any
+        opt?: RequestOptions
     ): Promise<Api> {
-        const params = {
+        const params: RequestParams = {
             screen_code: screenCode,
             search_set_no: '1',
             search_items: searchItems,
@@ -265,8 +272,8 @@ export class ApiService {
      * @param screenCode 画面コード
      * @param opt オプション
      */
-    public initSearchCondition(screenCode: string, opt?: any): Promise<Api> {
-        const params = { screen_code: screenCode, search_set_no: '1' };
+    public initSearchCondition(screenCode: string, opt?: RequestOptions): Promise<Api> {
+        const params: RequestParams = { screen_code: screenCode, search_set_no: '1' };
         return new Promise((resolve, reject) => {
             this.requestHandler(
                 'initSearchCondition',
@@ -302,8 +309,8 @@ export class ApiService {
      * @param opt リクエストオプション
      * @return Observable オブジェクト
      */
-    public get(apiId: ApiId, params?: any, opt?: any): Observable<Api> {
-        const config = {
+    public get(apiId: ApiId, params?: RequestParams, opt?: RequestOptions): Observable<Api> {
+        const config: RequestConfig = {
             method: 'GET',
             url: this._getApiUrl(apiId),
             search: params,
@@ -320,8 +327,8 @@ export class ApiService {
      * @param opt リクエストオプション
      * @return Observable オブジェクト
      */
-    public post(apiId: ApiId, params: any, opt?: any): Observable<Api> {
-        const config = {
+    public post(apiId: ApiId, params: RequestParams, opt?: RequestOptions): Observable<Api> {
+        const config: RequestConfig = {
             method: 'POST',
             url: this._getApiUrl(apiId),
             params: params,
@@ -338,8 +345,8 @@ export class ApiService {
      * @param opt リクエストオプション
      * @return Observable オブジェクト
      */
-    public put(apiId: ApiId, params: any, opt?: any): Observable<Api> {
-        const config = {
+    public put(apiId: ApiId, params: RequestParams, opt?: RequestOptions): Observable<Api> {
+        const config: RequestConfig = {
             method: 'PUT',
             url: this._getApiUrl(apiId),
             params: params,
@@ -355,8 +362,8 @@ export class ApiService {
      * @param opt リクエストオプション
      * @return Observable オブジェクト
      */
-    public delete(apiId: ApiId, params?: any, opt?: any): Observable<Api> {
-        const config = {
+    public delete(apiId: ApiId, params?: RequestParams, opt?: RequestOptions): Observable<Api> {
+        const config: RequestConfig = {
             method: 'DELETE',
             url: this._getApiUrl(apiId),
             search: params,
@@ -369,7 +376,7 @@ export class ApiService {
      * 車両種別情報取得 API
      * @param params API パラメータ
      */
-    public fetchDivisionList(params: any): Promise<Api> {
+    public fetchDivisionList(params: RequestParams): Promise<Api> {
         return new Promise((resolve, reject) => {
             this.requestHandler(
                 'fetchDivisionList',
@@ -405,7 +412,7 @@ export class ApiService {
      * @param contentType ファイル形式
      * @param opt オプション
      */
-    public downloadFile(fileId: string, contentType: string, opt?: any): Promise<void> {
+    public downloadFile(fileId: string, contentType: string, opt?: RequestOptions): Promise<void> {
         const options = {
             responseType: 'blob',
             request_header: {
@@ -443,9 +450,9 @@ export class ApiService {
     public fetchResource(
         screenCode: string,
         searchParameters?: any,
-        opt?: any
+        opt?: RequestOptions
     ): Observable<any> {
-        const params: any = {
+        const params: RequestParams = {
             screen_code: screenCode,
         };
         if (!_.isEmpty(searchParameters)) {
@@ -473,7 +480,7 @@ export class ApiService {
     /**
      * 共通系リソース取得（キャッシュ対応）
      */
-    public fetchCommonResouce(screenCode: string, opt?: any): Observable<any> {
+    public fetchCommonResouce(screenCode: string, opt?: RequestOptions): Observable<any> {
         if (this.commonResouceCache != null) {
             return observableOf(this.commonResouceCache);
         }
@@ -488,7 +495,7 @@ export class ApiService {
      * @param screenCode 画面コード
      * @param opt オプション
      */
-    public fetchLabels(screenCode: string, opt?: any): Observable<Labels> {
+    public fetchLabels(screenCode: string, opt?: RequestOptions): Observable<Labels> {
         const cache: Labels = this.labelsApiCache[screenCode];
 
         if (cache != null) {
@@ -522,7 +529,7 @@ export class ApiService {
         screenCode: string,
         logKind: string,
         message?: string,
-        opt?: any
+        opt?: RequestOptions
     ): Observable<Api> {
         return this.post(
             Apis.postApplicationsExtapplog,
@@ -540,7 +547,7 @@ export class ApiService {
      * 実行可能API取得API
      * @param opt オプション
      */
-    public fetchCatalog(opt?: any): Promise<Api> {
+    public fetchCatalog(opt?: RequestOptions): Promise<Api> {
         return new Promise((resolve, reject) => {
             this.requestHandler(
                 'fetchCatalog',
@@ -556,7 +563,7 @@ export class ApiService {
      * 実行可能API取得API
      * @param opt オプション
      */
-    public fetchUserSettings(opt?: any): Promise<Api> {
+    public fetchUserSettings(opt?: RequestOptions): Promise<Api> {
         return new Promise((resolve, reject) => {
             this.requestHandler(
                 'fetchUserSettings',
@@ -581,7 +588,7 @@ export class ApiService {
     }
 
     public getGroupId(): string {
-        return localStorage.getItem(`group_id.${this.appCode}`);
+        return this.storageService.getGroupId();
     }
 
     public getCurrentGroup(): { [key: string]: any } {
@@ -672,7 +679,7 @@ export class ApiService {
      * @param screenCode 画面コード
      * @param opt オプション
      */
-    private _fetchFunctions(screenCode: string, opt?: any): Observable<Api> {
+    private _fetchFunctions(screenCode: string, opt?: RequestOptions): Observable<Api> {
         return this.post(
             Apis.postApplicationsFunctionsSearch,
             { screen_code: screenCode },
@@ -684,12 +691,12 @@ export class ApiService {
      * 実行可能 API 一覧取得 API
      * @param opt オプション
      */
-    private _getCatalog(opt?: any): Observable<Api> {
+    private _getCatalog(opt?: RequestOptions): Observable<Api> {
         if (this.catalogApiCache != null) {
             return observableOf(this.catalogApiCache);
         }
 
-        const config = {
+        const config: RequestConfig = {
             method: 'GET',
             url: this.getCatalogApiUrl(),
         };
@@ -705,7 +712,7 @@ export class ApiService {
     /**
      * ユーザ設定取得API
      */
-    private _getUserSetting(opt?: any): Observable<Api> {
+    private _getUserSetting(opt?: RequestOptions): Observable<Api> {
         if (this.userSettingsApiCache != null) {
             return observableOf(this.userSettingsApiCache);
         }
@@ -734,7 +741,7 @@ export class ApiService {
         screenCodeIndex: string,
         handler: string,
         apis?: { [name: string]: (() => Observable<Api>) | ApiId },
-        opt?: any
+        opt?: RequestOptions
     ): Promise<InitializeApiResult> {
         const promise: Promise<InitializeApiResult> = new Promise<InitializeApiResult>((resolve, reject) => {
             if (apis == null) {
@@ -810,7 +817,7 @@ export class ApiService {
      * @param config リクエストパラメータ
      * @return Observable オブジェクト
      */
-    private _call(config: any, opt?: any): Observable<Api> {
+    private _call(config: RequestConfig, opt?: RequestOptions): Observable<Api> {
         // if (!this._isCallable(config)) {
         //     console.log('実行不可能なAPIです。[ url=' + config.url + ' ]');
         // }
@@ -883,9 +890,7 @@ export class ApiService {
                                     .run()
                                     .then((res: { status: number }) => {
                                         if (res.status !== AuthenticationStatus.hasNotYetAcquired) {
-                                            location.href = localStorage.getItem(
-                                                environment.settings.appPrefix + '-entrance-next'
-                                            );
+                                            location.href = this.storageService.getEntranceNextUrl();
                                         }
                                     });
                             }
@@ -967,7 +972,7 @@ export class ApiService {
      * API をコール可能であるか判定する。
      * @param config API の url
      */
-    private _isCallable(config: any): boolean {
+    private _isCallable(config: RequestConfig): boolean {
         if (this.callableApis == null) {
             return true;
         }
@@ -1004,7 +1009,7 @@ export class ApiService {
      * @param exclusionKey 除外対象キー
      */
     private _pickAvailableParams(
-        params: any,
+        params: RequestParams,
         exclusionKey: string[],
         keys: string = '',
         isArray: boolean = false
@@ -1062,7 +1067,7 @@ export class ApiService {
      * 共通のリクエストヘッダを設定する。
      * @param opt リクエストオプション
      */
-    private _requestHeaders(opt: any): { [key: string]: string } {
+    private _requestHeaders(opt: RequestOptions): { [key: string]: string } {
         const headers: { [key: string]: any } = _.merge(
             {
                 Accept: 'application/json',

@@ -36,6 +36,9 @@ function createData(count) {
   const result = [];
 
   for (var i = 1; i <= count; i++) {
+    const isNextGen = Math.random() < 0.7;
+    const isIridium = Math.random() < 0.5;
+
     result.push({
         "car_identification": {
           "id": i,
@@ -46,12 +49,12 @@ function createData(count) {
         },
         "communication_channel": {
           "id": i,
-          "code": i,
-          "name": "Iridium"
+          "code": isIridium ? "5": "1",
+          "name": isIridium ? "Iridium": "通信機種1",
         },
         "terminal_mode": {
-          "kind": i,
-          "name": Math.random() < 0.5 ? "次世代": "次世代以外",
+          "kind": isNextGen ? "0" : i,
+          "name": isNextGen ? "次世代": Math.random() < 0.5 ? "モード1": "モード2",
         },
         "customer": {
           "id": "C000" + i,

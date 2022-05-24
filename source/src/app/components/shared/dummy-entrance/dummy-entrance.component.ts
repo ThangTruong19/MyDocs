@@ -52,6 +52,10 @@ export class DummyEntranceComponent extends AbstractBaseComponent
             }
         });
 
+        if (!this.next) {
+            this.next = '';
+        }
+
         this.onLoad();
     }
 
@@ -68,7 +72,7 @@ export class DummyEntranceComponent extends AbstractBaseComponent
         }
     }
 
-    public aredirect(groupId: string): void {
+    public redirect(groupId: string): void {
         if (this.next.split('?').length > 1) {
             location.href = `${this.next}&group_id=${groupId}`;
         } else {

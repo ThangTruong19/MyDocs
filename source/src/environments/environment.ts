@@ -8,12 +8,6 @@ export declare const environment: {
             sideMenu: string;
         };
         commonHeaderScreenCode: string;
-        userSearchModalScreenCode: string;
-        companySearchModalScreenCode: string;
-        userSearchModalFunctionCode: string;
-        companySearchModalFunctionCode: string;
-        useEntranceForDevelop: boolean;
         appPrefix: string;
-        skipAuthentication: boolean;
     };
 };

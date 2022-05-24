@@ -13,6 +13,7 @@ import { Labels, Resources } from 'app/types/common';
 import {
     SearchDateTimePickerComponent
 } from 'app/components/shared/search-date-time-picker/search-date-time-picker.component';
+import { RequestParams } from 'app/types/request';
 
 @Component({
     selector: 'app-from-to-date-time-picker',
@@ -27,7 +28,7 @@ export class FromToDateTimePickerComponent implements OnInit {
     @ViewChild('dateTimeTo', { static: false })
     public dateTimeTo: SearchDateTimePickerComponent;
 
-    @Input() public params: any;
+    @Input() public params: RequestParams;
     @Input() public resource: Resources;
     @Input() public labels: Labels;
     @Input() public from: string;

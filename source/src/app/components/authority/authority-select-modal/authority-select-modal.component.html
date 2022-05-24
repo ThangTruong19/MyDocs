@@ -36,10 +36,11 @@
             ></td>
             <td class="authority">
               <input
-                (appAuthoritySelectCheckbox)="onChange($event)"
-                (toggleClick)="onCheckSelect($event)"
+                appAuthoritySelectCheckbox
+                [rowIndex]="i"
                 [selectedList]="evacuateSelectedAuthorities"
                 [checked]="isChecked(authority.value)"
+                (toggleClick)="onCheckSelect($event)"
                 id="check-icon-{{ i }}"
                 value="{{ authority.value }}"
                 type="checkbox"

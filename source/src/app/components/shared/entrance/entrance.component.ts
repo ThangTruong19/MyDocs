@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { EntranceService } from 'app/services/shared/entrance.service';
-import { environment } from 'environments/environment';
+import { StorageService } from 'app/services/shared/storage.service';
 
 @Component({
     moduleId: module.id,
@@ -11,25 +11,38 @@ export class EntranceComponent implements OnInit {
     onLoadEvent: EventEmitter<any> = new EventEmitter();
 
     constructor(
-        private entranceService: EntranceService
+        private entranceService: EntranceService,
+        private storageService: StorageService
     ) { }
 
     ngOnInit(): void {
-        const appCode: string = (window as any).settings.azureAdAuthenticationInfo.clientId;
-        const nextUrl: string = localStorage.getItem(
-            environment.settings.appPrefix + '-entrance-next'
-        );
-        const nextUrlMatch: RegExpExecArray = /\?(?:[\w_]+=[\w\d]+&?)*group_id=(\d+)/.exec(nextUrl || '');
-        const groupId: string = localStorage.getItem(`group_id.${appCode}`) || (nextUrlMatch ? nextUrlMatch[1] : null);
+
+        const groupId: string = this.groupId();
 
         // グループID がある場合はエントランスに遷移しない
         if (groupId) {
-            location.href = localStorage.getItem(
-                environment.settings.appPrefix + '-entrance-next'
-            );
+            location.href = this.storageService.getEntranceNextUrl();
         } else {
             this.entranceService.transitionEntrance();
         }
+    }
+
+    private groupId(): string {
+        let groupId: string = this.storageService.getGroupId();
+        if (groupId) {
+            return groupId;
+        }
+
+        const nextUrl: string = this.storageService.getEntranceNextUrl();
+
+        const nextUrlMatch: RegExpExecArray = /\?(?:[\w_]+=[\w\d]+&?)*group_id=(\d+)/.exec(nextUrl || '');
+        if (nextUrlMatch) {
+            groupId = nextUrlMatch[1];
+        } else {
+            groupId = null;
+        }
+
+        return groupId;
     }
 
 }

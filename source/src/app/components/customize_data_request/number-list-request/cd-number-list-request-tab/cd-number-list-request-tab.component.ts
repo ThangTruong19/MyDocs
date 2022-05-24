@@ -224,6 +224,8 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
                     param.definition_ids = definition_ids;
                     param.model_type_rev_serials = model_type_rev_serials;
                     param.request_route_kind = "0";
+                    param.datetime_from = this.params['send_number_list_request_datetime_from'];
+                    param.datetime_to = this.params['send_number_list_request_datetime_to'];
 
                     console.log("param", param);
 

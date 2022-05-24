@@ -1,6 +1,8 @@
 // モーダル、API呼び出し
 export interface CustomizeUsageDefinition {
     customize_usage_definition?: CustomizeUsageDefinitionContent
+    edit_status?: string
+    edit_status_name?: string
 }
 
 export interface CustomizeUsageDefinitionContent {
@@ -88,7 +90,6 @@ interface RequestBodyParamsKOM00110130CustomizeUsageDefinition {
     priority?: string
     date_to?: string
     date_from?: string
-    // TODO:
     active_kind?: string
 }
 

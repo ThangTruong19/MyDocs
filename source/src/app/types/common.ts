@@ -63,6 +63,13 @@ export interface TableOptions {
     noOptionTableColumn?: boolean;
 }
 
+export interface CheckboxValue {
+    checkboxElement: HTMLInputElement;
+    checked: boolean;
+    value?: string;
+    rowIndex?: number;
+}
+
 export interface ModalValues {
     requestHeaderParams: any;
     listDesc: any;
@@ -96,6 +103,16 @@ export interface SearchModalValues {
     labels?: Labels;
     fields?: Fields;
     resource?: Resources;
+}
+
+export interface Lists {
+    visibleList: ListValue[];
+    originList: ListValue[];
+    hiddenList?: ListValue[];
+}
+
+export interface ListValue {
+    [key: string]: any;
 }
 
 export interface ApiIdAndParams {

@@ -1,7 +1,7 @@
 <div id="app-cs-expected-traffic-confirm" *ngIf="labels">
     <div class="app-content">
-        <div class="row">
-            <p id="warning-msg">Warning message content</p>
+        <div *ngIf="visibleErr" class="row">
+            <p id="warning-msg">{{labels.customize_traffic_caution_message}}</p>
         </div>
         <div class="row">
             <p id="vehicle-info">{{labels.vehicleInfo}}</p>

@@ -5,12 +5,15 @@ import {
     HostListener,
     EventEmitter,
 } from '@angular/core';
+import { CheckboxValue } from 'app/types/common';
 
 @Directive({})
 export class AbstractCheckboxDirective {
-    @Input() checkAll: boolean;
-    @Input() selectedList: any[];
-    @Output() toggleClick: EventEmitter<any> = new EventEmitter();
+
+    @Input() public checkAll: boolean;
+    @Input() public selectedList: string[];
+    @Input() public rowIndex: number;
+    @Output() public toggleClick: EventEmitter<CheckboxValue> = new EventEmitter<CheckboxValue>();
 
     @HostListener('change', ['$event'])
     public onChange($event: Event): void {
@@ -20,12 +23,20 @@ export class AbstractCheckboxDirective {
             if (this.selectedList != null) {
                 this.selectedList.push(value);
             }
-            this.toggleClick.emit(value);
         } else {
             if (this.selectedList != null) {
                 this.selectedList.splice(this.selectedList.indexOf(value), 1);
             }
-            this.toggleClick.emit(value);
         }
+
+        const checkboxValue: CheckboxValue = {
+            checkboxElement: targetElement,
+            checked: targetElement.checked,
+            value: value,
+            rowIndex: this.rowIndex
+        };
+
+        this.toggleClick.emit(checkboxValue);
     }
+
 }

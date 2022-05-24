@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'environments/environment';
+import { SettingsService } from 'app/services/shared/settings.service';
+import { StorageService } from 'app/services/shared/storage.service';
 
 @Injectable()
 export class EntranceService {
 
     private settings: any = (window as any).settings;
 
-    constructor() { }
+    constructor(
+        private settingsService: SettingsService,
+        private storageService: StorageService
+    ) { }
 
     /**
      * エントランス画面に遷移する
@@ -17,11 +21,10 @@ export class EntranceService {
             ? this.settings.reconsentUrl
             : this.settings.entranceUrl;
 
-        const appCode: string = this.settings.azureAdAuthenticationInfo.clientId;
-        // サブディレクトリを含むトップ画面のパスを取得するため
-        const nextUrl: string = localStorage.getItem(
-            environment.settings.appPrefix + '-entrance-next'
-        );
+        const appCode: string = this.settingsService.getAppCode();
+        const nextUrl: string = this.storageService.getEntranceNextUrl();
+
+        // サブディレクトリを含むトップ画面のパスを取得する
         entranceUrl += `?next=${encodeURIComponent(nextUrl)}&app_code=${appCode}`;
         if (!/\?(?:[\w_]+=[\w\d]+&?)*group_id=\d+/.test(nextUrl) && groupId) {
             entranceUrl += `&group_id=${groupId}`;

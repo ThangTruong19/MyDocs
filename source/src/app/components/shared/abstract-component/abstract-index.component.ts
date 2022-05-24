@@ -8,8 +8,8 @@ import {
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import * as _ from 'lodash';
-import { TableHeader, ModalValues, Fields } from 'app/types/common';
-import { RequestHeaderParams } from 'app/types/request';
+import { TableHeader, ModalValues, Fields, Lists } from 'app/types/common';
+import { RequestHeaderParams, RequestParams } from 'app/types/request';
 import { SearchItem, SearchItems } from 'app/types/search';
 import { AbstractBaseComponent } from 'app/components/shared/abstract-component/abstract-base.component';
 import { PaginationComponent } from 'app/components/shared/pagination/pagination.component';
@@ -42,13 +42,50 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
     public isFetching = false;
 
     // パラメータ関連
-    public params: any = {};
-    public searchParams: any;
+    public params: RequestParams = {};
+    public searchParams: RequestParams;
     public requestHeaderParams: RequestHeaderParams = {};
-    public sortingParams: { sort: string; sortLabel: string; } = {
+
+    protected get XFields(): string {
+        return this.requestHeaderParams['X-Fields'];
+    }
+
+    protected set XFields(XFields: string) {
+        this.requestHeaderParams['X-Fields'] = XFields;
+    }
+
+    protected get XFrom(): number {
+        return this.requestHeaderParams['X-From'];
+    }
+
+    protected set XFrom(xFrom: number) {
+        this.requestHeaderParams['X-From'] = xFrom;
+    }
+
+    protected get XCount(): number {
+        return this.requestHeaderParams['X-Count'];
+    }
+
+    protected set XCount(xCount: number) {
+        this.requestHeaderParams['X-Count'] = xCount;
+    }
+
+    protected get XSort(): string | string[] {
+        return this.requestHeaderParams['X-Sort'];
+    }
+
+    protected set XSort(xSort: string | string[]) {
+        this.requestHeaderParams['X-Sort'] = xSort;
+    }
+
+    protected sortingParams: { sort: string; sortLabel: string; } = {
         sort: '',
         sortLabel: ''
     };
+
+    protected get sortParam(): string {
+        return this.sortingParams['sort'];
+    }
 
     // ページネーション関連
     public count: number;
@@ -68,6 +105,7 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
         autoLoadCount: this.autoLoadCountOpen,
         lastIndexList: this.autoLoadCountOpen
     };
+
     public pageCountEl: { pageCount: { values: string[] } };
 
     // 結果モーダル関連
@@ -79,7 +117,17 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
     public detailModalValues: ModalValues;
     public deleteModalValues: ModalValues;
 
-    public lists: { visibleList: any[]; originList: any[] } = {
+    public checkedItems: { [key: string]: boolean } = {};
+
+    public isCheckedItemsAllPageHold = false;
+
+    public get selectedList(): string[] {
+        return _.map(this.checkedItems, (value: boolean, key: string) =>
+          value ? key : null
+        ).filter(Boolean);
+    }
+
+    public lists: Lists = {
         visibleList: [],
         originList: []
     };
@@ -93,6 +141,7 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
     // 検索欄入力項目保持関連
     protected commaSeparated: string[] = [];
     protected stringParamList: string[] = [];
+
 
     constructor(
         protected override navigationService: NavigationService,
@@ -148,6 +197,8 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
      * 検索ボタン押下時の処理
      */
     public onClickSearch(): void {
+        this.clearCheckedItems();
+
         if (this.paginationComponent) {
             this.pageParams.pageNo = 1;
             this.pageParams.dispPageNo = 1;
@@ -163,6 +214,11 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
      * @param sortKey ソートキー
      */
     public onChangeSort(sortKey: string): void {
+
+        if (!this.isCheckedItemsAllPageHold) {
+            this.clearCheckedItems();
+        }
+
         if (this.paginationComponent) {
             this._reflectPageParams();
         } else {
@@ -176,6 +232,11 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
      * ページネーションの onChange イベントで呼ばれる処理です。
      */
     public onPaginationChange(): void {
+
+        if (!this.isCheckedItemsAllPageHold) {
+            this.clearCheckedItems();
+        }
+
         this._reflectPageParams();
         this.fetchList(this.sortingParams['sort']);
 
@@ -197,6 +258,11 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
             ? this.autoLoadCountClose
             : this.autoLoadCountOpen;
         if (this.lists.visibleList.length < this.pageParams.pageCount) {
+
+            if (!this.isCheckedItemsAllPageHold) {
+                this.clearCheckedItems();
+            }
+
             this.fetchList(this.sortingParams['sort']);
         }
     }
@@ -256,6 +322,15 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
             },
             []
         );
+    }
+
+    /**
+     * 一覧の選択値をクリアする。
+     */
+    protected clearCheckedItems(): void {
+        if (this.checkedItems && Object.keys(this.checkedItems).length > 0) {
+            this.checkedItems = {};
+        }
     }
 
     /**
@@ -349,7 +424,7 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
      * @param fieldItems 指定項目データ
      * @param additionalFields
      */
-    protected _reflectXFields(fieldItems: any, additionalFields: any = []) {
+    protected _reflectXFields(fieldItems: Fields, additionalFields: string[] = []) {
         this._setXFields(this._createXFields(fieldItems), additionalFields);
     }
 
@@ -358,7 +433,7 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
      * @param xFields 指定項目データ
      * @param additionalFields
      */
-    protected _setXFields(xFields: any[], additionalFields: any = []) {
+    protected _setXFields(xFields: string[], additionalFields: string[] = []) {
         const fields: any[] = _.concat(xFields, additionalFields);
         this.requestHeaderParams['X-Fields'] = _.join(fields, ',');
     }
@@ -383,7 +458,7 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
      * @param params 検索欄データ
      * @param nestedKeys
      */
-    protected _createSearchCondition(params: any, nestedKeys: string[]): SearchItems {
+    protected _createSearchCondition(params: RequestParams, nestedKeys: string[]): SearchItems {
         const result: SearchItems = [];
         _.each(nestedKeys, (key: string) => {
             let value = _.get(params, key);
@@ -407,7 +482,7 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
      * @param params 検索欄データ
      * @param nestedKeys
      */
-    protected _transrateSearchParams(params: any, nestedKeys: string[]) {
+    protected _transrateSearchParams(params: RequestParams, nestedKeys: string[]) {
         const result = {};
         let value;
         _.each(nestedKeys, (path: string) => {
@@ -435,7 +510,7 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
             return nestedKey;
         }
 
-        let p: { [key: string]: any } = dataParams;
+        const p: { [key: string]: any } = dataParams;
 
         return _.flatten(
             _.map(_.keys(p), (key: string) => {
@@ -544,7 +619,7 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
      * 検索条件パラメータを取得する
      * @param params パラメータ
      */
-    protected _getSearchParams(params: any): any {
+    protected _getSearchParams(params: RequestParams): RequestParams {
         return _.clone(params);
     }
 

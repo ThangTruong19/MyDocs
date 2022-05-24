@@ -1,28 +1,24 @@
 import { Injectable } from '@angular/core';
-import { unset, uniq, compact } from 'lodash';
+import { environment } from 'environments/environment';
+import { SettingsService } from 'app/services/shared/settings.service';
 
 @Injectable()
 export class StorageService {
-    createStorage(storageKey: string): StorageObject {
-        return new StorageObject(storageKey);
-    }
-}
 
-export class StorageObject {
-    private cache: any = {};
-    private keys: string[] = [];
-    private masterKey: string;
+    public static readonly NAVIGATIONS_MENU_ORDER_KEY = 'cdsm-navigations-menu-order';
 
-    constructor(private storageKey: string) {
-        this.masterKey = `_${this.storageKey}-keys`;
+    // group_idのキーのプレフィックス
+    private static readonly GROUP_ID_PREFIX = 'group_id.';
 
-        const keysRaw: string = localStorage.getItem(this.masterKey);
+    // 表示件数設定の登録キー
+    private static readonly APP_CDSM_SETTING_KEY_NAME = 'app-cdsm-setting';
 
-        if (keysRaw == null) {
-            localStorage.setItem(this.masterKey, '');
-        } else {
-            this.keys = compact(keysRaw.split(','));
-        }
+    private appCode: string;
+
+    constructor(
+        private settingsService: SettingsService
+    ) {
+        this.appCode = this.settingsService.getAppCode();
     }
 
     /**
@@ -30,63 +26,115 @@ export class StorageObject {
      * キャッシュにデータがある場合そちらを返します。
      * @param key データを特定するキー
      */
-    public get(key: string = null): any {
-        if (key == null) {
-            return this.getKeys();
-        }
-
-        if (this.cache[key] == null) {
-            try {
-                const str = localStorage.getItem(this._getKey(key));
-
-                this.cache[key] = JSON.parse(str);
-            } catch (e) {
-                console.error(e);
-                this.delete(key);
-            }
-        }
-
-        return this.cache[key];
-    }
-
-    /**
-     * ストレージに存在するキーの配列を取得します。
-     */
-    public getKeys(): string[] {
-        return this.keys;
+    public getItem(key: string): string {
+        return localStorage.getItem(key);
     }
 
     /**
      * localStorage にデータを保存します。
      * @param key データを特定するキー
-     * @param item 保存するデータ
+     * @param value 保存するデータ
      */
-    public set(key: string, item: any): void {
-        const data: string = JSON.stringify(item);
-
-        this.keys.push(key);
-        this.keys = uniq(this.keys);
-        localStorage.setItem(this._getKey(key), data);
-        localStorage.setItem(this.masterKey, this.keys.join(','));
-        this.cache[key] = item;
+    public setItem(key: string, value: string): void {
+        localStorage.setItem(key, value);
     }
 
     /**
      * localStorage およびキャッシュからデータを削除します。
      * @param key データを特定するキー
      */
-    public delete(key: string): void {
-        unset(this.cache, key);
-        this.keys = this.keys.filter(k => k !== key);
-        localStorage.removeItem(this._getKey(key));
-        localStorage.setItem(this.masterKey, this.keys.join(','));
+    public removeItem(key: string): void {
+        localStorage.removeItem(key);
     }
 
     /**
-     * localStorage にデータを保存するためのキーを生成します。
-     * @param key データを特定するキー
+     * ローカルストレージに引数のkeyの値が存在するか確認する。
      */
-    private _getKey(key: string): string {
-        return `${this.storageKey}--${key}`;
+    public hasItem(key: string): boolean {
+        if (localStorage.getItem(key) !== null) {
+            return true;
+        } else {
+            return false;
+        }
     }
+
+    /**
+     * ローカルストレージから表示件数を取得する。
+     */
+    public getPageDisplayCount(): string {
+        const appSettingStr: string = this.getItem(StorageService.APP_CDSM_SETTING_KEY_NAME);
+        let pageDisplayCount: string = null;
+        if (appSettingStr) {
+            const apppSettingObj: any = JSON.parse(appSettingStr);
+            if (apppSettingObj) {
+                pageDisplayCount = apppSettingObj[StorageService.APP_CDSM_SETTING_KEY_NAME];
+            }
+        }
+        return pageDisplayCount;
+    }
+
+    /**
+     * ローカルストレージに表示件数を保存する。
+     */
+    public setPageDisplayCount(pageDisplayCount: string): void {
+
+        let isSaveLocalStorage = false;
+        if (this.hasItem(StorageService.APP_CDSM_SETTING_KEY_NAME)) {
+            const appSettingStr: string = this.getItem(StorageService.APP_CDSM_SETTING_KEY_NAME);
+            let apppSettingObj: any = null;
+            if (appSettingStr) {
+                apppSettingObj = JSON.parse(appSettingStr);
+            }
+
+            if (apppSettingObj) {
+                apppSettingObj[StorageService.APP_CDSM_SETTING_KEY_NAME] = pageDisplayCount;
+                const newAppSettingStr: string = JSON.stringify(apppSettingObj);
+                this.setItem(StorageService.APP_CDSM_SETTING_KEY_NAME, newAppSettingStr);
+                isSaveLocalStorage = true;
+            }
+        }
+
+        if (!isSaveLocalStorage) {
+            const newAppSetting: {[StorageService.APP_CDSM_SETTING_KEY_NAME]: string}
+                = {[StorageService.APP_CDSM_SETTING_KEY_NAME]: pageDisplayCount};
+            const newAppSettingStr: any = JSON.stringify(newAppSetting);
+            this.setItem(StorageService.APP_CDSM_SETTING_KEY_NAME, newAppSettingStr);
+        }
+    }
+
+    public getGroupId(): string {
+        return this.getItem(this.grouIdKey());
+    }
+
+    public setGroupId(groupId: string): void {
+        return this.setItem(this.grouIdKey(), groupId);
+    }
+
+    public removeGroupId(): void {
+        return this.removeItem(this.grouIdKey());
+    }
+
+    public hasGroupId(): boolean {
+        return this.hasItem(this.grouIdKey());
+    }
+
+    private grouIdKey (): string {
+        // group_idのキー = 'group_id.' + [app_code]
+        const groupIdKey: string = StorageService.GROUP_ID_PREFIX + this.appCode;
+        return groupIdKey;
+    }
+
+    public getEntranceNextUrl(): string {
+        return this.getItem(this.getEntranceNextUrlKey());
+    }
+
+    public setEntranceNextUrl(entranceNextUrl: string): void {
+        this.setItem(this.getEntranceNextUrlKey(), entranceNextUrl);
+    }
+
+    public getEntranceNextUrlKey(): string {
+        const entranceNextUrl: string = environment.settings.appPrefix + '-entrance-next';
+        return entranceNextUrl;
+    }
+
 }

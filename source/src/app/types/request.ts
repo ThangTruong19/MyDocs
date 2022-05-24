@@ -12,3 +12,18 @@ export interface ConfigHeaderParams {
     'X-Lang': string;
     'X-DistanceUnit': string;
 }
+
+export interface RequestParams {
+    [key: string]: any;
+}
+
+export interface RequestOptions {
+    [key: string]: any;
+}
+
+export interface RequestConfig {
+    url: string;
+    method: string;
+    params?: RequestParams;
+    search?: RequestParams;
+}

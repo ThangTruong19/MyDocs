@@ -14,7 +14,7 @@
                                 class="app-input-checkbox"
                                 [disabled]="checkAllDisabled"
                                 id="check-icon-all"
-                                (click)="toggleCheckAll()"
+                                (click)="toggleCheckAll($event)"
                                 [checked]="checkAll"
                             />
                             <label class="app-input-checkbox__label" for="check-icon-all">
@@ -81,10 +81,11 @@
                             [attr.rowspan]="tblFunctions.getFixedDataRowspan(data)"
                         >
                           <input
-                              (appTableCheckbox)="onChange($event)"
-                              (toggleClick)="onCheckSelect($event)"
+                              appTableCheckbox
+                              [rowIndex]="i"
                               [selectedList]="selectedList"
                               [checked]="checkedItems[checkId(data)]"
+                              (toggleClick)="onCheckSelect($event)"
                               id="check-icon-{{ i }}"
                               value="{{ checkId(data) }}"
                               type="checkbox"
@@ -187,7 +188,7 @@
                                     class="app-input-checkbox"
                                     [disabled]="checkAllDisabled"
                                     [ngClass]="{'th-check': !isDisplayCheckBoxDefault()}"
-                                    (click)="toggleCheckAll()"
+                                    (click)="toggleCheckAll($event)"
                                     id="check-icon-all">
                                 <label class="app-input-checkbox__label" for="check-icon-all">
                                     <i class="fa"></i>1
@@ -234,10 +235,11 @@
                                 class="text-center app-sm-link"
                                 [attr.rowspan]="tblFunctions.getFixedDataRowspan(data)">
                                 <input
-                                    (appTableCheckbox)="onChange($event)"
-                                    (toggleClick)="onCheckSelect($event)"
+                                    appTableCheckbox
+                                    [rowIndex]="i"
                                     [selectedList]="selectedList"
                                     [checked]="checkedItems[checkId(data)]"
+                                    (toggleClick)="onCheckSelect($event)"
                                     id="check-icon-{{i}}"
                                     value="{{checkId(data)}}"
                                     type="checkbox"

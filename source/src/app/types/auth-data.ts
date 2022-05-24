@@ -1,5 +1,5 @@
 export interface AuthData {
-    userName: string;
-    userId: string;
     accessToken: string;
+    userId: string;
+    userName: string;
 }

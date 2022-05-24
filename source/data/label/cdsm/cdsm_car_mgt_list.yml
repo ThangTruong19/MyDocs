@@ -166,3 +166,15 @@ labels:
     name: header_edit
     ja: 編集
     en:
+
+  - id: 104
+    description: 警告メッセージ
+    name: communication_channel_message
+    ja: 注) 1 通信機種が「Iridium」の場合、一括変更用テンプレートDL及びデータ送信要求は実行できない。
+    en:
+
+  - id: 105
+    description: 警告メッセージ
+    name: terminal_mode_message
+    ja: 注) 2 端末モードが「次世代以外」の場合、一括変更用テンプレートDL・データ送信要求・一括設定取得要求は実行できない。
+    en:

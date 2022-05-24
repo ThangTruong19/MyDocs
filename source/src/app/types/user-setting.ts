@@ -8,6 +8,11 @@ export interface SettingParamsItem {
     key: string;
 }
 
+export interface UserSettingValues {
+    userSettings: UserSettings;
+    groupSettings: GroupSettings;
+}
+
 export interface UserSettings {
     lang_code: string;
     date_format_code: string;

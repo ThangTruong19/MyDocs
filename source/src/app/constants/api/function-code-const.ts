@@ -7,6 +7,8 @@ export class FunctionCodeConst {
 
     /**  */
     public static readonly USER_MENU_FUNCTION = 'cdsm_user_menu';
+    public static readonly MENU_FUNCTION = 'cdsm_mgt_menu';
+    public static readonly SIDE_MENU_FUNCTION = 'cdsm_side_menu';
     public static readonly ENV_SETTING_MENU_FUNCTION = 'cdsm_env_setting_menu';
     public static readonly HOME_LINK_FUNCTION = 'cdsm_back_to_home_link';
     public static readonly SIGN_OUT_FUNCTION = 'cdsm_signout_link';

@@ -27,12 +27,20 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
     @Input()
     public initThList2: TableHeader[];
 
+    visibleErr: boolean = false;
+
     dataTable1: any[];
     dataTable2: any[];
 
     thList1: TableHeader[] = [];
     thList2: TableHeader[] = [];
     tableData: any[];
+
+    _searchParams = {
+        car_identification: {
+            car_ids: [] as any[]
+        }
+    };
 
     public lists1: { visibleList: any[]; originList: any[] } = {
         visibleList: [],
@@ -215,6 +223,21 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
 
         this.sortableThList1 = this.sortableThLists(this.thList1);
         this.sortableThList2 = this.sortableThLists(this.thList2);
+
+        // 車両管理一覧取得
+        this._searchParams.car_identification.car_ids.push(this.carId);
+        this.requestHeaderParams['X-From'] = 0;
+        this.requestHeaderParams['X-Count'] = 1;
+        this.requestHeaderParams['X-Sort'] = this.sortingParams['sort'] || '';
+        const res = await this.customSettingService.postCarsCustomizeUsageDefinitions(
+            this._searchParams,
+            this.requestHeaderParams
+        );
+
+        if(res.result_data.cars[0].communication_channel.code == '0' || res.result_data.cars[0].communication_channel.code == '5'){
+            this.visibleErr = true;
+        }
+
     }
 
     private _calculateTotalTraffic(data: any[]): number {

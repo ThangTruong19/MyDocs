@@ -8,21 +8,18 @@ import {
     ElementRef,
     OnInit,
 } from '@angular/core';
-
-import { SortingType } from './sorting-type';
-import { find } from 'lodash';
-import * as $ from 'jquery';
+import { SortingType } from 'app/directives/sorting-label/sorting-type';
 
 @Directive({
     selector: '[appSortingLabel]',
 })
 export class SortingLabelDirective implements OnInit {
-    //  @Input() sortingParams: object;
-    @Input() sortingParams: any;
-    @Input() labelName: string;
-    @Input() sortableThList: any[];
 
-    @Output() sort: EventEmitter<any> = new EventEmitter();
+    @Input() sortingParams: { [key: string]: any };
+    @Input() labelName: string;
+    @Input() sortableThList: string[];
+
+    @Output() sort: EventEmitter<any> = new EventEmitter<any>();
 
     private hostElement: HTMLElement;
     private sortingType: SortingType;

@@ -4,7 +4,8 @@ import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { Labels } from 'app/types/common';
-import { UserSettingService } from 'app/services/api/user-setting.service';
+import { RequestParams } from 'app/types/request';
+import { StorageService } from 'app/services/shared/storage.service';
 
 @Component({
     selector: 'app-pagination',
@@ -13,9 +14,9 @@ import { UserSettingService } from 'app/services/api/user-setting.service';
 export class PaginationComponent implements OnInit, DoCheck {
 
     @Input() public count: number;
-    @Input() public params: any;
+    @Input() public params: RequestParams;
     @Input() public labels: Labels;
-    @Input() public element: any;
+    @Input() public element: { pageCount: { values: string[] } };
     @Input() public showNumberOfDisplay = true;
 
     @Output() public changeState: EventEmitter<void> = new EventEmitter<void>();
@@ -26,9 +27,9 @@ export class PaginationComponent implements OnInit, DoCheck {
     private loadPageNo = false;
     private nextPrevClicks: Subject<any> = new Subject<any>();
     private debounceTime = 50;
-    private _pageLength: number;
     private tempPage: number;
     private pageCountValues: number[];
+    private _pageLength: number;
 
     public set pageLength(length: number) {
         if (this._pageLength !== length) {
@@ -41,7 +42,9 @@ export class PaginationComponent implements OnInit, DoCheck {
         }
     }
 
-    constructor(private settings: UserSettingService) {
+    constructor(
+        private storageService: StorageService
+    ) {
     }
 
     ngOnInit(): void {
@@ -160,43 +163,18 @@ export class PaginationComponent implements OnInit, DoCheck {
     }
 
     private _getInitialPageCount(): string {
-        const json: string = localStorage.getItem('app-fleet-setting');
-        try {
-            const data: any = JSON.parse(json);
-
-            if (data == null || data.count == null || !this._isValidPageCount(data.count)) {
-                return this.settings.groupSettings.display_count;
-            }
-
-            return data.count;
-        } catch (e) {
-            return this.settings.groupSettings.display_count;
-        }
+        return this.storageService.getPageDisplayCount();
     }
 
     /**
      * localStorageに表示件数を保存する
      */
-    private _storePageCount(count: number): void {
-        const json: string = localStorage.getItem('app-fleet-setting');
-        try {
-            const data: any = JSON.parse(json) || {};
-            data.count = `${count}`;
-            localStorage.setItem('app-fleet-setting', JSON.stringify(data));
-        } catch (e) {
-            localStorage.setItem('app-fleet-setting', JSON.stringify({
-                count: `${count}`,
-            }));
+    private _storePageCount(pageDisplayCount: number): void {
+        let pageDisplayCountStr = null;
+        if (pageDisplayCount) {
+            pageDisplayCountStr = pageDisplayCount.toString();
         }
-    }
-
-    /**
-     * ローカルストレージから取得した表示件数が正しいものであるかを判定する
-     * @param count 表示件数
-     */
-    private _isValidPageCount(count: string): boolean {
-        // リソースが取得できない場合無効とする
-        return this.pageCountValues == null || this.pageCountValues.includes(+count);
+        return this.storageService.setPageDisplayCount(pageDisplayCountStr);
     }
 
 }

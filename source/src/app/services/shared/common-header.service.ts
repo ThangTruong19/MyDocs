@@ -11,13 +11,14 @@ import {
 import { Labels, Resource, Resources } from 'app/types/common';
 import { SettingParams } from 'app/types/user-setting';
 import { Navigation } from 'app/types/navigation';
-import { environment } from 'environments/environment';
 import { RequestHeaderMap } from 'app/constants/request';
 import { ApiService } from 'app/services/api/api.service';
 import { UserSettingService } from 'app/services/api/user-setting.service';
 import { AuthenticationService } from 'app/services/shared/authentication.service';
 import { FunctionCodeConst } from 'app/constants/api/function-code-const';
 import { AuthData } from 'app/types/auth-data';
+import { StorageService } from 'app/services/shared/storage.service';
+import { SettingsService } from 'app/services/shared/settings.service';
 
 @Injectable()
 export class CommonHeaderService {
@@ -51,7 +52,9 @@ export class CommonHeaderService {
     constructor(
         private api: ApiService,
         private userSettingService: UserSettingService,
-        private authService: AuthenticationService
+        private authService: AuthenticationService,
+        private settingsService: SettingsService,
+        private storageService: StorageService
     ) {
     }
 
@@ -145,11 +148,8 @@ export class CommonHeaderService {
      * ログアウトボタンクリック時の処理
      */
     public handleClickSignout(): void {
-        const appCode: string = (window as any).settings.azureAdAuthenticationInfo.clientId;
-        const groupIdKey: string = `group_id.${appCode}`;
-
         this.authService.clearCache();
-        localStorage.removeItem(groupIdKey);
+        this.storageService.removeGroupId();
         location.href = this.signOutLink;
     }
 
@@ -232,11 +232,8 @@ export class CommonHeaderService {
         const headerUserFunction = functions.find(
             fn => fn.code === FunctionCodeConst.USER_MENU_FUNCTION
         );
-        let nextUrl =
-            localStorage.getItem(environment.settings.appPrefix + '-entrance-next') ||
-            location.href;
-        const appCode: string = (window as any).settings.azureAdAuthenticationInfo.clientId;
-        const groupId: string = localStorage.getItem(`group_id.${appCode}`);
+
+        let nextUrl = this.storageService.getEntranceNextUrl() || location.href;
         const match: RegExpMatchArray = nextUrl.match(/\?[\w=&]+/);
         const search: string = match ? match[0] : null;
         nextUrl = search ? nextUrl.replace(search, '') : nextUrl;
@@ -248,6 +245,9 @@ export class CommonHeaderService {
             nextUrl =
                 paramList.length > 0 ? `${nextUrl}?${paramList.join('&')}` : nextUrl;
         }
+
+        const appCode: string = this.settingsService.getAppCode();
+        const groupId: string = this.storageService.getGroupId();
 
         const links: { id: string; label: string; isEnabled: boolean; }[] =
             headerUserFunction

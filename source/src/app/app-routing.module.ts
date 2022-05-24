@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { environment } from 'environments/environment';
-import { MenuComponent } from 'app/components/menu/menu.component';
 import { DummyEntranceComponent } from 'app/components/shared/dummy-entrance/dummy-entrance.component';
 import { EntranceComponent } from 'app/components/shared/entrance/entrance.component';
 import { AuthenticationService } from 'app/services/shared/authentication.service';
 
+const useEntranceForDevelop: boolean = (window as any).settings.useEntranceForDevelop;
 
 const routes: Routes = [
     {
@@ -50,10 +49,14 @@ const routes: Routes = [
             import('app/modules/car-list.module').then(m => m.CarListModule),
         canActivateChild: [AuthenticationService],
     },
-    { path: '', component: MenuComponent },
+    {   path: '',
+        loadChildren: () =>
+            import('app/modules/menu.module').then(m => m.MenuModule),
+        canActivate: [AuthenticationService],
+    },
 ];
 
-if (environment.settings.useEntranceForDevelop) {
+if (useEntranceForDevelop) {
     routes.push(
         {
             path: 'entrance',
@@ -66,12 +69,13 @@ if (environment.settings.useEntranceForDevelop) {
         },
         { path: 'dummy/entrance', component: DummyEntranceComponent },
         { path: 'entrance/group/switch', component: DummyEntranceComponent },
-        { path: '', redirectTo: '' },
     );
 }
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true }),],
-  exports: [RouterModule]
+    imports: [
+        RouterModule.forRoot(routes, { useHash: true }),
+    ],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

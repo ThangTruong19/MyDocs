@@ -71,12 +71,19 @@ export class CarListComponent extends AbstractIndexComponent {
     datePickerLabels: Labels;
     override commaSeparated: string[] = ['serials'];
 
-    selectedList: any[] = [];
-    checkedItems: boolean[] = [];
+    // selectedList: any[] = [];
+    // checkedItems: boolean[] = [];
+    // checkedItems: { [key: string]: boolean } = {}
     checkAll: boolean = false;
 
-    checkAllDisabled: boolean = false;
-    isDisabled: boolean = false;
+    // get selectedList() {
+    //   return _.map(this.checkedItems, (value, key) =>
+    //     value ? key : null
+    //   ).filter(Boolean);
+    // }
+
+    checkAllDisabled: boolean = true;
+    isDisabled: boolean = true;
     terminalModeType: string;
     transmissionType: string;
     otherThanNextGenValue = '3'; // TODO:
@@ -104,6 +111,8 @@ export class CarListComponent extends AbstractIndexComponent {
     carId: string;
 
 
+    public checkIdName = 'cars.car_identification.id';
+
     private arrayColumnPaths: string[] = [
       'cars.customize_usage_definitions.name',
       'cars.customize_usage_definitions.setting_change_status',
@@ -121,11 +130,11 @@ export class CarListComponent extends AbstractIndexComponent {
       protected override modalService: ModalService,
       protected alertService: AlertService,
       protected datePickerService: DatePickerService,
-      protected userSettingService: UserSettingService
-
-      ,private csDetailService: CsDetailService
+      protected userSettingService: UserSettingService,
+      private csDetailService: CsDetailService
     ) {
       super(navigationService, title, router, ref, header);
+      this.isCheckedItemsAllPageHold = true;
     }
 
     /**
@@ -145,10 +154,7 @@ export class CarListComponent extends AbstractIndexComponent {
         params,
         this.requestHeaderParams
       );
-      // TODO: initialize checkboxes
-      // for (let i = 1; i <= this.selectedList.length; i++) {
-      //   this.checkedItems[i] = this.checkAll;
-      // }
+
       const list = this._formatList(
         res.result_data.cars,
         this.thList
@@ -310,8 +316,26 @@ export class CarListComponent extends AbstractIndexComponent {
      * データ送信要求画面へ遷移
      */
     public handleClick(): void {
+      const params: any[] = [];
+
+      this.selectedList.forEach((index) => {
+        const car = this.lists.originList[(parseInt(index) - 1)];
+        const param = {
+          carId: car['cars.car_identification.id'],
+          model: car['cars.car_identification.model'],
+          typeRev: car['cars.car_identification.type_rev'],
+          serial: car['cars.car_identification.serial']
+        }
+        params.push(param);
+      });
+
       this.router.navigated = false;
-      this.router.navigateByUrl("/customize_data_request");
+      this.router.navigate(
+        ["/customize_data_request"],
+        {
+          queryParams: params
+        }
+      )
     }
 
     /**
@@ -336,10 +360,46 @@ export class CarListComponent extends AbstractIndexComponent {
       * 選択チェックボックス全部チェック付ける
       * @param value 値
       */
-    toggleCheckAll() {
-      this.checkAll = !this.checkAll;
-      for (let i = 0; i <= this.selectedList.length; i++) {
-        this.checkedItems[i] = this.checkAll;
+    toggleCheckAll() {alert('yo');
+      // this.checkAll = !this.checkAll;
+      // for (let i = 0; i <= this.selectedList.length; i++) {
+      //   this.checkedItems[i] = this.checkAll;
+      // }
+    }
+
+    /**
+     * 選ばれたデータにより、ボタンの活性・非活性化を行う
+     */
+    onCheckSelect() {let isNonNextGen = false;
+      let isIridium = false;
+
+      for (let index of this.selectedList) {
+        const car = this.lists.originList[(parseInt(index) - 1)];
+
+        // 端末モード区分が次世代以外の場合
+        if (car['cars.terminal_mode.kind'] !== '0') {
+          isNonNextGen = true;
+          break;
+        }
+
+        // 通信機種がiridiumの場合
+        if (car['cars.communication_channel.code'] === '5') {
+          isIridium = true;
+        }
+      }
+
+      if (isNonNextGen) {
+        this.isDisabled = true;
+        this.checkAllDisabled = true;
+      } else if (isIridium) {
+        this.checkAllDisabled = true;
+        this.isDisabled = false;
+      } else if (this.selectedList.length > 0) {
+        this.checkAllDisabled = false;
+        this.isDisabled = false;
+      } else {
+        this.checkAllDisabled = true;
+        this.isDisabled = true;
       }
     }
 
@@ -371,102 +431,65 @@ export class CarListComponent extends AbstractIndexComponent {
     }
 
     /**
-     * 端末モード区分が次世代以外の場合、3つボタンを非活性にする。
-     * @param event
+     * 設定取得要求ボタン押下コールバック
      */
-    disableButtonsHandler(event: any): void {
-      this.terminalModeType = event;
-      if (this.terminalModeType == this.otherThanNextGenValue) {
-        this.checkAllDisabled = true;
-        this.isDisabled = true;
-      } else {
-        if (this.transmissionType == this.iridiumValue) {
-          this.checkAllDisabled = true;
-          this.isDisabled = false;
-        } else {
-          this.checkAllDisabled = false;
-          this.isDisabled = false;
+    openCsGetRequestDialog() {
+      this.modalService.open(
+        {
+          title: this.labels.confirmation_title,
+          labels: this.labels,
+          content: this.csGetRequestModalContent,
+          closeBtnLabel: this.labels.cancel,
+          okBtnLabel: this.labels.ok_btn,
+          ok: () => {
+            const requestHeaderParams: RequestHeaderParams = {}
+            const params =
+            {
+              cars: [
+                {
+                  car_id: this.carId,
+                  request_route_kind: '0'
+                }
+              ]
+            }
+            this.csDetailService.postCarsRequestSetsCustomizeUsageDefinitionsM2s(params, requestHeaderParams)
+              .then(res => {
+                // TODO:
+                console.log("postCarsRequestSetsCustomizeUsageDefinitionsM2s", res);
+              })
+          },
+        },
+        {
+          size: 'lg',
         }
-      }
+      );
     }
 
     /**
-     * 通信機種がIridiumの場合、2つボタンを非活性にする。
-     * @param event
+     * 対象列が配列形式かどうかを判断する。
+     * @param pathName 対象列のパス名
+     * @returns true：配列、false：配列ではない。
      */
-    disableButtonHandler(event: any): void {
-      this.transmissionType = event;
-      if (this.transmissionType == this.iridiumValue) {
-        this.checkAllDisabled = true;
-      } else {
-        if (this.terminalModeType == this.otherThanNextGenValue) {
-          this.checkAllDisabled = true;
-        } else {
-          this.checkAllDisabled = false;
-        }
-      }
+    public isArrayColumnData(pathName: string): boolean {
+      return this.arrayColumnPaths.indexOf(pathName) !== -1
     }
 
-  /**
-   * 設定取得要求ボタン押下コールバック
-   */
-  openCsGetRequestDialog() {
-    this.modalService.open(
-      {
-        title: this.labels.confirmation_title,
-        labels: this.labels,
-        content: this.csGetRequestModalContent,
-        closeBtnLabel: this.labels.cancel,
-        okBtnLabel: this.labels.ok_btn,
-        ok: () => {
-          const requestHeaderParams: RequestHeaderParams = {}
-          const params =
-          {
-            cars: [
-              {
-                car_id: this.carId,
-                request_route_kind: '0'
-              }
-            ]
-          }
-          this.csDetailService.postCarsRequestSetsCustomizeUsageDefinitionsM2s(params, requestHeaderParams)
-            .then(res => {
-              // TODO:
-              console.log("postCarsRequestSetsCustomizeUsageDefinitionsM2s", res);
-            })
-        },
-      },
-      {
-        size: 'lg',
-      }
-    );
-  }
+    /**
+     * 対象列が編集列かどうかを判断する。
+     * @param colIndex 対象列のindex
+     * @returns true：編集列、false：編集列ではない。
+     */
+    public isEditColumn(colIndex: number): boolean {
+      return colIndex === 4;
+    }
 
-  /**
-   * 対象列が配列形式かどうかを判断する。
-   * @param pathName 対象列のパス名
-   * @returns true：配列、false：配列ではない。
-   */
-  public isArrayColumnData(pathName: string): boolean {
-    return this.arrayColumnPaths.indexOf(pathName) !== -1
-  }
-
-  /**
-   * 対象列が編集列かどうかを判断する。
-   * @param colIndex 対象列のindex
-   * @returns true：編集列、false：編集列ではない。
-   */
-  public isEditColumn(colIndex: number): boolean {
-    return colIndex === 4;
-  }
-
-  /**
-   * 次世代モードの車両のみボタンが表示される。
-   * @param data
-   * @returns
-   */
-  public isNextGen(data: any): boolean {
-    return data['cars.terminal_mode.name'] === '次世代';
-  }
+    /**
+     * 次世代モードの車両のみボタンが表示される。
+     * @param data
+     * @returns
+     */
+    public isNextGen(data: any): boolean {
+      return data['cars.terminal_mode.kind'] === '0';
+    }
 
 }

@@ -20,12 +20,16 @@ interface CustomizeUsageDefinitionResponseData {
     customize_usage_definition_version?: number;
     start_date?: string;
     end_date?: string;
+    priority?: string;
+    priority_name?: string;
+    use_kind?: string;
+    use_name?: string;
     customize_definitions?: CustomizeDefinitionResponseData[]
 }
 interface CustomizeDefinitionResponseData {
     customize_definition_id?: string;
     customize_definition_name?: string;
-    assumption_data_value?: number;
+    customize_definition_version?: number;
     priority?: string;
     priority_name?: string;
     active_kind?: string;
@@ -34,16 +38,24 @@ interface CustomizeDefinitionResponseData {
     latest_operation_code_name?: string;
     status?: string;
     status_name?: string;
+    assumption_data_value?: number;
+    assumption_data_value_header?: number;
     start_date?: string;
     end_date?: string;
     first_receive_datetime?: string;
     latest_receive_datetime?: string;
     aggregation_condition_id?: string;
     aggregation_condition_name?: string;
+    aggregation_opportunity_kind?: string;
+    aggregation_opportunity_kind_name?: string;
     send_condition_id?: string;
     send_condition_name?: string;
+    send_opportunity_kind?: string;
+    send_opportunity_kind_name?: string;
     customize_access_level?: string;
     customize_access_level_name?: string;
+    process_type?: string;
+    process_type_name?: string;
 }
 
 /**
@@ -270,6 +282,10 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit {
             customize_usage_definition_version: this.params.regist_customize_usage_definition_version,
             start_date: this.datePickerService.convertDateString(this.params.regist_start_date, DateFormat.hyphen, DateFormat.slash),
             end_date: this.datePickerService.convertDateString(this.params.regist_end_date, DateFormat.hyphen, DateFormat.slash),
+            priority: this.params.regist_priority_name,
+            priority_name: (this.priority as any).items.filter((element: { id: any; }) => element.id == this.params.regist_priority_name)[0].name,
+            use_kind: "",
+            use_name: "",
             customize_definitions: this._formatListData(this.apiResult.result_data.customize_definitions)
         }
     }
@@ -285,25 +301,33 @@ export class CsNewComponent extends AbstractIndexComponent implements OnInit {
             resultLst.push({
                 customize_definition_id: element.customize_definition.customize_definition_id,
                 customize_definition_name: element.customize_definition.customize_definition_name,
-                assumption_data_value: element.customize_definition.assumption_data_value,
+                customize_definition_version: element.customize_definition.customize_definition_version,
+                priority: this.params.regist_priority_name,
+                priority_name: (this.priority as any).items.filter((element: { id: any; }) => element.id == this.params.regist_priority_name)[0].name,
                 active_kind: this.params.regist_active_name,
                 active_name: (this.isEnabled as any).items.filter((element: { id: any; }) => element.id == this.params.regist_active_name)[0].name,
-                latest_operation_code: element.customize_definition.latest_operation_code,
-                latest_operation_code_name: "-",
-                status: element.customize_definition.status,
-                status_name: element.customize_definition.status_name,
-                start_date: element.customize_definition.start_date,
-                end_date: element.customize_definition.end_date,
-                first_receive_datetime: element.customize_definition.first_receive_datetime,
-                latest_receive_datetime: element.customize_definition.last_receive_datetime,
+                latest_operation_code: "",
+                latest_operation_code_name: "",
+                status: "",
+                status_name: "",
+                assumption_data_value: element.customize_definition.assumption_data_value,
+                assumption_data_value_header: element.customize_definition.assumption_data_value_header,
+                start_date: this.datePickerService.convertDateString(this.params.regist_start_date, DateFormat.hyphen, DateFormat.slash),
+                end_date: this.datePickerService.convertDateString(this.params.regist_end_date, DateFormat.hyphen, DateFormat.slash),
+                first_receive_datetime: "",
+                latest_receive_datetime: "",
                 aggregation_condition_id: element.customize_definition.aggregation_condition_id,
                 aggregation_condition_name: element.customize_definition.aggregation_condition_name,
+                aggregation_opportunity_kind: element.customize_definition.aggregation_opportunity_kind,
+                aggregation_opportunity_kind_name: element.customize_definition.aggregation_opportunity_kind_name,
                 send_condition_id: element.customize_definition.send_condition_id,
                 send_condition_name: element.customize_definition.send_condition_name,
+                send_opportunity_kind: element.customize_definition.send_opportunity_kind,
+                send_opportunity_kind_name: element.customize_definition.send_opportunity_kind_name,
                 customize_access_level: element.customize_definition.customize_access_level,
                 customize_access_level_name: element.customize_definition.customize_access_level_name,
-                priority: (this.priority as any).items.filter((element: { id: any; }) => element.id == this.params.regist_priority_name)[0].id,
-                priority_name: (this.priority as any).items.filter((element: { id: any; }) => element.id == this.params.regist_priority_name)[0].name,
+                process_type: element.customize_definition.process_type,
+                process_type_name: element.customize_definition.process_type_name
             })
         });
         return resultLst;

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { RequestHeaderParams } from 'app/types/request';
-import { ApiService } from '../api/api.service';
-import { ResourceService } from '../api/resource.service';
-import { Apis } from 'app/constants/apis';
-import { ScreenCodeConst } from 'app/constants/api/screen-code-const';
-import { FunctionCodeConst } from 'app/constants/api/function-code-const';
 import { Api, InitializeApiResult } from 'app/types/common';
+import { ApiService } from 'app/services/api/api.service';
+import { Apis } from 'app/constants/apis';
 import { AuthoritiesUpdateParams, UserIndexParams } from 'app/types/user';
+import { FunctionCodeConst } from 'app/constants/api/function-code-const';
+import { RequestHeaderParams } from 'app/types/request';
+import { ResourceService } from 'app/services/api/resource.service';
+import { ScreenCodeConst } from 'app/constants/api/screen-code-const';
 
 /**
  * ログインユーザ情報関連のサービス

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalService } from 'app/services/shared/modal.service';
 import { Resources, TableHeader, TableMergeColumn } from 'app/types/common';
 import * as _ from 'lodash';
 
@@ -41,7 +42,7 @@ export class CsImmediateUpdateRequestConfirmComponent implements OnInit {
     public mergeColumns: TableMergeColumn[] = [];
     public isFetching = false;
 
-    constructor() { }
+    constructor(private modalService: ModalService) { }
 
     ngOnInit(): void {
         this.continuousLabel = this.resources.resource.continuous_kind.values[0].name;
@@ -143,6 +144,10 @@ export class CsImmediateUpdateRequestConfirmComponent implements OnInit {
             }
         ]
 
+    }
+
+    changeRadioValue(): void{
+        this.modalService.enableOk = true;
     }
 
     private _formatList(listBody: any[], thList: TableHeader[]): any {

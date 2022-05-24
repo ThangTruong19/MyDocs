@@ -2,19 +2,22 @@ import { Injectable } from '@angular/core';
 import { chain, xor } from 'lodash';
 import { Navigation } from 'app/types/navigation';
 import { environment } from 'environments/environment';
-import { StorageService, StorageObject } from 'app/services/shared/storage.service';
+import { StorageService } from 'app/services/shared/storage.service';
 
 @Injectable()
 export class NavigationService {
     public navigationsMenu: Navigation[] | null = null;
     public navigationsSideMenu: Navigation[] | null = null;
 
-    private storage: StorageObject;
-    private storageKey = 'app-navigation';
-    private orderKey = 'order';
+    //private storage: StorageObject;
+   //  private storageKey = 'app-navigation';
 
-    constructor(storageService: StorageService) {
-        this.storage = storageService.createStorage(this.storageKey);
+    private navigationsMenuOrder: string[];
+
+    constructor(
+        private storageService: StorageService
+    ) {
+       // this.storage = storageService.createStorage(this.storageKey);
     }
 
     /**
@@ -62,9 +65,14 @@ export class NavigationService {
             return;
         }
 
-        const order: string[] = ref.map(nav => nav.code);
+        const order: string[] = ref.map((nav: Navigation) => nav.code);
+        let orderStr: string = null;
+        if (order) {
+            orderStr = JSON.stringify(order);
+        }
+        this.navigationsMenuOrder = order;
 
-        this.storage.set(this.orderKey, order);
+        this.storageService.setItem(StorageService.NAVIGATIONS_MENU_ORDER_KEY, orderStr);
     }
 
     /**
@@ -87,13 +95,27 @@ export class NavigationService {
      * ナビゲーションの並び順を localStorage から取得します。
      */
     private loadNavigationOrder(): string[] {
-        const storageData = this.storage.get(this.orderKey);
+        if (this.navigationsMenuOrder) {
+            return this.navigationsMenuOrder;
+        }
 
-        if (storageData == null) {
+        const orderStr: string = this.storageService.getItem(StorageService.NAVIGATIONS_MENU_ORDER_KEY);
+        if (orderStr) {
+            return JSON.parse(orderStr);
+        } else {
             return null;
         }
 
-        return storageData;
+        // if (this.storageService.hasItem(StorageService.NAVIGATIONS_MENU_ORDER_KEY)) {
+        //     const storageData = this.storageService.getItem(StorageService.NAVIGATIONS_MENU_ORDER_KEY);
+        //     if (storageData) {
+        //         return JSON.parse(storageData);
+        //     } else {
+        //         return null;
+        //     }
+        // } else {
+        //     return null;
+        // }
     }
 
     /**
@@ -115,7 +137,7 @@ export class NavigationService {
         }
 
         if (this.isNavigationChange(order, navigations)) {
-            this.storage.delete(this.orderKey);
+            this.storageService.removeItem(StorageService.NAVIGATIONS_MENU_ORDER_KEY);
             return navigations;
         }
 

@@ -30,14 +30,14 @@ export class CarListService {
           this.api.fetchFieldResources(
             FunctionCodeConst.CAR_LIST_FUNCTION
           ),
-        downloadFields: () =>
-          this.api.fetchFields(
-            FunctionCodeConst.HISTORY_MGT_LIST_DOWNLOAD_FUNCTION
-          ),
-        downloadFieldResources: () =>
-          this.api.fetchFieldResources(
-            FunctionCodeConst.HISTORY_MGT_LIST_DOWNLOAD_FUNCTION
-          ),
+        // downloadFields: () =>
+        //   this.api.fetchFields(
+        //     FunctionCodeConst.HISTORY_MGT_LIST_DOWNLOAD_FUNCTION
+        //   ),
+        // downloadFieldResources: () =>
+        //   this.api.fetchFieldResources(
+        //     FunctionCodeConst.HISTORY_MGT_LIST_DOWNLOAD_FUNCTION
+        //   ),
       }
     );
   }

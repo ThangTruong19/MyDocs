@@ -1,5 +1,5 @@
 import { Directive } from '@angular/core';
-import { AbstractCheckboxDirective } from '../abstract-directive/abstract-checkbox.directive';
+import { AbstractCheckboxDirective } from 'app/directives/abstract-directive/abstract-checkbox.directive';
 
 @Directive({
   selector: '[appAuthoritySelectCheckbox]',

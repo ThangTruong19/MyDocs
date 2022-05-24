@@ -49,7 +49,6 @@
                     [itemParams]="params"
                     [itemResource]="resource.car_search"
                     [emitInitialRefresh]="false"
-                    (onChangeSelectItem)="disableButtonsHandler($event)"
                   >
                   </app-selected>
 
@@ -60,7 +59,6 @@
                     [itemParams]="params"
                     [itemResource]="resource.car_search"
                     [emitInitialRefresh]="false"
-                    (onChangeSelectItem)="disableButtonHandler($event)"
                   >
                   </app-selected>
 
@@ -100,6 +98,13 @@
                     [targets]="resource.car_search.customize_definition_id"
                   >
                   </app-select-type>
+
+                  <div class="col-sm-12 warning-message">
+                    {{ labels.communication_channel_message }}
+                  </div>
+                  <div class="col-sm-12 warning-message">
+                    {{ labels.terminal_mode_message }}
+                  </div>
                 </div>
               </div>
               <div class="app-panel-footer">
@@ -179,6 +184,10 @@
               [collapsed]="collapsed"
               [isFetching]="isFetching"
               [selectable]="selectable"
+              [checkIdName]="checkIdName"
+              [checkedItems]="checkedItems"
+              (changeSelect)="onCheckSelect()"
+              (clickSelectAll)="onCheckSelect()"
             >
             </app-common-table>
           </div>

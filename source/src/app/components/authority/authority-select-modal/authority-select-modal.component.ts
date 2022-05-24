@@ -9,6 +9,7 @@ import { AbstractBaseComponent } from 'app/components/shared/abstract-component/
 import { SelectedComponent } from 'app/components/shared/selected/selected.component';
 import { ScreenCodeConst } from 'app/constants/api/screen-code-const';
 import { UserService } from 'app/services/shared/user.service';
+import { CheckboxValue } from 'app/types/common';
 import { UserIndexParams } from 'app/types/user';
 import * as _ from 'lodash';
 
@@ -52,9 +53,10 @@ export class AuthoritySelectModalComponent implements OnInit {
 
   /**
    * 選択チェックボックス変更時コールバック
-   * @param value 値
+   * @param checkboxValue 値
    */
-  onCheckSelect(value: any) {
+  onCheckSelect(checkboxValue: CheckboxValue) {
+    const value: string = checkboxValue.value;
     this.checkAll =
       this.evacuateSelectedAuthorities.length >= this.authorities.length;
     this.check.emit(value);

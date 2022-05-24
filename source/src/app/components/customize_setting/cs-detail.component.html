@@ -123,6 +123,7 @@
                     <!-- 一覧テーブル -->
                     <div class="app-table-wrapper">
                         <app-common-table
+                            [checkIdFunction]="checkIdFunction"
                             [checkBoxHiddenFunction]="checkBoxHiddenFunction"
                             [checkBoxDefaultHiddenFunction]="
                                 checkBoxDefaultHiddenFunction
@@ -149,6 +150,8 @@
                             [checkedItems]="checkedItems"
                             [checkAll]="checkAll"
                             (sort)="onChangeSort($event)"
+                            (changeSelect)="onChangeSelect()"
+                            (clickSelectAll)="onChangeSelectAll()"
                         >
                             <ng-template #customFixedTableThContent>
                                 <th class="fixed">
@@ -341,10 +344,10 @@
                                         disable: retryIconHiddenFunction(data)
                                     }"
                                     (click)="
-                                    retryIconHiddenFunction(data)
-                                        ? $event.stopPropagation()
-                                        : onClickRetry(data)
-                                "
+                                        retryIconHiddenFunction(data)
+                                            ? $event.stopPropagation()
+                                            : onClickRetry(data)
+                                    "
                                 >
                                     <span>
                                         <i
@@ -412,6 +415,7 @@
     </ng-template>
     <ng-template #csExpectedTrafficConfirmModalContent>
         <app-cs-expected-traffic-confirm
+            [carId]="carId"
             [labels]="labels"
             [resources]="resources"
             [initThList1]="this.csExpectedTrafficConfirmThList1"
