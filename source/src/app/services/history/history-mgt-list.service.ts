@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { RequestHeaderParams } from 'app/types/request';
-import { Api, Resources } from 'app/types/common';
+import { Api } from 'app/types/common';
 import { HistoryMgtListIndexParams, HistoryMgtListFileCreateParams } from 'app/types/history-mgt-list';
 import { Apis } from 'app/constants/apis';
 import { ResourceService } from 'app/services/api/resource.service';
@@ -51,7 +51,7 @@ export class HistoryMgtListService {
     params: HistoryMgtListIndexParams,
     requestHeaderParams: RequestHeaderParams
   ): Promise<Api> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.api.requestHandler(
         'fetchIndexList',
         this.api
@@ -60,7 +60,14 @@ export class HistoryMgtListService {
             params,
             { cache: false, request_header: requestHeaderParams }
           )
-          .subscribe((res) => resolve(res))
+          .subscribe(
+            {
+              next: (res: Api) => {
+                resolve(res);
+              },
+              error: (error) => reject(error)
+            }
+          )
       );
     });
   }
@@ -68,12 +75,12 @@ export class HistoryMgtListService {
   /**
    * ファイル作成APIを呼ぶ
    * @param params パラメータ
-   * @param headerParams ヘッダ情報
+   * @param requestHeaderParams ヘッダ情報
    */
   createFile(
     params: HistoryMgtListFileCreateParams,
     requestHeaderParams: RequestHeaderParams
-  ) {
+  ): Promise<Api> {
     requestHeaderParams['X-Count'] = null;
     requestHeaderParams['X-From'] = null;
 
@@ -86,8 +93,12 @@ export class HistoryMgtListService {
             request_header: requestHeaderParams,
           })
           .subscribe(
-            (res) => resolve(res),
-            (error) => reject(error)
+            {
+              next: (res: Api) => {
+                resolve(res);
+              },
+              error: (error) => reject(error)
+            }
           )
       );
     });
@@ -114,7 +125,14 @@ export class HistoryMgtListService {
         'fetchBelongingCategoryCode',
         this.api
           .fetchResource(ScreenCodeConst.HISTORY_MGT_LIST_CODE, params)
-          .subscribe((res) => resolve(res))
+          .subscribe(
+            {
+              next: (res: Api) => {
+                resolve(res);
+              },
+              error: (error) => reject(error)
+            }
+          )
       );
     });
   }
@@ -140,36 +158,13 @@ export class HistoryMgtListService {
         'fetchBelongingCustomizeUsageDefinitionId',
         this.api
           .fetchResource(ScreenCodeConst.HISTORY_MGT_LIST_CODE, params)
-          .subscribe((res) => resolve(res))
-      );
-    });
-  }
-
-  /**
-   * 対象画面を指定し大分類を取得する
-   * @param appCode 対象画面
-   */
-  fetchCategoryResource(appCode: string): Promise<Resources> {
-    const params = [
-      {
-        resource_path: 'operation_history.category_code',
-        condition_sets: [
-          {
-            values: [appCode],
-            condition: 'operation_history.app_code',
-          },
-        ],
-      },
-    ];
-
-    return new Promise((resolve, reject) => {
-      this.api.requestHandler(
-        'fetchCategoryResource',
-        this.api
-          .fetchResource(ScreenCodeConst.HISTORY_MGT_LIST_CODE, params)
           .subscribe(
-            (res) => resolve(res),
-            (error) => reject(error)
+            {
+              next: (res: Api) => {
+                resolve(res);
+              },
+              error: (error) => reject(error)
+            }
           )
       );
     });

@@ -11,7 +11,7 @@ import { CommonHeaderService } from 'app/services/shared/common-header.service';
 import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { ModalService } from 'app/services/shared/modal.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
-import { Resources } from 'app/types/common';
+import { Fields, Resources } from 'app/types/common';
 import * as _ from 'lodash';
 
 @Component({
@@ -21,9 +21,8 @@ import * as _ from 'lodash';
 })
 export class CdRequestNumberListComponent extends AbstractIndexComponent implements OnInit {
 
-    // TODO: WAITING FOR THE PARENT SCREEN
-    // @Input()
-    // public resources: Resources;
+    @Input()
+    public resources: any;
     @Input()
     public carId: string;
 
@@ -69,18 +68,10 @@ export class CdRequestNumberListComponent extends AbstractIndexComponent impleme
     }
 
     protected async _fetchDataForInitialize(): Promise<any> {
-        // TODO: WAITING FOR THE PARENT SCREEN
-
-        // this.labels = this.resources.label;
-        // this.resource = this.resources.resource;
-        // this.initialize(this.resources);
-
-        // Getting resources from the API (Remove later)
-        let res = await this.cdRequestNumberTabService.fetchCarInitData();
-        this.initialize(res);
-        this.labels = res.label;
-        this.resource = res.resource;
-        this.thList = this._createThList(res.cdRequestNumberListFields);
+        this.labels = this.resources.label;
+        this.resource = this.resources.resource;
+        this.initialize(this.resources);
+        this.thList = this._createThList(this.resources.cdRequestNumberListFields);
         this._afterInitialize();
     }
 
@@ -95,16 +86,6 @@ export class CdRequestNumberListComponent extends AbstractIndexComponent impleme
      */
      public isArrayColumnData(pathName: string): boolean {
         return this.arrayColumnPaths.indexOf(pathName) !== -1
-    }
-
-    public getArrayColumnData(data: any, pathName: string): any[] {
-        let fetchData: any = data;
-        fetchData = fetchData[pathName];
-        if(fetchData && Array.isArray(fetchData)){
-            return fetchData
-        }else{
-            return [];
-        }
     }
 
     protected async _afterInitialize(): Promise<any> {

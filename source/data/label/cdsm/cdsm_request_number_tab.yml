@@ -43,7 +43,7 @@ labels:
 
   - id: 8
     description: 送信番号一覧
-    name: request-number_select_title
+    name: request_number_select_title
     ja: 送信番号一覧
     en:
 
@@ -219,4 +219,58 @@ labels:
     description: ステータス
     name: status_label
     ja: ステータス
+    en:
+
+  - id: 38
+    description: すべての編集内容を破棄しますか？
+    name: discard_all_confirm_message
+    ja: すべての編集内容を破棄しますか？
+    en:
+
+  - id: 39
+    description: 編集内容を破棄しますか？
+    name: discard_confirm_message
+    ja: 編集内容を破棄しますか？
+    en:
+
+  - id: 40
+    description: 上限通信量（KB）を超過しました。
+    name: limit_over_message
+    ja: 上限通信量（KB）を超過しました。
+    en:
+
+  - id: 41
+    description: 全編集破棄
+    name: discard_all_edits_btn
+    ja: 全編集破棄
+    en:
+
+  - id: 42
+    description: 全選択解除
+    name: deselect_all_btn
+    ja: 全選択解除
+    en:
+
+  - id: 43
+    description: カスタマイズ定義
+    name: request_number_customize_definitions_header_label
+    ja: カスタマイズ定義
+    en:
+
+  - id: 44
+    description: 送信件数
+    name: request_number_send_count_header_label
+    ja: 送信件数
+    en:
+
+  - id: 45
+    description: 編集破棄
+    name: request_number_discard_edits_header_label
+    ja: 編集破棄
+    en:
+
+  - id: 46
+    description: 送信番号
+    name: request_number_header_label
+    ja: 送信番号
     en:

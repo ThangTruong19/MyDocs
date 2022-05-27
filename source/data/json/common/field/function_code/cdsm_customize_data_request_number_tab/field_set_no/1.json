@@ -12,26 +12,5 @@
         "path": "request_number.cars.customize_usage_definitions.name",
         "control_code": "1",
         "display_code": "1"
-    },
-    {
-        "display_sequence_no": "3",
-        "name": "カスタマイズ定義",
-        "path": "request_number.cars.customize_usage_definitions.customize_definition_name",
-        "control_code": "1",
-        "display_code": "1"
-    },
-    {
-        "display_sequence_no": "4",
-        "name": "送信件数",
-        "path": "request_number.cars.customize_usage_definitions.customize_definitions.name",
-        "control_code": "1",
-        "display_code": "1"
-    },
-    {
-        "display_sequence_no": "5",
-        "name": "編集破棄",
-        "path": "request_number.cars.customize_usage_definitions.customize_definitions.undo",
-        "control_code": "1",
-        "display_code": "1"
     }
 ]

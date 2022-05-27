@@ -1,15 +1,141 @@
 <div id="cd-request-number-tab" *ngIf="labels && resource">
-    <div style="display: flex">
-        <div class="col-6 no-pad" style="display: flex">
-            <div class="col-6">
-                <label>{{resource.send_number_list_request_definition_id_kind.name}}</label>
+    <div class="row">
+        <div class="col-12 row">
+            <div class="col-4">
+                <label style="display:inline-block; width: 35%">上記通信量(KB)</label>
+
+                <div style="display:inline-block; width: 65%">
+                    <app-common-text
+                        [itemName]="'car_data_amount_upper_limit'"
+                        [itemParams]="params"
+                        [showLabel]="false"
+                        [itemResource]="resource">
+                    </app-common-text>
+                </div>
+            </div>
+            <div class="col-8" style="line-height: 40px;">
                 <button type="button" class="btn btn-primary btn-send" (click)="sendData()">通信量確認</button>
             </div>
         </div>
-        <!-- TODO: PLACEHOLDER CONTENT-->
-        <div class="row">
-            <button class="btn btn-primary btn-send" (click)="trasmissionNumbers()">送信番号一覧</button>
+        <div class="col-12">
+            <div class="app-table-options" [hidden]="count <= 0">
+                <app-pagination
+                    [count]="count"
+                    [params]="pageParams"
+                    [labels]="labels"
+                    [element]="pageCountEl"
+                    (changeState)="onPaginationChange()"
+                >
+                </app-pagination>
+            </div>
+            <div class="app-table-wrapper">
+                <app-common-table
+                    [lists]="lists"
+                    [thList]="thList"
+                    [pageParams]="pageParams"
+                    [isFetching]="isFetching"
+                    [sortableThList]="sortableThList"
+                    [(sortingParams)]="sortingParams"
+                    [labels]="labels"
+                    [customTableThContent]="customTableThContent"
+                    [customTableRowContent]="customTableRowContent">
+
+                    <ng-template #customTableThContent>
+                        <ng-container
+                            *ngFor="let title of thList"
+                        >
+                            <th
+                                *ngIf="title.displayable"
+                                class="th-{{
+                                    title.shortName
+                                }} app-index-th"
+                                [ngClass]="{
+                                    'disable-sort': !title.sortable
+                                }"
+                                appSortingLabel
+                                [(sortingParams)]="sortingParams"
+                                [labelName]="title.name"
+                                [sortableThList]="sortableThList"
+                                (sort)="onChangeSort($event)"
+                                style="width: 30%;"
+                            >
+                                {{ title.label }}
+                            </th>
+                        </ng-container>
+                        <th style="width: 30%;">
+                            {{ labels.request_number_customize_definitions_header_label }}
+                        </th>
+                        <th style="width: 10%;">
+                            {{ labels.request_number_send_count_header_label }}
+                        </th>
+                        <th style="width: 10%;">
+                            {{ labels.request_number_discard_edits_header_label }}
+                        </th>
+                    </ng-template>
+
+                    <ng-template #customTableRowContent let-data="data" let-title="title">
+                        <ng-container *ngFor="let title of thList">
+                            <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
+                                <!-- 車両情報 -->
+                                <td *ngIf="title.name == 'request_number.cars.car_identification.model_type_rev_serial'"
+                                    class="td-{{
+                                        title.shortName
+                                    }} app-index-td d-flex align-items-center"
+                                    style="width: 30%;"
+                                >
+                                    <span>{{ data[title.name] }}</span>
+                                </td>
+                                <!-- カスタマイズ用途定義 -->
+                                <td *ngIf="title.name == 'request_number.cars.customize_usage_definitions.name'"
+                                    class="td-{{
+                                        title.shortName
+                                    }} app-index-td d-flex align-items-center"
+                                    style="width: 30%; padding: 0!important;"
+                                >
+                                    <div *ngIf="data[title.name].length > 0" style="width: 100%;">
+                                        <span *ngFor="let child of data[title.name]; let idx = index"
+                                            style="padding: 2px 6px;"
+                                            [ngClass]="idx > 0 ? 'border':''">
+                                            <span class="link"
+                                                (click)="handleCustomizeUsageDefinitionsClick(data, child)">{{ child.name }}</span>
+                                        </span>
+                                    </div>
+                                </td>
+                            </ng-container>
+                        </ng-container>
+                        <!-- カスタマイズ定義 -->
+                        <td
+                            class="app-index-td d-flex align-items-center"
+                            style="width: 30%;"
+                        >
+                            <span>{{ data['request_number.cars.customize_usage_definitions.customize_definition_name'] }}</span>
+                        </td>
+                        <!-- 送信件数 -->
+                        <td
+                            class="app-index-td d-flex text-center"
+                            style="width: 10%;"
+                        >
+                            <span class="link"
+                                (click)="handleSendClick(data)">9999</span>
+                        </td>
+                        <!-- 編集破棄 -->
+                        <td
+                            class="app-index-td d-flex text-center"
+                            style="width: 10%;"
+                        >
+                            <span>
+                                <i class="app-icon app-icon-discard"></i>
+                            </span>
+                        </td>
+
+                    </ng-template>
+                </app-common-table>
+            </div>
         </div>
+    </div>
+    <!-- TODO: PLACEHOLDER CONTENT-->
+    <div class="row">
+        <button class="btn btn-primary btn-send" (click)="trasmissionNumbers()">送信番号一覧</button>
     </div>
 </div>
 
@@ -17,14 +143,12 @@
     <div class="model-header">
         <p class="model-title">{{ labels.expected_traffic_confirm_message }}</p>
     </div>
-    <app-cd-expected-traffic-confirm
-        [thList]="thListRequestNumber"
-        [data]="data"
-        [labels]="labels"
-    ></app-cd-expected-traffic-confirm>
+    <app-cd-expected-traffic-confirm [thList]="thListRequestNumber" [data]="data" [labels]="labels">
+    </app-cd-expected-traffic-confirm>
 </ng-template>
 
 <ng-template #cdRequestNumberListModalContent>
     <app-cd-request-number-list
+        [resources]="resources"
     ></app-cd-request-number-list>
 </ng-template>

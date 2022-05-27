@@ -143,6 +143,7 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
         this.sortableThList = this.sortableThLists(this.thListModal);
         this._reflectXFields(fields);
         console.log("cd-request-period-tab:thListModal", this.thListModal);
+        console.log("cd-request-period-tab:lists", this.lists);
     }
 
     placeholder: string = '';

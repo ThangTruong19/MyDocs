@@ -2,10 +2,10 @@ var _ = require('lodash');
 
 module.exports = function() {
   var from = 1;
-  var count = 1;
+  var count = 3;
   var sort = 'customize_definition.customize_definition_id';
   var TOTAL = 3;
-  var loopEnd = 3;
+  var loopEnd = 100;
   var mock = {
     result_header: {
       'X-From': from,

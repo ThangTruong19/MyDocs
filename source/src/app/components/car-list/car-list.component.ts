@@ -1,14 +1,12 @@
 import * as _ from 'lodash';
-import { Component, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, TemplateRef, Input } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { HistoryMgtListIndexParams, HistoryMgtListFileCreateParams } from 'app/types/history-mgt-list';
-import { DatePickerParams } from 'app/types/calendar';
-import { Fields, Labels } from 'app/types/common';
+import { RequestHeaderParams } from 'app/types/request'
+import { Fields } from 'app/types/common';
 
 import { ProcessingType } from 'app/constants/download';
-import { DateFormat } from 'app/constants/date-format';
 import { FunctionCodeConst } from 'app/constants/api/function-code-const';
 
 import { AbstractIndexComponent } from 'app/components/shared/abstract-component/abstract-index.component';
@@ -19,22 +17,11 @@ import { NavigationService } from 'app/services/shared/navigation.service';
 import { AlertService } from 'app/services/shared/alert.service';
 import { ApiService } from 'app/services/api/api.service';
 import { CarListService } from 'app/services/car-list/car-list.service';
-import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { UserSettingService } from 'app/services/api/user-setting.service';
 
 import { MimeType } from 'app/constants/mime-types';
-import { OperatorInitSearchParams } from 'app/types/car';
+import { OperatorInitSearchParams, CarMgtListIndexParams, CarMgtListFileCreateParams } from 'app/types/car';
 import { SelectTypeComponent } from 'app/components/shared/select-type/select-type.component';
-import { CsDetailService } from 'app/services/customize_setting/cs-detail.service';
-
-interface RequestHeaderParams {
-  'X-Lang'?: string;
-  'X-AppCode'?: string;
-  'X-GroupId'?: string;
-  'X-DateFormat'?: string;
-  'X-ScreenCode'?: string;
-  'X-WebApiKey'?: string;
-}
 
 @Component({
   selector: 'app-car-mgt-list',
@@ -61,12 +48,9 @@ export class CarListComponent extends AbstractIndexComponent {
     downloadFieldResources: Fields;
     fieldSelectPopoverVisible = false;
     downloadPopoverVisible = false;
-    enableDateRange: string[] = [];
-    beginningWday: number;
-    excludeSearchParams: string[] = ['date_from_formatted', 'date_to_formatted'];
-    override commaSeparated: string[] = ['serials'];
 
     checkAll: boolean = false;
+    disabled = true
 
     checkAllDisabled: boolean = true;
     isDisabled: boolean = true;
@@ -93,6 +77,20 @@ export class CarListComponent extends AbstractIndexComponent {
       car_management: {},
     };
 
+    initialLists: {
+      visibleList: any[]
+      originList: any[]
+      addList: any[]
+      editList: any[]
+      hiddenList: any[]
+    } = {
+        visibleList: [],
+        originList: [],
+        addList: [],
+        editList: [],
+        hiddenList: [],
+      }
+
     carId: string;
 
 
@@ -114,9 +112,7 @@ export class CarListComponent extends AbstractIndexComponent {
       protected api: ApiService,
       protected override modalService: ModalService,
       protected alertService: AlertService,
-      // protected datePickerService: DatePickerService,
-      protected userSettingService: UserSettingService,
-      private csDetailService: CsDetailService
+      protected userSettingService: UserSettingService
     ) {
       super(navigationService, title, router, ref, header);
       this.isCheckedItemsAllPageHold = true;
@@ -129,12 +125,24 @@ export class CarListComponent extends AbstractIndexComponent {
     async fetchList(sort_key?: string): Promise<void> {
       this.isFetching = true;
       this.requestHeaderParams['X-Sort'] = sort_key || '';
-      const params: HistoryMgtListIndexParams = {
-        customize_operation_history: _.omit(
-          this.searchParams,
-          this.excludeSearchParams
-        )
+
+      const params: CarMgtListIndexParams = {
+        cdsm_car_mgt_list: {
+          car_identification: {
+            models: this.searchParams.models,
+            type_revs: this.searchParams.type_revs,
+            serials: this.searchParams.serials
+          },
+          terminal_mode_kind: this.searchParams.terminal_mode_kind,
+          communication_channel_codes:  this.searchParams.communication_channel_codes,
+          support_distributor_ids:  this.searchParams.support_distributor_ids,
+          customer_ids:  this.searchParams.customer_ids,
+          customize_usage_definition_kind:  this.searchParams.customize_usage_definition_kind,
+          customize_usage_definition_ids:  this.searchParams.customize_usage_definition_ids,
+          setting_change_status:  this.searchParams.setting_change_status
+        }
       };
+
       const res = await this.carListService.fetchIndexList(
         params,
         this.requestHeaderParams
@@ -200,7 +208,7 @@ export class CarListComponent extends AbstractIndexComponent {
       this.downloadFieldResources = res.downloadFieldResources;
 
       // 端末モード区分の初期値を次世代に設定
-      _.set(this.params, 'terminalModeType', '0');
+      _.set(this.params, 'terminal_mode_kind', '0');
     }
 
     /**
@@ -220,8 +228,21 @@ export class CarListComponent extends AbstractIndexComponent {
      * @param accept ダウンロード形式
      */
     protected async _downloadTemplate(fields: any, accept: any): Promise<void> {
-      const params: HistoryMgtListFileCreateParams = {
-        operation_history: _.omit(this.searchParams, this.excludeSearchParams),
+      const params: CarMgtListFileCreateParams = {
+        car_list: {
+          car_identification: {
+            models: this.searchParams.models,
+            type_revs: this.searchParams.type_revs,
+            serials: this.searchParams.serials
+          },
+          terminal_mode_kind: this.searchParams.terminal_mode_kind,
+          communication_channel_codes:  this.searchParams.communication_channel_codes,
+          support_distributor_ids:  this.searchParams.support_distributor_ids,
+          customer_ids:  this.searchParams.customer_ids,
+          customize_usage_definition_kind:  this.searchParams.customize_usage_definition_kind,
+          customize_usage_definition_ids:  this.searchParams.customize_usage_definition_ids,
+          setting_change_status:  this.searchParams.setting_change_status
+        },
         file_create_condition: {
           file_content_type: accept,
           processing_type: ProcessingType.sync,
@@ -276,17 +297,6 @@ export class CarListComponent extends AbstractIndexComponent {
           }
         }
       )
-    }
-
-    /**
-      * 選択チェックボックス全部チェック付ける
-      * @param value 値
-      */
-    toggleCheckAll() {alert('yo');
-      // this.checkAll = !this.checkAll;
-      // for (let i = 0; i <= this.selectedList.length; i++) {
-      //   this.checkedItems[i] = this.checkAll;
-      // }
     }
 
     /**
@@ -350,7 +360,7 @@ export class CarListComponent extends AbstractIndexComponent {
           });
 
           // 端末モード区分の初期値を次世代に設定
-          _.set(this.params, 'terminalModeType', '0');
+          _.set(this.params, 'terminal_mode_kind', '0');
         },
       });
     }
@@ -377,11 +387,26 @@ export class CarListComponent extends AbstractIndexComponent {
                 }
               ]
             }
-            // this.csDetailService.postCarsRequestSetsCustomizeUsageDefinitionsM2s(params, requestHeaderParams)
-            //   .then(res => {
-            //     // TODO:
-            //     console.log("postCarsRequestSetsCustomizeUsageDefinitionsM2s", res);
-            //   })
+            this.carListService.postCarsRequestSetsCustomizeUsageDefinitionsM2s(params, requestHeaderParams)
+            .then(res => {
+              // リスト設定
+              this.lists = _.cloneDeep(this.initialLists)
+              this.pageParams.pageAdditionalCount = 0
+              this.pageParams.pageNo = 1
+              this.pageParams.dispPageNo = 1
+              this._reflectPageParams()
+              this.fetchList(this.sortingParams['sort'])
+              // チェックボックス設定
+              this.checkedItems = {}
+              this.checkAll = false
+              // ボタン表示設定
+              this.disabled = !Object.values(this.checkedItems).some(item => item)
+              // メッセージ出力
+              this.alertService.show(this.labels.finish_message, false, 'success')
+              console.log(`res（設定取得）`, res)
+            }).catch((error) => {
+              this._setError(error)
+            })
           },
         },
         {
@@ -416,5 +441,4 @@ export class CarListComponent extends AbstractIndexComponent {
     public isNextGen(data: any): boolean {
       return data['cars.terminal_mode.kind'] === '0';
     }
-
 }

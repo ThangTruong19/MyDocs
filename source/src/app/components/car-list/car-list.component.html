@@ -17,7 +17,7 @@
                 <div class="row">
                   <app-common-text
                     class="col-sm-3"
-                    [itemName]="'model'"
+                    [itemName]="'models'"
                     [itemParams]="params"
                     [itemResource]="resource.car_search"
                     [maxlength]="20"
@@ -26,7 +26,7 @@
 
                   <app-common-text
                     class="col-sm-3"
-                    [itemName]="'type_rev'"
+                    [itemName]="'type_revs'"
                     [itemParams]="params"
                     [itemResource]="resource.car_search"
                     [maxlength]="15"
@@ -44,8 +44,8 @@
 
                   <app-selected
                     class="col-sm-3"
-                    *ngIf="resource.car_search.terminalModeType"
-                    [itemName]="'terminalModeType'"
+                    *ngIf="resource.car_search.terminal_mode_kind"
+                    [itemName]="'terminal_mode_kind'"
                     [itemParams]="params"
                     [itemResource]="resource.car_search"
                     [emitInitialRefresh]="false"
@@ -54,8 +54,8 @@
 
                   <app-selected
                     class="col-sm-3"
-                    *ngIf="resource.car_search.transmission_type"
-                    [itemName]="'transmission_type'"
+                    *ngIf="resource.car_search.communication_channel_codes"
+                    [itemName]="'communication_channel_codes'"
                     [itemParams]="params"
                     [itemResource]="resource.car_search"
                     [emitInitialRefresh]="false"
@@ -64,8 +64,8 @@
 
                   <app-selected
                     class="col-sm-3"
-                    *ngIf="resource.car_search.representativeDb"
-                    [itemName]="'representativeDb'"
+                    *ngIf="resource.car_search.support_distributor_ids"
+                    [itemName]="'support_distributor_ids'"
                     [itemParams]="params"
                     [itemResource]="resource.car_search"
                   >
@@ -73,8 +73,8 @@
 
                   <app-selected
                     class="col-sm-3"
-                    *ngIf="resource.car_search.client"
-                    [itemName]="'client'"
+                    *ngIf="resource.car_search.customer_ids"
+                    [itemName]="'customer_ids'"
                     [itemParams]="params"
                     [itemResource]="resource.car_search"
                   >
@@ -82,20 +82,20 @@
 
                   <app-selected
                     class="col-sm-3"
-                    *ngIf="resource.car_search.changeStatus"
-                    [itemName]="'changeStatus'"
+                    *ngIf="resource.car_search.setting_change_status"
+                    [itemName]="'setting_change_status'"
                     [itemParams]="params"
                     [itemResource]="resource.car_search"
                   >
                   </app-selected>
 
                   <app-select-type
-                    *ngIf="resource.car_search.customize_definition_id"
+                    *ngIf="resource.car_search.customize_usage_definition_kind"
                     #subGroupSelect
                     class="col-sm-6"
-                    name="user_permission_sub_group_ids"
+                    name="customize_usage_definition_kind"
                     [labels]="labels"
-                    [targets]="resource.car_search.customize_definition_id"
+                    [targets]="resource.car_search.customize_usage_definition_kind"
                   >
                   </app-select-type>
 
@@ -215,22 +215,6 @@
           <span>{{ th.label || labels[th.shortName] }}</span>
         </th>
       </ng-container>
-
-      <ng-template #checkboxContent>
-        <th class="app-index-th fixed th-check">
-          <input
-              type="checkbox"
-              class="app-input-checkbox"
-              id="check-icon-all"
-              (click)="toggleCheckAll()"
-              [checked]="checkAll"
-          />
-          <label class="app-input-checkbox__label" for="check-icon-all">
-              <i class="fa"></i>
-          </label>
-        </th>
-      </ng-template>
-
     </ng-container>
   </ng-template>
 

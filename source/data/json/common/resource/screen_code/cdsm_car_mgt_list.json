@@ -1,6 +1,6 @@
 [
   {
-    "path": "car_search.model",
+    "path": "car_search.models",
     "name": "機種",
     "help": "機種のヘルプ文言",
     "type": -10,
@@ -9,7 +9,7 @@
     "items": []
   },
   {
-    "path": "car_search.type_rev",
+    "path": "car_search.type_revs",
     "name": "型式",
     "help": "型式のヘルプ文言",
     "type": -10,
@@ -27,7 +27,7 @@
     "items": []
   },
   {
-    "path": "car_search.terminalModeType",
+    "path": "car_search.terminal_mode_kind",
     "name": "端末モード区分",
     "help": "端末モード区分のヘルプ文言",
     "type": 10,
@@ -57,7 +57,7 @@
     ]
   },
   {
-    "path": "car_search.transmission_type",
+    "path": "car_search.communication_channel_codes",
     "name": "通信機種",
     "help": "通信機種のヘルプ文言",
     "type": 10,
@@ -92,7 +92,7 @@
     ]
   },
   {
-    "path": "car_search.representativeDb",
+    "path": "car_search.support_distributor_ids",
     "name": "担当DB",
     "help": "担当DBのヘルプ文言",
     "type": 10,
@@ -117,7 +117,7 @@
     ]
   },
   {
-    "path": "car_search.client",
+    "path": "car_search.customer_ids",
     "name": "顧客",
     "help": "顧客のヘルプ文言",
     "type": 10,
@@ -147,7 +147,7 @@
     ]
   },
   {
-    "path": "car_search.customize_definition_id",
+    "path": "car_search.customize_usage_definition_kind",
     "name": "カスタマイズ用途定義",
     "help": "カスタマイズ定義のヘルプ文言",
     "type": 10,
@@ -177,7 +177,7 @@
     ]
   },
   {
-    "path": "car_search.changeStatus",
+    "path": "car_search.setting_change_status",
     "name": "変更状態",
     "help": "変更状態のヘルプ文言",
     "type": 10,
@@ -210,24 +210,6 @@
     "type": -10,
     "placeholder_text": "",
     "memo": "",
-    "items": []
-  },
-  {
-    "path": "car_search.date_from",
-    "name": "履歴日付",
-    "help": "履歴日付のヘルプ文言",
-    "type": -42,
-    "memo": "",
-    "placeholder_text": "",
-    "items": []
-  },
-  {
-    "path": "car_search.date_to",
-    "name": "履歴日付",
-    "help": "履歴日付のヘルプ文言",
-    "type": -41,
-    "memo": "",
-    "placeholder_text": "",
     "items": []
   },
   {

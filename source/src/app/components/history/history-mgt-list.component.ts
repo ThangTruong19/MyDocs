@@ -14,13 +14,11 @@ import { FunctionCodeConst } from 'app/constants/api/function-code-const';
 import { AbstractIndexComponent } from 'app/components/shared/abstract-component/abstract-index.component';
 import { SelectedComponent } from 'app/components/shared/selected/selected.component';
 import { CommonHeaderService } from 'app/services/shared/common-header.service';
-import { ModalService } from 'app/services/shared/modal.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
-import { AlertService } from 'app/services/shared/alert.service';
 import { ApiService } from 'app/services/api/api.service';
-import { HistoryMgtListService } from 'app/services/history/history-mgt-list.service';
 import { DatePickerService } from 'app/services/shared/date-picker.service';
 import { UserSettingService } from 'app/services/api/user-setting.service';
+import { HistoryMgtListService } from 'app/services/history/history-mgt-list.service';
 
 @Component({
   selector: 'app-history-mgt-list',
@@ -45,7 +43,8 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
   beginningWday: number;
   excludeSearchParams: string[] = ['date_from_formatted', 'date_to_formatted'];
   datePickerLabels: Labels;
-  override commaSeparated: string[] = ['serials'];
+  // TODO:
+  override commaSeparated: string[] = ['model', 'type_rev', 'serials'];
 
   constructor(
     navigationService: NavigationService,
@@ -55,8 +54,6 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
     header: CommonHeaderService,
     protected historyMgtListService: HistoryMgtListService,
     protected api: ApiService,
-    protected override modalService: ModalService,
-    protected alertService: AlertService,
     protected datePickerService: DatePickerService,
     protected userSettingService: UserSettingService
   ) {
@@ -71,7 +68,8 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
     this.isFetching = true;
     this.requestHeaderParams['X-Sort'] = sort_key || '';
     const params: HistoryMgtListIndexParams = {
-      customize_operation_history: _.omit(
+      // TODO:
+      operation_history: _.omit(
         this.searchParams,
         this.excludeSearchParams
       )
@@ -100,9 +98,8 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
 
   /**
    * 表示項目設定ボタン押下時の処理
-   * @param event イベント
    */
-  onClickFieldSelect(event: any): void {
+  onClickFieldSelect(): void {
     this.fieldSelectPopoverVisible = !this.fieldSelectPopoverVisible;
   }
 
@@ -112,12 +109,6 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
   onClickDownloadAll(): void {
     this.downloadPopoverVisible = !this.downloadPopoverVisible;
   }
-
-  /**
-   * 対象画面のプルダウン変更時の処理
-   * @param value 対象画面
-   */
-  handleAppCodeChange(value: any) { }
 
   /**
    * 大分類変更時の処理
@@ -195,8 +186,6 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
     this.labels = res.label;
     this.resource = res.resource;
     this._setTitle();
-    this.updatable = res.updatable;
-    this.deletable = res.deletable;
     this._updateFields(res.fields);
     this.fieldResources = res.fieldResources;
     this.downloadFields = res.downloadFields;
@@ -222,7 +211,26 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
    */
   protected async _downloadTemplate(fields: any, accept: any): Promise<void> {
     const params: HistoryMgtListFileCreateParams = {
-      operation_history: _.omit(this.searchParams, this.excludeSearchParams),
+      // TODO:
+      // operation_history: _.omit(this.searchParams, this.excludeSearchParams),
+      operation_history:
+      {
+        date_from: this.searchParams.date_from,
+        date_to: this.searchParams.date_to,
+        category_code: this.searchParams.category_code,
+        code: this.searchParams.code,
+        group_id: this.searchParams.group_id,
+        model: this.searchParams.model,
+        type_rev: this.searchParams.type_rev,
+        serials: this.searchParams.serials,
+        division_code: this.searchParams.division_code,
+        // TODO:
+        customize_usage_definition_category_id: this.searchParams.customize_usage_definition_id,
+        customize_definition_id: this.searchParams.customize_definition_id,
+        search_keyword: this.searchParams.search_keyword
+        // TODO:
+        // setting_change_status: this.searchParams
+      },
       file_create_condition: {
         file_content_type: accept,
         processing_type: ProcessingType.sync,
@@ -237,18 +245,6 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
       await this.api.downloadFile(res.result_data.file_id, accept);
     } finally {
       this._hideLoadingSpinner();
-    }
-  }
-
-  /**
-   * 初期検索前の処理
-   * 依存するリソースを更新する
-   */
-  protected override async _beforeInitFetchList(): Promise<any> {
-    if (this.exists('operation_history.category_code')) {
-      await this.onCategoryCodeChange(
-        _.get(this.resource, 'operation_history.category_code.values[0].value')
-      );
     }
   }
 
@@ -273,16 +269,12 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
     this.enableDateRange = _window.settings.datePickerRange.other;
     this._dateFormat = datePickerConfig.date_format_code;
     this.timeZone = datePickerConfig.time_difference;
-
     this.datePickerParams = {
       timeZone: this.timeZone,
       dateFormat: this._dateFormat,
     };
-
     this.datePickerService.initialize(this.datePickerParams);
-
     const today = this.datePickerService.toMoment();
-
     _.set(
       this.params,
       'date_from',

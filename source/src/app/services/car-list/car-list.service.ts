@@ -2,12 +2,23 @@ import { Injectable } from '@angular/core';
 
 import { RequestHeaderParams } from 'app/types/request';
 import { Api, Resources } from 'app/types/common';
-import { HistoryMgtListIndexParams, HistoryMgtListFileCreateParams } from 'app/types/history-mgt-list';
+import { HistoryMgtListFileCreateParams } from 'app/types/history-mgt-list';
 import { Apis } from 'app/constants/apis';
 import { ResourceService } from 'app/services/api/resource.service';
 import { ApiService } from 'app/services/api/api.service';
 import { ScreenCodeConst } from 'app/constants/api/screen-code-const';
 import { FunctionCodeConst } from 'app/constants/api/function-code-const';
+import { CarMgtListIndexParams } from 'app/types/car';
+
+// 車両カスタマイズ用途定義一括取得要求API
+interface RequestBodyParamsKOM00110120 {
+  cars?: RequestBodyParamsKOM00110120Car[],
+  request_route_kind?: string
+}
+
+interface RequestBodyParamsKOM00110120Car {
+  car_id?: string
+}
 
 @Injectable()
 export class CarListService {
@@ -48,7 +59,7 @@ export class CarListService {
   * @param requestHeaderParams ヘッダ情報
   */
   fetchIndexList(
-    params: HistoryMgtListIndexParams,
+    params: CarMgtListIndexParams,
     requestHeaderParams: RequestHeaderParams
   ): Promise<Api> {
     return new Promise((resolve) => {
@@ -220,4 +231,32 @@ export class CarListService {
    initCarOperatorSearchCondition(): Promise<any> {
     return this.api.initSearchCondition(ScreenCodeConst.operatorInitialize);
   }
+
+  /**
+   * 車両カスタマイズ用途定義一括取得要求API呼び出し
+   * @param params パラメータ
+   * @param requestHeaderParams ヘッダ情報
+   */
+     postCarsRequestSetsCustomizeUsageDefinitionsM2s(
+      params: RequestBodyParamsKOM00110120,
+      requestHeaderParams: RequestHeaderParams
+    ): Promise<Api> {
+      return new Promise((resolve, reject) => {
+        this.api.requestHandler(
+          'postCarsRequestSetsCustomizeUsageDefinitionsM2s',
+          this.api.post(Apis.postCarsRequestSetsCustomizeUsageDefinitionsM2s, params, {
+            cache: false,
+            request_header: requestHeaderParams,
+          })
+            .subscribe(
+              {
+                next: (res: Api) => {
+                  resolve(res)
+                },
+                error: (error) => reject(error)
+              }
+            )
+        )
+      })
+    }
 }

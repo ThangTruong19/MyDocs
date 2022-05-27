@@ -205,7 +205,7 @@ export interface CarTemplateCreateParams {
     file_content_type: string;
 }
 
-export interface CarMgtListFileCreateParams {
+export interface CustomizeSettingUploadFileCreateParams {
     operation_history: {
         date_from?: string;
         date_to?: string;
@@ -220,6 +220,32 @@ export interface CarMgtListFileCreateParams {
         search_keyword?: string;
         customize_definition_id?: string;
         customize_usage_definition_id?: string;
+    };
+    file_create_condition: {
+        file_label?: string;
+        file_content_type: string;
+        processing_type: string;
+        file_request_label?: string;
+    };
+}
+
+export interface CarMgtListFileCreateParams {
+    car_list: {
+        model?: string;
+        type_rev?: string;
+        serials?: string;
+        car_identification: {
+            models?: string,
+            type_revs?: string,
+            serials?: string
+        };
+        terminal_mode_kind?: string;
+        communication_channel_codes?: string;
+        support_distributor_ids?: string;
+        customer_ids?: string;
+        customize_usage_definition_kind?: string;
+        customize_usage_definition_ids?: string;
+        setting_change_status?: string;
     };
     file_create_condition: {
         file_label?: string;
@@ -302,4 +328,24 @@ export interface SupportDistributorChangeConsignorParams {
         change_support_distributor_id: string;
         car_id: string;
     }[];
+}
+
+export interface CarMgtListIndexParams {
+    cdsm_car_mgt_list: {
+        model?: string;
+        type_rev?: string;
+        serials?: string;
+        car_identification: {
+            models?: string,
+            type_revs?: string,
+            serials?: string
+        };
+        terminal_mode_kind?: string;
+        communication_channel_codes?: string;
+        support_distributor_ids?: string;
+        customer_ids?: string;
+        customize_usage_definition_kind?: string;
+        customize_usage_definition_ids?: string;
+        setting_change_status?: string;
+    };
 }

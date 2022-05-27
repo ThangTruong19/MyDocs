@@ -20,7 +20,7 @@ import { UserSettingService } from 'app/services/api/user-setting.service';
 
 import { MimeType } from 'app/constants/mime-types';
 import { CustomizeSettingUploadService } from 'app/services/customize-setting-upload/customize-setting-upload.service';
-import { CarTemplateCreateParams, CarMgtListFileCreateParams } from 'app/types/car';
+import { CarTemplateCreateParams, CustomizeSettingUploadFileCreateParams } from 'app/types/car';
 import { Apis } from 'app/constants/apis';
 
 import { ProcessingType } from 'app/constants/download';
@@ -212,7 +212,7 @@ export class CsUploadComponent extends AbstractIndexComponent {
      * @param accept ダウンロード形式
      */
      protected async _downloadTemplate(fields: any, accept: any): Promise<void> {
-      const params: CarMgtListFileCreateParams = {
+      const params: CustomizeSettingUploadFileCreateParams = {
         operation_history: _.omit(this.searchParams, this.excludeSearchParams),
         file_create_condition: {
           file_content_type: accept,
