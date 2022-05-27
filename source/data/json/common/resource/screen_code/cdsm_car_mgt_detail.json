@@ -87,12 +87,12 @@
       "items": [
         {
           "key": "有効",
-          "value": "enabled",
+          "value": "1",
           "kind": "D"
         },
         {
           "key": "無効",
-          "value": "disabled",
+          "value": "0",
           "kind": "D"
         }
       ]
@@ -229,12 +229,12 @@
       "items": [
         {
           "key": "有効",
-          "value": "enabled",
+          "value": "1",
           "kind": "D"
         },
         {
           "key": "無効",
-          "value": "disabled",
+          "value": "0",
           "kind": "D"
         }
       ]

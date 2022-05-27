@@ -343,8 +343,21 @@ export class AppCommonTableComponent implements OnInit, OnChanges, OnDestroy {
 
     }
 
+    /**
+     * 対象行に設定するCSSを取得する。
+     * @returns CSSのclass名
+     */
     public getSimpleTableRowCss(): string {
         return this.commonTableService.getSimpleTableRowCss(this.isMergeRows);
+    }
+
+    /**
+     * 対象行に設定するCSSを取得する。
+     * @param data データのオブジェクト
+     * @returns CSSのclass名
+     */
+    public getTableRowCss(data: any, appendCssName?: string): string {
+        return this.commonTableService.getTableRowCss(data, appendCssName);
     }
 
     /**

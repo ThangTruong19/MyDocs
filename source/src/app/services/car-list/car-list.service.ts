@@ -98,27 +98,27 @@ export class CarListService {
    * 大分類に依存する小分類のリソースを取得する
    * @param categoryCode 大分類ID
    */
-  // fetchBelongingCategoryCode(categoryCode: string): Promise<Api> {
-  //   const params = [
-  //     {
-  //       resource_path: 'operation_history.code',
-  //       condition_sets: [
-  //         {
-  //           condition: 'category_code',
-  //           values: [categoryCode],
-  //         },
-  //       ],
-  //     },
-  //   ];alert('here???');
-  //   return new Promise((resolve, reject) => {
-  //     this.api.requestHandler(
-  //       'fetchBelongingCategoryCode',
-  //       this.api
-  //         .fetchResource(ScreenCodeConst.CAR_MGT_LIST_CODE, params)
-  //         .subscribe((res) => resolve(res))
-  //     );
-  //   });
-  // }
+  fetchBelongingCategoryCode(categoryCode: string): Promise<Api> {
+    const params = [
+      {
+        resource_path: 'car_search.terminalModeType',
+        condition_sets: [
+          {
+            condition: 'category_code',
+            values: [categoryCode],
+          },
+        ],
+      },
+    ];
+    return new Promise((resolve, reject) => {
+      this.api.requestHandler(
+        'fetchBelongingCategoryCode',
+        this.api
+          .fetchResource(ScreenCodeConst.CAR_MGT_LIST_CODE, params)
+          .subscribe((res) => resolve(res))
+      );
+    });
+  }
 
   /**
  * カスタマイズ用途定義に依存するカスタマイズ定義のリソースを取得する

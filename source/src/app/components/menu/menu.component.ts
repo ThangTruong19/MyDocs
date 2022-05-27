@@ -7,12 +7,18 @@ import { NavigationService } from 'app/services/shared/navigation.service';
 import { AbstractBaseComponent } from 'app/components/shared/abstract-component/abstract-base.component';
 import { InitializeApiResult } from 'app/types/common';
 
+/**
+ * 管理メニュー
+ */
 @Component({
     selector: 'app-menu',
     templateUrl: './menu.component.html'
 })
 export class MenuComponent extends AbstractBaseComponent implements OnInit {
 
+    /**
+     * コンストラクタ
+     */
     constructor(
         protected override navigationService: NavigationService,
         protected override title: Title,
@@ -22,6 +28,9 @@ export class MenuComponent extends AbstractBaseComponent implements OnInit {
         super(navigationService, title);
     }
 
+    /**
+     * コンポーネント初期化時の処理を行う。
+     */
     ngOnInit(): void {
         this.api.currentScreenCode = ScreenCodeConst.MENU_CODE;
         this.api
@@ -35,6 +44,9 @@ export class MenuComponent extends AbstractBaseComponent implements OnInit {
             });
     }
 
+    /**
+     * メニュー位置入れ替後の処理を行う。
+     */
     public refresh(): void {
         this.navigationService.refresh();
     }

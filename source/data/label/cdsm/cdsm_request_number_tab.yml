@@ -1,0 +1,222 @@
+labels:
+  - id: 1
+    description: 閉じる
+    name: accordion_close
+    ja: 閉じる
+    en:
+
+  - id: 2
+    description: 開く
+    name: accordion_open
+    ja: 開く
+    en:
+
+  - id: 3
+    description: カスタマイズデータ管理
+    name: page_title
+    ja: カスタマイズデータ管理
+    en:
+
+  - id: 4
+    description: カスタマイズデータ管理
+    name: title
+    ja: カスタマイズデータ管理
+    en:
+
+  - id: 5
+    description: 送信要求（送信番号単位）
+    name: request_number_tab_title
+    ja: 送信要求（送信番号単位）
+    en:
+
+  - id: 6
+    description: 送信要求（期間単位）
+    name: request_period_tab_title
+    ja: 送信要求（期間単位）
+    en:
+
+  - id: 7
+    description: 送信番号一覧要求
+    name: number_list_request_tab_title
+    ja: 送信番号一覧要求
+    en:
+
+  - id: 8
+    description: 送信番号一覧
+    name: request-number_select_title
+    ja: 送信番号一覧
+    en:
+
+  - id: 9
+    description: 想定通信量確認
+    name: expected_traffic_confirm_title
+    ja: 想定通信量確認
+    en:
+
+  - id: 10
+    description: 確認
+    name: confirm_title
+    ja: 確認
+    en:
+
+  - id: 11
+    description: 該当するデータが見つかりませんでした。
+    name: empty_list_message
+    ja: 該当するデータが見つかりませんでした。
+    en:
+
+  - id: 12
+    description: 表示件数：
+    name: number_of_display
+    ja: 表示件数：
+    en:
+
+  - id: 13
+    description: ページ
+    name: page
+    ja: ページ
+    en:
+
+  - id: 14
+    description: ${total}件中${first}件〜${end}件を表示
+    name: page_count
+    ja: ${total}件中${first}件〜${end}件を表示
+    en: page_count
+
+  - id: 15
+    description: リストから選択
+    name: choose_from_list
+    ja: リストから選択
+    en:
+
+  - id: 16
+    description: 処理が完了しました。
+    name: delete_result_label
+    ja: 処理が完了しました。
+    en:
+
+  - id: 17
+    description: 衛星通信の車両が含まれているため、通信費が大きくなる可能性があります。
+    name: expected_traffic_confirm_message
+    ja: 衛星通信の車両が含まれているため、通信費が大きくなる可能性があります。
+    en:
+
+  - id: 18
+    description: 以下内容について、車両へカスタマタマイズデータを送信要求しますか？
+    name: customize_request_confirm_message
+    ja: 以下内容について、車両へカスタマタマイズデータを送信要求しますか？
+    en:
+
+  - id: 19
+    description: 以下内容について、車両へ現在カスタマイズを送信要求しますか？
+    name: current_request_confirm_message
+    ja: 以下内容について、車両へ現在カスタマイズを送信要求しますか？
+    en:
+
+  - id: 20
+    description: 以下内容について、車両へ送信番号を送信要求しますか？
+    name: send_number_request_confirm_message
+    ja: 以下内容について、車両へ送信番号を送信要求しますか？
+    en:
+
+  - id: 21
+    description: 結果
+    name: result
+    ja: 結果
+    en:
+
+  - id: 22
+    description: 内容
+    name: result_detail
+    ja: 内容
+    en:
+
+  - id: 23
+    description: 要求対象車両一覧
+    name: request_car_result_detail
+    ja: 要求対象車両一覧
+    en:
+
+  - id: 24
+    description: 検索条件
+    name: search_condition
+    ja: 検索条件
+    en:
+
+  - id: 25
+    description: 選択してください
+    name: prompt_to_select
+    ja: 選択してください
+    en:
+
+  - id: 26
+    description: 検索
+    name: search
+    ja: 検索
+    en:
+
+  - id: 27
+    description: 通信量確認
+    name: expected_traffic_confirm
+    ja: 通信量確認
+    en:
+
+  - id: 28
+    description: キャンセル
+    name: cancel
+    ja: キャンセル
+    en:
+
+  - id: 29
+    description: 閉じる
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 30
+    description: OK
+    name: ok_btn
+    ja: OK
+    en:
+
+  - id: 31
+    description: データ送信要求
+    name: data_send_request_btn
+    ja: データ送信要求
+    en:
+
+  - id: 32
+    description: 現在カスタマイズ送信要求
+    name: current_customize_request_btn
+    ja: 現在カスタマイズ送信要求
+    en:
+
+  - id: 33
+    description: 送信番号一覧送信要求
+    name: send_number_request_btn
+    ja: 送信番号一覧送信要求
+    en:
+
+  - id: 34
+    description: 上限通信量(KB)
+    name: _label
+    ja: 上限通信量(KB)
+    en:
+
+  - id: 35
+    description: カスタマイズ定義
+    name: customize_definitions_label
+    ja: カスタマイズ定義
+    en:
+
+  - id: 36
+    description: 送信番号
+    name: send_number_label
+    ja: 送信番号
+    en:
+
+  - id: 37
+    description: ステータス
+    name: status_label
+    ja: ステータス
+    en:

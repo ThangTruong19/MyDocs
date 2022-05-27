@@ -1,6 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { flatten } from 'lodash';
+import { Subscription } from 'rxjs';
+import { DragulaService } from 'ng2-dragula';
 import * as $ from 'jquery';
 import { Navigation } from 'app/types/navigation';
 import { NavigationService } from 'app/services/shared/navigation.service';
@@ -10,10 +12,15 @@ import { NavigationService } from 'app/services/shared/navigation.service';
     templateUrl: './sidemenu.component.html',
     styleUrls: ['./sidemenu.component.scss'],
 })
-export class SidemenuComponent {
+export class SidemenuComponent implements OnDestroy {
+
+    public readonly SIDE_MENU_ITEM = 'sideMenuItems';
+
+    @Input() public isLoading: boolean;
 
     @Output() public orderChanged: EventEmitter<any> = new EventEmitter<any>();
-    @Input() public isLoading: boolean;
+
+    public subscription: Subscription = new Subscription();
 
     public isVisible = false;
 
@@ -21,17 +28,43 @@ export class SidemenuComponent {
         return this.navigationService.navigationsSideMenu;
     }
 
+    public set navigationsSideMenu(nav: Navigation[] | null) {
+        this.navigationService.navigationsSideMenu = nav;
+    }
+
     constructor(
+        private dragulaService: DragulaService,
         private navigationService: NavigationService
     ) {
+        this.initMenuDragEvent();
     }
 
-    public toggleMenuVisible(): void {
-        this.isVisible = !this.isVisible;
+    /**
+     * コンポーネント破棄時の処理を行う。
+     */
+    ngOnDestroy(): void {
+        if (this.subscription && !this.subscription.closed) {
+            this.subscription.unsubscribe();
+        }
     }
 
-    public onDragStart(event: Event): void {
-        const targetElement: HTMLElement = <HTMLElement>event.target;
+    /**
+     * メニューのドラッグイベントの初期処理を行う。
+     */
+    private initMenuDragEvent(): void {
+        // this.subscription.add(this.dragulaService.drag(this.SIDE_MENU_ITEM)
+        //     .subscribe((value: { el: Element }) => {
+        //     this.onDragStart(value.el);
+        // }));
+        this.subscription.add(this.dragulaService.dragend(this.SIDE_MENU_ITEM)
+            .subscribe(() => {
+                this.onDragEnd();
+            })
+        );
+    }
+
+    public onDragStart(el: Element): void {
+        const targetElement: HTMLElement = <HTMLElement>el;
         const ghost: HTMLElement = <HTMLElement>targetElement.cloneNode(true);
         ghost.style.transform = 'translateX(1000px)';
         ghost.classList.add('app-sidemenu-ghost');
@@ -49,6 +82,10 @@ export class SidemenuComponent {
         const ref: Navigation[] = this.navigationService.navigationsSideMenu;
         this.navigationService.saveNavigationOrder(ref);
         this.orderChanged.emit();
+    }
+
+    public toggleMenuVisible(): void {
+        this.isVisible = !this.isVisible;
     }
 
 }

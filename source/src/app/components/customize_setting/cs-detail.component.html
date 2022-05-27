@@ -6,18 +6,13 @@
             <ng-container>
                 <div class="container">
                     <label
-                        >{{ labels.model_type_rev_serial }}
-                        {{ model }}
-                        -
-                        {{ typeRev }}
-                        -
-                        {{ serial }}
+                        >{{ labels.model_type_rev_serial + labels.vehicleInfo }}
                     </label>
                     <div class="app-control">
                         <button
                             #add="ngbTooltip"
                             type="button"
-                            class="btn btn-warning btn-circle btn-circle-sm m-1"
+                            class="btn btn-warning btn-circle m-1"
                             placement="top"
                             triggers="manual"
                             [ngbTooltip]="labels.addition"
@@ -32,7 +27,7 @@
                         <button
                             #discardAll="ngbTooltip"
                             type="button"
-                            class="btn btn-warning btn-circle btn-circle-sm m-1"
+                            class="btn btn-warning btn-circle m-1"
                             placement="top"
                             triggers="manual"
                             [ngbTooltip]="labels.discard_all_edits"
@@ -48,7 +43,7 @@
                         <button
                             #getRequest="ngbTooltip"
                             type="button"
-                            class="btn btn-warning btn-circle btn-circle-sm m-1"
+                            class="btn btn-warning btn-circle m-1"
                             placement="top"
                             triggers="manual"
                             [ngbTooltip]="labels.setting_acquisition_request"
@@ -66,7 +61,7 @@
                         <button
                             #updateRequest="ngbTooltip"
                             type="button"
-                            class="btn btn-warning btn-circle btn-circle-sm m-1"
+                            class="btn btn-warning btn-circle m-1"
                             placement="top"
                             triggers="manual"
                             [ngbTooltip]="labels.setting_update_request"
@@ -82,7 +77,7 @@
                         <button
                             #immediateUpdateRequest="ngbTooltip"
                             type="button"
-                            class="btn btn-warning btn-circle btn-circle-sm m-1"
+                            class="btn btn-warning btn-circle m-1"
                             placement="top"
                             triggers="manual"
                             [ngbTooltip]="
@@ -186,18 +181,33 @@
                             >
                                 <td
                                     class="app-index-td app-table__small app-sm-link text-center fixed"
+                                    [ngClass]="{
+                                        disable: editIconHidden(data)
+                                    }"
                                     [style]="getTblRowHeight(data)"
-                                    (click)="onClickEdit(data)"
+                                    (click)="
+                                        editIconHidden(data)
+                                            ? $event.stopPropagation()
+                                            : onClickEdit(data)
+                                    "
                                 >
                                     <span>
-                                        <i class="app-icon app-icon-edit"> </i>
+                                        <i
+                                            *ngIf="!editIconHidden(data)"
+                                            class="app-icon app-icon-edit"
+                                        >
+                                        </i>
                                     </span>
                                 </td>
                                 <td
                                     class="app-index-td app-table__small text-center fixed"
                                 >
                                     <span>
-                                        {{ data["edit_status_name"] }}
+                                        {{
+                                            data[
+                                                'customize_usage_definitions.edit_status_name'
+                                            ]
+                                        }}
                                     </span>
                                 </td>
                                 <ng-container *ngFor="let title of fixedThList">
@@ -295,14 +305,13 @@
                                                 "
                                             >
                                                 <div
+                                                    class="divider-column"
                                                     [ngClass]="{
                                                         'divider-column-border':
                                                             subIndex > 0
                                                     }"
                                                 >
-                                                    <span
-                                                        class="divider-column"
-                                                    >
+                                                    <span>
                                                         {{
                                                             rec[
                                                                 tblFunctions.getLastColumnPathName(
@@ -319,10 +328,10 @@
                                 <td
                                     class="app-index-td app-table__small app-sm-link text-center fixed"
                                     [ngClass]="{
-                                        disable: discardIconHiddenFunction(data)
+                                        disable: discardIconHidden(data)
                                     }"
                                     (click)="
-                                        discardIconHiddenFunction(data)
+                                        discardIconHidden(data)
                                             ? $event.stopPropagation()
                                             : onClickDiscard(data)
                                     "
@@ -330,9 +339,7 @@
                                 >
                                     <span>
                                         <i
-                                            *ngIf="
-                                                !discardIconHiddenFunction(data)
-                                            "
+                                            *ngIf="!discardIconHidden(data)"
                                             class="app-icon app-icon-discard"
                                         >
                                         </i>
@@ -341,19 +348,17 @@
                                 <td
                                     class="app-index-td app-table__small app-sm-link text-center fixed"
                                     [ngClass]="{
-                                        disable: retryIconHiddenFunction(data)
+                                        disable: retryIconHidden(data)
                                     }"
                                     (click)="
-                                        retryIconHiddenFunction(data)
+                                        retryIconHidden(data)
                                             ? $event.stopPropagation()
                                             : onClickRetry(data)
                                     "
                                 >
                                     <span>
                                         <i
-                                            *ngIf="
-                                                !retryIconHiddenFunction(data)
-                                            "
+                                            *ngIf="!retryIconHidden(data)"
                                             class="app-icon app-icon-update-request"
                                         >
                                         </i>
@@ -420,6 +425,7 @@
             [resources]="resources"
             [initThList1]="this.csExpectedTrafficConfirmThList1"
             [initThList2]="this.csExpectedTrafficConfirmThList2"
+            [inputTableData]="tableData"
         >
         </app-cs-expected-traffic-confirm>
     </ng-template>

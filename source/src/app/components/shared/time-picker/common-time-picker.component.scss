@@ -8,10 +8,10 @@
     }
 }
 
-.TimePickerFlyout {
+.time-picker-flyout {
     position: relative;
 }
-.TimePickerFlyout_Body {
+.time-picker-flyout-body {
     position: fixed;
     top: 0;
     right: 0;
@@ -22,7 +22,7 @@
     align-items: center;
     justify-content: center;
 }
-.TimePickerFlyout_Backdrop {
+.time-picker-flyout-backdrop {
     position: fixed;
     top: 0;
     right: 0;
@@ -33,57 +33,25 @@
     background-color: rgba(0, 0, 0, 0.32);
 }
 
-.Timer {
+.time-picker-flyout-timer {
     box-sizing: border-box;
     position: relative;
     z-index: 2;
-    width: 300px;
     padding: 5px 10px 0;
     font-size: 18px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 12px 36px 16px rgba(0, 0, 0, 0.24);
     color: #333;
-    &_Head {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 50px;
-        margin-bottom: 15px;
-        &Button {
-            flex: 0 0 70px;
-            appearance: none;
-            width: 70px;
-            height: 40px;
-            padding: 0;
-            margin: 0;
-            border: 0;
-            background-color: transparent;
-            cursor: pointer;
-            font-size: 30px;
-            &:hover {
-                background-color: #b1dcfb;
-            }
-            &[disabled] {
-                &, &:hover {
-                  color: #f5f5f5;
-                  cursor: default;
-                }
-            }
-        }
-        &Title {
-            font-weight: bold;
-        }
+    &-body {
     }
-    &_Body {
-    }
-    &_Foot {
+    &-foot {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 50px;
     }
-    &_Setting {
+    &-setting {
         flex: 0 0 33%;
         appearance: none;
         width: 33%;
@@ -108,7 +76,7 @@
             }
         }
     }
-    &_Close {
+    &-close {
         flex: 0 0 33%;
         appearance: none;
         width: 33%;
@@ -161,7 +129,8 @@
 }
 
 .time-picker-input-error {
-    background-color: #f87272;
+    background: #f8e4e4;
+    border-color: #f87272;
 }
 
 .time-picker-chevron.bottom:before {

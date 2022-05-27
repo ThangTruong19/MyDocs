@@ -395,6 +395,10 @@ $TABLE_LG_HEIGHT: 660px;
     }
   }
 
+  .app-table-bg-color-gray {
+    background-color: #a9a9a9;
+  }
+
   .app-table-tbody {
     background-color: #fff;
     overflow-y: scroll;
@@ -695,7 +699,7 @@ $TABLE_LG_HEIGHT: 660px;
 
   .app-form-footer-fixed {
     position: fixed;
-    z-index: 100;
+    z-index: 50;
     width: 100%;
     left: 0;
     bottom: 0;

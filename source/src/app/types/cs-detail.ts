@@ -1,11 +1,10 @@
-// モーダル、API呼び出し
 export interface CustomizeUsageDefinition {
     customize_usage_definition?: CustomizeUsageDefinitionContent
     edit_status?: string
     edit_status_name?: string
 }
 
-export interface CustomizeUsageDefinitionContent {
+interface CustomizeUsageDefinitionContent {
     customize_usage_definition_id?: string
     customize_usage_definition_name?: string
     customize_usage_definition_version?: number
@@ -18,7 +17,7 @@ export interface CustomizeUsageDefinitionContent {
     customize_definitions?: CustomizeDefinition[]
 }
 
-export interface CustomizeDefinition {
+interface CustomizeDefinition {
     customize_definition_id?: string
     customize_definition_name?: string
     customize_definition_version?: number
@@ -48,20 +47,6 @@ export interface CustomizeDefinition {
     customize_access_level_name?: string
     process_type?: string
     process_type_name?: string
-}
-
-// TODO:
-export interface RequestHeaderParams {
-    'X-Lang'?: string
-    'X-AppCode'?: string
-    'X-GroupId'?: string
-    'X-DateFormat'?: string
-    'X-ScreenCode'?: string
-    'X-WebApiKey'?: string
-    'X-From'?: number
-    'X-Count'?: number
-    'X-Sort'?: string | string[]
-    'car_id'?: string
 }
 
 // 車両カスタマイズ用途定義一括取得要求API

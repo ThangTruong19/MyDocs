@@ -35,13 +35,3 @@ $app-sidemenu-width: 260px;
     margin: 15px 0;
     width: 100%;
 }
-
-.app-sidemenu-backdrop {
-    position: fixed;
-    background-color: transparent;
-    z-index: 199;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}

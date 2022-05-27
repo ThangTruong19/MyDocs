@@ -8,9 +8,40 @@ export interface CustomizeRequestStatusListIndexParams {
         serials: string[]
     },
     request_status: {
-        api_code: string
+        request_kind: string[]
         status: string
-        request_registration_date_from: string
-        request_registration_date_to: string
+        request_registration_datetime_from: string
+        request_registration_datetime_to: string
     },
+}
+
+export interface RequestStatus {
+    request_status_information?: RequestStatusInformation,
+    car_identification?: {
+        id?: string
+        model?: string
+        type_rev?: string
+        serial?: string
+        division_name?: string
+    },
+    customize_usage_definitions?: CustomizeUsageDefinition[],
+    customize_definitions?: CustomizeDefinition[]
+}
+
+interface RequestStatusInformation {
+    request_kind?: string
+    request_kind_name?: string
+    request_datetime?: string
+    status?: string
+    status_name?: string
+}
+
+interface CustomizeUsageDefinition {
+    id?: string
+    name?: string
+}
+
+interface CustomizeDefinition {
+    id?: string
+    name?: string
 }

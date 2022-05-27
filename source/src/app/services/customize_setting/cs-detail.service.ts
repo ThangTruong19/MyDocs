@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core'
 
 import { Api } from 'app/types/common'
 import { Apis } from 'app/constants/apis'
-// TODO:
-// import { RequestHeaderParams } from 'app/types/request'
+import { RequestHeaderParams } from 'app/types/request'
 import {
-  RequestHeaderParams,
   RequestBodyParamsKOM00110120,
   RequestBodyParamsKOM00110130,
   RequestBodyParamsKOM00110XXX,
@@ -26,7 +24,7 @@ export class CsDetailService {
   fetchIndexList(carId: string,
     requestHeaderParams: RequestHeaderParams
   ): Promise<Api> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.api.requestHandler(
         'fetchIndexList',
         this.api
@@ -38,7 +36,14 @@ export class CsDetailService {
             null,
             { cache: false, request_header: requestHeaderParams }
           )
-          .subscribe((res) => resolve(res))
+          .subscribe(
+            {
+              next: (res: Api) => {
+                resolve(res)
+              },
+              error: (error) => reject(error)
+            }
+          )
       )
     })
   }
@@ -89,8 +94,12 @@ export class CsDetailService {
           request_header: requestHeaderParams,
         })
           .subscribe(
-            (res) => resolve(res),
-            (error) => reject(error)
+            {
+              next: (res: Api) => {
+                resolve(res)
+              },
+              error: (error) => reject(error)
+            }
           )
       )
     })
@@ -114,8 +123,12 @@ export class CsDetailService {
             request_header: requestHeaderParams,
           })
           .subscribe(
-            (res) => resolve(res),
-            (error) => reject(error)
+            {
+              next: (res: Api) => {
+                resolve(res)
+              },
+              error: (error) => reject(error)
+            }
           )
       )
     })
@@ -138,8 +151,12 @@ export class CsDetailService {
           request_header: requestHeaderParams,
         })
           .subscribe(
-            (res) => resolve(res),
-            (error) => reject(error)
+            {
+              next: (res: Api) => {
+                resolve(res)
+              },
+              error: (error) => reject(error)
+            }
           )
       )
     })

@@ -1,0 +1,30 @@
+[
+    {
+      "display_sequence_no": "1",
+      "name": "PC200-8-1234",
+      "path": "cars.car_identification.model",
+      "control_code": "1",
+      "display_code": "0"
+    },
+    {
+      "display_sequence_no": "2",
+      "name": "PC200-8-1111",
+      "path": "cars.car_identification.type_rev",
+      "control_code": "1",
+      "display_code": "0"
+    },
+    {
+      "display_sequence_no": "3",
+      "name": "PC200-8-2222",
+      "path": "cars.car_identification.type_rev",
+      "control_code": "1",
+      "display_code": "0"
+    },
+    {
+      "display_sequence_no": "4",
+      "name": "PC200-8-3333",
+      "path": "cars.car_identification.model",
+      "control_code": "1",
+      "display_code": "0"
+    }
+  ]

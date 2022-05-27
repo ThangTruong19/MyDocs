@@ -13,17 +13,17 @@
         "kind": "D"
       },
       {
-        "key": "車両種類0",
+        "key": "車両種類1",
         "value": "0",
         "kind": "D"
       },
       {
-        "key": "車両種類1",
+        "key": "車両種類2",
         "value": "1",
         "kind": "D"
       },
       {
-        "key": "車両種類2",
+        "key": "車両種類3",
         "value": "2",
         "kind": "D"
       }
@@ -70,17 +70,17 @@
         "kind": "D"
       },
       {
-        "key": "カスタマイズ用途定義0",
+        "key": "カスタマイズ用途定義1",
         "value": "0",
         "kind": "D"
       },
       {
-        "key": "カスタマイズ用途定義1",
+        "key": "カスタマイズ用途定義2",
         "value": "1",
         "kind": "D"
       },
       {
-        "key": "カスタマイズ用途定義2",
+        "key": "カスタマイズ用途定義3",
         "value": "2",
         "kind": "D"
       }
@@ -100,24 +100,39 @@
         "kind": "D"
       },
       {
-        "key": "カスタマイズ定義0",
+        "key": "カスタマイズ定義1",
         "value": "0",
         "kind": "D"
       },
       {
-        "key": "カスタマイズ定義1",
+        "key": "カスタマイズ定義2",
         "value": "1",
         "kind": "D"
       },
       {
-        "key": "カスタマイズ定義2",
+        "key": "カスタマイズ定義3",
         "value": "2",
+        "kind": "D"
+      },
+      {
+        "key": "カスタマイズ定義4",
+        "value": "3",
+        "kind": "D"
+      },
+      {
+        "key": "カスタマイズ定義5",
+        "value": "4",
+        "kind": "D"
+      },
+      {
+        "key": "カスタマイズ定義6",
+        "value": "5",
         "kind": "D"
       }
     ]
   },
   {
-    "path": "request_status.api_code",
+    "path": "request_status.request_kind",
     "name": "要求種別",
     "help": "要求種別のヘルプ文言",
     "type": 10,
@@ -130,17 +145,17 @@
         "kind": "D"
       },
       {
-        "key": "要求種別0",
+        "key": "要求種別1",
         "value": "0",
         "kind": "D"
       },
       {
-        "key": "要求種別1",
+        "key": "要求種別2",
         "value": "1",
         "kind": "D"
       },
       {
-        "key": "要求種別2",
+        "key": "要求種別3",
         "value": "2",
         "kind": "D"
       }
@@ -160,24 +175,24 @@
         "kind": "D"
       },
       {
-        "key": "ステータス0",
+        "key": "ステータス1",
         "value": "0",
         "kind": "D"
       },
       {
-        "key": "ステータス1",
+        "key": "ステータス2",
         "value": "1",
         "kind": "D"
       },
       {
-        "key": "ステータス2",
+        "key": "ステータス3",
         "value": "2",
         "kind": "D"
       }
     ]
   },
   {
-    "path": "request_status.request_registration_date_from",
+    "path": "request_status.request_registration_datetime_from",
     "name": "要求日時",
     "help": "要求日時のヘルプ文言",
     "type": -40,
@@ -186,7 +201,7 @@
     "items": []
   },
   {
-    "path": "request_status.request_registration_date_to",
+    "path": "request_status.request_registration_datetime_to",
     "name": "要求日時",
     "help": "要求日時のヘルプ文言",
     "type": -40,

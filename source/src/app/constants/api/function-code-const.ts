@@ -34,4 +34,5 @@ export class FunctionCodeConst {
     /** 送信番号一覧要求タブ */
     public static CDSM_CUSTOMIZE_DATA_NUMBER_LIST_REQUEST_TAB = 'cdsm_customize_data_number_list_request_tab';
 
+    public static CDSM_CUSTOMIZE_DATA_REQUEST_NUMBER_TAB = 'cdsm_customize_data_request_number_tab';
 }

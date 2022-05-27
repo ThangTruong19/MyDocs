@@ -11,7 +11,7 @@ module.exports = function (args) {
     ? 0
     : parseInt(args.header['x-count']);
   var sort = args.header['x-sort'] || 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_id';
-  var TOTAL = isNaN(args.header['x-count']) ? 1 : 100;
+  var TOTAL = isNaN(args.header['x-count']) ? 1 : 12;
   var loopEnd =
     TOTAL > from + count - 1 && count !== 0 ? from + count - 1 : TOTAL;
   var listMock = {
@@ -57,8 +57,8 @@ function createData(i) {
           priority_name: "low",
           active_kind: "1",
           active_name: "有効",
-          latest_operation_code: "1",
-          latest_operation_code_name: "追加",
+          latest_operation_code: i % 10 !== 0 ? "1" : "3",
+          latest_operation_code_name: i % 10 !== 0 ? "追加" : "削除",
           status: "10",
           status_name: "送信中",
           assumption_data_value: 1234567890,
@@ -86,10 +86,10 @@ function createData(i) {
           customize_definition_version: 2,
           priority: "2",
           priority_name: "low",
-          active_kind: "2",
+          active_kind: "1",
           active_name: "有効",
-          latest_operation_code: "2",
-          latest_operation_code_name: "追加",
+          latest_operation_code: i % 10 !== 0 ? "1" : "3",
+          latest_operation_code_name: i % 10 !== 0 ? "追加" : "削除",
           status: "20",
           status_name: "送信中",
           assumption_data_value: 1234567890,
@@ -117,10 +117,10 @@ function createData(i) {
           customize_definition_version: 3,
           priority: "3",
           priority_name: "low",
-          active_kind: "3",
+          active_kind: "1",
           active_name: "有効",
-          latest_operation_code: "3",
-          latest_operation_code_name: "追加",
+          latest_operation_code: i % 10 !== 0 ? "1" : "3",
+          latest_operation_code_name: i % 10 !== 0 ? "追加" : "削除",
           status: "30",
           status_name: "送信中",
           assumption_data_value: 1234567890,

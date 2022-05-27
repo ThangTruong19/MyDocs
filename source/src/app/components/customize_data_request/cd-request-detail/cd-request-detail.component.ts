@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractIndexComponent } from 'app/components/shared/abstract-component/abstract-index.component';
 import { UserSettingService } from 'app/services/api/user-setting.service';
 import { CdRequestDetailService } from 'app/services/customize_data_request/cd-request-detail/cd-request-detail.service';
@@ -24,59 +24,11 @@ export class CdRequestDetailComponent extends AbstractIndexComponent implements 
   };
 
   initResource: any;
-  initParams = {
-    common: {
-      customer_attribute: {
-        customer_management_no: '',
-        customer_car_no: '',
-      },
-      car_identification: {
-        models: '',
-        type_revs: '',
-        model_type_revs: '',
-        serials: '',
-      },
-      support_distributor: {},
-      service_distributor: {},
-      distributor_attribute: {
-        note_1: '',
-        note_2: '',
-        note_3: '',
-        note_4: '',
-        note_5: '',
-      },
-    },
-    car_management: {
-      time_difference: '',
-    },
-  };
+  initParams = {};
   _searchParams: any = {
     "car_identification": {
-      "models": [
-        "D85PX"
-      ],
-      "type_revs": [
-        "15E0"
-      ],
-      "serials": [
-        "A12345",
-        "A00001>A00005"
-      ]
-    },
-    "communication_channel_codes": [
-      "0"
-    ],
-    "terminal_mode_kind": "0",
-    "customer_ids": [
-      "601"
-    ],
-    "support_distributor_ids": [
-      "401"
-    ],
-    "customize_usage_definition_ids": [
-      "1"
-    ],
-    "setting_change_status": "1"
+      "car_ids": [],
+    }
   };
   listSelections: any = [];
 
@@ -104,6 +56,11 @@ export class CdRequestDetailComponent extends AbstractIndexComponent implements 
     console.log("fetchList", res);
   }
   protected async _fetchDataForInitialize(): Promise<void> {
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      this._searchParams.car_identification.car_ids = params.carId;
+    });
+
     const res = await this.cdRequestDetailService.fetchCarInitData();
     this.initialize(res);
     this.params = _.cloneDeep(this.initParams);
@@ -113,8 +70,7 @@ export class CdRequestDetailComponent extends AbstractIndexComponent implements 
     this._setTitle();
     this._afterInitialize();
     console.log("res", res);
-    console.log(JSON.stringify(res));
-    console.log("lists", this.lists);
+    // console.log(JSON.stringify(res));
 
     this._updateFields(res.fields);
   }
@@ -155,6 +111,7 @@ export class CdRequestDetailComponent extends AbstractIndexComponent implements 
     router: Router,
     private cdRef: ChangeDetectorRef,
     private cdRequestDetailService: CdRequestDetailService,
+    protected activatedRoute: ActivatedRoute,
     protected userSettingService: UserSettingService,
     protected datePickerService: DatePickerService,) {
     super(nav, title, router, cdRef, header);

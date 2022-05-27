@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { DragulaModule } from 'ng2-dragula';
 import { AccordionModule } from 'app/modules/shared/accordion.module';
 import { AlertModule } from 'app/modules/shared/alert.module';
 import { AppCommonButtonComponent } from 'app/components/shared/common-button/common-button.component';
@@ -95,6 +96,7 @@ import { ValuesPipe } from 'app/pipes/values.pipe';
         NgbModule,
         ReactiveFormsModule,
         SidemenuModule,
+        DragulaModule.forRoot(),
     ],
     exports: [
         AccordionModule,

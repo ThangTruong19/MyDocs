@@ -72,7 +72,7 @@
                 >
                     <tr
                         *ngFor="let data of lists.visibleList; let i = index"
-                        [ngClass]="getSimpleTableRowCss()"
+                        [ngClass]="getTableRowCss(data, getSimpleTableRowCss())"
                     >
                         <td
                             *ngIf="selectable && tblFunctions.isDisplayFixedDataRow(data)"
@@ -229,6 +229,7 @@
                           'before-init': !isCarTableReady
                         }">
                         <tr *ngFor="let data of lists.visibleList; let i = index"
+                            [ngClass]="getTableRowCss(data)"
                             [attr.data-index]="i">
                             <td *ngIf="selectable && tblFunctions.isDisplayFixedDataRow(data)"
                                 [ngClass]="{'disable': checkBoxHidden(data), 'td-check': !isDisplayCheckBoxDefault()}"
@@ -239,7 +240,11 @@
                                     [rowIndex]="i"
                                     [selectedList]="selectedList"
                                     [checked]="checkedItems[checkId(data)]"
-                                    (toggleClick)="onCheckSelect($event)"
+                                    (toggleClick)="
+                                        checkBoxHidden(data)
+                                            ? ''
+                                            : onCheckSelect($event)
+                                    "
                                     id="check-icon-{{i}}"
                                     value="{{checkId(data)}}"
                                     type="checkbox"
@@ -340,7 +345,8 @@
                         }"
                         appChangeTableHeight
                         [collapsed]="collapsed">
-                        <tr *ngFor="let data of lists.visibleList; let i = index">
+                        <tr *ngFor="let data of lists.visibleList; let i = index"
+                            [ngClass]="getTableRowCss(data)">
                             <ng-container *ngIf="!customTableRowContent">
                                 <ng-container *ngFor="let title of scrollableThList">
                                     <td

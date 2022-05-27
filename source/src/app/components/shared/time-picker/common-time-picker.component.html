@@ -1,7 +1,7 @@
-<div class="TimePickerFlyout">
-    <div class="TimePickerFlyout_Body">
-        <div class="Timer">
-            <div class="Timer_Body">
+<div class="time-picker-flyout">
+    <div class="time-picker-flyout-body">
+        <div class="time-picker-flyout-timer">
+            <div class="time-picker-flyout-timer-body">
                 <fieldset>
                     <div class="time-picker">
                     <div class="time-picker-input-container time-picker-hour">
@@ -50,11 +50,11 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="Timer_Foot">
+            <div class="time-picker-flyout-timer-foot">
                 <button
                     (click)="onClickSetting()"
                     type="button"
-                    class="Timer_Setting"
+                    class="time-picker-flyout-timer-setting"
                     [attr.disabled]="isDisabledSettingButton ? true : null"
                 >
                     <span>{{labels.settingButton}}</span>
@@ -63,11 +63,12 @@
                 <button
                     (click)="onClickClose()"
                     type="button"
-                    class="Timer_Close"
+                    class="time-picker-flyout-timer-close"
                 >
                     <span>{{labels.closeButton}}</span>
                 </button>
             </div>
         </div>
+        <div class="time-picker-flyout-backdrop"></div>
     </div>
 </div>

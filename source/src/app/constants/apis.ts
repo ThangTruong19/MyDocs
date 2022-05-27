@@ -50,4 +50,5 @@ export const Apis = {
     postCarSearch: 'KOM-xxxxxx10',
 
     postOperatorsUpload: 'KOM-01300030',
+    getListCarsTransmissionNumbers: 'KOM-00110061'
 };

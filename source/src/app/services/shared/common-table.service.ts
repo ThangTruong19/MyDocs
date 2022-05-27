@@ -33,34 +33,6 @@ export class CommonTableService {
         }
     }
 
-    public getColumnStyle(tableHeader: TableHeader): string {
-        if (tableHeader.displayable) {
-            if (tableHeader.columnStyle) {
-                return tableHeader.columnStyle;
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
-    public getSimpleTableRowCss(isMergeRows: boolean): string {
-        if (isMergeRows) {
-            return 'app-table-flex-cell-merge-rows';
-        } else {
-            return 'app-table-flex-cell';
-        }
-    }
-
-    public getSimpleTableDataColumnCss(isMergeRows: boolean): string {
-        if (isMergeRows) {
-            return 'merge-col-d-flex';
-        } else {
-            return 'd-flex';
-        }
-    }
-
     public isDisplayFixedDataRow(listData: any, isMergeRows: boolean): boolean {
         if (!isMergeRows) {
             return true;
@@ -103,6 +75,63 @@ export class CommonTableService {
         } else {
             return pathName;
         }
+    }
+
+    public getSimpleTableRowCss(isMergeRows: boolean): string {
+        if (isMergeRows) {
+            return 'app-table-flex-cell-merge-rows';
+        } else {
+            return 'app-table-flex-cell';
+        }
+    }
+
+    public getSimpleTableDataColumnCss(isMergeRows: boolean): string {
+        if (isMergeRows) {
+            return 'merge-col-d-flex';
+        } else {
+            return 'd-flex';
+        }
+    }
+
+
+    public getColumnStyle(tableHeader: TableHeader): string {
+        if (tableHeader.displayable) {
+            if (tableHeader.columnStyle) {
+                return tableHeader.columnStyle;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public addRowStyleClass(data: any, className: string): void {
+        if (!data.view) {
+            data.view = {};
+        }
+        data.view.styleClass = className;
+    }
+
+    public setDisabledRowStyle(data: any): void {
+        this.addRowStyleClass(data, 'app-table-bg-color-gray');
+    }
+
+    public getTableRowCss(data: any, appendCssName?: string): string {
+        let styleClass: string = null;
+
+        if (data.view && data.view.styleClass) {
+            styleClass = data.view.styleClass;
+        }
+        if (appendCssName) {
+            if (styleClass) {
+                styleClass += ' ' + appendCssName;
+            }  else {
+                styleClass = appendCssName;
+            }
+        }
+
+        return styleClass;
     }
 
 }

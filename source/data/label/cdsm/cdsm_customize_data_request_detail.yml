@@ -43,7 +43,7 @@ labels:
 
   - id: 8
     description: 送信番号一覧
-    name: request-number_select_title
+    name: request_number_select_title
     ja: 送信番号一覧
     en:
 

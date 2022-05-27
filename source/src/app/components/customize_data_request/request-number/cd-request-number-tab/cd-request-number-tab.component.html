@@ -1,0 +1,30 @@
+<div id="cd-request-number-tab" *ngIf="labels && resource">
+    <div style="display: flex">
+        <div class="col-6 no-pad" style="display: flex">
+            <div class="col-6">
+                <label>{{resource.send_number_list_request_definition_id_kind.name}}</label>
+                <button type="button" class="btn btn-primary btn-send" (click)="sendData()">通信量確認</button>
+            </div>
+        </div>
+        <!-- TODO: PLACEHOLDER CONTENT-->
+        <div class="row">
+            <button class="btn btn-primary btn-send" (click)="trasmissionNumbers()">送信番号一覧</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #cdExpectedTrafficConfirmModalContent>
+    <div class="model-header">
+        <p class="model-title">{{ labels.expected_traffic_confirm_message }}</p>
+    </div>
+    <app-cd-expected-traffic-confirm
+        [thList]="thListRequestNumber"
+        [data]="data"
+        [labels]="labels"
+    ></app-cd-expected-traffic-confirm>
+</ng-template>
+
+<ng-template #cdRequestNumberListModalContent>
+    <app-cd-request-number-list
+    ></app-cd-request-number-list>
+</ng-template>

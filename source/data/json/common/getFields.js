@@ -24,9 +24,9 @@ module.exports = function(data) {
 
       readFile(path)
         .then(jsonData => {
-          if (fs.existsSync(TEMP_PATH + functionCode+ '/' + fieldSetNo)) {
+          if (fs.existsSync(TEMP_PATH + functionCode)) {
               var paths = fs
-              .readFileSync(TEMP_PATH + functionCode + '/' + fieldSetNo, "utf8")
+              .readFileSync(TEMP_PATH + functionCode, "utf8")
               .split(",");
 
             tmpJsonData = _.reduce(

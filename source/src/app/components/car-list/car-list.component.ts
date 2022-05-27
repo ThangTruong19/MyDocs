@@ -56,35 +56,20 @@ export class CarListComponent extends AbstractIndexComponent {
 
     @ViewChild('csGetRequestModalContent', { static: false }) csGetRequestModalContent: TemplateRef<null>;
 
-    datePickerParams: DatePickerParams;
     fields: Fields;
     downloadFields: Fields;
     downloadFieldResources: Fields;
     fieldSelectPopoverVisible = false;
     downloadPopoverVisible = false;
-    testing = false;
-    _dateFormat = '';
-    timeZone = '';
     enableDateRange: string[] = [];
     beginningWday: number;
     excludeSearchParams: string[] = ['date_from_formatted', 'date_to_formatted'];
-    datePickerLabels: Labels;
     override commaSeparated: string[] = ['serials'];
 
-    // selectedList: any[] = [];
-    // checkedItems: boolean[] = [];
-    // checkedItems: { [key: string]: boolean } = {}
     checkAll: boolean = false;
-
-    // get selectedList() {
-    //   return _.map(this.checkedItems, (value, key) =>
-    //     value ? key : null
-    //   ).filter(Boolean);
-    // }
 
     checkAllDisabled: boolean = true;
     isDisabled: boolean = true;
-    terminalModeType: string;
     transmissionType: string;
     otherThanNextGenValue = '3'; // TODO:
     iridiumValue = '3'; // TODO:
@@ -129,7 +114,7 @@ export class CarListComponent extends AbstractIndexComponent {
       protected api: ApiService,
       protected override modalService: ModalService,
       protected alertService: AlertService,
-      protected datePickerService: DatePickerService,
+      // protected datePickerService: DatePickerService,
       protected userSettingService: UserSettingService,
       private csDetailService: CsDetailService
     ) {
@@ -177,6 +162,10 @@ export class CarListComponent extends AbstractIndexComponent {
     override onClickSearch(): void {
       super.onClickSearch();
       this.fetchList(this.sortingParams['sort']);
+
+      // ボタン非活性化
+      this.isDisabled = true;
+      this.checkAllDisabled = true;
     }
 
     /**
@@ -209,7 +198,9 @@ export class CarListComponent extends AbstractIndexComponent {
       this.fieldResources = res.fieldResources;
       this.downloadFields = res.downloadFields;
       this.downloadFieldResources = res.downloadFieldResources;
-      this._datePickerInitialize();
+
+      // 端末モード区分の初期値を次世代に設定
+      _.set(this.params, 'terminalModeType', '0');
     }
 
     /**
@@ -248,85 +239,16 @@ export class CarListComponent extends AbstractIndexComponent {
       }
     }
 
-  /**
-   * 初期検索前の処理
-   * 依存するリソースを更新する
-   */
-  // protected override async _beforeInitFetchList(): Promise<any> {
-  //   if (this.exists('operation_history.category_code')) {
-  //     await this.onCategoryCodeChange(
-  //       _.get(this.resource, 'operation_history.category_code.values[0].value')
-  //     );
-  //   }
-  // }
-
-  // protected override _getSearchParams(params: any): HistoryMgtListIndexParams {
-  //   return _.reduce(
-  //     params,
-  //     (res: any, val, key) => {
-  //       res[key] = this.commaSeparated.includes(key) ? val.split(',') : val;
-  //       return res;
-  //     },
-  //     {}
-  //   );
-  // }
-
-    /**
-     * デートピッカーの初期化
-     */
-    private async _datePickerInitialize(): Promise<any> {
-      const datePickerConfig = this.userSettingService.getDatePickerConfig();
-      this.beginningWday = datePickerConfig.first_day_of_week_kind;
-      const _window = window as any;
-      this.enableDateRange = _window.settings.datePickerRange.other;
-      this._dateFormat = datePickerConfig.date_format_code;
-      this.timeZone = datePickerConfig.time_difference;
-
-      this.datePickerParams = {
-        timeZone: this.timeZone,
-        dateFormat: this._dateFormat,
-      };
-
-      this.datePickerService.initialize(this.datePickerParams);
-
-      const today = this.datePickerService.toMoment();
-
-      _.set(
-        this.params,
-        'date_from',
-        today.clone().subtract(1, 'month').format(DateFormat.hyphen)
-      );
-      _.set(
-        this.params,
-        'date_from_formatted',
-        today
-          .clone()
-          .subtract(1, 'month')
-          .format(this.datePickerService.inputDateFormat(this._dateFormat))
-      );
-      _.set(this.params, 'date_to', today.format(DateFormat.hyphen));
-      _.set(
-        this.params,
-        'date_to_formatted',
-        today.format(this.datePickerService.inputDateFormat(this._dateFormat))
-      );
-    }
-
     /**
      * データ送信要求画面へ遷移
      */
     public handleClick(): void {
-      const params: any[] = [];
+      const params: { carId: string[] } = { carId: [] };
 
       this.selectedList.forEach((index) => {
         const car = this.lists.originList[(parseInt(index) - 1)];
-        const param = {
-          carId: car['cars.car_identification.id'],
-          model: car['cars.car_identification.model'],
-          typeRev: car['cars.car_identification.type_rev'],
-          serial: car['cars.car_identification.serial']
-        }
-        params.push(param);
+        const carId: string = car['cars.car_identification.id'];
+        params.carId.push(carId);
       });
 
       this.router.navigated = false;
@@ -426,6 +348,9 @@ export class CarListComponent extends AbstractIndexComponent {
               s.initSelectedParam();
             }
           });
+
+          // 端末モード区分の初期値を次世代に設定
+          _.set(this.params, 'terminalModeType', '0');
         },
       });
     }
@@ -452,11 +377,11 @@ export class CarListComponent extends AbstractIndexComponent {
                 }
               ]
             }
-            this.csDetailService.postCarsRequestSetsCustomizeUsageDefinitionsM2s(params, requestHeaderParams)
-              .then(res => {
-                // TODO:
-                console.log("postCarsRequestSetsCustomizeUsageDefinitionsM2s", res);
-              })
+            // this.csDetailService.postCarsRequestSetsCustomizeUsageDefinitionsM2s(params, requestHeaderParams)
+            //   .then(res => {
+            //     // TODO:
+            //     console.log("postCarsRequestSetsCustomizeUsageDefinitionsM2s", res);
+            //   })
           },
         },
         {
@@ -480,7 +405,7 @@ export class CarListComponent extends AbstractIndexComponent {
      * @returns true：編集列、false：編集列ではない。
      */
     public isEditColumn(colIndex: number): boolean {
-      return colIndex === 4;
+      return colIndex === 0;
     }
 
     /**

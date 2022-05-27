@@ -7,6 +7,7 @@ import { DatePickerService } from 'app/services/shared/date-picker.service'
 import { ModalService } from 'app/services/shared/modal.service'
 import { NavigationService } from 'app/services/shared/navigation.service'
 import { AlertService } from 'app/services/shared/alert.service'
+import { CommonTableService } from 'app/services/shared/common-table.service'
 import { CsDetailService } from 'app/services/customize_setting/cs-detail.service'
 import { Fields, TableHeader, TableOptions } from 'app/types/common'
 import * as _ from 'lodash'
@@ -28,6 +29,14 @@ enum Status {
   車両反映中 = '30',
   送信失敗 = '40',
   削除済 = '90',
+}
+
+enum LatestOperationCode {
+  追加 = '1',
+  更新 = '2',
+  削除 = '3',
+  即時追加 = '11',
+  即時更新 = '12',
 }
 
 enum EditStatus {
@@ -147,9 +156,10 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     protected userSettingService: UserSettingService,
     protected datePickerService: DatePickerService,
     protected alertService: AlertService,
+    protected commonTableService: CommonTableService,
     protected csDetailService: CsDetailService) {
     super(nav, title, router, cdRef, header, modal)
-    this.isCheckedItemsAllPageHold = true;
+    this.isCheckedItemsAllPageHold = true
   }
 
   /**
@@ -199,7 +209,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
       const targetArray: any[] = data['customize_usage_definitions']['customize_usage_definition']['customize_definitions']
       rowSize = targetArray.length
     }
-    const height = 23 * rowSize
+    const height = 35 * rowSize
     return 'height:' + height + 'px'
   }
 
@@ -230,14 +240,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
       return !ids.includes(content.customize_usage_definition.customize_usage_definition_id)
     }
     )
-    // 追加項目設定
-    const addList = _.cloneDeep(this.lists.addList)
-    if (this.lists.originList.length === this.lists.visibleList.length) {
-      this.lists.originList.push(...addList)
-      this.lists.visibleList.push(...addList)
-    } else {
-      this.lists.originList.push(...addList)
-    }
     // 編集項目設定
     const editList = _.cloneDeep(this.lists.editList)
     editList.forEach(element => {
@@ -260,13 +262,30 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         this.lists.visibleList.splice(visibleListIndex, 1, element)
       }
     })
+    // 追加項目設定
+    const addList = _.cloneDeep(this.lists.addList)
+    if (this.lists.originList.length === this.lists.visibleList.length) {
+      this.lists.originList.push(...addList)
+      this.lists.visibleList.push(...addList)
+    } else {
+      this.lists.originList.push(...addList)
+    }
+    // 削除項目設定
+    this.lists.originList.forEach(element => {
+      const content: CustomizeUsageDefinition = element.customize_usage_definitions
+      const latestOperationCode =
+        content.customize_usage_definition.customize_definitions[0].latest_operation_code
+      if (latestOperationCode === LatestOperationCode.削除) {
+        const targetRowData = element
+        this.commonTableService.setDisabledRowStyle(targetRowData)
+      }
+    })
   }
 
   /**
    * 初期化 API を呼ぶ
    */
   protected async _fetchDataForInitialize(): Promise<void> {
-    this.activatedRoute.queryParams.subscribe(params => (console.log('queryParams', params)))
     this.activatedRoute.queryParams.subscribe(params => (this.carId = params.carId))
     this.activatedRoute.queryParams.subscribe(params => (this.model = params.model))
     this.activatedRoute.queryParams.subscribe(params => (this.typeRev = params.typeRev))
@@ -275,6 +294,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     const res: any = await this.csDetailService.fetchIndexInitData()
     this.initialize(res)
     this.labels = res.label
+    this.labels['vehicleInfo'] = this.model + '-' + this.typeRev + '-' + this.serial
     this.resource = res.resource
     this._setTitle()
     this._updateFields(res.csDetailFields)
@@ -324,8 +344,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    * @return チェックボックスのキーとなる値
    */
   checkIdFunction(data: any): string {
-    return data['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id']
-      + '-' + data['customize_usage_definitions.edit_status']
+    const customizeUsageDefinitionId = data['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id']
+    const editStatus = data['customize_usage_definitions.edit_status']
+    return customizeUsageDefinitionId + '-' + editStatus
   }
 
   /**
@@ -334,7 +355,8 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    * @return true:非表示/false:表示
    */
   checkBoxHiddenFunction(data: any): boolean {
-    return data['customize_usage_definitions.edit_status'] === EditStatus.デフォルト
+    const editStatus = data['customize_usage_definitions.edit_status']
+    return editStatus === EditStatus.デフォルト
   }
 
   /**
@@ -343,7 +365,8 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    * @return true:非表示/false:表示
    */
   checkBoxDefaultHiddenFunction(data: any): boolean {
-    return data['customize_usage_definitions.edit_status'] !== EditStatus.デフォルト
+    const editStatus = data['customize_usage_definitions.edit_status']
+    return editStatus !== EditStatus.デフォルト
   }
 
   /**
@@ -351,8 +374,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    * @param data 対象データ
    * @return true:非表示/false:表示
    */
-  public discardIconHiddenFunction(data: any): boolean {
-    return data['customize_usage_definitions.edit_status'] === EditStatus.デフォルト
+  public editIconHidden(data: any): boolean {
+    const content: CustomizeUsageDefinition = this.convert(data)
+    const editStatus = content.edit_status
+    const latestOperationCode = content.customize_usage_definition.customize_definitions[0].latest_operation_code
+    return editStatus === EditStatus.追加
+      || latestOperationCode === LatestOperationCode.削除
   }
 
   /**
@@ -360,9 +387,27 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    * @param data 対象データ
    * @return true:非表示/false:表示
    */
-  public retryIconHiddenFunction(data: any): boolean {
-    return data['customize_usage_definitions.customize_usage_definition.customize_definitions.status'] === Status.送信失敗
-      || data['customize_usage_definitions.edit_status'] !== EditStatus.デフォルト
+  public discardIconHidden(data: any): boolean {
+    const content: CustomizeUsageDefinition = this.convert(data)
+    const editStatus = content.edit_status
+    const latestOperationCode = content.customize_usage_definition.customize_definitions[0].latest_operation_code
+    return editStatus === EditStatus.デフォルト
+      || latestOperationCode === LatestOperationCode.削除
+  }
+
+  /**
+   * ラベル表示の判定
+   * @param data 対象データ
+   * @return true:非表示/false:表示
+   */
+  public retryIconHidden(data: any): boolean {
+    const content: CustomizeUsageDefinition = this.convert(data)
+    const editStatus = content.edit_status
+    const status = content.customize_usage_definition.customize_definitions[0].status
+    const latestOperationCode = content.customize_usage_definition.customize_definitions[0].latest_operation_code
+    return status === Status.送信失敗
+      || editStatus !== EditStatus.デフォルト
+      || latestOperationCode === LatestOperationCode.削除
   }
 
   /**
@@ -438,18 +483,18 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         okBtnLabel: this.labels.ok_btn,
         ok: () => {
           this.newChildComponent.closeNewDialog()
-          // 一覧画面に表示するリスト設定
+          // 一覧画面データ取得
           const contents: CustomizeUsageDefinition[] =
             [{ customize_usage_definition: this.newChildComponent.modalResponse }]
           contents.forEach(element => {
             element.edit_status = EditStatus.追加
             element.edit_status_name = this.labels.regist_body_label
-            const checkIdName =
-              element.customize_usage_definition.customize_usage_definition_id
-              + '-'
-              + EditStatus.追加
+            // チェックボックス設定
+            const customizeUsageDefinitionId = element.customize_usage_definition.customize_usage_definition_id
+            const checkIdName = customizeUsageDefinitionId + '-' + EditStatus.追加
             this.checkedItems[checkIdName] = true
           })
+          // リスト作成
           const list = this._formatList(
             contents,
             this.thList
@@ -471,7 +516,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           })
           list.forEach((element: any) => {
             if (addListIndex !== -1) {
-              // データ更新
+              // 更新
               list.forEach((element: any, index: number) => {
                 this.lists.addList.splice(addListIndex + index, 1, element)
                 this.pageParams.pageAdditionalCount = this.lists.addList.length
@@ -493,7 +538,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 }
               })
             } else {
-              // データ追加
+              // 新規追加
               this.lists.addList.push(element)
               this.pageParams.pageAdditionalCount = this.lists.addList.length
               if (this.lists.originList.length === this.lists.visibleList.length) {
@@ -504,7 +549,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
               }
             }
           })
+          // チェックボックス設定
           this.check()
+          // ボタン表示設定
           this.disabled = !Object.values(this.checkedItems).some(item => item)
           console.log('newChildComponent', this.newChildComponent.modalResponse)
         },
@@ -521,8 +568,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
    */
   openCsEditDialog(data: any) {
     const content: CustomizeUsageDefinition = this.convert(data)
-    content.customize_usage_definition.customize_definitions
-      = _.get(data, 'customize_usage_definitions.customize_usage_definition.customize_definitions')
     this.inputParams.edit_customize_usage_definition_id = content.customize_usage_definition.customize_usage_definition_id
     this.inputParams.edit_customize_usage_definition_name = content.customize_usage_definition.customize_usage_definition_name
     this.inputParams.edit_customize_usage_definition_version = String(content.customize_usage_definition.customize_usage_definition_version)
@@ -540,34 +585,46 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         okBtnLabel: this.labels.ok_btn,
         ok: () => {
           this.editChildComponent.closeEditDialog()
-          // 一覧画面に表示するリスト設定
+          // 一覧画面データ取得
           const contents: CustomizeUsageDefinition[] =
-            [{ customize_usage_definition: this.editChildComponent.modalResponse }]
+            [
+              { customize_usage_definition: this.editChildComponent.modalResponse }
+            ]
           contents.forEach((element: CustomizeUsageDefinition) => {
+            element.customize_usage_definition.use_kind = content.customize_usage_definition.use_kind
+            element.customize_usage_definition.use_name = content.customize_usage_definition.use_name
+            element.customize_usage_definition.customize_definitions.forEach((data, index) => {
+              const customizeDefinition = content.customize_usage_definition.customize_definitions[index]
+              data.status = customizeDefinition.status
+              data.status_name = customizeDefinition.status_name
+              data.latest_operation_code = customizeDefinition.latest_operation_code
+              data.latest_operation_code_name = customizeDefinition.latest_operation_code_name
+              data.first_receive_datetime = customizeDefinition.first_receive_datetime
+              data.latest_receive_datetime = customizeDefinition.latest_receive_datetime
+            })
             let checkIdName = ''
+            const customizeUsageDefinitionId =
+              element.customize_usage_definition.customize_usage_definition_id
             switch (this.editChildComponent.modalResponse.edit_mode) {
               case 'update':
                 element.edit_status = EditStatus.変更
                 element.edit_status_name = this.labels.edit_body_label
-                checkIdName =
-                  element.customize_usage_definition.customize_usage_definition_id
-                  + '-'
-                  + EditStatus.変更
+                // チェックボックス設定
+                checkIdName = customizeUsageDefinitionId + '-' + EditStatus.変更
                 this.checkedItems[checkIdName] = true
                 break
               case 'delete':
                 element.edit_status = EditStatus.削除
                 element.edit_status_name = this.labels.delete_body_label
-                checkIdName =
-                  element.customize_usage_definition.customize_usage_definition_id
-                  + '-'
-                  + EditStatus.削除
+                // チェックボックス設定
+                checkIdName = customizeUsageDefinitionId + '-' + EditStatus.削除
                 this.checkedItems[checkIdName] = true
                 break
               default:
                 break
             }
           })
+          // リスト作成
           const list = this._formatList(
             contents,
             this.thList
@@ -600,7 +657,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
             }
             this.lists.editList.push(element)
           })
+          // チェックボックス設定
           this.check()
+          // ボタン表示設定
           this.disabled = !Object.values(this.checkedItems).some(item => item)
           console.log('editChildComponent', this.editChildComponent.modalResponse)
         },
@@ -633,15 +692,17 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           console.log(`params（設定取得）`, params)
           this.csDetailService.postCarsRequestSetsCustomizeUsageDefinitionsM2s(params, requestHeaderParams)
             .then(res => {
-              // 一覧画面に表示するリスト設定
+              // リスト設定
               this.lists = _.cloneDeep(this.initialLists)
               this.pageParams.pageAdditionalCount = 0
               this.pageParams.pageNo = 1
               this.pageParams.dispPageNo = 1
               this._reflectPageParams()
               this.fetchList(this.sortingParams['sort'])
+              // チェックボックス設定
               this.checkedItems = {}
               this.checkAll = false
+              // ボタン表示設定
               this.disabled = !Object.values(this.checkedItems).some(item => item)
               // メッセージ出力
               this.alertService.show(this.labels.finish_message, false, 'success')
@@ -664,12 +725,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     const keys: String[] = []
     Object.keys(this.checkedItems).forEach((key) => {
       if (this.checkedItems[key]) keys.push(key)
-    });
+    })
     this.tableData = [...this.lists.addList, ...this.lists.editList].filter((element: any) => {
       const content: CustomizeUsageDefinition = this.convert(element)
-      const id = content.customize_usage_definition.customize_usage_definition_id
-        + '-'
-        + content.edit_status
+      const customizeUsageDefinitionId = content.customize_usage_definition.customize_usage_definition_id
+      const editStatus = content.edit_status
+      const id = customizeUsageDefinitionId + '-' + editStatus
       return keys.includes(String(id))
     }
     )
@@ -686,8 +747,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           const customizeUsageDefinitions
             = this.tableData.map(data => {
               const content: CustomizeUsageDefinition = this.convert(data)
-              content.customize_usage_definition.customize_definitions
-                = _.get(data, 'customize_usage_definitions.customize_usage_definition.customize_definitions')
               return {
                 customize_usage_definition_id: content.customize_usage_definition.customize_usage_definition_id,
                 version: String(content.customize_usage_definition.customize_usage_definition_version),
@@ -708,15 +767,17 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           console.log(`params（設定更新）`, params)
           this.csDetailService.postCarsRequestsCustomizeUsageDefinitionsS2m(params, requestHeaderParams)
             .then(res => {
-              // 一覧画面に表示するリスト設定
+              // リスト設定
               this.lists = _.cloneDeep(this.initialLists)
               this.pageParams.pageAdditionalCount = 0
               this.pageParams.pageNo = 1
               this.pageParams.dispPageNo = 1
               this._reflectPageParams()
               this.fetchList(this.sortingParams['sort'])
+              // チェックボックス設定
               this.checkedItems = {}
               this.checkAll = false
+              // ボタン表示設定
               this.disabled = !Object.values(this.checkedItems).some(item => item)
               // メッセージ出力
               this.alertService.show(this.labels.finish_message, false, 'success')
@@ -743,13 +804,13 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     const keys: String[] = []
     Object.keys(this.checkedItems).forEach((key) => {
       if (this.checkedItems[key]) keys.push(key)
-    });
+    })
     this.tableData = [...this.lists.addList, ...this.lists.editList].filter(
       (element: any) => {
         const content: CustomizeUsageDefinition = this.convert(element)
-        const id = content.customize_usage_definition.customize_usage_definition_id
-          + '-'
-          + content.edit_status
+        const customizeUsageDefinitionId = content.customize_usage_definition.customize_usage_definition_id
+        const editStatus = content.edit_status
+        const id = customizeUsageDefinitionId + '-' + editStatus
         return keys.includes(String(id))
       }
     )
@@ -767,8 +828,6 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           const customizeUsageDefinitions
             = this.tableData.map(data => {
               const content: CustomizeUsageDefinition = this.convert(data)
-              content.customize_usage_definition.customize_definitions
-                = _.get(data, 'customize_usage_definitions.customize_usage_definition.customize_definitions')
               return {
                 customize_usage_definition_id: content.customize_usage_definition.customize_usage_definition_id,
                 version: String(content.customize_usage_definition.customize_usage_definition_version),
@@ -790,15 +849,17 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           console.log(`params（設定即時更新）`, params)
           this.csDetailService.postCarsRequestsCustomizeUsageDefinitionsS2m(params, requestHeaderParams)
             .then(res => {
-              // 一覧画面に表示するリスト設定
+              // リスト設定
               this.lists = _.cloneDeep(this.initialLists)
               this.pageParams.pageAdditionalCount = 0
               this.pageParams.pageNo = 1
               this.pageParams.dispPageNo = 1
               this._reflectPageParams()
               this.fetchList(this.sortingParams['sort'])
+              // チェックボックス設定
               this.checkedItems = {}
               this.checkAll = false
+              // ボタン表示設定
               this.disabled = !Object.values(this.checkedItems).some(item => item)
               // メッセージ出力
               this.alertService.show(this.labels.finish_message, false, 'success')
@@ -831,23 +892,22 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         closeBtnLabel: this.labels.cancel,
         okBtnLabel: this.labels.ok_btn,
         ok: () => {
+          // 一覧画面データ取得
           const content: CustomizeUsageDefinition = this.convert(data)
-          content.customize_usage_definition.customize_definitions
-            = _.get(data, 'customize_usage_definitions.customize_usage_definition.customize_definitions')
-          // 一覧画面に表示するリスト設定
+          // リスト設定
           const originListIndex = this.lists.originList.findIndex(element => {
             const target: CustomizeUsageDefinition = this.convert(element)
             return content.customize_usage_definition.customize_usage_definition_id
               === target.customize_usage_definition.customize_usage_definition_id
-              && content.edit_status
-              === (EditStatus.変更 || EditStatus.削除)
+              && (content.edit_status === EditStatus.変更
+                || content.edit_status === EditStatus.削除)
           })
           const initialOrigin = this.initialLists.originList.find(element => {
             const target: CustomizeUsageDefinition = this.convert(element)
             return content.customize_usage_definition.customize_usage_definition_id
               === target.customize_usage_definition.customize_usage_definition_id
-              && content.edit_status
-              === (EditStatus.変更 || EditStatus.削除)
+              && (content.edit_status === EditStatus.変更
+                || content.edit_status === EditStatus.削除)
           })
           if (initialOrigin) {
             this.lists.originList.splice(originListIndex, 1, initialOrigin)
@@ -858,15 +918,15 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
             const target: CustomizeUsageDefinition = this.convert(element)
             return content.customize_usage_definition.customize_usage_definition_id
               === target.customize_usage_definition.customize_usage_definition_id
-              && content.edit_status
-              === (EditStatus.変更 || EditStatus.削除)
+              && (content.edit_status === EditStatus.変更
+                || content.edit_status === EditStatus.削除)
           })
           const initialVisible = this.initialLists.visibleList.find(element => {
             const target: CustomizeUsageDefinition = this.convert(element)
             return content.customize_usage_definition.customize_usage_definition_id
               === target.customize_usage_definition.customize_usage_definition_id
-              && content.edit_status
-              === (EditStatus.変更 || EditStatus.削除)
+              && (content.edit_status === EditStatus.変更
+                || content.edit_status === EditStatus.削除)
           })
           if (initialVisible) {
             this.lists.visibleList.splice(visibleListIndex, 1, initialVisible)
@@ -884,15 +944,16 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
             const target: CustomizeUsageDefinition = this.convert(element)
             return content.customize_usage_definition.customize_usage_definition_id
               !== target.customize_usage_definition.customize_usage_definition_id
-              && content.edit_status
-              === (EditStatus.変更 || EditStatus.削除)
+              && (content.edit_status === EditStatus.変更
+                || content.edit_status === EditStatus.削除)
           })
-          const checkIdName =
-            content.customize_usage_definition.customize_usage_definition_id
-            + '-'
-            + content.edit_status
+          // チェックボックス設定
+          const customizeUsageDefinitionId = content.customize_usage_definition.customize_usage_definition_id
+          const editStatus = content.edit_status
+          const checkIdName = customizeUsageDefinitionId + '-' + editStatus
           delete this.checkedItems[checkIdName]
           this.check()
+          // ボタン表示設定
           this.disabled = !Object.values(this.checkedItems).some(item => item)
         },
       },
@@ -914,11 +975,13 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         closeBtnLabel: this.labels.cancel,
         okBtnLabel: this.labels.ok_btn,
         ok: () => {
-          // 一覧画面に表示するリスト設定
+          // リスト設定
           this.lists = _.cloneDeep(this.initialLists)
           this.pageParams.pageAdditionalCount = 0
+          // チェックボックス設定
           this.checkedItems = {}
           this.checkAll = false
+          // ボタン表示設定
           this.disabled = !Object.values(this.checkedItems).some(item => item)
         }
       },
@@ -958,7 +1021,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
           console.log(`params（再送）`, params)
           this.csDetailService.postCarsRequestsCustomizeSettingsRetryS2m(params, requestHeaderParams)
             .then((res) => {
-              // 一覧画面に表示するリスト設定
+              // リスト設定
               this.fetchList(this.sortingParams['sort'])
               // メッセージ出力
               this.alertService.show(this.labels.finish_message, false, 'success')
@@ -978,25 +1041,26 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     )
   }
 
-  // TODO:
+  /**
+   * 通信量確認モーダル呼出し
+   */
   onClickExpectedTrafficConfirm() {
     const keys: String[] = []
     Object.keys(this.checkedItems).forEach((key) => {
       if (this.checkedItems[key]) keys.push(key)
-    });
-    this.tableData = [...this.lists.addList, ...this.lists.editList].filter(
-      (element: any) => {
-        const content: CustomizeUsageDefinition = this.convert(element)
-        const id =
-          content.customize_usage_definition.customize_usage_definition_id
-          + '-'
-          + content.edit_status
-        return keys.includes(String(id))
+    })
+    const list = _.cloneDeep([...this.lists.addList, ...this.lists.editList])
+    this.tableData = list.reduce((acc, cur) => {
+      const content: CustomizeUsageDefinition = this.convert(cur)
+      const customizeUsageDefinitionId = content.customize_usage_definition.customize_usage_definition_id
+      const editStatus = content.edit_status
+      const id = customizeUsageDefinitionId + '-' + editStatus
+      if (keys.includes(String(id))) {
+        acc.push(content)
       }
-    )
+      return acc
+    }, [])
     console.log("tableData", this.tableData)
-    _.set(this.labels, 'vehicleInfo', this.model + '-' + this.typeRev + '-' + this.serial)
-
     this.modalService.open(
       {
         title: this.labels.communication_charge_confirmation,
@@ -1004,6 +1068,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         content: this.csExpectedTrafficConfirmModalContent,
         closeBtnLabel: this.labels.cancel,
         okBtnLabel: this.labels.ok_btn,
+        close: () => {
+          this.tableData = []
+        }
       },
       {
         size: 'lg',
@@ -1011,30 +1078,39 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     )
   }
 
+  /**
+   * 対象データ変換
+   * @param data 対象データ
+   */
+  convert(data: any) {
+    const content: CustomizeUsageDefinition = this.thList.reduce((acc, cur) => {
+      const item = _.get(data, cur.name)
+      _.set(acc, cur.formatKey, item)
+      return acc
+    }, {})
+    content.customize_usage_definition.customize_definitions
+      = _.get(data, 'customize_usage_definitions.customize_usage_definition.customize_definitions')
+    return content
+  }
+
+  /**
+   * チェックボックス押下時の処理
+   */
   onChangeSelect() {
     this.check()
     this.disabled = !Object.values(this.checkedItems).some(item => item)
   }
 
+  /**
+   * チェックボックス押下時の処理
+   */
   onChangeSelectAll() {
     this.check()
     this.disabled = !Object.values(this.checkedItems).some(item => item)
   }
 
   /**
-   * 対象データ変換
-   * @param data 対象データ
-   */
-  convert(data: any): CustomizeUsageDefinition {
-    return this.thList.reduce((acc, cur) => {
-      const item = _.get(data, cur.name)
-      _.set(acc, cur.formatKey, item)
-      return acc
-    }, {})
-  }
-
-  /**
-   * チェックボックス更新
+   * チェックボックスの更新処理
    */
   check() {
     const targetItems: any[] =
@@ -1045,10 +1121,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
       targetItems.length > 0 &&
       targetItems.every((item: any) => {
         const content: CustomizeUsageDefinition = this.convert(item)
-        const checkIdName =
-          content.customize_usage_definition.customize_usage_definition_id
-          + '-'
-          + content.edit_status
+        const customizeUsageDefinitionId = content.customize_usage_definition.customize_usage_definition_id
+        const editStatus = content.edit_status
+        const checkIdName = customizeUsageDefinitionId + '-' + editStatus
         return this.checkedItems[checkIdName]
       })
   }

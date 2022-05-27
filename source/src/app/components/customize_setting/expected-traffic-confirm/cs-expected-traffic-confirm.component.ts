@@ -26,6 +26,8 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
     public initThList1: TableHeader[];
     @Input()
     public initThList2: TableHeader[];
+    @Input()
+    public inputTableData: any;
 
     visibleErr: boolean = false;
 
@@ -34,7 +36,8 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
 
     thList1: TableHeader[] = [];
     thList2: TableHeader[] = [];
-    tableData: any[];
+    apiTableData: any[];
+    dispTableData: any[];
 
     _searchParams = {
         car_identification: {
@@ -69,24 +72,29 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
         protected userSettingService: UserSettingService,
         protected datePickerService: DatePickerService,
         protected csDetailService: CsDetailService) {
-            super(nav, title, router, cdRef, header, modal);
-            this.shouldDestroyNavigation = false;
+        super(nav, title, router, cdRef, header, modal);
+        this.shouldDestroyNavigation = false;
     }
 
     protected async fetchList(sortKey?: string): Promise<any> {
         this.requestHeaderParams['X-Sort'] = sortKey || ''
+
+        // １.画面の初期表示で車両カスタマイズ用途定義詳細取得APIからデータ取得
         const res = await this.csDetailService.fetchIndexList(
             this.carId,
             this.requestHeaderParams
         );
-        this.tableData = res.result_data.customize_usage_definitions.reduce((acc: any, cur: any) => {
+        this.apiTableData = res.result_data.customize_usage_definitions.reduce((acc: any, cur: any) => {
             const contents = _.get(cur, 'customize_usage_definition.customize_definitions').map((element: any) => {
                 return {
                     customize_usage_definition: {
+                        customize_usage_definition_id: cur.customize_usage_definition.customize_usage_definition_id,
                         customize_usage_definition_name: cur.customize_usage_definition.customize_usage_definition_name,
                         customize_definitions: {
+                            customize_definition_id: element.customize_definition_id,
                             customize_definition_name: element.customize_definition_name,
-                            active_name: element.active_name,
+                            status: element.status,
+                            active_kind: element.active_kind,
                             assumption_data_value_header: element.assumption_data_value_header,
                             assumption_data_value: element.assumption_data_value,
                             aggregation_opportunity_kind: element.aggregation_opportunity_kind,
@@ -98,34 +106,73 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
             })
             acc.push(...contents)
             return acc
-        }, [])
+        }, []);
+
+        // ２.車両カスタマイズ用途定義詳細取得APIのレスポンスから下記条件のデータの想定データ量（単位：KB）の合計を算出する
+        let apiTotalTraffic = this._calculateTotalTraffic(this.apiTableData);
+
+        // 3.1で取得したデータをカスタマイズ設定詳細から連携されたデータで同データがあれば上書きを行う
+        let callerTableData = this.inputTableData.reduce((acc: any, cur: any) => {
+            const contents = _.get(cur, 'customize_usage_definition.customize_definitions').map((element: any) => {
+                return {
+                    customize_usage_definition: {
+                        customize_usage_definition_id: cur.customize_usage_definition.customize_usage_definition_id,
+                        customize_usage_definition_name: cur.customize_usage_definition.customize_usage_definition_name,
+                        edit_status: cur['edit_status'],
+                        customize_definitions: {
+                            customize_definition_id: element.customize_definition_id,
+                            customize_definition_name: element.customize_definition_name,
+                            status: element.status,
+                            active_kind: element.active_kind,
+                            assumption_data_value_header: element.assumption_data_value_header,
+                            assumption_data_value: element.assumption_data_value,
+                            aggregation_opportunity_kind: element.aggregation_opportunity_kind,
+                            send_opportunity_kind: element.send_opportunity_kind,
+                            process_type: element.process_type
+                        }
+                    }
+                }
+            })
+            acc.push(...contents)
+            return acc
+        }, []);
+
+        // 4.3の結果から下記条件のデータの想定データ量（単位：KB）の合計を算出する(合計通信量(要求後)[KB/月]表示)
+        this.dispTableData = this._overwriteList(this.apiTableData, callerTableData);
+        let dispTotalTraffic = this._calculateTotalTraffic(this.dispTableData);
+
+        // 5.4の合計値－2の合計値(差分[KB])
+        let difference = Math.round((dispTotalTraffic - apiTotalTraffic) * 100) / 100;
+
+        // 6.3の結果から"90"以外かつ、有効区分が"1"のもののみ画面に表示
+        this.dispTableData = this.dispTableData.filter((element: any) => element.customize_usage_definition.customize_definitions.status != '90' &&
+            element.customize_usage_definition.customize_definitions.active_kind == '1');
 
         let data1: any[] = [];
         let data2: any[] = [];
-
         // Split data for 2 tables: 定期配信カスタマイズデータ, その他カスタマイズデータ
-        this.tableData.forEach((element: any) => {
-            if(element.customize_usage_definition.customize_definitions.aggregation_opportunity_kind == '1'
+        this.dispTableData.forEach((element: any) => {
+            if (element.customize_usage_definition.customize_definitions.aggregation_opportunity_kind == '1'
                 && element.customize_usage_definition.customize_definitions.send_opportunity_kind == '1') {
-                    data1.push(element);
-            }else{
+                data1.push(element);
+            } else {
                 data2.push(element);
             }
         })
 
         // Setting data for column [通信量]
         data2.forEach(element => {
-            switch(element.customize_usage_definition.customize_definitions.process_type){
+            switch (element.customize_usage_definition.customize_definitions.process_type) {
                 case "2":
                     element.customize_usage_definition.customize_definitions.assumption_data_value =
                         element.customize_usage_definition.customize_definitions.assumption_data_value_header + this.labels.assumption_data_value_kb_body_label
                         + element.customize_usage_definition.customize_definitions.assumption_data_value + this.labels.assumption_data_value_number_body_label
                     break;
                 default:
-                    if(element.customize_usage_definition.customize_definitions.aggregation_opportunity_kind = "0"){
+                    if (element.customize_usage_definition.customize_definitions.aggregation_opportunity_kind = "0") {
                         element.customize_usage_definition.customize_definitions.assumption_data_value =
                             element.customize_usage_definition.customize_definitions.assumption_data_value + this.labels.assumption_data_value_number_body_label;
-                    }else{
+                    } else {
                         element.customize_usage_definition.customize_definitions.assumption_data_value =
                             element.customize_usage_definition.customize_definitions.assumption_data_value + this.labels.assumption_data_value_monthly_body_label;
                     }
@@ -143,10 +190,8 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
             this.thList2
         )
 
-        let totalTraffic = this._calculateTotalTraffic(data1);
-        let difference = this._calculateDifference(totalTraffic);
         this.dataTable1.forEach(element => {
-            _.set(element, 'customize_usage_total_traffic', totalTraffic);
+            _.set(element, 'customize_usage_total_traffic', dispTotalTraffic);
             _.set(element, 'customize_usage_difference', difference);
         })
 
@@ -210,13 +255,13 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
         this.thList2.forEach((element: TableHeader) => {
             switch (element.name) {
                 case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name":
-                    element.columnStyle = "width:30%; text-align: center;"
-                    break;
-                case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
                     element.columnStyle = "width:22%; text-align: center;"
                     break;
+                case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
+                    element.columnStyle = "width:16%; text-align: center;"
+                    break;
                 case "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value":
-                    element.columnStyle = "width:34%; text-align: center;"
+                    element.columnStyle = "width:28%; text-align: center;"
                     break;
             }
         })
@@ -234,7 +279,7 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
             this.requestHeaderParams
         );
 
-        if(res.result_data.cars[0].communication_channel.code == '0' || res.result_data.cars[0].communication_channel.code == '5'){
+        if (res.result_data.cars[0].communication_channel.code == '0' || res.result_data.cars[0].communication_channel.code == '5') {
             this.visibleErr = true;
         }
 
@@ -243,25 +288,48 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
     private _calculateTotalTraffic(data: any[]): number {
         let result: number = 0;
         data.forEach(element => {
-            // TODO
-            // if (element.customize_usage_definition.edit_status_name != '削除' &&
-            //     element.customize_usage_definition.customize_definitions.active_name != '無効') {
-            //     result += element.customize_usage_definition.customize_definitions.assumption_data_value / 1024;
-            // }
-            result += element.customize_usage_definition.customize_definitions.assumption_data_value / 1024;
+            if (element.customize_usage_definition.customize_definitions.aggregation_opportunity_kind == '1' &&
+                element.customize_usage_definition.customize_definitions.send_opportunity_kind == '1' &&
+                element.customize_usage_definition.customize_definitions.status != '90' &&
+                element.customize_usage_definition.customize_definitions.active_kind == '1') {
+                result += element.customize_usage_definition.customize_definitions.assumption_data_value / 1024;
+            }
         })
         return Math.round(result * 100) / 100;
     }
 
-    private _calculateDifference(totalTraffic: number): number {
-        let result: number = -1;
-        let totalAssumption: number = 0;
-        this.dataTable1.forEach(element => {
-            totalAssumption += element['customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value'] / 1024;
-        })
-        result = totalTraffic - totalAssumption;
-        return Math.round(result * 100) / 100;
-    }
+    private _overwriteList(apiList: any[], callerList: any[]): any {
+        let mergedArray: any[] = [];
+        mergedArray = [...mergedArray, apiList];
+        mergedArray = [...mergedArray, callerList];
 
+        let keyValues: any[] = [];
+        apiList.forEach(element => {
+            keyValues.push(element.customize_usage_definition.customize_usage_definition_id + "," + element.customize_usage_definition.customize_definitions.customize_definition_id);
+        })
+
+        mergedArray.reduce((arr: any[],cur) => {
+            cur.forEach((element: any) => {
+                let keyValue = element.customize_usage_definition.customize_usage_definition_id + "," + element.customize_usage_definition.customize_definitions.customize_definition_id;
+                if(keyValues.includes(keyValue)){
+                    let index = keyValues.indexOf(keyValue);
+                    if(element.customize_usage_definition.edit_status == '3'){
+                        // DELETE
+                        arr.splice(index, 1);
+                        keyValues.splice(index, 1);
+                    }else{
+                        // UPDATE
+                        arr.splice(index, 1, element);
+                    }
+                }else{
+                    // INSERT
+                    arr.push(element);
+                }
+            })
+            return arr;
+        })
+        return mergedArray[0];
+
+    }
 
 }

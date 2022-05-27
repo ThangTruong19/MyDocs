@@ -31,5 +31,5 @@ export class ScreenCodeConst {
     // 送信番号一覧要求タブ
     public static readonly CDSM_SEND_NUMBER_LIST_REQUEST_TAB = 'cdsm_send_number_list_request_tab';
 
-
+    public static readonly CDSM_REQUEST_NUMBER_TAB = 'cdsm_request_number_tab';
 }

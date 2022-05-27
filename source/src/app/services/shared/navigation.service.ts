@@ -6,6 +6,7 @@ import { StorageService } from 'app/services/shared/storage.service';
 
 @Injectable()
 export class NavigationService {
+
     public navigationsMenu: Navigation[] | null = null;
     public navigationsSideMenu: Navigation[] | null = null;
 
@@ -14,6 +15,9 @@ export class NavigationService {
 
     private navigationsMenuOrder: string[];
 
+    /**
+     * コンストラクタ
+     */
     constructor(
         private storageService: StorageService
     ) {
@@ -106,16 +110,6 @@ export class NavigationService {
             return null;
         }
 
-        // if (this.storageService.hasItem(StorageService.NAVIGATIONS_MENU_ORDER_KEY)) {
-        //     const storageData = this.storageService.getItem(StorageService.NAVIGATIONS_MENU_ORDER_KEY);
-        //     if (storageData) {
-        //         return JSON.parse(storageData);
-        //     } else {
-        //         return null;
-        //     }
-        // } else {
-        //     return null;
-        // }
     }
 
     /**
@@ -149,10 +143,10 @@ export class NavigationService {
 
     /**
      * 並び順としてセーブされているナビゲーションとAPIで取得したナビゲーションとに
-     * 項目数やコードの食い違いがあるかの判定
+     * 項目数やコードの差異があるかの判定
      * @param order ナビゲーションの並び順
      * @param navigations 並べ替えられる前のナビゲーション
-     * @return true 食い違いがある / false 食い違いがない
+     * @return true 差異がある / false 差異がない
      */
     private isNavigationChange(order: any, navigations: any): boolean {
         return xor(order, navigations.map((nav: any) => nav.code)).length > 0;
@@ -165,4 +159,5 @@ export class NavigationService {
 
         return navigations.filter((nav: any) => nav.functions.length);
     }
+
 }

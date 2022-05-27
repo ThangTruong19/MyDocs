@@ -25,8 +25,38 @@ module.exports = function() {
 function createData(count) {
   const result = [];
 
+  const customize_usage_definitions = ['カスタマイズ定義A', 'カスタマイズ定義B'];
+  const customize_definition = ['生産詳細データ', '作業分類別集計データ'];
+
   for (var i = 1; i <= count; i++) {
-    result.push({
+
+    const customize_usage_definitions_list = [];
+    for (var j = 0; j < customize_usage_definitions.length; j++) {
+      let item = {};
+      item.id = "123456" + j,
+      item.name = customize_usage_definitions[j];
+      item.version = "1.00";
+      item.setting_change_status = "1";
+      item.setting_change_status_name = "設定中";
+
+      const customize_definition_list = [];
+      for (var k = 0; k < customize_definition.length; k++) {
+        let itemCustomize = {};
+        itemCustomize.id = "123456" + k;
+        itemCustomize.name = customize_definition[k];
+        itemCustomize.version = "1.00";
+        itemCustomize.access_level = {
+          "id": "1",
+          "code": "0",
+          "name": "開発者"
+        };
+        customize_definition_list.push(itemCustomize);
+      }
+      item.customize_definitions = customize_definition_list;
+      customize_usage_definitions_list.push(item);
+    }
+
+    let row = {
       "car_identification": {
         "id": i.toString(),
         "model": "D85PX",
@@ -53,28 +83,9 @@ function createData(count) {
         "label": "コマツ東京C",
         "label_english": "KOMATSU Tokyo C"
       },
-      "customize_usage_definitions": [
-        {
-          "id": "123456" + i,
-          "name": "カスタマイズ定義A",
-          "version": "1.00",
-          "setting_change_status": "1",
-          "setting_change_status_name": "設定中",
-          "customize_definitions": [
-            {
-              "id": "234567" + i,
-              "name": "カスタマイズ定義A",
-              "version": "1.00",
-              "access_level": {
-                "id": "1",
-                "code": "0",
-                "name": "開発者"
-              }
-            }
-          ]
-        }
-      ]
-    });
+      "customize_usage_definitions": customize_usage_definitions_list
+    };
+    result.push(row);
   }
 
   return result;

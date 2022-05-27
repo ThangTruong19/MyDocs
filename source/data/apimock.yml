@@ -260,11 +260,11 @@
 # カスタマイズ要求ステータスの一覧を取得する
 #
 - request:
-    url: /v1/cars/customize_requests/status/search
+    url: /v1/cars/customize_requests_status/search
     method: POST
   response:
     type: js
-    file: json/cdsm/customize_request_status/postCustomizeRequestStatusList.js
+    file: json/cdsm/customize_request_status/postCarsCustomizeRequestsStatusSearch.js
 
 #
 # x. 車両一覧取得 (POST)
@@ -383,6 +383,18 @@
   response:
     type: js
     file: json/cdsm/customize/customizeSettingRequestResend.js
+
+#
+# x. カスタマイズ操作履歴一覧取得 API (POST)
+#
+# カスタマイズ操作履歴の一覧を取得する
+#
+- request:
+    url: /v1/cars/:car_id/car_customize_data_performance
+    method: GET
+  response:
+    type: js
+    file: json/cdsm/customize_request_number/getListCarsTransmissionNumbers.js
 
 #
 # x. カスタマイズ操作履歴一覧取得 API (POST)

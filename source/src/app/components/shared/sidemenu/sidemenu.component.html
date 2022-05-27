@@ -11,14 +11,13 @@
 
     <ul *ngIf="navigationsSideMenu"
         data-role="sidemenu"
-        dnd-sortable-container
         [sortableData]="navigationsSideMenu"
+        [dragula]="SIDE_MENU_ITEM"
+        [(dragulaModel)]="navigationsSideMenu"
     >
         <li *ngFor="let item of navigationsSideMenu; let i = index"
             dnd-sortable
             [sortableIndex]="i"
-            (dragstart)="onDragStart($event)"
-            (dragend)="onDragEnd()"
         >
             <app-sidemenu-item
                 [isLoading]="isLoading"

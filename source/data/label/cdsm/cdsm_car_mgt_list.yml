@@ -178,3 +178,9 @@ labels:
     name: terminal_mode_message
     ja: 注) 2 端末モードが「次世代以外」の場合、一括変更用テンプレートDL・データ送信要求・一括設定取得要求は実行できない。
     en:
+
+  - id: 106
+    description: 選択してください
+    name: prompt_to_select
+    ja: 選択してください
+    en:

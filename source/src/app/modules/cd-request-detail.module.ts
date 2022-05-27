@@ -17,6 +17,10 @@ import { CdNumberListRequestTabComponent } from 'app/components/customize_data_r
 import { CdNumberListRequestConfirmComponent } from 'app/components/customize_data_request/number-list-request/cd-number-list-request-confirm/cd-number-list-request-confirm.component';
 import { CdNumberListRequestTabService } from 'app/services/customize_data_request/number-list-request/cd-number-list-request-tab/cd-number-list-request-tab.service';
 import { CdNumberListRequestComfirmService } from 'app/services/customize_data_request/number-list-request/cd-number-list-request-confirm/cd-request-period-comfirm.service';
+import { CdRequestNumberTabComponent } from 'app/components/customize_data_request/request-number/cd-request-number-tab/cd-request-number-tab.component';
+import { CdRequestNumberTabService } from 'app/services/customize_data_request/request-number/cd-request-number-tab/cd-request-number-tab.service';
+import { CdRequestNumberListComponent } from 'app/components/customize_data_request/request-number/request-number-list/cd-request-number-list.component';
+import { CdRequestNumberListService } from 'app/services/customize_data_request/request-number/cd-request-number-tab/cd-request-number-list.service';
 
 @NgModule({
     imports: [
@@ -33,6 +37,8 @@ import { CdNumberListRequestComfirmService } from 'app/services/customize_data_r
         CdCurrentRequestComfirmComponent,
         CdNumberListRequestTabComponent,
         CdNumberListRequestConfirmComponent,
+        CdRequestNumberTabComponent,
+        CdRequestNumberListComponent
     ],
     providers: [
         DatePickerService,
@@ -41,6 +47,8 @@ import { CdNumberListRequestComfirmService } from 'app/services/customize_data_r
         CdRequestPeriodComfirmService,
         CdNumberListRequestTabService,
         CdNumberListRequestComfirmService,
+        CdRequestNumberTabService,
+        CdRequestNumberListService
     ],
 })
 export class CdRequestDetailModule { }

@@ -7,9 +7,11 @@ import {
     ChangeDetectorRef,
     OnDestroy,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NavigationService } from 'app/services/shared/navigation.service';
+import { Router } from '@angular/router';
+import { DragulaService } from 'ng2-dragula';
+import { Subscription } from 'rxjs';
 import { Navigation } from 'app/types/navigation';
+import { NavigationService } from 'app/services/shared/navigation.service';
 
 /**
  * 管理メニュー
@@ -25,20 +27,13 @@ export class MenuListComponent implements OnInit, OnDestroy {
     private readonly NAV_WIDTH = 255;
     private readonly MARGIN = 20;
 
-    constructor(
-        private navigationService: NavigationService,
-        private ref: ChangeDetectorRef
-    ) {
-    }
+    public readonly MENU_ITEM = 'menuItems';
 
-    ngOnInit(): void {
-        window.addEventListener('resize', this._detectChanges);
-    }
+    public subscription: Subscription = new Subscription();
 
-    ngOnDestroy(): void {
-        window.removeEventListener('resize', this._detectChanges);
-    }
-
+    /**
+     * メニューの横幅サイズ
+     */
     public get wrapperWidth(): { width: string } {
         return {
             width: `${Math.floor((window.innerWidth - this.MARGIN) / this.NAV_WIDTH) *
@@ -46,13 +41,65 @@ export class MenuListComponent implements OnInit, OnDestroy {
         };
     }
 
+    /**
+     * メニューの一覧情報
+     */
     public get navigationsMenu(): Navigation[] | null {
         return this.navigationService.navigationsMenu;
     }
 
-    public onDragEnd(event: Event): void {
-        const ref = this.navigationService.navigationsMenu;
+    public set navigationsMenu(nav: Navigation[] | null) {
+        this.navigationService.navigationsMenu = nav;
+    }
 
+    /**
+     * コンストラクタ
+     */
+    constructor(
+        private dragulaService: DragulaService,
+        private navigationService: NavigationService,
+        private ref: ChangeDetectorRef
+    ) {
+        this.initMenuDragEvent();
+    }
+
+    /**
+     * コンポーネント初期化時の処理を行う。
+     */
+    ngOnInit(): void {
+        window.addEventListener('resize', this.detectChanges);
+    }
+
+    /**
+     * コンポーネント破棄時の処理を行う。
+     */
+    ngOnDestroy(): void {
+        window.removeEventListener('resize', this.detectChanges);
+
+        if (this.subscription && !this.subscription.closed) {
+            this.subscription.unsubscribe();
+        }
+    }
+
+    /**
+     * メニューのドラッグイベントの初期処理を行う。
+     */
+    private initMenuDragEvent(): void {
+        this.dragulaService.createGroup(this.MENU_ITEM, {
+            direction: 'horizontal'
+        });
+        this.subscription.add(this.dragulaService.dragend(this.MENU_ITEM)
+            .subscribe(() => {
+              this.onDragEnd();
+            })
+        );
+    }
+
+    /**
+     * メニュー位置入れ入れ替え後の処理を行う。
+     */
+    public onDragEnd(): void {
+        const ref: Navigation[] = this.navigationService.navigationsMenu;
         this.navigationService.saveNavigationOrder(ref);
         this.orderChanged.emit();
     }
@@ -60,9 +107,11 @@ export class MenuListComponent implements OnInit, OnDestroy {
     /**
      * EventListener で識別するための detectChanges() のラッパ
      */
-    private _detectChanges = (): void => {
-        this.ref.detectChanges();
-    };
+    private detectChanges(): void {
+        if (this.ref) {
+            this.ref.detectChanges();
+        }
+    }
 }
 
 @Component({
@@ -70,18 +119,25 @@ export class MenuListComponent implements OnInit, OnDestroy {
     templateUrl: './menu-item.component.html',
 })
 export class MenuItemComponent {
+
     @Input() item: any;
 
+    /**
+     * コンストラクタ
+     */
     constructor(
-        private route: ActivatedRoute,
         private router: Router
     ) {
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
-    public handleClick(link: string): void {
+    /**
+     * メニュー項目押下時の処理を行う。
+     * @param menuUrl メニュー項目のURL
+     */
+    public handleClick(menuUrl: string): void {
         this.router.navigated = false;
-        this.router.navigateByUrl(link);
+        this.router.navigateByUrl(menuUrl);
     }
 
 }

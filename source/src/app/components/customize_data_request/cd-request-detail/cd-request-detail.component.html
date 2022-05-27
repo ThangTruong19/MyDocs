@@ -11,7 +11,15 @@
                         <div class="tab" (click)="changeTab(2)" [ngClass]="{ 'active': activeTab == 2 }">{{labels.number_list_request_tab_title}}</div>
                     </div>
                     <div>
-                        <div *ngIf="activeTab == 0">{{labels.request_number_tab_title}}</div>
+                        <div *ngIf="activeTab == 0">
+                            <app-cd-request-number-tab
+                                [labels]="labels"
+                                [resource]="resource"
+                                [lists]="lists"
+                                [params]="params"
+                                [sortableThList]="sortableThList"
+                                [thList]="thList"></app-cd-request-number-tab>
+                        </div>
                         <div *ngIf="activeTab == 1" class="app-cd-request-detail-content">
                             <app-cd-request-period-tab
                                 [labels]="labels"
@@ -36,3 +44,5 @@
         </div>
     </div>
 </section>
+
+<app-sidemenu [isLoading]="isLoading"></app-sidemenu>

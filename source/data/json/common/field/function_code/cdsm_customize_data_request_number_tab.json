@@ -1,0 +1,51 @@
+[
+    {
+      "display_sequence_no": "1",
+      "name": "車両",
+      "path": "request_number.cars.car_identification.model_type_rev_serial",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "2",
+      "name": "カスタマイズ用途定義",
+      "path": "request_number.cars.customize_usage_definitions.name",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "3",
+      "name": "カスタマイズ定義",
+      "path": "request_number.cars.customize_usage_definitions.customize_definitions.name",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "4",
+      "name": "送信番号",
+      "path": "request_number.car_customized_definition.car_customize_data_performances.send_no",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "5",
+      "name": "ステータス",
+      "path": "request_number.car_customized_definition.car_customize_data_performances.status_name",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "6",
+      "name": "車両データ生成時刻",
+      "path": "request_number.car_customized_definition.car_customize_data_performances.customized_data_achievement_details.server_registration_time",
+      "control_code": "1",
+      "display_code": "1"
+    },
+    {
+      "display_sequence_no": "7",
+      "name": "サーバ登録時間",
+      "path": "request_number.car_customized_definition.car_customize_data_performances.customized_data_achievement_details.car_data_creation_time",
+      "control_code": "1",
+      "display_code": "1"
+    }
+]
