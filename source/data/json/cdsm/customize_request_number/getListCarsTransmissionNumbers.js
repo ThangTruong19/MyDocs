@@ -11,7 +11,10 @@ module.exports = function (data) {
         ? 0
         : parseInt(data.header['x-count']);
     var sort = data.header['x-sort'] || 'car_customized_definition.customize_definition_id';
-    var TOTAL = isNaN(data.header['x-count']) ? 1 : 12;
+    var TOTAL = isNaN(data.header['x-count']) ? 1 : 14;
+    var loopEnd =
+    TOTAL > from + count - 1 && count !== 0 ? from + count - 1 : TOTAL;
+
     var mock = {
         result_header: {
             'X-From': from,
@@ -25,469 +28,94 @@ module.exports = function (data) {
 
     var customizeDefinitionId = data.query.customize_definition_id;
 
-    mock.result_data = createData(customizeDefinitionId);
+    let customize_definition_id;
+    let customize_definition_name;
+    let assumption_data_value;
+    let car_customize_data_performances = [];
+
+    switch (customizeDefinitionId) {
+        case "1":
+            customize_definition_id = 1;
+            customize_definition_name = "カスタマイズ定義A";
+            assumption_data_value = 1234;
+            break;
+        case "2":
+            customize_definition_id = 2;
+            customize_definition_name = "カスタマイズ定義B";
+            assumption_data_value = 5678;
+            break;
+        case "3":
+            customize_definition_id = 3;
+            customize_definition_name = "カスタマイズ定義C";
+            assumption_data_value = 9012;
+            break;
+        default:
+            customize_definition_id = 1;
+            customize_definition_name = "カスタマイズ定義A";
+            assumption_data_value = 1234;
+            break;
+    }
+
+    for (var i = from; i <= loopEnd; i++) {
+        car_customize_data_performances.push(createData(i,customizeDefinitionId));
+    }
+
+    mock.result_data = {
+        "car_customized_definition": {
+            "customize_definition_id": customize_definition_id,
+            "customize_definition_name": customize_definition_name,
+            "assumption_data_value": assumption_data_value,
+            "car_customize_data_performances": car_customize_data_performances
+        }
+    }
 
     return success(mock);
     // return fail500();
 };
 
-function createData(definitionId) {
-    const initResult = [];
+function createData(index, customizeDefinitionId) {
     let result = {};
+    let status = 0;
+    let statusName = "";
+    let customizedDataAchievementDetails = [];
 
-    initResult.push({
-        "car_customized_definition": {
-            "customize_definition_id": 1,
-            "customize_definition_name": "アプリUDO 1",
-            "assumption_data_value": "1234",
-            "car_customize_data_performances": [
-                {
-                    "send_no": "20200619T091709Z002002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20200719T091709Z002002",
-                    "status": "0",
-                    "status_name": "要求中",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20200819T091709Z002002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        },
-                        {
-                            "server_registration_time": "2022-05-12 08:25:05",
-                            "car_data_creation_time": "2022-05-12 20:05:15"
-                        }]
-                },
-                {
-                    "send_no": "20200919T091709Z002002",
-                    "status": "0",
-                    "status_name": "要求中",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201019T091709Z002002",
-                    "status": "0",
-                    "status_name": "受信済み",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201119T091709Z002002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        },
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20200619T091709Z002002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20200719T091709Z002002",
-                    "status": "0",
-                    "status_name": "要求中",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20200819T091709Z002002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        },
-                        {
-                            "server_registration_time": "2022-05-12 08:25:05",
-                            "car_data_creation_time": "2022-05-12 20:05:15"
-                        }]
-                },
-                {
-                    "send_no": "20200919T091709Z002002",
-                    "status": "0",
-                    "status_name": "要求中",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201019T091709Z002002",
-                    "status": "0",
-                    "status_name": "受信済み",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201119T091709Z002002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        },
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                }
-            ]
-        }
-    });
-
-    initResult.push({
-        "car_customized_definition": {
-            "customize_definition_id": 2,
-            "customize_definition_name": "アプリUDO 2",
-            "assumption_data_value": "5678",
-            "car_customize_data_performances": [
-                {
-                    "send_no": "20200720T091709Z003002",
-                    "status": "0",
-                    "status_name": "要求中",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        },
-                        {
-                            "server_registration_time": "2022-05-12 08:25:05",
-                            "car_data_creation_time": "2022-05-12 20:05:15"
-                        }]
-                },
-                {
-                    "send_no": "20200820T091709Z003002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20200920T091709Z003002",
-                    "status": "0",
-                    "status_name": "要求中",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201020T091709Z003002",
-                    "status": "0",
-                    "status_name": "受信済み",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        },
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201120T091709Z003002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201220T091709Z003002",
-                    "status": "0",
-                    "status_name": "受信済み",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20200720T091709Z003002",
-                    "status": "0",
-                    "status_name": "要求中",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        },
-                        {
-                            "server_registration_time": "2022-05-12 08:25:05",
-                            "car_data_creation_time": "2022-05-12 20:05:15"
-                        }]
-                },
-                {
-                    "send_no": "20200820T091709Z003002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20200920T091709Z003002",
-                    "status": "0",
-                    "status_name": "要求中",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201020T091709Z003002",
-                    "status": "0",
-                    "status_name": "受信済み",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        },
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201120T091709Z003002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201220T091709Z003002",
-                    "status": "0",
-                    "status_name": "受信済み",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                }
-            ]
-        }
-    });
-
-    initResult.push({
-        "car_customized_definition": {
-            "customize_definition_id": 3,
-            "customize_definition_name": "アプリUDO 3",
-            "assumption_data_value": "9012",
-            "car_customize_data_performances": [
-                {
-                    "send_no": "20200821T091709Z004002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20200921T091709Z004002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        },
-                        {
-                            "server_registration_time": "2022-05-12 08:25:05",
-                            "car_data_creation_time": "2022-05-12 20:05:15"
-                        }]
-                },
-                {
-                    "send_no": "20201021T091709Z004002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201121T091709Z004002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201221T091709Z004002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        },
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201222T091709Z004002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20200821T091709Z004002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20200921T091709Z004002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        },
-                        {
-                            "server_registration_time": "2022-05-12 08:25:05",
-                            "car_data_creation_time": "2022-05-12 20:05:15"
-                        }]
-                },
-                {
-                    "send_no": "20201021T091709Z004002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201121T091709Z004002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201221T091709Z004002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        },
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                },
-                {
-                    "send_no": "20201222T091709Z004002",
-                    "status": "0",
-                    "status_name": "未受信",
-                    "customized_data_achievement_details": [
-                        {
-                            "server_registration_time": "2022-04-05 09:18:24",
-                            "car_data_creation_time": "2022-04-05 22:13:59"
-                        }]
-                }
-            ]
-        }
-    });
-
-    // Return dummy data based on the value of [カスタマイズ定義]
-    switch (definitionId) {
-        case "1":
-            result = initResult.at(0);
+    switch ((index + Number(customizeDefinitionId)) % 3) {
+        case 0:
+            status = "0";
+            statusName = "要求中";
+            customizedDataAchievementDetails.push({
+                "server_registration_time": "2022-04-05 09:18:24",
+                "car_data_creation_time": "2022-04-05 22:13:59"
+            });
             break;
-        case "2":
-            result = initResult.at(1);
+        case 1:
+            status = "1";
+            statusName = "未受信";
+            customizedDataAchievementDetails.push({
+                "server_registration_time": "2022-05-10 12:40:05",
+                "car_data_creation_time": "2022-05-10 20:05:15"
+            });
             break;
-        case "3":
-            result = initResult.at(2);
-            break;
-        default:
-            result = initResult.at(0);
+        case 2:
+            status = "2";
+            statusName = "受信済み";
+            customizedDataAchievementDetails.push({
+                "server_registration_time": "2022-04-05 09:18:24",
+                "car_data_creation_time": "2022-04-05 22:13:59"
+            });
+            customizedDataAchievementDetails.push({
+                "server_registration_time": "2022-05-10 12:40:05",
+                "car_data_creation_time": "2022-05-10 20:05:15"
+            });
             break;
     }
+
+    result = {
+        "send_no": index + (Number(customizeDefinitionId) * 20) + "0200619T091709Z002002",
+        "status": status,
+        "status_name": statusName,
+        "customized_data_achievement_details": customizedDataAchievementDetails
+    };
 
     return result;
 }

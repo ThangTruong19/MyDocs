@@ -65,6 +65,8 @@
                     [checkIdName]="checkIdName"
                     [checkedItems]="checkedItems"
                     [(sortingParams)]="sortingParams"
+                    (changeSelect)="onChangeSelect()"
+                    (clickSelectAll)="onChangeSelectAll()"
                     [emptyListMessage]="'Empty'"
                 >
                 </app-common-table>

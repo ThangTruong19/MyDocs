@@ -55,17 +55,17 @@
         "placeholder_text": "選択してください",
         "items": [
             {
-                "key": "アプリUDO 1",
+                "key": "カスタマイズ定義A",
                 "value": "1",
                 "kind": "D"
             },
             {
-                "key": "アプリUDO 2",
+                "key": "カスタマイズ定義B",
                 "value": "2",
                 "kind": "D"
             },
             {
-                "key": "アプリUDO 3",
+                "key": "カスタマイズ定義C",
                 "value": "3",
                 "kind": "D"
             }
