@@ -26,7 +26,7 @@ export interface HistoryMgtListFileCreateParams {
         type_rev?: string
         serials?: string[]
         division_code?: string
-        customize_usage_definition_category_id?: string
+        customize_usage_definition_id?: string
         customize_definition_id?: string
         setting_change_status?: string
         search_keyword?: string

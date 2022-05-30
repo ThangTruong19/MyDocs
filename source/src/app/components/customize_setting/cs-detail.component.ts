@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild, Output, EventEmitter } from '@angular/core'
+import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild, Output, EventEmitter, HostListener } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { ActivatedRoute, Router } from '@angular/router'
 import { UserSettingService } from 'app/services/api/user-setting.service'
@@ -160,6 +160,20 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     protected csDetailService: CsDetailService) {
     super(nav, title, router, cdRef, header, modal)
     this.isCheckedItemsAllPageHold = true
+  }
+
+  shouldConfirmOnBeforeunload() {
+    return this.lists.addList.length !== 0 || this.lists.editList.length !== 0;
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  beforeUnload(e: Event) {
+    if (this.shouldConfirmOnBeforeunload()) {
+      e.preventDefault();
+      // Chrome未対応のため
+      // https://developer.mozilla.org/ja/docs/Web/API/Window/beforeunload_event
+      e.returnValue = true;
+    }
   }
 
   /**

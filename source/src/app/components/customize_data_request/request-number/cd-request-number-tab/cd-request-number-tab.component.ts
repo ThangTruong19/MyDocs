@@ -8,6 +8,7 @@ import { ModalService } from 'app/services/shared/modal.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
 import { Fields, Resources } from 'app/types/common';
 import * as _ from 'lodash';
+import { CdRequestNumberListComponent } from '../request-number-list/cd-request-number-list.component';
 
 /**
  * 送信要求（送信番号単位）タブ
@@ -24,9 +25,11 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
     @Input() override labels: any;
     @Input() override resource: any;
     resources: Resources;
+    requestNumberDefinitionIds: string;
 
     @ViewChild('cdExpectedTrafficConfirmModalContent', { static: false }) cdExpectedTrafficConfirmModalContent: TemplateRef<null>;
     @ViewChild('cdRequestNumberListModalContent', { static: false }) cdRequestNumberListModalContent: TemplateRef<null>;
+    @ViewChild(CdRequestNumberListComponent) requestNumberListComponent: CdRequestNumberListComponent;
 
     initList: any = {
         visibleList: [] as any[],
@@ -339,7 +342,22 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
      * @param data
      */
     handleCustomizeUsageDefinitionsClick(data: any, item: any): void {
-        console.log("row select: ", data, item);
+        this.requestNumberDefinitionIds = item.id;
+        this.modalService.open(
+            {
+                title: this.labels.request_number_select_title,
+                labels: this.labels,
+                content: this.cdRequestNumberListModalContent,
+                closeBtnLabel: this.labels.cancel,
+                okBtnLabel: this.labels.ok_btn,
+                enableOk: false,
+                ok: () => {
+                    console.log("response data: " +  JSON.stringify(this.requestNumberListComponent.responseData));
+                },
+            },
+            {
+                size: 'xl',
+            })
     }
 
     /**
@@ -349,21 +367,4 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
     handleSendClick(data: any): void {
         console.log("row select: ", data);
     }
-
-    // TODO: PLACEHOLDER METHOD
-  trasmissionNumbers(): void{
-    this.modalService.open({
-      title: this.labels.request_number_select_title,
-      labels: this.labels,
-      content: this.cdRequestNumberListModalContent,
-      closeBtnLabel: this.labels.cancel,
-      okBtnLabel: this.labels.ok_btn,
-      ok: () => {
-        console.log("OK");
-      },
-    },
-    {
-      size: 'xl',
-    })
-  }
 }

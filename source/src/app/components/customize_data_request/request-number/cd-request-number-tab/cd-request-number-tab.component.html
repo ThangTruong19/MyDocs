@@ -77,7 +77,7 @@
                         <ng-container *ngFor="let title of thList">
                             <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
                                 <!-- 車両情報 -->
-                                <td *ngIf="title.name == 'request_number.cars.car_identification.model_type_rev_serial'"
+                                <td *ngIf="title.name === 'request_number.cars.car_identification.model_type_rev_serial'"
                                     class="td-{{
                                         title.shortName
                                     }} app-index-td d-flex align-items-center"
@@ -86,7 +86,7 @@
                                     <span>{{ data[title.name] }}</span>
                                 </td>
                                 <!-- カスタマイズ用途定義 -->
-                                <td *ngIf="title.name == 'request_number.cars.customize_usage_definitions.name'"
+                                <td *ngIf="title.name === 'request_number.cars.customize_usage_definitions.name'"
                                     class="td-{{
                                         title.shortName
                                     }} app-index-td d-flex align-items-center"
@@ -133,10 +133,6 @@
             </div>
         </div>
     </div>
-    <!-- TODO: PLACEHOLDER CONTENT-->
-    <div class="row">
-        <button class="btn btn-primary btn-send" (click)="trasmissionNumbers()">送信番号一覧</button>
-    </div>
 </div>
 
 <ng-template #cdExpectedTrafficConfirmModalContent>
@@ -150,5 +146,13 @@
 <ng-template #cdRequestNumberListModalContent>
     <app-cd-request-number-list
         [resources]="resources"
+        [requestNumberDefinitionIds]="requestNumberDefinitionIds"
     ></app-cd-request-number-list>
+</ng-template>
+<ng-template #cdRequestNumberSelectListModalContent>
+    <app-cd-request-number-select-list
+        [thList]="thListRequestNumberSelectList"
+        [data]="data"
+        [labels]="labels"
+    ></app-cd-request-number-select-list>
 </ng-template>

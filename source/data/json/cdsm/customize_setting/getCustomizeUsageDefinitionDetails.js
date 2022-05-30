@@ -11,7 +11,7 @@ module.exports = function (args) {
     ? 0
     : parseInt(args.header['x-count']);
   var sort = args.header['x-sort'] || 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_id';
-  var TOTAL = isNaN(args.header['x-count']) ? 1 : 12;
+  var TOTAL = isNaN(args.header['x-count']) ? 1 : 100;
   var loopEnd =
     TOTAL > from + count - 1 && count !== 0 ? from + count - 1 : TOTAL;
   var listMock = {

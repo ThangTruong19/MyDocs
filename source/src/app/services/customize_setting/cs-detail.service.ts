@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { CanDeactivate } from '@angular/router'
 
 import { Api } from 'app/types/common'
 import { Apis } from 'app/constants/apis'
@@ -11,10 +12,20 @@ import {
 import { ScreenCodeConst } from 'app/constants/api/screen-code-const'
 import { FunctionCodeConst } from 'app/constants/api/function-code-const'
 import { ApiService } from '../api/api.service'
+import { CsDetailComponent } from 'app/components/customize_setting/cs-detail.component'
 
 @Injectable()
-export class CsDetailService {
+export class CsDetailService implements CanDeactivate<CsDetailComponent>{
   constructor(private api: ApiService) { }
+
+  canDeactivate(component: CsDetailComponent) {
+    if (component.shouldConfirmOnBeforeunload()) {
+      const msg = 'このサイトを離れてもよろしいですか？'
+        + '\n行った変更が保存されない可能性があります。';
+      return confirm(msg);
+    }
+    return true;
+  }
 
   /**
    * 一覧画面のリスト取得API呼び出し

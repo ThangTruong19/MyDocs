@@ -43,8 +43,8 @@
 
                 <div class="table-option-buttons">
                     <div class="popover-wrapper">
-                        <button type="button" class="btn btn-warning">
-                            {{ labels.setting_request_modal }}
+                        <button type="button" (click)="deselectAll()" class="btn btn-warning">
+                            {{ labels.deselect_all_btn }}
                         </button>
                     </div>
                 </div>
@@ -65,8 +65,10 @@
                     [checkIdName]="checkIdName"
                     [checkedItems]="checkedItems"
                     [(sortingParams)]="sortingParams"
-                    (changeSelect)="onChangeSelect()"
-                    (clickSelectAll)="onChangeSelectAll()"
+                    (changeSelect)="changeCheckBox($event)"
+                    (clickSelectAll)="changeAllCheckBox($event)"
+                    [checkIdFunction]="checkIdFunction"
+                    [checkBoxHiddenFunction]="checkBoxHiddenFunction"
                     [emptyListMessage]="'Empty'"
                 >
                 </app-common-table>

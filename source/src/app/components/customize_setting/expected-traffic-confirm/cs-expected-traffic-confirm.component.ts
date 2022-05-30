@@ -142,7 +142,7 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
         let dispTotalTraffic = this._calculateTotalTraffic(this.dispTableData);
 
         // 5.4の合計値－2の合計値(差分[KB])
-        let difference = Math.round((dispTotalTraffic - apiTotalTraffic) * 100) / 100;
+        let difference = Math.round(dispTotalTraffic - apiTotalTraffic);
 
         // 6.3の結果から"90"以外かつ、有効区分が"1"のもののみ画面に表示
         this.dispTableData = this.dispTableData.filter((element: any) => element.customize_usage_definition.customize_definitions.status != '90' &&
@@ -295,7 +295,7 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
                 result += element.customize_usage_definition.customize_definitions.assumption_data_value / 1024;
             }
         })
-        return Math.round(result * 100) / 100;
+        return Math.round(result);
     }
 
     private _overwriteList(apiList: any[], callerList: any[]): any {

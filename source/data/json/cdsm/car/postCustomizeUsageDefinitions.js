@@ -1,11 +1,20 @@
 var _ = require('lodash');
+var validation = require('../../common/validation.js');
 
-module.exports = function() {
-  var from = 1;
-  var count = 3;
-  var sort = 'customize_definition.customize_definition_id';
-  var TOTAL = 3;
-  var loopEnd = 100;
+module.exports = function(data) {
+  var systemErrorData = validation(data.query, 'system_error');
+  if (systemErrorData.length > 0) {
+      return fail500();
+  }
+  var from = isNaN(data.header['x-from']) ? 1 : parseInt(data.header['x-from']);
+  var count = isNaN(data.header['x-count'])
+      ? 0
+      : parseInt(data.header['x-count']);
+  var sort = data.header['x-sort'] || 'car_customized_definition.customize_definition_id';
+  var TOTAL = isNaN(data.header['x-count']) ? 1 : 14;
+  var loopEnd =
+  TOTAL > from + count - 1 && count !== 0 ? from + count - 1 : TOTAL;
+
   var mock = {
     result_header: {
       'X-From': from,
@@ -17,18 +26,18 @@ module.exports = function() {
     result_data: {},
   };
 
-  mock.result_data.cars = createData(loopEnd);
+  mock.result_data.cars = createData(from, loopEnd);
 
   return success(mock);
 };
 
-function createData(count) {
+function createData(from, count) {
   const result = [];
 
   const customize_usage_definitions = ['カスタマイズ定義A', 'カスタマイズ定義B'];
   const customize_definition = ['生産詳細データ', '作業分類別集計データ'];
 
-  for (var i = 1; i <= count; i++) {
+  for (var i = from; i <= count; i++) {
 
     const customize_usage_definitions_list = [];
     for (var j = 0; j < customize_usage_definitions.length; j++) {

@@ -19,6 +19,8 @@ export class CdRequestDetailService {
     this.api.currentScreenCode = ScreenCodeConst.CDSM_CUSTOMIZE_DATA_REQUEST_DETAIL;
     return this.api.callApisForInitialize(ScreenCodeConst.CDSM_CUSTOMIZE_DATA_REQUEST_DETAIL, 'fetchCarInitData', {
       fields: () => this.api.fetchFields(FunctionCodeConst.CDSM_CUSTOMIZE_DATA_REQUEST_PERIOD_TAB),
+      cdRequestDetailFields: () =>
+          this.api.fetchFields(FunctionCodeConst.CDSM_CUSTOMIZE_DATA_REQUEST_NUMBER_TAB, "1"),
       fieldResources: () =>
         this.api.fetchFieldResources(FunctionCodeConst.CDSM_CUSTOMIZE_DATA_REQUEST_PERIOD_TAB),
     });

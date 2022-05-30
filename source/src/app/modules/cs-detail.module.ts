@@ -20,7 +20,11 @@ import { CsExpectedTrafficConfirmComponent } from 'app/components/customize_sett
         CommonModule,
         AppCommonModule,
         CsGetRequestModule,
-        RouterModule.forChild([{ path: '', component: CsDetailComponent }]),
+        RouterModule.forChild([{
+            path: '',
+            component: CsDetailComponent,
+            canDeactivate: [CsDetailService]
+        }]),
         NgbModule
     ],
     declarations: [

@@ -43,7 +43,6 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
   beginningWday: number;
   excludeSearchParams: string[] = ['date_from_formatted', 'date_to_formatted'];
   datePickerLabels: Labels;
-  // TODO:
   override commaSeparated: string[] = ['model', 'type_rev', 'serials'];
 
   constructor(
@@ -68,7 +67,6 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
     this.isFetching = true;
     this.requestHeaderParams['X-Sort'] = sort_key || '';
     const params: HistoryMgtListIndexParams = {
-      // TODO:
       operation_history: _.omit(
         this.searchParams,
         this.excludeSearchParams
@@ -211,26 +209,7 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
    */
   protected async _downloadTemplate(fields: any, accept: any): Promise<void> {
     const params: HistoryMgtListFileCreateParams = {
-      // TODO:
-      // operation_history: _.omit(this.searchParams, this.excludeSearchParams),
-      operation_history:
-      {
-        date_from: this.searchParams.date_from,
-        date_to: this.searchParams.date_to,
-        category_code: this.searchParams.category_code,
-        code: this.searchParams.code,
-        group_id: this.searchParams.group_id,
-        model: this.searchParams.model,
-        type_rev: this.searchParams.type_rev,
-        serials: this.searchParams.serials,
-        division_code: this.searchParams.division_code,
-        // TODO:
-        customize_usage_definition_category_id: this.searchParams.customize_usage_definition_id,
-        customize_definition_id: this.searchParams.customize_definition_id,
-        search_keyword: this.searchParams.search_keyword
-        // TODO:
-        // setting_change_status: this.searchParams
-      },
+      operation_history: _.omit(this.searchParams, this.excludeSearchParams),
       file_create_condition: {
         file_content_type: accept,
         processing_type: ProcessingType.sync,

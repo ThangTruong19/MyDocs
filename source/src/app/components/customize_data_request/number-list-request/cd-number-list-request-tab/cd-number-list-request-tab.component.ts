@@ -144,6 +144,16 @@ export class CdNumberListRequestTabComponent extends AbstractIndexComponent impl
                 'width:20%', 'width:20%', 'width:20%', 'width:20%', 'width:20%',
             ]
         };
+
+        if (this.thList) {
+            for (let i = 0; i < this.thList.length; i++) {
+                if (this.thList[i].name == "request_number.cars.customize_usage_definitions.name") {
+                    this.thList[i].displayable = false;
+                    break;
+                }
+            }
+        }
+
         this.thListModal = this._createThList(fields, opt);
         this.sortableThList = this.sortableThLists(this.thListModal);
         this._reflectXFields(fields);

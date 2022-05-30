@@ -274,3 +274,9 @@ labels:
     name: request_number_header_label
     ja: 送信番号
     en:
+
+  - id: 47
+    description: 選択全解除
+    name: deselect_all_btn
+    ja: 選択全解除
+    en:

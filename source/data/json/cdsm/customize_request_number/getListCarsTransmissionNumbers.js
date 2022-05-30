@@ -34,23 +34,23 @@ module.exports = function (data) {
     let car_customize_data_performances = [];
 
     switch (customizeDefinitionId) {
-        case "1":
-            customize_definition_id = 1;
+        case "1234560":
+            customize_definition_id = 1234560;
             customize_definition_name = "カスタマイズ定義A";
             assumption_data_value = 1234;
             break;
-        case "2":
-            customize_definition_id = 2;
+        case "1234561":
+            customize_definition_id = 1234561;
             customize_definition_name = "カスタマイズ定義B";
             assumption_data_value = 5678;
             break;
-        case "3":
-            customize_definition_id = 3;
+        case "1234562":
+            customize_definition_id = 1234562;
             customize_definition_name = "カスタマイズ定義C";
             assumption_data_value = 9012;
             break;
         default:
-            customize_definition_id = 1;
+            customize_definition_id = 1234560;
             customize_definition_name = "カスタマイズ定義A";
             assumption_data_value = 1234;
             break;
@@ -92,14 +92,6 @@ function createData(index, customizeDefinitionId) {
             status = "1";
             statusName = "未受信";
             customizedDataAchievementDetails.push({
-                "server_registration_time": "2022-05-10 12:40:05",
-                "car_data_creation_time": "2022-05-10 20:05:15"
-            });
-            break;
-        case 2:
-            status = "2";
-            statusName = "受信済み";
-            customizedDataAchievementDetails.push({
                 "server_registration_time": "2022-04-05 09:18:24",
                 "car_data_creation_time": "2022-04-05 22:13:59"
             });
@@ -108,10 +100,18 @@ function createData(index, customizeDefinitionId) {
                 "car_data_creation_time": "2022-05-10 20:05:15"
             });
             break;
+        case 2:
+            status = "2";
+            statusName = "受信済み";
+            customizedDataAchievementDetails.push({
+                "server_registration_time": "2022-05-10 12:40:05",
+                "car_data_creation_time": "2022-05-10 20:05:15"
+            });
+            break;
     }
 
     result = {
-        "send_no": index + (Number(customizeDefinitionId) * 20) + "0200619T091709Z002002",
+        "send_no": index.toString() + Number(customizeDefinitionId) + "0200619T091709Z002002",
         "status": status,
         "status_name": statusName,
         "customized_data_achievement_details": customizedDataAchievementDetails
