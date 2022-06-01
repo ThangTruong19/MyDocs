@@ -99,6 +99,20 @@
     },
     {
         "display_sequence_no": "",
+        "name": "想定通信量",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value",
+        "control_code": "0",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "",
+        "name": "",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value_header",
+        "control_code": "0",
+        "display_code": "0"
+    },
+    {
+        "display_sequence_no": "",
         "name": "",
         "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.active_kind",
         "control_code": "0",
@@ -138,20 +152,6 @@
         "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.status_name",
         "control_code": "0",
         "display_code": "1"
-    },
-    {
-        "display_sequence_no": "",
-        "name": "想定通信量",
-        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value",
-        "control_code": "0",
-        "display_code": "1"
-    },
-    {
-        "display_sequence_no": "",
-        "name": "",
-        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value_header",
-        "control_code": "0",
-        "display_code": "0"
     },
     {
         "display_sequence_no": "",

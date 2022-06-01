@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+/**
+ * 選択済み送信番号一覧
+ * @author van-lan
+ */
 @Component({
   selector: 'app-cd-request-number-select-list',
   templateUrl: './cd-request-number-select-list.component.html',
@@ -17,11 +21,11 @@ export class CdRequestNumberSelectListComponent implements OnInit {
         sort: '',
         sortLabel: '',
     }
+    sortableThList: string[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.data);
     this.lists.originList = this.data;
     this.lists.visibleList = this.lists.originList;
 

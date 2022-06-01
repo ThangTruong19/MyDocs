@@ -62,9 +62,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
     header: CommonHeaderService,
     private userService: UserService,
     private api: ApiService,
-    modalService: ModalService,
     private alertService: AlertService,
-    private userSettingService: UserSettingService
   ) {
     super(navigationService, title, router, ref, header);
   }
@@ -73,7 +71,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    * 現在のパラメータを一覧取得APIに引き渡し、一覧画面に表示するリストを取得する
    * @param sort_key ソートキー
    */
-  async fetchList(sort_key?: string) {
+  async fetchList(sort_key?: string):Promise<void> {
     this.requestHeaderParams['X-Sort'] = sort_key || '';
     this.isFetching = true;
 
@@ -81,11 +79,6 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
       this.searchParams,
       this.requestHeaderParams
     );
-
-    // const list = this._formatList(
-    //   res.result_data.users,
-    //   this.thList
-    // );
     this._fillLists(res.result_header, res.result_data.users);
     this.isFetching = false;
     this._afterFetchList();
@@ -96,7 +89,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
   * @param selectedAuthorities 選択済み権限情報
   * @param user ユーザ情報
   */
-  onCloseAuthoritySelectModal(selectedAuthorities: any, user: any) {
+  onCloseAuthoritySelectModal(selectedAuthorities: any, user: any):void {
     const userId = _.get(user, 'identification.id');
     this.authoritiesUpdateParams = {
       user: {
@@ -112,16 +105,18 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
     };
     this.userService
       .updateAuthorities(userId, this.authoritiesUpdateParams)
-      .then(res => {
+      .then(_ => {
         this.fetchList(this.sortingParams['sort']);
         this.alertService.show(this.labels.authority_update_finish_message);
       });
   }
+
   /**
  * 権限リンク押下コールバック
  * @param user ユーザ情報
+ * @param index 押下した行番号
  */
-  async onClickSelect(user: any, index: number) {
+  async onClickSelect(user: any, index: number):Promise<void> {
 
     const authoritySelect = this.authoritySelectComponentList.toArray()[index];
 
@@ -136,6 +131,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    * @param user ユーザーデータ
    */
   private async _authorities(user: any): Promise<any> {
+    const accessKindTop = "0"
     const param = {
       granted_role_id: _.get(user, 'group.granted_role.id'),
     };
@@ -143,6 +139,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
       ScreenCodeConst.AUTHORITY_MGT_LIST_CODE,
       param
     );
+
     this.authorities = []
     let listAuthorities = res.user.group.granted_authority_ids.values
     this.selectedAuthorities = _.map(
@@ -151,16 +148,17 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
     );
 
     // 設定されている権限のアクセスレベルを取得
+    const notfind = -1
     let accessKind
     for (let i = 0; i < listAuthorities.length; i++) {
-      if (this.selectedAuthorities.indexOf(listAuthorities[i].value) != -1) {
+      if (this.selectedAuthorities.indexOf(listAuthorities[i].value) != notfind) {
         accessKind = listAuthorities[i].kind
         break;
       }
     }
 
     if (accessKind == null) {
-      accessKind = "0"
+      accessKind = accessKindTop
     }
 
     this.authoritiesKindList(accessKind, listAuthorities)
@@ -168,7 +166,12 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
     this.safeDetectChanges();
   }
 
-  authoritiesKindList(accessKind: string, listAuthorities: any) {
+  /**
+   * アクセスレベルと合致する権限を取得する
+   * @param accessKind アクセスレベル
+   * @param listAuthorities 権限一覧
+   */
+  authoritiesKindList(accessKind: string, listAuthorities: any):void {
     // this.authoritiesとユーザのアクセスレベルを比較して、適合するものだけを取得する
     for (let i = 0; i < listAuthorities.length; i++) {
       if (listAuthorities[i].kind == accessKind) {
@@ -191,7 +194,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    * グループID変更時の処理
    * @param value 選択値
    */
-  onGroupIdChange(value: any) {
+  onGroupIdChange(value: any):Promise<void> {
     const param = {
       configuration_group_id: value,
     };
@@ -210,7 +213,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
   /**
     * 表示項目設定ボタン押下時の処理
     */
-  onClickFieldSelect() {
+  onClickFieldSelect(): void {
     this.fieldSelectPopoverVisible = !this.fieldSelectPopoverVisible;
   }
 
@@ -220,12 +223,6 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
   onClickDownloadAll(): void {
     this.downloadPopoverVisible = !this.downloadPopoverVisible;
   }
-
-  /**
-   * 対象画面のプルダウン変更時の処理
-   * @param value 対象画面
-   */
-  handleAppCodeChange(value: any) { }
 
   /**
    * 表示項目設定 OK ボタン押下時の処理
@@ -247,8 +244,10 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
 
   /**
    * 文字列のリムーブ
+   * @param str 元の文字列
+   * @param remove 除去する文字列
    */
-  removeStr(str: string, remove: string) {
+  removeStr(str: string, remove: string):string {
     return str.replace(remove, "")
   }
 
@@ -267,9 +266,6 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
     this._updateFields(res.fields);
     this.updatable = res.updatable;
     this.deletable = res.deletable;
-    const groupId = this.exists('configuration_group_id')
-      ? this.resource.configuration_group_id.values[0].value
-      : this.api.getGroupId();
 
   }
 
@@ -277,7 +273,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    * 指定項目取得 API の結果を反映
    * @param fields 指定項目
    */
-  private _updateFields(fields: any) {
+  private _updateFields(fields: any):void {
     this.fields = fields;
     this.thList = this._createThList(fields);
     const xFields = this._createXFields(fields);
@@ -317,28 +313,12 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    * @override
    * @param params パラメータ
    */
-  protected override _getSearchParams(params: any) {
+  protected override _getSearchParams(params: any):any {
     const _params = _.clone(params);
-    if (_params.role_id !== FilterReservedWord.selectAll) {
+    if (_params.role_id != FilterReservedWord.selectAll) {
       _params.user_kind = _params.role_id;
     }
     delete _params.role_id;
     return _params;
-  }
-
-  /**
-   * モーダルに表示されるユーザーのデータを作成する
-   * @param user ユーザーデータ
-   */
-  private _createModalListVal(user: any) {
-    const listData = user;
-    listData.groups = user.groups[0];
-    listData.groups.granted_authority_names = _.map(
-      _.get(user, 'groups.granted_authorities'),
-      'name'
-    ).join('、');
-    listData.groups.configuration_groups =
-      listData.groups.configuration_groups[0];
-    return listData;
   }
 }

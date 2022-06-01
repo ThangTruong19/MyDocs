@@ -8,7 +8,7 @@ labels:
   - id: 2
     description: 画面タイトル
     name: title
-    ja: 車両詳細
+    ja: カスタマイズ設定詳細
     en:
 
   - id: 3
@@ -126,120 +126,144 @@ labels:
     en:
 
   - id: 22
+    description: 確認メッセージ
+    name: customize_discard_edit_confirm_message
+    ja: 設定更新内容を破棄しますか？
+    en:
+
+  - id: 23
+    description: 確認メッセージ
+    name: customize_transition_confirm_message
+    ja: 行った変更が保存されない可能性がありますが、このサイトを離れてもよろしいですか？
+    en:
+
+  - id: 24
     description: エラーメッセージ
     name: customize_update_immediate_reflection_request_err
     ja: 即時反映要求不可能なデータが含まれています。
     en:
 
-  - id: 23
+  - id: 25
     description: 説明表示
     name: customize_update_request_caution_message
     ja: ※複数のカスタマイズ用途定義に含まれるカスタマイズ定義の場合、実際に設定される開始日・終了日が表示と異なる場合があります。
     en:
 
-  - id: 24
+  - id: 26
     description: 説明表示
     name: customize_traffic_caution_message
     ja: 衛星通信の車両のため、通信費が大きくなる可能性があります。
     en:
 
-  - id: 25
+  - id: 27
+    description: 説明表示
+    name: immediate_setting_update_request_message
+    ja: 車両端末のアプリケーションバージョンが古い、もしくは不明のため、一部機能が制限されています。また、カスタマイズ設定のステータスが正しく反映されていない可能性があります。
+    en:
+
+  - id: 28
     description: 説明表示
     name: regular_call_customize_data
     ja: ・定期発信カスタマイズデータ
     en:
 
-  - id: 26
+  - id: 29
     description: 説明表示
     name: other_customize_data
     ja: ・その他カスタマイズデータ
     en:
 
-  - id: 27
+  - id: 30
     description: 説明表示
     name: customize_definition_name_label
     ja: カスタマイズ用途定義名
     en:
 
-  - id: 28
+  - id: 31
     description: テーブルヘッダ
     name: edit_header_label
     ja: 編集
     en:
 
-  - id: 29
+  - id: 32
     description: テーブルヘッダ
     name: edit_status_header_label
     ja: 編集状態
     en:
 
-  - id: 30
+  - id: 33
     description: テーブルヘッダ
     name: discard_header_label
     ja: 編集内容破棄
     en:
 
-  - id: 31
+  - id: 34
     description: テーブルヘッダ
     name: retry_header_label
     ja: 再送
     en:
 
-  - id: 32
+  - id: 35
     description: テーブルボディ
     name: default_body_label
-    ja: デフォルト
+    ja: Default
     en:
 
-  - id: 33
+  - id: 36
     description: テーブルボディ
     name: regist_body_label
     ja: 追加
     en:
 
-  - id: 34
+  - id: 37
     description: テーブルボディ
     name: edit_body_label
     ja: 変更
     en:
 
-  - id: 35
+  - id: 38
     description: テーブルボディ
     name: delete_body_label
     ja: 削除
     en:
 
-  - id: 36
+  - id: 39
     description: テーブルボディ
     name: assumption_data_value_kb_body_label
     ja: "[KB] +"
     en:
 
-  - id: 37
+  - id: 40
     description: テーブルボディ
     name: assumption_data_value_number_body_label
     ja: [KB/件]
     en:
 
-  - id: 38
+  - id: 41
     description: テーブルボディ
     name: assumption_data_value_monthly_body_label
     ja: [KB/月]
     en:
 
-  - id: 39
+  - id: 42
     description: メッセージ
     name: finish_message
     ja: 処理が完了しました。
     en:
 
-  - id: 40
+  - id: 43
     description: ボタン
     name: cancel
     ja: キャンセル
     en:
 
-  - id: 41
+  - id: 44
+    description: ボタン
+    name: close
+    ja: 閉じる
+    en:
+
+  - id: 45
     description: ボタン
     name: ok_btn
     ja: OK

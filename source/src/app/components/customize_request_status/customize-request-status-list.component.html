@@ -166,69 +166,32 @@
 
 <ng-template #customTableThContent>
     <ng-container *ngFor="let th of thList">
-        <ng-container *ngIf="th.displayable">
-            <th
-                class="app-index-th th-{{ th.shortName }}"
-                appSortingLabel
-                [ngClass]="{ 'disable-sort': !th.sortable }"
-                [(sortingParams)]="sortingParams"
-                [labelName]="th.sortKey || th.name"
-                [sortableThList]="sortableThList"
-                (sort)="onChangeSort($event)"
-            >
-                <span>{{ th.label || labels[th.shortName] }}</span>
-            </th>
-        </ng-container>
+        <th
+            *ngIf="th.displayable"
+            class="app-index-th th-{{ th.shortName }}"
+            appSortingLabel
+            [ngClass]="{ 'disable-sort': !th.sortable }"
+            [(sortingParams)]="sortingParams"
+            [labelName]="th.sortKey || th.name"
+            [sortableThList]="sortableThList"
+            (sort)="onChangeSort($event)"
+        >
+            <span>{{ th.label || labels[th.shortName] }}</span>
+        </th>
     </ng-container>
 </ng-template>
 
-<ng-template
-    #customTableRowContent
-    let-data="data"
-    let-title="title"
-    let-tblFunctions="tblFunctions"
->
+<ng-template #customTableRowContent let-data="data">
     <ng-container *ngFor="let title of thList">
-        <ng-container
-            [ngSwitch]="title.name"
-            *ngIf="title.displayable && !isArrayColumnData(title.name)"
+        <td
+            *ngIf="title.displayable"
+            class="td-{{
+                title.shortName
+            }} app-index-td d-flex align-items-center"
+            [ngClass]="{ 'line-break': isLineBreak(title.name) }"
         >
-            <td
-                class="td-{{
-                    title.shortName
-                }} app-index-td d-flex align-items-center padding-none"
-            >
-                <span class="divider-column">{{ data[title.name] }}</span>
-            </td>
-        </ng-container>
-        <ng-container
-            *ngIf="title.displayable && isArrayColumnData(title.name)"
-        >
-            <td
-                class="td-{{
-                    title.shortName
-                }} app-index-td align-items-center padding-none"
-            >
-                <ng-container
-                    *ngFor="
-                        let rec of tblFunctions.getArrayColumnData(
-                            data,
-                            title.name
-                        );
-                        let subIndex = index
-                    "
-                >
-                    <div
-                        [ngClass]="{ 'divider-column-border': subIndex > 0 }"
-                        class="divider-column"
-                    >
-                        <span>{{
-                            rec[tblFunctions.getLastColumnPathName(title.name)]
-                        }}</span>
-                    </div>
-                </ng-container>
-            </td>
-        </ng-container>
+            <span>{{ data[title.name] }}</span>
+        </td>
     </ng-container>
 </ng-template>
 

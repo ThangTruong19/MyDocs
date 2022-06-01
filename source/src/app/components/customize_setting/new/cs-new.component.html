@@ -19,6 +19,24 @@
                 [itemResource]="resource"
                 (onChangeSelectItem)="refreshCustomizeDefinitionVersion($event)">
             </app-selected>
+
+            <app-selected
+                #isEnabled
+                class="col-sm-3"
+                [itemName]="'regist_active_name'"
+                [itemParams]="params"
+                [showLabel]="true"
+                [itemResource]="resource">
+            </app-selected>
+
+            <app-selected
+                #priority
+                class="col-sm-3"
+                [itemName]="'regist_priority_name'"
+                [itemParams]="params"
+                [showLabel]="true"
+                [itemResource]="resource">
+            </app-selected>
         </div>
         <div class="row">
             <app-from-to-date-picker
@@ -38,26 +56,6 @@
                   [required]="true"
                 >
             </app-from-to-date-picker>
-        </div>
-
-         <div class="row">
-            <app-selected
-                #isEnabled
-                class="col-sm-3"
-                [itemName]="'regist_active_name'"
-                [itemParams]="params"
-                [showLabel]="true"
-                [itemResource]="resource">
-            </app-selected>
-
-            <app-selected
-                #priority
-                class="col-sm-3"
-                [itemName]="'regist_priority_name'"
-                [itemParams]="params"
-                [showLabel]="true"
-                [itemResource]="resource">
-            </app-selected>
         </div>
 
         <div class="row" style="margin-top: 15px;">

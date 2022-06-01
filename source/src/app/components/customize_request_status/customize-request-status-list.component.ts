@@ -39,7 +39,7 @@ export class CustomizeRequestStatusListComponent extends AbstractIndexComponent 
     'request_kind'
   ]
 
-  private arrayColumnPaths: string[] = [
+  lineBreakColumns: string[] = [
     'request_status.customize_usage_definitions.name',
     'request_status.customize_definitions.name',
   ]
@@ -55,6 +55,14 @@ export class CustomizeRequestStatusListComponent extends AbstractIndexComponent 
     protected userSettingService: UserSettingService
   ) {
     super(navigationService, title, router, ref, header)
+  }
+
+  /**
+   * カラムが改行を含むかの判定
+   * @param name カラム名
+   */
+  isLineBreak(name: string): boolean {
+    return this.lineBreakColumns.includes(name);
   }
 
   /**
@@ -89,25 +97,9 @@ export class CustomizeRequestStatusListComponent extends AbstractIndexComponent 
       data,
       this.thList
     )
-    Object.keys(list).forEach((i: any) => {
-      if (!list[i].request_status) {
-        list[i].request_status = {}
-      }
-      list[i].request_status.customize_usage_definitions = data[i].customize_usage_definitions
-      list[i].request_status.customize_definitions = data[i].customize_definitions
-    })
     this._fillLists(res.result_header, list)
     this.isFetching = false
     this._afterFetchList()
-  }
-
-  /**
-   * 対象列が配列形式かどうかを判断する。
-   * @param pathName 対象列のパス名
-   * @returns true：配列、false：配列ではない。
-   */
-  public isArrayColumnData(pathName: string): boolean {
-    return this.arrayColumnPaths.indexOf(pathName) !== -1
   }
 
   /**
@@ -170,6 +162,25 @@ export class CustomizeRequestStatusListComponent extends AbstractIndexComponent 
       },
       {}
     )
+  }
+
+  /**
+   * データ作成の追加処理
+   * @param data 行データ
+   */
+  override _formatListAdditional(data: RequestStatus): void {
+    const customizeUsageDefinition = data.customize_usage_definitions.reduce((acc, cur) => {
+      acc.id += '\n' + cur.id
+      acc.name += '\n' + cur.name
+      return acc
+    })
+    const customizeDefinition = data.customize_definitions.reduce((acc, cur) => {
+      acc.id += '\n' + cur.id
+      acc.name += '\n' + cur.name
+      return acc
+    })
+    _.merge(data.customize_usage_definitions, customizeUsageDefinition)
+    _.merge(data.customize_definitions, customizeDefinition)
   }
 
   /**

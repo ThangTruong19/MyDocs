@@ -7,6 +7,7 @@ import { CommonHeaderService } from 'app/services/shared/common-header.service';
 import { ModalService } from 'app/services/shared/modal.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
 import { Fields, Resources } from 'app/types/common';
+import { CarCustomizeDataPerformances } from 'app/types/customize-request-number-list';
 import * as _ from 'lodash';
 import { CdRequestNumberListComponent } from '../request-number-list/cd-request-number-list.component';
 
@@ -29,6 +30,9 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
 
     @ViewChild('cdExpectedTrafficConfirmModalContent', { static: false }) cdExpectedTrafficConfirmModalContent: TemplateRef<null>;
     @ViewChild('cdRequestNumberListModalContent', { static: false }) cdRequestNumberListModalContent: TemplateRef<null>;
+    @ViewChild('inputDataAllCancelConfirmModalContent', { static: false }) inputDataAllCancelConfirmModalContent: TemplateRef<null>;
+    @ViewChild('inputDataCancelConfirmModalContent', { static: false }) inputDataCancelConfirmModalContent: TemplateRef<null>;
+    @ViewChild('cdRequestNumberSelectListModalContent', { static: false }) cdRequestNumberSelectListModalContent: TemplateRef<null>;
     @ViewChild(CdRequestNumberListComponent) requestNumberListComponent: CdRequestNumberListComponent;
 
     initList: any = {
@@ -38,6 +42,8 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
     data: any = [];
     initResource: any;
     fields: Fields;
+    listSendNo: any = [];
+    thListRequestNumberSelectList: any = [];
     thListRequestNumber: any = [
         {
             "id": "1",
@@ -183,16 +189,6 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
         // this.lists.visibleList = this.lists.originList;
 
         console.log("fetchList", res);
-        // const list = this._formatList(
-        //     res.result_data.cars,
-        //     this.thList
-        //   );
-        let tempList = [{
-            'id': 1,
-            'name': '生産詳細データ'
-
-        }];
-
 
         let data: any = [];
         res.result_data.cars.forEach((element: any) => {
@@ -352,12 +348,26 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                 okBtnLabel: this.labels.ok_btn,
                 enableOk: false,
                 ok: () => {
-                    console.log("response data: " +  JSON.stringify(this.requestNumberListComponent.responseData));
+                    console.log("response data: " + JSON.stringify(this.requestNumberListComponent.responseData));
+                    let requestNumberList = this.requestNumberListComponent.responseData;
+                    this.listSendNo = [];
+                    if(requestNumberList){
+                        if(requestNumberList.car_customize_data_performances.length > 0){
+                            requestNumberList.car_customize_data_performances.forEach((element: CarCustomizeDataPerformances) =>{
+                                let item = {
+                                    'send_no': element.send_no
+                                };
+                                console.log("element", element);
+                                this.listSendNo.push(item);
+                            });
+                        }
+                        console.log("this.listSendNo", this.listSendNo);
+                    }
                 },
             },
             {
                 size: 'xl',
-            })
+            });
     }
 
     /**
@@ -365,6 +375,71 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
      * @param data
      */
     handleSendClick(data: any): void {
-        console.log("row select: ", data);
+        console.log("handleSendClick: ", data);
+        this.thListRequestNumberSelectList = [];
+        this.thListRequestNumberSelectList.push(
+            {
+                label: "送信番号",
+                name: "request_number_header_label",
+                formatKey: "request_number_header_label",
+                displayable: true,
+            }
+        );
+
+        this.modalService.open(
+            {
+                title: this.labels.request_number_select_title,
+                labels: this.labels,
+                content: this.cdRequestNumberSelectListModalContent,
+                closeBtnLabel: this.labels.close,
+                okBtnLabel: this.labels.ok_btn,
+            },
+            {
+                size: 'sm',
+            });
     }
+
+    /**
+     * 全編集破棄 ボタン押下
+     */
+    handleDiscardAllEdits(): void {
+
+        this.modalService.open(
+            {
+                title: this.labels.request_number_select_title,
+                labels: this.labels,
+                content: this.inputDataAllCancelConfirmModalContent,
+                closeBtnLabel: this.labels.cancel,
+                okBtnLabel: this.labels.ok_btn,
+                ok: () => {
+                    console.log("response data: ");
+                },
+            },
+            {
+                size: 'sm',
+            });
+    }
+
+    /**
+     *
+     * @param data
+     */
+    handleInputDataCancel(data: any): void {
+
+        this.modalService.open(
+            {
+                title: this.labels.request_number_select_title,
+                labels: this.labels,
+                content: this.inputDataCancelConfirmModalContent,
+                closeBtnLabel: this.labels.cancel,
+                okBtnLabel: this.labels.ok_btn,
+                ok: () => {
+                    console.log("response data: ");
+                },
+            },
+            {
+                size: 'sm',
+            });
+    }
+
 }

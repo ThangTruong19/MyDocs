@@ -14,17 +14,25 @@
                 [itemResource]="resource"
                 (onChangeSelectItem)="refreshCustomizeDefinitionVersion($event)">
             </app-selected>
-        </div>
 
-        <div class="row">
             <app-selected
-                #requestType
+                #isEnabled
                 class="col-sm-3"
-                [itemName]="'edit_customize_edit_kind'"
+                [itemName]="'edit_active_name'"
                 [itemParams]="params"
                 [showLabel]="true"
-                (onChangeSelectItem)="changeRequestType($event)"
-                [itemResource]="resource">
+                [itemResource]="resource"
+                [hidden]="isDelete">
+            </app-selected>
+
+            <app-selected
+                #priority
+                class="col-sm-3"
+                [itemName]="'edit_priority_name'"
+                [itemParams]="params"
+                [showLabel]="true"
+                [itemResource]="resource"
+                [hidden]="isDelete">
             </app-selected>
         </div>
 
@@ -47,27 +55,15 @@
                   [required]="true"
                 >
             </app-from-to-date-picker>
-        </div>
-
-        <div class="row">
-            <app-selected
-                #isEnabled
-                class="col-sm-3"
-                [itemName]="'edit_active_name'"
-                [itemParams]="params"
-                [showLabel]="true"
-                [itemResource]="resource"
-                [hidden]="isDelete">
-            </app-selected>
 
             <app-selected
-                #priority
+                #requestType
                 class="col-sm-3"
-                [itemName]="'edit_priority_name'"
+                [itemName]="'edit_customize_edit_kind'"
                 [itemParams]="params"
                 [showLabel]="true"
-                [itemResource]="resource"
-                [hidden]="isDelete">
+                (onChangeSelectItem)="changeRequestType($event)"
+                [itemResource]="resource">
             </app-selected>
         </div>
 

@@ -38,7 +38,11 @@ export class AuthoritySelectComponent  {
 
   constructor(private modalService: ModalService) {}
 
-  authorityChecked(value: any) {
+  /**
+  * 権限チェック
+  * @param value チェックされた権限コード
+  */
+  authorityChecked(value: any):void {
     if (includes(this.evacuateSelectedAuthorities, value)) {
       this.evacuateSelectedAuthorities.splice(
         this.evacuateSelectedAuthorities.indexOf(value),
@@ -50,7 +54,11 @@ export class AuthoritySelectComponent  {
     this.modalService.enableOk = this.isValid();
   }
 
-  toggleCheckAll(selectedAuthorities: any) {
+  /**
+  * 権限全選択/解除
+  * @param selectedAuthorities チェックの対象権限
+  */
+  toggleCheckAll(selectedAuthorities: any):void {
     this.evacuateSelectedAuthorities = cloneDeep(selectedAuthorities);
     this.modalService.enableOk = this.isValid();
   }
@@ -58,7 +66,9 @@ export class AuthoritySelectComponent  {
   /**
    * 選択ボタン押下時のコールバック
    */
-  onClickSelect() {
+  onClickSelect():void {
+    const size_lg = 'lg'
+
     if (isEmpty(this.defaultAuthorities)) {
       this.evacuateSelectedAuthorities = cloneDeep(this.selectedAuthorities);
     } else {
@@ -83,10 +93,13 @@ export class AuthoritySelectComponent  {
       },
       close: () => this.close.emit(),
     }, {
-      size: 'lg',
+      size: size_lg,
     });
   }
 
+  /**
+   * チェックボックスのチェック
+   */
   isValid(): boolean {
     return (
       this.allowUnselectedAuthorities ||
@@ -94,24 +107,24 @@ export class AuthoritySelectComponent  {
     );
   }
 
-  isAuthoritySelectOk(): boolean {
-    return (
-      this.allowUnselectedAuthorities || !isEmpty(this.selectedAuthorities)
-    );
-  }
-
   /**
    * 選択済みタグの x ボタン押下時の処理
    * @param value 選択済みタグに紐づけられた 値
    */
-  onClickRemoveTag(value: any) {
+  onClickRemoveTag(value: any):void {
     this.selectedAuthorities = this.selectedAuthorities.filter(
       item => item !== value
     );
     this.evacuateSelectedAuthorities = cloneDeep(this.selectedAuthorities);
   }
 
+    /**
+   * アイテムの取得
+   * @param items アイテム
+   * @param value 値
+   */
   getItem(items: any[], value: string): any {
+
     const index = items.findIndex(i => i.value === value);
     const item = items[index];
 
@@ -124,7 +137,7 @@ export class AuthoritySelectComponent  {
   /**
    * セレクトボックスのリセット
    */
-  reset() {
+  reset():void {
     this.selectedAuthorities.length = 0;
     this.evacuateSelectedAuthorities.length = 0;
   }

@@ -26,7 +26,6 @@ module.exports = function (args) {
       customize_usage_definitions: [],
     },
   };
-  var data;
   for (var i = from; i <= loopEnd; i++) {
     listMock.result_data.customize_usage_definitions.push(createData(i));
   }
@@ -35,8 +34,6 @@ module.exports = function (args) {
 };
 
 function createData(i) {
-  var moment = require('moment');
-
   data = {
     customize_usage_definition: {
       customize_usage_definition_id: String(i),
@@ -59,8 +56,8 @@ function createData(i) {
           active_name: "有効",
           latest_operation_code: i % 10 !== 0 ? "1" : "3",
           latest_operation_code_name: i % 10 !== 0 ? "追加" : "削除",
-          status: "10",
-          status_name: "送信中",
+          status: i % 10 !== 9 ? "10" : "40",
+          status_name: i % 10 !== 9 ? "送信中" : "送信失敗",
           assumption_data_value: 1234567890,
           assumption_data_value_header: 1234567890,
           start_date: "2017/12/30",
@@ -90,8 +87,8 @@ function createData(i) {
           active_name: "有効",
           latest_operation_code: i % 10 !== 0 ? "1" : "3",
           latest_operation_code_name: i % 10 !== 0 ? "追加" : "削除",
-          status: "20",
-          status_name: "送信中",
+          status: i % 10 !== 9 ? "10" : "40",
+          status_name: i % 10 !== 9 ? "送信中" : "送信失敗",
           assumption_data_value: 1234567890,
           assumption_data_value_header: 1234567890,
           start_date: "2017/12/30",
@@ -121,8 +118,8 @@ function createData(i) {
           active_name: "有効",
           latest_operation_code: i % 10 !== 0 ? "1" : "3",
           latest_operation_code_name: i % 10 !== 0 ? "追加" : "削除",
-          status: "30",
-          status_name: "送信中",
+          status: i % 10 !== 9 ? "10" : "40",
+          status_name: i % 10 !== 9 ? "送信中" : "送信失敗",
           assumption_data_value: 1234567890,
           assumption_data_value_header: 1234567890,
           start_date: "2017/12/30",

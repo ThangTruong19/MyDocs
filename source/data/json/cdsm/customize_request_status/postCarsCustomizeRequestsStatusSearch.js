@@ -53,6 +53,10 @@ function createData() {
       {
         id: '1',
         name: 'カスタマイズ用途定義1'
+      },
+      {
+        id: '2',
+        name: 'カスタマイズ用途定義2'
       }
     ],
     customize_definitions: [

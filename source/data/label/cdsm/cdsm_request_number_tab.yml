@@ -246,7 +246,7 @@ labels:
     en:
 
   - id: 42
-    description: 全選択解除
+    description: 選択全解除
     name: deselect_all_btn
     ja: 全選択解除
     en:

@@ -1,8 +1,43 @@
 <div id="app-cd-request-number-select-list">
     <app-common-table
+        style="display: flex; width: 350px"
         [lists]="lists"
         [thList]="thList"
         [labels]="labels"
-        [(sortingParams)]="sortingParams">
+        [sortableThList]="sortableThList"
+        [(sortingParams)]="sortingParams"
+        [customTableThContent]="customTableThContent"
+        [customTableRowContent]="customTableRowContent"
+    >
+        <ng-template #customTableThContent>
+            <ng-container *ngFor="let th of thList">
+                <th
+                    *ngIf="th.displayable"
+                    class="app-index-th th-{{ th.shortName }}"
+                    appSortingLabel
+                    style="width: 100%"
+                    [ngClass]="{ 'disable-sort': !th.sortable }"
+                    [(sortingParams)]="sortingParams"
+                    [labelName]="th.sortKey || th.name"
+                    [sortableThList]="sortableThList"
+                    (sort)="onChangeSort($event)"
+                >
+                    <span>{{ th.label || labels[th.shortName] }}</span>
+                </th>
+            </ng-container>
+        </ng-template>
+        <ng-template #customTableRowContent let-data="data" let-title="title">
+            <ng-container *ngFor="let title of thList">
+                <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
+                    <td
+                        *ngIf="title.name === 'request_number_header_label'"
+                        class="app-index-td d-flex"
+                        style="width: 100%"
+                    >
+                        <span>{{ data.send_no }}</span>
+                    </td>
+                </ng-container>
+            </ng-container>
+        </ng-template>
     </app-common-table>
 </div>

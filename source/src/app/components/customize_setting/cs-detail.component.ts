@@ -163,16 +163,16 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
   }
 
   shouldConfirmOnBeforeunload() {
-    return this.lists.addList.length !== 0 || this.lists.editList.length !== 0;
+    return this.lists.addList.length !== 0 || this.lists.editList.length !== 0
   }
 
   @HostListener('window:beforeunload', ['$event'])
   beforeUnload(e: Event) {
     if (this.shouldConfirmOnBeforeunload()) {
-      e.preventDefault();
+      e.preventDefault()
       // Chrome未対応のため
       // https://developer.mozilla.org/ja/docs/Web/API/Window/beforeunload_event
-      e.returnValue = true;
+      e.returnValue = true
     }
   }
 
@@ -308,7 +308,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     const res: any = await this.csDetailService.fetchIndexInitData()
     this.initialize(res)
     this.labels = res.label
-    this.labels['vehicleInfo'] = this.model + '-' + this.typeRev + '-' + this.serial
+    this.labels['vehicleInfo']
+      = (this.model ? this.model : '')
+      + '-'
+      + (this.typeRev ? this.typeRev : '')
+      + '-'
+      + (this.serial ? this.serial : '')
     this.resource = res.resource
     this._setTitle()
     this._updateFields(res.csDetailFields)
@@ -419,7 +424,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     const editStatus = content.edit_status
     const status = content.customize_usage_definition.customize_definitions[0].status
     const latestOperationCode = content.customize_usage_definition.customize_definitions[0].latest_operation_code
-    return status === Status.送信失敗
+    return status !== Status.送信失敗
       || editStatus !== EditStatus.デフォルト
       || latestOperationCode === LatestOperationCode.削除
   }
@@ -1080,7 +1085,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         title: this.labels.communication_charge_confirmation,
         labels: this.labels,
         content: this.csExpectedTrafficConfirmModalContent,
-        closeBtnLabel: this.labels.cancel,
+        closeBtnLabel: this.labels.close,
         okBtnLabel: this.labels.ok_btn,
         close: () => {
           this.tableData = []

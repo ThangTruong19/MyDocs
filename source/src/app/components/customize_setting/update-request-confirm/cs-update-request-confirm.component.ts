@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TableHeader, TableMergeColumn } from 'app/types/common';
+import { TableHeader } from 'app/types/common';
 import * as _ from 'lodash';
 
 /**
@@ -20,6 +20,10 @@ export class CsUpdateRequestConfirmComponent implements OnInit {
 
     thList: TableHeader[] = [];
 
+    private arrayColumnPaths: string[] = [
+        'customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name',
+    ];
+
     public lists: { visibleList: any[]; originList: any[] } = {
         visibleList: [],
         originList: []
@@ -31,7 +35,6 @@ export class CsUpdateRequestConfirmComponent implements OnInit {
     };
     public sortableThList: string[] = [];
 
-    public mergeColumns: TableMergeColumn[] = [];
     public isFetching = false;
 
     constructor() { }
@@ -39,100 +42,97 @@ export class CsUpdateRequestConfirmComponent implements OnInit {
     ngOnInit(): void {
         this.thList = this.initThList;
 
-        // FORMAT TABLE
-        this.thList.forEach((element: TableHeader) => {
-            switch (element.name) {
-                case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_id":
-                    element.columnStyle = "width:5%; text-align: center;"
-                    break;
-                case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name":
-                    element.columnStyle = "width:20%; text-align: center;"
-                    break;
-                case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
-                    element.columnStyle = "width:20%; text-align: center;"
-                    break;
-                case "customize_usage_definitions.customize_usage_definition.customize_definitions.active_name":
-                    element.columnStyle = "width:8%; text-align: center;"
-                    break;
-                case "customize_usage_definitions.customize_usage_definition.customize_definitions.priority_name":
-                    element.columnStyle = "width:9%; text-align: center;"
-                    break;
-                case "customize_usage_definitions.customize_usage_definition.customize_definitions.latest_operation_code_name":
-                    element.columnStyle = "width:9%; text-align: center;"
-                    break;
-                case "customize_usage_definitions.customize_usage_definition.start_date":
-                    element.columnStyle = "width:9%; text-align: center;"
-                    break;
-                case "customize_usage_definitions.customize_usage_definition.end_date":
-                    element.columnStyle = "width:9%; text-align: center;"
-                    break;
-            }
-        })
-
-        this.sortableThList = this._sortableThLists(this.thList);
-
-        const data = this.tableData.reduce((acc: any, cur: any) => {
-            const contents = _.get(cur, 'customize_usage_definitions.customize_usage_definition.customize_definitions').map((element: any) => {
-                return {
-                    customize_usage_definition: {
-                        customize_usage_definition_id: cur['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
-                        customize_usage_definition_name: cur['customize_usage_definitions.customize_usage_definition.customize_usage_definition_name'],
-                        start_date: cur['customize_usage_definitions.customize_usage_definition.start_date'],
-                        end_date: cur['customize_usage_definitions.customize_usage_definition.end_date'],
-                        customize_definitions: {
-                            customize_definition_name: element.customize_definition_name,
-                            priority_name: element.priority_name,
-                            active_name: element.active_name,
-                            latest_operation_code_name: element.latest_operation_code_name,
-                        }
+        // Format the acquired data to be displayed in the table
+        const apiData = this.tableData.reduce((acc: any, cur: any) => {
+            acc.push({
+                customize_usage_definition: {
+                    customize_usage_definition_id: cur['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
+                    customize_usage_definition_name: cur['customize_usage_definitions.customize_usage_definition.customize_usage_definition_name'],
+                    start_date: cur['customize_usage_definitions.customize_usage_definition.start_date'],
+                    end_date: cur['customize_usage_definitions.customize_usage_definition.end_date'],
+                    customize_definitions: {
+                        customize_definition_name: cur.customize_usage_definitions.customize_usage_definition.customize_definitions[0].customize_definition_name,
+                        priority_name: cur.customize_usage_definitions.customize_usage_definition.customize_definitions[0].priority_name,
+                        active_name: cur.customize_usage_definitions.customize_usage_definition.customize_definitions[0].active_name,
+                        latest_operation_code_name: cur.customize_usage_definitions.customize_usage_definition.customize_definitions[0].latest_operation_code_name
                     }
                 }
             })
-            acc.push(...contents)
-            return acc
-        }, [])
+            return acc;
+        },[])
 
-        const list = this._formatList(
-            data,
+        const formatted = this._formatList(
+            apiData,
             this.thList
-        )
+        );
+        formatted.forEach((element: any, index: any) => {
+            _.set(element, 'customize_usage_definitions.customize_usage_definition.customize_definitions',
+                this.tableData[index].customize_usage_definitions.customize_usage_definition.customize_definitions);
+        });
 
-        _.set(this.lists, 'originList', list);
-        _.set(this.lists, 'visibleList', list);
-        this.isFetching = false;
-        this.mergeColumns = [
-            {
-                groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
-                targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'
-            },
-            {
-                groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
-                targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_usage_definition_name'
-            },
-            {
-                groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
-                targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_definitions.active_name'
-            },
-            {
-                groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
-                targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_definitions.priority_name'
-            },
-            {
-                groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
-                targetColumn: 'customize_usage_definitions.customize_usage_definition.customize_definitions.latest_operation_code_name'
-            },
-            {
-                groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
-                targetColumn: 'customize_usage_definitions.customize_usage_definition.start_date'
-            },
-            {
-                groupByColumns: ['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
-                targetColumn: 'customize_usage_definitions.customize_usage_definition.end_date'
+        // Sorting the displayed data
+        let sortKey = "customize_usage_definitions.customize_usage_definition.customize_usage_definition_id";
+        formatted.sort((a: any,b: any) => {
+            if(a[sortKey] > b[sortKey]){
+                return 1;
+            }else if(a[sortKey] == b[sortKey]){
+                return 0;
+            }else{
+                return -1;
             }
-        ]
+        });
 
+        _.set(this.lists, 'originList', formatted);
+        _.set(this.lists, 'visibleList', formatted);
+
+        this.isFetching = false;
     }
 
+    /**
+     * 対象列が配列形式かどうかを判断する。
+     * @param pathName 対象列のパス名
+     * @returns true：配列、false：配列ではない。
+     */
+     public isArrayColumnData(pathName: string): boolean {
+        return this.arrayColumnPaths.indexOf(pathName) !== -1
+    }
+
+    /**
+     * Setting column width
+     * @param col Column Information
+     */
+    public setTableWidth(col: TableHeader): string{
+        switch (col.name) {
+            case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_id":
+                return "width:5%; text-align: center;"
+            case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name":
+                return "width:20%; text-align: center;"
+            case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
+                return "width:25%; text-align: center;"
+            case "customize_usage_definitions.customize_usage_definition.customize_definitions.active_name":
+                return "width:12%; text-align: center;"
+            case "customize_usage_definitions.customize_usage_definition.customize_definitions.priority_name":
+                return "width:9%; text-align: center;"
+            case "customize_usage_definitions.customize_usage_definition.customize_definitions.latest_operation_code_name":
+                return "width:9%; text-align: center;"
+            case "customize_usage_definitions.customize_usage_definition.start_date":
+                return "width:10%; text-align: center;"
+            case "customize_usage_definitions.customize_usage_definition.end_date":
+                return "width:10%; text-align: center;"
+            default:
+                return "width:5%; text-align: center;"
+        }
+    }
+
+    /**
+     * API から取得したデータをテーブルで表示できる形に成形して返す。
+     *
+     * ネストしたオブジェクトをデータを指定項目のパス（ネスト関係をドット区切りの文字列で表現したもの）を
+     * キーとしたオブジェクトに成形する。
+     *
+     * @param listBody APIから取得したリストデータ
+     * @param thList テーブルヘッダ情報
+     */
     private _formatList(listBody: any[], thList: TableHeader[]): any {
         return listBody.map(data => {
             return _.reduce(
@@ -150,24 +150,6 @@ export class CsUpdateRequestConfirmComponent implements OnInit {
 
     private _listDisplayData(data: any, th: TableHeader): any {
         return _.get(data, th.formatKey);
-    }
-
-    /**
-     * ソート項目リストを返却します。
-     * @param thList テーブル項目リスト
-     * @return ソート項目リスト
-     */
-    private _sortableThLists(thList: TableHeader[]): string[] {
-        return _.reduce(
-            thList,
-            (array: any[], th: TableHeader) => {
-                if (th.sortable) {
-                    array.push(th.name);
-                }
-                return array;
-            },
-            []
-        );
     }
 
 }

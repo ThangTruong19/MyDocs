@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-8" style="line-height: 40px;">
-                <button type="button" class="btn btn-primary btn-send" (click)="sendData()">通信量確認</button>
+                <button type="button" class="btn btn-primary btn-send" (click)="sendData()">{{ labels.expected_traffic_confirm }}</button>
             </div>
         </div>
         <div class="col-12">
@@ -27,6 +27,18 @@
                     (changeState)="onPaginationChange()"
                 >
                 </app-pagination>
+                <div class="table-option-buttons">
+                    <div class="popover-wrapper">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="handleDiscardAllEdits()"
+                      >
+                        {{ labels.discard_all_edits_btn }}
+                      </button>
+                    </div>
+
+                  </div>
             </div>
             <div class="app-table-wrapper">
                 <app-common-table
@@ -120,10 +132,10 @@
                         </td>
                         <!-- 編集破棄 -->
                         <td
-                            class="app-index-td d-flex text-center"
+                            class="app-index-td d-flex text-center app-sm-link"
                             style="width: 10%;"
                         >
-                            <span>
+                            <span (click)="handleInputDataCancel(data)">
                                 <i class="app-icon app-icon-discard"></i>
                             </span>
                         </td>
@@ -152,7 +164,15 @@
 <ng-template #cdRequestNumberSelectListModalContent>
     <app-cd-request-number-select-list
         [thList]="thListRequestNumberSelectList"
-        [data]="data"
+        [data]="listSendNo"
         [labels]="labels"
     ></app-cd-request-number-select-list>
+</ng-template>
+<ng-template #inputDataCancelConfirmModalContent>
+    <app-input-data-cancel-confirm [labels]="labels">
+    </app-input-data-cancel-confirm>
+</ng-template>
+<ng-template #inputDataAllCancelConfirmModalContent>
+    <app-input-data-all-cancel-confirm [labels]="labels">
+    </app-input-data-all-cancel-confirm>
 </ng-template>

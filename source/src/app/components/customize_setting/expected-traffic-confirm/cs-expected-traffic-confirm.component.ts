@@ -235,19 +235,19 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
         this.thList1.forEach((element: TableHeader) => {
             switch (element.name) {
                 case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name":
-                    element.columnStyle = "width:20%; text-align: center;"
+                    element.columnStyle = "width:20%; text-align: left;"
                     break;
                 case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
-                    element.columnStyle = "width:15%; text-align: center;"
+                    element.columnStyle = "width:15%; text-align: left;"
                     break;
                 case "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value":
-                    element.columnStyle = "width:15%; text-align: center;"
+                    element.columnStyle = "width:15%; text-align: left;"
                     break;
                 case "customize_usage_total_traffic":
-                    element.columnStyle = "width:20%; text-align: center;"
+                    element.columnStyle = "width:20%; text-align: left;"
                     break;
                 case "customize_usage_difference":
-                    element.columnStyle = "width:10%; text-align: center;"
+                    element.columnStyle = "width:10%; text-align: left;"
                     break;
             }
         })
@@ -255,13 +255,13 @@ export class CsExpectedTrafficConfirmComponent extends AbstractIndexComponent im
         this.thList2.forEach((element: TableHeader) => {
             switch (element.name) {
                 case "customize_usage_definitions.customize_usage_definition.customize_usage_definition_name":
-                    element.columnStyle = "width:22%; text-align: center;"
+                    element.columnStyle = "width:22%; text-align: left;"
                     break;
                 case "customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name":
-                    element.columnStyle = "width:16%; text-align: center;"
+                    element.columnStyle = "width:16%; text-align: left;"
                     break;
                 case "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value":
-                    element.columnStyle = "width:28%; text-align: center;"
+                    element.columnStyle = "width:28%; text-align: left;"
                     break;
             }
         })

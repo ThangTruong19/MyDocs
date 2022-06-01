@@ -13,6 +13,8 @@
         </div>
     </div>
     <app-common-table
+        [customTableThContent]="customTableThContent"
+        [customTableRowContent]="customTableRowContent"
         [lists]="lists"
         [thList]="thList"
         [pageParams]="pageParams"
@@ -22,8 +24,48 @@
         [labels]="labels"
         [collapsed]="collapsed"
         [isFetching]="isFetching"
-        [mergeColumns]="mergeColumns"
         [emptyListMessage]="'Empty'"
         >
     </app-common-table>
 </div>
+
+<ng-template #customTableThContent>
+    <ng-container *ngFor="let th of thList; let thIdx = index">
+      <ng-container *ngIf="th.displayable">
+        <th
+          [style]="setTableWidth(th)"
+          class="app-index-th th-{{ th.shortName }}"
+          appSortingLabel
+          [ngClass]="{ 'disable-sort': !th.sortable }"
+          [(sortingParams)]="sortingParams"
+          [labelName]="th.sortKey || th.name"
+          [sortableThList]="sortableThList"
+        >
+          <span>{{ th.label || labels[th.shortName] }}</span>
+        </th>
+      </ng-container>
+    </ng-container>
+</ng-template>
+
+<ng-template #customTableRowContent
+    let-data="data"
+    let-title="title"
+    let-tblFunctions="tblFunctions">
+    <ng-container *ngFor="let title of thList; let thIdx = index">
+      <ng-container [ngSwitch]="title.name" *ngIf="title.displayable && !isArrayColumnData(title.name)">
+        <td [style]="setTableWidth(title)" class="td-{{ title.shortName }} app-index-td d-flex align-items-center padding-none">
+          <span class="divider-column">{{ data[title.name] }}</span>
+        </td>
+      </ng-container>
+      <ng-container *ngIf="title.displayable && isArrayColumnData(title.name)">
+        <td [style]="setTableWidth(title)" class="td-{{ title.shortName }} app-index-td align-items-center padding-none">
+        <ng-container *ngFor="let rec of tblFunctions.getArrayColumnData(data, title.name); let subIndex = index">
+            <div [ngClass]="{'divider-column-border': subIndex > 0}" class="divider-column">
+                <span>{{rec[tblFunctions.getLastColumnPathName(title.name)]}}</span>
+            </div>
+        </ng-container>
+        </td>
+    </ng-container>
+
+    </ng-container>
+</ng-template>
