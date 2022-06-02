@@ -1,7 +1,4 @@
-<section
-    id="app-customize-request-status-list"
-    *ngIf="labels && resource && datePickerParams"
->
+<section id="app-customize-request-status-list" *ngIf="labels && resource && datePickerParams">
     <div class="container-fluid">
         <h2 class="app-page-title">{{ labels.title }}</h2>
         <div class="app-content">
@@ -20,10 +17,7 @@
                             <div class="row">
                                 <app-selected
                                     class="col-sm-3"
-                                    *ngIf="
-                                        resource.car_identification
-                                            .division_codes
-                                    "
+                                    *ngIf="resource.car_identification.division_codes"
                                     [itemName]="'division_codes'"
                                     [itemParams]="params"
                                     [itemResource]="resource.car_identification"
@@ -59,18 +53,12 @@
 
                                 <app-selected
                                     class="col-sm-3"
-                                    *ngIf="
-                                        resource.customize_usage_definition_id
-                                    "
+                                    *ngIf="resource.customize_usage_definition_id"
                                     [itemName]="'customize_usage_definition_id'"
                                     [itemParams]="params"
                                     [itemResource]="resource"
                                     [emitInitialRefresh]="false"
-                                    (onChangeSelectItem)="
-                                        onCustomizeUsageDefinitionIdChange(
-                                            $event
-                                        )
-                                    "
+                                    (onChangeSelectItem)="onCustomizeUsageDefinitionIdChange($event)"
                                 >
                                 </app-selected>
 
@@ -105,9 +93,7 @@
                                 <app-from-to-date-time-picker
                                     #fromToDatePicker
                                     class="col-sm-8"
-                                    [from]="
-                                        'request_registration_datetime_from'
-                                    "
+                                    [from]="'request_registration_datetime_from'"
                                     [to]="'request_registration_datetime_to'"
                                     [params]="params"
                                     [resource]="resource.request_status"
@@ -123,11 +109,7 @@
                             </div>
                         </div>
                         <div class="app-panel-footer">
-                            <button
-                                (click)="onClickSearch()"
-                                type="button"
-                                class="btn btn-primary search"
-                            >
+                            <button (click)="onClickSearch()" type="button" class="btn btn-primary search">
                                 {{ labels.search }}
                             </button>
                         </div>
@@ -185,9 +167,7 @@
     <ng-container *ngFor="let title of thList">
         <td
             *ngIf="title.displayable"
-            class="td-{{
-                title.shortName
-            }} app-index-td d-flex align-items-center"
+            class="td-{{ title.shortName }} app-index-td d-flex align-items-center"
             [ngClass]="{ 'line-break': isLineBreak(title.name) }"
         >
             <span>{{ data[title.name] }}</span>

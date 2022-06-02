@@ -34,9 +34,10 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     @ViewChild('requestMumberDefinitionIdKind', { static: false }) requestMumberDefinitionIdKind: SelectTypeComponent;
     @ViewChild('fromToDatePicker') fromToDatePicker: ElementRef;
     modalResource: any;
-    @Input() override lists: any;
+
     @Input() override params: any;
     @Input() override thList: any;
+    @Input() carIds: any;
 
     thListModal: any = [];
     definition_ids: string[] = [];
@@ -50,6 +51,12 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
         "datetime_from": "", // 対象期間FROM
         "datetime_to": "", // 対象期間TO
         "data_amount_upper_limit": "" //車両毎データ量上限（単位：KB）
+    };
+
+    _searchParams: any = {
+        "car_identification": {
+            "car_ids": [],
+        }
     };
 
     request_period_kind: string = "1";
@@ -99,6 +106,34 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
     }
 
     protected async fetchList(sort_key?: string): Promise<any> {
+        this.isFetching = true;
+        this._searchParams.car_identification.car_ids = this.carIds;
+        console.log("CAR_IDS: ", this._searchParams.car_identification.car_ids);
+        this.requestHeaderParams['X-Sort'] = sort_key || '';
+        const p = _.cloneDeep(this._searchParams);
+        const res = await this.cdRequestPeriodTabService.fetchCarIndexList(
+            p,
+            this.requestHeaderParams
+        );
+
+        console.log("fetchList: res", res);
+
+        let data: any = [];
+        res.result_data.cars.forEach((element: any) => {
+            console.log(element);
+            let car: any = {};
+            car["request_number.cars.car_identification.model_type_rev_serial"] = element.car_identification.model + "-" + element.car_identification.type_rev + "-" + element.car_identification.serial;
+            data.push(car);
+        });
+
+        this._fillLists(res.result_header, data);
+        this.lists.originList = data;
+        this.lists.visibleList = data;
+        this.isFetching = false;
+        this._afterFetchList();
+
+
+        console.log("app-cd-request-number-tab:initList", this.lists);
 
     }
     protected async _fetchDataForInitialize(): Promise<any> {

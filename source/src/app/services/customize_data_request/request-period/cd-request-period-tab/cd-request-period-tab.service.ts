@@ -6,9 +6,13 @@ import { ResourceService } from "app/services/api/resource.service";
 import { ScreenCodeConst } from "app/constants/api/screen-code-const";
 import { FunctionCodeConst } from "app/constants/api/function-code-const";
 
+/**
+ * 送信要求（期間単位）タグのサービス
+ * @author chau-phu
+ */
 @Injectable()
 export class CdRequestPeriodTabService {
-    constructor(private api: ApiService, private resource: ResourceService) {}
+    constructor(private api: ApiService, private resource: ResourceService) { }
 
     /**
    * 車両登録の初期表示に必要な情報を取得
@@ -24,27 +28,27 @@ export class CdRequestPeriodTabService {
         });
     }
 
-  /**
-   * 車両管理一覧取得APIリクエスト
-   * @param params リクエストパラメータ
-   * @param requestHeaderParams ヘッダ情報
-   */
-   fetchCarIndexList(
-    params : any,
-    requestHeaderParams: RequestHeaderParams
-  ): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.api.requestHandler(
-        'fetchCarIndexList',
-        this.api
-          .get(Apis.postCarCustomizesDefinitionSearch, params, {
-            cache: false,
-            request_header: requestHeaderParams,
-          })
-          .subscribe(res => {
-            resolve(res);
-          })
-      );
-    });
-  }
+    /**
+     * 車両管理一覧取得APIリクエスト
+     * @param params リクエストパラメータ
+     * @param requestHeaderParams ヘッダ情報
+     */
+    fetchCarIndexList(
+        params: any,
+        requestHeaderParams: RequestHeaderParams
+    ): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.api.requestHandler(
+                'fetchCarIndexList',
+                this.api
+                    .post(Apis.postCustomizeDataRequestDetail,
+                        params,
+                        { cache: false, request_header: requestHeaderParams }
+                    )
+                    .subscribe(res => {
+                        resolve(res);
+                    })
+            );
+        });
+    }
 }

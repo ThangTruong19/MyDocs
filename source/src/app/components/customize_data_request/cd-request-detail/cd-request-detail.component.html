@@ -17,15 +17,16 @@
                                 [resource]="resource"
                                 [params]="params"
                                 [sortableThList]="sortableThList"
+                                [carIds]="_searchParams.car_identification.car_ids"
                                 [thList]="thList"></app-cd-request-number-tab>
                         </div>
                         <div *ngIf="activeTab == 1" class="app-cd-request-detail-content">
                             <app-cd-request-period-tab
                                 [labels]="labels"
                                 [resource]="resource"
-                                [lists]="lists"
                                 [params]="params"
                                 [sortableThList]="sortableThList"
+                                [carIds]="_searchParams.car_identification.car_ids"
                                 [thList]="thList"></app-cd-request-period-tab>
                         </div>
                         <div *ngIf="activeTab == 2">

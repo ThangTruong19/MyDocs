@@ -3496,12 +3496,12 @@
         },
         {
           "api_id": "KOM-00110130",
-          "url": "{protocol}://{hostname}/v1/cars/requests/customize_usage_definitions/s2m",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/customize_usage_definitions/s2m",
           "http_method": "POST"
         },
         {
-          "api_id": "KOM-00110XXX",
-          "url": "{protocol}://{hostname}/v1/cars/requests/customize_settings_retry/s2m",
+          "api_id": "KOM-00110140",
+          "url": "{protocol}://{hostname}/v1/cars/{car_id}/requests/customize_settings_retry/s2m",
           "http_method": "POST"
         },
         {

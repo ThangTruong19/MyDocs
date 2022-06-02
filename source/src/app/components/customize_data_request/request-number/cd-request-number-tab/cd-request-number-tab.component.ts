@@ -25,20 +25,26 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
     @Input() override thList: any;
     @Input() override labels: any;
     @Input() override resource: any;
+    @Input() carIds: any;
+
+
     resources: Resources;
     requestNumberDefinitionIds: string;
+    carId: string;
 
     @ViewChild('cdExpectedTrafficConfirmModalContent', { static: false }) cdExpectedTrafficConfirmModalContent: TemplateRef<null>;
     @ViewChild('cdRequestNumberListModalContent', { static: false }) cdRequestNumberListModalContent: TemplateRef<null>;
     @ViewChild('inputDataAllCancelConfirmModalContent', { static: false }) inputDataAllCancelConfirmModalContent: TemplateRef<null>;
     @ViewChild('inputDataCancelConfirmModalContent', { static: false }) inputDataCancelConfirmModalContent: TemplateRef<null>;
     @ViewChild('cdRequestNumberSelectListModalContent', { static: false }) cdRequestNumberSelectListModalContent: TemplateRef<null>;
+    @ViewChild('cdRequestNumberComfirmModalContent', { static: false }) cdRequestNumberComfirmModalContent: TemplateRef<null>;
     @ViewChild(CdRequestNumberListComponent) requestNumberListComponent: CdRequestNumberListComponent;
 
     initList: any = {
         visibleList: [] as any[],
         originList: [] as any[],
     };
+    rowHeight: number = 35;
     data: any = [];
     initResource: any;
     fields: Fields;
@@ -165,6 +171,8 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
         }
     };
 
+    public listData: any[];
+
     constructor(
         nav: NavigationService,
         title: Title,
@@ -179,6 +187,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
 
     protected async fetchList(sort_key?: string): Promise<any> {
         this.isFetching = true;
+        this._searchParams.car_identification.car_ids = this.carIds;
         this.requestHeaderParams['X-Sort'] = sort_key || '';
         const p = _.cloneDeep(this._searchParams);
         const res = await this.cdRequestNumberTabService.fetchCarIndexList(
@@ -190,21 +199,27 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
 
         console.log("fetchList", res);
 
+        this.listData = res.result_data.cars;
+
         let data: any = [];
         res.result_data.cars.forEach((element: any) => {
             console.log(element);
             let car: any = {};
-            car["request_number.cars.car_identification.model_type_rev_serial"] = element.car_identification.model + "-" + element.car_identification.type_rev + "-" + element.car_identification.serial;
-            car["request_number.cars.customize_usage_definitions.name"] = element.customize_usage_definitions;
+            car["request_number_car_identification_header_label"] = element.car_identification.model + "-" + element.car_identification.type_rev + "-" + element.car_identification.serial;
+            car["request_number_customize_usage_definitions_header_label"] = element.customize_usage_definitions;
             car["request_number_customize_definitions_header_label"] = [];
             car["request_number_send_count_header_label"] = "";
             car["request_number_discard_edits_header_label"] = "";
+            car["request_number_car_identification_id"] = element.car_identification.id;
             data.push(car);
         });
 
         this._fillLists(res.result_header, data);
         this.lists.originList = data;
         this.lists.visibleList = data;
+
+        // this.setDataList();
+
         this.isFetching = false;
         this._afterFetchList();
 
@@ -242,10 +257,24 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
         this.thList.push(
             {
                 label: "",
+                name: "request_number_car_identification_header_label",
+                formatKey: "request_number_car_identification_header_label",
+            }
+        );
+        this.thList.push(
+            {
+                label: "",
+                name: "request_number_customize_usage_definitions_header_label",
+                formatKey: "request_number_customize_usage_definitions_header_label",
+            }
+        );
+        this.thList.push(
+            {
+                label: "",
                 name: "request_number_customize_definitions_header_label",
                 formatKey: "request_number_customize_definitions_header_label",
             }
-        )
+        );
         this.thList.push(
             {
                 label: "",
@@ -329,7 +358,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
 
     printInfoCar(data: any): string {
         let result = "";
-        console.log("title", data);
+        // console.log("title", data);
         return result;
     }
 
@@ -338,7 +367,20 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
      * @param data
      */
     handleCustomizeUsageDefinitionsClick(data: any, item: any): void {
-        this.requestNumberDefinitionIds = item.id;
+
+        let id = data.request_number_car_identification_id;
+        let carIndex = -1;
+        let customizeUsageDefinitionsIndex = -1;
+
+        this.listData.forEach((element,index) => {
+            if(element.car_identification.id == id) carIndex = index;
+        });
+        this.listData[carIndex].customize_usage_definitions.forEach((element: any, index: any) => {
+            if(element.id == item.id) customizeUsageDefinitionsIndex = index;
+        });
+
+        this.carId = id;
+
         this.modalService.open(
             {
                 title: this.labels.request_number_select_title,
@@ -350,6 +392,13 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                 ok: () => {
                     console.log("response data: " + JSON.stringify(this.requestNumberListComponent.responseData));
                     let requestNumberList = this.requestNumberListComponent.responseData;
+
+                    // Adding list of send no to the list of data
+                    let customizeDefinitionsIndex = -1;
+                    this.listData[carIndex].customize_usage_definitions[customizeUsageDefinitionsIndex].customize_definitions.forEach((element: any, index: any) => {
+                        if(element.id == requestNumberList.customize_definition_id) customizeDefinitionsIndex = index;
+                    });
+
                     this.listSendNo = [];
                     if(requestNumberList){
                         if(requestNumberList.car_customize_data_performances.length > 0){
@@ -363,11 +412,34 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                         }
                         console.log("this.listSendNo", this.listSendNo);
                     }
+
+                    _.set(this.listData[carIndex].customize_usage_definitions[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex],'sends_no',this.listSendNo);
+                    console.log("listData: " + JSON.stringify(this.listData));
+                    _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex],'sends_no',this.listSendNo);
                 },
             },
             {
                 size: 'xl',
             });
+    }
+
+    setDataList(dataList: any): void {
+        // let data: any = [];
+        // dataList.cars.forEach((element: any) => {
+        //     console.log(element);
+        //     let car: any = {};
+        //     car["request_number_car_identification_header_label"] = element.car_identification.model + "-" + element.car_identification.type_rev + "-" + element.car_identification.serial;
+        //     car["request_number_customize_usage_definitions_header_label"] = element.customize_usage_definitions;
+        //     car["request_number_customize_definitions_header_label"] = [];
+        //     car["request_number_send_count_header_label"] = "";
+        //     car["request_number_discard_edits_header_label"] = "";
+        //     car["request_number_car_identification_id"] = element.car_identification.id;
+        //     data.push(car);
+        // });
+
+        // this._fillLists(res.result_header, data);
+        // this.lists.originList = data;
+        // this.lists.visibleList = data;
     }
 
     /**
@@ -442,4 +514,20 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
             });
     }
 
+    /**
+     * データ送信要求 ボタン押下
+     */
+    expectedTrafficConfirm(): void {
+        this.modalService.open(
+            {
+                title: this.labels.expected_traffic_confirm_title,
+                labels: this.labels,
+                content: this.cdRequestNumberComfirmModalContent,
+                closeBtnLabel: this.labels.close
+            },
+            {
+                size: 'lg',
+            }
+        );
+    }
 }

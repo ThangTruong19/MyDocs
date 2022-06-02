@@ -15,22 +15,8 @@
     },
     {
         "display_sequence_no": "3",
-        "name": "通信量[byte/月]",
+        "name": "通信量",
         "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.assumption_data_value",
-        "control_code": "1",
-        "display_code": "1"
-    },
-    {
-        "display_sequence_no": "4",
-        "name": "合計通信量(要求後)[KB/月]",
-        "path": "customize_usage_total_traffic",
-        "control_code": "1",
-        "display_code": "1"
-    },
-    {
-        "display_sequence_no": "5",
-        "name": "差分[KB]",
-        "path": "customize_usage_difference",
         "control_code": "1",
         "display_code": "1"
     }

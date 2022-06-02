@@ -32,8 +32,6 @@ export class CdRequestNumberListComponent extends AbstractIndexComponent impleme
     public resources: any;
     @Input()
     public carId: string;
-    @Input()
-    public requestNumberDefinitionIds: string;
 
     beginningWday: number;
     _dateFormat: string;
@@ -76,6 +74,7 @@ export class CdRequestNumberListComponent extends AbstractIndexComponent impleme
         protected userSettingService: UserSettingService,
         private datePickerService: DatePickerService) {
         super(nav, title, router, cdRef, header, modal);
+        this.shouldDestroyNavigation = false;
     }
 
     /**
@@ -93,7 +92,6 @@ export class CdRequestNumberListComponent extends AbstractIndexComponent impleme
         this.labels = this.resources.label;
         this.resource = this.resources.resource;
         this.initialize(this.resources);
-        _.set(this.params, 'request_number_definition_ids', this.requestNumberDefinitionIds);
         this.thList = this._createThList(this.resources.cdRequestNumberListFields);
         this._afterInitialize();
     }

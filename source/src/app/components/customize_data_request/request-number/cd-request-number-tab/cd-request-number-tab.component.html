@@ -53,7 +53,7 @@
                     [customTableRowContent]="customTableRowContent">
 
                     <ng-template #customTableThContent>
-                        <ng-container
+                        <!-- <ng-container
                             *ngFor="let title of thList"
                         >
                             <th
@@ -73,7 +73,27 @@
                             >
                                 {{ title.label }}
                             </th>
-                        </ng-container>
+                        </ng-container> -->
+                        <th
+                            class="th-request_number_car_identification_header_label app-index-th"
+                            appSortingLabel
+                            [(sortingParams)]="sortingParams"
+                            [sortableThList]="sortableThList"
+                            (sort)="onChangeSort($event)"
+                            style="width: 30%;"
+                        >
+                            {{ labels.request_number_car_identification_header_label }}
+                        </th>
+                        <th
+                            class="th-request_number_car_identification_header_label app-index-th"
+                            appSortingLabel
+                            [(sortingParams)]="sortingParams"
+                            [sortableThList]="sortableThList"
+                            (sort)="onChangeSort($event)"
+                            style="width: 30%;"
+                        >
+                            {{ labels.request_number_customize_usage_definitions_header_label }}
+                        </th>
                         <th style="width: 30%;">
                             {{ labels.request_number_customize_definitions_header_label }}
                         </th>
@@ -86,63 +106,99 @@
                     </ng-template>
 
                     <ng-template #customTableRowContent let-data="data" let-title="title">
-                        <ng-container *ngFor="let title of thList">
-                            <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
-                                <!-- 車両情報 -->
-                                <td *ngIf="title.name === 'request_number.cars.car_identification.model_type_rev_serial'"
-                                    class="td-{{
-                                        title.shortName
-                                    }} app-index-td d-flex align-items-center"
-                                    style="width: 30%;"
-                                >
-                                    <span>{{ data[title.name] }}</span>
-                                </td>
-                                <!-- カスタマイズ用途定義 -->
-                                <td *ngIf="title.name === 'request_number.cars.customize_usage_definitions.name'"
-                                    class="td-{{
-                                        title.shortName
-                                    }} app-index-td d-flex align-items-center"
-                                    style="width: 30%; padding: 0!important;"
-                                >
-                                    <div *ngIf="data[title.name].length > 0" style="width: 100%;">
-                                        <span *ngFor="let child of data[title.name]; let idx = index"
-                                            style="padding: 2px 6px;"
-                                            [ngClass]="idx > 0 ? 'border':''">
-                                            <span class="link"
-                                                (click)="handleCustomizeUsageDefinitionsClick(data, child)">{{ child.name }}</span>
-                                        </span>
-                                    </div>
-                                </td>
-                            </ng-container>
-                        </ng-container>
-                        <!-- カスタマイズ定義 -->
+
+                        <!-- 車両情報 -->
                         <td
-                            class="app-index-td d-flex align-items-center"
+                            class="td-request_number_car_identification_header_label app-index-td d-flex align-items-center"
                             style="width: 30%;"
                         >
-                            <span>{{ data['request_number.cars.customize_usage_definitions.customize_definition_name'] }}</span>
+                            <span>{{ data['request_number_car_identification_header_label'] }}</span>
+                        </td>
+
+                        <!-- カスタマイズ用途定義 -->
+                        <td
+                            class="td-request_number_customize_usage_definitions_header_label app-index-td align-items-center"
+                            style="width: 30%; padding: 0!important;"
+                        >
+
+                            <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label']" style="width: 100%;">
+                                <div *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
+                                    <div *ngFor="let child of data['request_number_customize_usage_definitions_header_label']; let idx = index"
+                                        style="padding: 6px;"
+                                        [ngStyle]="{height: data['request_number_customize_usage_definitions_header_label'].length * rowHeight + 'px',
+                                                    'line-height': data['request_number_customize_usage_definitions_header_label'].length * rowHeight - 12 + 'px'}"
+                                        [ngClass]="idx > 0 ? 'border':''">
+                                        <span class="link"
+                                            (click)="handleCustomizeUsageDefinitionsClick(data, child)">{{ child.id }}-{{ child.name }}</span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </td>
+
+                        <!-- カスタマイズ定義 -->
+                        <td
+                            class="align-items-center"
+                            style="width: 30%; padding: 0!important; overflow: hidden;"
+                        >
+                            <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
+                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let idx_i = index"
+                                    [ngStyle]="{height: data['request_number_customize_usage_definitions_header_label'].length * rowHeight + 'px'}"
+                                    [ngClass]="idx_i > 0 ? 'border':''">
+                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let idx_j = index"
+                                        style="padding: 6px;"
+                                        [ngStyle]="{height: rowHeight + 'px'}"
+                                        [ngClass]="idx_j > 0 ? 'border':''">
+                                        {{ itemCustomizeDefinitions.id }} - {{ itemCustomizeDefinitions.name }}
+                                    </div>
+                                </div>
+                            </ng-container>
                         </td>
                         <!-- 送信件数 -->
                         <td
-                            class="app-index-td d-flex text-center"
-                            style="width: 10%;"
+                            class="align-items-center"
+                            style="width: 10%; padding: 0; overflow: hidden;"
                         >
-                            <span class="link"
-                                (click)="handleSendClick(data)">9999</span>
+                            <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
+                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let idx_i = index"
+                                    [ngStyle]="{height: data['request_number_customize_usage_definitions_header_label'].length * rowHeight + 'px'}"
+                                    [ngClass]="idx_i > 0 ? 'border':''">
+                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let idx_j = index"
+                                        style="padding: 6px;"
+                                        [ngStyle]="{height: rowHeight + 'px'}"
+                                        [ngClass]="idx_j > 0 ? 'border':''"
+                                        (click)="handleInputDataCancel(data)">
+                                        {{ printInfoCar(itemCustomizeDefinitions) }} {{ itemCustomizeDefinitions.sends_no ? itemCustomizeDefinitions.sends_no.length : '' }}
+                                    </div>
+                                </div>
+                            </ng-container>
                         </td>
                         <!-- 編集破棄 -->
                         <td
-                            class="app-index-td d-flex text-center app-sm-link"
-                            style="width: 10%;"
+                            class="align-items-center text-center"
+                            style="width: 10%; padding: 0; overflow: hidden;"
                         >
-                            <span (click)="handleInputDataCancel(data)">
-                                <i class="app-icon app-icon-discard"></i>
-                            </span>
+                            <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
+                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let idx_i = index"
+                                    [ngStyle]="{height: data['request_number_customize_usage_definitions_header_label'].length * rowHeight + 'px'}"
+                                    [ngClass]="idx_i > 0 ? 'border':''">
+                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let idx_j = index"
+                                        style="padding: 6px;"
+                                        class="app-sm-link"
+                                        [ngStyle]="{height: rowHeight + 'px'}"
+                                        [ngClass]="idx_j > 0 ? 'border':''"
+                                        (click)="handleInputDataCancel(data)">
+                                        <i class="app-icon app-icon-discard"></i>
+                                    </div>
+                                </div>
+                            </ng-container>
                         </td>
 
                     </ng-template>
                 </app-common-table>
             </div>
+        </div>
+        <div class="col-12 text-center" style="margin-top: 10px;">
+            <button type="button" class="btn btn-primary" (click)="expectedTrafficConfirm()">データ送信要求</button>
         </div>
     </div>
 </div>
@@ -158,7 +214,7 @@
 <ng-template #cdRequestNumberListModalContent>
     <app-cd-request-number-list
         [resources]="resources"
-        [requestNumberDefinitionIds]="requestNumberDefinitionIds"
+        [carId]="carId"
     ></app-cd-request-number-list>
 </ng-template>
 <ng-template #cdRequestNumberSelectListModalContent>
@@ -175,4 +231,10 @@
 <ng-template #inputDataAllCancelConfirmModalContent>
     <app-input-data-all-cancel-confirm [labels]="labels">
     </app-input-data-all-cancel-confirm>
+</ng-template>
+<ng-template #cdRequestNumberComfirmModalContent>
+    <div class="model-header">
+        <p class="model-title">{{ labels.expected_traffic_confirm_message }}</p>
+    </div>
+    <app-cd-request-number-comfirm></app-cd-request-number-comfirm>
 </ng-template>

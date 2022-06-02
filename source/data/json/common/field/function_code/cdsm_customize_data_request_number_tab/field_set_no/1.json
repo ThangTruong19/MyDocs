@@ -1,15 +1,43 @@
 [
     {
         "display_sequence_no": "1",
-        "name": "車両情報",
-        "path": "request_number.cars.car_identification.model_type_rev_serial",
+        "name": "車両ID",
+        "path": "cars.car_identification.id",
         "control_code": "1",
         "display_code": "1"
     },
     {
         "display_sequence_no": "2",
-        "name": "カスタマイズ用途定義",
-        "path": "request_number.cars.customize_usage_definitions.name",
+        "name": "機種",
+        "path": "cars.car_identification.model",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "3",
+        "name": "型式(小変形含む)",
+        "path": "cars.car_identification.type_rev",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "4",
+        "name": "機番",
+        "path": "cars.car_identification.serial",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "5",
+        "name": "カスタマイズ用途定義ID",
+        "path": "cars.customize_usage_definitions.id",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "6",
+        "name": "カスタマイズ用途定義名称",
+        "path": "cars.customize_usage_definitions.name",
         "control_code": "1",
         "display_code": "1"
     }

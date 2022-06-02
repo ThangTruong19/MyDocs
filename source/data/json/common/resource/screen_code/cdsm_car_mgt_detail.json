@@ -8,17 +8,17 @@
       "placeholder_text": "",
       "items": [
         {
-          "key": "Definiton Name 01",
+          "key": "KOMTRAX標準1",
           "value": "1",
           "kind": "D"
         },
         {
-          "key": "Definiton Name 02",
+          "key": "KOMTRAX標準2",
           "value": "2",
           "kind": "D"
         },
         {
-          "key": "Definiton Name 03",
+          "key": "KOMTRAX標準3",
           "value": "3",
           "kind": "D"
         }
@@ -107,17 +107,17 @@
       "items": [
         {
           "key": "高",
-          "value": "high",
+          "value": "3",
           "kind": "D"
         },
         {
           "key": "中",
-          "value": "medium",
+          "value": "2",
           "kind": "D"
         },
         {
           "key": "低",
-          "value": "low",
+          "value": "1",
           "kind": "D"
         }
       ]
@@ -249,17 +249,17 @@
       "items": [
         {
           "key": "高",
-          "value": "high",
+          "value": "3",
           "kind": "D"
         },
         {
           "key": "中",
-          "value": "medium",
+          "value": "2",
           "kind": "D"
         },
         {
           "key": "低",
-          "value": "low",
+          "value": "1",
           "kind": "D"
         }
       ]

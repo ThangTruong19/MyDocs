@@ -39,8 +39,8 @@ export const Apis = {
     getExampleUpload_fileRequestId_: 'KOM-xxxxxxx7',
     postCustomizeDataRequestDetail: 'KOM-00110070',
     postCarsRequestSetsCustomizeUsageDefinitionsM2s: 'KOM-00110120',
-    postCarsRequestsCustomizeUsageDefinitionsS2m: 'KOM-00110130',
-    postCarsRequestsCustomizeSettingsRetryS2m: 'KOM-00110XXX',
+    postCars_carId_RequestsCustomizeUsageDefinitionsS2m: 'KOM-00110130',
+    postCars_carId_RequestsCustomizeSettingsRetryS2m: 'KOM-00110140',
     // TODO:
     postCarCustomizesUsageDefinitionHistoriesSearch: 'KOM-xxxxxxx8',
     postCarCustomizesUsageDefinitionHistoriesSearchFileCreate: 'KOM-xxxxxxx9',

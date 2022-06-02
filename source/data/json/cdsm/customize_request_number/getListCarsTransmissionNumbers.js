@@ -34,24 +34,19 @@ module.exports = function (data) {
     let car_customize_data_performances = [];
 
     switch (customizeDefinitionId) {
-        case "1234560":
-            customize_definition_id = 1234560;
-            customize_definition_name = "カスタマイズ定義A";
+        case "1":
+            customize_definition_id = 1;
+            customize_definition_name = "生産詳細データ";
             assumption_data_value = 1234;
             break;
-        case "1234561":
-            customize_definition_id = 1234561;
-            customize_definition_name = "カスタマイズ定義B";
+        case "2":
+            customize_definition_id = 2;
+            customize_definition_name = "作業分類別集計データ";
             assumption_data_value = 5678;
             break;
-        case "1234562":
-            customize_definition_id = 1234562;
-            customize_definition_name = "カスタマイズ定義C";
-            assumption_data_value = 9012;
-            break;
         default:
-            customize_definition_id = 1234560;
-            customize_definition_name = "カスタマイズ定義A";
+            customize_definition_id = 1;
+            customize_definition_name = "生産詳細データ";
             assumption_data_value = 1234;
             break;
     }

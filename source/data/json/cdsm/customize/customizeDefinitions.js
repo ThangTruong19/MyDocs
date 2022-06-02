@@ -186,7 +186,7 @@ function createData(definitionId, definitionVersion) {
 
   // Return dummy data based on the value of [カスタマイズ用途定義名], [バージョン]
   switch(definitionId){
-    case "101":
+    case "1":
       switch(definitionVersion){
         case "1":
           result.push(initResult[0]);
@@ -215,7 +215,7 @@ function createData(definitionId, definitionVersion) {
           break;
       }
       break;
-    case "102":
+    case "2":
       switch(definitionVersion){
         case "1":
           result.push(initResult[0]);
@@ -244,7 +244,7 @@ function createData(definitionId, definitionVersion) {
           break;
       }
       break;
-    case "103":
+    case "3":
       switch(definitionVersion){
         case "1":
           result.push(initResult[1]);

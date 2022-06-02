@@ -51,7 +51,7 @@ function createData(from, count) {
       const customize_definition_list = [];
       for (var k = 0; k < customize_definition.length; k++) {
         let itemCustomize = {};
-        itemCustomize.id = "123456" + k;
+        itemCustomize.id = k + 1;
         itemCustomize.name = customize_definition[k];
         itemCustomize.version = "1.00";
         itemCustomize.access_level = {

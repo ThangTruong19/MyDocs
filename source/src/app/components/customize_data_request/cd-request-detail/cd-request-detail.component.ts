@@ -48,15 +48,15 @@ export class CdRequestDetailComponent extends AbstractIndexComponent implements 
     datePickerParams: any;
 
     async fetchList(sort_key?: string): Promise<any> {
-        this.isFetching = true;
-        const p = _.cloneDeep(this._searchParams);
-        const res = await this.cdRequestDetailService.fetchCarIndexList(
-            p,
-        );
-        this.lists.originList = res.result_data.cars;
-        this.lists.visibleList = this.lists.originList;
-        this.isFetching = false;
-        console.log("fetchList", res);
+        // this.isFetching = true;
+        // const p = _.cloneDeep(this._searchParams);
+        // const res = await this.cdRequestDetailService.fetchCarIndexList(
+        //     p,
+        // );
+        // this.lists.originList = res.result_data.cars;
+        // this.lists.visibleList = this.lists.originList;
+        // this.isFetching = false;
+        // console.log("fetchList", res);
     }
     protected async _fetchDataForInitialize(): Promise<void> {
 

@@ -8,7 +8,7 @@ import {
 import { AbstractBaseComponent } from 'app/components/shared/abstract-component/abstract-base.component';
 import { SelectedComponent } from 'app/components/shared/selected/selected.component';
 import { ScreenCodeConst } from 'app/constants/api/screen-code-const';
-import { UserService } from 'app/services/shared/user.service';
+import { AuthorityService } from 'app/services/authority/authority.service';
 import { CheckboxValue } from 'app/types/common';
 import { UserIndexParams } from 'app/types/user';
 import * as _ from 'lodash';
@@ -29,7 +29,7 @@ export class AuthoritySelectModalComponent implements OnInit {
   @Output() checkedAll: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
-    private userService: UserService,
+    private userService: AuthorityService,
   ) {
 
   }

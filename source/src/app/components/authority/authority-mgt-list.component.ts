@@ -15,7 +15,7 @@ import { NavigationService } from 'app/services/shared/navigation.service';
 import { AlertService } from 'app/services/shared/alert.service';
 import { ApiService } from 'app/services/api/api.service';
 import { UserSettingService } from 'app/services/api/user-setting.service';
-import { UserService } from 'app/services/shared/user.service';
+import { AuthorityService } from 'app/services/authority/authority.service';
 import { FilterReservedWord } from 'app/constants/condition';
 import { ScreenCodeConst } from 'app/constants/api/screen-code-const';
 import { AuthoritiesUpdateParams, UserDeleteParams, UserIndexParams } from 'app/types/user';
@@ -60,7 +60,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
     router: Router,
     ref: ChangeDetectorRef,
     header: CommonHeaderService,
-    private userService: UserService,
+    private userService: AuthorityService,
     private api: ApiService,
     private alertService: AlertService,
   ) {
@@ -105,7 +105,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
     };
     this.userService
       .updateAuthorities(userId, this.authoritiesUpdateParams)
-      .then(_ => {
+      .then(() => {
         this.fetchList(this.sortingParams['sort']);
         this.alertService.show(this.labels.authority_update_finish_message);
       });

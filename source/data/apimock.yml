@@ -366,7 +366,7 @@
 # リクエストキーを返却する。
 #
 - request:
-    url: /v1/cars/requests/customize_usage_definitions/s2m
+    url: /v1/cars/:car_id/requests/customize_usage_definitions/s2m
     method: POST
   response:
     type: js
@@ -378,7 +378,7 @@
 # リクエストキーを返却する。
 #
 - request:
-    url: /v1/cars/requests/customize_settings_retry/s2m
+    url: /v1/cars/:car_id/requests/customize_settings_retry/s2m
     method: POST
   response:
     type: js

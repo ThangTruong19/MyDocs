@@ -1,14 +1,14 @@
 <div id="app-cs-immediate-update-request-confirm" *ngIf="labels">
-    <div class="row" id="request_message">
-        <p>{{labels.customize_update_immediate_reflection_request_message}}</p>
+    <div *ngIf="showErr" class="row" id="request_message">
+        <p>定義の即時反映は追加、もしくは無効から有効への更新のみが可能となります。</p>
     </div>
     <div class="row" style="margin-bottom: 20px; margin-top: 10px;">
         <div class="radio-group">
-            <input type="radio" id="continue" class="continuous_kind app-input-radio" (click)="changeRadioValue()" [value]="continuousValue" [(ngModel)]="isContinued" [checked]="isContinued == '1'">
+            <input type="radio" id="continue" class="continuous_kind app-input-radio" [value]="continuousValue" [(ngModel)]="isContinued" [checked]="isContinued == '1'">
             <label for="continue" class="app-input-radio__label">{{continuousLabel}}</label>
         </div>
         <div class="radio-group">
-            <input type="radio" id="stop" class="continuous_kind app-input-radio" (click)="changeRadioValue()" [value]="discontinousValue" [(ngModel)]="isContinued" [checked]="isContinued == '0'">
+            <input type="radio" id="stop" class="continuous_kind app-input-radio" [value]="discontinousValue" [(ngModel)]="isContinued" [checked]="isContinued == '0'">
             <label for="stop" class="app-input-radio__label">{{discontinuousLabel}}</label>
         </div>
     </div>

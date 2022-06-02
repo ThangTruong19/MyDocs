@@ -280,3 +280,15 @@ labels:
     name: deselect_all_btn
     ja: 選択全解除
     en:
+
+  - id: 48
+    description: 車両情報
+    name: request_number_car_identification_header_label
+    ja: 車両情報
+    en:
+
+  - id: 49
+    description: カスタマイズ用途定義
+    name: request_number_customize_usage_definitions_header_label
+    ja: カスタマイズ用途定義
+    en:

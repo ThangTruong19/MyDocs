@@ -17,4 +17,7 @@
             color: #014c8c;
         }
     }
+    ::ng-deep .table-bordered {
+        border: 0!important;
+    }
 }

@@ -257,6 +257,8 @@ export class CsEditComponent extends AbstractIndexComponent implements OnInit {
             start_date: this.datePickerService.convertDateString(this.params.edit_start_date, DateFormat.hyphen, DateFormat.slash),
             end_date: this.datePickerService.convertDateString(this.params.edit_end_date, DateFormat.hyphen, DateFormat.slash),
             edit_mode: this.params.edit_customize_edit_kind,
+            priority: this.params.edit_priority_name,
+            priority_name: (this.priority as any).items.filter((element: { id: any; }) => element.id == this.params.edit_priority_name)[0].name,
             use_kind: "",
             use_name: "",
             customize_definitions: this._formatListData(this.apiResult.result_data.customize_definitions)
