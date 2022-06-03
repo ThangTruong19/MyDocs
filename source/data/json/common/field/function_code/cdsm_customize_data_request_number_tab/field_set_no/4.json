@@ -1,0 +1,37 @@
+[
+    {
+        "display_sequence_no": "1",
+        "name": "車両",
+        "path": "data_amount_upper_limit",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "2",
+        "name": "上限通信量[KB]",
+        "path": "cars.model_type_rev_serial",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "3",
+        "name": "カスタマイズ用途定義",
+        "path": "cars.customize_definitions.customize_usage_definitions",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "4",
+        "name": "カスタマイズ定義",
+        "path": "cars.customize_definitions.customize_definitions",
+        "control_code": "1",
+        "display_code": "1"
+    },
+    {
+        "display_sequence_no": "5",
+        "name": "送信番号",
+        "path": "cars.customize_definitions.send_nos",
+        "control_code": "1",
+        "display_code": "1"
+    }
+]

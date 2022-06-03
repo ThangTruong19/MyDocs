@@ -7,7 +7,6 @@ import { CommonHeaderService } from 'app/services/shared/common-header.service';
 import { ModalService } from 'app/services/shared/modal.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
 import { Resources, TableHeader } from 'app/types/common';
-import { RequestHeaderParams } from 'app/types/request';
 import * as _ from 'lodash';
 
 enum EditStatus {
@@ -127,13 +126,7 @@ export class CsImmediateUpdateRequestConfirmComponent extends AbstractIndexCompo
                     customize_usage_definition_id: cur['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
                     customize_usage_definition_name: cur['customize_usage_definitions.customize_usage_definition.customize_usage_definition_name'],
                     start_date: cur['customize_usage_definitions.customize_usage_definition.start_date'],
-                    end_date: cur['customize_usage_definitions.customize_usage_definition.end_date'],
-                    customize_definitions: {
-                        customize_definition_name: cur.customize_usage_definitions.customize_usage_definition.customize_definitions[0].customize_definition_name,
-                        priority_name: cur.customize_usage_definitions.customize_usage_definition.customize_definitions[0].priority_name,
-                        active_name: cur.customize_usage_definitions.customize_usage_definition.customize_definitions[0].active_name,
-                        latest_operation_code_name: cur.customize_usage_definitions.customize_usage_definition.customize_definitions[0].latest_operation_code_name
-                    }
+                    end_date: cur['customize_usage_definitions.customize_usage_definition.end_date']
                 }
             })
             return acc;

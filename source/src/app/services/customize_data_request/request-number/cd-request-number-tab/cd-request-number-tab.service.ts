@@ -30,6 +30,10 @@ export class CdRequestNumberTabService {
                 cdRequestNumberListFields: () =>
                     this.api.fetchFields(
                         FunctionCodeConst.CDSM_CUSTOMIZE_DATA_REQUEST_NUMBER_TAB, '2'
+                    ),
+                cdRequestNumberConfirmFields: () =>
+                    this.api.fetchFields(
+                        FunctionCodeConst.CDSM_CUSTOMIZE_DATA_REQUEST_NUMBER_TAB, '4'
                     )
             }
         );

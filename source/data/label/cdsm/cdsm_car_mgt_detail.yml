@@ -268,3 +268,9 @@ labels:
     name: ok_btn
     ja: OK
     en:
+
+  - id: 46
+    description: メッセージ
+    name: immediate_setting_update_request_err
+    ja: 定義の追加、もしくは無効から有効への更新のみが可能となります。
+    en:

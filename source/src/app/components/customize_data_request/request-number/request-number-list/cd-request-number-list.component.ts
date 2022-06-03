@@ -243,7 +243,12 @@ export class CdRequestNumberListComponent extends AbstractIndexComponent impleme
         // チェックボックス設定
         this.selectedItems = {};
         this.checkedItems = {};
+        this.dataPerformances = [];
         this.checkAll = false;
+        const check: HTMLInputElement = <HTMLInputElement>(
+            document.getElementById('check-icon-all')
+        );
+        check.checked = false;
         this.modalService.enableOk = false;
     }
 

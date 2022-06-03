@@ -1,6 +1,6 @@
 <div id="app-cs-immediate-update-request-confirm" *ngIf="labels">
     <div *ngIf="showErr" class="row" id="request_message">
-        <p>定義の即時反映は追加、もしくは無効から有効への更新のみが可能となります。</p>
+        <p>{{labels.immediate_setting_update_request_err}}</p>
     </div>
     <div class="row" style="margin-bottom: 20px; margin-top: 10px;">
         <div class="radio-group">

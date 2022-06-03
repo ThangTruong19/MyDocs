@@ -6,7 +6,7 @@ import { CdRequestNumberTabService } from 'app/services/customize_data_request/r
 import { CommonHeaderService } from 'app/services/shared/common-header.service';
 import { ModalService } from 'app/services/shared/modal.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
-import { Fields, Resources } from 'app/types/common';
+import { Fields, Resources, TableHeader } from 'app/types/common';
 import { CarCustomizeDataPerformances } from 'app/types/customize-request-number-list';
 import * as _ from 'lodash';
 import { CdRequestNumberListComponent } from '../request-number-list/cd-request-number-list.component';
@@ -172,6 +172,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
     };
 
     public listData: any[];
+    public cdRequestNumberConfirmThLists: TableHeader[];
 
     constructor(
         nav: NavigationService,
@@ -243,7 +244,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
         //   this.thList
         // );
 
-
+        this.cdRequestNumberConfirmThLists = this._createThList(res.cdRequestNumberConfirmFields);
         console.log("app-cd-request-number-tab", res);
     }
 
@@ -520,7 +521,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
     expectedTrafficConfirm(): void {
         this.modalService.open(
             {
-                title: this.labels.expected_traffic_confirm_title,
+                title: this.labels.confirm_title,
                 labels: this.labels,
                 content: this.cdRequestNumberComfirmModalContent,
                 closeBtnLabel: this.labels.close

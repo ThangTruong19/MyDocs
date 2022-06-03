@@ -23,13 +23,12 @@ export class AuthorityService {
 
     /**
       * ユーザ一覧画面のリスト表示に必要な情報を取得
-      * @param params パラメータ
-      * @param opt パラメータ
+      * @param params 検索パラメータ
+      * @param requestHeaderParams リクエストヘッダ
       */
     public fetchIndexList(
         params: UserIndexParams,
-        requestHeaderParams: RequestHeaderParams,
-        opt?: any
+        requestHeaderParams: RequestHeaderParams
     ): Promise<Api> {
         return new Promise((resolve) => {
             this.api.requestHandler(
@@ -89,7 +88,7 @@ export class AuthorityService {
 
  /**
    * ユーザの権限更新 API
-   *
+   * @param userId ユーザID
    * @param {Object} params APIパラメータ
    * @return {Object} 応答本文
    */
@@ -97,7 +96,7 @@ export class AuthorityService {
     userId: string,
     params: AuthoritiesUpdateParams
   ): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.api.requestHandler(
         'updateAuthorities',
         this.api
@@ -157,7 +156,7 @@ export class AuthorityService {
         ];
 
         const items = { screen_code, search_parameters };
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             this.api.requestHandler(
                 'fetchGrantedAuthorityIdsByRoleId',
                 this.api

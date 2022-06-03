@@ -17,6 +17,14 @@ import { CsEditComponent } from 'app/components/customize_setting/edit/cs-edit.c
 import { CsImmediateUpdateRequestConfirmComponent } from 'app/components/customize_setting/immediate-update-request-confirm/cs-immediate-update-request-confirm.component';
 import { RequestHeaderParams } from 'app/types/request';
 import {
+    Alert,
+    Size,
+    LatestOperationCode,
+    RequestKind,
+    RequestRouteKind,
+    InstantKind,
+    Status,
+    EditStatus,
     Item,
     CustomizeUsageDefinition,
     RequestBodyParamsKOM00110120,
@@ -26,29 +34,6 @@ import {
 import { ResultHeader } from 'app/types/result-header';
 import { ResultData } from 'app/types/result-data';
 
-enum Status {
-    送信中 = '10',
-    送信済 = '20',
-    車両反映中 = '30',
-    送信失敗 = '40',
-    削除済 = '90',
-}
-
-enum LatestOperationCode {
-    追加 = '1',
-    更新 = '2',
-    削除 = '3',
-    即時追加 = '11',
-    即時更新 = '12',
-}
-
-enum EditStatus {
-    デフォルト = '0',
-    追加 = '1',
-    変更 = '2',
-    削除 = '3',
-}
-
 @Component({
     selector: 'app-cs-detail',
     templateUrl: './cs-detail.component.html',
@@ -56,25 +41,25 @@ enum EditStatus {
 })
 export class CsDetailComponent extends AbstractIndexComponent implements OnInit {
     @ViewChild('csNewModalContent', { static: false })
-    csNewModalContent: TemplateRef<null>;
+    protected csNewModalContent: TemplateRef<null>;
     @ViewChild('csEditModalContent', { static: false })
-    csEditModalContent: TemplateRef<null>;
+    protected csEditModalContent: TemplateRef<null>;
     @ViewChild('csGetRequestModalContent', { static: false })
-    csGetRequestModalContent: TemplateRef<null>;
+    protected csGetRequestModalContent: TemplateRef<null>;
     @ViewChild('csUpdateRequestConfirmModalContent', { static: false })
-    csUpdateRequestConfirmModalContent: TemplateRef<null>;
+    protected csUpdateRequestConfirmModalContent: TemplateRef<null>;
     @ViewChild('csImmediateUpdateRequestConfirmModalContent', { static: false })
-    csImmediateUpdateRequestConfirmModalContent: TemplateRef<null>;
+    protected csImmediateUpdateRequestConfirmModalContent: TemplateRef<null>;
     @ViewChild('csInputDataCancelConfirmModalContent', { static: false })
-    csInputDataCancelConfirmModalContent: TemplateRef<null>;
+    protected csInputDataCancelConfirmModalContent: TemplateRef<null>;
     @ViewChild('csRequestResendConfirmModalContent', { static: false })
-    csRequestResendConfirmModalContent: TemplateRef<null>;
+    protected csRequestResendConfirmModalContent: TemplateRef<null>;
     @ViewChild('csExpectedTrafficConfirmModalContent', { static: false })
-    csExpectedTrafficConfirmModalContent: TemplateRef<null>;
+    protected csExpectedTrafficConfirmModalContent: TemplateRef<null>;
     @ViewChild(CsNewComponent) newChildComponent: CsNewComponent;
     @ViewChild(CsEditComponent) editChildComponent: CsEditComponent;
     @ViewChild(CsImmediateUpdateRequestConfirmComponent)
-    csImmediateUpdateRequestConfirmComponent: CsImmediateUpdateRequestConfirmComponent;
+    protected csImmediateUpdateRequestConfirmComponent: CsImmediateUpdateRequestConfirmComponent;
 
     @Output() public sort: EventEmitter<string> = new EventEmitter<string>();
 
@@ -100,12 +85,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         editList: Item[];
         hiddenList: Item[];
     } = {
-        visibleList: [],
-        originList: [],
-        addList: [],
-        editList: [],
-        hiddenList: [],
-    };
+            visibleList: [],
+            originList: [],
+            addList: [],
+            editList: [],
+            hiddenList: [],
+        };
 
     public initialLists: {
         visibleList: Item[];
@@ -114,12 +99,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         editList: Item[];
         hiddenList: Item[];
     } = {
-        visibleList: [],
-        originList: [],
-        addList: [],
-        editList: [],
-        hiddenList: [],
-    };
+            visibleList: [],
+            originList: [],
+            addList: [],
+            editList: [],
+            hiddenList: [],
+        };
 
     protected carId: string;
     protected model: string;
@@ -186,7 +171,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param e beforeunloadイベント
      */
     @HostListener('window:beforeunload', ['$event'])
-    public beforeUnload(e: Event) {
+    protected beforeUnload(e: Event) {
         if (this.shouldConfirmOnBeforeunload()) {
             e.preventDefault();
             // Chrome未対応のため
@@ -199,13 +184,13 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 現在のパラメータを一覧取得APIに引き渡し、一覧画面に表示するリストを取得する
      * @param sort_key ソートキー
      */
-    public async fetchList(sort_key?: string): Promise<void> {
+    protected async fetchList(sort_key?: string): Promise<void> {
         this.isFetching = true;
         this.requestHeaderParams['X-Sort'] = sort_key || '';
         const res = await this.csDetailService.fetchIndexList(this.carId, this.requestHeaderParams);
         const data: CustomizeUsageDefinition[] = res.result_data.customize_usage_definitions;
         data.forEach((element) => {
-            element.edit_status = EditStatus.デフォルト;
+            element.edit_status = EditStatus.Default;
             element.edit_status_name = '';
         });
         const list = this._formatList(data, this.thList);
@@ -230,7 +215,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param data 対象の行データ
      * @returns 1行の高さ
      */
-    public getTblRowHeight(data: Item): string {
+    protected getTblRowHeight(data: Item): string {
         let rowSize = 0;
         if (
             data &&
@@ -250,7 +235,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param pathName 対象列のパス名
      * @returns true：配列、false：配列ではない。
      */
-    public isArrayColumnData(pathName: string): boolean {
+    protected isArrayColumnData(pathName: string): boolean {
         return this.arrayColumnPaths.indexOf(pathName) !== -1;
     }
 
@@ -259,7 +244,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param resultHeader API のレスポンスヘッダ
      * @param resultData API のレスポンスデータ
      */
-    public override _fillLists(resultHeader: ResultHeader, resultData: ResultData) {
+    protected override _fillLists(resultHeader: ResultHeader, resultData: ResultData) {
         super._fillLists(resultHeader, resultData);
         this.initialLists.originList = _.cloneDeep(this.lists.originList);
         this.initialLists.visibleList = _.cloneDeep(this.lists.visibleList);
@@ -308,7 +293,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         this.lists.originList.forEach((element) => {
             const content: CustomizeUsageDefinition = element.customize_usage_definitions;
             const latestOperationCode = content.customize_usage_definition.customize_definitions[0].latest_operation_code;
-            if (latestOperationCode === LatestOperationCode.削除) {
+            if (latestOperationCode === LatestOperationCode.Delete) {
                 const targetRowData = element;
                 this.commonTableService.setDisabledRowStyle(targetRowData);
             }
@@ -318,7 +303,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * 初期化 API を呼ぶ
      */
-    public async _fetchDataForInitialize(): Promise<void> {
+    protected async _fetchDataForInitialize(): Promise<void> {
         this.activatedRoute.queryParams.subscribe((params) => (this.carId = params.carId));
         this.activatedRoute.queryParams.subscribe((params) => (this.model = params.model));
         this.activatedRoute.queryParams.subscribe((params) => (this.typeRev = params.typeRev));
@@ -346,7 +331,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 指定項目を更新
      * @param fields 指定項目
      */
-    public _updateFields(fields: Fields) {
+    protected _updateFields(fields: Fields) {
         this.fields = fields;
         this.thList = this._createThList(fields);
         this.thList.push({
@@ -373,7 +358,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param data 対象データ
      * @return チェックボックスのキーとなる値
      */
-    public checkIdFunction(data: Item): string {
+    protected checkIdFunction(data: Item): string {
         const customizeUsageDefinitionId = data['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'];
         const editStatus = data['customize_usage_definitions.edit_status'];
         return customizeUsageDefinitionId + '-' + editStatus;
@@ -384,9 +369,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param data 対象データ
      * @return true:非表示/false:表示
      */
-    public checkBoxHiddenFunction(data: Item): boolean {
+    protected checkBoxHiddenFunction(data: Item): boolean {
         const editStatus = data['customize_usage_definitions.edit_status'];
-        return editStatus === EditStatus.デフォルト;
+        return editStatus === EditStatus.Default;
     }
 
     /**
@@ -394,9 +379,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param data 対象データ
      * @return true:非表示/false:表示
      */
-    public checkBoxDefaultHiddenFunction(data: Item): boolean {
+    protected checkBoxDefaultHiddenFunction(data: Item): boolean {
         const editStatus = data['customize_usage_definitions.edit_status'];
-        return editStatus !== EditStatus.デフォルト;
+        return editStatus !== EditStatus.Default;
     }
 
     /**
@@ -404,11 +389,11 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param data 対象データ
      * @return true:非表示/false:表示
      */
-    public editIconHidden(data: Item): boolean {
+    protected editIconHidden(data: Item): boolean {
         const content: CustomizeUsageDefinition = this.convert(data);
         const editStatus = content.edit_status;
         const latestOperationCode = content.customize_usage_definition.customize_definitions[0].latest_operation_code;
-        return editStatus === EditStatus.追加 || latestOperationCode === LatestOperationCode.削除;
+        return editStatus === EditStatus.Regist || latestOperationCode === LatestOperationCode.Delete;
     }
 
     /**
@@ -416,11 +401,11 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param data 対象データ
      * @return true:非表示/false:表示
      */
-    public discardIconHidden(data: Item): boolean {
+    protected discardIconHidden(data: Item): boolean {
         const content: CustomizeUsageDefinition = this.convert(data);
         const editStatus = content.edit_status;
         const latestOperationCode = content.customize_usage_definition.customize_definitions[0].latest_operation_code;
-        return editStatus === EditStatus.デフォルト || latestOperationCode === LatestOperationCode.削除;
+        return editStatus === EditStatus.Default || latestOperationCode === LatestOperationCode.Delete;
     }
 
     /**
@@ -428,18 +413,18 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param data 対象データ
      * @return true:非表示/false:表示
      */
-    public retryIconHidden(data: Item): boolean {
+    protected retryIconHidden(data: Item): boolean {
         const content: CustomizeUsageDefinition = this.convert(data);
         const editStatus = content.edit_status;
         const status = content.customize_usage_definition.customize_definitions[0].status;
         const latestOperationCode = content.customize_usage_definition.customize_definitions[0].latest_operation_code;
-        return status !== Status.送信失敗 || editStatus !== EditStatus.デフォルト || latestOperationCode === LatestOperationCode.削除;
+        return status !== Status.SendError || editStatus !== EditStatus.Default || latestOperationCode === LatestOperationCode.Delete;
     }
 
     /**
      * 追加ボタン押下コールバック
      */
-    public onClickAdd() {
+    protected onClickAdd() {
         this.openCsNewDialog();
     }
 
@@ -448,28 +433,28 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      *
      * @param data 対象データ
      */
-    public onClickEdit(data: Item) {
+    protected onClickEdit(data: Item) {
         this.openCsEditDialog(data);
     }
 
     /**
      * 設定取得要求ボタン押下コールバック
      */
-    public onClickGetRequest() {
+    protected onClickGetRequest() {
         this.openCsGetRequestDialog();
     }
 
     /**
      * 設定更新要求ボタン押下コールバック
      */
-    public onClickUpdateRequest() {
+    protected onClickUpdateRequest() {
         this.openCsUpdateRequestConfirmDialog();
     }
 
     /**
      * 設定即時更新要求ボタン押下コールバック
      */
-    public onClickImmediateUpdateRequest() {
+    protected onClickImmediateUpdateRequest() {
         this.openCsImmediateUpdateRequestConfirmDialog();
     }
 
@@ -477,14 +462,14 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 編集内容破棄ボタン押下コールバック
      * @param data 対象データ
      */
-    public onClickDiscard(data: Item) {
+    protected onClickDiscard(data: Item) {
         this.openCsInputDataCancelConfirmDialog(data);
     }
 
     /**
      * 編集内容全破棄ボタン押下コールバック
      */
-    public onClickDiscardAll() {
+    protected onClickDiscardAll() {
         this.openCsInputDataCancelAllConfirmDialog();
     }
 
@@ -492,14 +477,14 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 再送ボタン押下コールバック
      * @param data 対象データ
      */
-    public onClickRetry(data: Item) {
+    protected onClickRetry(data: Item) {
         this.openCsRequestResendConfirmDialog(data);
     }
 
     /**
      * 追加モーダル呼出し
      */
-    public openCsNewDialog() {
+    protected openCsNewDialog() {
         this.modalService.open(
             {
                 title: this.labels.addition_title,
@@ -516,11 +501,11 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         },
                     ];
                     contents.forEach((element) => {
-                        element.edit_status = EditStatus.追加;
+                        element.edit_status = EditStatus.Regist;
                         element.edit_status_name = this.labels.regist_body_label;
                         // チェックボックス設定
                         const customizeUsageDefinitionId = element.customize_usage_definition.customize_usage_definition_id;
-                        const checkIdName = customizeUsageDefinitionId + '-' + EditStatus.追加;
+                        const checkIdName = customizeUsageDefinitionId + '-' + EditStatus.Regist;
                         this.checkedItems[checkIdName] = true;
                     });
                     // リスト作成
@@ -540,7 +525,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                     const addListIndex = this.lists.addList.findIndex((element: Item) => {
                         const content: CustomizeUsageDefinition = this.convert(element);
                         const id = content.customize_usage_definition.customize_usage_definition_id;
-                        return key === String(id) && content.edit_status === EditStatus.追加;
+                        return key === String(id) && content.edit_status === EditStatus.Regist;
                     });
                     list.forEach((element: Item) => {
                         if (addListIndex !== -1) {
@@ -551,12 +536,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                                 const originListIndex = this.lists.originList.findIndex((element: Item) => {
                                     const content: CustomizeUsageDefinition = this.convert(element);
                                     const id = content.customize_usage_definition.customize_usage_definition_id;
-                                    return key === String(id) && content.edit_status === EditStatus.追加;
+                                    return key === String(id) && content.edit_status === EditStatus.Regist;
                                 });
                                 const visibleListIndex = this.lists.visibleList.findIndex((element: Item) => {
                                     const content: CustomizeUsageDefinition = this.convert(element);
                                     const id = content.customize_usage_definition.customize_usage_definition_id;
-                                    return key === String(id) && content.edit_status === EditStatus.追加;
+                                    return key === String(id) && content.edit_status === EditStatus.Regist;
                                 });
                                 if (originListIndex !== -1) {
                                     this.lists.originList.splice(originListIndex + index, 1, element);
@@ -584,7 +569,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 },
             },
             {
-                size: 'lg',
+                size: Size.Lg,
             }
         );
     }
@@ -593,7 +578,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 編集モーダル呼出し
      * @param data 対象データ
      */
-    public openCsEditDialog(data: Item) {
+    protected openCsEditDialog(data: Item) {
         const content: CustomizeUsageDefinition = this.convert(data);
         this.inputParams.edit_customize_usage_definition_id = content.customize_usage_definition.customize_usage_definition_id;
         this.inputParams.edit_customize_usage_definition_name = content.customize_usage_definition.customize_usage_definition_name;
@@ -633,17 +618,17 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         const customizeUsageDefinitionId = element.customize_usage_definition.customize_usage_definition_id;
                         switch (this.editChildComponent.modalResponse.edit_mode) {
                             case 'update':
-                                element.edit_status = EditStatus.変更;
+                                element.edit_status = EditStatus.Edit;
                                 element.edit_status_name = this.labels.edit_body_label;
                                 // チェックボックス設定
-                                checkIdName = customizeUsageDefinitionId + '-' + EditStatus.変更;
+                                checkIdName = customizeUsageDefinitionId + '-' + EditStatus.Edit;
                                 this.checkedItems[checkIdName] = true;
                                 break;
                             case 'delete':
-                                element.edit_status = EditStatus.削除;
+                                element.edit_status = EditStatus.Delete;
                                 element.edit_status_name = this.labels.delete_body_label;
                                 // チェックボックス設定
-                                checkIdName = customizeUsageDefinitionId + '-' + EditStatus.削除;
+                                checkIdName = customizeUsageDefinitionId + '-' + EditStatus.Delete;
                                 this.checkedItems[checkIdName] = true;
                                 break;
                             default:
@@ -684,7 +669,17 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         if (visibleListIndex !== -1) {
                             this.lists.visibleList.splice(visibleListIndex + index, 1, element);
                         }
-                        this.lists.editList.push(element);
+
+                        const editListIndex = this.lists.editList.findIndex((element) => {
+                            const target: CustomizeUsageDefinition = this.convert(element);
+                            return content.customize_usage_definition.customize_usage_definition_id ===
+                                target.customize_usage_definition.customize_usage_definition_id
+                        });
+                        if (editListIndex !== -1) {
+                            this.lists.editList.splice(editListIndex + index, 1, element);
+                        } else {
+                            this.lists.editList.push(element);
+                        }
                     });
                     // チェックボックス設定
                     this.check();
@@ -693,7 +688,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 },
             },
             {
-                size: 'lg',
+                size: Size.Lg,
             }
         );
     }
@@ -701,7 +696,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * 設定取得要求モーダル呼出し
      */
-    public openCsGetRequestDialog() {
+    protected openCsGetRequestDialog() {
         this.modalService.open(
             {
                 title: this.labels.confirmation_title,
@@ -714,7 +709,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                     const cars = [{ car_id: this.carId }];
                     const params: RequestBodyParamsKOM00110120 = {
                         cars: cars,
-                        request_route_kind: '0',
+                        request_route_kind: RequestRouteKind.Unspecified,
                     };
                     this.csDetailService
                         .postCarsRequestSetsCustomizeUsageDefinitionsM2s(params, requestHeaderParams)
@@ -732,7 +727,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                             // ボタン表示設定
                             this.disabled = !Object.values(this.checkedItems).some((item) => item);
                             // メッセージ出力
-                            this.alertService.show(this.labels.finish_message, false, 'success');
+                            this.alertService.show(this.labels.finish_message, false, Alert.Success);
                         })
                         .catch((error) => {
                             this._setError(error);
@@ -740,7 +735,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 },
             },
             {
-                size: 'lg',
+                size: Size.Lg,
             }
         );
     }
@@ -748,7 +743,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * 設定更新要求モーダル呼出し
      */
-    public openCsUpdateRequestConfirmDialog() {
+    protected openCsUpdateRequestConfirmDialog() {
         const keys: String[] = [];
         Object.keys(this.checkedItems).forEach((key) => {
             if (this.checkedItems[key]) keys.push(key);
@@ -774,7 +769,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         return {
                             customize_usage_definition_id: content.customize_usage_definition.customize_usage_definition_id,
                             version: String(content.customize_usage_definition.customize_usage_definition_version),
-                            request_kind: '2',
+                            request_kind: RequestKind.Update,
                             date_to: content.customize_usage_definition.end_date,
                             date_from: content.customize_usage_definition.start_date,
                             priority: content.customize_usage_definition.customize_definitions[0].priority,
@@ -782,8 +777,8 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         };
                     });
                     const params: RequestBodyParamsKOM00110130 = {
-                        request_route_kind: '0',
-                        instant_kind: '0',
+                        request_route_kind: RequestRouteKind.Unspecified,
+                        instant_kind: InstantKind.Regular,
                         customize_usage_definition: customizeUsageDefinitions,
                     };
                     this.csDetailService
@@ -802,7 +797,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                             // ボタン表示設定
                             this.disabled = !Object.values(this.checkedItems).some((item) => item);
                             // メッセージ出力
-                            this.alertService.show(this.labels.finish_message, false, 'success');
+                            this.alertService.show(this.labels.finish_message, false, Alert.Success);
                         })
                         .catch((error) => {
                             this._setError(error);
@@ -814,7 +809,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 },
             },
             {
-                size: 'lg',
+                size: Size.Lg,
             }
         );
     }
@@ -822,7 +817,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * 設定即時更新要求モーダル呼出し
      */
-    public openCsImmediateUpdateRequestConfirmDialog() {
+    protected openCsImmediateUpdateRequestConfirmDialog() {
         const keys: String[] = [];
         Object.keys(this.checkedItems).forEach((key) => {
             if (this.checkedItems[key]) keys.push(key);
@@ -849,7 +844,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         return {
                             customize_usage_definition_id: content.customize_usage_definition.customize_usage_definition_id,
                             version: String(content.customize_usage_definition.customize_usage_definition_version),
-                            request_kind: '2',
+                            request_kind: RequestKind.Update,
                             date_to: content.customize_usage_definition.end_date,
                             date_from: content.customize_usage_definition.start_date,
                             priority: content.customize_usage_definition.customize_definitions[0].priority,
@@ -857,8 +852,8 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         };
                     });
                     const params: RequestBodyParamsKOM00110130 = {
-                        request_route_kind: '0',
-                        instant_kind: '1',
+                        request_route_kind: RequestRouteKind.Unspecified,
+                        instant_kind: InstantKind.Immediate,
                         continuous_kind: this.csImmediateUpdateRequestConfirmComponent.isContinued,
                         customize_usage_definition: customizeUsageDefinitions,
                     };
@@ -878,7 +873,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                             // ボタン表示設定
                             this.disabled = !Object.values(this.checkedItems).some((item) => item);
                             // メッセージ出力
-                            this.alertService.show(this.labels.finish_message, false, 'success');
+                            this.alertService.show(this.labels.finish_message, false, Alert.Success);
                         })
                         .catch((error) => {
                             this._setError(error);
@@ -890,7 +885,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 },
             },
             {
-                size: 'lg',
+                size: Size.Lg,
             }
         );
     }
@@ -899,7 +894,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 編集内容破棄モーダル呼出し
      * @param data 対象データ
      */
-    public openCsInputDataCancelConfirmDialog(data: Item) {
+    protected openCsInputDataCancelConfirmDialog(data: Item) {
         this.modalService.open(
             {
                 title: this.labels.confirmation_title,
@@ -915,16 +910,16 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         const target: CustomizeUsageDefinition = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id ===
-                                target.customize_usage_definition.customize_usage_definition_id &&
-                            (content.edit_status === EditStatus.変更 || content.edit_status === EditStatus.削除)
+                            target.customize_usage_definition.customize_usage_definition_id &&
+                            (content.edit_status === EditStatus.Edit || content.edit_status === EditStatus.Delete)
                         );
                     });
                     const initialOrigin = this.initialLists.originList.find((element) => {
                         const target: CustomizeUsageDefinition = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id ===
-                                target.customize_usage_definition.customize_usage_definition_id &&
-                            (content.edit_status === EditStatus.変更 || content.edit_status === EditStatus.削除)
+                            target.customize_usage_definition.customize_usage_definition_id &&
+                            (content.edit_status === EditStatus.Edit || content.edit_status === EditStatus.Delete)
                         );
                     });
                     if (initialOrigin) {
@@ -936,16 +931,16 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         const target: CustomizeUsageDefinition = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id ===
-                                target.customize_usage_definition.customize_usage_definition_id &&
-                            (content.edit_status === EditStatus.変更 || content.edit_status === EditStatus.削除)
+                            target.customize_usage_definition.customize_usage_definition_id &&
+                            (content.edit_status === EditStatus.Edit || content.edit_status === EditStatus.Delete)
                         );
                     });
                     const initialVisible = this.initialLists.visibleList.find((element) => {
                         const target: CustomizeUsageDefinition = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id ===
-                                target.customize_usage_definition.customize_usage_definition_id &&
-                            (content.edit_status === EditStatus.変更 || content.edit_status === EditStatus.削除)
+                            target.customize_usage_definition.customize_usage_definition_id &&
+                            (content.edit_status === EditStatus.Edit || content.edit_status === EditStatus.Delete)
                         );
                     });
                     if (initialVisible) {
@@ -957,15 +952,15 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         const target: CustomizeUsageDefinition = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id !==
-                                target.customize_usage_definition.customize_usage_definition_id && content.edit_status === EditStatus.追加
+                            target.customize_usage_definition.customize_usage_definition_id && content.edit_status === EditStatus.Regist
                         );
                     });
                     this.lists.editList = this.lists.editList.filter((element) => {
                         const target: CustomizeUsageDefinition = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id !==
-                                target.customize_usage_definition.customize_usage_definition_id &&
-                            (content.edit_status === EditStatus.変更 || content.edit_status === EditStatus.削除)
+                            target.customize_usage_definition.customize_usage_definition_id &&
+                            (content.edit_status === EditStatus.Edit || content.edit_status === EditStatus.Delete)
                         );
                     });
                     // チェックボックス設定
@@ -979,7 +974,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 },
             },
             {
-                size: 'lg',
+                size: Size.Lg,
             }
         );
     }
@@ -987,7 +982,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * 編集内容全破棄モーダル呼出し
      */
-    public openCsInputDataCancelAllConfirmDialog() {
+    protected openCsInputDataCancelAllConfirmDialog() {
         this.modalService.open(
             {
                 title: this.labels.confirmation_title,
@@ -1007,7 +1002,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 },
             },
             {
-                size: 'lg',
+                size: Size.Lg,
             }
         );
     }
@@ -1016,7 +1011,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 再送モーダル呼出し
      * @param data 対象データ
      */
-    public openCsRequestResendConfirmDialog(data: Item) {
+    protected openCsRequestResendConfirmDialog(data: Item) {
         this.tableData.push(data);
         this.modalService.open(
             {
@@ -1042,7 +1037,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                             // リスト設定
                             this.fetchList(this.sortingParams['sort']);
                             // メッセージ出力
-                            this.alertService.show(this.labels.finish_message, false, 'success');
+                            this.alertService.show(this.labels.finish_message, false, Alert.Success);
                         })
                         .catch((error) => {
                             this._setError(error);
@@ -1054,7 +1049,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 },
             },
             {
-                size: 'lg',
+                size: Size.Lg,
             }
         );
     }
@@ -1062,7 +1057,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * 通信量確認モーダル呼出し
      */
-    public onClickExpectedTrafficConfirm() {
+    protected onClickExpectedTrafficConfirm() {
         const keys: String[] = [];
         Object.keys(this.checkedItems).forEach((key) => {
             if (this.checkedItems[key]) keys.push(key);
@@ -1090,7 +1085,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 },
             },
             {
-                size: 'lg',
+                size: Size.Lg,
             }
         );
     }
@@ -1100,7 +1095,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param data 変換前のデータ
      * @returns 変換後のデータ
      */
-    public convert(data: Item): CustomizeUsageDefinition {
+    protected convert(data: Item): CustomizeUsageDefinition {
         const content: CustomizeUsageDefinition = this.thList.reduce((acc, cur) => {
             const item = _.get(data, cur.name);
             _.set(acc, cur.formatKey, item);
@@ -1113,7 +1108,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * チェックボックス押下時の処理
      */
-    public onChangeSelect() {
+    protected onChangeSelect() {
         this.check();
         this.disabled = !Object.values(this.checkedItems).some((item) => item);
     }
@@ -1121,7 +1116,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * チェックボックス押下時の処理
      */
-    public onChangeSelectAll() {
+    protected onChangeSelectAll() {
         this.check();
         this.disabled = !Object.values(this.checkedItems).some((item) => item);
     }
@@ -1129,7 +1124,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * チェックボックスの更新処理
      */
-    public check() {
+    protected check() {
         const targetItems: Item[] = [...this.lists.originList, ...this.lists.hiddenList].filter(
             (element: Item) => !this.checkBoxHiddenFunction(element)
         );
