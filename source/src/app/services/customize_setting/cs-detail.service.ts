@@ -80,6 +80,7 @@ export class CsDetailService implements CanDeactivate<CsDetailComponent> {
             fields3: () => this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION, '3'),
             fields4: () => this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION, '4'),
             fields5: () => this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION, '5'),
+            fields6: () => this.api.fetchFields(FunctionCodeConst.CAR_MGT_DETAIL_FUNCTION, '6'),
         });
     }
 

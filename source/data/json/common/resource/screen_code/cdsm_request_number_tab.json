@@ -131,7 +131,7 @@
     },
     {
         "path": "car_data_amount_upper_limit",
-        "name": "通信量上限(KB)",
+        "name": "上限通信量(KB)",
         "help": "car_data_amount_upper_limit",
         "type": 10,
         "memo": "",

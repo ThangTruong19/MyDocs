@@ -483,7 +483,9 @@ export class CdRequestPeriodTabComponent extends AbstractIndexComponent implemen
      * @returns string
      */
     printInfoCar(data: any): string {
-        let result = data.car_identification.model + "-" + data.car_identification.type_rev + "-" + data.car_identification.serial;
+        // let result = data.car_identification.model + "-" + data.car_identification.type_rev + "-" + data.car_identification.serial;
+        let result = "";
+        console.log("data", data);
         return result;
     }
 

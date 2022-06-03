@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12 row">
             <div class="col-4">
-                <label style="display:inline-block; width: 35%">上記通信量(KB)</label>
+                <label style="display:inline-block; width: 35%">{{ resource.car_data_amount_upper_limit.name }}</label>
 
                 <div style="display:inline-block; width: 65%">
                     <app-common-text
@@ -15,6 +15,7 @@
             </div>
             <div class="col-8" style="line-height: 40px;">
                 <button type="button" class="btn btn-primary btn-send" (click)="sendData()">{{ labels.expected_traffic_confirm }}</button>
+                <div class="warning-mes" *ngIf="sumAssumptionDataValue > params['car_data_amount_upper_limit']">{{ labels.limit_over_message }}</div>
             </div>
         </div>
         <div class="col-12">
@@ -105,14 +106,14 @@
                         </th>
                     </ng-template>
 
-                    <ng-template #customTableRowContent let-data="data" let-title="title">
+                    <ng-template #customTableRowContent let-data="data" let-title="title" let-carIndex="idx">
 
                         <!-- 車両情報 -->
                         <td
                             class="td-request_number_car_identification_header_label app-index-td d-flex align-items-center"
                             style="width: 30%;"
                         >
-                            <span>{{ data['request_number_car_identification_header_label'] }}</span>
+                            <span>{{carIndex}}*{{ data['request_number_car_identification_header_label'] }}</span>
                         </td>
 
                         <!-- カスタマイズ用途定義 -->
@@ -129,7 +130,7 @@
                                                     'line-height': data['request_number_customize_usage_definitions_header_label'].length * rowHeight - 12 + 'px'}"
                                         [ngClass]="idx > 0 ? 'border':''">
                                         <span class="link"
-                                            (click)="handleCustomizeUsageDefinitionsClick(data, child)">{{ child.id }}-{{ child.name }}</span>
+                                            (click)="handleCustomizeUsageDefinitionsClick(data, child, carIndex, idx)">{{ child.id }}-{{ child.name }}</span>
                                     </div>
                                 </div>
                             </ng-container>
@@ -141,13 +142,13 @@
                             style="width: 30%; padding: 0!important; overflow: hidden;"
                         >
                             <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
-                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let idx_i = index"
+                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let customizeUsageDefinitionsIndex = index"
                                     [ngStyle]="{height: data['request_number_customize_usage_definitions_header_label'].length * rowHeight + 'px'}"
-                                    [ngClass]="idx_i > 0 ? 'border':''">
-                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let idx_j = index"
+                                    [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
+                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
                                         style="padding: 6px;"
                                         [ngStyle]="{height: rowHeight + 'px'}"
-                                        [ngClass]="idx_j > 0 ? 'border':''">
+                                        [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''">
                                         {{ itemCustomizeDefinitions.id }} - {{ itemCustomizeDefinitions.name }}
                                     </div>
                                 </div>
@@ -155,19 +156,21 @@
                         </td>
                         <!-- 送信件数 -->
                         <td
-                            class="align-items-center"
+                            class="align-items-center text-center"
                             style="width: 10%; padding: 0; overflow: hidden;"
                         >
                             <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
-                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let idx_i = index"
+                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let customizeUsageDefinitionsIndex = index"
                                     [ngStyle]="{height: data['request_number_customize_usage_definitions_header_label'].length * rowHeight + 'px'}"
-                                    [ngClass]="idx_i > 0 ? 'border':''">
-                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let idx_j = index"
+                                    [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
+                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
                                         style="padding: 6px;"
+                                        class="link"
                                         [ngStyle]="{height: rowHeight + 'px'}"
-                                        [ngClass]="idx_j > 0 ? 'border':''"
-                                        (click)="handleInputDataCancel(data)">
-                                        {{ printInfoCar(itemCustomizeDefinitions) }} {{ itemCustomizeDefinitions.sends_no ? itemCustomizeDefinitions.sends_no.length : '' }}
+                                        [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''"
+                                        (click)="handleSendClick(data, customizeUsageDefinitionsIndex, customizeDefinitionsIndex)">
+                                        <span *ngIf="itemCustomizeDefinitions.sends_no && itemCustomizeDefinitions.sends_no.length > 0">
+                                            {{ itemCustomizeDefinitions.sends_no.length }}</span>
                                     </div>
                                 </div>
                             </ng-container>
@@ -178,15 +181,15 @@
                             style="width: 10%; padding: 0; overflow: hidden;"
                         >
                             <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
-                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let idx_i = index"
+                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let customizeUsageDefinitionsIndex = index"
                                     [ngStyle]="{height: data['request_number_customize_usage_definitions_header_label'].length * rowHeight + 'px'}"
-                                    [ngClass]="idx_i > 0 ? 'border':''">
-                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let idx_j = index"
+                                    [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
+                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
                                         style="padding: 6px;"
                                         class="app-sm-link"
                                         [ngStyle]="{height: rowHeight + 'px'}"
-                                        [ngClass]="idx_j > 0 ? 'border':''"
-                                        (click)="handleInputDataCancel(data)">
+                                        [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''"
+                                        (click)="handleInputDataCancel(data, carIndex, customizeUsageDefinitionsIndex, customizeDefinitionsIndex)">
                                         <i class="app-icon app-icon-discard"></i>
                                     </div>
                                 </div>
@@ -198,7 +201,7 @@
             </div>
         </div>
         <div class="col-12 text-center" style="margin-top: 10px;">
-            <button type="button" class="btn btn-primary" (click)="expectedTrafficConfirm()">データ送信要求</button>
+            <button type="button" class="btn btn-primary" (click)="expectedTrafficConfirm()">{{ labels.data_send_request_btn }}</button>
         </div>
     </div>
 </div>

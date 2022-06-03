@@ -37,7 +37,7 @@
     {
         "display_sequence_no": "6",
         "name": "要求種別",
-        "path": "customize_usage_definitions.edit_status",
+        "path": "customize_usage_definitions.customize_usage_definition.customize_definitions.latest_operation_code_name",
         "control_code": "1",
         "display_code": "1"
     },

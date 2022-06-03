@@ -46,7 +46,6 @@ export class CsImmediateUpdateRequestConfirmComponent extends AbstractIndexCompo
         'customize_usage_definitions.customize_usage_definition.customize_definitions.customize_definition_name',
         'customize_usage_definitions.customize_usage_definition.customize_definitions.active_name',
         'customize_usage_definitions.customize_usage_definition.customize_definitions.priority_name',
-        'customize_usage_definitions.customize_usage_definition.customize_definitions.latest_operation_code_name'
     ];
 
     constructor(
@@ -126,8 +125,9 @@ export class CsImmediateUpdateRequestConfirmComponent extends AbstractIndexCompo
                     customize_usage_definition_id: cur['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'],
                     customize_usage_definition_name: cur['customize_usage_definitions.customize_usage_definition.customize_usage_definition_name'],
                     start_date: cur['customize_usage_definitions.customize_usage_definition.start_date'],
-                    end_date: cur['customize_usage_definitions.customize_usage_definition.end_date']
-                }
+                    end_date: cur['customize_usage_definitions.customize_usage_definition.end_date'],
+                },
+                edit_status: cur['customize_usage_definitions.edit_status_name']
             })
             return acc;
         },[])
@@ -183,7 +183,7 @@ export class CsImmediateUpdateRequestConfirmComponent extends AbstractIndexCompo
                 return "width:12%; text-align: center;"
             case "customize_usage_definitions.customize_usage_definition.customize_definitions.priority_name":
                 return "width:9%; text-align: center;"
-            case "customize_usage_definitions.customize_usage_definition.customize_definitions.latest_operation_code_name":
+            case "customize_usage_definitions.edit_status":
                 return "width:9%; text-align: center;"
             case "customize_usage_definitions.customize_usage_definition.start_date":
                 return "width:10%; text-align: center;"

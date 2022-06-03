@@ -319,7 +319,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         this._updateFields(res.fields1);
         this.csUpdateRequestConfirmThList = this._createThList(res.fields2);
         this.csImmediateUpdateRequestConfirmThList = this._createThList(res.fields2);
-        this.csRequestResendConfirmThList = this._createThList(res.fields2);
+        this.csRequestResendConfirmThList = this._createThList(res.fields6);
         this.csNewThList = this._createThList(res.fields3);
         this.csEditThList = this._createThList(res.fields3);
         this.csExpectedTrafficConfirmThList1 = this._createThList(res.fields4);

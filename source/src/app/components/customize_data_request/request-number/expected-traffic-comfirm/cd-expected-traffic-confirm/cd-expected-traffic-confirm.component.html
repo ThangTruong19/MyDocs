@@ -1,10 +1,137 @@
-<div class="app-request-period-comfirm">
+<div id="app-traffic-confirm">
     <div>
         <app-common-table
             [lists]="lists"
             [thList]="thList"
             [labels]="labels"
-            [(sortingParams)]="sortingParams">
+            [(sortingParams)]="sortingParams"
+            [customTableRowContent]="customTableRowContent">
+            <ng-template #customTableRowContent let-data="data" let-title="title" let-carIndex="idx">
+                <ng-container *ngFor="let title of thList">
+                    <ng-container [ngSwitch]="title.name" *ngIf="title.displayable">
+                        <!-- 車両 -->
+                        <td *ngIf="title.name == 'request_number.cars.car_identification.model_type_rev_serial'"
+                            class="td-{{
+                                title.shortName
+                            }} app-index-td d-flex align-items-center"
+                            style="width: 15%;"
+                        >
+                            <span>{{ data[title.name] }}</span>
+                        </td>
+                        <!-- 要求単位 -->
+                        <td *ngIf="title.name == 'request_number.cars.communication_channel.name'"
+                            class="td-{{
+                                title.shortName
+                            }} app-index-td d-flex align-items-center"
+                            style="width: 10%;"
+                        >
+                            <span>{{ data[title.name] }}</span>
+                        </td>
+                        <!-- カスタマイズ用途定義 -->
+                        <td *ngIf="title.name == 'request_number.cars.customize_usage_definitions.customize_usage_definition.customize_usage_definition_name'"
+                            class="td-{{title.shortName}} app-index-td align-items-center"
+                            style="width: 15%; padding: 0!important;"
+                        >
+
+                            <ng-container *ngIf="data['request_number.cars.customize_usage_definitions.customize_usage_definition']" style="width: 100%;">
+                                <div *ngIf="data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length > 0" style="width: 100%;">
+                                    <div *ngFor="let child of data['request_number.cars.customize_usage_definitions.customize_usage_definition']; let idx = index"
+                                        style="padding: 6px;"
+                                        [ngStyle]="{height: data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length * rowHeight + 'px',
+                                                    'line-height': data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length * rowHeight - 12 + 'px'}"
+                                        [ngClass]="idx > 0 ? 'border':''">
+                                        <span>{{ child.id }}-{{ child.name }}</span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </td>
+                        <!-- カスタマイズ定義 -->
+                        <td *ngIf="title.name == 'request_number.cars.customize_usage_definitions.customize_usage_definition.customize_usage_definition_name'"
+                            class="align-items-center"
+                            style="width: 20%; padding: 0!important; overflow: hidden;"
+                        >
+                            <ng-container *ngIf="data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length > 0" style="width: 100%;">
+                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number.cars.customize_usage_definitions.customize_usage_definition']; let customizeUsageDefinitionsIndex = index"
+                                    [ngStyle]="{height: data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length * rowHeight + 'px'}"
+                                    [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
+                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
+                                        style="padding: 6px;"
+                                        [ngStyle]="{height: rowHeight + 'px'}"
+                                        [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''">
+                                        {{ itemCustomizeDefinitions.id }} - {{ itemCustomizeDefinitions.name }}
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </td>
+
+                        <!-- 選択中件数 -->
+                        <td *ngIf="title.name == 'select_count'"
+                            class="align-items-center"
+                            style="width: 10%; padding: 0!important; overflow: hidden;"
+                        >
+                            <ng-container *ngIf="data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length > 0" style="width: 100%;">
+                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number.cars.customize_usage_definitions.customize_usage_definition']; let customizeUsageDefinitionsIndex = index"
+                                    [ngStyle]="{height: data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length * rowHeight + 'px'}"
+                                    [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
+                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
+                                        style="padding: 6px;"
+                                        class="link"
+                                        [ngStyle]="{height: rowHeight + 'px'}"
+                                        [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''">
+                                        <span *ngIf="itemCustomizeDefinitions.sends_no && itemCustomizeDefinitions.sends_no.length > 0">
+                                            {{ itemCustomizeDefinitions.sends_no.length }}</span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </td>
+
+                        <!-- 通信量 [KB/件] -->
+                        <td *ngIf="title.name == 'assumption_data_value'"
+                            class="align-items-center"
+                            style="width: 10%; padding: 0!important; overflow: hidden;"
+                        >
+                            <ng-container *ngIf="data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length > 0" style="width: 100%;">
+                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number.cars.customize_usage_definitions.customize_usage_definition']; let customizeUsageDefinitionsIndex = index"
+                                    [ngStyle]="{height: data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length * rowHeight + 'px'}"
+                                    [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
+                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
+                                        style="padding: 6px;"
+                                        class="link"
+                                        [ngStyle]="{height: rowHeight + 'px'}"
+                                        [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''">
+                                        <span *ngIf="itemCustomizeDefinitions.sends_no && itemCustomizeDefinitions.sends_no.length > 0">
+                                            {{ itemCustomizeDefinitions.assumption_data_value }}</span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </td>
+
+                        <!-- 通信量 [KB/件] -->
+                        <td *ngIf="title.name == 'car_assumption_data_value'"
+                            class="align-items-center"
+                            style="width: 10%; padding: 0!important; overflow: hidden;"
+                        >
+                            <ng-container *ngIf="data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length > 0" style="width: 100%;">
+                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number.cars.customize_usage_definitions.customize_usage_definition']; let customizeUsageDefinitionsIndex = index"
+                                    [ngStyle]="{height: data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length * rowHeight + 'px'}"
+                                    [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
+                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
+                                        style="padding: 6px;"
+                                        class="link"
+                                        [ngStyle]="{height: rowHeight + 'px'}"
+                                        [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''">
+                                        <span *ngIf="itemCustomizeDefinitions.sends_no && itemCustomizeDefinitions.sends_no.length > 0">
+                                            {{ itemCustomizeDefinitions.assumption_data_value }}</span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </td>
+
+                    </ng-container>
+                </ng-container>
+
+
+            </ng-template>
         </app-common-table>
     </div>
 </div>

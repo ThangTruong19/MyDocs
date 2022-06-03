@@ -1,2 +1,105 @@
 <div id="app-number-comfirm">
+    <app-common-table
+        appSortingLabel
+        [customTableThContent]="customTableThContent"
+        [customTableRowContent]="customTableRowContent"
+        [lists]="lists"
+        [thList]="thList"
+        [labels]="labels"
+        [isFetching]="isFetching"
+        [sortableThList]="sortableThList"
+        [(sortingParams)]="sortingParams"
+        [emptyListMessage]="'Empty'"
+    >
+    </app-common-table>
 </div>
+
+<ng-template #customTableThContent>
+    <ng-container *ngFor="let th of thList; let thIdx = index">
+      <ng-container *ngIf="th.displayable">
+        <th
+          appSortingLabel
+          [style]="setTableWidth(th)"
+          class="app-index-th th-{{ th.shortName }}"
+          appSortingLabel
+          [ngClass]="{ 'disable-sort': !th.sortable }"
+          [(sortingParams)]="sortingParams"
+          [labelName]="th.sortKey || th.name"
+          [sortableThList]="sortableThList"
+          (sort)="onChangeSort($event)"
+        >
+          <span>{{ th.label || labels[th.shortName] }}</span>
+        </th>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #customTableRowContent
+    let-data="data"
+    let-title="title"
+    let-tblFunctions="tblFunctions">
+    <ng-container *ngFor="let title of thList; let thIdx = index">
+
+      <!-- 車両, 上限通信量[KB] -->
+      <ng-container [ngSwitch]="title.name" *ngIf="title.displayable && !isArrayColumnData(title.name)">
+        <td [style]="setTableWidth(title)" class="td-{{ title.shortName }} app-index-td d-flex align-items-center padding-none">
+          <span class="divider-column">{{ data[title.name] }}</span>
+        </td>
+      </ng-container>
+
+      <!-- カスタマイズ用途定義 -->
+      <ng-container *ngIf="title.displayable && isArrayColumnData(title.name) && title.name == 'cars.customize_usage_definitions'">
+        <td [style]="setTableWidth(title)" class="td-{{ title.shortName }} app-index-td align-items-center padding-none">
+        <ng-container *ngFor="let rec of data['cars.customize_usage_definitions']; let subIndex = index">
+            <div
+                [ngStyle]="{height: customizeUsageDefinitionHeight(rec) * rowHeight + 'px', 'line-height': customizeUsageDefinitionHeight(rec) * rowHeight - 12 + 'px'}"
+                class="divider-column border">
+                <span>{{rec.name}}</span>
+            </div>
+        </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- カスタマイズ定義 -->
+      <ng-container *ngIf="title.displayable && isArrayColumnData(title.name) && title.name == 'cars.customize_usage_definitions.customize_definitions'">
+        <td [style]="setTableWidth(title)" class="td-{{ title.shortName }} app-index-td align-items-center padding-none">
+        <ng-container *ngFor="let rec of data['cars.customize_usage_definitions'];">
+            <ng-container *ngFor="let item of rec.customize_definitions; let subIndex = index">
+                <div
+                    [ngStyle]="{height: customizeDefinitionHeight(item) * rowHeight + 'px', 'line-height': customizeDefinitionHeight(item) * rowHeight - 12 + 'px'}"
+                    class="divider-column border">
+                    <span>{{item.name}}</span>
+                </div>
+            </ng-container>
+        </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- カスタマイズ定義 -->
+      <ng-container *ngIf="title.displayable && isArrayColumnData(title.name) && title.name == 'cars.customize_usage_definitions.customize_definitions.sends_no'">
+        <td [style]="setTableWidth(title)" class="td-{{ title.shortName }} app-index-td align-items-center padding-none">
+        <ng-container *ngFor="let rec of data['cars.customize_usage_definitions'];">
+            <ng-container *ngFor="let item of rec.customize_definitions">
+                <ng-container *ngIf="checkKey(item,'sends_no')">
+                    <ng-container *ngFor="let element of item.sends_no">
+                        <div
+                            [ngStyle]="{height: rowHeight + 'px', 'line-height': rowHeight - 12 + 'px'}"
+                            class="divider-column border">
+                            <span>{{element.send_no}}</span>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <ng-container *ngIf="!checkKey(item,'sends_no')">
+                    <div
+                        [ngStyle]="{height: rowHeight + 'px', 'line-height': rowHeight - 12 + 'px'}"
+                        class="divider-column border">
+                        <span></span>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+        </td>
+      </ng-container>
+
+    </ng-container>
+  </ng-template>

@@ -6,7 +6,7 @@ import { CdRequestNumberTabService } from 'app/services/customize_data_request/r
 import { CommonHeaderService } from 'app/services/shared/common-header.service';
 import { ModalService } from 'app/services/shared/modal.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
-import { Fields, Resources, TableHeader } from 'app/types/common';
+import { Fields, Lists, Resources, TableHeader } from 'app/types/common';
 import { CarCustomizeDataPerformances } from 'app/types/customize-request-number-list';
 import * as _ from 'lodash';
 import { CdRequestNumberListComponent } from '../request-number-list/cd-request-number-list.component';
@@ -21,7 +21,7 @@ import { CdRequestNumberListComponent } from '../request-number-list/cd-request-
     styleUrls: ['./cd-request-number-tab.component.scss'],
 })
 export class CdRequestNumberTabComponent extends AbstractIndexComponent implements OnInit {
-    @Input() override params: any;
+
     @Input() override thList: any;
     @Input() override labels: any;
     @Input() override resource: any;
@@ -50,120 +50,8 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
     fields: Fields;
     listSendNo: any = [];
     thListRequestNumberSelectList: any = [];
-    thListRequestNumber: any = [
-        {
-            "id": "1",
-            "label": "車両",
-            "name": "request_number.cars.car_identification.model_type_rev_serial",
-            "shortName": "request_number_cars_car_identification_model_type_rev_serial",
-            "displayable": true,
-            "dataKey": null,
-            "confirmKey": null,
-            "sortKey": "request_number.cars.car_identification.model_type_rev_serial",
-            "sortable": true,
-            "formatKey": "cars.car_identification.model_type_rev_serial",
-            "optional": false,
-            "columnStyle": "width:15%"
-        },
-        {
-            "id": "2",
-            "label": "通信機種類",
-            "name": "request_number.cars.communication_channel.name",
-            "shortName": "request_number_cars_communication_channel_name",
-            "displayable": true,
-            "dataKey": null,
-            "confirmKey": null,
-            "sortKey": "request_number.cars.communication_channel.name",
-            "sortable": true,
-            "formatKey": "cars.communication_channel.name",
-            "optional": false,
-            "columnStyle": "width:10%"
-        },
-        {
-            "id": "3",
-            "label": "カスタマイズ用途定義",
-            "name": "request_number.cars.customize_usage_definitions.customize_definitions.customize_usage_definition_name",
-            "shortName": "request_number_cars_customize_usage_definitions_customize_definitions_customize_usage_definition_name",
-            "displayable": true,
-            "dataKey": null,
-            "confirmKey": null,
-            "sortKey": "request_number.cars.customize_usage_definitions.customize_definitions.customize_usage_definition_name",
-            "sortable": true,
-            "formatKey": "cars.customize_usage_definitions.customize_definitions.customize_usage_definition_name",
-            "optional": false,
-            "columnStyle": "width:15%"
-        },
-        {
-            "id": "4",
-            "label": "カスタマイズ定義",
-            "name": "request_number.cars.customize_usage_definitions.customize_definitions.customize_definition_name",
-            "shortName": "request_number_cars_customize_usage_definitions_customize_definitions_customize_definition_name",
-            "displayable": true,
-            "dataKey": null,
-            "confirmKey": null,
-            "sortKey": "request_number.cars.customize_usage_definitions.customize_definitions.customize_definition_name",
-            "sortable": true,
-            "formatKey": "cars.customize_usage_definitions.customize_definitions.customize_definition_name",
-            "optional": false,
-            "columnStyle": "width:10%"
-        },
-        {
-            "id": "5",
-            "label": "選択中件数",
-            "name": "request_number.cars.xxx.a01",
-            "shortName": "request_number_cars_xxx_a01",
-            "displayable": true,
-            "dataKey": null,
-            "confirmKey": null,
-            "sortKey": "request_number.cars.xxx.a01",
-            "sortable": true,
-            "formatKey": "cars.xxx.a01",
-            "optional": false,
-            "columnStyle": "width:10%"
-        },
-        {
-            "id": "6",
-            "label": "通信量[KB/件]",
-            "name": "request_number.cars.xxx.a02",
-            "shortName": "request_number_cars_xxx_a02",
-            "displayable": true,
-            "dataKey": null,
-            "confirmKey": null,
-            "sortKey": "request_number.cars.xxx.a02",
-            "sortable": true,
-            "formatKey": "cars.xxx.a02",
-            "optional": false,
-            "columnStyle": "width:10%"
-        },
-        {
-            "id": "7",
-            "label": "合計(車両毎)[KB]",
-            "name": "request_number.cars.xxx.a03",
-            "shortName": "request_number_cars_xxx_a03",
-            "displayable": true,
-            "dataKey": null,
-            "confirmKey": null,
-            "sortKey": "request_number.cars.xxx.a03",
-            "sortable": true,
-            "formatKey": "cars.xxx.a03",
-            "optional": false,
-            "columnStyle": "width:15%"
-        },
-        {
-            "id": "8",
-            "label": "合計(全体)[KB]",
-            "name": "request_number.cars.xxx.a04",
-            "shortName": "request_number_cars_xxx_a04",
-            "displayable": true,
-            "dataKey": null,
-            "confirmKey": null,
-            "sortKey": "request_number.cars.xxx.a04",
-            "sortable": true,
-            "formatKey": "cars.xxx.a04",
-            "optional": false,
-            "columnStyle": "width:15%"
-        }
-    ];
+    thListRequestNumber: any = [];
+    sumAssumptionDataValue: number = 0;
 
     _searchParams: any = {
         "car_identification": {
@@ -172,6 +60,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
     };
 
     public listData: any[];
+    public listBackup: any[];
     public cdRequestNumberConfirmThLists: TableHeader[];
 
     constructor(
@@ -208,10 +97,10 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
             let car: any = {};
             car["request_number_car_identification_header_label"] = element.car_identification.model + "-" + element.car_identification.type_rev + "-" + element.car_identification.serial;
             car["request_number_customize_usage_definitions_header_label"] = element.customize_usage_definitions;
-            car["request_number_customize_definitions_header_label"] = [];
-            car["request_number_send_count_header_label"] = "";
+            // car["request_number_customize_definitions_header_label"] = [];
+            car["request_number.cars.communication_channel.name"] = element.communication_channel.name; // 通信機種名称
             car["request_number_discard_edits_header_label"] = "";
-            car["request_number_car_identification_id"] = element.car_identification.id;
+            car["request_number_car_identification_id"] = element.car_identification.id; // 車両ID
             data.push(car);
         });
 
@@ -219,7 +108,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
         this.lists.originList = data;
         this.lists.visibleList = data;
 
-        // this.setDataList();
+        this.listBackup = _.cloneDeep(data);
 
         this.isFetching = false;
         this._afterFetchList();
@@ -243,8 +132,9 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
         //   data,
         //   this.thList
         // );
-
+        this.thListRequestNumber = this._createThList(res.cdExpectedTrafficListFields);
         this.cdRequestNumberConfirmThLists = this._createThList(res.cdRequestNumberConfirmFields);
+
         console.log("app-cd-request-number-tab", res);
     }
 
@@ -297,35 +187,22 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
 
     }
 
+    /**
+     * 通信量確認 ボタン押下
+     */
     sendData(): void {
 
         this.setData();
         console.log("data", this.data);
 
-        // this.thListCustomizeDataRequest = [];
-        // const opt: TableOptions = {
-        //   columnStyles: [
-        //     'width:18%', 'width:10%', 'width:10%'
-        //     , 'width:12%', 'width:12%', 'width:19%'
-        //     , 'width:19%'
-        //   ]
-        // };
-        // let thList = this._createThList(this.fields, opt);
-        // console.log("this.thListCustomizeDataRequest", thList);
-
-        // for (let i = 0; i < thList.length - 3; i++) {
-        //   this.thListCustomizeDataRequest.push(thList[i]);
-        // }
-
         this.modalService.open(
             {
-                title: this.labels.confirm_title,
+                title: this.labels.expected_traffic_confirm_title,
                 labels: this.labels,
                 content: this.cdExpectedTrafficConfirmModalContent,
-                closeBtnLabel: this.labels.cancel,
-                okBtnLabel: this.labels.ok_btn,
-                ok: () => {
-                    console.log("OK");
+                closeBtnLabel: this.labels.close,
+                close: () => {
+                    console.log("close");
                 },
             },
             {
@@ -336,25 +213,20 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
 
     setData(): void {
         this.data = [];
-        for (let item of this.lists.visibleList) {
 
-            let model_type_rev_serial = item.request_number.cars.car_identification.model_type_rev_serial;
+        this.lists.visibleList.forEach((element: any, index: number) => {
+            console.log(element);
+            let car: any = {};
+            car["request_number.cars.car_identification.model_type_rev_serial"] = element.request_number_car_identification_header_label; //車両
+            car["request_number.cars.communication_channel.name"] = element['request_number.cars.communication_channel.name']; // 通信機種類
+            car["request_number.cars.customize_usage_definitions.customize_usage_definition"] = element.request_number_customize_usage_definitions_header_label;
 
-            for (let customizeUsageDefinitions of item.customize_usage_definitions) {
-                for (let customizeDefinitions of customizeUsageDefinitions.customize_definitions) {
-                    let car: any = {};
-                    car["request_number.cars.car_identification.model_type_rev_serial"] = model_type_rev_serial;
-                    car["request_number.cars.communication_channel.name"] = item.communication_channel.name;
-                    car["request_number.cars.customize_usage_definitions.customize_definitions.customize_usage_definition_name"] = customizeUsageDefinitions.name;
-                    car["request_number.cars.customize_usage_definitions.customize_definitions.customize_definition_name"] = customizeDefinitions.name;
-                    car["request_number.cars.xxx.a01"] = '1件';
-                    car["request_number.cars.xxx.a02"] = 'xx';
-                    car["request_number.cars.xxx.a03"] = 3;
-                    car["request_number.cars.xxx.a04"] = 1000;
-                    this.data.push(car);
-                }
-            }
-        }
+            let car_assumption_data_value = this.getSumCarAssumptionDataValue(index);
+            car["car_assumption_data_value"] = car_assumption_data_value; // 合計(車両毎)[KB]
+            this.data.push(car);
+        });
+        console.log("setData", this.data);
+
     }
 
     printInfoCar(data: any): string {
@@ -367,18 +239,19 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
      * カスタマイズ用途定義名 押下
      * @param data
      */
-    handleCustomizeUsageDefinitionsClick(data: any, item: any): void {
+    handleCustomizeUsageDefinitionsClick(data: any, item: any, carIndex: number, customizeUsageDefinitionsIndex: number): void {
+
 
         let id = data.request_number_car_identification_id;
-        let carIndex = -1;
-        let customizeUsageDefinitionsIndex = -1;
+        // let carIndex = -1;
+        // let customizeUsageDefinitionsIndex = -1;
 
-        this.listData.forEach((element,index) => {
-            if(element.car_identification.id == id) carIndex = index;
-        });
-        this.listData[carIndex].customize_usage_definitions.forEach((element: any, index: any) => {
-            if(element.id == item.id) customizeUsageDefinitionsIndex = index;
-        });
+        // this.listData.forEach((element,index) => {
+        //     if(element.car_identification.id == id) carIndex = index;
+        // });
+        // this.listData[carIndex].customize_usage_definitions.forEach((element: any, index: any) => {
+        //     if(element.id == item.id) customizeUsageDefinitionsIndex = index;
+        // });
 
         this.carId = id;
 
@@ -397,26 +270,37 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                     // Adding list of send no to the list of data
                     let customizeDefinitionsIndex = -1;
                     this.listData[carIndex].customize_usage_definitions[customizeUsageDefinitionsIndex].customize_definitions.forEach((element: any, index: any) => {
-                        if(element.id == requestNumberList.customize_definition_id) customizeDefinitionsIndex = index;
+                        if (element.id == requestNumberList.customize_definition_id) customizeDefinitionsIndex = index;
                     });
 
-                    this.listSendNo = [];
-                    if(requestNumberList){
-                        if(requestNumberList.car_customize_data_performances.length > 0){
-                            requestNumberList.car_customize_data_performances.forEach((element: CarCustomizeDataPerformances) =>{
-                                let item = {
-                                    'send_no': element.send_no
+                    let listSendNo: any = [];
+                    if (requestNumberList) {
+                        if (requestNumberList.car_customize_data_performances.length > 0) {
+                            requestNumberList.car_customize_data_performances.forEach((element: CarCustomizeDataPerformances) => {
+                                let itemSendNo = {
+                                    'send_no': element.send_no,
                                 };
                                 console.log("element", element);
-                                this.listSendNo.push(item);
+                                listSendNo.push(itemSendNo);
                             });
                         }
-                        console.log("this.listSendNo", this.listSendNo);
                     }
 
-                    _.set(this.listData[carIndex].customize_usage_definitions[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex],'sends_no',this.listSendNo);
-                    console.log("listData: " + JSON.stringify(this.listData));
-                    _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex],'sends_no',this.listSendNo);
+                    // _.set(this.listData[carIndex].customize_usage_definitions[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex],'sends_no', listSendNo);
+
+                    _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'assumption_data_value', requestNumberList.assumption_data_value);
+                    _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'sends_no', listSendNo);
+
+                    console.log("lists: ", this.lists);
+
+                    this.sumAssumptionDataValue = 0;
+                    this.sumAssumptionDataValue = this.getSumAssumptionDataValue(carIndex, customizeUsageDefinitionsIndex);
+
+                    let sumCarAssumptionDataValue = 0;
+                    sumCarAssumptionDataValue = this.getSumCarAssumptionDataValue(carIndex);
+
+                    _.set(this.lists.visibleList[carIndex], 'car_assumption_data_value', sumCarAssumptionDataValue);
+                    console.log("sumAssumptionDataValue", this.sumAssumptionDataValue);
                 },
             },
             {
@@ -424,35 +308,20 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
             });
     }
 
-    setDataList(dataList: any): void {
-        // let data: any = [];
-        // dataList.cars.forEach((element: any) => {
-        //     console.log(element);
-        //     let car: any = {};
-        //     car["request_number_car_identification_header_label"] = element.car_identification.model + "-" + element.car_identification.type_rev + "-" + element.car_identification.serial;
-        //     car["request_number_customize_usage_definitions_header_label"] = element.customize_usage_definitions;
-        //     car["request_number_customize_definitions_header_label"] = [];
-        //     car["request_number_send_count_header_label"] = "";
-        //     car["request_number_discard_edits_header_label"] = "";
-        //     car["request_number_car_identification_id"] = element.car_identification.id;
-        //     data.push(car);
-        // });
-
-        // this._fillLists(res.result_header, data);
-        // this.lists.originList = data;
-        // this.lists.visibleList = data;
-    }
-
     /**
      * 送信件数 押下
      * @param data
+     * @param customizeUsageDefinitionsIndex
+     * @param customizeDefinitionsIndex
      */
-    handleSendClick(data: any): void {
+    handleSendClick(data: any, customizeUsageDefinitionsIndex: number, customizeDefinitionsIndex: number): void {
         console.log("handleSendClick: ", data);
+        this.listSendNo = _.get(data.request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], "sends_no");
+        console.log("this.listSendNo", this.listSendNo);
         this.thListRequestNumberSelectList = [];
         this.thListRequestNumberSelectList.push(
             {
-                label: "送信番号",
+                label: this.labels.request_number_header_label,
                 name: "request_number_header_label",
                 formatKey: "request_number_header_label",
                 displayable: true,
@@ -486,6 +355,9 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                 okBtnLabel: this.labels.ok_btn,
                 ok: () => {
                     console.log("response data: ");
+                    this.lists.visibleList = _.cloneDeep(this.listBackup);
+                    this.lists.originList = _.cloneDeep(this.listBackup);
+                    this.sumAssumptionDataValue = 0;
                 },
             },
             {
@@ -494,10 +366,13 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
     }
 
     /**
-     *
+     * 編集破棄 ボタン押下
      * @param data
+     * @param carIndex
+     * @param customizeUsageDefinitionsIndex
+     * @param customizeDefinitionsIndex
      */
-    handleInputDataCancel(data: any): void {
+    handleInputDataCancel(data: any, carIndex: number, customizeUsageDefinitionsIndex: number, customizeDefinitionsIndex: number): void {
 
         this.modalService.open(
             {
@@ -507,7 +382,11 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                 closeBtnLabel: this.labels.cancel,
                 okBtnLabel: this.labels.ok_btn,
                 ok: () => {
-                    console.log("response data: ");
+                    _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'assumption_data_value', 0);
+                    _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'sends_no', []);
+                    this.sumAssumptionDataValue = 0;
+                    this.sumAssumptionDataValue = this.getSumAssumptionDataValue(carIndex, customizeUsageDefinitionsIndex);
+                    console.log("this.sumAssumptionDataValue", this.sumAssumptionDataValue);
                 },
             },
             {
@@ -524,11 +403,52 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                 title: this.labels.confirm_title,
                 labels: this.labels,
                 content: this.cdRequestNumberComfirmModalContent,
-                closeBtnLabel: this.labels.close
+                closeBtnLabel: this.labels.cancel,
+                okBtnLabel: this.labels.ok_btn,
+                ok: () => {
+                   console.log("OK");
+                },
             },
             {
                 size: 'lg',
             }
         );
+    }
+
+    /**
+     * ①非表示で保持しているカスタマイズ定義の想定通信量（合計）と
+     * ②入力した上限通信量(KB)を比較し超過した際に③メッセージの表示を行う
+     * @param carIndex
+     * @param customizeUsageDefinitionsIndex
+     */
+    getSumAssumptionDataValue(carIndex: number, customizeUsageDefinitionsIndex: number): number {
+        let sumAssumptionDataValue = 0;
+        this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions.forEach((element: any, index: any) => {
+            console.log(element.assumption_data_value)
+            if (element.assumption_data_value) {
+                sumAssumptionDataValue += element.assumption_data_value;
+            }
+        });
+        return sumAssumptionDataValue / 1024;
+    }
+
+    /**
+     * 合計(車両毎)[KB]を計算
+     * @param carIndex
+     * @param customizeUsageDefinitionsIndex
+     * @returns
+     */
+    getSumCarAssumptionDataValue(carIndex: number): number {
+        let sumCarAssumptionDataValue = 0;
+        this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label.forEach((customizeUsageDefinition: any) => {
+            if (customizeUsageDefinition.customize_definitions) {
+                customizeUsageDefinition.customize_definitions.forEach((customizeDefinitions: any) => {
+                    if (customizeDefinitions.assumption_data_value) {
+                        sumCarAssumptionDataValue += customizeDefinitions.assumption_data_value;
+                    }
+                });
+            }
+        });
+        return sumCarAssumptionDataValue / 1024;
     }
 }

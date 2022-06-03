@@ -71,7 +71,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    * 現在のパラメータを一覧取得APIに引き渡し、一覧画面に表示するリストを取得する
    * @param sort_key ソートキー
    */
-  async fetchList(sort_key?: string):Promise<void> {
+  async fetchList(sort_key?: string): Promise<void> {
     this.requestHeaderParams['X-Sort'] = sort_key || '';
     this.isFetching = true;
 
@@ -89,7 +89,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
   * @param selectedAuthorities 選択済み権限情報
   * @param user ユーザ情報
   */
-  onCloseAuthoritySelectModal(selectedAuthorities: any, user: any):void {
+  onCloseAuthoritySelectModal(selectedAuthorities: any, user: any): void {
     const userId = _.get(user, 'identification.id');
     this.authoritiesUpdateParams = {
       user: {
@@ -116,7 +116,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
  * @param user ユーザ情報
  * @param index 押下した行番号
  */
-  async onClickSelect(user: any, index: number):Promise<void> {
+  async onClickSelect(user: any, index: number): Promise<void> {
 
     const authoritySelect = this.authoritySelectComponentList.toArray()[index];
 
@@ -171,7 +171,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    * @param accessKind アクセスレベル
    * @param listAuthorities 権限一覧
    */
-  authoritiesKindList(accessKind: string, listAuthorities: any):void {
+  authoritiesKindList(accessKind: string, listAuthorities: any): void {
     // this.authoritiesとユーザのアクセスレベルを比較して、適合するものだけを取得する
     for (let i = 0; i < listAuthorities.length; i++) {
       if (listAuthorities[i].kind == accessKind) {
@@ -194,7 +194,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    * グループID変更時の処理
    * @param value 選択値
    */
-  onGroupIdChange(value: any):Promise<void> {
+  onGroupIdChange(value: any): Promise<void> {
     const param = {
       configuration_group_id: value,
     };
@@ -247,7 +247,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    * @param str 元の文字列
    * @param remove 除去する文字列
    */
-  removeStr(str: string, remove: string):string {
+  removeStr(str: string, remove: string): string {
     return str.replace(remove, "")
   }
 
@@ -273,7 +273,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    * 指定項目取得 API の結果を反映
    * @param fields 指定項目
    */
-  private _updateFields(fields: any):void {
+  private _updateFields(fields: any): void {
     this.fields = fields;
     this.thList = this._createThList(fields);
     const xFields = this._createXFields(fields);
@@ -313,7 +313,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    * @override
    * @param params パラメータ
    */
-  protected override _getSearchParams(params: any):any {
+  protected override _getSearchParams(params: any): any {
     const _params = _.clone(params);
     if (_params.role_id != FilterReservedWord.selectAll) {
       _params.user_kind = _params.role_id;

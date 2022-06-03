@@ -17,6 +17,11 @@
             color: #014c8c;
         }
     }
+    .warning-mes {
+        display: inline-block;
+        margin-left: 50px;
+        color: red;
+    }
     ::ng-deep .table-bordered {
         border: 0!important;
     }

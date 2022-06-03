@@ -1,135 +1,135 @@
 <section id="app-authority-mgt-list" *ngIf="labels && resource">
-    <div class="container-fluid">
-      <h2 class="app-page-title">{{ labels.title }}</h2>
-      <div class="app-content">
-        <!-- 一覧画面 -->
-        <ng-container>
-          <!-- 検索アコーディオン -->
-          <app-accordion
-            [collapsed]="collapsed"
-            [useCustomHeader]="false"
-            [title]="labels.search_condition"
-            [labels]="labels"
-            (onChangeState)="changePanelState($event)"
-          >
-            <div data-app-accordion-body>
-              <div class="container app-search">
-                <div class="row">
+  <div class="container-fluid">
+    <h2 class="app-page-title">{{ labels.title }}</h2>
+    <div class="app-content">
+      <!-- 一覧画面 -->
+      <ng-container>
+        <!-- 検索アコーディオン -->
+        <app-accordion
+          [collapsed]="collapsed"
+          [useCustomHeader]="false"
+          [title]="labels.search_condition"
+          [labels]="labels"
+          (onChangeState)="changePanelState($event)"
+        >
+          <div data-app-accordion-body>
+            <div class="container app-search">
+              <div class="row">
                 <app-selected
-                    class="col-sm-3"
-                    *ngIf="resource.configuration_group_id"
-                    [itemName]="'configuration_group_id'"
-                    [itemParams]="params"
-                    [itemResource]="resource"
-                    [emitInitialRefresh]="false"
-                    (onChangeSelectItem)="onGroupIdChange($event)"
-                    >
-                 </app-selected>
+                  class="col-sm-3"
+                  *ngIf="resource.configuration_group_id"
+                  [itemName]="'configuration_group_id'"
+                  [itemParams]="params"
+                  [itemResource]="resource"
+                  [emitInitialRefresh]="false"
+                  (onChangeSelectItem)="onGroupIdChange($event)"
+                  >
+                </app-selected>
 
                 <app-selected
-                #belongingGroupId
-                *ngIf="
-                  resource.belonging_group_id &&
-                  resource.belonging_group_id.values.length > 0
-                "
-                class="col-sm-3"
-                [itemName]="'belonging_group_id'"
-                [itemParams]="params"
-                [itemResource]="resource"
-              >
-              </app-selected>
+                  #belongingGroupId
+                  *ngIf="
+                    resource.belonging_group_id &&
+                    resource.belonging_group_id.values.length > 0
+                  "
+                  class="col-sm-3"
+                  [itemName]="'belonging_group_id'"
+                  [itemParams]="params"
+                  [itemResource]="resource"
+                >
+                </app-selected>
 
                 <app-common-text
-                    class="col-sm-3"
-                    [itemName]="'user_account'"
-                    [itemParams]="params"
-                    [itemResource]="resource"
-                    [maxlength]="255"
-                  >
-                  </app-common-text>
-
-                  <app-common-text
-                    class="col-sm-3"
-                    [itemName]="'user_label'"
-                    [itemParams]="params"
-                    [itemResource]="resource"
-                    [maxlength]="255"
-                  >
-                  </app-common-text>
-
-                  <app-common-text
-                    class="col-sm-3"
-                    [itemName]="'phone_no'"
-                    [itemParams]="params"
-                    [itemResource]="resource"
-                    [maxlength]="30"
-                  >
-                  </app-common-text>
-
-                </div>
-              </div>
-              <div class="app-panel-footer">
-                <button
-                  (click)="onClickSearch()"
-                  type="button"
-                  class="btn btn-primary search"
+                  class="col-sm-3"
+                  [itemName]="'user_account'"
+                  [itemParams]="params"
+                  [itemResource]="resource"
+                  [maxlength]="255"
                 >
-                  {{ labels.search }}
-                </button>
+                </app-common-text>
+
+                <app-common-text
+                  class="col-sm-3"
+                  [itemName]="'user_label'"
+                  [itemParams]="params"
+                  [itemResource]="resource"
+                  [maxlength]="255"
+                >
+                </app-common-text>
+
+                <app-common-text
+                  class="col-sm-3"
+                  [itemName]="'phone_no'"
+                  [itemParams]="params"
+                  [itemResource]="resource"
+                  [maxlength]="30"
+                >
+                </app-common-text>
+
               </div>
             </div>
-          </app-accordion>
-
-          <!-- 一覧テーブル上部検索オプション欄 -->
-          <div class="app-table-options" [hidden]="count <= 0">
-            <app-pagination
-              [count]="count"
-              [params]="pageParams"
-              [labels]="labels"
-              [element]="pageCountEl"
-              (changeState)="onPaginationChange()"
-            >
-            </app-pagination>
-
-            <div class="table-option-buttons">
-              <div class="popover-wrapper">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  (click)="onClickFieldSelect($event)"
-                >
-                  {{ labels.field_select }}
-                </button>
-                <app-popover
-                  [labels]="labels"
-                  [resource]="fieldResources"
-                  [fields]="fields"
-                  [title]="labels.field_select_title"
-                  [(isVisible)]="fieldSelectPopoverVisible"
-                  (ok)="onFieldSelectOk($event)"
-                >
-                </app-popover>
-              </div>
-
+            <div class="app-panel-footer">
+              <button
+                (click)="onClickSearch()"
+                type="button"
+                class="btn btn-primary search"
+              >
+                {{ labels.search }}
+              </button>
             </div>
           </div>
+        </app-accordion>
 
-          <!-- 一覧テーブル -->
-          <div class="app-table-wrapper">
-            <app-common-table
-            [customTableThContent]="customTableThContent"
-            [customTableRowContent]="customTableRowContent"
-            [lists]="lists"
-            [params]="params"
-            [pageParams]="pageParams"
-            [sortingParams]="sortingParams"
-            [thList]="thList"
-            [sortableThList]="sortableThList"
+        <!-- 一覧テーブル上部検索オプション欄 -->
+        <div class="app-table-options" [hidden]="count <= 0">
+          <app-pagination
+            [count]="count"
+            [params]="pageParams"
             [labels]="labels"
-            [collapsed]="collapsed"
-            [isFetching]="isFetching"
-            (sort)="onChangeSort($event)"
-            >
+            [element]="pageCountEl"
+            (changeState)="onPaginationChange()"
+          >
+          </app-pagination>
+
+          <div class="table-option-buttons">
+            <div class="popover-wrapper">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="onClickFieldSelect($event)"
+              >
+                {{ labels.field_select }}
+              </button>
+              <app-popover
+                [labels]="labels"
+                [resource]="fieldResources"
+                [fields]="fields"
+                [title]="labels.field_select_title"
+                [(isVisible)]="fieldSelectPopoverVisible"
+                (ok)="onFieldSelectOk($event)"
+              >
+              </app-popover>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 一覧テーブル -->
+        <div class="app-table-wrapper">
+          <app-common-table
+          [customTableThContent]="customTableThContent"
+          [customTableRowContent]="customTableRowContent"
+          [lists]="lists"
+          [params]="params"
+          [pageParams]="pageParams"
+          [sortingParams]="sortingParams"
+          [thList]="thList"
+          [sortableThList]="sortableThList"
+          [labels]="labels"
+          [collapsed]="collapsed"
+          [isFetching]="isFetching"
+          (sort)="onChangeSort($event)"
+          >
             <ng-template #customTableThContent>
               <ng-container *ngFor="let th of thList">
                 <th
@@ -150,8 +150,8 @@
               <ng-container *ngFor="let title of thList"  [ngSwitch]="title.name">
                 <ng-container *ngIf="title.displayable">
 
-                 <td
-                 *ngSwitchCase="'users.group.granted_role.name'"
+                  <td
+                  *ngSwitchCase="'users.group.granted_role.name'"
                       class="td-{{
                         title.shortName
                       }} app-index-td d-flex align-items-center select-authority-cell"
@@ -174,17 +174,17 @@
                       href="javascript:void(0)"
                       (click)="onClickSelect(data, idx)"
                     >
-                   {{ data | at: 'group.granted_role.name' }}
-                   </a>
-                   </span>
+                      {{ data | at: 'group.granted_role.name' }}
+                    </a>
+                    </span>
                   </td>
                   <td
                   *ngSwitchCase="'users.group.configuration_groups.label'"
                   class="td-{{
                     title.shortName
                   }} app-index-td d-flex align-items-center"
-                >
-                {{ data | at: 'group.configuration_groups[0].label' }}
+                  >
+                    {{ data | at: 'group.configuration_groups[0].label' }}
                   </td>
                   <td
                   *ngSwitchDefault
@@ -195,26 +195,26 @@
                 </ng-container>
               </ng-container>
             </ng-template>
-            </app-common-table>
-          </div>
-        </ng-container>
-      </div>
+          </app-common-table>
+        </div>
+      </ng-container>
     </div>
-  </section>
+  </div>
+</section>
 
-  <app-alert></app-alert>
+<app-alert></app-alert>
 
-  <ng-template #customSelectButtons> </ng-template>
+<ng-template #customSelectButtons> </ng-template>
 
-  <ng-template #customSelectedAuthorities> </ng-template>
+<ng-template #customSelectedAuthorities> </ng-template>
 
-  <ng-template #deleteModalContent>
-    <app-custom-user-form-modal
-      class="confirm-modal-content"
-      [desc]="deleteModalValues.listDesc"
-      [val]="deleteModalValues.listVal"
-    >
-    </app-custom-user-form-modal>
-  </ng-template>
+<ng-template #deleteModalContent>
+  <app-custom-user-form-modal
+    class="confirm-modal-content"
+    [desc]="deleteModalValues.listDesc"
+    [val]="deleteModalValues.listVal"
+  >
+  </app-custom-user-form-modal>
+</ng-template>
 
-  <app-sidemenu [isLoading]="isLoading"></app-sidemenu>
+<app-sidemenu [isLoading]="isLoading"></app-sidemenu>

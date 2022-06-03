@@ -76,7 +76,8 @@ function createData(from, count) {
       "communication_channel": {
         "id": i.toString(),
         "code": "0",
-        "name": "ORBCOMM"
+        "name": "ORBCOMM",
+        "customize_data_send_request_data_amount_upper_limit": "12345"
       },
       "terminal_mode": {
         "kind": "1",
