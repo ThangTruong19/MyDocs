@@ -23,7 +23,7 @@
                   [itemResource]="resource"
                   [emitInitialRefresh]="false"
                   (onChangeSelectItem)="onGroupIdChange($event)"
-                  >
+                >
                 </app-selected>
 
                 <app-selected
@@ -151,44 +151,44 @@
                 <ng-container *ngIf="title.displayable">
 
                   <td
-                  *ngSwitchCase="'users.group.granted_role.name'"
-                      class="td-{{
-                        title.shortName
-                      }} app-index-td d-flex align-items-center select-authority-cell"
-                    >
-                  <app-authority-select
-                    [authorities]="authorities"
-                    [labels]="labels"
-                    [resource]="resource"
-                    [selectedAuthorities]="selectedAuthorities"
-                    [data]="data"
-                    [accessLevel]="accessLevel"
-                    [customSelectButtons]="customSelectButtons"
-                    [customSelectedAuthorities]="customSelectedAuthorities"
-                    [allowUnselectedAuthorities]="true"
-                    (select)="onCloseAuthoritySelectModal($event, data)"
-                  ></app-authority-select>
-                  <span>
-                    <a
-                      class="select-authority"
-                      href="javascript:void(0)"
-                      (click)="onClickSelect(data, idx)"
-                    >
-                      {{ data | at: 'group.granted_role.name' }}
-                    </a>
+                    *ngSwitchCase="'users.group.granted_role.name'"
+                    class="td-{{
+                      title.shortName
+                    }} app-index-td d-flex align-items-center select-authority-cell"
+                  >
+                    <app-authority-select
+                      [authorities]="authorities"
+                      [labels]="labels"
+                      [resource]="resource"
+                      [selectedAuthorities]="selectedAuthorities"
+                      [data]="data"
+                      [accessLevel]="accessLevel"
+                      [customSelectButtons]="customSelectButtons"
+                      [customSelectedAuthorities]="customSelectedAuthorities"
+                      [allowUnselectedAuthorities]="true"
+                      (select)="onCloseAuthoritySelectModal($event, data)"
+                    ></app-authority-select>
+                    <span>
+                      <a
+                        class="select-authority"
+                        href="javascript:void(0)"
+                        (click)="onClickSelect(data, idx)"
+                      >
+                        {{ data | at: 'group.granted_role.name' }}
+                      </a>
                     </span>
                   </td>
                   <td
-                  *ngSwitchCase="'users.group.configuration_groups.label'"
-                  class="td-{{
-                    title.shortName
-                  }} app-index-td d-flex align-items-center"
+                    *ngSwitchCase="'users.group.configuration_groups.label'"
+                    class="td-{{
+                      title.shortName
+                    }} app-index-td d-flex align-items-center"
                   >
                     {{ data | at: 'group.configuration_groups[0].label' }}
                   </td>
                   <td
-                  *ngSwitchDefault
-                    class="td-{{ title.shortName }} app-index-td d-flex align-items-center"
+                    *ngSwitchDefault
+                      class="td-{{ title.shortName }} app-index-td d-flex align-items-center"
                   >
                     <span>{{ data | at: removeStr(title.name,"users.") }}</span>
                   </td>

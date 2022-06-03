@@ -1,16 +1,16 @@
 <form name="authoritySelectForm">
   <div class="authority-select-modal-authorities" *ngIf="labels">
-  <div class="row">
-    <app-selected
-      class="col-sm-4"
-      [itemName]="'authority_kinds'"
-      [itemParams]="accessLevel"
-      [itemResource]="resource"
-      [emitInitialRefresh]="false"
-      (onChangeSelectItem)="onKindChange($event,data)"
-      >
-    </app-selected>
-  </div>
+    <div class="row">
+      <app-selected
+        class="col-sm-4"
+        [itemName]="'authority_kinds'"
+        [itemParams]="accessLevel"
+        [itemResource]="resource"
+        [emitInitialRefresh]="false"
+        (onChangeSelectItem)="onKindChange($event,data)"
+        >
+      </app-selected>
+    </div>
     <div class="button-area">
       <div class="select-all">
         <input

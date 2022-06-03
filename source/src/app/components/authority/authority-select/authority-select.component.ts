@@ -35,6 +35,7 @@ export class AuthoritySelectComponent {
   @Output() close: EventEmitter<any> = new EventEmitter<any>();
 
   evacuateSelectedAuthorities: any[] = [];
+  size_lg = 'lg'  // modalService.open 時のmodalOption.sizeを'lg'で指定するために用いる定数
 
   constructor(private modalService: ModalService) { }
 
@@ -67,8 +68,6 @@ export class AuthoritySelectComponent {
    * 選択ボタン押下時のコールバック
    */
   onClickSelect(): void {
-    const size_lg = 'lg'
-
     if (isEmpty(this.defaultAuthorities)) {
       this.evacuateSelectedAuthorities = cloneDeep(this.selectedAuthorities);
     } else {
@@ -93,7 +92,7 @@ export class AuthoritySelectComponent {
       },
       close: () => this.close.emit(),
     }, {
-      size: size_lg,
+      size: this.size_lg
     });
   }
 

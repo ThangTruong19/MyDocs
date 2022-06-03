@@ -75,7 +75,7 @@
         </td>
       </ng-container>
 
-      <!-- カスタマイズ定義 -->
+      <!-- 送信番号 -->
       <ng-container *ngIf="title.displayable && isArrayColumnData(title.name) && title.name == 'cars.customize_usage_definitions.customize_definitions.sends_no'">
         <td [style]="setTableWidth(title)" class="td-{{ title.shortName }} app-index-td align-items-center padding-none">
         <ng-container *ngFor="let rec of data['cars.customize_usage_definitions'];">

@@ -21,6 +21,8 @@ export class CdRequestNumberComfirmComponent implements OnInit {
     public initThList: TableHeader[];
     @Input()
     public tableData: any;
+    @Input()
+    public maxTraffic: string;
 
     public labels: any;
     public thList: TableHeader[] = [];
@@ -57,7 +59,7 @@ export class CdRequestNumberComfirmComponent implements OnInit {
         // Format the acquired data to be displayed in the table
         const listData = this.tableData.reduce((acc: any, cur: any) => {
             acc.push({
-                data_amount_upper_limit: 5000,
+                data_amount_upper_limit: this.maxTraffic? this.maxTraffic : "",
                 model_type_rev_serial: cur.car_identification.model + "-" + cur.car_identification.type_rev + "-" + cur.car_identification.serial
             })
             return acc;

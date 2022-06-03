@@ -54,6 +54,10 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
   authorities: any = [];
   accessLevel: any;
 
+  notfind = -1      // 文字列.indexOf( 検索したい文字列[, 検索開始位置])を実施時に、該当する文字列がない場合は-1が返される
+                    // if文等で該当する文字列がないケースを取得したい場合に用いる
+  accessKindTop = "0"   // アクセスレベルリストの一番上の項目を指定する時に用いる定数
+
   constructor(
     navigationService: NavigationService,
     title: Title,
@@ -131,7 +135,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    * @param user ユーザーデータ
    */
   private async _authorities(user: any): Promise<any> {
-    const accessKindTop = "0"
+
     const param = {
       granted_role_id: _.get(user, 'group.granted_role.id'),
     };
@@ -148,17 +152,16 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
     );
 
     // 設定されている権限のアクセスレベルを取得
-    const notfind = -1
     let accessKind
     for (let i = 0; i < listAuthorities.length; i++) {
-      if (this.selectedAuthorities.indexOf(listAuthorities[i].value) != notfind) {
+      if (this.selectedAuthorities.indexOf(listAuthorities[i].value) !== this.notfind) {
         accessKind = listAuthorities[i].kind
         break;
       }
     }
 
-    if (accessKind == null) {
-      accessKind = accessKindTop
+    if (accessKind === undefined) {
+      accessKind = this.accessKindTop
     }
 
     this.authoritiesKindList(accessKind, listAuthorities)
@@ -174,7 +177,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
   authoritiesKindList(accessKind: string, listAuthorities: any): void {
     // this.authoritiesとユーザのアクセスレベルを比較して、適合するものだけを取得する
     for (let i = 0; i < listAuthorities.length; i++) {
-      if (listAuthorities[i].kind == accessKind) {
+      if (listAuthorities[i].kind === accessKind) {
         this.authorities.push(listAuthorities[i])
       }
     }
@@ -315,7 +318,7 @@ export class AuthorityMgtListComponent extends AbstractIndexComponent
    */
   protected override _getSearchParams(params: any): any {
     const _params = _.clone(params);
-    if (_params.role_id != FilterReservedWord.selectAll) {
+    if (_params.role_id !== FilterReservedWord.selectAll) {
       _params.user_kind = _params.role_id;
     }
     delete _params.role_id;
