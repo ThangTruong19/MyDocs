@@ -64,11 +64,20 @@
       <ng-container *ngIf="title.displayable && isArrayColumnData(title.name) && title.name == 'cars.customize_usage_definitions.customize_definitions'">
         <td [style]="setTableWidth(title)" class="td-{{ title.shortName }} app-index-td align-items-center padding-none">
         <ng-container *ngFor="let rec of data['cars.customize_usage_definitions'];">
-            <ng-container *ngFor="let item of rec.customize_definitions; let subIndex = index">
+            <ng-container *ngIf="rec.customize_definitions.length > 0">
+                <ng-container *ngFor="let item of rec.customize_definitions; let subIndex = index">
+                    <div
+                        [ngStyle]="{height: customizeDefinitionHeight(item) * rowHeight + 'px', 'line-height': customizeDefinitionHeight(item) * rowHeight - 12 + 'px'}"
+                        class="divider-column border">
+                        <span>{{item.name}}</span>
+                    </div>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="rec.customize_definitions.length == 0">
                 <div
-                    [ngStyle]="{height: customizeDefinitionHeight(item) * rowHeight + 'px', 'line-height': customizeDefinitionHeight(item) * rowHeight - 12 + 'px'}"
+                    [ngStyle]="{height: rowHeight + 'px', 'line-height': rowHeight - 12 + 'px'}"
                     class="divider-column border">
-                    <span>{{item.name}}</span>
+                    <span></span>
                 </div>
             </ng-container>
         </ng-container>
@@ -79,27 +88,36 @@
       <ng-container *ngIf="title.displayable && isArrayColumnData(title.name) && title.name == 'cars.customize_usage_definitions.customize_definitions.sends_no'">
         <td [style]="setTableWidth(title)" class="td-{{ title.shortName }} app-index-td align-items-center padding-none">
         <ng-container *ngFor="let rec of data['cars.customize_usage_definitions'];">
+          <ng-container *ngIf="rec.customize_definitions.length > 0">
             <ng-container *ngFor="let item of rec.customize_definitions">
-                <ng-container *ngIf="checkKey(item,'sends_no')">
-                    <ng-container *ngFor="let element of item.sends_no">
-                        <div
-                            [ngStyle]="{height: rowHeight + 'px', 'line-height': rowHeight - 12 + 'px'}"
-                            class="divider-column border">
-                            <span>{{element.send_no}}</span>
-                        </div>
-                    </ng-container>
-                </ng-container>
-                <ng-container *ngIf="!checkKey(item,'sends_no')">
-                    <div
-                        [ngStyle]="{height: rowHeight + 'px', 'line-height': rowHeight - 12 + 'px'}"
-                        class="divider-column border">
-                        <span></span>
-                    </div>
-                </ng-container>
+              <ng-container *ngIf="checkKey(item,'sends_no')">
+                  <ng-container *ngFor="let element of item.sends_no">
+                      <div
+                          [ngStyle]="{height: rowHeight + 'px', 'line-height': rowHeight - 12 + 'px'}"
+                          class="divider-column border">
+                          <span>{{element.send_no}}</span>
+                      </div>
+                  </ng-container>
+              </ng-container>
+              <ng-container *ngIf="!checkKey(item,'sends_no')">
+                  <div
+                      [ngStyle]="{height: rowHeight + 'px', 'line-height': rowHeight - 12 + 'px'}"
+                      class="divider-column border">
+                      <span></span>
+                  </div>
+              </ng-container>
             </ng-container>
-        </ng-container>
+          </ng-container>
+          <ng-container *ngIf="rec.customize_definitions.length == 0">
+            <div
+              [ngStyle]="{height: rowHeight + 'px', 'line-height': rowHeight - 12 + 'px'}"
+              class="divider-column border">
+              <span></span>
+            </div>
+          </ng-container>
+          </ng-container>
         </td>
-      </ng-container>
+        </ng-container>
 
     </ng-container>
   </ng-template>

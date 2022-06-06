@@ -1,4 +1,32 @@
-// カスタマイズ用途定義情報
+import { ResultHeader } from 'app/types/result-header';
+import { Navigation } from 'app/types/navigation';
+import { Api, Labels, Resource, Fields } from 'app/types/common';
+
+// API呼出しのレスポンス（初期処理）
+export interface InitializeApiResult {
+    resource: {
+        [key: string]: Resource | { [key: string]: Resource };
+    };
+    label: Labels & CustomizeSettingLabels;
+    functions: ApiResult;
+    fields1?: Fields;
+    fields2?: Fields;
+    fields3?: Fields;
+    fields4?: Fields;
+    fields5?: Fields;
+    fields6?: Fields;
+}
+
+// API呼出しのレスポンス
+export interface ApiResult extends Api {
+    result_header: ResultHeader;
+    result_data: ResultData & Navigation;
+    status: number;
+}
+
+interface ResultData {
+    customize_usage_definitions?: CustomizeUsageDefinition[];
+}
 export interface CustomizeUsageDefinition {
     customize_usage_definition?: CustomizeUsageDefinitionContent;
     edit_status?: string;
@@ -57,24 +85,24 @@ export interface Item {
 }
 
 // 車両カスタマイズ用途定義一括取得要求API
-export interface RequestBodyParamsKOM00110120 {
-    cars?: RequestBodyParamsKOM00110120Car[];
+export interface GetCustomizeUsageDefinitionRequestParam {
+    cars?: CarRequestParam[];
     request_route_kind?: string;
 }
 
-interface RequestBodyParamsKOM00110120Car {
+interface CarRequestParam {
     car_id?: string;
 }
 
 // 車両カスタマイズ用途定義更新要求API
-export interface RequestBodyParamsKOM00110130 {
+export interface UpdateCustomizeUsageDefinitionRequestParam {
     request_route_kind?: string;
     instant_kind?: string;
     continuous_kind?: string;
-    customize_usage_definition?: RequestBodyParamsKOM00110130CustomizeUsageDefinition[];
+    customize_usage_definition?: CustomizeUsageDefinitionRequestParam[];
 }
 
-interface RequestBodyParamsKOM00110130CustomizeUsageDefinition {
+interface CustomizeUsageDefinitionRequestParam {
     customize_usage_definition_id?: string;
     version?: string;
     request_kind?: string;
@@ -85,12 +113,62 @@ interface RequestBodyParamsKOM00110130CustomizeUsageDefinition {
 }
 
 // 車両カスタマイズ設定要求再送API
-export interface RequestBodyParamsKOM00110140 {
-    customize_definition?: RequestBodyParamsKOM00110140CustomizeDefinition[];
+export interface RetryCustomizeUsageDefinitionRequestParam {
+    customize_definition?: CustomizeDefinitionRequestParam[];
 }
 
-interface RequestBodyParamsKOM00110140CustomizeDefinition {
+interface CustomizeDefinitionRequestParam {
     customize_definition_id?: string;
+}
+
+export interface CustomizeSettingLabels {
+    [key: string]: string;
+    page_title?: string;
+    title?: string;
+    model_type_rev_serial?: string;
+    addition?: string;
+    discard_all_edits?: string;
+    setting_acquisition_request?: string;
+    setting_update_request?: string;
+    immediate_setting_update_request?: string;
+    communication_charge_confirmation?: string;
+    page_count?: string;
+    number_of_display?: string;
+    page?: string;
+    empty_list_message?: string;
+    addition_title?: string;
+    edit_title?: string;
+    confirmation_title?: string;
+    customize_definition_detail?: string;
+    customize_get_request_message?: string;
+    customize_update_request_message?: string;
+    customize_update_resend_message?: string;
+    customize_update_immediate_reflection_request_message?: string;
+    customize_discard_edit_confirm_message?: string;
+    customize_transition_confirm_message?: string;
+    customize_update_immediate_reflection_request_err?: string;
+    customize_update_request_caution_message?: string;
+    customize_traffic_caution_message?: string;
+    immediate_setting_update_request_message?: string;
+    regular_call_customize_data?: string;
+    other_customize_data?: string;
+    customize_definition_name_label?: string;
+    edit_header_label?: string;
+    edit_status_header_label?: string;
+    discard_header_label?: string;
+    retry_header_label?: string;
+    default_body_label?: string;
+    regist_body_label?: string;
+    edit_body_label?: string;
+    delete_body_label?: string;
+    assumption_data_value_kb_body_label?: string;
+    assumption_data_value_number_body_label?: string;
+    assumption_data_value_monthly_body_label?: string;
+    finish_message?: string;
+    cancel?: string;
+    close?: string;
+    ok_btn?: string;
+    immediate_setting_update_request_err?: string;
 }
 
 // 最新設定種別
@@ -131,6 +209,12 @@ export enum EditStatus {
     Regist = '1', // 追加
     Edit = '2', // 変更
     Delete = '3', // 削除
+}
+
+// 編集モード
+export enum EditMode {
+    Update = 'update', // 更新
+    Delete = 'delete', // 削除
 }
 
 // モーダルサイズ

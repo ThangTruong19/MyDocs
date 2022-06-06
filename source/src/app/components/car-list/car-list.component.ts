@@ -186,7 +186,7 @@ export class CarListComponent extends AbstractIndexComponent {
         this.fields
       );
       await this._downloadTemplate(
-        this.fields.map((f: { path: string }) => f.path),
+        this.fields.map((f) => f.path),
         MimeType.excel
       );
     }

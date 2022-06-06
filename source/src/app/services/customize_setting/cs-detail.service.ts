@@ -5,7 +5,11 @@ import { LocationStrategy } from '@angular/common';
 import { Api, InitializeApiResult } from 'app/types/common';
 import { Apis } from 'app/constants/apis';
 import { RequestHeaderParams } from 'app/types/request';
-import { RequestBodyParamsKOM00110120, RequestBodyParamsKOM00110130, RequestBodyParamsKOM00110140 } from 'app/types/cs-detail';
+import {
+    GetCustomizeUsageDefinitionRequestParam,
+    UpdateCustomizeUsageDefinitionRequestParam,
+    RetryCustomizeUsageDefinitionRequestParam,
+} from 'app/types/cs-detail';
 import { ScreenCodeConst } from 'app/constants/api/screen-code-const';
 import { FunctionCodeConst } from 'app/constants/api/function-code-const';
 import { ApiService } from 'app/services/api/api.service';
@@ -90,7 +94,7 @@ export class CsDetailService implements CanDeactivate<CsDetailComponent> {
      * @param requestHeaderParams ヘッダ情報
      */
     public postCarsRequestSetsCustomizeUsageDefinitionsM2s(
-        params: RequestBodyParamsKOM00110120,
+        params: GetCustomizeUsageDefinitionRequestParam,
         requestHeaderParams: RequestHeaderParams
     ): Promise<Api> {
         return new Promise((resolve, reject) => {
@@ -119,7 +123,7 @@ export class CsDetailService implements CanDeactivate<CsDetailComponent> {
      */
     public postCarsCarIdRequestsCustomizeUsageDefinitionsS2m(
         carId: string,
-        params: RequestBodyParamsKOM00110130,
+        params: UpdateCustomizeUsageDefinitionRequestParam,
         requestHeaderParams: RequestHeaderParams
     ): Promise<Api> {
         return new Promise((resolve, reject) => {
@@ -155,7 +159,7 @@ export class CsDetailService implements CanDeactivate<CsDetailComponent> {
      */
     public postCarsCarIdRequestsCustomizeSettingsRetryS2m(
         carId: string,
-        params: RequestBodyParamsKOM00110140,
+        params: RetryCustomizeUsageDefinitionRequestParam,
         requestHeaderParams: RequestHeaderParams
     ): Promise<Api> {
         return new Promise((resolve, reject) => {

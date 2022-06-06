@@ -3583,6 +3583,11 @@
           "api_id": "KOM-00110061",
           "url": "{protocol}://{hostname}/v1/cars/{car_id}/car_customize_data_performance",
           "http_method": "GET"
+        },
+        {
+          "api_id": "KOM-0xxxxxxx",
+          "url": "{protocol}://{hostname}/v1/cars/requests/customize_data/send_no/m2s",
+          "http_method": "POST"
         }
       ]
     }

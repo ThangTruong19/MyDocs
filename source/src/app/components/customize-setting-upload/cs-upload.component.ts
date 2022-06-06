@@ -198,7 +198,7 @@ export class CsUploadComponent extends AbstractIndexComponent {
         // await this.api.downloadFile(res.result_data.file_id, MimeType.excel);
 
         await this._downloadTemplate(
-          this.fields.map((f: { path: string }) => f.path),
+          this.fields.map((f) => f.path),
           MimeType.excel
         );
       } finally {

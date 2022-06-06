@@ -236,13 +236,13 @@ labels:
   - id: 40
     description: テーブルボディ
     name: assumption_data_value_number_body_label
-    ja: [KB/件]
+    ja: "[KB/件]"
     en:
 
   - id: 41
     description: テーブルボディ
     name: assumption_data_value_monthly_body_label
-    ja: [KB/月]
+    ja: "[KB/月]"
     en:
 
   - id: 42

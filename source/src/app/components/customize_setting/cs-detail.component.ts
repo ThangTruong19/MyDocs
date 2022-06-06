@@ -9,7 +9,7 @@ import { NavigationService } from 'app/services/shared/navigation.service';
 import { AlertService } from 'app/services/shared/alert.service';
 import { CommonTableService } from 'app/services/shared/common-table.service';
 import { CsDetailService } from 'app/services/customize_setting/cs-detail.service';
-import { Fields, TableHeader, TableOptions } from 'app/types/common';
+import { Fields, Labels, Resource, TableHeader, TableOptions } from 'app/types/common';
 import * as _ from 'lodash';
 import { AbstractIndexComponent } from 'app/components/shared/abstract-component/abstract-index.component';
 import { CsNewComponent } from 'app/components/customize_setting/new/cs-new.component';
@@ -17,6 +17,13 @@ import { CsEditComponent } from 'app/components/customize_setting/edit/cs-edit.c
 import { CsImmediateUpdateRequestConfirmComponent } from 'app/components/customize_setting/immediate-update-request-confirm/cs-immediate-update-request-confirm.component';
 import { RequestHeaderParams } from 'app/types/request';
 import {
+    GetCustomizeUsageDefinitionRequestParam,
+    UpdateCustomizeUsageDefinitionRequestParam,
+    RetryCustomizeUsageDefinitionRequestParam,
+    ApiResult,
+    InitializeApiResult,
+    CustomizeUsageDefinition,
+    CustomizeSettingLabels,
     Alert,
     Size,
     LatestOperationCode,
@@ -25,14 +32,10 @@ import {
     InstantKind,
     Status,
     EditStatus,
+    EditMode,
     Item,
-    CustomizeUsageDefinition,
-    RequestBodyParamsKOM00110120,
-    RequestBodyParamsKOM00110130,
-    RequestBodyParamsKOM00110140,
 } from 'app/types/cs-detail';
 import { ResultHeader } from 'app/types/result-header';
-import { ResultData } from 'app/types/result-data';
 
 @Component({
     selector: 'app-cs-detail',
@@ -85,12 +88,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         editList: Item[];
         hiddenList: Item[];
     } = {
-            visibleList: [],
-            originList: [],
-            addList: [],
-            editList: [],
-            hiddenList: [],
-        };
+        visibleList: [],
+        originList: [],
+        addList: [],
+        editList: [],
+        hiddenList: [],
+    };
 
     public initialLists: {
         visibleList: Item[];
@@ -99,12 +102,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         editList: Item[];
         hiddenList: Item[];
     } = {
-            visibleList: [],
-            originList: [],
-            addList: [],
-            editList: [],
-            hiddenList: [],
-        };
+        visibleList: [],
+        originList: [],
+        addList: [],
+        editList: [],
+        hiddenList: [],
+    };
 
     protected carId: string;
     protected model: string;
@@ -139,6 +142,11 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         'customize_usage_definitions.customize_usage_definition.customize_definitions.aggregation_condition_name',
         'customize_usage_definitions.customize_usage_definition.customize_definitions.send_condition_name',
     ];
+
+    public override labels: Labels & CustomizeSettingLabels;
+    public override resource: {
+        [key: string]: Resource | { [key: string]: Resource };
+    };
 
     constructor(
         protected nav: NavigationService,
@@ -187,13 +195,13 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     protected async fetchList(sort_key?: string): Promise<void> {
         this.isFetching = true;
         this.requestHeaderParams['X-Sort'] = sort_key || '';
-        const res = await this.csDetailService.fetchIndexList(this.carId, this.requestHeaderParams);
-        const data: CustomizeUsageDefinition[] = res.result_data.customize_usage_definitions;
+        const res: ApiResult = await this.csDetailService.fetchIndexList(this.carId, this.requestHeaderParams);
+        const data = res.result_data.customize_usage_definitions;
         data.forEach((element) => {
             element.edit_status = EditStatus.Default;
             element.edit_status_name = '';
         });
-        const list = this._formatList(data, this.thList);
+        const list: Item[] = this._formatList(data, this.thList);
         Object.keys(list).forEach((i) => {
             const count = Number(i);
             if (!list[count].customize_usage_definitions) {
@@ -227,7 +235,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
             rowSize = targetArray.length;
         }
         const height = 35 * rowSize;
-        return 'height:' + height + 'px';
+        return `height:${height}px`;
     }
 
     /**
@@ -244,31 +252,31 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param resultHeader API のレスポンスヘッダ
      * @param resultData API のレスポンスデータ
      */
-    protected override _fillLists(resultHeader: ResultHeader, resultData: ResultData) {
+    protected override _fillLists(resultHeader: ResultHeader, resultData: Item[]) {
         super._fillLists(resultHeader, resultData);
         this.initialLists.originList = _.cloneDeep(this.lists.originList);
         this.initialLists.visibleList = _.cloneDeep(this.lists.visibleList);
         const ids = this.lists.originList.map((element) => {
-            const content: CustomizeUsageDefinition = this.convert(element);
+            const content = this.convert(element);
             return content.customize_usage_definition.customize_usage_definition_id;
         });
         this.lists.hiddenList = this.lists.editList.filter((element: Item) => {
-            const content: CustomizeUsageDefinition = this.convert(element);
+            const content = this.convert(element);
             return !ids.includes(content.customize_usage_definition.customize_usage_definition_id);
         });
         // 編集項目設定
         const editList = _.cloneDeep(this.lists.editList);
         editList.forEach((element) => {
-            const content: CustomizeUsageDefinition = this.convert(element);
+            const content = this.convert(element);
             const originListIndex = this.lists.originList.findIndex((element) => {
-                const target: CustomizeUsageDefinition = this.convert(element);
+                const target = this.convert(element);
                 return (
                     content.customize_usage_definition.customize_usage_definition_id ===
                     target.customize_usage_definition.customize_usage_definition_id
                 );
             });
             const visibleListIndex = this.lists.visibleList.findIndex((element) => {
-                const target: CustomizeUsageDefinition = this.convert(element);
+                const target = this.convert(element);
                 return (
                     content.customize_usage_definition.customize_usage_definition_id ===
                     target.customize_usage_definition.customize_usage_definition_id
@@ -291,7 +299,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         }
         // 削除項目設定
         this.lists.originList.forEach((element) => {
-            const content: CustomizeUsageDefinition = element.customize_usage_definitions;
+            const content = element.customize_usage_definitions;
             const latestOperationCode = content.customize_usage_definition.customize_definitions[0].latest_operation_code;
             if (latestOperationCode === LatestOperationCode.Delete) {
                 const targetRowData = element;
@@ -309,21 +317,20 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         this.activatedRoute.queryParams.subscribe((params) => (this.typeRev = params.typeRev));
         this.activatedRoute.queryParams.subscribe((params) => (this.serial = params.serial));
 
-        const res = await this.csDetailService.fetchIndexInitData();
+        const res: InitializeApiResult = await this.csDetailService.fetchIndexInitData();
         this.initialize(res);
         this.labels = res.label;
-        this.labels['vehicleInfo'] =
-            (this.model ? this.model : '') + '-' + (this.typeRev ? this.typeRev : '') + '-' + (this.serial ? this.serial : '');
+        this.labels['vehicleInfo'] = `${this.model ? this.model : ''}-${this.typeRev ? this.typeRev : ''}-${this.serial ? this.serial : ''}`;
         this.resource = res.resource;
         this._setTitle();
         this._updateFields(res.fields1);
         this.csUpdateRequestConfirmThList = this._createThList(res.fields2);
         this.csImmediateUpdateRequestConfirmThList = this._createThList(res.fields2);
-        this.csRequestResendConfirmThList = this._createThList(res.fields6);
         this.csNewThList = this._createThList(res.fields3);
         this.csEditThList = this._createThList(res.fields3);
         this.csExpectedTrafficConfirmThList1 = this._createThList(res.fields4);
         this.csExpectedTrafficConfirmThList2 = this._createThList(res.fields5);
+        this.csRequestResendConfirmThList = this._createThList(res.fields6);
         this.resources = res;
     }
 
@@ -348,7 +355,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         this.sortableThList = this.sortableThLists(this.thList);
         this._setXFields(xFields);
         const opt: TableOptions = { scrollable: true };
-        const thLists = this._createThList(fields, opt);
+        const thLists: { fixed: TableHeader[]; scrollable: TableHeader[] } = this._createThList(fields, opt);
         this.fixedThList = thLists.fixed;
         this.scrollableThList = thLists.scrollable;
     }
@@ -361,7 +368,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     protected checkIdFunction(data: Item): string {
         const customizeUsageDefinitionId = data['customize_usage_definitions.customize_usage_definition.customize_usage_definition_id'];
         const editStatus = data['customize_usage_definitions.edit_status'];
-        return customizeUsageDefinitionId + '-' + editStatus;
+        return `${customizeUsageDefinitionId}-${editStatus}`;
     }
 
     /**
@@ -390,7 +397,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @return true:非表示/false:表示
      */
     protected editIconHidden(data: Item): boolean {
-        const content: CustomizeUsageDefinition = this.convert(data);
+        const content = this.convert(data);
         const editStatus = content.edit_status;
         const latestOperationCode = content.customize_usage_definition.customize_definitions[0].latest_operation_code;
         return editStatus === EditStatus.Regist || latestOperationCode === LatestOperationCode.Delete;
@@ -402,7 +409,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @return true:非表示/false:表示
      */
     protected discardIconHidden(data: Item): boolean {
-        const content: CustomizeUsageDefinition = this.convert(data);
+        const content = this.convert(data);
         const editStatus = content.edit_status;
         const latestOperationCode = content.customize_usage_definition.customize_definitions[0].latest_operation_code;
         return editStatus === EditStatus.Default || latestOperationCode === LatestOperationCode.Delete;
@@ -414,7 +421,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @return true:非表示/false:表示
      */
     protected retryIconHidden(data: Item): boolean {
-        const content: CustomizeUsageDefinition = this.convert(data);
+        const content = this.convert(data);
         const editStatus = content.edit_status;
         const status = content.customize_usage_definition.customize_definitions[0].status;
         const latestOperationCode = content.customize_usage_definition.customize_definitions[0].latest_operation_code;
@@ -505,11 +512,11 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         element.edit_status_name = this.labels.regist_body_label;
                         // チェックボックス設定
                         const customizeUsageDefinitionId = element.customize_usage_definition.customize_usage_definition_id;
-                        const checkIdName = customizeUsageDefinitionId + '-' + EditStatus.Regist;
+                        const checkIdName = `${customizeUsageDefinitionId}-${EditStatus.Regist}`;
                         this.checkedItems[checkIdName] = true;
                     });
                     // リスト作成
-                    const list = this._formatList(contents, this.thList);
+                    const list: Item[] = this._formatList(contents, this.thList);
                     Object.keys(list).forEach((i) => {
                         const count = Number(i);
                         if (!list[count].customize_usage_definitions) {
@@ -521,9 +528,9 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         list[count].customize_usage_definitions.customize_usage_definition.customize_definitions =
                             contents[count].customize_usage_definition.customize_definitions;
                     });
-                    const key: string = this.newChildComponent.modalResponse.customize_usage_definition_id;
+                    const key = this.newChildComponent.modalResponse.customize_usage_definition_id;
                     const addListIndex = this.lists.addList.findIndex((element: Item) => {
-                        const content: CustomizeUsageDefinition = this.convert(element);
+                        const content = this.convert(element);
                         const id = content.customize_usage_definition.customize_usage_definition_id;
                         return key === String(id) && content.edit_status === EditStatus.Regist;
                     });
@@ -534,12 +541,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                                 this.lists.addList.splice(addListIndex + index, 1, element);
                                 this.pageParams.pageAdditionalCount = this.lists.addList.length;
                                 const originListIndex = this.lists.originList.findIndex((element: Item) => {
-                                    const content: CustomizeUsageDefinition = this.convert(element);
+                                    const content = this.convert(element);
                                     const id = content.customize_usage_definition.customize_usage_definition_id;
                                     return key === String(id) && content.edit_status === EditStatus.Regist;
                                 });
                                 const visibleListIndex = this.lists.visibleList.findIndex((element: Item) => {
-                                    const content: CustomizeUsageDefinition = this.convert(element);
+                                    const content = this.convert(element);
                                     const id = content.customize_usage_definition.customize_usage_definition_id;
                                     return key === String(id) && content.edit_status === EditStatus.Regist;
                                 });
@@ -579,7 +586,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param data 対象データ
      */
     protected openCsEditDialog(data: Item) {
-        const content: CustomizeUsageDefinition = this.convert(data);
+        const content = this.convert(data);
         this.inputParams.edit_customize_usage_definition_id = content.customize_usage_definition.customize_usage_definition_id;
         this.inputParams.edit_customize_usage_definition_name = content.customize_usage_definition.customize_usage_definition_name;
         this.inputParams.edit_customize_usage_definition_version = String(content.customize_usage_definition.customize_usage_definition_version);
@@ -602,7 +609,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                             customize_usage_definition: this.editChildComponent.modalResponse,
                         },
                     ];
-                    contents.forEach((element: CustomizeUsageDefinition) => {
+                    contents.forEach((element) => {
                         element.customize_usage_definition.use_kind = content.customize_usage_definition.use_kind;
                         element.customize_usage_definition.use_name = content.customize_usage_definition.use_name;
                         element.customize_usage_definition.customize_definitions.forEach((data, index) => {
@@ -617,18 +624,18 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         let checkIdName = '';
                         const customizeUsageDefinitionId = element.customize_usage_definition.customize_usage_definition_id;
                         switch (this.editChildComponent.modalResponse.edit_mode) {
-                            case 'update':
+                            case EditMode.Update:
                                 element.edit_status = EditStatus.Edit;
                                 element.edit_status_name = this.labels.edit_body_label;
                                 // チェックボックス設定
-                                checkIdName = customizeUsageDefinitionId + '-' + EditStatus.Edit;
+                                checkIdName = `${customizeUsageDefinitionId}-${EditStatus.Edit}`;
                                 this.checkedItems[checkIdName] = true;
                                 break;
-                            case 'delete':
+                            case EditMode.Delete:
                                 element.edit_status = EditStatus.Delete;
                                 element.edit_status_name = this.labels.delete_body_label;
                                 // チェックボックス設定
-                                checkIdName = customizeUsageDefinitionId + '-' + EditStatus.Delete;
+                                checkIdName = `${customizeUsageDefinitionId}-${EditStatus.Delete}`;
                                 this.checkedItems[checkIdName] = true;
                                 break;
                             default:
@@ -636,7 +643,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         }
                     });
                     // リスト作成
-                    const list = this._formatList(contents, this.thList);
+                    const list: Item[] = this._formatList(contents, this.thList);
                     Object.keys(list).forEach((i) => {
                         const count = Number(i);
                         if (!list[count].customize_usage_definitions) {
@@ -649,14 +656,14 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                             contents[count].customize_usage_definition.customize_definitions;
                     });
                     const originListIndex = this.lists.originList.findIndex((element) => {
-                        const target: CustomizeUsageDefinition = this.convert(element);
+                        const target = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id ===
                             target.customize_usage_definition.customize_usage_definition_id
                         );
                     });
                     const visibleListIndex = this.lists.visibleList.findIndex((element) => {
-                        const target: CustomizeUsageDefinition = this.convert(element);
+                        const target = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id ===
                             target.customize_usage_definition.customize_usage_definition_id
@@ -671,9 +678,11 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         }
 
                         const editListIndex = this.lists.editList.findIndex((element) => {
-                            const target: CustomizeUsageDefinition = this.convert(element);
-                            return content.customize_usage_definition.customize_usage_definition_id ===
+                            const target = this.convert(element);
+                            return (
+                                content.customize_usage_definition.customize_usage_definition_id ===
                                 target.customize_usage_definition.customize_usage_definition_id
+                            );
                         });
                         if (editListIndex !== -1) {
                             this.lists.editList.splice(editListIndex + index, 1, element);
@@ -707,7 +716,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 ok: () => {
                     const requestHeaderParams: RequestHeaderParams = {};
                     const cars = [{ car_id: this.carId }];
-                    const params: RequestBodyParamsKOM00110120 = {
+                    const params: GetCustomizeUsageDefinitionRequestParam = {
                         cars: cars,
                         request_route_kind: RequestRouteKind.Unspecified,
                     };
@@ -749,10 +758,10 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
             if (this.checkedItems[key]) keys.push(key);
         });
         this.tableData = [...this.lists.addList, ...this.lists.editList].filter((element: Item) => {
-            const content: CustomizeUsageDefinition = this.convert(element);
+            const content = this.convert(element);
             const customizeUsageDefinitionId = content.customize_usage_definition.customize_usage_definition_id;
             const editStatus = content.edit_status;
-            const id = customizeUsageDefinitionId + '-' + editStatus;
+            const id = `${customizeUsageDefinitionId}-${editStatus}`;
             return keys.includes(String(id));
         });
         this.modalService.open(
@@ -765,7 +774,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 ok: () => {
                     const requestHeaderParams: RequestHeaderParams = {};
                     const customizeUsageDefinitions = this.tableData.map((data) => {
-                        const content: CustomizeUsageDefinition = this.convert(data);
+                        const content = this.convert(data);
                         return {
                             customize_usage_definition_id: content.customize_usage_definition.customize_usage_definition_id,
                             version: String(content.customize_usage_definition.customize_usage_definition_version),
@@ -776,7 +785,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                             active_kind: content.customize_usage_definition.customize_definitions[0].active_kind,
                         };
                     });
-                    const params: RequestBodyParamsKOM00110130 = {
+                    const params: UpdateCustomizeUsageDefinitionRequestParam = {
                         request_route_kind: RequestRouteKind.Unspecified,
                         instant_kind: InstantKind.Regular,
                         customize_usage_definition: customizeUsageDefinitions,
@@ -823,10 +832,10 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
             if (this.checkedItems[key]) keys.push(key);
         });
         this.tableData = [...this.lists.addList, ...this.lists.editList].filter((element: Item) => {
-            const content: CustomizeUsageDefinition = this.convert(element);
+            const content = this.convert(element);
             const customizeUsageDefinitionId = content.customize_usage_definition.customize_usage_definition_id;
             const editStatus = content.edit_status;
-            const id = customizeUsageDefinitionId + '-' + editStatus;
+            const id = `${customizeUsageDefinitionId}-${editStatus}`;
             return keys.includes(String(id));
         });
         this.modalService.open(
@@ -840,7 +849,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 ok: () => {
                     const requestHeaderParams: RequestHeaderParams = {};
                     const customizeUsageDefinitions = this.tableData.map((data) => {
-                        const content: CustomizeUsageDefinition = this.convert(data);
+                        const content = this.convert(data);
                         return {
                             customize_usage_definition_id: content.customize_usage_definition.customize_usage_definition_id,
                             version: String(content.customize_usage_definition.customize_usage_definition_version),
@@ -851,7 +860,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                             active_kind: content.customize_usage_definition.customize_definitions[0].active_kind,
                         };
                     });
-                    const params: RequestBodyParamsKOM00110130 = {
+                    const params: UpdateCustomizeUsageDefinitionRequestParam = {
                         request_route_kind: RequestRouteKind.Unspecified,
                         instant_kind: InstantKind.Immediate,
                         continuous_kind: this.csImmediateUpdateRequestConfirmComponent.isContinued,
@@ -904,21 +913,21 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 okBtnLabel: this.labels.ok_btn,
                 ok: () => {
                     // 一覧画面データ取得
-                    const content: CustomizeUsageDefinition = this.convert(data);
+                    const content = this.convert(data);
                     // リスト設定
                     const originListIndex = this.lists.originList.findIndex((element) => {
-                        const target: CustomizeUsageDefinition = this.convert(element);
+                        const target = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id ===
-                            target.customize_usage_definition.customize_usage_definition_id &&
+                                target.customize_usage_definition.customize_usage_definition_id &&
                             (content.edit_status === EditStatus.Edit || content.edit_status === EditStatus.Delete)
                         );
                     });
                     const initialOrigin = this.initialLists.originList.find((element) => {
-                        const target: CustomizeUsageDefinition = this.convert(element);
+                        const target = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id ===
-                            target.customize_usage_definition.customize_usage_definition_id &&
+                                target.customize_usage_definition.customize_usage_definition_id &&
                             (content.edit_status === EditStatus.Edit || content.edit_status === EditStatus.Delete)
                         );
                     });
@@ -928,18 +937,18 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         this.lists.originList.splice(originListIndex, 1);
                     }
                     const visibleListIndex = this.lists.visibleList.findIndex((element) => {
-                        const target: CustomizeUsageDefinition = this.convert(element);
+                        const target = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id ===
-                            target.customize_usage_definition.customize_usage_definition_id &&
+                                target.customize_usage_definition.customize_usage_definition_id &&
                             (content.edit_status === EditStatus.Edit || content.edit_status === EditStatus.Delete)
                         );
                     });
                     const initialVisible = this.initialLists.visibleList.find((element) => {
-                        const target: CustomizeUsageDefinition = this.convert(element);
+                        const target = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id ===
-                            target.customize_usage_definition.customize_usage_definition_id &&
+                                target.customize_usage_definition.customize_usage_definition_id &&
                             (content.edit_status === EditStatus.Edit || content.edit_status === EditStatus.Delete)
                         );
                     });
@@ -949,24 +958,24 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                         this.lists.visibleList.splice(visibleListIndex, 1);
                     }
                     this.lists.addList = this.lists.addList.filter((element) => {
-                        const target: CustomizeUsageDefinition = this.convert(element);
+                        const target = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id !==
-                            target.customize_usage_definition.customize_usage_definition_id && content.edit_status === EditStatus.Regist
+                                target.customize_usage_definition.customize_usage_definition_id && content.edit_status === EditStatus.Regist
                         );
                     });
                     this.lists.editList = this.lists.editList.filter((element) => {
-                        const target: CustomizeUsageDefinition = this.convert(element);
+                        const target = this.convert(element);
                         return (
                             content.customize_usage_definition.customize_usage_definition_id !==
-                            target.customize_usage_definition.customize_usage_definition_id &&
+                                target.customize_usage_definition.customize_usage_definition_id &&
                             (content.edit_status === EditStatus.Edit || content.edit_status === EditStatus.Delete)
                         );
                     });
                     // チェックボックス設定
                     const customizeUsageDefinitionId = content.customize_usage_definition.customize_usage_definition_id;
                     const editStatus = content.edit_status;
-                    const checkIdName = customizeUsageDefinitionId + '-' + editStatus;
+                    const checkIdName = `${customizeUsageDefinitionId}-${editStatus}`;
                     delete this.checkedItems[checkIdName];
                     this.check();
                     // ボタン表示設定
@@ -994,6 +1003,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                     // リスト設定
                     this.lists = _.cloneDeep(this.initialLists);
                     this.pageParams.pageAdditionalCount = 0;
+                    this.fetchList(this.sortingParams['sort']);
                     // チェックボックス設定
                     this.checkedItems = {};
                     this.checkAll = false;
@@ -1023,12 +1033,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
                 ok: () => {
                     const requestHeaderParams: RequestHeaderParams = {};
                     const customizeDefinitions = this.tableData.map((data) => {
-                        const content: CustomizeUsageDefinition = this.convert(data);
+                        const content = this.convert(data);
                         return {
                             customize_definition_id: content.customize_usage_definition.customize_usage_definition_id,
                         };
                     });
-                    const params: RequestBodyParamsKOM00110140 = {
+                    const params: RetryCustomizeUsageDefinitionRequestParam = {
                         customize_definition: customizeDefinitions,
                     };
                     this.csDetailService
@@ -1064,10 +1074,10 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         });
         const list = _.cloneDeep([...this.lists.addList, ...this.lists.editList]);
         this.tableData = list.reduce((acc, cur) => {
-            const content: CustomizeUsageDefinition = this.convert(cur);
+            const content = this.convert(cur);
             const customizeUsageDefinitionId = content.customize_usage_definition.customize_usage_definition_id;
             const editStatus = content.edit_status;
-            const id = customizeUsageDefinitionId + '-' + editStatus;
+            const id = `${customizeUsageDefinitionId}-${editStatus}`;
             if (keys.includes(String(id))) {
                 acc.push(content);
             }
@@ -1131,10 +1141,10 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
         this.checkAll =
             targetItems.length > 0 &&
             targetItems.every((item: Item) => {
-                const content: CustomizeUsageDefinition = this.convert(item);
+                const content = this.convert(item);
                 const customizeUsageDefinitionId = content.customize_usage_definition.customize_usage_definition_id;
                 const editStatus = content.edit_status;
-                const checkIdName = customizeUsageDefinitionId + '-' + editStatus;
+                const checkIdName = `${customizeUsageDefinitionId}-${editStatus}`;
                 return this.checkedItems[checkIdName];
             });
     }

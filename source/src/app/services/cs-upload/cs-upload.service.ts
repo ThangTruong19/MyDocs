@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { RequestHeaderParams } from 'app/types/request';
 import { Api, Resources } from 'app/types/common';
-import { HistoryMgtListIndexParams, HistoryMgtListFileCreateParams } from 'app/types/history-mgt-list';
+// TODO:
+// import { HistoryMgtListIndexParams, HistoryMgtListFileCreateParams } from 'app/types/history-mgt-list';
 import { Apis } from 'app/constants/apis';
 import { ResourceService } from 'app/services/api/resource.service';
 import { ApiService } from 'app/services/api/api.service';
@@ -51,7 +52,9 @@ export class CsUploadService {
   * @param requestHeaderParams ヘッダ情報
   */
   fetchIndexList(
-    params: HistoryMgtListIndexParams,
+    // TODO:
+    // params: HistoryMgtListIndexParams,
+    params: any,
     requestHeaderParams: RequestHeaderParams
   ): Promise<Api> {
     return new Promise((resolve) => {
@@ -74,7 +77,9 @@ export class CsUploadService {
    * @param headerParams ヘッダ情報
    */
   createFile(
-    params: HistoryMgtListFileCreateParams,
+    // TODO:
+    // params: HistoryMgtListFileCreateParams,
+    params: any,
     requestHeaderParams: RequestHeaderParams
   ) {
     requestHeaderParams['X-Count'] = null;

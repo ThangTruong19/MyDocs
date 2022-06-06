@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Apis } from 'app/constants/apis';
 import { ApiService } from 'app/services/api/api.service';
+import { CdRequestNumberConfirmService } from 'app/services/customize_data_request/request-number/cd-request-number-tab/cd-request-number-confirm.service';
 import { Resources, TableHeader } from 'app/types/common';
+import { RequestHeaderParams } from 'app/types/request';
 import * as _ from 'lodash';
 
 /**
@@ -27,6 +29,7 @@ export class CdRequestNumberComfirmComponent implements OnInit {
     public labels: any;
     public thList: TableHeader[] = [];
     public isFetching: boolean = false;
+    public formatted: any;
 
     lists = {
         visibleList: [] as any[],
@@ -48,13 +51,11 @@ export class CdRequestNumberComfirmComponent implements OnInit {
 
     rowHeight: number = 35;
 
-    constructor() { }
+    constructor(private cdRequestNumberConfirmService: CdRequestNumberConfirmService) { }
 
     ngOnInit(): void {
         this.labels = this.resources.label;
         this.thList = this.initThList;
-        console.log(this.thList);
-        console.log(this.tableData);
 
         // Format the acquired data to be displayed in the table
         const listData = this.tableData.reduce((acc: any, cur: any) => {
@@ -65,19 +66,56 @@ export class CdRequestNumberComfirmComponent implements OnInit {
             return acc;
         },[]);
 
-        const formatted = this._formatList(
+        this.formatted = this._formatList(
             listData,
             this.thList
         );
-        formatted.forEach((element: any, index: any) => {
+        this.formatted.forEach((element: any, index: any) => {
             _.set(element, 'cars.customize_usage_definitions',
                 this.tableData[index].customize_usage_definitions);
         });
 
-        _.set(this.lists, 'originList', formatted);
-        _.set(this.lists, 'visibleList', formatted);
+        _.set(this.lists, 'originList', this.formatted);
+        _.set(this.lists, 'visibleList', this.formatted);
 
         this.isFetching = false;
+    }
+
+    /**
+     * カスタマイズデータ送信要求（送信番号指定）
+     */
+    public customizedDataTransmissionRequest(): void {
+        const requestHeaderParams: RequestHeaderParams = {};
+        let cars: any = [];
+        this.formatted.forEach((element: any) => {
+            let car: any = {
+                model_type_rev_serial: element['cars.model_type_rev_serial'],
+                customize_definitions: []
+            }
+            element['cars.customize_usage_definitions'].forEach((usageDefinition: any) => {
+                usageDefinition.customize_definitions.forEach((definition: any) => {
+                    let sendNos: any = [];
+                    definition.sends_no.forEach((sendNo: any) => {
+                        sendNos.push(sendNo);
+                    });
+                    car.customize_definitions.push({
+                        customize_definition_id: definition.id,
+                        send_nos: sendNos
+                    });
+                });
+            });
+            cars.push(car);
+        });
+        const params = {
+            data_amount_upper_limit: this.maxTraffic,
+            cars: cars
+        };
+        this.cdRequestNumberConfirmService.postCustomizeDataTransmissionRequest(params,requestHeaderParams)
+            .then((response) => {
+                console.log("Response: " + JSON.stringify(response));
+            }).catch((error) => {
+                throw error;
+            });
     }
 
     /**
@@ -108,16 +146,20 @@ export class CdRequestNumberComfirmComponent implements OnInit {
      * @returns The calculated height
      */
     public customizeUsageDefinitionHeight(item: any): number{
-        let result = 0;
+        let height = 0;
 
-        item.customize_definitions.forEach((element: any) => {
-            if(this.checkKey(element,'sends_no')){
-                result += element.sends_no.length;
-            }else{
-                result += 1;
-            }
-        })
-        return result;
+        if(item.customize_definitions.length > 0){
+            item.customize_definitions.forEach((element: any) => {
+                if(this.checkKey(element,'sends_no')){
+                    height += element.sends_no.length;
+                }else{
+                    height += 1;
+                }
+            })
+        }else{
+            height = 1;
+        }
+        return height;
     }
 
     /**

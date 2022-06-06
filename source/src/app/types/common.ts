@@ -1,6 +1,7 @@
 export interface Api {
     result_header: any;
     result_data: any;
+    status: any;
 }
 
 export interface Resource {
@@ -92,11 +93,11 @@ export interface InitializeApiResult {
 export type Fields = Field[];
 
 export interface Field {
-    control_code: string;
-    display_code: string;
-    display_sequence_no: string;
-    name: string;
-    path: string;
+    control_code?: string;
+    display_code?: string;
+    display_sequence_no?: string;
+    name?: string;
+    path?: string;
 }
 
 export interface SearchModalValues {
@@ -121,3 +122,12 @@ export interface ApiIdAndParams {
 }
 
 export type ApiId = string | ApiIdAndParams;
+
+export interface DownloadValue {
+    fileType?: string;
+    fields?: Fields;
+}
+
+export interface FieldSelectValue {
+    fields?: Fields;
+}

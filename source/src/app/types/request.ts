@@ -1,5 +1,5 @@
 export interface RequestHeaderParams {
-    'X-Fields'?: string;
+    'X-Fields'?: string| string[];
     'X-From'?: number;
     'X-Count'?: number;
     'X-Sort'?: string | string[];

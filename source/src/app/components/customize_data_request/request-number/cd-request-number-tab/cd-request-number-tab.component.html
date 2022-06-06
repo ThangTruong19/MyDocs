@@ -54,34 +54,13 @@
                     [customTableRowContent]="customTableRowContent">
 
                     <ng-template #customTableThContent>
-                        <!-- <ng-container
-                            *ngFor="let title of thList"
-                        >
-                            <th
-                                *ngIf="title.displayable"
-                                class="th-{{
-                                    title.shortName
-                                }} app-index-th"
-                                [ngClass]="{
-                                    'disable-sort': !title.sortable
-                                }"
-                                appSortingLabel
-                                [(sortingParams)]="sortingParams"
-                                [labelName]="title.name"
-                                [sortableThList]="sortableThList"
-                                (sort)="onChangeSort($event)"
-                                style="width: 30%;"
-                            >
-                                {{ title.label }}
-                            </th>
-                        </ng-container> -->
                         <th
                             class="th-request_number_car_identification_header_label app-index-th"
                             appSortingLabel
                             [(sortingParams)]="sortingParams"
                             [sortableThList]="sortableThList"
                             (sort)="onChangeSort($event)"
-                            style="width: 30%;"
+                            style="width: 25%;"
                         >
                             {{ labels.request_number_car_identification_header_label }}
                         </th>
@@ -91,17 +70,20 @@
                             [(sortingParams)]="sortingParams"
                             [sortableThList]="sortableThList"
                             (sort)="onChangeSort($event)"
-                            style="width: 30%;"
+                            style="width: 25%;"
                         >
                             {{ labels.request_number_customize_usage_definitions_header_label }}
                         </th>
-                        <th style="width: 30%;">
+                        <th class="app-index-td d-flex align-items-center"
+                            style="width: 30%;">
                             {{ labels.request_number_customize_definitions_header_label }}
                         </th>
-                        <th style="width: 10%;">
+                        <th class="app-index-td d-flex align-items-center"
+                            style="width: 10%;">
                             {{ labels.request_number_send_count_header_label }}
                         </th>
-                        <th style="width: 10%;">
+                        <th class="app-index-td d-flex align-items-center"
+                            style="width: 10%;">
                             {{ labels.request_number_discard_edits_header_label }}
                         </th>
                     </ng-template>
@@ -111,18 +93,18 @@
                         <!-- 車両情報 -->
                         <td
                             class="td-request_number_car_identification_header_label app-index-td d-flex align-items-center"
-                            style="width: 30%;"
+                            style="width: 25%;"
                         >
-                            <span>{{carIndex}}*{{ data['request_number_car_identification_header_label'] }}</span>
+                            <span>{{ data['request_number_car_identification_header_label'] }}</span>
                         </td>
 
                         <!-- カスタマイズ用途定義 -->
                         <td
                             class="td-request_number_customize_usage_definitions_header_label app-index-td align-items-center"
-                            style="width: 30%; padding: 0!important;"
+                            style="width: 25%; padding: 0!important;"
                         >
 
-                            <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label']" style="width: 100%;">
+                            <!-- <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label']" style="width: 100%;">
                                 <div *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
                                     <div *ngFor="let child of data['request_number_customize_usage_definitions_header_label']; let idx = index"
                                         style="padding: 6px;"
@@ -130,7 +112,18 @@
                                                     'line-height': data['request_number_customize_usage_definitions_header_label'].length * rowHeight - 12 + 'px'}"
                                         [ngClass]="idx > 0 ? 'border':''">
                                         <span class="link"
-                                            (click)="handleCustomizeUsageDefinitionsClick(data, child, carIndex, idx)">{{ child.id }}-{{ child.name }}</span>
+                                            (click)="handleCustomizeUsageDefinitionsClick(data, child, carIndex, idx)">{{ child.name }}</span>
+                                    </div>
+                                </div>
+                            </ng-container> -->
+                            <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label']" style="width: 100%;">
+                                <div *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
+                                    <div *ngFor="let child of data['request_number_customize_usage_definitions_header_label']; let idx = index"
+                                        style="padding: 6px;"
+                                        [ngStyle]="getHigthCustomizeUsageDefinitions(child)"
+                                        [ngClass]="idx > 0 ? 'border':''">
+                                        <span class="link"
+                                            (click)="handleCustomizeUsageDefinitionsClick(data, child, carIndex, idx)">{{ child.name }}</span>
                                     </div>
                                 </div>
                             </ng-container>
@@ -141,7 +134,7 @@
                             class="align-items-center"
                             style="width: 30%; padding: 0!important; overflow: hidden;"
                         >
-                            <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
+                            <!-- <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
                                 <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let customizeUsageDefinitionsIndex = index"
                                     [ngStyle]="{height: data['request_number_customize_usage_definitions_header_label'].length * rowHeight + 'px'}"
                                     [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
@@ -149,8 +142,22 @@
                                         style="padding: 6px;"
                                         [ngStyle]="{height: rowHeight + 'px'}"
                                         [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''">
-                                        {{ itemCustomizeDefinitions.id }} - {{ itemCustomizeDefinitions.name }}
+                                        {{ itemCustomizeDefinitions.name }}
                                     </div>
+                                </div>
+                            </ng-container> -->
+                            <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
+                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let customizeUsageDefinitionsIndex = index"
+                                    [ngStyle]="getHigthCustomizeDefinitionsLevel1(itemCustomizeUsageDefinitions)"
+                                    [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
+
+                                        <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
+                                            style="padding: 6px;"
+                                            [ngStyle]="{height: rowHeight + 'px'}"
+                                            [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''">
+                                            {{ itemCustomizeDefinitions.name }}
+                                        </div>
+
                                 </div>
                             </ng-container>
                         </td>
@@ -159,9 +166,24 @@
                             class="align-items-center text-center"
                             style="width: 10%; padding: 0; overflow: hidden;"
                         >
-                            <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
+                            <!-- <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
                                 <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let customizeUsageDefinitionsIndex = index"
                                     [ngStyle]="{height: data['request_number_customize_usage_definitions_header_label'].length * rowHeight + 'px'}"
+                                    [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
+                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
+                                        style="padding: 6px;"
+                                        class="link"
+                                        [ngStyle]="{height: rowHeight + 'px'}"
+                                        [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''"
+                                        (click)="handleSendClick(data, customizeUsageDefinitionsIndex, customizeDefinitionsIndex)">
+                                        <span *ngIf="itemCustomizeDefinitions.sends_no && itemCustomizeDefinitions.sends_no.length > 0">
+                                            {{ itemCustomizeDefinitions.sends_no.length }}</span>
+                                    </div>
+                                </div>
+                            </ng-container> -->
+                            <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
+                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let customizeUsageDefinitionsIndex = index"
+                                    [ngStyle]="getHigthCustomizeDefinitionsLevel1(itemCustomizeUsageDefinitions)"
                                     [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
                                     <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
                                         style="padding: 6px;"
@@ -182,7 +204,7 @@
                         >
                             <ng-container *ngIf="data['request_number_customize_usage_definitions_header_label'].length > 0" style="width: 100%;">
                                 <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number_customize_usage_definitions_header_label']; let customizeUsageDefinitionsIndex = index"
-                                    [ngStyle]="{height: data['request_number_customize_usage_definitions_header_label'].length * rowHeight + 'px'}"
+                                    [ngStyle]="getHigthCustomizeDefinitionsLevel1(itemCustomizeUsageDefinitions)"
                                     [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
                                     <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
                                         style="padding: 6px;"

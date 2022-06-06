@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { RequestHeaderParams } from 'app/types/request';
-import { Api } from 'app/types/common';
-import { HistoryMgtListIndexParams, HistoryMgtListFileCreateParams } from 'app/types/history-mgt-list';
+import { Api, Resource, InitializeApiResult } from 'app/types/common';
+import {
+    GetHistoryMgtListRequestParam,
+    PrintHistoryMgtListRequestParam,
+} from 'app/types/history-mgt-list';
 import { Apis } from 'app/constants/apis';
 import { ResourceService } from 'app/services/api/resource.service';
 import { ApiService } from 'app/services/api/api.service';
@@ -11,21 +14,40 @@ import { FunctionCodeConst } from 'app/constants/api/function-code-const';
 
 @Injectable()
 export class HistoryMgtListService {
-    datePickerScreenCode: string;
+    protected datePickerScreenCode: string;
 
-    constructor(protected api: ApiService, protected resource: ResourceService) {}
+    constructor(
+        protected api: ApiService,
+        protected resource: ResourceService
+    ) {}
 
     /**
      * 作業履歴一覧の初期表示に必要な情報を取得
      */
-    fetchIndexInitData() {
+    public fetchIndexInitData(): Promise<InitializeApiResult> {
         this.api.currentScreenCode = ScreenCodeConst.HISTORY_MGT_LIST_CODE;
-        return this.api.callApisForInitialize(ScreenCodeConst.HISTORY_MGT_LIST_CODE, 'fetchIndexInitData', {
-            fields: () => this.api.fetchFields(FunctionCodeConst.HISTORY_MGT_LIST_FUNCTION),
-            fieldResources: () => this.api.fetchFieldResources(FunctionCodeConst.HISTORY_MGT_LIST_FUNCTION),
-            downloadFields: () => this.api.fetchFields(FunctionCodeConst.HISTORY_MGT_LIST_DOWNLOAD_FUNCTION),
-            downloadFieldResources: () => this.api.fetchFieldResources(FunctionCodeConst.HISTORY_MGT_LIST_DOWNLOAD_FUNCTION),
-        });
+        return this.api.callApisForInitialize(
+            ScreenCodeConst.HISTORY_MGT_LIST_CODE,
+            'fetchIndexInitData',
+            {
+                fields: () =>
+                    this.api.fetchFields(
+                        FunctionCodeConst.HISTORY_MGT_LIST_FUNCTION
+                    ),
+                fieldResources: () =>
+                    this.api.fetchFieldResources(
+                        FunctionCodeConst.HISTORY_MGT_LIST_FUNCTION
+                    ),
+                downloadFields: () =>
+                    this.api.fetchFields(
+                        FunctionCodeConst.HISTORY_MGT_LIST_DOWNLOAD_FUNCTION
+                    ),
+                downloadFieldResources: () =>
+                    this.api.fetchFieldResources(
+                        FunctionCodeConst.HISTORY_MGT_LIST_DOWNLOAD_FUNCTION
+                    ),
+            }
+        );
     }
 
     /**
@@ -33,12 +55,19 @@ export class HistoryMgtListService {
      * @param params パラメータ
      * @param requestHeaderParams ヘッダ情報
      */
-    fetchIndexList(params: HistoryMgtListIndexParams, requestHeaderParams: RequestHeaderParams): Promise<Api> {
+    public fetchIndexList(
+        params: GetHistoryMgtListRequestParam,
+        requestHeaderParams: RequestHeaderParams
+    ): Promise<Api> {
         return new Promise((resolve, reject) => {
             this.api.requestHandler(
                 'fetchIndexList',
                 this.api
-                    .post(Apis.postCarCustomizesUsageDefinitionHistoriesSearch, params, { cache: false, request_header: requestHeaderParams })
+                    .post(
+                        Apis.postCarCustomizesUsageDefinitionHistoriesSearch,
+                        params,
+                        { cache: false, request_header: requestHeaderParams }
+                    )
                     .subscribe({
                         next: (res: Api) => {
                             resolve(res);
@@ -54,7 +83,10 @@ export class HistoryMgtListService {
      * @param params パラメータ
      * @param requestHeaderParams ヘッダ情報
      */
-    createFile(params: HistoryMgtListFileCreateParams, requestHeaderParams: RequestHeaderParams): Promise<Api> {
+    public createFile(
+        params: PrintHistoryMgtListRequestParam,
+        requestHeaderParams: RequestHeaderParams
+    ): Promise<Api> {
         requestHeaderParams['X-Count'] = null;
         requestHeaderParams['X-From'] = null;
 
@@ -62,10 +94,14 @@ export class HistoryMgtListService {
             this.api.requestHandler(
                 'createFile',
                 this.api
-                    .post(Apis.postCarCustomizesUsageDefinitionHistoriesSearchFileCreate, params, {
-                        cache: false,
-                        request_header: requestHeaderParams,
-                    })
+                    .post(
+                        Apis.postCarCustomizesUsageDefinitionHistoriesSearchFileCreate,
+                        params,
+                        {
+                            cache: false,
+                            request_header: requestHeaderParams,
+                        }
+                    )
                     .subscribe({
                         next: (res: Api) => {
                             resolve(res);
@@ -80,7 +116,9 @@ export class HistoryMgtListService {
      * 大分類に依存する小分類のリソースを取得する
      * @param categoryCode 大分類ID
      */
-    fetchBelongingCategoryCode(categoryCode: string): Promise<Api> {
+    public fetchBelongingCategoryCode(
+        categoryCode: string
+    ): Promise<{ operation_history: { code: Resource } }> {
         const params = [
             {
                 resource_path: 'operation_history.code',
@@ -95,12 +133,19 @@ export class HistoryMgtListService {
         return new Promise((resolve, reject) => {
             this.api.requestHandler(
                 'fetchBelongingCategoryCode',
-                this.api.fetchResource(ScreenCodeConst.HISTORY_MGT_LIST_CODE, params).subscribe({
-                    next: (res: Api) => {
-                        resolve(res);
-                    },
-                    error: (error) => reject(error),
-                })
+                this.api
+                    .fetchResource(
+                        ScreenCodeConst.HISTORY_MGT_LIST_CODE,
+                        params
+                    )
+                    .subscribe({
+                        next: (res: {
+                            operation_history: { code: Resource };
+                        }) => {
+                            resolve(res);
+                        },
+                        error: (error) => reject(error),
+                    })
             );
         });
     }
@@ -109,7 +154,9 @@ export class HistoryMgtListService {
      * カスタマイズ用途定義に依存するカスタマイズ定義のリソースを取得する
      * @param customizeUsageDefinitionId カスタマイズ用途定義
      */
-    fetchBelongingCustomizeUsageDefinitionId(customizeUsageDefinitionId: string): Promise<Api> {
+    public fetchBelongingCustomizeUsageDefinitionId(
+        customizeUsageDefinitionId: string
+    ): Promise<{ operation_history: { customize_definition_id: Resource } }> {
         const params = [
             {
                 resource_path: 'operation_history.customize_definition_id',
@@ -124,12 +171,21 @@ export class HistoryMgtListService {
         return new Promise((resolve, reject) => {
             this.api.requestHandler(
                 'fetchBelongingCustomizeUsageDefinitionId',
-                this.api.fetchResource(ScreenCodeConst.HISTORY_MGT_LIST_CODE, params).subscribe({
-                    next: (res: Api) => {
-                        resolve(res);
-                    },
-                    error: (error) => reject(error),
-                })
+                this.api
+                    .fetchResource(
+                        ScreenCodeConst.HISTORY_MGT_LIST_CODE,
+                        params
+                    )
+                    .subscribe({
+                        next: (res: {
+                            operation_history: {
+                                customize_definition_id: Resource;
+                            };
+                        }) => {
+                            resolve(res);
+                        },
+                        error: (error) => reject(error),
+                    })
             );
         });
     }

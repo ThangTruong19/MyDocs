@@ -408,6 +408,18 @@
     type: js
     file: json/cdsm/car/postCarMgtList.js
 
+#
+# x. カスタマイズデータ送信要求（送信番号指定）API  (POST)
+#
+# カスタマイズデータ送信要求（送信番号指定）
+#
+- request:
+    url: /v1/cars/requests/customize_data/send_no/m2s
+    method: POST
+  response:
+    type: js
+    file: json/cdsm/customize_request_number_confirm/postCustomizeDataTramissionRequest.js
+
 # x. Not Found
 #
 # 上記以外のリクエストはNot Found。

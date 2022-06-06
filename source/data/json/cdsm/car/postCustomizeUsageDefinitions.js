@@ -59,7 +59,7 @@ function createData(from, count) {
           "code": "0",
           "name": "開発者"
         };
-        customize_definition_list.push(itemCustomize);
+        // customize_definition_list.push(itemCustomize);
       }
       item.customize_definitions = customize_definition_list;
       customize_usage_definitions_list.push(item);

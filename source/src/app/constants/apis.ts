@@ -48,6 +48,7 @@ export const Apis = {
     postRequestPeriodComfirm: 'KOM-1xxxxxxx',
     postSendNoList: 'KOM-2xxxxxxx',
     postCarSearch: 'KOM-xxxxxx10',
+    postCustomizeDataTransmissionRequest: 'KOM-0xxxxxxx',
 
     postOperatorsUpload: 'KOM-01300030',
     getListCarsTransmissionNumbers: 'KOM-00110061'

@@ -46,11 +46,11 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
     public searchParams: RequestParams;
     public requestHeaderParams: RequestHeaderParams = {};
 
-    protected get XFields(): string {
+    protected get XFields(): string | string[] {
         return this.requestHeaderParams['X-Fields'];
     }
 
-    protected set XFields(XFields: string) {
+    protected set XFields(XFields: string | string[]) {
         this.requestHeaderParams['X-Fields'] = XFields;
     }
 
@@ -98,13 +98,13 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
         autoLoadCount: any;
         lastIndexList: any;
     } = {
-        pageNo: 1,
-        dispPageNo: 1,
-        pageCount: 10,
-        pageAdditionalCount: 0,
-        autoLoadCount: this.autoLoadCountOpen,
-        lastIndexList: this.autoLoadCountOpen
-    };
+            pageNo: 1,
+            dispPageNo: 1,
+            pageCount: 10,
+            pageAdditionalCount: 0,
+            autoLoadCount: this.autoLoadCountOpen,
+            lastIndexList: this.autoLoadCountOpen
+        };
 
     public pageCountEl: { pageCount: { values: string[] } };
 
@@ -123,7 +123,7 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
 
     public get selectedList(): string[] {
         return _.map(this.checkedItems, (value: boolean, key: string) =>
-          value ? key : null
+            value ? key : null
         ).filter(Boolean);
     }
 
@@ -636,7 +636,9 @@ export abstract class AbstractIndexComponent extends AbstractBaseComponent
         if (this.displayableFields && this.displayableFields.length > 0) {
             fields = this.displayableFields;
         } else {
-            fields = this.requestHeaderParams['X-Fields'].split(',');
+            if (typeof this.requestHeaderParams['X-Fields'] === 'string') {
+                fields = this.requestHeaderParams['X-Fields'].split(',');
+            }
         }
         const sortKey: string =
             sortKeys.find((key: string) =>

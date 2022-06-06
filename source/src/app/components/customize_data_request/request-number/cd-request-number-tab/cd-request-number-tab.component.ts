@@ -3,12 +3,16 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AbstractIndexComponent } from 'app/components/shared/abstract-component/abstract-index.component';
 import { CdRequestNumberTabService } from 'app/services/customize_data_request/request-number/cd-request-number-tab/cd-request-number-tab.service';
+import { AlertService } from 'app/services/shared/alert.service';
 import { CommonHeaderService } from 'app/services/shared/common-header.service';
 import { ModalService } from 'app/services/shared/modal.service';
 import { NavigationService } from 'app/services/shared/navigation.service';
+import { CustomizeDefinitions } from 'app/types/cd-request-number';
 import { Fields, Lists, Resources, TableHeader } from 'app/types/common';
+import { Alert } from 'app/types/cs-detail';
 import { CarCustomizeDataPerformances } from 'app/types/customize-request-number-list';
 import * as _ from 'lodash';
+import { CdRequestNumberComfirmComponent } from '../request-number-comfirm/cd-request-number-comfirm/cd-request-number-comfirm.component';
 import { CdRequestNumberListComponent } from '../request-number-list/cd-request-number-list.component';
 
 /**
@@ -39,6 +43,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
     @ViewChild('cdRequestNumberSelectListModalContent', { static: false }) cdRequestNumberSelectListModalContent: TemplateRef<null>;
     @ViewChild('cdRequestNumberComfirmModalContent', { static: false }) cdRequestNumberComfirmModalContent: TemplateRef<null>;
     @ViewChild(CdRequestNumberListComponent) requestNumberListComponent: CdRequestNumberListComponent;
+    @ViewChild(CdRequestNumberComfirmComponent) requestNumberConfirmComponent: CdRequestNumberComfirmComponent;
 
     initList: any = {
         visibleList: [] as any[],
@@ -70,6 +75,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
         router: Router,
         override modalService: ModalService,
         cdRef: ChangeDetectorRef,
+        protected alertService: AlertService,
         private cdRequestNumberTabService: CdRequestNumberTabService
     ) {
         super(nav, title, router, cdRef, header);
@@ -269,9 +275,25 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
 
                     // Adding list of send no to the list of data
                     let customizeDefinitionsIndex = -1;
-                    this.listData[carIndex].customize_usage_definitions[customizeUsageDefinitionsIndex].customize_definitions.forEach((element: any, index: any) => {
-                        if (element.id == requestNumberList.customize_definition_id) customizeDefinitionsIndex = index;
-                    });
+
+                    // this.listData[carIndex].customize_usage_definitions[customizeUsageDefinitionsIndex].customize_definitions.forEach((element: any, index: any) => {
+                    //     if (element.id == requestNumberList.customize_definition_id) customizeDefinitionsIndex = index;
+                    // });
+                    let idx = 0;
+                    // for(let element of this.listData[carIndex].customize_usage_definitions[customizeUsageDefinitionsIndex].customize_definitions){
+                    //     if (element.id == requestNumberList.customize_definition_id) {
+                    //         customizeDefinitionsIndex = idx;
+                    //         break;
+                    //     }
+                    //     idx++;
+                    // }
+                    for(let element of this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions){
+                        if (element.id == requestNumberList.customize_definition_id) {
+                            customizeDefinitionsIndex = idx;
+                            break;
+                        }
+                        idx++;
+                    }
 
                     let listSendNo: any = [];
                     if (requestNumberList) {
@@ -286,21 +308,32 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                         }
                     }
 
-                    // _.set(this.listData[carIndex].customize_usage_definitions[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex],'sends_no', listSendNo);
+                    if (customizeDefinitionsIndex == -1) {
+                        let itemCustomizeDefinitions: CustomizeDefinitions = {};
+                        itemCustomizeDefinitions.id = requestNumberList.customize_definition_id;
+                        itemCustomizeDefinitions.name = requestNumberList.customize_definition_name;
+                        itemCustomizeDefinitions.sends_no = listSendNo;
+                        itemCustomizeDefinitions.assumption_data_value = requestNumberList.assumption_data_value;
 
-                    _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'assumption_data_value', requestNumberList.assumption_data_value);
-                    _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'sends_no', listSendNo);
+                        this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions.push(itemCustomizeDefinitions);
+                    } else {
+                        // _.set(this.listData[carIndex].customize_usage_definitions[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex],'sends_no', listSendNo);
 
-                    console.log("lists: ", this.lists);
+                        _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'assumption_data_value', requestNumberList.assumption_data_value);
+                        _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'sends_no', listSendNo);
 
-                    this.sumAssumptionDataValue = 0;
-                    this.sumAssumptionDataValue = this.getSumAssumptionDataValue(carIndex, customizeUsageDefinitionsIndex);
+                        console.log("lists: ", this.lists);
 
-                    let sumCarAssumptionDataValue = 0;
-                    sumCarAssumptionDataValue = this.getSumCarAssumptionDataValue(carIndex);
+                        this.sumAssumptionDataValue = 0;
+                        this.sumAssumptionDataValue = this.getSumAssumptionDataValue(carIndex, customizeUsageDefinitionsIndex);
 
-                    _.set(this.lists.visibleList[carIndex], 'car_assumption_data_value', sumCarAssumptionDataValue);
-                    console.log("sumAssumptionDataValue", this.sumAssumptionDataValue);
+                        let sumCarAssumptionDataValue = 0;
+                        sumCarAssumptionDataValue = this.getSumCarAssumptionDataValue(carIndex);
+
+                        _.set(this.lists.visibleList[carIndex], 'car_assumption_data_value', sumCarAssumptionDataValue);
+                        console.log("sumAssumptionDataValue", this.sumAssumptionDataValue);
+                    }
+
                 },
             },
             {
@@ -382,11 +415,17 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                 closeBtnLabel: this.labels.cancel,
                 okBtnLabel: this.labels.ok_btn,
                 ok: () => {
-                    _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'assumption_data_value', 0);
-                    _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'sends_no', []);
+                    this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions.splice(customizeDefinitionsIndex, 1);
+
+                    // _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'assumption_data_value', 0);
+                    // _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'sends_no', []);
                     this.sumAssumptionDataValue = 0;
                     this.sumAssumptionDataValue = this.getSumAssumptionDataValue(carIndex, customizeUsageDefinitionsIndex);
-                    console.log("this.sumAssumptionDataValue", this.sumAssumptionDataValue);
+
+                    let sumCarAssumptionDataValue = 0;
+                    sumCarAssumptionDataValue = this.getSumCarAssumptionDataValue(carIndex);
+
+                    _.set(this.lists.visibleList[carIndex], 'car_assumption_data_value', sumCarAssumptionDataValue);
                 },
             },
             {
@@ -403,10 +442,11 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                 title: this.labels.confirm_title,
                 labels: this.labels,
                 content: this.cdRequestNumberComfirmModalContent,
-                closeBtnLabel: this.labels.cancel,
                 okBtnLabel: this.labels.ok_btn,
+                closeBtnLabel: this.labels.close,
                 ok: () => {
-                   console.log("OK");
+                    this.requestNumberConfirmComponent.customizedDataTransmissionRequest();
+                    this.alertService.show("Finish!!", false, Alert.Success);
                 },
             },
             {
@@ -449,6 +489,31 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                 });
             }
         });
-        return sumCarAssumptionDataValue / 1024;
+        return sumCarAssumptionDataValue;
+    }
+
+    getHigthCustomizeUsageDefinitions(customizeDefinitions: any): object {
+        // console.log("child", customizeDefinitions);
+        let height = this.rowHeight;
+
+        if (customizeDefinitions.customize_definitions.length > 0) {
+            height = this.rowHeight * customizeDefinitions.customize_definitions.length;
+        }
+        let lineHeight = height - 12;
+
+        return {
+            'height': height + 'px',
+            'line-height': lineHeight + 'px'
+        };
+    }
+
+    getHigthCustomizeDefinitionsLevel1(itemCustomizeUsageDefinitions: any): { height: string } {
+        let height = this.rowHeight;
+        if (itemCustomizeUsageDefinitions.customize_definitions.length > 0) {
+            height = this.rowHeight * itemCustomizeUsageDefinitions.customize_definitions.length;
+        }
+        return {
+            'height': height + 'px'
+        };
     }
 }

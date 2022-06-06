@@ -75,7 +75,6 @@
                                     [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
                                     <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
                                         style="padding: 6px;"
-                                        class="link"
                                         [ngStyle]="{height: rowHeight + 'px'}"
                                         [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''">
                                         <span *ngIf="itemCustomizeDefinitions.sends_no && itemCustomizeDefinitions.sends_no.length > 0">
@@ -96,7 +95,6 @@
                                     [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
                                     <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
                                         style="padding: 6px;"
-                                        class="link"
                                         [ngStyle]="{height: rowHeight + 'px'}"
                                         [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''">
                                         <span *ngIf="itemCustomizeDefinitions.sends_no && itemCustomizeDefinitions.sends_no.length > 0">
@@ -106,25 +104,14 @@
                             </ng-container>
                         </td>
 
-                        <!-- 通信量 [KB/件] -->
+                        <!-- 合計(車両毎)[KB] -->
                         <td *ngIf="title.name == 'car_assumption_data_value'"
-                            class="align-items-center"
-                            style="width: 10%; padding: 0!important; overflow: hidden;"
+                            class="td-{{
+                                title.shortName
+                            }} app-index-td d-flex align-items-center"
+                            style="width: 10%;"
                         >
-                            <ng-container *ngIf="data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length > 0" style="width: 100%;">
-                                <div *ngFor="let itemCustomizeUsageDefinitions of data['request_number.cars.customize_usage_definitions.customize_usage_definition']; let customizeUsageDefinitionsIndex = index"
-                                    [ngStyle]="{height: data['request_number.cars.customize_usage_definitions.customize_usage_definition'].length * rowHeight + 'px'}"
-                                    [ngClass]="customizeUsageDefinitionsIndex > 0 ? 'border':''">
-                                    <div *ngFor="let itemCustomizeDefinitions of itemCustomizeUsageDefinitions.customize_definitions; let customizeDefinitionsIndex = index"
-                                        style="padding: 6px;"
-                                        class="link"
-                                        [ngStyle]="{height: rowHeight + 'px'}"
-                                        [ngClass]="customizeDefinitionsIndex > 0 ? 'border':''">
-                                        <span *ngIf="itemCustomizeDefinitions.sends_no && itemCustomizeDefinitions.sends_no.length > 0">
-                                            {{ itemCustomizeDefinitions.assumption_data_value }}</span>
-                                    </div>
-                                </div>
-                            </ng-container>
+                            <span *ngIf="data[title.name] > 0">{{ data[title.name] }}</span>
                         </td>
 
                     </ng-container>

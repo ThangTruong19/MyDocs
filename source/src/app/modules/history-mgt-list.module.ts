@@ -7,7 +7,13 @@ import { HistoryMgtListComponent } from 'app/components/history/history-mgt-list
 import { HistoryMgtListService } from 'app/services/history/history-mgt-list.service';
 
 @NgModule({
-    imports: [CommonModule, AppCommonModule, RouterModule.forChild([{ path: '', component: HistoryMgtListComponent }])],
+    imports: [
+        CommonModule,
+        AppCommonModule,
+        RouterModule.forChild([
+            { path: '', component: HistoryMgtListComponent },
+        ]),
+    ],
     declarations: [HistoryMgtListComponent],
     providers: [HistoryMgtListService],
 })
