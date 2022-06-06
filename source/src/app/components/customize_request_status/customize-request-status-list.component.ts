@@ -110,7 +110,7 @@ export class CustomizeRequestStatusListComponent extends AbstractIndexComponent 
      * カスタマイズ用途定義変更時の処理
      * @param value 選択値
      */
-    protected async onCustomizeUsageDefinitionIdChange(value: string) {
+    protected async onCustomizeUsageDefinitionIdChange(value: string): Promise<void> {
         const res: {
             customize_definition_id?: Resource;
         } = await this.customizeRequestStatusListService.fetchBelongingCustomizeUsageDefinitionId(value);

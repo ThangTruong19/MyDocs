@@ -1,15 +1,16 @@
 <div id="app-number-comfirm">
+    <p class="confirm-msg">{{labels.customize_request_confirm_message}}</p>
     <app-common-table
-        appSortingLabel
-        [customTableThContent]="customTableThContent"
-        [customTableRowContent]="customTableRowContent"
-        [lists]="lists"
-        [thList]="thList"
-        [labels]="labels"
-        [isFetching]="isFetching"
-        [sortableThList]="sortableThList"
-        [(sortingParams)]="sortingParams"
-        [emptyListMessage]="'Empty'"
+      appSortingLabel
+      [customTableThContent]="customTableThContent"
+      [customTableRowContent]="customTableRowContent"
+      [lists]="lists"
+      [thList]="thList"
+      [labels]="labels"
+      [isFetching]="isFetching"
+      [sortableThList]="sortableThList"
+      [(sortingParams)]="sortingParams"
+      [emptyListMessage]="'Empty'"
     >
     </app-common-table>
 </div>

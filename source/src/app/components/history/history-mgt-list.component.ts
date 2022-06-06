@@ -108,7 +108,7 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
      * 大分類変更時の処理
      * @param value 選択値
      */
-    protected async onCategoryCodeChange(value: string) {
+    protected async onCategoryCodeChange(value: string): Promise<void> {
         const res: { operation_history?: { code?: Resource } } = await this.historyMgtListService.fetchBelongingCategoryCode(value);
         _.set(this.resource, 'operation_history.code', res.operation_history.code);
         if (this.belongingCategoryCode) {
@@ -121,7 +121,7 @@ export class HistoryMgtListComponent extends AbstractIndexComponent {
      * カスタマイズ用途定義変更時の処理
      * @param value 選択値
      */
-    protected async onCustomizeUsageDefinitionIdChange(value: string) {
+    protected async onCustomizeUsageDefinitionIdChange(value: string): Promise<void> {
         const res: {
             operation_history?: { customize_definition_id?: Resource };
         } = await this.historyMgtListService.fetchBelongingCustomizeUsageDefinitionId(value);

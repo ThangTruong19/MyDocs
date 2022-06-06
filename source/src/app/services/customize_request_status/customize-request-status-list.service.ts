@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { RequestHeaderParams } from 'app/types/request';
-import { Api, Resource } from 'app/types/common';
+import { Api, InitializeApiResult, Resource } from 'app/types/common';
 import { GetCustomizeRequestStatusListRequestParam } from 'app/types/customize-request-status-list';
 import { Apis } from 'app/constants/apis';
 import { ResourceService } from 'app/services/api/resource.service';
@@ -13,27 +13,16 @@ import { FunctionCodeConst } from 'app/constants/api/function-code-const';
 export class CustomizeRequestStatusListService {
     protected datePickerScreenCode: string;
 
-    constructor(
-        protected api: ApiService,
-        protected resource: ResourceService
-    ) {}
+    constructor(protected api: ApiService, protected resource: ResourceService) {}
 
     /**
      * 作業履歴一覧の初期表示に必要な情報を取得
      */
-    public fetchIndexInitData() {
-        this.api.currentScreenCode =
-            ScreenCodeConst.CUSTOMIZE_REQUEST_STATUS_LIST_CODE;
-        return this.api.callApisForInitialize(
-            ScreenCodeConst.CUSTOMIZE_REQUEST_STATUS_LIST_CODE,
-            'fetchIndexInitData',
-            {
-                fields: () =>
-                    this.api.fetchFields(
-                        FunctionCodeConst.CUSTOMIZE_REQUEST_STATUS_LIST_FUNCTION
-                    ),
-            }
-        );
+    public fetchIndexInitData(): Promise<InitializeApiResult> {
+        this.api.currentScreenCode = ScreenCodeConst.CUSTOMIZE_REQUEST_STATUS_LIST_CODE;
+        return this.api.callApisForInitialize(ScreenCodeConst.CUSTOMIZE_REQUEST_STATUS_LIST_CODE, 'fetchIndexInitData', {
+            fields: () => this.api.fetchFields(FunctionCodeConst.CUSTOMIZE_REQUEST_STATUS_LIST_FUNCTION),
+        });
     }
 
     /**
@@ -41,10 +30,7 @@ export class CustomizeRequestStatusListService {
      * @param params パラメータ
      * @param requestHeaderParams ヘッダ情報
      */
-    public fetchIndexList(
-        params: GetCustomizeRequestStatusListRequestParam,
-        requestHeaderParams: RequestHeaderParams
-    ): Promise<Api> {
+    public fetchIndexList(params: GetCustomizeRequestStatusListRequestParam, requestHeaderParams: RequestHeaderParams): Promise<Api> {
         return new Promise((resolve, reject) => {
             this.api.requestHandler(
                 'fetchIndexList',
@@ -67,9 +53,7 @@ export class CustomizeRequestStatusListService {
      * カスタマイズ用途定義に依存するカスタマイズ定義のリソースを取得する
      * @param customizeUsageDefinitionId カスタマイズ用途定義
      */
-    public fetchBelongingCustomizeUsageDefinitionId(
-        customizeUsageDefinitionId: string
-    ): Promise<{ customize_definition_id: Resource }> {
+    public fetchBelongingCustomizeUsageDefinitionId(customizeUsageDefinitionId: string): Promise<{ customize_definition_id: Resource }> {
         const params = [
             {
                 resource_path: 'customize_definition_id',
@@ -84,17 +68,12 @@ export class CustomizeRequestStatusListService {
         return new Promise((resolve, reject) => {
             this.api.requestHandler(
                 'fetchBelongingCustomizeUsageDefinitionId',
-                this.api
-                    .fetchResource(
-                        ScreenCodeConst.CUSTOMIZE_REQUEST_STATUS_LIST_CODE,
-                        params
-                    )
-                    .subscribe({
-                        next: (res: { customize_definition_id: Resource }) => {
-                            resolve(res);
-                        },
-                        error: (error) => reject(error),
-                    })
+                this.api.fetchResource(ScreenCodeConst.CUSTOMIZE_REQUEST_STATUS_LIST_CODE, params).subscribe({
+                    next: (res: { customize_definition_id: Resource }) => {
+                        resolve(res);
+                    },
+                    error: (error) => reject(error),
+                })
             );
         });
     }

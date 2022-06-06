@@ -57,6 +57,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
     thListRequestNumberSelectList: any = [];
     thListRequestNumber: any = [];
     sumAssumptionDataValue: number = 0;
+    sumCarDataAmountUpperLimit: number = 0;
 
     _searchParams: any = {
         "car_identification": {
@@ -103,7 +104,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
             let car: any = {};
             car["request_number_car_identification_header_label"] = element.car_identification.model + "-" + element.car_identification.type_rev + "-" + element.car_identification.serial;
             car["request_number_customize_usage_definitions_header_label"] = element.customize_usage_definitions;
-            // car["request_number_customize_definitions_header_label"] = [];
+            car["request_number.cars.communication_channel.id"] = element.communication_channel.id; //通信機種ID
             car["request_number.cars.communication_channel.name"] = element.communication_channel.name; // 通信機種名称
             car["request_number_discard_edits_header_label"] = "";
             car["request_number_car_identification_id"] = element.car_identification.id; // 車両ID
@@ -223,7 +224,9 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
         this.lists.visibleList.forEach((element: any, index: number) => {
             console.log(element);
             let car: any = {};
+            car["request_number_car_identification_id"] = element.request_number_car_identification_id; // 車両ID
             car["request_number.cars.car_identification.model_type_rev_serial"] = element.request_number_car_identification_header_label; //車両
+            car["request_number.cars.communication_channel.id"] = element['request_number.cars.communication_channel.id']; // 通信機種ID
             car["request_number.cars.communication_channel.name"] = element['request_number.cars.communication_channel.name']; // 通信機種類
             car["request_number.cars.customize_usage_definitions.customize_usage_definition"] = element.request_number_customize_usage_definitions_header_label;
 
@@ -287,7 +290,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                     //     }
                     //     idx++;
                     // }
-                    for(let element of this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions){
+                    for (let element of this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions) {
                         if (element.id == requestNumberList.customize_definition_id) {
                             customizeDefinitionsIndex = idx;
                             break;
@@ -321,18 +324,14 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
 
                         _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'assumption_data_value', requestNumberList.assumption_data_value);
                         _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'sends_no', listSendNo);
-
-                        console.log("lists: ", this.lists);
-
-                        this.sumAssumptionDataValue = 0;
-                        this.sumAssumptionDataValue = this.getSumAssumptionDataValue(carIndex, customizeUsageDefinitionsIndex);
-
-                        let sumCarAssumptionDataValue = 0;
-                        sumCarAssumptionDataValue = this.getSumCarAssumptionDataValue(carIndex);
-
-                        _.set(this.lists.visibleList[carIndex], 'car_assumption_data_value', sumCarAssumptionDataValue);
-                        console.log("sumAssumptionDataValue", this.sumAssumptionDataValue);
                     }
+                    let sumCarAssumptionDataValue = 0;
+                    sumCarAssumptionDataValue = this.getSumCarAssumptionDataValue(carIndex);
+
+                    _.set(this.lists.visibleList[carIndex], 'car_assumption_data_value', sumCarAssumptionDataValue);
+
+                    this.sumCarDataAmountUpperLimit = 0;
+                    this.sumCarDataAmountUpperLimit = this.getSumCarDataAmountUpperLimit();
 
                 },
             },
@@ -390,7 +389,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                     console.log("response data: ");
                     this.lists.visibleList = _.cloneDeep(this.listBackup);
                     this.lists.originList = _.cloneDeep(this.listBackup);
-                    this.sumAssumptionDataValue = 0;
+                    this.sumCarDataAmountUpperLimit = 0;
                 },
             },
             {
@@ -420,7 +419,8 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                     // _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'assumption_data_value', 0);
                     // _.set(this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions[customizeDefinitionsIndex], 'sends_no', []);
                     this.sumAssumptionDataValue = 0;
-                    this.sumAssumptionDataValue = this.getSumAssumptionDataValue(carIndex, customizeUsageDefinitionsIndex);
+                    // this.sumAssumptionDataValue = this.getSumAssumptionDataValue(carIndex, customizeUsageDefinitionsIndex);
+                    this.sumCarDataAmountUpperLimit = this.getSumCarDataAmountUpperLimit();
 
                     let sumCarAssumptionDataValue = 0;
                     sumCarAssumptionDataValue = this.getSumCarAssumptionDataValue(carIndex);
@@ -443,7 +443,7 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
                 labels: this.labels,
                 content: this.cdRequestNumberComfirmModalContent,
                 okBtnLabel: this.labels.ok_btn,
-                closeBtnLabel: this.labels.close,
+                closeBtnLabel: this.labels.cancel,
                 ok: () => {
                     this.requestNumberConfirmComponent.customizedDataTransmissionRequest();
                     this.alertService.show("Finish!!", false, Alert.Success);
@@ -461,16 +461,35 @@ export class CdRequestNumberTabComponent extends AbstractIndexComponent implemen
      * @param carIndex
      * @param customizeUsageDefinitionsIndex
      */
-    getSumAssumptionDataValue(carIndex: number, customizeUsageDefinitionsIndex: number): number {
-        let sumAssumptionDataValue = 0;
-        this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions.forEach((element: any, index: any) => {
-            console.log(element.assumption_data_value)
-            if (element.assumption_data_value) {
-                sumAssumptionDataValue += element.assumption_data_value;
+    // getSumAssumptionDataValue(carIndex: number, customizeUsageDefinitionsIndex: number): number {
+    //     let sumAssumptionDataValue = 0;
+    //     this.lists.visibleList[carIndex].request_number_customize_usage_definitions_header_label[customizeUsageDefinitionsIndex].customize_definitions.forEach((element: any, index: any) => {
+    //         console.log(element.assumption_data_value)
+    //         if (element.assumption_data_value) {
+    //             sumAssumptionDataValue += element.assumption_data_value;
+    //         }
+    //     });
+    //     return sumAssumptionDataValue / 1024;
+    // }
+
+    /**
+     * ①非表示で保持しているカスタマイズ定義の想定通信量（合計）と
+     * ②入力した上限通信量(KB)を比較し超過した際に③メッセージの表示を行う
+     * @param carIndex
+     * @param customizeUsageDefinitionsIndex
+     */
+    getSumCarDataAmountUpperLimit(): number {
+        let result = 0;
+        this.lists.visibleList.forEach((element: any, index: any) => {
+            if (element.car_assumption_data_value) {
+                result += element.car_assumption_data_value;
             }
         });
-        return sumAssumptionDataValue / 1024;
+        console.log("SumCarDataAmountUpperLimit:" + result / 1024);
+
+        return result / 1024;
     }
+
 
     /**
      * 合計(車両毎)[KB]を計算

@@ -170,7 +170,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * ページ離脱時の制御
      * @returns true：ダイアログ表示、false：ダイアログ非表示
      */
-    public shouldConfirmOnBeforeunload() {
+    public shouldConfirmOnBeforeunload(): boolean {
         return this.lists.addList.length !== 0 || this.lists.editList.length !== 0;
     }
 
@@ -179,12 +179,12 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param e beforeunloadイベント
      */
     @HostListener('window:beforeunload', ['$event'])
-    protected beforeUnload(e: Event) {
+    protected beforeUnload(e: Event): void {
         if (this.shouldConfirmOnBeforeunload()) {
             e.preventDefault();
-            // Chrome未対応のため
-            // https://developer.mozilla.org/ja/docs/Web/API/Window/beforeunload_event
-            e.returnValue = true;
+            if ('returnValue' in e) {
+                (<any>e).returnValue = true;
+            }
         }
     }
 
@@ -252,7 +252,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * @param resultHeader API のレスポンスヘッダ
      * @param resultData API のレスポンスデータ
      */
-    protected override _fillLists(resultHeader: ResultHeader, resultData: Item[]) {
+    protected override _fillLists(resultHeader: ResultHeader, resultData: Item[]): void {
         super._fillLists(resultHeader, resultData);
         this.initialLists.originList = _.cloneDeep(this.lists.originList);
         this.initialLists.visibleList = _.cloneDeep(this.lists.visibleList);
@@ -338,7 +338,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 指定項目を更新
      * @param fields 指定項目
      */
-    protected _updateFields(fields: Fields) {
+    protected _updateFields(fields: Fields): void {
         this.fields = fields;
         this.thList = this._createThList(fields);
         this.thList.push({
@@ -431,7 +431,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * 追加ボタン押下コールバック
      */
-    protected onClickAdd() {
+    protected onClickAdd(): void {
         this.openCsNewDialog();
     }
 
@@ -440,28 +440,28 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      *
      * @param data 対象データ
      */
-    protected onClickEdit(data: Item) {
+    protected onClickEdit(data: Item): void {
         this.openCsEditDialog(data);
     }
 
     /**
      * 設定取得要求ボタン押下コールバック
      */
-    protected onClickGetRequest() {
+    protected onClickGetRequest(): void {
         this.openCsGetRequestDialog();
     }
 
     /**
      * 設定更新要求ボタン押下コールバック
      */
-    protected onClickUpdateRequest() {
+    protected onClickUpdateRequest(): void {
         this.openCsUpdateRequestConfirmDialog();
     }
 
     /**
      * 設定即時更新要求ボタン押下コールバック
      */
-    protected onClickImmediateUpdateRequest() {
+    protected onClickImmediateUpdateRequest(): void {
         this.openCsImmediateUpdateRequestConfirmDialog();
     }
 
@@ -469,14 +469,14 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 編集内容破棄ボタン押下コールバック
      * @param data 対象データ
      */
-    protected onClickDiscard(data: Item) {
+    protected onClickDiscard(data: Item): void {
         this.openCsInputDataCancelConfirmDialog(data);
     }
 
     /**
      * 編集内容全破棄ボタン押下コールバック
      */
-    protected onClickDiscardAll() {
+    protected onClickDiscardAll(): void {
         this.openCsInputDataCancelAllConfirmDialog();
     }
 
@@ -484,14 +484,14 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 再送ボタン押下コールバック
      * @param data 対象データ
      */
-    protected onClickRetry(data: Item) {
+    protected onClickRetry(data: Item): void {
         this.openCsRequestResendConfirmDialog(data);
     }
 
     /**
      * 追加モーダル呼出し
      */
-    protected openCsNewDialog() {
+    protected openCsNewDialog(): void {
         this.modalService.open(
             {
                 title: this.labels.addition_title,
@@ -585,7 +585,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 編集モーダル呼出し
      * @param data 対象データ
      */
-    protected openCsEditDialog(data: Item) {
+    protected openCsEditDialog(data: Item): void {
         const content = this.convert(data);
         this.inputParams.edit_customize_usage_definition_id = content.customize_usage_definition.customize_usage_definition_id;
         this.inputParams.edit_customize_usage_definition_name = content.customize_usage_definition.customize_usage_definition_name;
@@ -705,7 +705,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * 設定取得要求モーダル呼出し
      */
-    protected openCsGetRequestDialog() {
+    protected openCsGetRequestDialog(): void {
         this.modalService.open(
             {
                 title: this.labels.confirmation_title,
@@ -752,7 +752,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * 設定更新要求モーダル呼出し
      */
-    protected openCsUpdateRequestConfirmDialog() {
+    protected openCsUpdateRequestConfirmDialog(): void {
         const keys: String[] = [];
         Object.keys(this.checkedItems).forEach((key) => {
             if (this.checkedItems[key]) keys.push(key);
@@ -826,7 +826,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * 設定即時更新要求モーダル呼出し
      */
-    protected openCsImmediateUpdateRequestConfirmDialog() {
+    protected openCsImmediateUpdateRequestConfirmDialog(): void {
         const keys: String[] = [];
         Object.keys(this.checkedItems).forEach((key) => {
             if (this.checkedItems[key]) keys.push(key);
@@ -903,7 +903,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 編集内容破棄モーダル呼出し
      * @param data 対象データ
      */
-    protected openCsInputDataCancelConfirmDialog(data: Item) {
+    protected openCsInputDataCancelConfirmDialog(data: Item): void {
         this.modalService.open(
             {
                 title: this.labels.confirmation_title,
@@ -991,7 +991,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * 編集内容全破棄モーダル呼出し
      */
-    protected openCsInputDataCancelAllConfirmDialog() {
+    protected openCsInputDataCancelAllConfirmDialog(): void {
         this.modalService.open(
             {
                 title: this.labels.confirmation_title,
@@ -1021,7 +1021,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
      * 再送モーダル呼出し
      * @param data 対象データ
      */
-    protected openCsRequestResendConfirmDialog(data: Item) {
+    protected openCsRequestResendConfirmDialog(data: Item): void {
         this.tableData.push(data);
         this.modalService.open(
             {
@@ -1067,7 +1067,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * 通信量確認モーダル呼出し
      */
-    protected onClickExpectedTrafficConfirm() {
+    protected onClickExpectedTrafficConfirm(): void {
         const keys: String[] = [];
         Object.keys(this.checkedItems).forEach((key) => {
             if (this.checkedItems[key]) keys.push(key);
@@ -1118,7 +1118,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * チェックボックス押下時の処理
      */
-    protected onChangeSelect() {
+    protected onChangeSelect(): void {
         this.check();
         this.disabled = !Object.values(this.checkedItems).some((item) => item);
     }
@@ -1126,7 +1126,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * チェックボックス押下時の処理
      */
-    protected onChangeSelectAll() {
+    protected onChangeSelectAll(): void {
         this.check();
         this.disabled = !Object.values(this.checkedItems).some((item) => item);
     }
@@ -1134,7 +1134,7 @@ export class CsDetailComponent extends AbstractIndexComponent implements OnInit 
     /**
      * チェックボックスの更新処理
      */
-    protected check() {
+    protected check(): void {
         const targetItems: Item[] = [...this.lists.originList, ...this.lists.hiddenList].filter(
             (element: Item) => !this.checkBoxHiddenFunction(element)
         );
